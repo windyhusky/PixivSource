@@ -1,4 +1,4 @@
-{
+[{
   "bookSourceComment": "linpx是pixiv的子集 包含所有兽人小说",
   "bookSourceGroup": "pixiv",
   "bookSourceName": "linpx",
@@ -44,4 +44,4 @@
   },
   "searchUrl": "{{`https://linpxapi.linpicio.com/pixiv/search/novel/${encodeURI(key)}?page=${page}`}}",
   "weight": 0
-}
+}]
