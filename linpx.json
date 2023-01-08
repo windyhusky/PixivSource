@@ -1,0 +1,47 @@
+{
+  "bookSourceComment": "linpx是pixiv的子集 包含所有兽人小说",
+  "bookSourceGroup": "pixiv",
+  "bookSourceName": "linpx",
+  "bookSourceType": 0,
+  "bookSourceUrl": "https://www.furrynovel.xyz",
+  "customOrder": 0,
+  "enabled": true,
+  "enabledCookieJar": false,
+  "enabledExplore": true,
+  "enabledReview": false,
+  "lastUpdateTime": 1673166152209,
+  "respondTime": 180000,
+  "ruleBookInfo": {
+    "author": "author",
+    "coverUrl": "cover_url",
+    "init": "@js:\nvar userMap = new Map();\nvar seriesMap = new Map();\nvar ajaxCount = 0;\n\n(function (res) {\n    function findUser(userId) {\n        let obj = userMap.get(userId);\n        if (obj === undefined || obj === null) {\n            obj = java.ajax(`https://linpxapi.linpicio.com/pixiv/user/${userId}`)\n            ajaxCount++\n            userMap.set(userId, JSON.parse(obj))\n        }\n        return obj\n    }\n\n    function findSeries(userInfo, seriesTitle) {\n        userInfo = JSON.parse(userInfo)\n        let obj = undefined\n        userInfo.series.forEach((series, i) => {\n            if (series.title === seriesTitle) {\n                obj = seriesMap.get(series.id)\n                if (obj === undefined || obj !== null) {\n                    obj = java.ajax(`https://linpxapi.linpicio.com/pixiv/series/${series.id}`)\n                    ajaxCount++\n                    seriesMap.set(series, JSON.parse(obj))\n                }\n            }\n        })\n        return obj\n    }\n\n    function findSeriesId(userInfo, seriesTitle) {\n        userInfo = JSON.parse(userInfo)\n        let id = 0\n        userInfo.series.forEach((series, i) => {\n            if (series.title === seriesTitle) {\n                id = series.id\n            }\n        })\n        return id\n    }\n\n\n    res = JSON.parse(res)\n    let prop = {}\n    prop['author'] = res.userName\n    prop['count'] = book.wordCount\n    prop['desc'] = res.desc\n    prop['cover_url'] = `https://linpxapi.linpicio.com/proxy/pximg?url= ${res.coverUrl}`\n\n    if (res.series == null) {\n        prop['name'] = res.title\n        prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/novel/${res.id}`\n        prop['classes'] = '单本'\n    } else {\n        prop['name'] = res.series.title\n        prop['classes'] = '长篇'\n\n        //查询用户\n        let userInfo = findUser(res.userId)\n        prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/series/${findSeriesId(userInfo, res.series.title)}`\n\n        // let series = findSeries(userInfo, res.series.title)\n        java.log(`总请求数量：${ajaxCount}`)\n\n        // series = JSON.parse(series)\n        //\n        // // 如果后端做了分页的判断\n        // let latestIndex = series.total\n        // if (series.novels.length === latestIndex) {\n        //     prop['latest_chapter'] = series.novels[latestIndex - 1].title\n        // } else {\n        //     // 已分页 要再发送请求获取 但是目前还不用做 1/8\n        // }\n    }\n\n    prop['classes'] += res.tags.join(\",\")\n\n\n    java.log(`返回的信息:${JSON.stringify(prop)}`)\n\n    return prop\n\n})(result)",
+    "intro": "desc",
+    "kind": "classes",
+    "lastChapter": "latest_chapter",
+    "name": "name",
+    "tocUrl": "catalog",
+    "wordCount": "count"
+  },
+  "ruleContent": {
+    "content": "@js:\n(function (res) {\n    res = JSON.parse(res)\n    let content = res.content\n    //链接替换 如果有的话\n    if (res.images !== undefined && res.images !== null) {\n        Object.keys(res.images).forEach((key) => {\n            content = content.replace(`[uploadedimage:${key}]`, `<img src=\"https://linpxapi.linpicio.com/proxy/pximg?url=${res.images[key].preview}\">`)\n        })\n    }\n    return content\n})(result)",
+    "sourceRegex": "",
+    "replaceRegex": ""
+  },
+  "ruleSearch": {
+    "author": "userName",
+    "bookList": "novels",
+    "bookUrl": "{{`https://linpxapi.linpicio.com/pixiv/novel/${result.id}/cache`}}",
+    "coverUrl": "{{`https://linpxapi.linpicio.com/proxy/pximg?url=${result.coverUrl}`}}",
+    "intro": "desc",
+    "kind": "tags[*]",
+    "name": "title",
+    "wordCount": "length"
+  },
+  "ruleToc": {
+    "chapterList": "@js:\n(function (res) {\n    res = JSON.parse(res)\n    if (res.novels !== undefined) {\n        res.novels.forEach(v => {\n            v['url'] = `https://linpxapi.linpicio.com/pixiv/novel/${v.id}`\n        })\n        return res.novels\n    }\n    return [{\n        id: res.id,\n        title: res.title\n    }]\n})(result)",
+    "chapterName": "title",
+    "chapterUrl": "url"
+  },
+  "searchUrl": "{{`https://linpxapi.linpicio.com/pixiv/search/novel/${encodeURI(key)}?page=${page}`}}",
+  "weight": 0
+}
