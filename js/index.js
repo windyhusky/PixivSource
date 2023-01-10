@@ -42,8 +42,9 @@ var ajaxCount = 0;
         let userInfo = findUser(res.userId)
         prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/series/${findSeriesId(userInfo, res.series.title)}`
     }
-
-    prop['classes'] += res.tags.join(",")
+    if (res.tags !== undefined) {
+        prop['classes'] += res.tags.join(",")
+    }
     return prop
 
 })(result)

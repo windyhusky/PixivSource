@@ -40,3 +40,9 @@ tags[ *
         `https://linpxapi.linpicio.com/pixiv/novel/${result.id}/cache`
     }
 }
+
+{{`https://linpxapi.linpicio.com/pixiv/search/novel/${encodeURI(key)}?page=${page}`}}
+
+@js:
+java.put("key",key);
+`https://linpxapi.linpicio.com/pixiv/search/novel/${encodeURI(key)}?page=${page}`
