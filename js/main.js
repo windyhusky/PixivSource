@@ -1,5 +1,4 @@
 @js:
-
 function getUser(username, exactMatch) {
     // 修复传入object的bug
     username = String(username)
@@ -66,6 +65,12 @@ function formatNovels(novels) {
     novels.forEach(novel => {
         novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${novel.coverUrl}`
         novel.detailedUrl = `https://linpxapi.linpicio.com/pixiv/novel/${novel.id}/cache`
+        if (novel.seriesId !== undefined && novel.seriesTitle !== undefined){
+            novel.tags.unshift("长篇")
+        }else {
+            novel.tags.unshift("单本")
+        }
+
         novel.tags = novel.tags.join(",")
     })
     return novels
