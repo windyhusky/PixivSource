@@ -2,10 +2,10 @@
 (function (res) {
     res = JSON.parse(res)
     let prop = {}
-    prop['author'] = res.userName
+    prop['author'] = book.author
     prop['count'] = book.wordCount
-    prop['desc'] = res.desc
-    prop['cover_url'] = `https://linpxapi.linpicio.com/proxy/pximg?url= ${res.coverUrl}`
+    prop['desc'] = book.intro
+    prop['cover_url'] = book.coverUrl
 
     if (res.series === undefined || res.series === null) {
         prop['name'] = res.title
@@ -14,7 +14,6 @@
     } else {
         prop['name'] = res.series.title
         res.tags.unshift('长篇')
-        //查询用户
         prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/series/${res.series.id}`
     }
     prop['classes'] = res.tags.join(",")
