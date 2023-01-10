@@ -1,6 +1,6 @@
 @js:
 
-function urlSearchUsername(username) {
+function urlSearchUsers(username) {
     return `https://linpxapi.linpicio.com/pixiv/search/user/${username}`
 }
 
@@ -26,7 +26,7 @@ function cacheGetAndSet(key, supplyFunc) {
 function getUser(username, exactMatch) {
     // 修复传入object的bug
     username = String(username)
-    let resp = JSON.parse(java.ajax(`https://linpxapi.linpicio.com/pixiv/search/user/${username}`))
+    let resp = getAjaxJson(urlSearchUsers(username))
     if (resp.users.length === 0) {
         return []
     }
@@ -41,6 +41,12 @@ function getUser(username, exactMatch) {
     })
 }
 
+function getAjaxJson(url) {
+    return cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    })
+}
+
 function getWebviewJson(url) {
     return cacheGetAndSet(url, () => {
         let html = java.webView(null, url, null)
@@ -50,16 +56,20 @@ function getWebviewJson(url) {
 
 // 包含所有小说数据
 function getUserDetailedList(uidList) {
-    java.log(`UIDLIST:${JSON.stringify(uidList)}`)
-    let url = `https://linpxapi.linpicio.com/pixiv/users?${uidList.map(v => "ids[]=" + v).join("&")}`
-    return getWebviewJson(url)
+    // java.log(`UIDLIST:${JSON.stringify(uidList)}`)
+    return getWebviewJson(urlUserDetailed(uidList))
 }
 
 function getNovels(nidList) {
     let page = Number(java.get("page"))
     // java.log(`NIDLIST:${JSON.stringify(nidList)}`)
-    let url = `https://linpxapi.linpicio.com/pixiv/novels?${nidList.slice((page - 1) * 20, page * 20).map(v => "ids[]=" + v).join("&")}`
-    return getWebviewJson(url)
+    // 分页
+    let list = nidList.slice((page - 1) * 20, page * 20)
+    if (list.length === 0) {
+        return []
+    }
+
+    return getWebviewJson(urlNovelsDetailed(list))
 }
 
 // 将多个长篇小说解析为一本书
