@@ -113,8 +113,6 @@ function formatNovels(novels) {
 
 function findUserNovels(username) {
     let novelList = []
-
-
     // 查询用户
     let userArr = getUser(username, true)
     // 获取用户所有小说
