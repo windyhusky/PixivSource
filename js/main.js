@@ -1,4 +1,28 @@
 @js:
+
+function urlSearchUsername(username) {
+    return `https://linpxapi.linpicio.com/pixiv/search/user/${username}`
+}
+
+function urlUserDetailed(uidList) {
+    return `https://linpxapi.linpicio.com/pixiv/users?${uidList.map(v => "ids[]=" + v).join("&")}`
+}
+
+function urlNovelsDetailed(nidList) {
+    return `https://linpxapi.linpicio.com/pixiv/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+}
+
+function cacheGetAndSet(key, supplyFunc) {
+    let v = cache.get(key)
+    if (v === undefined || v === null) {
+        v = JSON.stringify(supplyFunc())
+        // 缓存10分钟
+        cache.put(key, v, 600)
+    }
+    return JSON.parse(v)
+}
+
+
 function getUser(username, exactMatch) {
     // 修复传入object的bug
     username = String(username)
@@ -18,8 +42,10 @@ function getUser(username, exactMatch) {
 }
 
 function getWebviewJson(url) {
-    let html = java.webView(null, url, null)
-    return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
+    return cacheGetAndSet(url, () => {
+        let html = java.webView(null, url, null)
+        return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
+    })
 }
 
 // 包含所有小说数据
@@ -30,12 +56,9 @@ function getUserDetailedList(uidList) {
 }
 
 function getNovels(nidList) {
-    //todo 简单的限制
-    if (nidList.length > 30) {
-        nidList.length = 30
-    }
-    java.log(`NIDLIST:${JSON.stringify(nidList)}`)
-    let url = `https://linpxapi.linpicio.com/pixiv/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    let page = Number(java.get("page"))
+    // java.log(`NIDLIST:${JSON.stringify(nidList)}`)
+    let url = `https://linpxapi.linpicio.com/pixiv/novels?${nidList.slice((page - 1) * 20, page * 20).map(v => "ids[]=" + v).join("&")}`
     return getWebviewJson(url)
 }
 
@@ -62,22 +85,25 @@ function combineNovels(novels) {
 
 // 将小说的封面规则与详情地址替换
 function formatNovels(novels) {
+    // java.log("入参" + JSON.stringify(novels))
     novels.forEach(novel => {
         novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${novel.coverUrl}`
-        novel.detailedUrl = `https://linpxapi.linpicio.com/pixiv/novel/${novel.id}/cache`
-        if (novel.seriesId !== undefined && novel.seriesTitle !== undefined){
+        novel.detailedUrl = `https://linpxapi.linpicio.com/pixiv/novel/${novel.id}`
+        if (novel.seriesId !== undefined && novel.seriesId !== null) {
             novel.tags.unshift("长篇")
-        }else {
+        } else {
             novel.tags.unshift("单本")
         }
 
         novel.tags = novel.tags.join(",")
     })
+    // java.log("出参" + JSON.stringify(novels))
     return novels
 }
 
 function findUserNovels(username) {
     let novelList = []
+
 
     // 查询用户
     let userArr = getUser(username, true)
@@ -97,17 +123,15 @@ function findUserNovels(username) {
             novelList.push(novel)
         })
     }
-
     return novelList
 }
 
 
 (function (res) {
     res = JSON.parse(res)
-    let novels = findUserNovels(java.get("key"))
-    res.novels.forEach(v => {
+    let novels = res.novels
+    findUserNovels(java.get("key")).forEach(v => {
         novels.push(v)
     })
     return formatNovels(combineNovels(novels))
-
 }(result))
