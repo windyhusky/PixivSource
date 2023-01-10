@@ -1,3 +1,4 @@
+@js:
 var userMap = new Map();
 var ajaxCount = 0;
 
@@ -34,10 +35,10 @@ var ajaxCount = 0;
     if (res.series == null) {
         prop['name'] = res.title
         prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/novel/${res.id}`
-        prop['classes'] = '单本'
+        prop['classes'] = '单本,'
     } else {
         prop['name'] = res.series.title
-        prop['classes'] = '长篇'
+        prop['classes'] = '长篇,'
         //查询用户
         let userInfo = findUser(res.userId)
         prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/series/${findSeriesId(userInfo, res.series.title)}`

@@ -1,6 +1,5 @@
 @js:
-// 发送两个请求 一个去查user一个去查serach
-// String类型：key
+
 function getUser(username, exactMatch) {
     // 修复传入object的bug
     username = String(username)
@@ -19,12 +18,16 @@ function getUser(username, exactMatch) {
     })
 }
 
+function getWebviewJson(url) {
+    let html = java.webView(null, url, null)
+    return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
+}
+
 // 包含所有小说数据
 function getUserDetailedList(uidList) {
     java.log(`UIDLIST:${JSON.stringify(uidList)}`)
     let url = `https://linpxapi.linpicio.com/pixiv/users?${uidList.map(v => "ids[]=" + v).join("&")}`
-    let html = java.webView(null, url, null)
-    return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
+    return getWebviewJson(url)
 }
 
 function getNovels(nidList) {
@@ -32,12 +35,9 @@ function getNovels(nidList) {
     if (nidList.length > 30) {
         nidList.length = 30
     }
-
     java.log(`NIDLIST:${JSON.stringify(nidList)}`)
     let url = `https://linpxapi.linpicio.com/pixiv/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
-    java.log(`请求地址:${url}`)
-    let html = java.webView(null, url, null)
-    return JSON.parse(html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", ""))
+    return getWebviewJson(url)
 }
 
 // 将多个长篇小说解析为一本书
@@ -62,7 +62,7 @@ function combineNovels(novels) {
 }
 
 // 将小说的封面规则与详情地址替换
-function parseNovels(novels) {
+function formatNovels(novels) {
     novels.forEach(novel => {
         novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${novel.coverUrl}`
         novel.detailedUrl = `https://linpxapi.linpicio.com/pixiv/novel/${novel.id}/cache`
@@ -71,13 +71,11 @@ function parseNovels(novels) {
     return novels
 }
 
-
-(function (res) {
-    res = JSON.parse(res)
-    let novels = res.novels
+function findUserNovels(username) {
+    let novelList = []
 
     // 查询用户
-    let userArr = getUser(java.get("key"), true)
+    let userArr = getUser(username, true)
     // 获取用户所有小说
     let uidList = userArr.filter(user => {
         return user.novels.length > 0
@@ -91,11 +89,20 @@ function parseNovels(novels) {
             user.novels.forEach(nid => nidList.push(nid))
         })
         getNovels(nidList).forEach(novel => {
-            novels.push(novel)
+            novelList.push(novel)
         })
     }
 
+    return novelList
+}
 
-    return parseNovels(combineNovels(novels))
+
+(function (res) {
+    res = JSON.parse(res)
+    let novels = findUserNovels(java.get("key"))
+    res.novels.forEach(v => {
+        novels.push(v)
+    })
+    return formatNovels(combineNovels(novels))
 
 }(result))
