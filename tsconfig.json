@@ -5,7 +5,8 @@
     "sourceMap": true
   },
   "files": [
-    "ts/main.ts"
+    "linpx/ts/main.ts",
+    "pixiv/ts/main.ts"
   ],
   "exclude": [
     "node_modules"
