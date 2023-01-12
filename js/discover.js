@@ -62,7 +62,11 @@ function formatNovels(novels) {
             novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.novels[0].coverUrl}`
             if (series.caption === "") {
                 let firstNovels = getAjaxJson(urlNovelsDetailed([series.novels[0].id]))
-                novel.desc = firstNovels[0].desc
+                if (firstNovels.length > 0) {
+                    novel.desc = firstNovels[0].desc
+                } else {
+                    novel.desc = "该小说可能部分章节因为权限或者被删除无法查看"
+                }
             } else {
                 novel.desc = series.caption
             }
@@ -73,6 +77,10 @@ function formatNovels(novels) {
                 novel.tags = series.novels[0].tags
             } else {
                 novel.tags = series.tags
+            }
+
+            if (novel.tags === undefined) {
+                novel.tags = []
             }
             novel.tags.unshift("长篇")
 
