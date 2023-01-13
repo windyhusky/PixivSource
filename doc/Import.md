@@ -1,4 +1,10 @@
-## 常用导入书源方式
+## 书源来源
+
+- 官方频道 [@legado_channels](https://t.me/legado_channels)
+- [源仓库](http://yck.mumuceo.com/)
+- 其他网络来源
+
+## 导入书源
 
 ### A.文件导入更简单
 
@@ -8,7 +14,6 @@
 >
 > https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
-![img](https://telegra.ph/file/89158b0737152305185cc.png)
 
 #### 2.使用阅读打开
 
@@ -44,8 +49,9 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 #### 4.导入完成并启用书源
 
-![img](https://telegra.ph/file/31a6d4be7e497ab6b01ce.png)
+**无法网络导入时，请尝试开启代理，或过段时间重试**
 
+![img](https://telegra.ph/file/31a6d4be7e497ab6b01ce.png)
 
 ## 确认启用书源
 
@@ -67,21 +73,15 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 #### 1.找到需要登录的书源
 
-![img](https://telegra.ph/file/1d53f56221779da3b3409.png)
+**点击右上角的三点菜单，选择【登录】**
+![img](https://telegra.ph/file/c50639ef1fe61778033ff.png)
 
 
-#### 2.点击书源对应三点菜单
-
-点击右上角的三点，选择【登录】
-
-![img](https://telegra.ph/file/3184f20368fcccd6cb855.png)
-
-
-#### 3.登录你的账号
+#### 2.登录你的账号
 
 登录成功后，点击右上角的对勾，关闭登录页面
 
 ![img](https://telegra.ph/file/477498dc3c3cf229981d0.png)
 
-对于Pixiv而言，**如果需要验证，请更换代理，或过段时间再次尝试**
+对于Pixiv而言，**如果需要验证码，请更换代理，或过段时间再次尝试**
 
