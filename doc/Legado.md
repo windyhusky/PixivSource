@@ -1,4 +1,4 @@
-## 阅读介绍
+## 阅读简介
 
 ![img](https://telegra.ph/file/baff78c0816cac595ba8a.jpg)
 
@@ -70,9 +70,23 @@
 - 多阅
 - 香色闺阁
 
+整理自：
+
+https://www.52pojie.cn/thread-1632541-1-1.html
+
+https://zhuanlan.zhihu.com/p/488482216
 
 
-### 4.常用功能(转自[官方使用说明](https://www.yuque.com/legado/wiki/xz))
+
+### 4.下载安装后应该做什么？
+
+- [导入书源](https://github.com/DowneyRem/PixivSource/blob/main/doc/Import.md)
+- [设置备份](https://www.yuque.com/legado/wiki/mgu5qu)(推荐)
+- 搜索小说
+- 尽情使用
+- 不时备份
+
+### 5.常用功能(转自[官方使用说明](https://www.yuque.com/legado/wiki/xz))
 
 #### 导入：[书源](https://www.yuque.com/legado/wiki/xdroke)；[替换净化](https://www.yuque.com/legado/wiki/gnt3nq)；[订阅源](https://www.yuque.com/legado/wiki/grqch2)；[主题](https://www.yuque.com/legado/wiki/tgbqdy)
 
@@ -82,15 +96,9 @@
 
 
 
-### 5.官方社群
+### 6.[官方社群](https://www.yuque.com/legado/wiki/community)
 
-微信公众号：开源阅读 & [常见问题](https://mp.weixin.qq.com/s/5EO-TuqYfDrK-bFk78vd3g)
+#### 微信公众号：开源阅读
 
-[官方频道](https://t.me/Legado_Channels) & [官方群组](https://t.me/+RrYEP5eZ5f6uYaLE) & [酷安社区](https://www.coolapk.com/apk/io.legado.app.release)
-
-书源仓库 [http://yck.mumuceo.com](http://yck.mumuceo.com/)
-
-**无法导入书源时，请尝试开启代理，或过段时间重试**
-
-
+#### Telegram：[@legado_channels](https://t.me/legado_channels)
 
