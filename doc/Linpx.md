@@ -1,32 +1,22 @@
-### [Linpx 书源的导入与使用](https://telegra.ph/FurryNovelsReading-05-04-07)(简单方便)
+## [Linpx 书源的导入与使用](https://telegra.ph/FurryNovelsReading-05-04-07)(简单方便)
 
 [免代理版教程](https://docs.qq.com/doc/DSVBUdWtHc0xQR3F1)
 
-#### [Linpx](http://www.furrynovel.xyz/)是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**
+### [Linpx](http://www.furrynovel.xyz/) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**
 
 ![img](https://telegra.ph/file/b42876352720a6f4b7515.png)
 
 
 
-### 0.本书源使用前提
+### 本书源使用方法
 
-#### ⓪使用阅读3.0的R18版本
-
-#### ①导入 Linpx 的书源
-
-**注：以上是使用阅读，通过第三方镜像站 Linpx 看Pixiv的R18小说的充要条件**
-
-
-
-### 1. 下载阅读3.0的R18版本
-
-https://kunfei.lanzoux.com/b0f810h4b#d8j9
+#### 1.下载阅读3.0的R18版本
 
 **点击链接，下载安装包并安装**，**推荐使用共存版**
 
+https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
-
-### 2.导入书源
+#### 2. 导入 Linpx 的书源
 
 请查看[如何获取书源？导入书源？](https://github.com/DowneyRem/PixivSource/blob/main/doc/Import.md)
 >https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
@@ -35,9 +25,9 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
 
 
-### 3.书源使用与故障排除
+### 故障排查
 
-#### 3.1确认书源可以正常使用
+#### 1.确认书源可以正常使用
 
 回到第一页，点击【**放大镜**】，搜索**【龙胶危机】**，测试书源能否正常使用
 
@@ -63,7 +53,7 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
 
 
-#### 3.2 图片无法正常显示
+#### 2. 图片无法正常显示
 
 ##### 解决措施：关闭替换净化
 
@@ -71,6 +61,4 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
 
 
-### 本教程由兽人小说频道 @FurryNovels 提供
-
-![](https://telegra.ph/file/1da0e71ecef8048f54e9b.png)
+### 本教程由兽人小说频道 [@FurryNovels](https://t.me/FurryNovels) 提供
