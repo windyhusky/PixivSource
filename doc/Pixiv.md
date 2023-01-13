@@ -31,11 +31,11 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
 ### 1.了解阅读功能与用法
 
-请查看[阅读是什么软件？阅读简介](https://github.com/DowneyRem/PixivSource/blob/main/doc/Legado.md)
+请查看[阅读是什么软件？阅读简介](https://github.com/windyhusky/PixivSource/blob/main/doc/Legado.md)
 
 ### 2.导入 Pixiv 的书源
 
-请查看[如何获取书源？导入书源？](https://github.com/DowneyRem/PixivSource/blob/main/doc/Import.md)
+请查看[如何获取书源？导入书源？](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
 
 >https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 

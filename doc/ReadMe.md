@@ -1,16 +1,16 @@
 ## 阅读相关教程
 
-### [阅读是什么软件？阅读简介](https://github.com/DowneyRem/PixivSource/blob/main/doc/Legado.md)
+### [阅读是什么软件？阅读简介](https://github.com/windyhusky/PixivSource/blob/main/doc/Legado.md)
 
-### [如何获取书源？导入书源？](https://github.com/DowneyRem/PixivSource/blob/main/doc/Import.md)
+### [如何获取书源？导入书源？](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
 
 
 
 ## 专用教程
 
-### [Pixiv书源的导入与使用](https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md)
+### [Pixiv书源的导入与使用](https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md)
 
-### [Linpx 书源的导入与使用](https://github.com/DowneyRem/PixivSource/blob/main/doc/Linpx.md)
+### [Linpx 书源的导入与使用](https://github.com/windyhusky/PixivSource/blob/main/doc/Linpx.md)
 
 
 
