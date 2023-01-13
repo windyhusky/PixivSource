@@ -11,13 +11,15 @@
 
 - linpx 是 pixiv 的子集，包含其全部兽人小说与部分非兽人小说
 
-## 使用方法
+## 通用教程
 
 ### [阅读是什么软件？阅读简介](https://github.com/DowneyRem/PixivSource/blob/main/doc/Legado.md)
 
 ### [如何获取书源？导入书源？](https://github.com/DowneyRem/PixivSource/blob/main/doc/Import.md)
 
 
+
+## 专用教程
 
 ### [Pixiv书源的导入与使用](https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md)
 
