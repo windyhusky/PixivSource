@@ -1,6 +1,10 @@
 @js:
 (function (res) {
     res = JSON.parse(res)
+    if (res.total === 0){
+        return []
+    }
+
     let prop = {}
     prop['author'] = book.author
     prop['count'] = book.wordCount

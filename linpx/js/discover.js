@@ -29,21 +29,21 @@ var seriesSet = new Set();
 
 // 将多个长篇小说解析为一本书
 function combineNovels(novels) {
-    let newNovels = []
-    // key为seriesId value为novel
-    novels.forEach(novel => {
-        // 视为真正的一本书
-        if (novel.seriesId !== undefined && novel.seriesTitle !== undefined) {
-            if (!seriesSet.has(novel.seriesId)) {
-                seriesSet.add(novel.seriesId)
-                newNovels.push(novel)
-            }
-        } else {
-            // 短篇小说
-            newNovels.push(novel)
+    return novels.filter(novel => {
+        //单本直接解析为一本书
+        //需要判断是否为null
+        if (novel.seriesId === undefined || novel.seriesId === null) {
+            return true
         }
+
+        //集合中没有该系列解析为一本书
+        if (!seriesSet.has(novel.seriesId)) {
+            seriesSet.add(novel.seriesId)
+            return true
+        }
+
+        return false
     })
-    return newNovels
 }
 
 // 将小说的封面规则与详情地址替换
