@@ -45,7 +45,7 @@ function seriesHandler(res) {
         //java.log("i的值:"+i)
         let list = sendAjaxForGetChapters(i * limit);
         //取出每个值
-        returnList.concat(list)
+        returnList = returnList.concat(list)
     }
     return returnList
 }
