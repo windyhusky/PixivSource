@@ -6,7 +6,7 @@
 
 | 对应网站 | 书源状态 | 备注 |
 | ----- | -------- | ------------------------------------------------------ |
-| [Pixiv](https://www.pixiv.net/) | ❌       |   |
+| [Pixiv](https://www.pixiv.net/) | ✔ | beta测试版 |
 | [Linpx](https://linpx.linpicio.com/) | ✔        | https://github.com/libudu/linpx-web |
 
 - linpx 是 pixiv 的子集，包含其全部兽人小说与部分非兽人小说

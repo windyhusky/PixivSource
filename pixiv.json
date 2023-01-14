@@ -1,48 +1,53 @@
 [
   {
-    "bookSourceComment": "",
-    "bookSourceGroup": "",
+    "bookSourceComment": "pixiv本体",
+    "bookSourceGroup": "pixiv",
     "bookSourceName": "pixiv",
     "bookSourceType": 0,
     "bookSourceUrl": "https://www.pixiv.net/novel/",
     "bookUrlPattern": "",
     "customOrder": 0,
     "enabled": true,
+    "enabledCookieJar": false,
     "enabledExplore": false,
+    "enabledReview": false,
     "exploreUrl": "",
     "header": "",
-    "lastUpdateTime": 1627727361753,
+    "lastUpdateTime": 1673672779301,
     "loginUrl": "https://accounts.pixiv.net/login",
+    "respondTime": 180000,
     "ruleBookInfo": {
-      "author": "novels.userName",
-      "coverUrl": "novels.coverUrl",
-      "init": "<js>\n(()=>{\nvar json = result.match('{\\\"time.+}')[0];\njson = JSON.parse(json);\n\n//java.log(JSON.stringify(json))\n\nvar novels = (()=>{\n    var result = \"\";\n    for(var key in json.novel){\n        result += JSON.stringify(json.novel[key]);\n    }\n    return JSON.parse(result);\n})();\n\nvar users = (()=>{\n    var result = \"\";\n    for(var key in json.user){\n        result += JSON.stringify(json.user[key]);\n    }\n    return JSON.parse(result);\n})();\n\n//java.log(JSON.stringify(novels));\n\nvar hasChapters = novels.seriesNavData != null\n\nvar tocUrl = (()=>{\n    //判断有无系列章节\n    //没有系列章节的就直接返回源地址\n    if (hasChapters){\n        return \"https://www.pixiv.net/ajax/novel/series_content/\"+novels.seriesNavData.seriesId+\"?limit=10&last_order=0&order_by=asc&lang=zh\"\n    }else {\n        //java.log(\"base:!\"+baseUrl)\n        return baseUrl;\n    }\n})();\n\nreturn JSON.stringify({novels:novels,users:users,tocUrl:tocUrl});\n})();\n</js>",
-      "intro": "novels.description",
-      "name": "novels.title",
-      "tocUrl": "tocUrl"
+      "author": "author",
+      "coverUrl": "coverUrl",
+      "init": "@js:\n\nfunction urlNovelDetailed(nid) {\n    return `https://www.pixiv.net/ajax/novel/${nid}`\n}\n\n(() => {\n    let res = JSON.parse(result).body\n    java.put(\"novel\",res)\n\n    info = {}\n    info.author = book.author\n    info.name = book.name\n    info.tags = book.kind\n    info.wordCount = book.wordCount\n    info.latestChapter = null\n    info.desc = book.intro\n    info.coverUrl = book.coverUrl\n    info.catalogUrl = urlNovelDetailed(res.id)\n\n    return info\n})();",
+      "intro": "desc",
+      "name": "name",
+      "tocUrl": "catalogUrl",
+      "kind": "tags",
+      "wordCount": "wordCount"
     },
     "ruleContent": {
-      "content": "<js>\n(()=>{\n\nvar json = result.match('{\\\"time.+}')[0];\njson = JSON.parse(json);\n\nvar novels = (()=>{\n    var result = \"\";\n    for(var key in json.novel){\n        result += JSON.stringify(json.novel[key]);\n    }\n    return JSON.parse(result);\n})();\n\nreturn novels.content;\n\n})();\n</js>",
-      "nextContentUrl": "<js>\n(()=>{\n\nvar json = result.match('{\\\"time.+}')[0];\njson = JSON.parse(json);\n\nvar novels = (()=>{\n    var result = \"\";\n    for(var key in json.novel){\n        result += JSON.stringify(json.novel[key]);\n    }\n    return JSON.parse(result);\n})();\n\nvar nextUrl = (()=>{\n\n    var hasNext = novels.seriesNavData != null && novels.seriesNavData.next != null\n\n    if (hasNext){\n        return \"https://www.pixiv.net/novel/show.php?id=\"+novels.seriesNavData.next.id;\n    }else {\n        return \"\"\n    }\n\n})();\n\nreturn nextUrl;\n\n})();\n</js>"
+      "content": "@js:\n(() => {\n    let res = JSON.parse(result).body\n    let content = res.content\n\n    let hasEmbeddedImages = res.textEmbeddedImages !== undefined && res.textEmbeddedImages !== null\n    if (hasEmbeddedImages) {\n        Object.keys(res.textEmbeddedImages).forEach((key) => {\n            //todo 使用了linpx的图片代理 目前只能想到这样解决\n            content = content.replace(`[uploadedimage:${key}]`, `<img src=\"https://linpxapi.linpicio.com/proxy/pximg?url=${res.textEmbeddedImages[key].urls.original}\">`)\n        })\n    }\n    return content\n})()",
+      "nextContentUrl": ""
     },
     "ruleExplore": {},
     "ruleSearch": {
       "author": "userName",
-      "bookList": "<js>\n(function(result){\n  var result = JSON.parse(result);\n  var returnList = [];\n\n  var seriesList = [];\n  let responseList = result.body.novel.data;\n  responseList.forEach((v, i) => {\n    //判断是否为系列作品\n    //如果是系列作品，那么就ajax请求获得最开始章节的数据 并且只保留一次\n    result = {};\n    if(v.seriesId != undefined && !seriesList.includes(v.seriesId)){\n      //测试使用 跳过部分ajax请求\n      //if(seriesList.length >2){\n      //  return\n      //}\n      seriesList.push(v.seriesId)\n      let RBody = JSON.parse(java.ajax(\"https://www.pixiv.net/ajax/novel/series/\"+ v.seriesId+\"?lang=zh\")).body;\n      RBody.id = RBody.firstNovelId\n      RBody.latestNovelId = \"https://www.pixiv.net/novel/show.php?id=\"+RBody.latestNovelId\n        //java.log(JSON.stringify(seriesList))\n        //java.log(\"小说数据\\n\"+JSON.stringify(RBody)+\"\\n\")\n      result = RBody\n    }else{\n      result = v\n    }\n    result.id = \"https://www.pixiv.net/novel/show.php?id=\"+result.id\n    returnList.push(result)\n  });\n  //java.log(JSON.stringify(returnList))\n\n  return returnList;\n})(result);\n</js>",
-      "bookUrl": "id",
+      "bookList": "@js:\nvar util = {}\n\nfunction isDebugMode() {\n    java.log(\"源变量:\" + source.getVariable())\n    return String(source.getVariable()) === \"debug\"\n}\n\nfunction debugFunc(func) {\n    if (isDebugMode()) {\n        func()\n    }\n}\n\nfunction cacheGetAndSet(key, supplyFunc) {\n    let v = cache.get(key)\n    if (v === undefined || v === null) {\n        v = JSON.stringify(supplyFunc())\n        // 缓存10分钟\n        cache.put(key, v, 600)\n    }\n    return JSON.parse(v)\n}\n\nfunction urlSeriesCatalog(seriesId) {\n    return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`\n}\n\nfunction urlSeriesDetailed(seriesId) {\n    return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=10&last_order=0&order_by=asc&lang=zh`\n}\n\nfunction urlUserInfo(uid) {\n    return `https://www.pixiv.net/ajax/user/${uid}`\n}\n\nfunction urlUserAllWorks(uid) {\n    return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`\n}\n\nfunction urlUserNovels(uid, nidList) {\n    return `https://www.pixiv.net/ajax/user/273832/profile/novels?ids%5B%5D=19026640`\n}\n\n// 完全匹配用户名\nfunction urlSearchUser(username) {\n    return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`\n}\n\nfunction urlNovelDetailed(nid) {\n    return `https://www.pixiv.net/ajax/novel/${nid}`\n}\n\nfunction urlCoverUrl(url) {\n    return `${url},{\"headers\": {\"Referer\":\"https://www.pixiv.net/\"}}`\n}\n\nfunction getAjaxJson(url) {\n    debugFunc(() => {\n        java.log(`Ajax请求:${url}`)\n    })\n    return cacheGetAndSet(url, () => {\n        return JSON.parse(java.ajax(url))\n    })\n}\n\n// 存储seriesID\nvar seriesSet = new Set();\n\n// 将多个长篇小说解析为一本书\nfunction combineNovels(novels) {\n    return novels.filter(novel => {\n        //单本直接解析为一本书\n        if (novel.seriesId === undefined || novel.seriesId === null) {\n            return true\n        }\n\n        //集合中没有该系列解析为一本书\n        if (!seriesSet.has(novel.seriesId)) {\n            seriesSet.add(novel.seriesId)\n            return true\n        }\n\n        return false\n    })\n}\n\n//处理novels列表\n//查询作者\nfunction handNovels(novels) {\n    novels.forEach(novel => {\n        if (novel.tags === undefined || novel.tags === null) {\n            novel.tags = []\n        }\n\n        if (novel.seriesId === undefined || novel.seriesId === null) {\n            novel.tags.unshift(\"单本\")\n        } else {\n            novel.tags.unshift(\"长篇\")\n            // todo 暂时不做字数统计\n            novel.textCount = null\n        }\n    })\n    return novels\n}\n\nfunction formatNovels(novels) {\n    novels.forEach(novel => {\n        novel.detailedUrl = urlNovelDetailed(novel.id)\n        novel.tags = novel.tags.join(\",\")\n        novel.coverUrl = urlCoverUrl(novel.url)\n    })\n    return novels\n}\n\n// 暂时不做\nfunction getUserNovels(username) {\n    return []\n}\n\n// 存储函数方便其他页面调用\nfunction init() {\n    let u = {}\n    u.cacheGetAndSet = (key, supplyFunc) => {\n        let v = cache.get(key)\n        if (v === undefined || v === null) {\n            v = JSON.stringify(supplyFunc())\n            // 缓存10分钟\n            cache.put(key, v, 600)\n        }\n        return JSON.parse(v)\n    }\n\n    u.getAjaxJson = (url) => {\n        debugFunc(() => {\n            java.log(`Ajax请求:${url}`)\n        })\n        return u.cacheGetAndSet(url, () => {\n            return JSON.parse(java.ajax(url))\n        })\n    }\n\n    u.isDebugMode = () => {\n        java.log(\"源变量:\" + source.getVariable())\n        return String(source.getVariable()) === \"debug\"\n    }\n\n    u.debugFunc = (func) => {\n        if (u.isDebugMode()) {\n            func()\n        }\n    }\n    util = u\n    java.put(\"util\", JSON.stringify(u))\n}\n\n(() => {\n    init()\n    //作者 TAG 书名都要支持\n    // java.log(String(java.get(\"key\")))\n    let resp = JSON.parse(result);\n    let novelsList = getUserNovels(String(java.get(\"key\")))\n    novelsList = novelsList.concat(resp.body.novel.data)\n    return formatNovels(handNovels(combineNovels(novelsList)))\n})();",
+      "bookUrl": "detailedUrl",
       "coverUrl": "coverUrl",
       "intro": "description",
-      "kind": "tags[*]",
-      "lastChapter": "latestNovelId",
+      "kind": "tags",
+      "lastChapter": "latestChapter",
       "name": "title",
       "wordCount": "textCount"
     },
     "ruleToc": {
-      "chapterList": "<js>\n  (function(result){\n  var hasChapters = (()=>{\n    return baseUrl.match(/show.php\\?id=/) == null\n  })();\n  //java.log(\"有续章嘛？\"+hasChapters)\n\n  var returnList = [];\n  if(hasChapters){\n    var seriesID = baseUrl.match(/series_content\\/(.*?)\\?/)[1]\n    var allChaptersCount = (()=>{\n    //要取出baseUrl的seriesID数据\n    let responseBody = java.ajax(\"https://www.pixiv.net/ajax/novel/series/\"+seriesID+\"?lang=zh\")\n    let result = JSON.parse(responseBody).body.total\n    //java.log(\"本目录有\"+result+\"章节\");\n    return result;\n    })();\n\n    //发送请求获得相应数量的目录列表\n    function sendAjaxForGetChapters(lastIndex){\n      let url = \"https://www.pixiv.net/ajax/novel/series_content/\"+seriesID+\"?limit=10&last_order=\"+lastIndex+\"&order_by=asc&lang=zh\"\n      //java.log(\"发送的url:\"+url)\n\n      res = JSON.parse(java.ajax(url))\n      res = res.body.seriesContents\n      res.forEach((v,i)=>{\n        v.chapterUrl = \"https://www.pixiv.net/novel/show.php?id=\"+v.id\n      })\n      return res;\n     }\n\n    //逻辑控制者 也就是使用上面定义的两个函数来做对应功能\n      //要爬取的总次数\n    let max = (allChaptersCount/10)+1\n    for(let i=0;i<max;i++){\n      //java.log(\"i的值:\"+i)\n      let list = sendAjaxForGetChapters(i*10);\n      //取出每个值\n      list.forEach((v,i)=>{\n        returnList.push(v);\n      })\n    }\n  }else{\n    \n    let json = JSON.parse(result.match('{\\\"time.+}')[0]);\n \n    var novels = (()=>{\n      var result = \"\";\n      for(var key in json.novel){\n          result += JSON.stringify(json.novel[key]);\n      }\n      return JSON.parse(result);\n    })();\n    returnList.push(novels)\n  }\n\n  return returnList\n})(result);\n</js>",
+      "chapterList": "@js:\n\nfunction urlNovelDetailed(nid) {\n    return `https://www.pixiv.net/ajax/novel/${nid}`\n}\n\n(() => {\n    let res = JSON.parse(result).body\n    if (res.seriesNavData === null || res.seriesNavData === undefined) {\n        return [{title: book.name, chapterUrl: baseUrl}]\n    }\n\n    var returnList = [];\n\n    var seriesID = res.seriesNavData.seriesId\n    var allChaptersCount = (() => {\n        let responseBody = java.ajax(\"https://www.pixiv.net/ajax/novel/series/\" + seriesID + \"?lang=zh\")\n        let result = JSON.parse(responseBody).body.total\n        // java.log(\"本目录有\" + result + \"章节\");\n        return result;\n    })();\n\n    //发送请求获得相应数量的目录列表\n    function sendAjaxForGetChapters(lastIndex) {\n        let url = \"https://www.pixiv.net/ajax/novel/series_content/\" + seriesID + \"?limit=10&last_order=\" + lastIndex + \"&order_by=asc&lang=zh\"\n        res = JSON.parse(java.ajax(url))\n        res = res.body.page.seriesContents\n        // java.log(`发送获取章节URL:${url}`)\n        // java.log(`响应结果:${JSON.stringify(res)}`)\n        res.forEach(v => {\n            v.chapterUrl = urlNovelDetailed(v.id)\n        })\n        return res;\n    }\n\n    //逻辑控制者 也就是使用上面定义的两个函数来做对应功能\n    //要爬取的总次数\n    let max = (allChaptersCount / 10) + 1\n    for (let i = 0; i < max; i++) {\n        //java.log(\"i的值:\"+i)\n        let list = sendAjaxForGetChapters(i * 10);\n        //取出每个值\n        list.forEach(v => {\n            returnList.push(v);\n        })\n    }\n    return returnList\n})()",
       "chapterName": "title",
       "chapterUrl": "chapterUrl"
     },
-    "searchUrl": "https://www.pixiv.net/ajax/search/novels/{{java.encodeURI(key)}}?word={{java.encodeURI(key)}}&order=date_d&mode=all&p={{page}}&s_mode=s_tag&lang=zh",
+    "searchUrl": "@js:\njava.put(\"page\",page);java.put(\"key\",key);\n`https://www.pixiv.net/ajax/search/novels/${encodeURI(key)}?word=${encodeURI(key)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`;",
     "weight": 0
   }
 ]
