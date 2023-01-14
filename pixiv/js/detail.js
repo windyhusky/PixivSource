@@ -1,6 +1,6 @@
 @js:
 
-var util = {}
+var util = objParse(String(java.get("util")))
 
 function objParse(obj) {
     return JSON.parse(obj, (n, v) => {
@@ -12,9 +12,7 @@ function objParse(obj) {
 }
 
 (() => {
-    util = objParse(String(java.get("util")))
     let res = JSON.parse(result).body
-
     info = {}
     info.author = book.author
     info.name = book.name
@@ -24,6 +22,5 @@ function objParse(obj) {
     info.desc = book.intro
     info.coverUrl = book.coverUrl
     info.catalogUrl = util.urlNovelDetailed(res.id)
-
     return info
 })();

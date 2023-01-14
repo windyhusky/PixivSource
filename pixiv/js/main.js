@@ -10,31 +10,6 @@ function objStringify(obj) {
     });
 }
 
-function urlSeriesCatalog(seriesId) {
-    return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
-}
-
-function urlSeriesDetailed(seriesId) {
-    return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=10&last_order=0&order_by=asc&lang=zh`
-}
-
-function urlUserInfo(uid) {
-    return `https://www.pixiv.net/ajax/user/${uid}`
-}
-
-function urlUserAllWorks(uid) {
-    return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
-}
-
-function urlUserNovels(uid, nidList) {
-    return `https://www.pixiv.net/ajax/user/273832/profile/novels?ids%5B%5D=19026640`
-}
-
-// 完全匹配用户名
-function urlSearchUser(username) {
-    return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
-}
-
 function urlCoverUrl(url) {
     return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
 }
@@ -96,6 +71,7 @@ function getUserNovels(username) {
 // 存储函数方便其他页面调用
 function init() {
     let u = {}
+
     u.cacheGetAndSet = (key, supplyFunc) => {
         let v = cache.get(key)
         if (v === undefined || v === null) {
@@ -105,22 +81,8 @@ function init() {
         }
         return JSON.parse(v)
     }
-
-    u.getAjaxJson = (url) => {
-        u.debugFunc(() => {
-            java.log(`Ajax请求:${url}`)
-        })
-        return u.cacheGetAndSet(url, () => {
-            return JSON.parse(java.ajax(url))
-        })
-    }
-
-    u.isDebugMode = () => {
-        return String(source.getVariable()) === "debug"
-    }
-
     u.debugFunc = (func) => {
-        if (u.isDebugMode()) {
+        if (String(source.getVariable()) === "debug") {
             func()
         }
     }
@@ -128,15 +90,27 @@ function init() {
     u.urlNovelDetailed = (nid) => {
         return `https://www.pixiv.net/ajax/novel/${nid}`
     }
+    u.urlSeries = (seriesId) => {
+        return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
+    }
+    u.urlSeriesNovels = (seriesId, limit, offset) => {
+        if (limit > 30) {
+            limit = 30
+        }
 
+        if (limit < 10) {
+            limit = 10
+        }
+
+        return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
+    }
     util = u
     java.put("util", objStringify(u))
 }
 
 (() => {
-    init()
     //作者 TAG 书名都要支持
-    // java.log(String(java.get("key")))
+    init()
     let resp = JSON.parse(result);
     let novelsList = getUserNovels(String(java.get("key")))
     novelsList = novelsList.concat(resp.body.novel.data)
