@@ -1,12 +1,19 @@
 @js:
 
-function urlNovelDetailed(nid) {
-    return `https://www.pixiv.net/ajax/novel/${nid}`
+var util = {}
+
+function objParse(obj) {
+    return JSON.parse(obj, (n, v) => {
+        if (typeof v == "string" && v.match("()")) {
+            return eval(`(${v})`)
+        }
+        return v;
+    })
 }
 
 (() => {
+    util = objParse(String(java.get("util")))
     let res = JSON.parse(result).body
-    java.put("novel",res)
 
     info = {}
     info.author = book.author
@@ -16,7 +23,7 @@ function urlNovelDetailed(nid) {
     info.latestChapter = null
     info.desc = book.intro
     info.coverUrl = book.coverUrl
-    info.catalogUrl = urlNovelDetailed(res.id)
+    info.catalogUrl = util.urlNovelDetailed(res.id)
 
     return info
 })();

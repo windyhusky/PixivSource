@@ -1,25 +1,13 @@
 @js:
+
 var util = {}
 
-function isDebugMode() {
-    java.log("源变量:" + source.getVariable())
-    return String(source.getVariable()) === "debug"
-}
-
-function debugFunc(func) {
-    if (isDebugMode()) {
-        func()
-    }
-}
-
-function cacheGetAndSet(key, supplyFunc) {
-    let v = cache.get(key)
-    if (v === undefined || v === null) {
-        v = JSON.stringify(supplyFunc())
-        // 缓存10分钟
-        cache.put(key, v, 600)
-    }
-    return JSON.parse(v)
+function objStringify(obj) {
+    return JSON.stringify(obj, (n, v) => {
+        if (typeof v == "function")
+            return v.toString();
+        return v;
+    });
 }
 
 function urlSeriesCatalog(seriesId) {
@@ -47,21 +35,8 @@ function urlSearchUser(username) {
     return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
 }
 
-function urlNovelDetailed(nid) {
-    return `https://www.pixiv.net/ajax/novel/${nid}`
-}
-
 function urlCoverUrl(url) {
     return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
-}
-
-function getAjaxJson(url) {
-    debugFunc(() => {
-        java.log(`Ajax请求:${url}`)
-    })
-    return cacheGetAndSet(url, () => {
-        return JSON.parse(java.ajax(url))
-    })
 }
 
 // 存储seriesID
@@ -106,7 +81,7 @@ function handNovels(novels) {
 
 function formatNovels(novels) {
     novels.forEach(novel => {
-        novel.detailedUrl = urlNovelDetailed(novel.id)
+        novel.detailedUrl = util.urlNovelDetailed(novel.id)
         novel.tags = novel.tags.join(",")
         novel.coverUrl = urlCoverUrl(novel.url)
     })
@@ -132,7 +107,7 @@ function init() {
     }
 
     u.getAjaxJson = (url) => {
-        debugFunc(() => {
+        u.debugFunc(() => {
             java.log(`Ajax请求:${url}`)
         })
         return u.cacheGetAndSet(url, () => {
@@ -141,7 +116,6 @@ function init() {
     }
 
     u.isDebugMode = () => {
-        java.log("源变量:" + source.getVariable())
         return String(source.getVariable()) === "debug"
     }
 
@@ -150,8 +124,13 @@ function init() {
             func()
         }
     }
+
+    u.urlNovelDetailed = (nid) => {
+        return `https://www.pixiv.net/ajax/novel/${nid}`
+    }
+
     util = u
-    java.put("util", JSON.stringify(u))
+    java.put("util", objStringify(u))
 }
 
 (() => {
