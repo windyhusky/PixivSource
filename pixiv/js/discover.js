@@ -75,27 +75,20 @@ function urlNovelBookMarks(uid, offset) {
     return `https://www.pixiv.net/ajax/user/${uid}/novels/bookmarks?tag=&offset=${offset}&limit=24&rest=show&lang=zh`
 }
 
-
-(() => {
+function handlerFactory() {
+    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+    if (cookie === null || cookie === undefined || cookie === "") {
+        return handlerNoLogin()
+    }
     if (baseUrl.indexOf("bookmark") !== -1) {
-        let content = result.match(new RegExp('users/\\d+'))[0]
-        let uid = content.replace("users/", "")
-        let page = Number(java.get("page"))
-        if (page !== 0) {
-            page -= 1
-        }
-
-        let url = urlNovelBookMarks(uid, Number(page * 24))
-        // java.log(`发送的收藏请求:${url}`)
-        let resp = getAjaxJson(url).body.works
-        if (resp === undefined || resp.length === 0) {
-            //流程无法本环节中止 只能交给下一流程处理
-            return []
-        }
-
-        return formatNovels(handNovels(resp))
-
+        return handlerBookMarks()
     } else {
+        return handlerRecommend()
+    }
+}
+
+function handlerRecommend() {
+    return () => {
         // java.log(result)
         let res = JSON.parse(result)
         // return b.score - a.score
@@ -113,4 +106,37 @@ function urlNovelBookMarks(uid, offset) {
         // java.log(`返回结果:${JSON.stringify(r)}`)
         return r
     }
+}
+
+function handlerNoLogin() {
+    return () => {
+        java.longToast("此功能需要在书源登录后才能使用")
+        return []
+    }
+}
+
+
+function handlerBookMarks() {
+    return () => {
+        let content = result.match(new RegExp('users/\\d+'))[0]
+        let uid = content.replace("users/", "")
+        let page = Number(java.get("page"))
+        if (page !== 0) {
+            page -= 1
+        }
+
+        let url = urlNovelBookMarks(uid, Number(page * 24))
+        // java.log(`发送的收藏请求:${url}`)
+        let resp = getAjaxJson(url).body.works
+        if (resp === undefined || resp.length === 0) {
+            //流程无法本环节中止 只能交给下一流程处理
+            return []
+        }
+
+        return formatNovels(handNovels(resp))
+    }
+}
+
+(() => {
+    return handlerFactory()()
 })()
