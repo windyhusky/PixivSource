@@ -14,6 +14,19 @@ function urlCoverUrl(url) {
     return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
 }
 
+// 完全匹配用户名
+function urlSearchUser(username) {
+    return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
+}
+
+function urlUserAllWorks(uid) {
+    return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
+}
+
+function urlUserNovels(uid, nidList) {
+    return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+}
+
 // 存储seriesID
 var seriesSet = new Set();
 
@@ -63,9 +76,60 @@ function formatNovels(novels) {
     return novels
 }
 
+function getAjaxJson(url) {
+    return util.cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    })
+}
+
+function getWebviewJson(url, parseFunc) {
+    return util.cacheGetAndSet(url, () => {
+        let html = java.webView(null, url, null)
+        return JSON.parse(parseFunc(html))
+    })
+}
+
+function isLogin() {
+    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+    return typeof cookie === "string" && cookie !== ""
+}
+
 // 暂时不做
 function getUserNovels(username) {
-    return []
+    if (!isLogin()) {
+        return []
+    }
+
+    let html = java.ajax(urlSearchUser(username))
+    // java.log(html)
+    // 仅匹配有投稿作品的用户
+    let match = html.match(new RegExp("/users/\\d+/novels"))
+    let regNumber = new RegExp("\\d+")
+    let uidList = match.map(v => {
+        return v.match(regNumber)[0]
+    })
+
+    // 仅限3个作者
+    if (uidList.length >= 3) {
+        uidList.length = 3
+    }
+
+    let novels = []
+    let page = Number(java.get("page"))
+
+    uidList.forEach(id => {
+        let r = getAjaxJson(urlUserAllWorks(id))
+        let novelsId = Object.keys(r.body.novels).reverse().slice((page - 1) * 20, page * 20)
+        let url = urlUserNovels(id, novelsId)
+        // java.log(`发送的Ajax请求:${url}`)
+        let userNovels = getWebviewJson(url, html => {
+            return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
+        }).body
+        novels = novels.concat(Object.values(userNovels))
+    })
+
+
+    return novels
 }
 
 // 存储函数方便其他页面调用
