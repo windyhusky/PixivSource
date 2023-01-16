@@ -50,6 +50,10 @@ function objStringify(obj) {
 }
 
 (() => {
+    if (result.startsWith("<!DOCTYPE html>")) {
+        return {}
+    }
+
     init()
     // java.log(`详情信息:${result}`)
     let res = JSON.parse(result).body

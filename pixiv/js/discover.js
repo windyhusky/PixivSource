@@ -25,6 +25,12 @@ function combineNovels(novels) {
     })
 }
 
+function getAjaxJson(url) {
+    return cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    })
+}
+
 function urlNovelDetailed(nid) {
     return `https://www.pixiv.net/ajax/novel/${nid}`
 }
@@ -43,6 +49,7 @@ function handNovels(novels) {
             novel.textCount = null
         }
     })
+
     return novels
 }
 
@@ -55,22 +62,55 @@ function formatNovels(novels) {
     return novels
 }
 
+function cacheGetAndSet(key, supplyFunc) {
+    let v = cache.get(key)
+    if (v === undefined || v === null) {
+        v = JSON.stringify(supplyFunc())
+        cache.put(key, v, 600)
+    }
+    return JSON.parse(v)
+}
+
+function urlNovelBookMarks(uid, offset) {
+    return `https://www.pixiv.net/ajax/user/${uid}/novels/bookmarks?tag=&offset=${offset}&limit=24&rest=show&lang=zh`
+}
+
 
 (() => {
-    // java.log(result)
-    let res = JSON.parse(result)
-    // return b.score - a.score
-    const recommend = res.body.page.recommend
-    const novels = res.body.thumbnails.novel
-    let nidSet = new Set(recommend.ids)
-    // java.log(nidSet.size)
+    if (baseUrl.indexOf("bookmark") !== -1) {
+        let content = result.match(new RegExp('users/\\d+'))[0]
+        let uid = content.replace("users/", "")
+        let page = Number(java.get("page"))
+        if (page !== 0) {
+            page -= 1
+        }
 
-    let list = novels.filter(novel => {
-        return nidSet.has(String(novel.id))
-    })
-    // java.log(`过滤结果:${JSON.stringify(list)}`)
+        let url = urlNovelBookMarks(uid, Number(page * 24))
+        // java.log(`发送的收藏请求:${url}`)
+        let resp = getAjaxJson(url).body.works
+        if (resp === undefined || resp.length === 0) {
+            //流程无法本环节中止 只能交给下一流程处理
+            return []
+        }
 
-    let r = formatNovels(handNovels(combineNovels(list)))
-    // java.log(`返回结果:${JSON.stringify(r)}`)
-    return r
+        return formatNovels(handNovels(resp))
+
+    } else {
+        // java.log(result)
+        let res = JSON.parse(result)
+        // return b.score - a.score
+        const recommend = res.body.page.recommend
+        const novels = res.body.thumbnails.novel
+        let nidSet = new Set(recommend.ids)
+        // java.log(nidSet.size)
+
+        let list = novels.filter(novel => {
+            return nidSet.has(String(novel.id))
+        })
+        // java.log(`过滤结果:${JSON.stringify(list)}`)
+
+        let r = formatNovels(handNovels(combineNovels(list)))
+        // java.log(`返回结果:${JSON.stringify(r)}`)
+        return r
+    }
 })()
