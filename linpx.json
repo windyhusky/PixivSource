@@ -1,7 +1,7 @@
 [
   {
     "bookSourceComment": "linpx是pixiv的子集 包含所有兽人小说",
-    "bookSourceGroup": "pixiv",
+    "bookSourceGroup": "🔞Pixiv",
     "bookSourceName": "linpx",
     "bookSourceType": 0,
     "bookSourceUrl": "https://www.furrynovel.xyz",
@@ -11,7 +11,7 @@
     "enabledExplore": true,
     "enabledReview": false,
     "exploreUrl": "最新小说::https://linpxapi.linpicio.com/pixiv/novels/recent?page={{page}}",
-    "lastUpdateTime": 1673656466609,
+    "lastUpdateTime": 1673945239758,
     "respondTime": 180000,
     "ruleBookInfo": {
       "author": "author",
