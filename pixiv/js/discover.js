@@ -25,21 +25,8 @@ function combineNovels(novels) {
     })
 }
 
-function getAjaxJson(url) {
-    return cacheGetAndSet(url, () => {
-        return JSON.parse(java.ajax(url))
-    })
-}
-
 function urlNovelDetailed(nid) {
     return `https://www.pixiv.net/ajax/novel/${nid}`
-}
-
-function urlUserFollowing(uid, offset) {
-    if (offset < 0) {
-        offset = 0
-    }
-    return `https://www.pixiv.net/ajax/user/${uid}/following?offset=${offset}&limit=24&rest=show&tag=&acceptingRequests=0&lang=zh`
 }
 
 
@@ -79,44 +66,26 @@ function cacheGetAndSet(key, supplyFunc) {
     return JSON.parse(v)
 }
 
-function urlNovelBookMarks(uid, offset) {
-    return `https://www.pixiv.net/ajax/user/${uid}/novels/bookmarks?tag=&offset=${offset}&limit=24&rest=show&lang=zh`
-}
-
 function handlerFactory() {
     let cookie = String(java.getCookie("https://www.pixiv.net/", null))
     if (cookie === null || cookie === undefined || cookie === "") {
         return handlerNoLogin()
     }
-    if (baseUrl.indexOf("bookmark") !== -1) {
+    if (baseUrl.indexOf("/bookmark") !== -1) {
         return handlerBookMarks()
     }
 
-    if (baseUrl.indexOf("ajax/top") !== -1) {
+    if (baseUrl.indexOf("/following") !== -1) {
         return handlerRecommend()
     }
 
     return handlerFollowing()
 }
 
-function getMyUserId() {
-    let response = java.connect("https://www.pixiv.net/")
-    let uid = response.headers().get("x-userid")
-    // java.log(`获取到的UID:${uid}`)
-    return uid
-}
-
 function handlerFollowing() {
     return () => {
-        let page = Number(java.get("page"))
-        if (page !== 0) {
-            page -= 1
-        }
-        let uid = getMyUserId()
-        let url = urlUserFollowing(uid, page * 24)
-        // java.log(`发送的Ajax请求:${url}`)
         let novelList = []
-        getAjaxJson(url).body.users
+        JSON.parse(result).body.users
             .filter(user => user.novels.length > 0)
             .map(user => user.novels)
             .forEach(novels => {
@@ -148,19 +117,9 @@ function handlerNoLogin() {
     }
 }
 
-
 function handlerBookMarks() {
     return () => {
-        let content = result.match(new RegExp('users/\\d+'))[0]
-        let uid = content.replace("users/", "")
-        let page = Number(java.get("page"))
-        if (page !== 0) {
-            page -= 1
-        }
-
-        let url = urlNovelBookMarks(uid, Number(page * 24))
-        // java.log(`发送的收藏请求:${url}`)
-        let resp = getAjaxJson(url).body.works
+        let resp = JSON.parse(result).body.works
         if (resp === undefined || resp.length === 0) {
             //流程无法本环节中止 只能交给下一流程处理
             return []

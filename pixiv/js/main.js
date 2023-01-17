@@ -181,6 +181,5 @@ function init() {
     let resp = JSON.parse(result);
     let novelsList = getUserNovels(String(java.get("key")))
     novelsList = novelsList.concat(resp.body.novel.data)
-    java.log("用户id:" + cache.get("pixiv:uid"))
     return formatNovels(handNovels(combineNovels(novelsList)))
 })();
