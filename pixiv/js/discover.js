@@ -57,15 +57,6 @@ function formatNovels(novels) {
     return novels
 }
 
-function cacheGetAndSet(key, supplyFunc) {
-    let v = cache.get(key)
-    if (v === undefined || v === null) {
-        v = JSON.stringify(supplyFunc())
-        cache.put(key, v, 600)
-    }
-    return JSON.parse(v)
-}
-
 function handlerFactory() {
     let cookie = String(java.getCookie("https://www.pixiv.net/", null))
     if (cookie === null || cookie === undefined || cookie === "") {
@@ -75,11 +66,13 @@ function handlerFactory() {
         return handlerBookMarks()
     }
 
-    if (baseUrl.indexOf("/following") !== -1) {
+    if (baseUrl.indexOf("/top") !== -1) {
         return handlerRecommend()
     }
 
-    return handlerFollowing()
+    if (baseUrl.indexOf("/following") !== -1) {
+        return handlerFollowing()
+    }
 }
 
 function handlerFollowing() {
