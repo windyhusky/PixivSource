@@ -35,6 +35,14 @@ function urlNovelDetailed(nid) {
     return `https://www.pixiv.net/ajax/novel/${nid}`
 }
 
+function urlUserFollowing(uid, offset) {
+    if (offset < 0) {
+        offset = 0
+    }
+    return `https://www.pixiv.net/ajax/user/${uid}/following?offset=${offset}&limit=24&rest=show&tag=&acceptingRequests=0&lang=zh`
+}
+
+
 function handNovels(novels) {
     novels.forEach(novel => {
         if (novel.tags === undefined || novel.tags === null) {
@@ -82,8 +90,45 @@ function handlerFactory() {
     }
     if (baseUrl.indexOf("bookmark") !== -1) {
         return handlerBookMarks()
-    } else {
+    }
+
+    if (baseUrl.indexOf("ajax/top") !== -1) {
         return handlerRecommend()
+    }
+
+    return handlerFollowing()
+}
+
+function getMyUserId() {
+    let response = java.connect("https://www.pixiv.net/")
+    let uid = response.headers().get("x-userid")
+    // java.log(`获取到的UID:${uid}`)
+    return uid
+}
+
+function handlerFollowing() {
+    return () => {
+        let page = Number(java.get("page"))
+        if (page !== 0) {
+            page -= 1
+        }
+        let uid = getMyUserId()
+        let url = urlUserFollowing(uid, page * 24)
+        // java.log(`发送的Ajax请求:${url}`)
+        let novelList = []
+        getAjaxJson(url).body.users
+            .filter(user => {
+                return user.novels.length > 0
+            })
+            .map(user => {
+                return user.novels
+            })
+            .forEach(novels => {
+                return novels.forEach(novel => {
+                    novelList.push(novel)
+                })
+            })
+        return formatNovels(handNovels(novelList))
     }
 }
 
