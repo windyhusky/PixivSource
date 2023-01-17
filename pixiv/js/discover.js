@@ -117,12 +117,8 @@ function handlerFollowing() {
         // java.log(`发送的Ajax请求:${url}`)
         let novelList = []
         getAjaxJson(url).body.users
-            .filter(user => {
-                return user.novels.length > 0
-            })
-            .map(user => {
-                return user.novels
-            })
+            .filter(user => user.novels.length > 0)
+            .map(user => user.novels)
             .forEach(novels => {
                 return novels.forEach(novel => {
                     novelList.push(novel)
@@ -134,22 +130,14 @@ function handlerFollowing() {
 
 function handlerRecommend() {
     return () => {
-        // java.log(result)
         let res = JSON.parse(result)
-        // return b.score - a.score
         const recommend = res.body.page.recommend
         const novels = res.body.thumbnails.novel
         let nidSet = new Set(recommend.ids)
         // java.log(nidSet.size)
-
-        let list = novels.filter(novel => {
-            return nidSet.has(String(novel.id))
-        })
+        let list = novels.filter(novel => nidSet.has(String(novel.id)))
         // java.log(`过滤结果:${JSON.stringify(list)}`)
-
-        let r = formatNovels(handNovels(combineNovels(list)))
-        // java.log(`返回结果:${JSON.stringify(r)}`)
-        return r
+        return formatNovels(handNovels(combineNovels(list)))
     }
 }
 

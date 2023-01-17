@@ -1,6 +1,5 @@
 @js:
-
-var util = {}
+var util = {};
 
 function objStringify(obj) {
     return JSON.stringify(obj, (n, v) => {
@@ -104,6 +103,10 @@ function getUserNovels(username) {
     // java.log(html)
     // 仅匹配有投稿作品的用户
     let match = html.match(new RegExp("/users/\\d+/novels"))
+    if (match === null || match.length === 0) {
+        return []
+    }
+
     let regNumber = new RegExp("\\d+")
     let uidList = match.map(v => {
         return v.match(regNumber)[0]
@@ -178,5 +181,6 @@ function init() {
     let resp = JSON.parse(result);
     let novelsList = getUserNovels(String(java.get("key")))
     novelsList = novelsList.concat(resp.body.novel.data)
+    java.log("用户id:" + cache.get("pixiv:uid"))
     return formatNovels(handNovels(combineNovels(novelsList)))
 })();
