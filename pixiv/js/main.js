@@ -26,8 +26,42 @@ function urlUserNovels(uid, nidList) {
     return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
 }
 
+var first = true;
+
 // 存储seriesID
-var seriesSet = new Set();
+var seriesSet = {
+    keywords: "Pixiv:Search",
+    has: (value) => {
+        let page = Number(java.get("page"))
+        if (page === 1 && first) {
+            first = false
+            cache.deleteMemory(this.keywords)
+            return false
+        }
+
+        let v = cache.getFromMemory(this.keywords)
+        if (v === undefined || v === null) {
+            return false
+        }
+        let set = new Set(JSON.parse(v))
+        return set.has(value)
+    },
+
+    add: (value) => {
+        let v = cache.getFromMemory(this.keywords)
+        if (v === undefined || v === null) {
+            cache.putMemory(this.keywords, JSON.stringify([value]))
+
+        } else {
+            let arr = JSON.parse(v)
+            if (typeof arr === "string") {
+                arr = Array(arr)
+            }
+            arr.push(value)
+            cache.putMemory(this.keywords, JSON.stringify(arr))
+        }
+    },
+};
 
 // 将多个长篇小说解析为一本书
 function combineNovels(novels) {
@@ -58,9 +92,26 @@ function handNovels(novels) {
         if (novel.seriesId === undefined || novel.seriesId === null) {
             novel.tags.unshift("单本")
         } else {
+            let series = getAjaxJson(util.urlSeries(novel.seriesId)).body
+            novel.textCount = series.publishedTotalCharacterCount
+            novel.url = series.cover.urls.original
+            novel.title = series.title
+            novel.tags = series.tags
+            novel.description = series.caption
+
+            // 发送请求获取第一章 获取标签与简介
+            if (novel.tags.length === 0 || novel.description === "") {
+                let firstNovel = getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                if (novel.tags.length === 0) {
+                    novel.tags = firstNovel.tags.tags.map(item => item.tag)
+                }
+
+                if (novel.description === "") {
+                    novel.description = firstNovel.description
+                }
+            }
+
             novel.tags.unshift("长篇")
-            // todo 暂时不做字数统计
-            novel.textCount = null
         }
     })
     return novels
