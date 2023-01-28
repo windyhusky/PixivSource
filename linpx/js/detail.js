@@ -1,8 +1,18 @@
 @js:
 (function (res) {
-    res = JSON.parse(res)
-    if (res.total === 0){
-        return []
+    let isHtml = res.startsWith("<!DOCTYPE html>")
+    if (isHtml) {
+        let matchResult = baseUrl.match(new RegExp("novel/\\d+"))
+        if (matchResult == null) {
+            return []
+        }
+        let id = matchResult[0].replace("novel/", "")
+        res = JSON.parse(java.ajax(`https://linpxapi.linpicio.com/pixiv/novel/${id}`))
+    } else {
+        res = JSON.parse(res)
+        if (res.total === 0) {
+            return []
+        }
     }
 
     let prop = {}
