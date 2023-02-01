@@ -77,7 +77,40 @@ function getNovels(nidList) {
 }
 
 // 存储seriesID
-var seriesSet = new Set();
+var first = true;
+var seriesSet = {
+    keywords: "Linpx:Search",
+    has: (value) => {
+        let page = Number(java.get("page"))
+        if (page === 1 && first) {
+            first = false
+            cache.deleteMemory(this.keywords)
+            return false
+        }
+
+        let v = cache.getFromMemory(this.keywords)
+        if (v === undefined || v === null) {
+            return false
+        }
+        let set = new Set(JSON.parse(v))
+        return set.has(value)
+    },
+
+    add: (value) => {
+        let v = cache.getFromMemory(this.keywords)
+        if (v === undefined || v === null) {
+            cache.putMemory(this.keywords, JSON.stringify([value]))
+
+        } else {
+            let arr = JSON.parse(v)
+            if (typeof arr === "string") {
+                arr = Array(arr)
+            }
+            arr.push(value)
+            cache.putMemory(this.keywords, JSON.stringify(arr))
+        }
+    },
+};
 
 // 将多个长篇小说解析为一本书
 function combineNovels(novels) {

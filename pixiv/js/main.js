@@ -1,45 +1,16 @@
 @js:
-var util = {}
+var util = {};
 
-function isDebugMode() {
-    java.log("源变量:" + source.getVariable())
-    return String(source.getVariable()) === "debug"
+function objStringify(obj) {
+    return JSON.stringify(obj, (n, v) => {
+        if (typeof v == "function")
+            return v.toString();
+        return v;
+    });
 }
 
-function debugFunc(func) {
-    if (isDebugMode()) {
-        func()
-    }
-}
-
-function cacheGetAndSet(key, supplyFunc) {
-    let v = cache.get(key)
-    if (v === undefined || v === null) {
-        v = JSON.stringify(supplyFunc())
-        // 缓存10分钟
-        cache.put(key, v, 600)
-    }
-    return JSON.parse(v)
-}
-
-function urlSeriesCatalog(seriesId) {
-    return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
-}
-
-function urlSeriesDetailed(seriesId) {
-    return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=10&last_order=0&order_by=asc&lang=zh`
-}
-
-function urlUserInfo(uid) {
-    return `https://www.pixiv.net/ajax/user/${uid}`
-}
-
-function urlUserAllWorks(uid) {
-    return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
-}
-
-function urlUserNovels(uid, nidList) {
-    return `https://www.pixiv.net/ajax/user/273832/profile/novels?ids%5B%5D=19026640`
+function urlCoverUrl(url) {
+    return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
 }
 
 // 完全匹配用户名
@@ -47,25 +18,50 @@ function urlSearchUser(username) {
     return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
 }
 
-function urlNovelDetailed(nid) {
-    return `https://www.pixiv.net/ajax/novel/${nid}`
+function urlUserAllWorks(uid) {
+    return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
 }
 
-function urlCoverUrl(url) {
-    return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
+function urlUserNovels(uid, nidList) {
+    return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
 }
 
-function getAjaxJson(url) {
-    debugFunc(() => {
-        java.log(`Ajax请求:${url}`)
-    })
-    return cacheGetAndSet(url, () => {
-        return JSON.parse(java.ajax(url))
-    })
-}
+var first = true;
 
 // 存储seriesID
-var seriesSet = new Set();
+var seriesSet = {
+    keywords: "Pixiv:Search",
+    has: (value) => {
+        let page = Number(java.get("page"))
+        if (page === 1 && first) {
+            first = false
+            cache.deleteMemory(this.keywords)
+            return false
+        }
+
+        let v = cache.getFromMemory(this.keywords)
+        if (v === undefined || v === null) {
+            return false
+        }
+        let set = new Set(JSON.parse(v))
+        return set.has(value)
+    },
+
+    add: (value) => {
+        let v = cache.getFromMemory(this.keywords)
+        if (v === undefined || v === null) {
+            cache.putMemory(this.keywords, JSON.stringify([value]))
+
+        } else {
+            let arr = JSON.parse(v)
+            if (typeof arr === "string") {
+                arr = Array(arr)
+            }
+            arr.push(value)
+            cache.putMemory(this.keywords, JSON.stringify(arr))
+        }
+    },
+};
 
 // 将多个长篇小说解析为一本书
 function combineNovels(novels) {
@@ -96,31 +92,115 @@ function handNovels(novels) {
         if (novel.seriesId === undefined || novel.seriesId === null) {
             novel.tags.unshift("单本")
         } else {
-            novel.tags.unshift("长篇")
-            // todo 暂时不做字数统计
-            novel.textCount = null
+            let userAllWorks = getAjaxJson(urlUserAllWorks(novel.userId)).body
+            for (let series of userAllWorks.novelSeries) {
+                if (series.id === novel.seriesId) {
+                    // let series = getAjaxJson(util.urlSeries(novel.seriesId)).body
+                    novel.textCount = series.publishedTotalCharacterCount
+                    novel.url = series.cover.urls["480mw"]
+                    novel.title = series.title
+                    novel.tags = series.tags
+                    novel.description = series.caption
+
+                    // 发送请求获取第一章 获取标签与简介
+                    if (novel.tags.length === 0 || novel.description === "") {
+                        let firstNovel = getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                        if (novel.tags.length === 0) {
+                            novel.tags = firstNovel.tags.tags.map(item => item.tag)
+                        }
+
+                        if (novel.description === "") {
+                            novel.description = firstNovel.description
+                        }
+                    }
+
+                    novel.tags.unshift("长篇")
+                    break
+                }
+            }
         }
+    })
+    util.debugFunc(() => {
+        java.log(`处理小说完成`)
     })
     return novels
 }
 
 function formatNovels(novels) {
     novels.forEach(novel => {
-        novel.detailedUrl = urlNovelDetailed(novel.id)
+        novel.detailedUrl = util.urlNovelDetailed(novel.id)
         novel.tags = novel.tags.join(",")
         novel.coverUrl = urlCoverUrl(novel.url)
     })
     return novels
 }
 
-// 暂时不做
+function getAjaxJson(url) {
+    return util.cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    })
+}
+
+function getWebviewJson(url, parseFunc) {
+    return util.cacheGetAndSet(url, () => {
+        let html = java.webView(null, url, null)
+        return JSON.parse(parseFunc(html))
+    })
+}
+
+function isLogin() {
+    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+    return typeof cookie === "string" && cookie !== ""
+}
+
 function getUserNovels(username) {
-    return []
+    if (!isLogin()) {
+        return []
+    }
+
+    let html = java.ajax(urlSearchUser(username))
+    // java.log(html)
+    // 仅匹配有投稿作品的用户
+    let match = html.match(new RegExp("/users/\\d+/novels"))
+    if (match === null || match.length === 0) {
+        return []
+    }
+
+    let regNumber = new RegExp("\\d+")
+    let uidList = match.map(v => {
+        return v.match(regNumber)[0]
+    })
+
+    // 仅限3个作者
+    if (uidList.length >= 3) {
+        uidList.length = 3
+    }
+
+    let novels = []
+    let page = Number(java.get("page"))
+
+    uidList.forEach(id => {
+        let r = getAjaxJson(urlUserAllWorks(id))
+        let novelsId = Object.keys(r.body.novels).reverse().slice((page - 1) * 20, page * 20)
+        let url = urlUserNovels(id, novelsId)
+        // java.log(`发送的Ajax请求:${url}`)
+        let userNovels = getWebviewJson(url, html => {
+            return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
+        }).body
+        novels = novels.concat(Object.values(userNovels))
+    })
+
+
+    util.debugFunc(() => {
+        java.log(`获取用户搜索小说结束`)
+    })
+    return novels
 }
 
 // 存储函数方便其他页面调用
 function init() {
     let u = {}
+
     u.cacheGetAndSet = (key, supplyFunc) => {
         let v = cache.get(key)
         if (v === undefined || v === null) {
@@ -130,34 +210,36 @@ function init() {
         }
         return JSON.parse(v)
     }
-
-    u.getAjaxJson = (url) => {
-        debugFunc(() => {
-            java.log(`Ajax请求:${url}`)
-        })
-        return u.cacheGetAndSet(url, () => {
-            return JSON.parse(java.ajax(url))
-        })
-    }
-
-    u.isDebugMode = () => {
-        java.log("源变量:" + source.getVariable())
-        return String(source.getVariable()) === "debug"
-    }
-
     u.debugFunc = (func) => {
-        if (u.isDebugMode()) {
+        if (String(source.getVariable()) === "debug") {
             func()
         }
     }
+
+    u.urlNovelDetailed = (nid) => {
+        return `https://www.pixiv.net/ajax/novel/${nid}`
+    }
+    u.urlSeries = (seriesId) => {
+        return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
+    }
+    u.urlSeriesNovels = (seriesId, limit, offset) => {
+        if (limit > 30) {
+            limit = 30
+        }
+
+        if (limit < 10) {
+            limit = 10
+        }
+
+        return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
+    }
     util = u
-    java.put("util", JSON.stringify(u))
+    java.put("util", objStringify(u))
 }
 
 (() => {
-    init()
     //作者 TAG 书名都要支持
-    // java.log(String(java.get("key")))
+    init()
     let resp = JSON.parse(result);
     let novelsList = getUserNovels(String(java.get("key")))
     novelsList = novelsList.concat(resp.body.novel.data)
