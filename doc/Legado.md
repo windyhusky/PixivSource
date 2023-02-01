@@ -62,29 +62,20 @@
 
 可能支持相同书源的软件：
 - [源阅读](https://github.com/kaich/Yuedu) 现已下架
-
-类似的换源阅读软件：
-- 爱阅书香
-- 蓝鲸阅读
-- 书香之家
-- 多阅
-- 香色闺阁
-
-整理自：
-
-https://www.52pojie.cn/thread-1632541-1-1.html
-
-https://zhuanlan.zhihu.com/p/488482216
-
+- 青果阅读 不完全兼容阅读书源
 
 
 ### 4.下载安装后应该做什么？
 
-- [导入书源](https://github.com/DowneyRem/PixivSource/blob/main/doc/Import.md)
+- [导入书源](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
+
 - [设置备份](https://www.yuque.com/legado/wiki/mgu5qu)(推荐)
+
 - 搜索小说
+
 - 尽情使用
-- 不时备份
+
+
 
 ### 5.常用功能(转自[官方使用说明](https://www.yuque.com/legado/wiki/xz))
 
