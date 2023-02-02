@@ -1,7 +1,8 @@
 ## 书源来源
 
-- 官方频道 [@legado_channels](https://t.me/legado_channels)
-- [源仓库](http://yck.mumuceo.com/)
+- 官方频道 [@legado_channels](https://t.me/legado_channels) 每月更新
+- [源仓库](http://yck.mumuceo.com/) 自取所需
+- [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
 - 其他网络来源
 
 ## 导入书源
@@ -25,9 +26,35 @@
 
 
 
-### B.网络导入易更新
+### B.规则订阅易更新
 
-请【**开启代理**】后，复制下面的链接
+请【**开启代理**】后，复制下面的【书源】链接
+
+```
+https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
+
+https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
+```
+
+#### 1.打开【订阅】页面，点击【规则订阅】
+
+![](https://telegra.ph/file/3de9a614dd7128ff2f115.png)
+
+#### 2.点击加号，粘贴链接，保存订阅
+
+![](https://telegra.ph/file/38ff9d3b03d7b1720cfbd.png)
+
+#### 3.点击订阅，导入并启用/更新书源
+
+![](https://telegra.ph/file/5b1f7b3d0cc5564b6080a.png)
+
+首次点击**【订阅规则】**即是导入，导入后**再次点击则会检测并更新**
+
+
+
+### C.网络导入也方便
+
+请【**开启代理**】后，复制下面的【书源】链接
 
 ```
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
