@@ -18,7 +18,7 @@
     let prop = {}
     //为了兼顾导入书架直接走详情页逻辑
     //这里不能直接用book.xxx 来复用搜索页处理结果
-    prop['author'] = res.author
+    prop['author'] = res.userName
     prop['count'] = book.wordCount
     prop['desc'] = res.desc
     prop['cover_url'] = `https://linpxapi.linpicio.com/proxy/pximg?url=${res.coverUrl}`
