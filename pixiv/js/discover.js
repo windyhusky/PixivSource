@@ -1,4 +1,15 @@
 @js:
+var util = objParse(String(java.get("util")))
+
+function objParse(obj) {
+    return JSON.parse(obj, (n, v) => {
+        if (typeof v == "string" && v.match("()")) {
+            return eval(`(${v})`)
+        }
+        return v;
+    })
+}
+
 
 // 存储seriesID 有BUG无法处理翻页
 var seriesSet = new Set();
@@ -25,11 +36,6 @@ function combineNovels(novels) {
     })
 }
 
-function urlNovelDetailed(nid) {
-    return `https://www.pixiv.net/ajax/novel/${nid}`
-}
-
-
 function handNovels(novels) {
     novels.forEach(novel => {
         if (novel.tags === undefined || novel.tags === null) {
@@ -40,20 +46,10 @@ function handNovels(novels) {
             novel.tags.unshift("单本")
         } else {
             novel.tags.unshift("长篇")
-            // todo 暂时不做字数统计
             novel.textCount = null
         }
     })
 
-    return novels
-}
-
-function formatNovels(novels) {
-    novels.forEach(novel => {
-        novel.detailedUrl = urlNovelDetailed(novel.id)
-        novel.tags = novel.tags.join(",")
-        novel.coverUrl = urlCoverUrl(novel.url)
-    })
     return novels
 }
 
@@ -86,7 +82,7 @@ function handlerFollowing() {
                     novelList.push(novel)
                 })
             })
-        return formatNovels(handNovels(novelList))
+        return util.formatNovels(handNovels(novelList))
     }
 }
 
@@ -99,7 +95,7 @@ function handlerRecommend() {
         // java.log(nidSet.size)
         let list = novels.filter(novel => nidSet.has(String(novel.id)))
         // java.log(`过滤结果:${JSON.stringify(list)}`)
-        return formatNovels(handNovels(combineNovels(list)))
+        return util.formatNovels(handNovels(combineNovels(list)))
     }
 }
 
@@ -118,7 +114,7 @@ function handlerBookMarks() {
             return []
         }
 
-        return formatNovels(handNovels(resp))
+        return util.formatNovels(handNovels(resp))
     }
 }
 
