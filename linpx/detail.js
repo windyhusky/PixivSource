@@ -16,10 +16,12 @@
     }
 
     let prop = {}
-    prop['author'] = book.author
+    //为了兼顾导入书架直接走详情页逻辑
+    //这里不能直接用book.xxx 来复用搜索页处理结果
+    prop['author'] = res.author
     prop['count'] = book.wordCount
-    prop['desc'] = book.intro
-    prop['cover_url'] = book.coverUrl
+    prop['desc'] = res.desc
+    prop['cover_url'] = `https://linpxapi.linpicio.com/proxy/pximg?url=${res.coverUrl}`
 
     if (res.series === undefined || res.series === null) {
         prop['name'] = res.title
