@@ -52,13 +52,11 @@ function formatNovels(novels) {
         novel.detailedUrl = `https://linpxapi.linpicio.com/pixiv/novel/${novel.id}`
         if (novel.seriesId !== undefined && novel.seriesId !== null) {
             novel.title = novel.seriesTitle
-            //todo 长篇的字数需要统计 先不做
             novel.length = null
 
             let series = getAjaxJson(urlSeries(novel.seriesId))
-            // novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.imageUrl}`
             // 后端目前没有系列的coverUrl字段
-            // todo 先这样使用
+            // novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.imageUrl}`
             novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.novels[0].coverUrl}`
             if (series.caption === "") {
                 let firstNovels = getAjaxJson(urlNovelsDetailed([series.novels[0].id]))

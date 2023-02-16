@@ -137,13 +137,11 @@ function formatNovels(novels) {
         novel.detailedUrl = `https://linpxapi.linpicio.com/pixiv/novel/${novel.id}`
         if (novel.seriesId !== undefined && novel.seriesId !== null) {
             novel.title = novel.seriesTitle
-            //todo 长篇的字数需要统计 先不做
             novel.length = null
 
             let series = getAjaxJson(urlSeries(novel.seriesId))
-            // novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.imageUrl}`
             // 后端目前没有系列的coverUrl字段
-            // todo 先这样使用
+            // novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.imageUrl}`
             novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.novels[0].coverUrl}`
             if (series.caption === "") {
                 let firstNovels = getAjaxJson(urlNovelsDetailed([series.novels[0].id]))
@@ -206,13 +204,14 @@ function findUserNovels(username) {
 (function (res) {
     res = JSON.parse(res)
     let novels = res.novels
-    // 如果搜索不了结果
-    if (novels.length === 0) {
-        return []
-    }
 
     findUserNovels(java.get("key")).forEach(v => {
         novels.push(v)
     })
+
+    // 返回空列表中止流程
+    if (novels.length === 0) {
+        return []
+    }
     return formatNovels(combineNovels(novels))
 }(result))
