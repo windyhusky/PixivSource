@@ -1,4 +1,4 @@
-## 书源来源
+## ⓪ 书源来源
 
 - 官方频道 [@legado_channels](https://t.me/legado_channels) 每月更新
 - [源仓库](https://www.yckceo.com/home/index/index.html) 自取所需
@@ -7,7 +7,7 @@
 - [「阅读」APP 源](https://legado.aoaostar.com/)  
 - 其他网络来源
 
-## 导入书源
+## ① 导入书源
 
 ### A.文件导入更简单
 
@@ -84,7 +84,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 
 
-### D. schema 链接导入最方便【适用于书源提供方】
+### D.Schema 链接导入最方便【适用于书源提供方】
 
 大多点击链接一键导入书源/订阅源，都是是采用了这种方式，如：**[喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)**
 
@@ -117,6 +117,7 @@ yuedu://booksource/importonline?src=https://www.yckceo.com/yuedu/shuyuan/json/id
 ```
 ![img](https://telegra.ph/file/d4eb75fe6d8cfc4d434c1.png)
 
+![img](https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B2.jpg)
 #### 2.导入完成并启用书源
 
 ![img](https://telegra.ph/file/bb3c9457f21b4be72f878.png)
@@ -133,7 +134,7 @@ yuedu://booksource/importonline?src=https://www.yckceo.com/yuedu/shuyuan/json/id
 
 
 
-## 登录账号
+## ③ 登录账号
 
 ### 【根据需要】开启代理工具
 
