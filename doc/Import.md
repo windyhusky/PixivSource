@@ -82,7 +82,48 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 ![img](https://telegra.ph/file/31a6d4be7e497ab6b01ce.png)
 
-## 确认启用书源
+
+
+### D. schema 链接导入最方便【适用于书源提供方】
+
+大多点击链接一键导入书源/订阅源，都是是采用了这种方式，如：**[喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)**
+
+#### 0.【书源提供方】为按钮等添加链接
+
+```
+可通过url唤起阅读进行一键导入,url格式: legado://import/{path}?src={url}
+path类型: bookSource,rssSource,replaceRule,textTocRule,httpTTS,theme,readConfig,addToBookshelf
+path类型解释: 书源,订阅源,替换规则,本地txt小说目录规则,在线朗读引擎,主题,阅读排版,添加到书架
+legado://import/addToBookshelf?src={url}
+```
+取自官方API：https://github.com/gedoor/legado#api-
+
+
+```
+yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
+yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
+```
+
+
+
+#### 1.手机浏览器内点击链接，跳转阅读
+
+浏览器打开这个页面 [Pixiv书源 - 源仓库](https://www.yckceo.com/yuedu/shuyuan/yuan/id/6750.html)。一键导入按钮的链接，即为下面这条链接
+
+注：因源仓库上传书源后无法再次编辑，故再次导入同一链接后，【无法更新书源至最新版】
+
+```
+yuedu://booksource/importonline?src=https://www.yckceo.com/yuedu/shuyuan/json/id/6750.json
+```
+![img](https://telegra.ph/file/d4eb75fe6d8cfc4d434c1.png)
+
+#### 2.导入完成并启用书源
+
+![img](https://telegra.ph/file/bb3c9457f21b4be72f878.png)
+
+
+
+## ② 确认启用书源
 
 ![img](https://telegra.ph/file/7b866f92fa9b556818206.png)、
 
