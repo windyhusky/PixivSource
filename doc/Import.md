@@ -108,16 +108,16 @@ yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky
 
 #### 1.手机浏览器内点击链接，跳转阅读
 
-浏览器打开这个页面 [Pixiv书源 - 源仓库](https://www.yckceo.com/yuedu/shuyuan/yuan/id/6750.html)。一键导入按钮的链接，即为下面这条链接
-
-注：因源仓库上传书源后无法再次编辑，故再次导入同一链接后，【无法更新书源至最新版】
+浏览器打开这个页面 [Pixiv书源 - 源仓库](https://www.yckceo.com/yuedu/shuyuan/yuan/id/6750.html)，一键导入按钮的链接，即为下面这条链接：
 
 ```
 yuedu://booksource/importonline?src=https://www.yckceo.com/yuedu/shuyuan/json/id/6750.json
 ```
-![img](https://telegra.ph/file/d4eb75fe6d8cfc4d434c1.png)
 
-![img](https://github.com/gedoor/gedoor.github.io/blob/master/static/img/legado/%E9%98%85%E8%AF%BB%E7%AE%80%E4%BB%8B2.jpg)
+注：因源仓库上传书源后无法再次编辑，故再次导入同一链接后，【无法更新书源至最新版】
+
+![img](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/doc/pic/OpenInLegado.png)
+
 #### 2.导入完成并启用书源
 
 ![img](https://telegra.ph/file/bb3c9457f21b4be72f878.png)
