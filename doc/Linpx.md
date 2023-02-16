@@ -23,7 +23,7 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 ### 2.导入 Linpx 的书源
 
 请查看[如何获取书源？导入书源？](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
->https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
+> https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 **Linpx 无需登录，无需代理，即可访问 R18 小说，因此你不必做过多的操作**
 
@@ -31,6 +31,10 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
 请查看[如何获取书源？导入书源？](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
 > https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json
+
+导入书源和订阅源后，可以在阅读内部浏览器内，添加小说到书架
+![img](pic/AddToBookShelf.png)
+
 
 ## 故障排查
 
@@ -41,8 +45,6 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 #### A.如果搜索结果不唯一，那么大功告成！
 
 ![img](https://telegra.ph/file/7a33b98d43b378f0ab59f.png)
-
-
 
 #### B.如果没有搜索结果，请自行检查一下内容：
 
@@ -57,7 +59,6 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 **③检查网络可用性**
 
 **如果上述均无问题，但依然没有搜索结果，那就是书源需要更新了**
-
 
 
 ### 2. 图片无法正常显示
