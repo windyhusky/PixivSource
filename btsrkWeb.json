@@ -23,6 +23,7 @@
     "lastUpdateTime": 0,
     "loadWithBaseUrl": true,
     "singleUrl": true,
+	"sourceGroup": "Furry",
     "sourceIcon": "https://raw.githubusercontent.com/FurryGamesIndex/games/master/assets/_README/logo.png",
     "sourceName": "兽人控游戏索引",
     "sourceUrl": "https://furrygames.top/zh-cn/list-b.html"
