@@ -1,4 +1,4 @@
-## ⓪ 书源来源
+## ⓪ 书源/订阅源来源
 
 - 官方频道 [@legado_channels](https://t.me/legado_channels) 每月更新
 - [源仓库](https://www.yckceo.com/home/index/index.html) 自取所需
@@ -7,7 +7,7 @@
 - [「阅读」APP 源](https://legado.aoaostar.com/)  
 - 其他网络来源
 
-## ① 导入书源
+## ① 导入书源/订阅源
 
 ### A.文件导入更简单
 
@@ -43,6 +43,8 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 ![](https://telegra.ph/file/3de9a614dd7128ff2f115.png)
 
 #### 2.点击加号，粘贴链接，保存订阅
+
+如果是订阅源，则需要切换到订阅源
 
 ![](https://telegra.ph/file/38ff9d3b03d7b1720cfbd.png)
 
@@ -81,6 +83,12 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 **无法网络导入时，请尝试开启代理，或过段时间重试**
 
 ![img](https://telegra.ph/file/31a6d4be7e497ab6b01ce.png)
+
+
+
+订阅源的网络方法请看：
+
+https://github.com/windyhusky/PixivSource/blob/main/doc/Import2.md
 
 
 
