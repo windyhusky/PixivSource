@@ -11,20 +11,23 @@
 
 - linpx 是 pixiv 的子集，包含其全部兽人小说与部分非兽人小说
 
+
 ## 通用教程
 
 ### [阅读是什么软件？阅读简介](https://github.com/windyhusky/PixivSource/blob/main/doc/Legado.md)
 
 ### [如何获取书源？导入书源？](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
 
+### [如何设置 Webdav 自动备份？](https://www.yuque.com/legado/wiki/mgu5qu)
+
+更多内容请查看[官方使用说明](https://www.yuque.com/legado/wiki/xz)
 
 
 ## 专用教程
 
-### [Pixiv书源的导入与使用](https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md)
+### [Pixiv 书源的导入与使用](https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md)
 
 ### [Linpx 书源的导入与使用](https://github.com/windyhusky/PixivSource/blob/main/doc/Linpx.md)
-
 
 
 ## 鸣谢
