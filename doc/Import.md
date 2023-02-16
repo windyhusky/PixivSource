@@ -1,8 +1,10 @@
 ## 书源来源
 
 - 官方频道 [@legado_channels](https://t.me/legado_channels) 每月更新
-- [源仓库](http://yck.mumuceo.com/) 自取所需
+- [源仓库](https://www.yckceo.com/home/index/index.html) 自取所需
 - [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
+- [一程书源订阅源](https://code.gitlink.org.cn/yi-c/yd/)
+- [「阅读」APP 源](https://legado.aoaostar.com/)  
 - 其他网络来源
 
 ## 导入书源
