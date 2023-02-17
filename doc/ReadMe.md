@@ -6,7 +6,7 @@
 
 ### [如何导入订阅源？](https://github.com/windyhusky/PixivSource/blob/main/doc/Import2.md)
 
-### [如何设置 Webdav 备份？](https://www.yuque.com/legado/wiki/mgu5qu)
+### [如何设置 Webdav 备份？](https://github.com/windyhusky/PixivSource/blob/main/doc/WebdavBackup.md)
 
 
 
