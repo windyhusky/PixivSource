@@ -124,7 +124,7 @@ yuedu://booksource/importonline?src=https://www.yckceo.com/yuedu/shuyuan/json/id
 
 注：因源仓库上传书源后无法再次编辑，故再次导入同一链接后，【无法更新书源至最新版】
 
-![img](https://raw.githubusercontent.com/windyhusky/PixivSource/main/doc/pic/OpenInLegado.png)
+![img](pic/OpenInLegado.png)
 
 #### 2.导入完成并启用书源
 

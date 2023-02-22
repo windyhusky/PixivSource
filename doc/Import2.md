@@ -32,21 +32,21 @@ http://yuedu.miaogongzi.net/shuyuan/miaogongziDY.json
 
 #### 1.打开【订阅】页面，点击右上角【设置】
 
-![img](https://raw.githubusercontent.com/windyhusky/PixivSource/main/doc/pic/SubscriptionPage.png)
+![img](pic/SubscriptionPage.png)
 
 #### 2.点击右上角的三点菜单，选择【网络导入】
 
-![img](https://raw.githubusercontent.com/windyhusky/PixivSource/main/doc/pic/SubscriptionWebImport.png)
+![img](pic/SubscriptionWebImport.png)
 
 #### 3.粘贴订阅源链接，点击确定
 
-![img](https://raw.githubusercontent.com/windyhusky/PixivSource/main/doc/pic/SubscriptionAdding.png)
+![img](pic/SubscriptionAdding.png)
 
 #### 4.导入完成并启用订阅源
 
-![img](https://raw.githubusercontent.com/windyhusky/PixivSource/main/doc/pic/SubscriptionPage.png)
+![img](pic/SubscriptionPage.png)
 
 **无法网络导入时，请尝试开启代理，或过段时间重试**
 
-![img](https://raw.githubusercontent.com/windyhusky/PixivSource/main/doc/pic/SubscriptionFinished.png)
+![img](pic/SubscriptionFinished.png)
 
