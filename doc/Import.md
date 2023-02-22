@@ -52,7 +52,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 ![](https://telegra.ph/file/5b1f7b3d0cc5564b6080a.png)
 
-首次点击**【订阅规则】**即是导入，导入后**再次点击则会检测并更新**
+**首次点击【订阅规则】 即是导入**，导入后 **再次点击则会检测并更新**
 
 
 
@@ -85,11 +85,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 ![img](https://telegra.ph/file/31a6d4be7e497ab6b01ce.png)
 
 
-
-订阅源的网络方法请看：
-
-https://github.com/windyhusky/PixivSource/blob/main/doc/Import2.md
-
+**[订阅源的网络方法](./Import2.md)**
 
 
 ### D.Schema 链接导入最方便【适用于书源提供方】
@@ -134,7 +130,7 @@ yuedu://booksource/importonline?src=https://www.yckceo.com/yuedu/shuyuan/json/id
 
 ## ② 确认启用书源
 
-![img](https://telegra.ph/file/7b866f92fa9b556818206.png)、
+![img](https://telegra.ph/file/7b866f92fa9b556818206.png)
 
 转载网站一般无需登录，基本上到这里就可以回到主页面，搜索书名看小说了
 

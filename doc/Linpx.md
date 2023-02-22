@@ -18,18 +18,19 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
 ### 1.了解阅读功能与用法
 
-请查看[阅读是什么软件？阅读简介](https://github.com/windyhusky/PixivSource/blob/main/doc/Legado.md)
+请查看[阅读是什么软件？阅读简介](./Legado.md)
 
 ### 2.导入 Linpx 的书源
 
-请查看[如何获取书源？导入书源？](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
+请查看[如何获取书源？导入书源？](./Import.md)
 > https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 **Linpx 无需登录，无需代理，即可访问 R18 小说，因此你不必做过多的操作**
 
 ### 3.导入 Linpx 的订阅源
+请查看[如何网络导入订阅源](./Import2.md)  
+其他方式请查看[如何获取书源？导入书源？](./Import.md)
 
-请查看[如何获取书源？导入书源？](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
 > https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json
 
 导入书源和订阅源后，可以在阅读内部浏览器内，添加小说到书架

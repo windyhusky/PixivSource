@@ -1,8 +1,8 @@
 ## ⓪ 订阅源来源
-**请查看书源获取方式，一般二者会同时提供**
-https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md
+**请查看[书源获取方式](./Import.md)，一般二者会同时提供**
 
-## ① 导入订阅源
+## ① 导入订阅源 
+[官方教程](https://www.yuque.com/legado/wiki/grqch2)
 
 ### O.其他导入方式
 
@@ -12,10 +12,7 @@ https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md
 
 **D.Schema 链接导入最方便【适用于订阅源提供方】**
 
-**上述导入方式大同小异，故不再复述，请查看书源导入方式**
-
-https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md
-
+**上述导入方式大同小异，故不再复述，请查看[书源获取方式](./Import.md)**
 
 
 ### C.网络导入也方便

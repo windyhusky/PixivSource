@@ -19,8 +19,6 @@ Pixiv 是以插图、漫画、小说为中心的，允许 R18 内容的艺术网
 **如若不看 R18 小说，则可以忽略 1, 4, 5 三条要求**
 
 
-
-
 ## 本书源使用方法
 
 ### 0.下载阅读 3.0 的 R18 版本
@@ -31,11 +29,11 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
 ### 1.了解阅读功能与用法
 
-请查看[阅读是什么软件？阅读简介](https://github.com/windyhusky/PixivSource/blob/main/doc/Legado.md)
+请查看[阅读是什么软件？阅读简介](./Legado.md)
 
 ### 2.导入 Pixiv 的书源
 
-请查看[如何获取书源？导入书源？](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
+请查看[如何获取书源？导入书源？](./Import.md)
 
 >https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 
@@ -73,7 +71,7 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
 
 
-#### ①[Pixiv 个人资料设置](https://www.pixiv.net/setting_profile.php)-个人资料内容-出生年份
+#### ①[Pixiv 个人资料设置](https://www.pixiv.net/setting_profile.php) - 个人资料内容 - 出生年份
 
 出生年份改到：**2000年或2000年之前**
 
@@ -83,7 +81,7 @@ https://kunfei.lanzoux.com/b0f810h4b#d8j9
 
 
 
-#### ②[Pixiv 用户设置](https://www.pixiv.net/setting_user.php)-基本设定-浏览限制
+#### ②[Pixiv 用户设置](https://www.pixiv.net/setting_user.php) - 基本设定 - 浏览限制
 
 根据自己情况选择显示：R18 作品与 R18G 作品
 
@@ -112,12 +110,9 @@ Pixiv 的手机版网页只能修改【浏览限制】
 ![img](https://telegra.ph/file/7a33b98d43b378f0ab59f.png)
 
 
-
 #### ②如果只有这一个搜索结果
 
 ![img](https://telegra.ph/file/af038f28cb1c88b43912f.png)
-
-
 
 #### 说明你的R18设置没有打开，请再回到第4步修改相关设置
 
