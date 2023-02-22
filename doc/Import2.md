@@ -1,8 +1,7 @@
 ## ⓪ 订阅源来源
 **请查看[书源获取方式](./Import.md)，一般二者会同时提供**
 
-## ① 导入订阅源 
-[官方教程](https://www.yuque.com/legado/wiki/grqch2)
+## ① 导入订阅源 [官方教程](https://www.yuque.com/legado/wiki/grqch2)
 
 ### O.其他导入方式
 
