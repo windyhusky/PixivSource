@@ -67,17 +67,17 @@
 
 ### 4.下载安装后应该做什么？
 
-- [导入书源](https://github.com/windyhusky/PixivSource/blob/main/doc/Import.md)
+- [导入书源](./Import.md) & [导入订阅源](./Import2.md)
 
-- [设置备份](https://www.yuque.com/legado/wiki/mgu5qu)(推荐)
+- [设置备份](./WebdavBackup.md)(推荐)
 
-- 搜索小说
+- 搜索小说 / 查看订阅
 
 - 尽情使用
 
 
 
-### 5.常用功能(转自[官方使用说明](https://www.yuque.com/legado/wiki/xz))
+### 5.常用功能(下方内容均转自[官方使用指南](https://www.yuque.com/legado/wiki/xz))
 
 #### 导入：[书源](https://www.yuque.com/legado/wiki/xdroke)；[替换净化](https://www.yuque.com/legado/wiki/gnt3nq)；[订阅源](https://www.yuque.com/legado/wiki/grqch2)；[主题](https://www.yuque.com/legado/wiki/tgbqdy)
 

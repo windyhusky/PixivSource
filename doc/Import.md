@@ -7,11 +7,11 @@
 - [「阅读」APP 源](https://legado.aoaostar.com/)  
 - 其他网络来源
 
-## ① 导入书源/订阅源
+## ① 导入书源/订阅源 [官方教程](https://www.yuque.com/legado/wiki/xdroke)
 
 ### A.文件导入更简单
 
-#### 1.下载书源文件
+#### 1.下载书源/订阅源文件
 
 > https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 >
@@ -22,7 +22,7 @@
 
 ![img](https://telegra.ph/file/d4eb75fe6d8cfc4d434c1.png)
 
-#### 3.导入完成并启用书源
+#### 3.导入完成并启用书源/订阅源
 
 ![img](https://telegra.ph/file/bb3c9457f21b4be72f878.png)
 
@@ -52,11 +52,12 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 ![](https://telegra.ph/file/5b1f7b3d0cc5564b6080a.png)
 
-首次点击**【订阅规则】**即是导入，导入后**再次点击则会检测并更新**
+**首次点击【订阅规则】 即是导入**，导入后 **再次点击则会检测并更新**
 
 
 
 ### C.网络导入也方便
+此处示意图并不是 **[订阅源的网络导入方法](./Import2.md)**
 
 请【**开启代理**】后，复制下面的【书源】链接
 
@@ -84,12 +85,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 ![img](https://telegra.ph/file/31a6d4be7e497ab6b01ce.png)
 
-
-
-订阅源的网络方法请看：
-
-https://github.com/windyhusky/PixivSource/blob/main/doc/Import2.md
-
+订阅源的网络导入请看 **[订阅源的网络方法](./Import2.md)**
 
 
 ### D.Schema 链接导入最方便【适用于书源提供方】
@@ -124,7 +120,7 @@ yuedu://booksource/importonline?src=https://www.yckceo.com/yuedu/shuyuan/json/id
 
 注：因源仓库上传书源后无法再次编辑，故再次导入同一链接后，【无法更新书源至最新版】
 
-![img](https://raw.githubusercontent.com/windyhusky/PixivSource/main/doc/pic/OpenInLegado.png)
+![img](pic/OpenInLegado.png)
 
 #### 2.导入完成并启用书源
 
@@ -134,7 +130,7 @@ yuedu://booksource/importonline?src=https://www.yckceo.com/yuedu/shuyuan/json/id
 
 ## ② 确认启用书源
 
-![img](https://telegra.ph/file/7b866f92fa9b556818206.png)、
+![img](https://telegra.ph/file/7b866f92fa9b556818206.png)
 
 转载网站一般无需登录，基本上到这里就可以回到主页面，搜索书名看小说了
 
