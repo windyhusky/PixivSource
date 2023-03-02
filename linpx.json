@@ -11,7 +11,7 @@
     "enabledExplore": true,
     "enabledReview": false,
     "exploreUrl": "最新小说::https://linpxapi.linpicio.com/pixiv/novels/recent?page={{page}}",
-    "lastUpdateTime": 1677749574741,
+    "lastUpdateTime": 1677754801902,
     "respondTime": 180000,
     "ruleBookInfo": {
       "author": "author",
@@ -25,7 +25,7 @@
       "wordCount": "count"
     },
     "ruleContent": {
-      "content": "@js:\n(function (res) {\n    res = JSON.parse(res)\n    let content = res.content\n    if (res.series !== null && res.desc !== undefined && res.desc !== \"\") {\n        content = res.desc + \"\\n\" + \"　\\n\".repeat(2) + content\n    }\n    //将存在的pixiv图片链接替换为可访问的直连\n    if (res.images !== undefined && res.images !== null) {\n        Object.keys(res.images).forEach((key) => {\n            content = content.replace(`[uploadedimage:${key}]`, `<img src=\"https://linpxapi.linpicio.com/proxy/pximg?url=${res.images[key].preview}\">`)\n        })\n    }\n    return content\n})(result)",
+      "content": "@js:\n(function (res) {\n    res = JSON.parse(res)\n    let content = res.content\n    if (res.series !== null && res.desc !== undefined && res.desc !== \"\") {\n        content = res.desc + \"\\n\" + \"——————————\\n\".repeat(2) + content\n    }\n    //将存在的pixiv图片链接替换为可访问的直连\n    if (res.images !== undefined && res.images !== null) {\n        Object.keys(res.images).forEach((key) => {\n            content = content.replace(`[uploadedimage:${key}]`, `<img src=\"https://linpxapi.linpicio.com/proxy/pximg?url=${res.images[key].preview}\">`)\n        })\n    }\n    return content\n})(result)",
       "replaceRegex": "",
       "sourceRegex": ""
     },
