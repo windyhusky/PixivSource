@@ -39,9 +39,7 @@ function getUser(username, exactMatch) {
     }
     // 只返回用户名完全一样的用户
     return resp.users.filter(user => {
-        if (user.name === username) {
-            return true
-        }
+        return user.name === username
     })
 }
 
@@ -169,6 +167,9 @@ function formatNovels(novels) {
 
 
         } else {
+            if (novel.tags === undefined) {
+                novel.tags = []
+            }
             novel.tags.unshift("单本")
             novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${novel.coverUrl}`
         }
@@ -192,7 +193,10 @@ function findUserNovels(username) {
         let nidList = []
         // 从两层数组中提取novelsId
         list.forEach(user => {
-            user.novels.forEach(nid => nidList.push(nid))
+            user.novels
+                // 按id降序排序-相当于按时间降序排序
+                .reverse()
+                .forEach(nid => nidList.push(nid))
         })
         getNovels(nidList).forEach(novel => {
             novelList.push(novel)
@@ -203,12 +207,11 @@ function findUserNovels(username) {
 
 (function (res) {
     res = JSON.parse(res)
-    let novels = res.novels
-
+    let novels = []
     findUserNovels(java.get("key")).forEach(v => {
         novels.push(v)
     })
-
+    novels = novels.concat(res.novels)
     // 返回空列表中止流程
     if (novels.length === 0) {
         return []
