@@ -2,7 +2,9 @@
 (() => {
     let res = JSON.parse(result).body
     let content = res.content
-
+    if (res.seriesNavData !== undefined && res.seriesNavData !== null) {
+        content = res.description + "\n" + "——————————\n".repeat(2) + content
+    }
     let hasEmbeddedImages = res.textEmbeddedImages !== undefined && res.textEmbeddedImages !== null
     if (hasEmbeddedImages) {
         Object.keys(res.textEmbeddedImages).forEach((key) => {
