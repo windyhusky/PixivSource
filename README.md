@@ -2,14 +2,33 @@
 
 为 Pixiv 与类 Pixiv 网站制作的 [阅读 3.0 ](https://github.com/gedoor/legado) 的书源
 
-## 书源可用状态
 
-| 对应网站 | 书源状态 | 备注 |
+
+# 快速导入
+
+| 不用翻墙 | 名称                                 | 网址                                                         |
+| -------- | ------------------------------------ | ------------------------------------------------------------ |
+| ✔        | [Pixiv](https://www.pixiv.net/)      | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json |
+|          | [Linpx](https://linpx.linpicio.com/) | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json |
+|          | btsrk订阅源                          | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrkWeb.json |
+| ❌        | [Pixiv](https://www.pixiv.net/)      | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
+|          | [Linpx](https://linpx.linpicio.com/) | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
+|          | btsrk订阅源                          | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json |
+
+
+
+
+
+## 源状态
+
+| 对应网站 | 可用状态 | 备注 |
 | ----- | -------- | ----------------------------------------------- |
 | [Pixiv](https://www.pixiv.net/) | ✔ | https://www.pixiv.net/ |
 | [Linpx](https://linpx.linpicio.com/) | ✔ | https://github.com/libudu/linpx-web |
+| btsrk | ✔ | [Linpx - 首页 (furrynovel.xyz)](https://www.furrynovel.xyz/)<br />[兽人控游戏索引 (furrygames.top)](https://furrygames.top/zh-cn/list.html)<br />[兽人控游戏库 (kemono.games)](https://kemono.games/zh-Hans) |
 
 - linpx 是 pixiv 的子集，包含其全部兽人小说与部分非兽人小说
+- btsrk 是 订阅源。目前整合了兽人控游戏索引、兽人控游戏库与Linpx 旨在提供兽人文化网站的快捷访问
 
 
 ## 下载阅读
@@ -30,7 +49,7 @@
 ### [Linpx 书源的导入与使用](./doc/Linpx.md)
 
 
-## 鸣谢
+# 鸣谢
 - 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的网站服务
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说推荐频道 [@FurryNovels](https://t.me/FurryNovels)
