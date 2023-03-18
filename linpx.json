@@ -11,12 +11,12 @@
     "enabledExplore": true,
     "enabledReview": false,
     "exploreUrl": "最新小说::https://linpxapi.linpicio.com/pixiv/novels/recent?page={{page}}",
-    "lastUpdateTime": 1677809182985,
+    "lastUpdateTime": 1679126865744,
     "respondTime": 180000,
     "ruleBookInfo": {
       "author": "author",
       "coverUrl": "cover_url",
-      "init": "@js:\n(function (res) {\n    let isHtml = res.startsWith(\"<!DOCTYPE html>\")\n    if (isHtml) {\n        let matchResult = baseUrl.match(new RegExp(\"novel/\\\\d+\"))\n        if (matchResult == null) {\n            return []\n        }\n        let id = matchResult[0].replace(\"novel/\", \"\")\n        res = JSON.parse(java.ajax(`https://linpxapi.linpicio.com/pixiv/novel/${id}`))\n    } else {\n        res = JSON.parse(res)\n        if (res.total === 0) {\n            return []\n        }\n    }\n\n    let prop = {}\n    //为了兼顾导入书架直接走详情页逻辑\n    //这里不能直接用book.xxx 来复用搜索页处理结果\n    prop['author'] = res.userName\n    prop['count'] = book.wordCount\n    prop['desc'] = res.desc\n    prop['cover_url'] = `https://linpxapi.linpicio.com/proxy/pximg?url=${res.coverUrl}`\n\n    if (res.series === undefined || res.series === null) {\n        prop['name'] = res.title\n        prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/novel/${res.id}`\n        res.tags.unshift('单本')\n    } else {\n        prop['name'] = res.series.title\n        res.tags.unshift('长篇')\n        prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/series/${res.series.id}`\n    }\n    prop['classes'] = res.tags.join(\",\")\n    return prop\n})(result)",
+      "init": "@js:\n(function (res) {\n    let isHtml = res.startsWith(\"<!DOCTYPE html>\")\n    if (isHtml) {\n        let matchResult = baseUrl.match(new RegExp(\"novel/\\\\d+\"))\n        if (matchResult == null) {\n            return []\n        }\n        let id = matchResult[0].replace(\"novel/\", \"\")\n        if (baseUrl.includes(\"/cache\")) {\n            res = JSON.parse(java.ajax(`https://linpxapi.linpicio.com/pixiv/novel/${id}/cache`))\n            // 不获取缓存系列\n            res.series = null\n        } else {\n            res = JSON.parse(java.ajax(`https://linpxapi.linpicio.com/pixiv/novel/${id}`))\n        }\n    } else {\n        res = JSON.parse(res)\n        if (res.total === 0) {\n            return []\n        }\n    }\n\n    let prop = {}\n    //为了兼顾导入书架直接走详情页逻辑\n    //这里不能直接用book.xxx 来复用搜索页处理结果\n    prop['author'] = res.userName\n    prop['count'] = book.wordCount\n    prop['desc'] = res.desc\n    prop['cover_url'] = `https://linpxapi.linpicio.com/proxy/pximg?url=${res.coverUrl}`\n\n    if (res.series === undefined || res.series === null) {\n        prop['name'] = res.title\n        if (baseUrl.includes(\"/cache\")) {\n            prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/novel/${res.id}/cache`\n        } else {\n            prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/novel/${res.id}`\n        }\n        res.tags.unshift('单本')\n    } else {\n        prop['name'] = res.series.title\n        res.tags.unshift('长篇')\n        prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/series/${res.series.id}`\n    }\n    prop['classes'] = res.tags.join(\",\")\n    return prop\n})(result)\n",
       "intro": "desc",
       "kind": "classes",
       "lastChapter": "latest_chapter",
@@ -26,6 +26,7 @@
     },
     "ruleContent": {
       "content": "@js:\n(function (res) {\n    res = JSON.parse(res)\n    let content = res.content\n    if (res.series !== null && res.desc !== undefined && res.desc !== \"\") {\n        content = res.desc + \"\\n\" + \"——————————\\n\".repeat(2) + content\n    }\n    //将存在的pixiv图片链接替换为可访问的直连\n    if (res.images !== undefined && res.images !== null) {\n        Object.keys(res.images).forEach((key) => {\n            content = content.replace(`[uploadedimage:${key}]`, `<img src=\"https://linpxapi.linpicio.com/proxy/pximg?url=${res.images[key].preview}\">`)\n        })\n    }\n    return content\n})(result)",
+      "imageStyle": "FULL",
       "replaceRegex": "",
       "sourceRegex": ""
     },
@@ -52,7 +53,7 @@
       "wordCount": "length"
     },
     "ruleToc": {
-      "chapterList": "@js:\n(function (res) {\n    res = JSON.parse(res)\n    if (res.novels !== undefined) {\n        res.novels.forEach(v => {\n            v['url'] = `https://linpxapi.linpicio.com/pixiv/novel/${v.id}`\n        })\n        return res.novels\n    }\n    return [{\n        id: res.id,\n        title: res.title\n    }]\n})(result)",
+      "chapterList": "@js:\n(function (res) {\n    res = JSON.parse(res)\n    let cache = function () {\n        if (baseUrl.includes(\"/cache\")) {\n            return \"/cache\"\n        }\n        return \"\"\n    }()\n\n    if (res.novels !== undefined) {\n        res.novels.forEach(v => {\n            v['url'] = `https://linpxapi.linpicio.com/pixiv/novel/${v.id}${cache}`\n        })\n        return res.novels\n    }\n    return [{\n        id: res.id,\n        title: res.title\n    }]\n})(result)\n",
       "chapterName": "title",
       "chapterUrl": "url"
     },
