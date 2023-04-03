@@ -1,26 +1,18 @@
 # PixivSource
 
-为 Pixiv 与类 Pixiv 网站制作的 [阅读 3.0 ](https://github.com/gedoor/legado) 的书源
-
-03月20日起，更新至最新版 3.230320版本后，即可正常使用两书源
-
-~~3.230310 更新后，两书源无法使用，推荐阅读版本回退至 3.230309~~
-
+### 为 Pixiv 与类 Pixiv 网站制作的 [阅读 3.0 ](https://github.com/gedoor/legado) 的书源
 
 
 # 快速导入
 
-| 不用翻墙 | 名称                                 | 网址                                                         |
+| 免代理导入 | 名称                                 | 网址                                                         |
 | -------- | ------------------------------------ | ------------------------------------------------------------ |
 | ✔        | [Pixiv](https://www.pixiv.net/)      | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json |
-|          | [Linpx](https://linpx.linpicio.com/) | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json |
-|          | btsrk订阅源                          | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrkWeb.json |
-| ❌        | [Pixiv](https://www.pixiv.net/)      | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
-|          | [Linpx](https://linpx.linpicio.com/) | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
-|          | btsrk订阅源                          | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json |
-
-
-
+| ✔        | [Linpx](https://linpx.linpicio.com/) | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json |
+| ✔        | btsrk订阅源                          | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrkWeb.json |
+| ❌       | [Pixiv](https://www.pixiv.net/)      | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
+| ❌       | [Linpx](https://linpx.linpicio.com/) | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
+| ❌       | btsrk订阅源                          | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json |
 
 
 ## 源状态
@@ -37,6 +29,10 @@
 
 ## 下载阅读
 ### [阅读 3.0 无限制版下载 - 蓝奏云](https://kunfei.lanzoux.com/b0f810h4b#d8j9)
+
+**03月20日起，更新至 3.23.0320 版本后，即可正常使用两书源**
+
+**~~03月10日更新的 3.23.0310 或更高版本，无法使用两书源，推荐回退版本，使用 3.23.0309 或稍早的版本~~**
 
 
 ## 通用教程
