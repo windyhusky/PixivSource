@@ -56,3 +56,8 @@
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的网站服务
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说推荐频道 [@FurryNovels](https://t.me/FurryNovels)
 
+# TODO
+
+Pixiv书源关注用户的小说不按照更新时间+作者排序，只按照更新时间来排序
+
+避免多次翻页
