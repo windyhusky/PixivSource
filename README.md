@@ -21,7 +21,7 @@
 | ----- | -------- | ----------------------------------------------- |
 | [Pixiv](https://www.pixiv.net/) | ✔ | https://www.pixiv.net/ |
 | [Linpx](https://linpx.linpicio.com/) | ✔ | https://github.com/libudu/linpx-web |
-| btsrk | ✔ | [Linpx - 首页 (furrynovel.xyz)](https://www.furrynovel.xyz/)<br />[兽人控游戏索引 (furrygames.top)](https://furrygames.top/zh-cn/list.html)<br />[兽人控游戏库 (kemono.games)](https://kemono.games/zh-Hans) |
+| btsrk | ✔ | [Linpx - 首页 (furrynovel.xyz)](https://www.furrynovel.xyz/)<br />[兽人控游戏索引 (furrygames.top)](https://furrygames.top/zh-cn/list.html)<br />[兽人控游戏库 (kemono.games)](https://kemono.games/zh-Hans)<br />[兽展日历 (furryeventchina.com)](https://www.furryeventchina.com) |
 
 - linpx 是 pixiv 的子集，包含其全部兽人小说与部分非兽人小说
 - btsrk 是 订阅源。目前整合了兽人控游戏索引、兽人控游戏库与Linpx 旨在提供兽人文化网站的快捷访问
