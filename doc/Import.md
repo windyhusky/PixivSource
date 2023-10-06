@@ -17,7 +17,6 @@
 >
 > https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
-
 #### 2.使用阅读打开
 
 ![img](https://telegra.ph/file/d4eb75fe6d8cfc4d434c1.png)
@@ -104,10 +103,6 @@ legado://import/addToBookshelf?src={url}
 
 
 ```
-legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json
-legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/lixiv.json
-legado://import/rssSource?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrkWeb.json
-
 yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 ```

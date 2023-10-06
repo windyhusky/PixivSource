@@ -28,39 +28,60 @@
 
 ### 2.版本区分
 
-#### 2.1 阅读 3.0 版本
+#### 2.1 阅读2.0版本与3.0版本
 
-这是阅读的主流版本，也是多数书源支持的版本
+[阅读2.0版本](https://github.com/gedoor/MyBookshelf/releases)于2022年4月份停止更新。
+
+3.0版本目前是阅读的主流版本，也是多数书源支持的版本。安卓5以上均可使用。
+
+以下提到的各版本均指代3.0版本的一个细化版
 
 ![img](https://raw.githubusercontent.com/gedoor/legado/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png)
 
-#### 2.2 无限制的 R18 版
+#### 2.2 限制版与R18版
 
 ![img](https://telegra.ph/file/ba6a9c754d2f5912a60ca.png)
 
 转自：https://t.me/Legado_Channels/411
 
+#### 2.3 开发版与稳定版
+
+开发版：基于 [Github Actions](https://github.com/gedoor/legado/actions) 自动构建出来的版本
+~~[开发版 蓝奏云（仅提供R18版本）](https://kunfei.lanzoui.com/b0f810h4b)~~，现已停止公开，可以去 [Github Actions](https://github.com/gedoor/legado/actions) 下载
+
+稳定版：应用商店 /Telegram 频道等分发的版本
 
 
-### 3.下载阅读
+
+#### 2.4 普通版、Pro版、Beta版
+
+普通版：无更多美化功能的版本
+
+Pro版：Google Play 商店上架的收费版本（仅有更多美化功能），**现已被永久下架**。
+
+Beta版：[根据此消息](https://t.me/Legado_Channels/1279)，推测为将Pro版本功能移植到“普通版”过程中的测试版
+
+
+
+### 3.下载
 
 #### 3.1  Android 版
 
-| 相应下载站                                                   | 有无限制   | 备注                  |
-| ------------------------------------------------------------ | ---------- | --------------------- |
-| [酷安 Coolapk](https://www.coolapk.com/apk/io.legado.app.release) | 有限制     |                       |
-| [Github Release](https://github.com/gedoor/legado/releases/latest) | 有限制     | 需要代理              |
-| **[蓝奏云 Beta](https://kunfei.lanzoui.com/b0f810h4b)**      | **无限制** | **推荐使用**          |
-| [Google play - $1.99](https://play.google.com/store/apps/details?id=io.legado.play.release) | 无限制     | 需要付费     需要代理 |
-| Github Action                                                | 无限制     | 需要登录     需要代理 |
+| 相应下载站                                                   | 版本           | 备注                 |
+| ------------------------------------------------------------ | -------------- | -------------------- |
+| [酷安 Coolapk](https://www.coolapk.com/apk/io.legado.app.release) | 有限制，稳定版 |                      |
+| [Github Release](https://github.com/gedoor/legado/releases/latest) | 有限制，稳定版 | 需要代理             |
+| [Github Action](https://github.com/gedoor/legado/actions)    | 无限制，开发版 | 需要代理    需要登录 |
+| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) |                |                      |
 
 
 
 #### 3.2 苹果 iOS 版
 
-官方已取消 [iOS版](https://github.com/gedoor/YueDuFlutter) 开发计划
+官方正在进行 [iOS版](https://github.com/gedoor/YueDuFlutter) 的开发，[近期在TF测试](https://gedoor.github.io/download)
 
 可能支持相同书源的软件：
+
 - [源阅读](https://github.com/kaich/Yuedu) 现已下架
 - 青果阅读 不完全兼容阅读书源
 
@@ -89,7 +110,7 @@
 
 ### 6.[官方社群](https://www.yuque.com/legado/wiki/community)
 
-#### 微信公众号：开源阅读
+#### 微信公众号：**开源阅读**、开源阅读软件、阅读Reader
 
 #### Telegram：[@legado_channels](https://t.me/legado_channels)
 
