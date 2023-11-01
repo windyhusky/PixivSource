@@ -21,11 +21,11 @@ Pixiv 是以插图、漫画、小说为中心的，允许 R18 内容的艺术网
 
 ## 本书源使用方法
 
-### 0.下载阅读 3.0 的 R18 版本
+### 0.下载阅读 3.0 版本
 
 **点击链接，下载安装包并安装**，**推荐使用共存版**
 
-https://kunfei.lanzoux.com/b0f810h4b#d8j9
+https://miaogongzi.lanzout.com/b01rgkhhe
 
 ### 1.了解阅读功能与用法
 

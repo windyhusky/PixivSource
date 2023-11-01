@@ -32,7 +32,7 @@
 
 [阅读2.0版本](https://github.com/gedoor/MyBookshelf/releases)于2022年4月份停止更新。
 
-3.0版本目前是阅读的主流版本，也是多数书源支持的版本。安卓5以上均可使用。
+**3.0版本目前是阅读的主流版本**，也是多数书源支持的版本。安卓5以上均可使用。
 
 以下提到的各版本均指代3.0版本的一个细化版
 
@@ -58,23 +58,21 @@
 普通版：无更多美化功能的版本
 
 Pro版：Google Play 商店上架的收费版本（仅有更多美化功能），**现已被永久下架**。
+Pro版：Google Play 商店上架的收费版本（仅有更多美化功能），已被永久下架。**所有Pro限定功能已经移植到普通版（2023.11.01）**
 
 Beta版：[根据此消息](https://t.me/Legado_Channels/1279)，推测为将Pro版本功能移植到“普通版”过程中的测试版
 
 
 
-### 3.下载
+### 3.下载阅读
 
 #### 3.1  Android 版
 
 | 相应下载站                                                   | 版本           | 备注                 |
 | ------------------------------------------------------------ | -------------- | -------------------- |
-| [酷安 Coolapk](https://www.coolapk.com/apk/io.legado.app.release) | 有限制，稳定版 |                      |
 | [Github Release](https://github.com/gedoor/legado/releases/latest) | 有限制，稳定版 | 需要代理             |
 | [Github Action](https://github.com/gedoor/legado/actions)    | 无限制，开发版 | 需要代理    需要登录 |
 | [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) |                |                      |
-
-
 
 #### 3.2 苹果 iOS 版
 
@@ -88,13 +86,12 @@ Beta版：[根据此消息](https://t.me/Legado_Channels/1279)，推测为将Pro
 
 ### 4.下载安装后应该做什么？
 
-- [导入书源](./Import.md) & [导入订阅源](./Import2.md)
+#### 4.1 [导入书源](./Import.md) & [导入订阅源](./Import2.md)
 
-- [设置备份](./WebdavBackup.md)(推荐)
+#### 4.2 [设置备份](./WebdavBackup.md)(推荐)
 
-- 搜索小说 / 查看订阅
+#### 4.3 搜索小说、查看订阅，畅享阅读
 
-- 尽情使用
 
 
 

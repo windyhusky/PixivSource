@@ -104,6 +104,7 @@ legado://import/addToBookshelf?src={url}
 
 ```
 yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
+
 yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 ```
 
