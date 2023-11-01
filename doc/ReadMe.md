@@ -6,11 +6,11 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 ### 1. Android 版
 
-| 相应下载站                                                   | 版本           | 备注                 |
+| 下载站点                                                     | 版本           | 备注                 |
 | ------------------------------------------------------------ | -------------- | -------------------- |
 | [Github Release](https://github.com/gedoor/legado/releases/latest) | 有限制，稳定版 | 需要代理             |
 | [Github Action](https://github.com/gedoor/legado/actions)    | 无限制，开发版 | 需要代理    需要登录 |
-| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) |                |                      |
+| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) |                | 无需代理    无需登录 |
 
 ### 2. 苹果 iOS 版
 

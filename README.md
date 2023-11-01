@@ -26,38 +26,53 @@
 - linpx 是 pixiv 的子集，包含其全部兽人小说与部分非兽人小说
 - btsrk 是 订阅源。目前整合了兽人控游戏索引、兽人控游戏库与Linpx 旨在提供兽人文化网站的快捷访问
 
-
 ## 下载阅读
-### [阅读 3.0 无限制版下载 - 蓝奏云](https://kunfei.lanzoux.com/b0f810h4b#d8j9)
 
-**03月20日起，更新至 3.23.0320 版本后，即可正常使用两书源**
+### 1. Android 版
 
-**截至04月03日，Google Play 上的阅读 Pro 仍停留在 3.23.0312 版本，故无法正常使用书源**
+**点击链接，下载安装包并安装，推荐使用共存版**
 
-**~~03月10日更新的 3.23.0310 或更高版本，无法使用两书源，推荐回退版本，使用 3.23.0309 或稍早的版本~~**
+https://miaogongzi.lanzout.com/b01rgkhhe
+
+| 下载站点                                                     | 版本           | 备注                 |
+| ------------------------------------------------------------ | -------------- | -------------------- |
+| [Github Release](https://github.com/gedoor/legado/releases/latest) | 有限制，稳定版 | 需要代理             |
+| [Github Action](https://github.com/gedoor/legado/actions)    | 无限制，开发版 | 需要代理    需要登录 |
+| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) |                | 无需代理    无需登录 |
+
+### 2. 苹果 iOS 版
+
+官方正在进行 [iOS版](https://github.com/gedoor/YueDuFlutter) 的开发，[近期在TF测试](https://gedoor.github.io/download)
+
+可能支持相同书源的软件：
+
+- [源阅读](https://github.com/kaich/Yuedu) 现已下架
+- 青果阅读 不完全兼容阅读书源
+
+
 
 
 ## 通用教程
-### [阅读是什么软件？阅读简介](./doc/Legado.md)
-### [如何获取书源？导入书源？](./doc/Import.md)
-### [如何导入订阅源？](./doc/Import2.md)
-### [如何设置 Webdav 备份？](./doc/WebdavBackup.md)
+### 1. [阅读是什么软件？阅读简介](./doc/Legado.md)
+### 2. [如何获取书源？导入书源？](./doc/Import.md)
+### 3. [如何导入订阅源？](./doc/Import2.md)
+### 4. [如何设置 Webdav 备份？](./doc/WebdavBackup.md)
 
 更多内容请查看[官方使用说明](https://www.yuque.com/legado/wiki/xz)
 
 
 ## 专用教程
-### [Pixiv 书源的导入与使用](./doc/Pixiv.md)
-### [Linpx 书源的导入与使用](./doc/Linpx.md)
+### 1. [Pixiv 书源的导入与使用](./doc/Pixiv.md)
+### 2. [Linpx 书源的导入与使用](./doc/Linpx.md)
 
 
 # 鸣谢
 - 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
-- 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的网站服务
+- 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的网站服务 https://www.furrynovel.xyz
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说推荐频道 [@FurryNovels](https://t.me/FurryNovels)
 
 # TODO
 
-Pixiv书源关注用户的小说不按照更新时间+作者排序，只按照更新时间来排序
+- Pixiv书源关注用户的小说不按照更新时间+作者排序，只按照更新时间来排序
 
-避免多次翻页
+- 避免多次翻页
