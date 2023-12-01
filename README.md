@@ -14,7 +14,7 @@
 | ❌       | [Pixiv](https://www.pixiv.net/)      | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
 | ❌       | [Linpx](https://linpx.linpicio.com/) | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
 | ❌       | btsrk 订阅源                          | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json |
-| ✔        | books 订阅源                         | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json |
+| ❌       | books 订阅源                         | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json |
 
 
 ## 源状态
