@@ -62,6 +62,36 @@
     "style": "#jhss a{\nfont-size:10px;\ncolor:red;\ntext-decoration:none;\n}\n\n#jhss p{\ndisplay:inline-block;\nwidth:8em;\n}\n\n#jhss p{\nmargin:0;\npadding:0;\ncolor:#666;\n}\n\n#jhss div{\nmargin:0;\npadding:10px;\n}\n\n#jhss h1{\nmargin:0;\npadding:9px;\nfont-size:20px;\n}\n\n#jhss input{\nmargin:2px;\npadding:2px 6px;\nfont-size: 1em;\nbackground-color:rgba(200,200,200,0.5);\ncolor:#A00;\nborder:0;\nborder-radius: 3px;\ntext-decoration: none;\ntext-align:center;\n}\ntextarea{\nwidth:100%\n}\n.menu {\n\tjustify-content: space-between;\n\tmax-width: 900px;\n\tmargin: 0 5px;\n}\n.menu .button {\n\twidth: 55px;\n\theight: 15px;\n\tmin-height: 5px;\n\tmargin: 5px 0px;\n\tcursor: pointer;\n}\n.button text {\n\ttext-anchor: middle;\n\tdominant-baseline: middle;\n}\n\n.button rect {\n\twidth: 100%;\n\theight: 100%;\n\tfill: transparent;\n\tstroke: #666;\n\tstroke-width: 2px;\n}\n.button rect.busy {\n\tstroke: #fD1850;\n\tstroke-dasharray: 30 90;\n\tanimation: stroker 1s linear infinite;\n}\n.tabbox {\n\tflex: 1;\n\tdisplay: flex;\n\tflex-flow: column;\n}\n.tabtitle {\n\tdisplay: flex;\n\tz-index: 1;\n\tjustify-content: center;\n}\n.tabtitle>div {\n\tcursor: pointer;\n\tpadding: 1px 10px 0 10px;\n\tborder-bottom: 3px solid transparent;\n\tfont-weight: bold;\n}\n.tabtitle>.this {\n\tcolor: #4f9da6;\n\tborder-bottom-color: #4EBBE4;\n}\n.tabbody {\n\tflex: 1;\n\tdisplay: flex;\n\tmargin-top: -1px;\n\tborder: 1px solid #A9A9A9;\n\theight: 0;\n}\n.tabbody>* {\n\tflex: 1;\n\tflex-flow: column;\n\tdisplay: none;\n}\n.tabbody>.this {\n\tdisplay: flex;\n}\n.tabbody>*>.titlebar{\n\tdisplay: flex;\n}\n.tabbody>*>.titlebar>*{\n\tflex: 1;\n\tmargin: 1px 1px 1px 1px;\n}\n.tabbody>*>.context {\n\tflex: 1;\n\tflex-flow: column;\n\tborder: 0;\n\tpadding: 5px;\n\toverflow-y: auto;\n}\n.tabbody>*>.inputbox{\n\tborder: 0;\n\tborder-bottom: #A9A9A9 solid 1px;\n\theight: 15px;\n\ttext-align:center;\n}\n.link>* {\n\tdisplay: flex;\n\tmargin: 5px;\n\tborder-bottom: 1px solid;\n\ttext-decoration: none;\n}\n#RuleList>label>* {\n\tbackground: #eee;\n\tpadding-left: 3px;\n\tmargin: 2px 0;\n\tcursor: pointer;\n}\n#RuleList input[type=radio] {\n\tdisplay: none;\n}\n#RuleList input[type=\"radio\"]:checked+* {\n\tbackground: #15cda8;\n}\n.isError {\n\tcolor: #FF0000;\n}\n#RuleJsonString{\nheight:600px\n}\nsvg text{\nfont-size:10px\n}"
   },
   {
+  "articleStyle": 0,
+  "customOrder": 8,
+  "enableJs": true,
+  "enabled": true,
+  "enabledCookieJar": true,
+  "injectJs": "$(document).ready(function() {\n$(\".layui-hide-md\").remove();\n});",
+  "lastUpdateTime": 0,
+  "loadWithBaseUrl": true,
+  "singleUrl": true,
+  "sourceGroup": "书源",
+  "sourceIcon": "https://www.yckceo.com//favicon.ico",
+  "sourceName": "源仓库",
+  "sourceUrl": "https://www.yckceo.com/yuedu/shuyuan/index.html"
+},
+  {
+  "articleStyle": 0,
+  "customOrder": 9,
+  "enableJs": true,
+  "enabled": true,
+  "enabledCookieJar": true,
+  "header": "{\n'User-Agent':'Mozilla/5.0 (Linux; Android 11; Pixel 3 XL Build/RQ3A.211001.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/102.0.4988.0 Mobile Safari/537.36 SearchCraft/3.9.2 (Baidu; P1 11) '\n}",
+  "lastUpdateTime": 0,
+  "loadWithBaseUrl": true,
+  "singleUrl": true,
+  "sourceGroup": "书源,legado",
+  "sourceIcon": "https://cdn.jsdelivr.net/gh/gedoor/legado@master/app/src/main/res/mipmap-hdpi/ic_launcher.png",
+  "sourceName": "阅读论坛",
+  "sourceUrl": "https://legado.cn"
+},
+  {
     "articleStyle": 0,
     "customOrder": 7,
     "enableJs": true,
@@ -74,7 +104,7 @@
     "ruleTitle": "a@textNodes",
     "singleUrl": true,
     "sortUrl": "首页::https://www.yuque.com/legado/wiki",
-    "sourceGroup": "书源",
+    "sourceGroup": "legado",
     "sourceIcon": "https://www.yuque.com/favicon.ico",
     "sourceName": "使用文档",
     "sourceUrl": "https://www.yuque.com/legado/wiki"
