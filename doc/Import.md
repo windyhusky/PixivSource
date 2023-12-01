@@ -1,10 +1,11 @@
 ## ⓪ 书源/订阅源来源
 
-- 官方频道 [@legado_channels](https://t.me/legado_channels) 每月更新
-- [源仓库](https://www.yckceo.com/home/index/index.html) 自取所需
+- 官方频道 [@legado_channels](https://t.me/legado_channels)
 - [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
-- [一程书源订阅源](https://code.gitlink.org.cn/yi-c/yd/)
-- [「阅读」APP 源](https://legado.aoaostar.com/)  
+- [阅读 APP 源](https://legado.aoaostar.com/)  
+- [一程书源/订阅源](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/)
+- [源仓库](https://www.yckceo.com/yuedu/shuyuan/index.htmll)
+- [阅读论坛](https://legado.cn/forum-rssSources-1.html)
 - 其他网络来源
 
 ## ① 导入书源/订阅源 [官方教程](https://www.yuque.com/legado/wiki/xdroke)
@@ -103,23 +104,22 @@ legado://import/addToBookshelf?src={url}
 
 
 ```
-yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
-
 yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
+
+legado://import/bookSource?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 ```
 
 
 
 #### 1.手机浏览器内点击链接，跳转阅读
+浏览器打开：** [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)**
 
-浏览器打开这个页面 [Pixiv书源 - 源仓库](https://www.yckceo.com/yuedu/shuyuan/yuan/id/6750.html)，一键导入按钮的链接，即为下面这条链接：
-
+一键导入按钮的链接，即为下面这条链接：
 ```
-yuedu://booksource/importonline?src=https://www.yckceo.com/yuedu/shuyuan/json/id/6750.json
+yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/repos/yi-c/yd/raw/sy.json?ref=master&access_token=92edf695d430562349cbfac4009fda6ad36817dd
 ```
 
-注：因源仓库上传书源后无法再次编辑，故再次导入同一链接后，【无法更新书源至最新版】
-
+点击链接，跳转阅读
 ![img](pic/OpenInLegado.png)
 
 #### 2.导入完成并启用书源

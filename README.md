@@ -9,10 +9,12 @@
 | -------- | ------------------------------------ | ------------------------------------------------------------ |
 | ✔        | [Pixiv](https://www.pixiv.net/)      | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json |
 | ✔        | [Linpx](https://linpx.linpicio.com/) | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json |
-| ✔        | btsrk订阅源                          | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrkWeb.json |
+| ✔        | btsrk 订阅源                          | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrkWeb.json |
+| ✔        | books 订阅源                          | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json |
 | ❌       | [Pixiv](https://www.pixiv.net/)      | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
 | ❌       | [Linpx](https://linpx.linpicio.com/) | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
-| ❌       | btsrk订阅源                          | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json |
+| ❌       | btsrk 订阅源                          | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json |
+| ✔        | books 订阅源                         | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json |
 
 
 ## 源状态
@@ -21,10 +23,12 @@
 | ----- | -------- | ----------------------------------------------- |
 | [Pixiv](https://www.pixiv.net/) | ✔ | https://www.pixiv.net/ |
 | [Linpx](https://linpx.linpicio.com/) | ✔ | https://github.com/libudu/linpx-web |
-| btsrk | ✔ | [Linpx - 首页 (furrynovel.xyz)](https://www.furrynovel.xyz/)<br />[兽人控游戏索引 (furrygames.top)](https://furrygames.top/zh-cn/list.html)<br />[兽人控游戏库 (kemono.games)](https://kemono.games/zh-Hans)<br />[兽展日历 (furryeventchina.com)](https://www.furryeventchina.com) |
+| btsrk | ✔ | 1️⃣ [Linpx - 首页 (furrynovel.xyz)](https://www.furrynovel.xyz/)<br />2️⃣ [兽人控游戏索引 (furrygames.top)](https://furrygames.top/zh-cn/list.html)<br />3️⃣ [兽人控游戏库 (kemono.games)](https://kemono.games/zh-Hans)<br />4️⃣ [兽展日历 (furryeventchina.com)](https://www.furryeventchina.com) |
+| books | ✔ | 1️⃣ [喵公子书源管理](https://yd.mgz6.cc/)<br/>2️⃣ [阅读 APP 源](https://legado.aoaostar.com/)<br/>3️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/)<br/>4️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html)<br/>5️⃣ [阅读论坛](https://legado.cn/)<br/>6️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
 - linpx 是 pixiv 的子集，包含其全部兽人小说与部分非兽人小说
-- btsrk 是 订阅源。目前整合了兽人控游戏索引、兽人控游戏库与Linpx 旨在提供兽人文化网站的快捷访问
+- btsrk 订阅源：整合了兽人控游戏索引、兽人控游戏库与Linpx，旨在提供兽人文化网站的快捷访问
+- books 订阅源：整合了分享阅读资源的几个订阅源
 
 ## 下载阅读
 
