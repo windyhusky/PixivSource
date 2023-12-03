@@ -1,4 +1,4 @@
-## 阅读简介
+## 1.阅读简介
 
 ![img](https://telegra.ph/file/baff78c0816cac595ba8a.jpg)
 
@@ -30,7 +30,7 @@
 
 #### 2.1 阅读2.0版本与3.0版本
 
-[阅读2.0版本](https://github.com/gedoor/MyBookshelf/releases)于2022年4月份停止更新。
+[阅读2.0版本](https://github.com/gedoor/MyBookshelf/releases) 于2022年4月份停止更新。
 
 **3.0版本目前是阅读的主流版本**，也是多数书源支持的版本。安卓5以上均可使用。
 
@@ -93,15 +93,13 @@ Beta版：[根据此消息](https://t.me/Legado_Channels/1279)，推测为将Pro
 #### 4.3 搜索小说、查看订阅，畅享阅读
 
 
+### 5.常用功能（下方内容均转自 [官方使用指南](https://www.yuque.com/legado/wiki/xz) ）
 
+#### 导入：[书源](https://www.yuque.com/legado/wiki/xdroke) ；[替换净化](https://www.yuque.com/legado/wiki/gnt3nq) ；[订阅源](https://www.yuque.com/legado/wiki/grqch2) ；[主题](https://www.yuque.com/legado/wiki/tgbqdy)
 
-### 5.常用功能(下方内容均转自[官方使用指南](https://www.yuque.com/legado/wiki/xz))
+#### 导出：[导出TXT](https://telegra.ph/很多人不知道如何导出TXT-02-16) ；导出书源
 
-#### 导入：[书源](https://www.yuque.com/legado/wiki/xdroke)；[替换净化](https://www.yuque.com/legado/wiki/gnt3nq)；[订阅源](https://www.yuque.com/legado/wiki/grqch2)；[主题](https://www.yuque.com/legado/wiki/tgbqdy)
-
-#### 导出：[导出TXT](https://telegra.ph/很多人不知道如何导出TXT-02-16)；导出书源
-
-#### 备份：[坚果云注册](https://www.yuque.com/legado/wiki/fkx510)，[设置云备份](https://www.yuque.com/legado/wiki/mgu5qu)，[恢复备份](https://www.yuque.com/legado/wiki/nxs89y)
+#### 备份：[坚果云注册](https://www.yuque.com/legado/wiki/fkx510) ，[设置云备份](https://www.yuque.com/legado/wiki/mgu5qu) ，[恢复备份](https://www.yuque.com/legado/wiki/nxs89y)   
 
 
 

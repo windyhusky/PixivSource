@@ -1,4 +1,6 @@
-## ⓪ 书源/订阅源来源
+## 2.导入书源
+
+## ⓪ 书源（订阅源）来源
 
 - 官方频道 [@legado_channels](https://t.me/legado_channels)
 - [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)

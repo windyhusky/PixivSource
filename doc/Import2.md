@@ -1,4 +1,7 @@
+## 3.导入订阅源
+
 ## ⓪ 订阅源来源
+
 **请查看[书源获取方式](./Import.md)，一般二者会同时提供**
 - 官方频道 [@legado_channels](https://t.me/legado_channels)
 - [源仓库](https://www.yckceo.com/yuedu/rss/index.html)
@@ -27,7 +30,10 @@
 
 ```
 Linpx 订阅源
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json
+https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
+
+阅读资源分享 订阅源
+https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ```
 
 #### 1.打开【订阅】页面，点击右上角【设置】
@@ -68,9 +74,9 @@ legado://import/addToBookshelf?src={url}
 
 导入 Linpx 订阅源的连接如下：
 ```
-yuedu://rsssource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json
+yuedu://rsssource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 
-legado://import/rssSource?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrkWeb.json
+legado://import/rssSource?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 ```
 
 #### 1.点击链接，跳转阅读
