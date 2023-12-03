@@ -29,7 +29,7 @@
 - [Linpx](https://linpx.linpicio.com/):  [Pixiv](https://www.pixiv.net/) 的子集，包含其全部兽人小说与部分非兽人小说
 - btsrk 订阅源：整合了Linpx、兽人控游戏索引、兽人控游戏库等网站，旨在提供兽人文化网站的快捷访问
 - books 订阅源：整合了分享阅读资源（书源等）的订阅源
-- [聚合搜索](https://legado.cn/thread-3723-1-1.html) ：多个搜索引擎的聚合入口，需要配合 **[通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用
+- [聚合搜索](https://legado.cn/thread-3723-1-1.html) ：多个搜索引擎的聚合入口，需要配合 **[搜索引擎书源/通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用
 
 
 
