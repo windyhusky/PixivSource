@@ -9,8 +9,8 @@
 | -------- | -------------------------- | ------------------------------------------------ |
 | ✅ | Pixiv 书源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json |
 | ✅ | Linpx 书源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json |
-| ✅ | books 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json |
 | ✅ | btsrk 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json |
+| ✅ | books 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json |
 | ❌ | Pixiv 书源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
 | ❌ | Linpx 书源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
 | ❌ | btsrk 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json |
