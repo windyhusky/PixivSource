@@ -52,8 +52,8 @@
   "loadWithBaseUrl": true,
   "singleUrl": true,
   "sourceGroup": "Furry",
-  "sourceIcon": "https://cdn.furryeventchina.com/logo_800x800.png",
+  "sourceIcon": "https://images.furrycons.cn/logo_800x800.png",
   "sourceName": "兽展日历",
-  "sourceUrl": "https://www.furryeventchina.com"
+  "sourceUrl": "https://www.furrycons.cn/"
 }
 ]

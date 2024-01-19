@@ -43,17 +43,17 @@
     "sourceUrl": "https://kemono.games/zh-Hans/explore?sort=latest_update"
   },
   {
-  "articleStyle": 0,
-  "customOrder": -31433,
-  "enableJs": true,
-  "enabled": true,
-  "enabledCookieJar": true,
-  "lastUpdateTime": 0,
-  "loadWithBaseUrl": true,
-  "singleUrl": true,
-  "sourceGroup": "Furry",
-  "sourceIcon": "https://cdn.furryeventchina.com/logo_800x800.png",
-  "sourceName": "兽展日历",
-  "sourceUrl": "https://www.furryeventchina.com"
-}
+    "articleStyle": 0,
+    "customOrder": 6,
+    "enableJs": true,
+    "enabled": true,
+    "enabledCookieJar": true,
+    "lastUpdateTime": 0,
+    "loadWithBaseUrl": true,
+    "singleUrl": true,
+    "sourceGroup": "Furry",
+    "sourceIcon": "https://images.furrycons.cn/logo_800x800.png",
+    "sourceName": "兽展日历",
+    "sourceUrl": "https://www.furrycons.cn/"
+  }
 ]
