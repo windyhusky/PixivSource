@@ -58,11 +58,12 @@ Pixiv 特性：
 
 https://miaogongzi.lanzout.com/b01rgkhhe
 
-| 下载站点                                                     | 版本           | 备注                 |
-| ------------------------------------------------------------ | -------------- | -------------------- |
-| [Github Release](https://github.com/gedoor/legado/releases/latest) | 有限制，稳定版 | 需要代理，需要登录|
+| 下载站点                                                      | 版本         | 备注            |
+| ------------------------------------------------------------ | ----------- | -------------- |
+| [喵公子阅读资源 (蓝奏云)](https://yd.mgz6.cc/)                   | 　　　　稳定版 | 无需代理，无需登录 |
+| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)  | 　　　　开发版 | 无需代理，无需登录 |
+| [Github Release](https://github.com/gedoor/legado/releases)  | 有限制，稳定版 | 需要代理，无需登录 |
 | [Github Action](https://github.com/gedoor/legado/actions)    | 无限制，开发版 | 需要代理，需要登录 |
-| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) | 　　　　开发版 | 无需代理，无需登录 |
 
 ### 2. 苹果 iOS 版
 
