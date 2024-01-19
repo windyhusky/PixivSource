@@ -54,7 +54,7 @@
     "lastUpdateTime": 0,
     "loadWithBaseUrl": true,
     "singleUrl": true,
-	  "sourceGroup": "Furry",
+	"sourceGroup": "Furry",
     "sourceIcon": "https://raw.githubusercontent.com/FurryGamesIndex/games/master/assets/_README/logo.png",
     "sourceName": "兽人控游戏索引",
     "sourceUrl": "https://furrygames.top/zh-cn/list-b.html"
@@ -86,5 +86,19 @@
     "sourceIcon": "https://images.furrycons.cn/logo_800x800.png",
     "sourceName": "兽展日历",
     "sourceUrl": "https://www.furrycons.cn/"
+  },
+  {
+  "articleStyle": 0,
+  "customOrder": 7,
+  "enableJs": true,
+  "enabled": true,
+  "enabledCookieJar": true,
+  "lastUpdateTime": 0,
+  "loadWithBaseUrl": true,
+  "singleUrl": true,
+  "sourceGroup": "Furry",
+  "sourceIcon": "https://www.furryfusion.net/images/LOGO.png",
+  "sourceName": "兽聚汇总",
+  "sourceUrl": "https://www.furryfusion.net/"
   }
 ]
