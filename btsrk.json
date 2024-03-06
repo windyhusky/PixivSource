@@ -27,7 +27,7 @@
     "singleUrl": true,
     "sortUrl": "",
     "sourceGroup": "Furry",
-    "sourceIcon": "https://linpx.linpicio.com/app_logo.png",
+    "sourceIcon": "https://www.furrynovel.xyz/app_logo.png",
     "sourceName": "Linpx",
     "sourceUrl": "https://www.furrynovel.xyz/?from=read"
   },
@@ -42,9 +42,9 @@
     "loadWithBaseUrl": true,
     "singleUrl": true,
 	"sourceGroup": "Furry",
-    "sourceIcon": "",
+    "sourceIcon": "https://www.furrynovel.com/static/icon.png",
     "sourceName": "兽人控小说",
-    "sourceUrl": "https://novel.tigerkk.me"
+    "sourceUrl": "https://www.furrynovel.com"
   },
   {
     "articleStyle": 0,
@@ -89,17 +89,17 @@
     "sourceUrl": "https://www.furrycons.cn/"
   },
   {
-  "articleStyle": 0,
-  "customOrder": 7,
-  "enableJs": true,
-  "enabled": true,
-  "enabledCookieJar": true,
-  "lastUpdateTime": 0,
-  "loadWithBaseUrl": true,
-  "singleUrl": true,
-  "sourceGroup": "Furry",
-  "sourceIcon": "https://www.furryfusion.net/images/LOGO.png",
-  "sourceName": "兽聚汇总",
-  "sourceUrl": "https://www.furryfusion.net/"
+    "articleStyle": 0,
+    "customOrder": 7,
+    "enableJs": true,
+    "enabled": true,
+    "enabledCookieJar": true,
+    "lastUpdateTime": 0,
+    "loadWithBaseUrl": true,
+    "singleUrl": true,
+    "sourceGroup": "Furry",
+    "sourceIcon": "https://www.furryfusion.net/images/LOGO.png",
+    "sourceName": "兽聚汇总",
+    "sourceUrl": "https://www.furryfusion.net/"
   }
 ]
