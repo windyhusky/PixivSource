@@ -115,8 +115,9 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 - Pixiv 书源：添加网址加入书架
 - Pixiv 订阅源
 - Pixiv 书源：追更列表、最新小说
-- Pixiv 书源：每日每周排行榜 #13
+- Pixiv 书源：每日每周排行榜 [#13](https://github.com/windyhusky/PixivSource/issues/13)
 - Linpx 书源：推荐作者的小说
 - 兽人控小说网：书源、订阅源
 - Pixiv 书源：按照时间排序关注用户的小说
-- Pixiv 书源：避免多次翻页 #11 
+- Pixiv 书源：避免多次翻页 [#11](https://github.com/windyhusky/PixivSource/issues/11) 
+
