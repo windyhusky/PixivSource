@@ -2,7 +2,7 @@
 ### (类) Pixiv 网站的 [阅读 3.0 ](https://github.com/gedoor/legado) 的书源
 - [Pixiv](https://www.pixiv.net/) 是一个以插画、漫画、小说为中心的艺术网站
 - [Linpx](https://linpx.linpicio.com/) 收录了 Pixiv 全部兽人小说与部分非兽人小说
-- [兽人控小说网](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 等网站的兽人小说
+- [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 等网站的兽人小说
 
 
 # 快速导入
@@ -16,18 +16,20 @@
 - 免代理导入可能会有1天左右的更新延迟
 
 
-<datails>
-<summary> Github 导入地址 </summary>
+<details>
+<summary>  Github 导入地址 </summary>
 
-| 名称          | Github 导入网址                                                         |   
+| 名称          | Github 导入网址                                                        |   
 | ------------ | ------------------------------------------------------------------ |
 | Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |  
 | Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |       
 | 通用书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |     
 | btsrk 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json |   
 | books 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json |    
+- Github 导入无延迟
+</details>
 
-</datails>
+
 
 
 ## 源状态、功能
