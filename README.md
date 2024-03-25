@@ -8,7 +8,9 @@
 # 快速导入
 | 名称         | 免代理导入网址                                                      |
 | -------------| ------------------------------------------------------------------ |
-| Pixiv 书源　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json |
+| 所有书源　    | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/allbook.json |
+| 所有订阅源　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/allrss.json |
+| Pixiv 书源 　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json |
 | Linpx 书源　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json |
 | 通用书源　   | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/normal.json |
 | btsrk 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json |
@@ -21,7 +23,9 @@
 
 | 名称          | Github 导入网址                                                        |   
 | ------------ | ------------------------------------------------------------------ |
-| Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |  
+| 所有书源　    |  https://raw.githubusercontent.com/windyhusky/PixivSource/main/allbook.json |
+| 所有订阅源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/allrss.json |
+| Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json | 
 | Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |       
 | 通用书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |     
 | btsrk 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json |   
