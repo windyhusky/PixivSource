@@ -42,17 +42,17 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 
 #### 1.打开【订阅】页面，点击【规则订阅】
 
-![](https://telegra.ph/file/3de9a614dd7128ff2f115.png)
+![img](https://telegra.ph/file/3de9a614dd7128ff2f115.png)
 
 #### 2.点击加号，粘贴链接，保存订阅
 
 如果是订阅源，则需要切换到订阅源
 
-![](https://telegra.ph/file/38ff9d3b03d7b1720cfbd.png)
+![img](https://telegra.ph/file/38ff9d3b03d7b1720cfbd.png)
 
 #### 3.点击订阅，导入并启用/更新书源
 
-![](https://telegra.ph/file/5b1f7b3d0cc5564b6080a.png)
+![img](https://telegra.ph/file/5b1f7b3d0cc5564b6080a.png)
 
 **首次点击【订阅规则】 即是导入**，导入后 **再次点击则会检测并更新**
 
