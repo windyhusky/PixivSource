@@ -17,14 +17,15 @@
 
 
 <datails>
-    <summary> Github 导入地址 </summary>
-| 名称          | Github 导入网址                                                         |
+<summary> Github 导入地址 </summary>
+
+| 名称          | Github 导入网址                                                         |   
 | ------------ | ------------------------------------------------------------------ |
-| Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
-| Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
-| 通用书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |
-| btsrk 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json |
-| books 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json |  
+| Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |  
+| Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |       
+| 通用书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |     
+| btsrk 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json |   
+| books 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json |    
 
 </datails>
 
