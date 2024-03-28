@@ -6,6 +6,9 @@
 
 
 # 快速导入
+<details>
+<summary> 免代理导入地址 </summary>
+
 | 名称         | 免代理导入网址                                                      |
 | -------------| ------------------------------------------------------------------ |
 | 所有书源　    | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/allbook.json |
@@ -16,6 +19,7 @@
 | btsrk 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json |
 | books 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json |
 - 免代理导入可能会有1天左右的更新延迟
+</details>
 
 
 <details>
@@ -34,9 +38,8 @@
 </details>
 
 
-
-
 ## 源状态、功能
+### 书源
 | 书源      | 状态 | 获取小说 | 支持P站特性 | 实现阅读功能 |
 | --------- | --- | --------- | --------------- | ------------ |
 | Pixiv     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ⭕️ 小说插画 | ✅ 搜索 ✅ 发现 ❌ 添加网址 ❌ 订阅源 |
@@ -58,11 +61,10 @@ Pixiv 特性：
 - 订阅源：订阅页面，通过【订阅源】添加小说到书架
 
 
-| 订阅源 | 状态 | 包含内容 |
-| ----- | ---- | -------------- |
-| btsrk | ✅ | 1️⃣ [Pixiv 小说页](https://www.pixiv.net/novel) <br />2️⃣ [Linpx 林匹克斯](https://www.furrynovel.xyz) <br />3️⃣ [兽人控小说网](https://www.furrynovel.com) <br />4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br />5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br />6️⃣ [兽展日历](https://www.furryeventchina.com) <br />7️⃣ [兽聚汇总](https://www.furryfusion.net/) |
-| books | ✅ | 1️⃣ [喵公子书源管理](https://yd.mgz6.cc/) <br/>2️⃣ [阅读 APP 源](https://legado.aoaostar.com/) <br/>3️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/) <br/>4️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/>5️⃣ [阅读论坛](https://legado.cn/) <br/>6️⃣ [聚合搜索(通用书源)](https://legado.cn/thread-3723-1-1.html) <br/>7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
-
+### 订阅源
+| 订阅源 | 状态 | 包含内容 | 订阅源 | 状态 | 包含内容 |
+| ----- | ---- | -------|----- | ---- | ------- |
+| btsrk | ✅ | 1️⃣ [Pixiv 小说页](https://www.pixiv.net/novel) <br />2️⃣ [Linpx 林匹克斯](https://www.furrynovel.xyz) <br />3️⃣ [兽人控小说网](https://www.furrynovel.com) <br />4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br />5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br />6️⃣ [兽展日历](https://www.furryeventchina.com) <br />7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | ✅ | 1️⃣ [喵公子书源管理](https://yd.mgz6.cc/) <br/>2️⃣ [阅读 APP 源](https://legado.aoaostar.com/) <br/>3️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/) <br/>4️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/>5️⃣ [阅读论坛](https://legado.cn/) <br/>6️⃣ [聚合搜索(通用书源)](https://legado.cn/thread-3723-1-1.html) <br/>7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
 - btsrk 订阅源：整合了 Linpx 、兽人小说站、兽人控游戏索引、兽人控游戏库等网站，旨在快速访问兽人文化网站
 - books 订阅源：整合了多个分享阅读书源、订阅源等的订阅源，旨在快速导入阅读相关资源
@@ -70,13 +72,12 @@ Pixiv 特性：
 - [聚合搜索](https://legado.cn/thread-3723-1-1.html) ：（非本项目）是多个搜索引擎的聚合入口，需要配合 **[搜索引擎书源/通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用
 
 
-
 ## 下载阅读
+<details>
+<summary> Android 版 </summary>
 
-### 1. Android 版
 **点击链接，下载安装包并安装，推荐使用共存版**
 https://miaogongzi.lanzout.com/b01rgkhhe
-
 
 | 下载站点                                                      | 版本          | 备注              |
 | ------------------------------------------------------------ | ------------  | ----------------- |
@@ -86,17 +87,18 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 | [Github Action](https://github.com/gedoor/legado/actions)    | 无限制，开发版 | 需要代理，需要登录 |
 | [Telegram 频道](https://t.me/Legado_Channels)                | 　　　　稳定版 | 需要代理，需要登录 |
 | [Telegram 频道(Beta版)](https://t.me/Legado_Beta)            | 　　　　开发版 | 需要代理，需要登录 |
+</details>
 
-### 2. 苹果 iOS 版
+
+<details>
+<summary> 苹果 iOS 版 </summary>
 
 官方正在进行 [iOS版](https://github.com/gedoor/YueDuFlutter) 的开发，[近期在TF测试](https://gedoor.github.io/download) ，最新消息请见：[Telegram 频道(iOS版)](https://t.me/legado_ios)
-
 
 | 下载站点                                              | 版本          | 备注              |
 | ---------------------------------------------------- | ------------- | ----------------- |
 | ~~[GitHub](https://github.com/gedoor/YueDuFlutter)~~ |               | 开发中，暂不可下载 |
 | ~~[Telegram 频道(iOS版)](https://t.me/legado_ios)~~   |               | 开发中，暂不可下载 |
-
 
 可能支持相同书源的软件：
 
@@ -105,22 +107,30 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 | ~~[读不舍手](https://apps.apple.com/us/app/%E8%AF%BB%E4%B8%8D%E8%88%8D%E6%89%8B/id1662413517)~~ | 不完全兼容阅读书源，广告较多 |
 | ~~[青果阅读](https://apps.apple.com/us/app/qing-guo-du-shu/id1142490639)~~ | 不完全兼容阅读书源，现已下架 |
 | ~~[源阅读](https://github.com/kaich/Yuedu)~~ | 停止维护，AppStore 已下架 |
+</details>
 
 
-## 通用教程
+## 相关教程
+<details>
+<summary>  通用教程 </summary>
+
 ### 1. [阅读是什么软件？阅读简介](./doc/Legado.md)
 ### 2. [如何获取书源？导入书源？](./doc/Import.md)
 ### 3. [如何导入订阅源？](./doc/Import2.md)
 ### 4. [如何设置 Webdav 备份？](./doc/WebdavBackup.md)
 ### 5. ~~使用案例（以 Linpx 书源和订阅源为例）~~
 
-
 更多内容请查看[官方使用说明](https://www.yuque.com/legado/wiki/xz)
+</details>
 
+
+<details>
+<summary>  专用教程 </summary>
 
 ## 专用教程 [@FurryNovels](https://t.me/FurryNovels)
 ### 1. [Pixiv 书源的导入与使用](./doc/Pixiv.md)
 ### 2. [Linpx 书源的导入与使用](./doc/Linpx.md)
+</details>
 
 
 # 鸣谢
@@ -136,7 +146,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 - Pixiv 书源：添加网址加入书架
 - ✅  Pixiv 订阅源
 - ✅  兽人控小说站订阅源
-- Pixiv 书源：关注作者最新小说（按照时间排序关注作者的小说) https://github.com/windyhusky/PixivSource/issues/11
+- ✅  Pixiv 书源：关注作者最新小说（按照时间排序关注作者的小说) https://github.com/windyhusky/PixivSource/issues/11
 - Pixiv 书源：追更列表 https://github.com/windyhusky/PixivSource/issues/14
 - Pixiv 书源：每日每周排行榜 https://github.com/windyhusky/PixivSource/issues/13
 - Linpx 书源：推荐作者的小说
