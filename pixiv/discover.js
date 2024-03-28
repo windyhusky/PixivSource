@@ -36,6 +36,16 @@ function combineNovels(novels) {
     })
 }
 
+function getAjaxJson(url) {
+    return util.cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    })
+}
+
+function urlUserAllWorks(uid) {
+    return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
+}
+
 function handNovels(novels) {
     novels.forEach(novel => {
         if (novel.tags === undefined || novel.tags === null) {
@@ -45,11 +55,34 @@ function handNovels(novels) {
         if (novel.seriesId === undefined || novel.seriesId === null) {
             novel.tags.unshift("单本")
         } else {
-            novel.tags.unshift("长篇")
-            novel.textCount = null
+            let userAllWorks = getAjaxJson(urlUserAllWorks(novel.userId)).body
+            for (let series of userAllWorks.novelSeries) {
+                if (series.id === novel.seriesId) {
+                    // let series = getAjaxJson(util.urlSeries(novel.seriesId)).body
+                    novel.textCount = series.publishedTotalCharacterCount
+                    novel.url = series.cover.urls["480mw"]
+                    novel.title = series.title
+                    novel.tags = series.tags
+                    novel.description = series.caption
+
+                    // 发送请求获取第一章 获取标签与简介
+                    if (novel.tags.length === 0 || novel.description === "") {
+                        let firstNovel = getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                        if (novel.tags.length === 0) {
+                            novel.tags = firstNovel.tags.tags.map(item => item.tag)
+                        }
+
+                        if (novel.description === "") {
+                            novel.description = firstNovel.description
+                        }
+                    }
+
+                    novel.tags.unshift("长篇")
+                    break
+                }
+            }
         }
     })
-
     return novels
 }
 
@@ -68,6 +101,10 @@ function handlerFactory() {
 
     if (baseUrl.indexOf("/following") !== -1) {
         return handlerFollowing()
+    }
+
+    if (baseUrl.indexOf("/follow_latest") !== -1) {
+        return handlerFollowLatest()
     }
 }
 
@@ -117,6 +154,14 @@ function handlerBookMarks() {
         return util.formatNovels(handNovels(resp))
     }
 }
+
+function handlerFollowLatest() {
+    return () => {
+        let resp = JSON.parse(result)
+        return util.formatNovels(handNovels(combineNovels(resp.body.thumbnails.novel)))
+    }
+}
+
 
 (() => {
     return handlerFactory()()
