@@ -61,13 +61,13 @@
     "weight": 0
   },
   {
-    "bookSourceComment": "Linpx 是 Pixiv 的子集 包含所有兽人小说\n\nLinpx2 用于支持 Linpx 的另一域名 https://linpx.linpicio.com",
+    "bookSourceComment": "Linpx 第二域名书源\n默认关闭，启用后可以在书架页面添加使用本域名的小说分享链接",
     "bookSourceGroup": "🔞 Pixiv",
     "bookSourceName": "Linpx 第二域名",
     "bookSourceType": 0,
     "bookSourceUrl": "https://linpx.linpicio.com",
     "customOrder": 2,
-    "enabled": true,
+    "enabled": false,
     "enabledCookieJar": false,
     "enabledExplore": false,
     "exploreUrl": "[\n  {\n    \"title\": \"推荐作者（未完成）\",\n    \"url\": \"https://linpxapi.linpicio.com/fav/user\",\n    \"style\": {\n      \"layout_flexGrow\": 1,\n      \"layout_flexBasisPercent\":0.3\n    }\n  },\n  {\n    \"title\": \"最新小说\",\n    \"url\": \"https://linpxapi.linpicio.com/pixiv/novels/recent?page={{page}}\",\n    \"style\": {\n      \"layout_flexGrow\": 1,\n      \"layout_flexBasisPercent\":0.3\n    }\n  }\n]",
