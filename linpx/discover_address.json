@@ -3,14 +3,16 @@
     "title": "推荐作者",
     "url": "https://linpxapi.linpicio.com/fav/user",
     "style": {
-      "layout_flexGrow": 1
+      "layout_flexGrow": 1,
+      "layout_flexBasisPercent":0.3
     }
   },
   {
     "title": "最新小说",
     "url": "https://linpxapi.linpicio.com/pixiv/novels/recent?page={{page}}",
     "style": {
-      "layout_flexGrow": 1
+      "layout_flexGrow": 1,
+      "layout_flexBasisPercent":0.3
     }
   }
 ]
