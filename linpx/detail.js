@@ -2,11 +2,11 @@
 (function (res) {
     let isHtml = res.startsWith("<!DOCTYPE html>")
     if (isHtml) {
-        let matchResult = baseUrl.match(new RegExp("novel/\\d+"))
+        let matchResult = baseUrl.match(new RegExp("pn|pixiv/novel"))
         if (matchResult == null) {
             return []
         }
-        let id = matchResult[0].replace("novel/", "")
+        let id = baseUrl.match(new RegExp("\\d+"))[0]
         if (baseUrl.includes("/cache")) {
             res = JSON.parse(java.ajax(`https://linpxapi.linpicio.com/pixiv/novel/${id}/cache`))
             // 不获取缓存系列
