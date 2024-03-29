@@ -65,20 +65,23 @@ function handNovels(novels) {
                     novel.tags = series.tags
                     novel.description = series.caption
 
-                    // 发送请求获取第一章 获取标签与简介
-                    if (novel.tags.length === 0 || novel.description === "") {
-                        let firstNovel = getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
-                        if (novel.tags.length === 0) {
-                            novel.tags = firstNovel.tags.tags.map(item => item.tag)
-                        }
+                    try{
+                        // 发送请求获取第一章 获取标签与简介
+                        if (novel.tags.length === 0 || novel.description === "") {
+                            let firstNovel = getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                            if (novel.tags.length === 0) {
+                                novel.tags = firstNovel.tags.tags.map(item => item.tag)
+                            }
 
-                        if (novel.description === "") {
-                            novel.description = firstNovel.description
+                            if (novel.description === "") {
+                                novel.description = firstNovel.description
+                            }
                         }
+                        novel.tags.unshift("长篇")
+                        break
+                    } catch (e) {
+                        java.log(e)
                     }
-
-                    novel.tags.unshift("长篇")
-                    break
                 }
             }
         }
