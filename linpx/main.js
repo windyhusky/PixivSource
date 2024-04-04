@@ -4,6 +4,10 @@ function urlSearchUsers(username) {
     return `https://linpxapi.linpicio.com/pixiv/search/user/${username}`
 }
 
+function urlSearchNovel(novelname) {
+    return `https://linpxapi.linpicio.com/pixiv/search/novel/${novelname}`
+}
+
 function urlUserDetailed(uidList) {
     return `https://linpxapi.linpicio.com/pixiv/users?${uidList.map(v => "ids[]=" + v).join("&")}`
 }
