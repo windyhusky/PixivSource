@@ -1,5 +1,9 @@
 @js:
 
+function urlSearchUsers(username) {
+    return `https://linpxapi.linpicio.com/pixiv/search/user/${username}`
+}
+
 function urlSeries(seriesId) {
     return `https://linpxapi.linpicio.com/pixiv/series/${seriesId}`
 }
@@ -11,6 +15,13 @@ function urlNovelsDetailed(nidList) {
 function getAjaxJson(url) {
     return cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
+    })
+}
+
+function getWebviewJson(url) {
+    return cacheGetAndSet(url, () => {
+        let html = java.webView(null, url, null)
+        return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
     })
 }
 
@@ -47,7 +58,7 @@ function combineNovels(novels) {
 }
 
 // 将小说的封面规则与详情地址替换
-function formatNovels(novels) {
+function handlerNovels(novels) {
     novels.forEach(novel => {
         novel.detailedUrl = `https://linpxapi.linpicio.com/pixiv/novel/${novel.id}`
         if (novel.seriesId !== undefined && novel.seriesId !== null) {
@@ -94,6 +105,45 @@ function formatNovels(novels) {
 }
 
 
-(function (res) {
-    return formatNovels(combineNovels(JSON.parse(res)))
-}(result))
+function handlerRecommendUsers(){
+    return () => {
+        let novelList = []
+        JSON.parse(result)
+            .forEach(function(users) {
+            let userInfo = getAjaxJson(urlSearchUsers(users.name))
+            // let userInfo = getAjaxJson(urlSearchUsers(encodeURI(users.name)))
+            // let userInfo = getWebviewJson(urlSearchUsers(encodeURI(users.name)))
+            let user = userInfo.users
+                .filter(user => user.novels.length > 0)
+                .map(user => user.novels)
+                .forEach(novels => {
+                    return novels.forEach(novel => {
+                        novelList.push(novel)
+                    })
+                })
+        })
+        return handlerNovels(combineNovels(novelList))
+    }
+}
+
+function handlerFollowLatest() {
+    return () => {
+        let resp = JSON.parse(result)
+        return handlerNovels(combineNovels(resp))
+    }
+}
+
+function handlerFactory() {
+    if (baseUrl.indexOf("/fav/user") !== -1) {
+        return handlerRecommendUsers()
+    }
+
+    if (baseUrl.indexOf("/pixiv/novels/recent") !== -1) {
+        return handlerFollowLatest()
+    }
+
+}
+
+(() => {
+    return handlerFactory()()
+})()
