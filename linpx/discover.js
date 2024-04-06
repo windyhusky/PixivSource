@@ -9,18 +9,25 @@ function urlSeries(seriesId) {
 }
 
 function urlNovelsDetailed(nidList) {
-    return `https://linpxapi.linpicio.com/pixiv/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    return `https://linpxapi.linpicio.com/pixiv/novels?${nidList.map(v => "ids=" + v).join("&")}`
+}
+
+function urlUserDetailed(uidList) {
+    return `https://linpxapi.linpicio.com/pixiv/users?${uidList.map(v => "ids=" + v).join("&")}`
 }
 
 function getAjaxJson(url) {
     return cacheGetAndSet(url, () => {
+        java.log(`ajax->url:${url}`)
         return JSON.parse(java.ajax(url))
     })
 }
 
 function getWebviewJson(url) {
     return cacheGetAndSet(url, () => {
+        java.log(`webView->url:${url}`)
         let html = java.webView(null, url, null)
+        // java.log(`返回的html:${html}`)
         return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
     })
 }
@@ -65,6 +72,8 @@ function handlerNovels(novels) {
             novel.title = novel.seriesTitle
             novel.length = null
 
+            //FIXME 该处接口可能会有异常
+            java.log(`正在获取系列小说：${novel.seriesId}`)
             let series = getAjaxJson(urlSeries(novel.seriesId))
             // 后端目前没有系列的coverUrl字段
             // novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.imageUrl}`
@@ -104,24 +113,54 @@ function handlerNovels(novels) {
     return novels
 }
 
+/**
+ * @params arr 传入的源数组
+ * @params length 需要获取的元素的个数
+ */
+function randomChoseArrayItem(arr, length) {
+    let copyArr = JSON.parse(JSON.stringify(arr))
+    let newArr = [];
+    for (let i = 0; i < length; i++) {
+        let index = Math.floor(Math.random() * copyArr.length);
+        let item = copyArr[index];
+        newArr.push(item)
+        copyArr.splice(index, 1)
+    }
+    return newArr.reverse()
+}
 
-function handlerRecommendUsers(){
+
+function handlerRecommendUsers() {
+    const MAX_FETCH_USER_NUMBER = 10;
+    const MAX_FETCH_NOVEL_NUMBER = 50;
+
     return () => {
         let novelList = []
-        JSON.parse(result)
-            .forEach(function(users) {
-            let userInfo = getAjaxJson(urlSearchUsers(users.name))
-            // let userInfo = getAjaxJson(urlSearchUsers(encodeURI(users.name)))
-            // let userInfo = getWebviewJson(urlSearchUsers(encodeURI(users.name)))
-            let user = userInfo.users
-                .filter(user => user.novels.length > 0)
-                .map(user => user.novels)
-                .forEach(novels => {
-                    return novels.forEach(novel => {
-                        novelList.push(novel)
-                    })
+        let userIds = JSON.parse(result).map(i => i.id)
+        // java.log(`用户id个数:${userIds.length}`)
+        if (userIds.length > MAX_FETCH_USER_NUMBER) {
+            userIds = randomChoseArrayItem(userIds, MAX_FETCH_USER_NUMBER);
+        }
+
+        // java.log(`查询的用户Ids:${userIds}`)
+
+        let usersInfo = getWebviewJson(urlUserDetailed(userIds))
+        // java.log(`返回的${JSON.stringify(usersInfo)}`)
+        let queryNovelIds = []
+        // java.log(`${JSON.stringify(usersInfo)}`)
+        usersInfo.filter(user => user.novels && user.novels.length > 0)
+            .map(user => user.novels)
+            // 将list展平[1,2,3]变为1,2,3 添加到novelList中
+            .forEach(novels => {
+                novels.forEach(novel => {
+                    queryNovelIds.push(novel)
                 })
-        })
+            })
+        // 暂时限制最大获取数量
+        if (queryNovelIds.length > MAX_FETCH_NOVEL_NUMBER) {
+            queryNovelIds = randomChoseArrayItem(queryNovelIds, MAX_FETCH_NOVEL_NUMBER)
+        }
+        novelList = getWebviewJson(urlNovelsDetailed(queryNovelIds))
         return handlerNovels(combineNovels(novelList))
     }
 }
