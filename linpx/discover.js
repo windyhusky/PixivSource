@@ -18,14 +18,14 @@ function urlUserDetailed(uidList) {
 
 function getAjaxJson(url) {
     return cacheGetAndSet(url, () => {
-        java.log(`ajax->url:${url}`)
+        // java.log(`url:${url}`)
         return JSON.parse(java.ajax(url))
     })
 }
 
 function getWebviewJson(url) {
     return cacheGetAndSet(url, () => {
-        java.log(`webView->url:${url}`)
+        java.log(`url:${url}`)
         let html = java.webView(null, url, null)
         // java.log(`返回的html:${html}`)
         return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
@@ -72,7 +72,6 @@ function handlerNovels(novels) {
             novel.title = novel.seriesTitle
             novel.length = null
 
-            //FIXME 该处接口可能会有异常
             java.log(`正在获取系列小说：${novel.seriesId}`)
             let series = getAjaxJson(urlSeries(novel.seriesId))
             // 后端目前没有系列的coverUrl字段
@@ -131,8 +130,7 @@ function randomChoseArrayItem(arr, length) {
 
 
 function handlerRecommendUsers() {
-    const MAX_FETCH_USER_NUMBER = 10;
-    const MAX_FETCH_NOVEL_NUMBER = 50;
+    const MAX_FETCH_USER_NUMBER = 2;
 
     return () => {
         let novelList = []
@@ -157,8 +155,8 @@ function handlerRecommendUsers() {
                 })
             })
         // 暂时限制最大获取数量
-        if (queryNovelIds.length > MAX_FETCH_NOVEL_NUMBER) {
-            queryNovelIds = randomChoseArrayItem(queryNovelIds, MAX_FETCH_NOVEL_NUMBER)
+        if (queryNovelIds.length > 10) {
+            queryNovelIds = randomChoseArrayItem(queryNovelIds, 10)
         }
         novelList = getWebviewJson(urlNovelsDetailed(queryNovelIds))
         return handlerNovels(combineNovels(novelList))
