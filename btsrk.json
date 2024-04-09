@@ -18,19 +18,20 @@
   },
   {
     "articleStyle": 0,
-    "customOrder": 1,
+    "customOrder": 2,
     "enableJs": true,
     "enabled": true,
     "enabledCookieJar": false,
     "header": "{\"User-Agent\"=\"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36 Reader\"}",
+    "injectJs": "if (!/^https:\\/\\/(so\\.toutiao\\.com\\/search\\/?|quark\\.sm\\.cn\\/s|wap\\.sogou\\.com\\/web\\/searchList\\.jsp|m\\.so\\.com\\/s|cn\\.bing\\.com\\/search|www\\.baidu\\.com\\/s)\\?/.test(window.location.href) && !document.getElementById('open-yuedu-bookshelf')) {\n    const btn = document.createElement('div');\n    btn.innerHTML = <button type=\"button\" id='open-yuedu-bookshelf' style=\"z-index: 9999999999;\n    position: fixed;bottom: 7%;right: 7%;background-color: rgb(255, 153, 0);border-radius: 2px;border: 1px solid rgb(255, 153, 0);color: #fff;\n    font-size:${window.innerWidth/80}vw;font-weight: 400;padding: ${window.innerWidth/400}vw ${window.innerWidth/150}vw;\n    \"onclick=\"window.open('legado://import/addToBookshelf?src=${encodeURIComponent(window.location.href)}','_blank');location.reload();\">加入书架</button>;\n    document.body.appendChild(btn);\n    }\n    \n    let time,num=0;\n    const herfs = new Map();\n    function onTouchStart(evt) {\n      for (const el of evt.path) {\n        if (el.tagName === \"A\") {\n          if (el.href !== 'javascript:void(0)') {\n            const inner = el.href;\n            herfs.set(el, inner);\n            el.setAttribute('href', 'javascript:void(0)');\n            time = setTimeout(() => {\twindow.open(legado://import/addToBookshelf?src=${encodeURIComponent(inner)}, '_blank')\n            }, 600);\n          }\n          break;\n        }\n      }\n    };\nfunction onTouchEnd(evt) {\n      if (time) {\n        clearTimeout(time);\n        time = undefined;\n      }\n\tfor (const el of evt.path) {\n        if (el.tagName === \"A\") {\n          if (el.href === 'javascript:void(0)') {\n            const herf = herfs.get(el);\n            if (herf) {\n              el.setAttribute('href', herf)\n            }\n          }\n          break;\n        }\n    }\n}\n\nfunction addListener(els){\nArray.from(els, (item) => {\n      if (item.getAttribute('add-yuedu-bookshelf') !== 'add-yuedu-bookshelf' && item.innerText && item.href && !/^#|^javascript:/.test(item.href)) {\n        item.setAttribute('add-yuedu-bookshelf', 'add-yuedu-bookshelf');\n        item.addEventListener('touchstart', onTouchStart);\n        item.addEventListener('touchend', onTouchEnd);\n        item.addEventListener('touchcancel', onTouchEnd);\n        item.addEventListener('mousedown', onTouchStart);\n        item.addEventListener('mouseup', onTouchEnd);\n      }\n    });\nnum= els.length;\n}\n\nfunction reAdd(){\n\t\tconst els = document.getElementsByTagName('a');\n\tif(els.length>num)addListener(els);\n}\n\nreAdd();\n\nconst observer = new ResizeObserver(reAdd);\nobserver.observe(document.body);",
     "lastUpdateTime": 0,
     "loadWithBaseUrl": true,
     "singleUrl": true,
     "sortUrl": "",
     "sourceGroup": "Furry",
-    "sourceIcon": "https://www.furrynovel.xyz/app_logo.png",
-    "sourceName": "Linpx",
-    "sourceUrl": "https://www.furrynovel.xyz/?from=read"
+    "sourceIcon": "https://furrynovel.ink/apple-touch-icon.png",
+    "sourceName": "Linpx NURUPO",
+    "sourceUrl": "https://furrynovel.ink/?from=read"
   },
   {
     "articleStyle": 0,
