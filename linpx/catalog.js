@@ -10,7 +10,7 @@
 
     if (res.novels !== undefined) {
         res.novels.forEach(v => {
-            v['url'] = `https://linpxapi.linpicio.com/pixiv/novel/${v.id}${cache}`
+            v['url'] = `https://api.furrynovel.ink/pixiv/novel/${v.id}${cache}`
         })
         return res.novels
     }

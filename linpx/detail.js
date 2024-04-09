@@ -8,11 +8,11 @@
         }
         let id = baseUrl.match(new RegExp("\\d+"))[0]
         if (baseUrl.includes("/cache")) {
-            res = JSON.parse(java.ajax(`https://linpxapi.linpicio.com/pixiv/novel/${id}/cache`))
+            res = JSON.parse(java.ajax(`https://api.furrynovel.ink/pixiv/novel/${id}/cache`))
             // 不获取缓存系列
             res.series = null
         } else {
-            res = JSON.parse(java.ajax(`https://linpxapi.linpicio.com/pixiv/novel/${id}`))
+            res = JSON.parse(java.ajax(`https://api.furrynovel.ink/pixiv/novel/${id}`))
         }
     } else {
         res = JSON.parse(res)
@@ -27,20 +27,20 @@
     prop['author'] = res.userName
     prop['count'] = book.wordCount
     prop['desc'] = res.desc
-    prop['cover_url'] = `https://linpxapi.linpicio.com/proxy/pximg?url=${res.coverUrl}`
+    prop['cover_url'] = `https://api.furrynovel.ink/proxy/pximg?url=${res.coverUrl}`
 
     if (res.series === undefined || res.series === null) {
         prop['name'] = res.title
         if (baseUrl.includes("/cache")) {
-            prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/novel/${res.id}/cache`
+            prop['catalog'] = `https://api.furrynovel.ink/pixiv/novel/${res.id}/cache`
         } else {
-            prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/novel/${res.id}`
+            prop['catalog'] = `https://api.furrynovel.ink/pixiv/novel/${res.id}`
         }
         res.tags.unshift('单本')
     } else {
         prop['name'] = res.series.title
         res.tags.unshift('长篇')
-        prop['catalog'] = `https://linpxapi.linpicio.com/pixiv/series/${res.series.id}`
+        prop['catalog'] = `https://api.furrynovel.ink/pixiv/series/${res.series.id}`
     }
     prop['classes'] = res.tags.join(",")
     return prop

@@ -1,19 +1,19 @@
 @js:
 
 function urlSearchUsers(username) {
-    return `https://linpxapi.linpicio.com/pixiv/search/user/${username}`
+    return `https://api.furrynovel.ink/pixiv/search/user/${username}`
 }
 
 function urlSeries(seriesId) {
-    return `https://linpxapi.linpicio.com/pixiv/series/${seriesId}`
+    return `https://api.furrynovel.ink/pixiv/series/${seriesId}`
 }
 
 function urlNovelsDetailed(nidList) {
-    return `https://linpxapi.linpicio.com/pixiv/novels?${nidList.map(v => "ids=" + v).join("&")}`
+    return `https://api.furrynovel.ink/pixiv/novels?${nidList.map(v => "ids=" + v).join("&")}`
 }
 
 function urlUserDetailed(uidList) {
-    return `https://linpxapi.linpicio.com/pixiv/users?${uidList.map(v => "ids=" + v).join("&")}`
+    return `https://api.furrynovel.ink/pixiv/users?${uidList.map(v => "ids=" + v).join("&")}`
 }
 
 function getAjaxJson(url) {
@@ -67,7 +67,7 @@ function combineNovels(novels) {
 // 将小说的封面规则与详情地址替换
 function handlerNovels(novels) {
     novels.forEach(novel => {
-        novel.detailedUrl = `https://linpxapi.linpicio.com/pixiv/novel/${novel.id}`
+        novel.detailedUrl = `https://api.furrynovel.ink/pixiv/novel/${novel.id}`
         if (novel.seriesId !== undefined && novel.seriesId !== null) {
             novel.title = novel.seriesTitle
             novel.length = null
@@ -75,8 +75,8 @@ function handlerNovels(novels) {
             java.log(`正在获取系列小说：${novel.seriesId}`)
             let series = getAjaxJson(urlSeries(novel.seriesId))
             // 后端目前没有系列的coverUrl字段
-            // novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.imageUrl}`
-            novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${series.novels[0].coverUrl}`
+            // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.imageUrl}`
+            novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.novels[0].coverUrl}`
             if (series.caption === "") {
                 let firstNovels = getAjaxJson(urlNovelsDetailed([series.novels[0].id]))
                 if (firstNovels.length > 0) {
@@ -104,7 +104,7 @@ function handlerNovels(novels) {
 
         } else {
             novel.tags.unshift("单本")
-            novel.coverUrl = `https://linpxapi.linpicio.com/proxy/pximg?url=${novel.coverUrl}`
+            novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${novel.coverUrl}`
         }
 
         novel.tags = novel.tags.join(",")

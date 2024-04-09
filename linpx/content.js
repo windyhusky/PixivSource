@@ -8,7 +8,7 @@
     //将存在的pixiv图片链接替换为可访问的直连
     if (res.images !== undefined && res.images !== null) {
         Object.keys(res.images).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="https://linpxapi.linpicio.com/proxy/pximg?url=${res.images[key].preview}">`)
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="https://api.furrynovel.ink/proxy/pximg?url=${res.images[key].preview}">`)
         })
     }
     return content
