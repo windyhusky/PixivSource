@@ -1,8 +1,8 @@
 # 开源阅读 Pixiv 书源
 ### (类) Pixiv 网站的 [阅读 3.0 ](https://github.com/gedoor/legado) 的书源
 - [Pixiv](https://www.pixiv.net/) 是一个以插画、漫画、小说为中心的艺术网站
-- [Linpx](https://linpx.linpicio.com/) 收录了 Pixiv 全部兽人小说与部分非兽人小说
-- [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 等网站的兽人小说
+- [新 Linpx](https://www.furrynovel.ink) 收录了 Pixiv 的大部分兽人小说与部分非兽人小说
+- [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
 
 # 快速导入
 
@@ -64,7 +64,7 @@ Pixiv 特性：
 ### 订阅源
 | 订阅源 | 状态 | 包含内容 | 订阅源 | 状态 | 包含内容 |
 | ----- | ---- | -------|----- | ---- | ------- |
-| btsrk | ✅ | 1️⃣ [Pixiv 小说页](https://www.pixiv.net/novel) <br />2️⃣ [Linpx 林匹克斯](https://www.furrynovel.xyz) <br />3️⃣ [兽人控小说站](https://www.furrynovel.com) <br />4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br />5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br />6️⃣ [兽展日历](https://www.furryeventchina.com) <br />7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | ✅ | 1️⃣ [喵公子书源管理](https://yd.mgz6.cc/) <br/>2️⃣ [阅读 APP 源](https://legado.aoaostar.com/) <br/>3️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/) <br/>4️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/>5️⃣ [阅读论坛](https://legado.cn/) <br/>6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/>7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
+| btsrk | ✅ | 1️⃣ [Pixiv 小说页](https://www.pixiv.net/novel) <br />2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br />3️⃣ [兽人控小说站](https://www.furrynovel.com) <br />4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br />5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br />6️⃣ [兽展日历](https://www.furryeventchina.com) <br />7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | ✅ | 1️⃣ [喵公子书源管理](https://yd.mgz6.cc/) <br/>2️⃣ [阅读 APP 源](https://legado.aoaostar.com/) <br/>3️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/) <br/>4️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/>5️⃣ [阅读论坛](https://legado.cn/) <br/>6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/>7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
 - btsrk 订阅源：整合了 Linpx 、兽人小说站、兽人控游戏索引、兽人控游戏库等网站，旨在快速访问兽人文化网站
 - books 订阅源：整合了多个分享阅读书源、订阅源等的订阅源，旨在快速导入阅读相关资源
@@ -146,6 +146,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 # 鸣谢
 - 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的网站服务 https://www.furrynovel.xyz
+- 感谢 新 Linpx 提供的网站服务 https://www.furrynovel.ink
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的网站服务 https://www.furrynovel.com
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryNovels](https://t.me/FurryNovels)
 
@@ -154,12 +155,12 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 - Pixiv 系列小说 专用书源
 - ~~Linpx 系列小说 专用书源~~
 - Pixiv 书源：添加网址加入书架
-- ✅  Pixiv 订阅源
-- ✅  兽人控小说站订阅源
-- ✅  Pixiv 书源：关注作者最新小说（按照时间排序关注作者的小说) https://github.com/windyhusky/PixivSource/issues/11
+- ✅ Pixiv 订阅源
+- ✅ 兽人控小说站订阅源
+- ✅ Pixiv 书源：关注作者最新小说（按照时间排序关注作者的小说) https://github.com/windyhusky/PixivSource/issues/11
 - Pixiv 书源：追更列表 https://github.com/windyhusky/PixivSource/issues/14
 - Pixiv 书源：每日每周排行榜 https://github.com/windyhusky/PixivSource/issues/13
-- Linpx 书源：推荐作者的小说
+- ✅ Linpx 书源：推荐作者的小说
 - 兽人控小说站：书源（搜索，发现）
 - Pixiv 书源：通过作品ID添加的插画 [pixivimage]
 - ~~Linpx 书源：通过作品ID添加的插画 [pixivimage]~~
