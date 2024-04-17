@@ -171,21 +171,6 @@
   },
   {
     "articleStyle": 0,
-    "customOrder": 12,
-    "enableJs": true,
-    "enabled": true,
-    "enabledCookieJar": true,
-    "lastUpdateTime": 0,
-    "loadWithBaseUrl": true,
-    "singleUrl": true,
-    "sourceComment": "Linpx 搜索（使用站内缓存）\n1️⃣ 常规搜索功能（小说名等）\n2️⃣ 搜索作者名，可访问部分被删除的小说",
-    "sourceGroup": "Furry",
-    "sourceIcon": "https://linpx.linpicio.com/app_logo.png",
-    "sourceName": "搜索作者 缓存小说",
-    "sourceUrl": "https://www.furrynovel.xyz/search/cache?from=read"
-  },
-  {
-    "articleStyle": 0,
     "customOrder": 13,
     "enableJs": true,
     "enabled": true,
