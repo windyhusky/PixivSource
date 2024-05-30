@@ -44,6 +44,14 @@ function publicFunc() {
         return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
     }
 
+    u.urlIllustDetailed = (illustId) => {
+        return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
+    }
+    u.urlSeriesIllusts = (seriesId) => {
+        return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
+    }
+
+
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
             novel.detailedUrl = util.urlNovelDetailed(novel.id)
