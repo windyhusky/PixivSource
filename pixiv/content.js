@@ -43,25 +43,24 @@ function objParse(obj) {
     }
 
 
-    // 替换 Pixiv 标记符号 [newpage] [chapter:]
-    // 阅读不支持分页符，因此在 `[chapter:]`添加空行
-    content = content.replace(`[newpage]`, `<div style="page-break-after:always"></div>`)
-    matched = content.match(RegExp(/\[chapter:(.*)]/gm))
+    // 替换 Pixiv 章节标记符号 [newpage] [chapter:]
+    content = content.replace(`[newpage]`, ``)
+    matched = content.match(RegExp(/\[chapter:(.*?)]/gm))
     if (matched) {
         for (let i in matched) {
-            let matched2 = matched[i].match(/\[chapter:(.*)]/m)
+            let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
             let chapter = matched2[1].trim()
-            if (("第".includes(chapter))||("章".includes(chapter))){
-                // chapter = `${chapter}`
-            }
-            else {
-                chapter = `第${Number(i)+1}节 ${chapter}`
-            }
+            // 章节编号
+            // if ((chapter.includes("第"))||(chapter.includes("章"))){
+            //     // chapter = `${chapter}`
+            // } else {
+            //     chapter = `第${Number(i)+1}节 ${chapter}`
+            // }
             content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}${chapter}<p>​<p/>`)
         }
     }
 
-    // 替换 Pixiv 跳转页面标记符号 `[[jump:]]`
+    // 替换 Pixiv 跳转页面标记符号 [[jump:]]
     matched = content.match(/\[jump:(\d+)]/gm)
     if (matched) {
         for (let i in matched) {
@@ -70,21 +69,40 @@ function objParse(obj) {
         }
     }
 
-    // 替换 Pixiv 链接标记符号 `[[jumpuri: > ]]`
-    matched = content.match(/\[\[jumpuri:(.*)>(.*)]]/gm)
+    // 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
+    matched = content.match(/\[\[jumpuri:(.*?)>(.*?)]]/gm)
     if (matched) {
         for (let i in matched) {
-            let matched2 = matched[i].match(/\[\[jumpuri:(.*)>(.*)]]/m)
+            let matched2 = matched[i].match(/\[\[jumpuri:(.*?)>(.*?)]]/m)
             let matchedText = matched2[0]
             let urlName = matched2[1].trim()
             let urlLink = matched2[2].trim()
             // 阅读不支持超链接
             //content = content.replace(`${matchedText}`, `<a href=${urlLink}>${urlName}</a>`)
             if (urlLink === urlName) {
+                content = content.replace(`${matchedText}`, `${urlName}`)
+            } else {
                 content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
             }
-            else{
-                content = content.replace(`${matchedText}`, `${urlName}`)
+        }
+    }
+
+    // 替换 Pixiv 注音标记符号 [[rb: > ]]
+    matched = content.match(/\[\[rb:(.*?)>(.*?)]]/gm)
+    if (matched) {
+        for (let i in matched) {
+            let matched2 = matched[i].match(/\[\[rb:(.*?)>(.*?)]]/m)
+            let matchedText = matched2[0]
+            let kanji = matched2[1].trim()
+            let kana = matched2[2].trim()
+            // kana为中文，则替换回《书名号》
+            var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+            if (reg.test(kana)) {
+                content = content.replace(`${matchedText}`, `${kanji}《${kana}》`)
+            } else{
+                // 阅读不支持 <ruby> <rt> 注音
+                // content = content.replace(`${matchedText}`, `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+                content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             }
         }
     }
