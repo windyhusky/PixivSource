@@ -1,4 +1,14 @@
 @js:
+var util = objParse(String(java.get("util")))
+
+function objParse(obj) {
+    return JSON.parse(obj, (n, v) => {
+        if (typeof v == "string" && v.match("()")) {
+            return eval(`(${v})`)
+        }
+        return v;
+    })
+}
 
 function urlSearchUsers(username) {
     return `https://api.furrynovel.ink/pixiv/search/user/${username}`
@@ -144,7 +154,8 @@ function formatNovels(novels) {
             let series = getAjaxJson(urlSeries(novel.seriesId))
             // 后端目前没有系列的coverUrl字段
             // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.imageUrl}`
-            novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.novels[0].coverUrl}`
+            // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.novels[0].coverUrl}`
+            novel.coverUrl = util.urlCoverUrl(series.novels[0].coverUrl)
             if (series.caption === "") {
                 let firstNovels = getAjaxJson(urlNovelsDetailed([series.novels[0].id]))
                 if (firstNovels.length > 0) {
@@ -175,7 +186,8 @@ function formatNovels(novels) {
                 novel.tags = []
             }
             novel.tags.unshift("单本")
-            novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${novel.coverUrl}`
+            // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${novel.coverUrl}`
+            novel.coverUrl = util.urlCoverUrl(novel.coverUrl)
         }
 
         novel.tags = novel.tags.join(",")

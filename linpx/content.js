@@ -1,4 +1,15 @@
 @js:
+var util = objParse(String(java.get("util")))
+
+function objParse(obj) {
+    return JSON.parse(obj, (n, v) => {
+        if (typeof v == "string" && v.match("()")) {
+            return eval(`(${v})`)
+        }
+        return v;
+    })
+}
+
 (function (res) {
     res = JSON.parse(res)
     let content = res.content
@@ -10,7 +21,7 @@
     //将存在的pixiv图片链接替换为可访问的直连
     if (res.images !== undefined && res.images !== null) {
         Object.keys(res.images).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="https://pximg.furrynovel.ink/?url=${res.images[key].origin}">`)
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${util.urlCoverUrl(res.images[key].origin)}">`)
         })
     }
 
@@ -20,10 +31,7 @@
     if (matched) {
         for (let i in matched) {
             let illustId = matched[i].match(RegExp("\\d+"))
-            // let illustOriginal = `https://pixiv.cat/${illustId}.png`  // 已墙不可用
-            let illustOriginal = `https://pixiv.re/${illustId}.png`
-            // let illustOriginal = `https://pixiv.nl/${illustId}.png`
-            content = content.replace(`${matched[i]}`, `<img src="${illustOriginal}">`)
+            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustUrl(illustId)}">`)
         }
     }
 
