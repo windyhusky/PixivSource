@@ -1,5 +1,10 @@
-# 开源阅读 Pixiv 书源
-### (类) Pixiv 网站的 [阅读 3.0 ](https://github.com/gedoor/legado) 的书源
+<div align="center">
+<img width="125" height="125" src="https://github.com/windyhusky/PixivSource/raw/main/doc/pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
+
+## 开源阅读 Pixiv 书源
+</div>
+
+### 类 Pixiv 网站的 [阅读 3.0 ](https://github.com/gedoor/legado) 的书源
 - [Pixiv](https://www.pixiv.net/) 是一个以插画、漫画、小说为中心的艺术网站
 - [新 Linpx](https://www.furrynovel.ink) 收录了 Pixiv 的大部分兽人小说与部分非兽人小说
 - [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
