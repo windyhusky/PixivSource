@@ -12,16 +12,17 @@ function objParse(obj) {
 
 (function (res) {
     res = JSON.parse(res)
-    let cache = function () {
-        if (baseUrl.includes("/cache")) {
-            return "/cache"
-        }
-        return ""
-    }()
-
+    // let cache = function () {
+    //     if (baseUrl.includes("/cache")) {
+    //         return "/cache"
+    //     }
+    //     return ""
+    // }()
+    //
     if (res.novels !== undefined) {
         res.novels.forEach(v => {
-            v['url'] = `https://api.furrynovel.ink/pixiv/novel/${v.id}${cache}`
+            // v['url'] = `https://api.furrynovel.ink/pixiv/novel/${v.id}${cache}`
+            v['url'] = `https://api.furrynovel.ink/pixiv/novel/${v.id}/cache`
         })
         return res.novels
     }

@@ -11,23 +11,23 @@ function objParse(obj) {
 }
 
 function urlSearchUsers(username) {
-    return `https://api.furrynovel.ink/pixiv/search/user/${username}`
+    return `https://api.furrynovel.ink/pixiv/search/user/${username}/cache`
 }
 
 function urlSearchNovel(novelname) {
-    return `https://api.furrynovel.ink/pixiv/search/novel/${novelname}`
+    return `https://api.furrynovel.ink/pixiv/search/novel/${novelname}/cache`
 }
 
 function urlUserDetailed(uidList) {
-    return `https://api.furrynovel.ink/pixiv/users?${uidList.map(v => "ids[]=" + v).join("&")}`
+    return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
 }
 
 function urlNovelsDetailed(nidList) {
-    return `https://api.furrynovel.ink/pixiv/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
 }
 
 function urlSeries(seriesId) {
-    return `https://api.furrynovel.ink/pixiv/series/${seriesId}`
+    return `https://api.furrynovel.ink/pixiv/series/${seriesId}/cache`
 }
 
 function cacheGetAndSet(key, supplyFunc) {
@@ -59,6 +59,7 @@ function getUser(username, exactMatch) {
 
 function getAjaxJson(url) {
     return cacheGetAndSet(url, () => {
+        // java.log("url", url)
         return JSON.parse(java.ajax(url))
     })
 }
@@ -146,7 +147,7 @@ function combineNovels(novels) {
 // 将小说的封面规则与详情地址替换
 function formatNovels(novels) {
     novels.forEach(novel => {
-        novel.detailedUrl = `https://api.furrynovel.ink/pixiv/novel/${novel.id}`
+        novel.detailedUrl = `https://api.furrynovel.ink/pixiv/novel/${novel.id}/cache`
         if (novel.seriesId !== undefined && novel.seriesId !== null) {
             novel.title = novel.seriesTitle
             novel.length = null
