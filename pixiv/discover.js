@@ -13,11 +13,6 @@ function objParse(obj) {
 
 // 存储seriesID 有BUG无法处理翻页
 var seriesSet = new Set();
-
-function urlCoverUrl(url) {
-    return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
-}
-
 // 将多个长篇小说解析为一本书
 function combineNovels(novels) {
     return novels.filter(novel => {
@@ -36,16 +31,6 @@ function combineNovels(novels) {
     })
 }
 
-function getAjaxJson(url) {
-    return util.cacheGetAndSet(url, () => {
-        return JSON.parse(java.ajax(url))
-    })
-}
-
-function urlUserAllWorks(uid) {
-    return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
-}
-
 function handNovels(novels) {
     novels.forEach(novel => {
         if (novel.tags === undefined || novel.tags === null) {
@@ -55,10 +40,10 @@ function handNovels(novels) {
         if (novel.seriesId === undefined || novel.seriesId === null) {
             novel.tags.unshift("单本")
         } else {
-            let userAllWorks = getAjaxJson(urlUserAllWorks(novel.userId)).body
+            let userAllWorks = util.getAjaxJson(util.urlUserAllWorks(novel.userId)).body
             for (let series of userAllWorks.novelSeries) {
                 if (series.id === novel.seriesId) {
-                    // let series = getAjaxJson(util.urlSeries(novel.seriesId)).body
+                    // let series = util.getAjaxJson(util.urlSeries(novel.seriesId)).body
                     novel.textCount = series.publishedTotalCharacterCount
                     novel.url = series.cover.urls["480mw"]
                     novel.title = series.title
@@ -68,7 +53,7 @@ function handNovels(novels) {
                     try{
                         // 发送请求获取第一章 获取标签与简介
                         if (novel.tags.length === 0 || novel.description === "") {
-                            let firstNovel = getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                            let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
                             if (novel.tags.length === 0) {
                                 novel.tags = firstNovel.tags.tags.map(item => item.tag)
                             }

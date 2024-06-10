@@ -36,7 +36,7 @@ function objParse(obj) {
     if (matched) {
         for (let i in matched) {
             let illustId = matched[i].match(RegExp("\\d+"))
-            let res2 = JSON.parse(java.ajax(util.urlIllustDetailed(illustId))).body
+            let res2 = util.getAjaxJson(util.urlIllustDetailed(illustId)).body
             let illustOriginal = res2.urls.original
             content = content.replace(`${matched[i]}`, `<img src="${illustOriginal}">`)
         }
