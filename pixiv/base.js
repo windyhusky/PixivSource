@@ -31,7 +31,6 @@ function publicFunc() {
             return JSON.parse(parseFunc(html))
         })
     }
-
     u.debugFunc = (func) => {
         if (String(source.getVariable()) === "debug") {
             func()
