@@ -10,26 +10,6 @@ function objParse(obj) {
     })
 }
 
-function urlSearchUsers(username) {
-    return `https://api.furrynovel.ink/pixiv/search/user/${username}/cache`
-}
-
-function urlSearchNovel(novelname) {
-    return `https://api.furrynovel.ink/pixiv/search/novel/${novelname}/cache`
-}
-
-function urlUserDetailed(uidList) {
-    return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
-}
-
-function urlNovelsDetailed(nidList) {
-    return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
-}
-
-function urlSeries(seriesId) {
-    return `https://api.furrynovel.ink/pixiv/series/${seriesId}/cache`
-}
-
 function cacheGetAndSet(key, supplyFunc) {
     let v = cache.get(key)
     if (v === undefined || v === null) {
@@ -40,11 +20,25 @@ function cacheGetAndSet(key, supplyFunc) {
     return JSON.parse(v)
 }
 
+function getAjaxJson(url) {
+    return cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    })
+}
+
+function getWebviewJson(url) {
+    return cacheGetAndSet(url, () => {
+        let html = java.webView(null, url, null)
+        // todo：搜索作者有问题
+        return JSON.parse((html.match(new RegExp(">\\[\{.*?}]<"))[0].replace(">", "").replace("<", "")))
+    })
+}
+
 
 function getUser(username, exactMatch) {
     // 修复传入object的bug
     username = String(username)
-    let resp = getAjaxJson(urlSearchUsers(username))
+    let resp = getAjaxJson(util.urlSearchUsers(username))
     if (resp.users.length === 0) {
         return []
     }
@@ -57,24 +51,10 @@ function getUser(username, exactMatch) {
     })
 }
 
-function getAjaxJson(url) {
-    return cacheGetAndSet(url, () => {
-        // java.log("url", url)
-        return JSON.parse(java.ajax(url))
-    })
-}
-
-function getWebviewJson(url) {
-    return cacheGetAndSet(url, () => {
-        let html = java.webView(null, url, null)
-        return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
-    })
-}
-
 // 包含所有小说数据
 function getUserDetailedList(uidList) {
     // java.log(`UIDLIST:${JSON.stringify(uidList)}`)
-    return getWebviewJson(urlUserDetailed(uidList))
+    return getWebviewJson(util.urlUserDetailed(uidList))
 }
 
 function getNovels(nidList) {
@@ -85,8 +65,8 @@ function getNovels(nidList) {
         return []
     }
 
-    // java.log(`NIDURL:${urlNovelsDetailed(list)}`)
-    return getWebviewJson(urlNovelsDetailed(list))
+    // java.log(`NIDURL:${util.urlNovelsDetailed(list)}`)
+    return getWebviewJson(util.urlNovelsDetailed(list))
 }
 
 // 存储seriesID
@@ -147,18 +127,19 @@ function combineNovels(novels) {
 // 将小说的封面规则与详情地址替换
 function formatNovels(novels) {
     novels.forEach(novel => {
-        novel.detailedUrl = `https://api.furrynovel.ink/pixiv/novel/${novel.id}/cache`
+        // novel.detailedUrl = `https://api.furrynovel.ink/pixiv/novel/${novel.id}`
+        novel.detailedUrl = util.urlNovelUrl(novel.id)
         if (novel.seriesId !== undefined && novel.seriesId !== null) {
             novel.title = novel.seriesTitle
             novel.length = null
 
-            let series = getAjaxJson(urlSeries(novel.seriesId))
+            let series = getAjaxJson(util.urlSeriesUrl(novel.seriesId))
             // 后端目前没有系列的coverUrl字段
             // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.imageUrl}`
             // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.novels[0].coverUrl}`
             novel.coverUrl = util.urlCoverUrl(series.novels[0].coverUrl)
             if (series.caption === "") {
-                let firstNovels = getAjaxJson(urlNovelsDetailed([series.novels[0].id]))
+                let firstNovels = getAjaxJson(util.urlNovelsDetailed([series.novels[0].id]))
                 if (firstNovels.length > 0) {
                     novel.desc = firstNovels[0].desc
                 } else {

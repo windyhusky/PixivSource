@@ -31,7 +31,7 @@ function objParse(obj) {
     if (matched) {
         for (let i in matched) {
             let illustId = matched[i].match(RegExp("\\d+"))
-            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustUrl(illustId)}">`)
+            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginalUrl (illustId)}">`)
         }
     }
 
@@ -44,12 +44,6 @@ function objParse(obj) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
             let chapter = matched2[1].trim()
-            // 章节编号
-            // if ((chapter.includes("第"))||(chapter.includes("章"))){
-            //     // chapter = `${chapter}`
-            // } else {
-            //     chapter = `第${Number(i)+1}节 ${chapter}`
-            // }
             content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}${chapter}<p>​<p/>`)
         }
     }
