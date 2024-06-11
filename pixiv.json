@@ -5,7 +5,7 @@
         "bookSourceName": "Pixiv",
         "bookSourceType": 0,
         "bookSourceUrl": "https://www.pixiv.net",
-        "bookUrlPattern": "",
+        "bookUrlPattern": "(https?://)?(www.)?pixiv.net/novel/.*",
         "customOrder": 0,
         "enabled": true,
         "enabledCookieJar": false,
