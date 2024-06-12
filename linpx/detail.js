@@ -13,7 +13,7 @@ function objParse(obj) {
 (function (res) {
     let isHtml = res.startsWith("<!DOCTYPE html>")
     if (isHtml) {
-        let matchResult = baseUrl.match(new RegExp("pn|pixiv/novel"))
+        let matchResult = baseUrl.match(new RegExp("pn|pixiv/novel|pixiv.net/novel"))
         if (matchResult == null) {
             return []
         }

@@ -1,1 +1,1 @@
-(https?://)?(api.|www.)?furrynovel.(ink|xyz)/.*
+(https?://)?(api.|www.)?(furrynovel.(ink|xyz)|pixiv.net)/(!).*
