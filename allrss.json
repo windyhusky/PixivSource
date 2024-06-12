@@ -14,7 +14,8 @@
     "sourceGroup": "Furry",
     "sourceIcon": "https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png",
     "sourceName": "Pixiv",
-    "sourceUrl": "https://www.pixiv.net/novel"
+    "sourceUrl": "https://www.pixiv.net/novel",
+    "sourceComment": "Pixiv 订阅源（JS注入，代码源自【聚合搜索】）\n\n支持功能：✅添加小说至书架（配合 Pixiv 书源）\n使用方法：打开小说/系列小说，【刷新】，点击【加入书架】按钮添加小说到书架\n\n更新时间：2024-06-12\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n规则订阅：https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json"
   },
   {
     "articleStyle": 0,
@@ -30,11 +31,12 @@
     "sourceGroup": "Furry",
     "sourceIcon": "https://furrynovel.ink/apple-touch-icon.png",
     "sourceName": "Linpx NURUPO",
-    "sourceUrl": "https://furrynovel.ink/?from=read"
+    "sourceUrl": "https://furrynovel.ink/?from=read",
+    "sourceComment": "Linpx 订阅源（站方支持）\n\n支持功能：✅添加小说至书架（配合 Linpx 书源）\n使用方法：打开小说，点击底部按钮【添加到书架】添加小说到书架\n\n更新时间：2024-06-12\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n规则订阅：https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json"
   },
   {
     "articleStyle": 0,
-    "customOrder": 2,
+    "customOrder": 3,
     "enableJs": true,
     "enabled": true,
     "enabledCookieJar": true,
@@ -45,11 +47,12 @@
     "sourceGroup": "Furry",
     "sourceIcon": "https://www.furrynovel.com/static/icon.png",
     "sourceName": "兽人控小说 NURUPO",
-    "sourceUrl": "https://www.furrynovel.com/zh/?utm_source=reader"
+    "sourceUrl": "https://www.furrynovel.com/zh/?utm_source=reader",
+    "sourceComment": "兽人控小说站订阅源（站方支持）\n\n支持功能：✅添加小说至书架（配合【通用书源】）\n使用方法：打开小说，点击底部按钮【添加到书架】添加小说到书架\n\n更新时间：2024-06-12\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n规则订阅：https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json"
   },
   {
     "articleStyle": 0,
-    "customOrder": 4,
+    "customOrder": 5,
     "enableJs": true,
     "enabled": true,
     "enabledCookieJar": false,
@@ -63,7 +66,7 @@
   },
   {
     "articleStyle": 0,
-    "customOrder": 5,
+    "customOrder": 6,
     "enableJs": true,
     "enabled": true,
     "enabledCookieJar": false,
@@ -77,7 +80,7 @@
   },
   {
     "articleStyle": 0,
-    "customOrder": 6,
+    "customOrder": 7,
     "enableJs": true,
     "enabled": true,
     "enabledCookieJar": true,
@@ -91,7 +94,7 @@
   },
   {
     "articleStyle": 0,
-    "customOrder": 7,
+    "customOrder": 8,
     "enableJs": true,
     "enabled": true,
     "enabledCookieJar": true,
