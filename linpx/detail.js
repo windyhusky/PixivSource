@@ -19,7 +19,6 @@ function objParse(obj) {
         }
         let id = baseUrl.match(new RegExp("\\d+"))[0]
         res = util.getAjaxJson(util.urlNovelUrl(id))
-        // return res // 不能 return
     } else {
         res = JSON.parse(res)
         if (res.total === 0) {
