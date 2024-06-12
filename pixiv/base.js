@@ -54,6 +54,9 @@ function publicFunc() {
 
         return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
     }
+    u.searchNovel = (novelName, page) =>{
+        return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
+    }
     // 完全匹配用户名
     u.urlSearchUser = (username) => {
         return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
