@@ -61,7 +61,7 @@ function publicFunc() {
         return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
     }
     u.urlCoverUrl = function (pxImgUrl) {
-        return `https://pximg.furrynovel.ink/?url=${pxImgUrl}`
+        return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
     }
     u.urlIllustOriginalUrl = function (illustId) {
         // 使用 pixiv.cat 获取插图
