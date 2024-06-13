@@ -1,1 +1,1 @@
-(https?://)?(www.)?pixiv.net/novel/.*
+(https?://)?(www.)?pixiv.net/(ajax/|)novel/.*

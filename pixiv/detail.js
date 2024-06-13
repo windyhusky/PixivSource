@@ -16,7 +16,7 @@ function objParse(obj) {
     let isHtml = result.startsWith("<!DOCTYPE html>")
     if (isHtml) {
         var novelId = 0
-        let isSeries = baseUrl.match(new RegExp("pixiv.net/novel/series"))
+        let isSeries = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel/series"))
         if (isSeries) {
             let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
             java.log(`系列ID：${seriesId}`)
@@ -30,7 +30,7 @@ function objParse(obj) {
             res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
             // java.log(JSON.stringify(res))
         } else {
-            let isNovel = baseUrl.match(new RegExp("pixiv.net/novel"))
+            let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
             if (isNovel) {
                 novelId = baseUrl.match(new RegExp("\\d+"))[0]
                 java.log(`小说ID：${novelId}`)
