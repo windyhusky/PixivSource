@@ -51,8 +51,7 @@ function objParse(obj) {
     let info = {}
     info.author = res.userName
     info.name = res.title
-    // info.tags = []
-    // info.tags = res.tags.tags
+    info.tags = res.userNovels[`${res.id}`].tags
     info.wordCount = res.wordCount
     info.latestChapter = null
     info.desc = res.description
@@ -62,13 +61,13 @@ function objParse(obj) {
     if (res.seriesNavData === undefined || res.seriesNavData === null) {
         info.name = res.title
         info.catalog = util.urlNovelDetailed(res.id)
-        // res.tags.unshift('单本')
+        info.tags.unshift('单本')
     } else {
         info.name = res.seriesNavData.title
         info.catalog = util.urlSeries(res.seriesNavData.id)
-        // res.tags.unshift('长篇')
+        info.tags.unshift('长篇')
     }
-    // info.classes = res.tags.join(",")
+    info.tags = info.tags.join(",")
 
     return info
 })();
