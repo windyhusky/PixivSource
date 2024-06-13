@@ -37,14 +37,23 @@ function objParse(obj) {
 
 
 
-    // 替换 Pixiv 章节标记符号 [newpage] [chapter:]
-    content = content.replace(`[newpage]`, ``)
+    // 替换 Pixiv 分页标记符号 [newpage]
+    matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
+    if (matched) {
+        for (let i in matched){
+            java.log(matched[i])
+            content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}`)
+        }
+    }
+
+    // 替换 Pixiv 章节标记符号 [chapter:]
     matched = content.match(RegExp(/\[chapter:(.*?)]/gm))
     if (matched) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
             let chapter = matched2[1].trim()
-            content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}${chapter}<p>​<p/>`)
+            // content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}${chapter}<p>​<p/>`)
+            content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
         }
     }
 

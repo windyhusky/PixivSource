@@ -31,8 +31,7 @@ function objParse(obj) {
     }
 
     // // 获取 [pixivimage:] 的图片链接
-    let rex = /\[pixivimage:(\d+)]/gm
-    let matched = content.match(RegExp(rex))
+    let matched = content.match(RegExp(/\[pixivimage:(\d+)]/gm))
     if (matched) {
         for (let i in matched) {
             let illustId = matched[i].match(RegExp("\\d+"))
@@ -43,25 +42,28 @@ function objParse(obj) {
     }
 
 
-    // 替换 Pixiv 章节标记符号 [newpage] [chapter:]
-    content = content.replace(`[newpage]`, ``)
+    // 替换 Pixiv 分页标记符号 [newpage]
+    matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
+    if (matched) {
+        for (let i in matched){
+            java.log(matched[i])
+            content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}`)
+        }
+    }
+
+    // 替换 Pixiv 章节标记符号 [chapter:]
     matched = content.match(RegExp(/\[chapter:(.*?)]/gm))
     if (matched) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
             let chapter = matched2[1].trim()
-            // 章节编号
-            // if ((chapter.includes("第"))||(chapter.includes("章"))){
-            //     // chapter = `${chapter}`
-            // } else {
-            //     chapter = `第${Number(i)+1}节 ${chapter}`
-            // }
-            content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}${chapter}<p>​<p/>`)
+            // content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}${chapter}<p>​<p/>`)
+            content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
         }
     }
 
     // 替换 Pixiv 跳转页面标记符号 [[jump:]]
-    matched = content.match(/\[jump:(\d+)]/gm)
+    matched = content.match(RegExp(/\[jump:(\d+)]/gm))
     if (matched) {
         for (let i in matched) {
             let page = matched[i].match(/\d+/)
@@ -70,7 +72,7 @@ function objParse(obj) {
     }
 
     // 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
-    matched = content.match(/\[\[jumpuri:(.*?)>(.*?)]]/gm)
+    matched = content.match(RegExp(/\[\[jumpuri:(.*?)>(.*?)]]/gm))
     if (matched) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[\[jumpuri:(.*?)>(.*?)]]/m)
@@ -88,7 +90,7 @@ function objParse(obj) {
     }
 
     // 替换 Pixiv 注音标记符号 [[rb: > ]]
-    matched = content.match(/\[\[rb:(.*?)>(.*?)]]/gm)
+    matched = content.match(RegExp(/\[\[rb:(.*?)>(.*?)]]/gm))
     if (matched) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[\[rb:(.*?)>(.*?)]]/m)
