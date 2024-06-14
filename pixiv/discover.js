@@ -38,7 +38,12 @@ function handNovels(novels) {
         }
 
         if (novel.seriesId === undefined || novel.seriesId === null) {
-            novel.tags = novel.userNovels[`${novel.id}`].tags
+            try{
+                novel.tags = novel.userNovels[`${novel.id}`].tags
+            }
+            catch (e) {
+
+            }
             novel.tags.unshift("单本")
         } else {
             let userAllWorks = util.getAjaxJson(util.urlUserAllWorks(novel.userId)).body
@@ -158,7 +163,7 @@ function handlerFollowLatest() {
     }
 }
 
-// 关注列表
+// 追更列表 todo：优化逻辑
 function handlerWatchList(){
     return () => {
         let resp = JSON.parse(result)
