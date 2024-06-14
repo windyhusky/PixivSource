@@ -18,7 +18,7 @@ Pixiv 是以插图、漫画、小说为中心的允许 R18 内容的艺术网站
 **如若不看 R18 小说，则可以忽略 4, 5 两条要求**
 
 
-## 本书源使用方法
+## 一、导入书源/订阅源
 
 ### 0.下载阅读 3.0 版本
 
@@ -30,11 +30,20 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 请查看[阅读是什么软件？阅读简介](./Legado.md)
 
-### 2.导入 Pixiv 的书源
-
+### 2.导入 Pixiv 的书源&订阅源
+#### 2.1导入 Pixiv 的书源
 请查看[如何获取书源？导入书源？](./Import.md)
 
 >https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
+> https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json
+
+
+#### 2.2导入 Pixiv 的订阅源
+请查看[如何网络导入订阅源](./Import2.md)
+
+> https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
+> https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
+
 
 ### 3.登录Pixiv账号
 
@@ -99,7 +108,54 @@ Pixiv 的手机版网页只能修改【浏览限制】
 手机浏览器登录P站后，可以开启【桌面版网站】修改，这里不在复述。
 
 
-## 故障排查
+## 二、添加小说，尽情使用
+### 1.阅读内部搜索
+支持搜索小说名称、作者名称、小说标签（【曾经支持】现暂未修复）
+![img](./pic/SearchViaLegado.png)
+
+### 2.发现更多小说
+发现：推荐作者、最新小说
+
+### 3.添加链接
+首页打开【添加网址】，粘贴小说链接
+![img](./pic/AddBookViaUrl1.png)
+![img](./pic/AddBookViaUrl2.png)
+![img](./pic/AddBookViaUrl3.png)
+此处使用正则匹配网址，支持 Linpx 多个域名多个格式的网址链接
+
+正则规则：
+`(https?://)?(www.)?pixiv.net/(ajax/|)novel/.*`
+```
+【需要代理】Pixiv 小说链接
+https://www.pixiv.net/novel/show.php?id=20063566
+
+【需要代理】Pixiv 系列小说链接
+https://www.pixiv.net/novel/series/8054073
+
+【需要代理】Pixiv 小说 ajax 请求链接
+https://www.pixiv.net/ajax/novel/20063566
+```
+
+
+### 4.订阅源添加小说
+导入 Linpx 订阅源，配合书源使用体验更好
+#### 4.1 替代阅读搜索
+受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx 或 Pixiv 的功能。网站的搜索功能更加全面。
+![img](./pic/Searc**h**ViaLinpx.png)
+
+
+#### 4.2 替代阅读发现
+阅读内部浏览器内打开 Pixiv，即可使用 Pixv 书源未完成的功能
+![img](./pic/ConvertPixivUrl.png)
+![img](./pic/ConvertPixivUrl2.png)
+
+
+#### 4.3 添加小说至书架
+在阅读内部浏览器内打开 Pixiv 小说/系列小说页面，【刷新】，点击【加入书架】按钮添加小说到书架
+![img](./pic/AddBookViaSubscripiton.png)
+
+
+## 三、故障排查
 ### 1.确定书源可以正常使用
 
 回到主页，点击【**放大镜图标】**，搜索【龙胶危机】测试书源能否正常使用，以及R18设置是否打开。
