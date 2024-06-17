@@ -7,7 +7,7 @@
       "layout_flexBasisPercent":0.3
     }
   },
-    {
+  {
     "title": "追更列表",
     "url": "https://www.pixiv.net/ajax/watch_list/novel?p={{page}}&new=1&lang=zh",
     "style": {
