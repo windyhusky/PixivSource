@@ -163,7 +163,7 @@ function handlerFollowLatest() {
     }
 }
 
-// 追更列表 todo：优化逻辑
+// 追更列表
 function handlerWatchList(){
     return () => {
         let resp = JSON.parse(result)
@@ -171,7 +171,7 @@ function handlerWatchList(){
         let seriesList = resp.body.thumbnails.novelSeries
         for (let i in seriesList) {
             let novelId = seriesList[i].latestEpisodeId  // 使用最后一篇小说，重新请求并合并小说
-            novels.push(util.getAjaxJson(util.urlNovelDetailed(novelId)).body)
+            novels.push(util.getAjaxJson(util.urlNovelDetailed(novelId)).body.userNovels[`${novelId}`])
         }
         return util.formatNovels(handNovels(combineNovels(novels)))
     }
