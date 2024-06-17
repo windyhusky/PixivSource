@@ -95,14 +95,9 @@ function publicFunc() {
         }
 
         let time = new Date(str);
-
         let Y = time.getFullYear() + "年";
         let M = addZero(time.getMonth() + 1) + "月";
         let D = addZero(time.getDate()) + "日";
-        // let h = addZero(time.getHours()) + "时";
-        // let m = addZero(time.getMinutes()) + "分";
-
-        // return Y + M + D + h + m;
         return Y + M + D;
     }
 

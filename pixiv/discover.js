@@ -38,12 +38,6 @@ function handNovels(novels) {
         }
 
         if (novel.seriesId === undefined || novel.seriesId === null) {
-            try{
-                novel.tags = novel.userNovels[`${novel.id}`].tags
-            }
-            catch (e) {
-
-            }
             novel.tags.unshift("单本")
         } else {
             let userAllWorks = util.getAjaxJson(util.urlUserAllWorks(novel.userId)).body

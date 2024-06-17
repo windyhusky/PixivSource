@@ -10,25 +10,21 @@ function objParse(obj) {
     })
 }
 
-function urlCoverUrl(url) {
-    return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
+//不可使用 base 内的 util.getAjaxJson() 替换
+function getAjaxJson(url) {
+    return util.cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    })
 }
 
-// 完全匹配用户名
-function urlSearchUser(username) {
-    return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
-}
-
-function urlUserAllWorks(uid) {
-    return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
-}
-
-function urlUserNovels(uid, nidList) {
-    return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+function getWebviewJson(url, parseFunc) {
+    return util.cacheGetAndSet(url, () => {
+        let html = java.webView(null, url, null)
+        return JSON.parse(parseFunc(html))
+    })
 }
 
 var first = true;
-
 // 存储seriesID·
 var seriesSet = {
     keywords: "Pixiv:Search",
@@ -86,8 +82,12 @@ function combineNovels(novels) {
 //查询作者
 function handNovels(novels) {
     novels.forEach(novel => {
+        if (novel.latestEpisodeId) {
+            // 搜索系列小说一定会返回 novel.latestEpisodeId
+            novel.seriesId = novel.id
+            novel.id = novel.latestEpisodeId
+        }
         novel.tags = novel.tags || []
-
         if (!novel.seriesId) {
             novel.tags.unshift("单本")
         } else {
@@ -119,21 +119,10 @@ function handNovels(novels) {
             }
         }
     })
-    util.debugLog(`处理小说完成:${JSON.stringify(novels)}`)
+    util.debugFunc(() => {
+        java.log(`处理小说完成`)
+    })
     return novels
-}
-
-function getAjaxJson(url) {
-    return util.cacheGetAndSet(url, () => {
-        return JSON.parse(java.ajax(url))
-    })
-}
-
-function getWebviewJson(url, parseFunc) {
-    return util.cacheGetAndSet(url, () => {
-        let html = java.webView(null, url, null)
-        return JSON.parse(parseFunc(html))
-    })
 }
 
 function isLogin() {
@@ -146,7 +135,7 @@ function getUserNovels(username) {
         return []
     }
 
-    let html = java.ajax(urlSearchUser(username))
+    let html = java.ajax(util.urlSearchUser(username))
     // java.log(html)
     // 仅匹配有投稿作品的用户
     let match = html.match(new RegExp("/users/\\d+/novels"))
@@ -168,9 +157,9 @@ function getUserNovels(username) {
     let page = Number(java.get("page"))
 
     uidList.forEach(id => {
-        let r = getAjaxJson(urlUserAllWorks(id))
+        let r = getAjaxJson(util.urlUserAllWorks(id))
         let novelsId = Object.keys(r.body.novels).reverse().slice((page - 1) * 20, page * 20)
-        let url = urlUserNovels(id, novelsId)
+        let url = util.urlUserNovels(id, novelsId)
         util.debugFunc(() => {
             java.log(`发送获取作者小说的Ajax请求:${url}`)
         })
@@ -189,15 +178,10 @@ function getUserNovels(username) {
     return novels
 }
 
-
 (() => {
     //作者 TAG 书名都要支持
     let resp = JSON.parse(result);
-    util.debugLog("搜索页结果已返回")
     let novelsList = getUserNovels(String(java.get("key")))
-    util.debugLog("已解析用户小说结果")
     novelsList = novelsList.concat(resp.body.novel.data)
-    let formatNovels = util.formatNovels(handNovels(novelsList))
-    util.debugLog("返回处理好的结果给阅读APP")
-    return formatNovels
+    return util.formatNovels(handNovels(combineNovels(novelsList)))
 })();

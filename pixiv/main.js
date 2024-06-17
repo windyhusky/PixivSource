@@ -85,7 +85,6 @@ function handNovels(novels) {
         if (novel.tags === undefined || novel.tags === null) {
             novel.tags = []
         }
-
         if (novel.seriesId === undefined || novel.seriesId === null) {
             novel.tags.unshift("单本")
         } else {
