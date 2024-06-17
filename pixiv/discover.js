@@ -13,11 +13,6 @@ function objParse(obj) {
 
 // 存储seriesID 有BUG无法处理翻页
 var seriesSet = new Set();
-
-function urlCoverUrl(url) {
-    return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
-}
-
 // 将多个长篇小说解析为一本书
 function combineNovels(novels) {
     return novels.filter(novel => {
@@ -36,16 +31,6 @@ function combineNovels(novels) {
     })
 }
 
-function getAjaxJson(url) {
-    return util.cacheGetAndSet(url, () => {
-        return JSON.parse(java.ajax(url))
-    })
-}
-
-function urlUserAllWorks(uid) {
-    return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
-}
-
 function handNovels(novels) {
     novels.forEach(novel => {
         if (novel.tags === undefined || novel.tags === null) {
@@ -53,12 +38,18 @@ function handNovels(novels) {
         }
 
         if (novel.seriesId === undefined || novel.seriesId === null) {
+            try{
+                novel.tags = novel.userNovels[`${novel.id}`].tags
+            }
+            catch (e) {
+
+            }
             novel.tags.unshift("单本")
         } else {
-            let userAllWorks = getAjaxJson(urlUserAllWorks(novel.userId)).body
+            let userAllWorks = util.getAjaxJson(util.urlUserAllWorks(novel.userId)).body
             for (let series of userAllWorks.novelSeries) {
                 if (series.id === novel.seriesId) {
-                    // let series = getAjaxJson(util.urlSeries(novel.seriesId)).body
+                    // let series = util.getAjaxJson(util.urlSeries(novel.seriesId)).body
                     novel.textCount = series.publishedTotalCharacterCount
                     novel.url = series.cover.urls["480mw"]
                     novel.title = series.title
@@ -68,7 +59,7 @@ function handNovels(novels) {
                     try{
                         // 发送请求获取第一章 获取标签与简介
                         if (novel.tags.length === 0 || novel.description === "") {
-                            let firstNovel = getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                            let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
                             if (novel.tags.length === 0) {
                                 novel.tags = firstNovel.tags.tags.map(item => item.tag)
                             }
@@ -109,6 +100,10 @@ function handlerFactory() {
     if (baseUrl.indexOf("/follow_latest") !== -1) {
         return handlerFollowLatest()
     }
+
+    if (baseUrl.indexOf("/watch_list") !== -1) {
+        return handlerWatchList()
+    }
 }
 
 function handlerFollowing() {
@@ -126,6 +121,7 @@ function handlerFollowing() {
     }
 }
 
+// 推荐小说
 function handlerRecommend() {
     return () => {
         let res = JSON.parse(result)
@@ -146,6 +142,7 @@ function handlerNoLogin() {
     }
 }
 
+// 收藏小说
 function handlerBookMarks() {
     return () => {
         let resp = JSON.parse(result).body.works
@@ -158,6 +155,7 @@ function handlerBookMarks() {
     }
 }
 
+//关注作者，近期小说
 function handlerFollowLatest() {
     return () => {
         let resp = JSON.parse(result)
@@ -165,6 +163,19 @@ function handlerFollowLatest() {
     }
 }
 
+// 追更列表
+function handlerWatchList(){
+    return () => {
+        let resp = JSON.parse(result)
+        let novels = []
+        let seriesList = resp.body.thumbnails.novelSeries
+        for (let i in seriesList) {
+            let novelId = seriesList[i].latestEpisodeId  // 使用最后一篇小说，重新请求并合并小说
+            novels.push(util.getAjaxJson(util.urlNovelDetailed(novelId)).body.userNovels[`${novelId}`])
+        }
+        return util.formatNovels(handNovels(combineNovels(novels)))
+    }
+}
 
 (() => {
     return handlerFactory()()

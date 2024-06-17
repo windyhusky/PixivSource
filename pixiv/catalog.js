@@ -1,5 +1,4 @@
 @js:
-
 var util = objParse(String(java.get("util")))
 
 function objParse(obj) {
@@ -17,7 +16,7 @@ function seriesHandler(res) {
     let seriesID = res.seriesNavData.seriesId
     let allChaptersCount = (() => {
         let result = util.cacheGetAndSet(util.urlSeries(seriesID), () => {
-            return JSON.parse(java.ajax(util.urlSeries(seriesID)))
+            return util.getAjaxJson(util.urlSeries(seriesID))
         }).body.total
         util.debugFunc(() => {
             java.log(`本目录一共有:${result} 章节`);
@@ -29,7 +28,7 @@ function seriesHandler(res) {
     function sendAjaxForGetChapters(lastIndex) {
         let url = util.urlSeriesNovels(seriesID, limit, lastIndex)
         res = util.cacheGetAndSet(url, () => {
-            return JSON.parse(java.ajax(url))
+            return util.getAjaxJson(url)
         })
         res = res.body.page.seriesContents
         res.forEach(v => {

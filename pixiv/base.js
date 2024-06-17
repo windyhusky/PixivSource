@@ -20,6 +20,17 @@ function publicFunc() {
         }
         return JSON.parse(v)
     }
+    u.getAjaxJson = (url) => {
+        return util.cacheGetAndSet(url, () => {
+            return JSON.parse(java.ajax(url))
+        })
+    }
+    u.getWebviewJson = (url, parseFunc) => {
+        return util.cacheGetAndSet(url, () => {
+            let html = java.webView(null, url, null)
+            return JSON.parse(parseFunc(html))
+        })
+    }
     u.debugFunc = (func) => {
         if (String(source.getVariable()) === "debug") {
             func()
@@ -43,13 +54,36 @@ function publicFunc() {
 
         return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
     }
+    u.searchNovel = (novelName, page) =>{
+        return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
+    }
+    // 完全匹配用户名
+    u.urlSearchUser = (username) => {
+        return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
+    }
+    u.urlUserAllWorks = (uid) => {
+        return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
+    }
+    u.urlUserNovels = (uid, nidList) => {
+        return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    }
+
+    u.urlIllustDetailed = (illustId) => {
+        return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
+    }
+    u.urlSeriesIllusts = (seriesId) => {
+        return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
+    }
+    u.urlCoverUrl = (url) => {
+        return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
+    }
 
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
             novel.detailedUrl = util.urlNovelDetailed(novel.id)
             const time = this.dateFormat(novel.updateDate);
             novel.tags = novel.tags.join(",")
-            novel.coverUrl = urlCoverUrl(novel.url)
+            novel.coverUrl = util.urlCoverUrl(novel.url)
             novel.description += `\n更新时间:${time}`
         })
         return novels
