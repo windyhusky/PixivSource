@@ -172,7 +172,6 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 
 # TODO
-- Pixiv 系列小说 专用书源
 - ~~Linpx 系列小说 专用书源~~
 - 兽人控小说站：书源（搜索，发现）
 
@@ -188,5 +187,6 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 - ✅ Pixiv 书源：添加网址加入书架；订阅源添加到书架
 - ✅ Pixiv 书源：追更列表 https://github.com/windyhusky/PixivSource/issues/14
 - ☑️ Pixiv 书源：每日每周排行榜 https://github.com/windyhusky/PixivSource/issues/13
+- ✅ Pixiv 系列小说 专用书源
 </details>
 

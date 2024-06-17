@@ -87,11 +87,14 @@ function handNovels(novels) {
             novel.seriesId = novel.id
             novel.id = novel.latestEpisodeId
         }
-        novel.tags = novel.tags || []
-        if (!novel.seriesId) {
+
+        if (novel.tags === undefined || novel.tags === null) {
+            novel.tags = []
+        }
+        if (novel.seriesId === undefined || novel.seriesId === null) {
             novel.tags.unshift("单本")
         } else {
-            let userAllWorks = getAjaxJson(urlUserAllWorks(novel.userId)).body
+            let userAllWorks = getAjaxJson(util.urlUserAllWorks(novel.userId)).body
             for (let series of userAllWorks.novelSeries) {
                 if (series.id === novel.seriesId) {
                     // let series = getAjaxJson(util.urlSeries(novel.seriesId)).body
