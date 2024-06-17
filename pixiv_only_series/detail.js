@@ -55,6 +55,7 @@ function objParse(obj) {
     info.latestChapter = null
     info.desc = res.description
     info.coverUrl = res.coverUrl
+    info.catalogUrl = util.urlNovelDetailed(res.id)
 
     if (res.seriesNavData === undefined || res.seriesNavData === null) {
         info.name = res.title
