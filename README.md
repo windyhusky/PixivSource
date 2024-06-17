@@ -48,7 +48,7 @@
 | 书源      | 状态 | 获取小说 | 支持P站特性 | 实现阅读功能 |
 | --------- | --- | ------ | ---------- | ------------ |
 | Pixiv     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 小说插画 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
-| Linpx     | ⭕️ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 小说插画 | ❌ 搜索 ⭕️ 发现 ✅ 添加网址 ✅ 订阅源 |
+| Linpx     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 小说插画 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 | 兽人小说站 | ❌ | ⭕️ 部分 | ✅ 单篇 ✅ 系列 ❌ 小说插画 | ❌ 搜索 ❌ 发现 ✅ 添加网址 ✅ 订阅源 |
 | 通用书源   | ✅ | ✅ 全网 |  | ✅ 搜索 🈚️ 发现 ✅ 添加网址 ✅ 订阅源 |
 
@@ -147,7 +147,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 <details>
 <summary>  专用教程 </summary>
 
-## 专用教程 [@FurryNovels](https://t.me/FurryNovels)
+## 专用教程 [@FurryReading](https://t.me/FurryReading)
 ### 1. [Pixiv 书源的导入与使用](./doc/Pixiv.md)
 ### 2. [Linpx 书源的导入与使用](./doc/Linpx.md)
 </details>
