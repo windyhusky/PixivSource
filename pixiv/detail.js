@@ -25,14 +25,14 @@ function objParse(obj) {
                 return JSON.parse(java.ajax(url))
             })
             novelId = res.body.thumbnails.novel[0].id
-            java.log(`小说ID：${novelId}`)
+            java.log(`首篇小说ID：${novelId}`)
             res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
             // java.log(JSON.stringify(res))
         } else {
             let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
             if (isNovel) {
                 novelId = baseUrl.match(new RegExp("\\d+"))[0]
-                java.log(`小说ID：${novelId}`)
+                java.log(`匹配小说ID：${novelId}`)
                 res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
                 // java.log(JSON.stringify(res))
             } else {
@@ -46,7 +46,7 @@ function objParse(obj) {
             return []
         }
     }
-
+    // java.log(JSON.stringify(res))
     let info = {}
     info.author = res.userName
     info.name = res.title
@@ -55,7 +55,6 @@ function objParse(obj) {
     info.latestChapter = null
     info.desc = res.description
     info.coverUrl = res.coverUrl
-    info.catalogUrl = util.urlNovelDetailed(res.id)
 
     if (res.seriesNavData === undefined || res.seriesNavData === null) {
         info.name = res.title
