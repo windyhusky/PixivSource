@@ -37,25 +37,17 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ```
 
 #### 1.打开【订阅】页面，点击右上角【设置】
-
-![img](pic/SubscriptionPage.png)
+![img](pic/ImportRssSourceViaUrl1.png)
 
 #### 2.点击右上角的三点菜单，选择【网络导入】
-
-![img](pic/SubscriptionWebImport.png)
+![img](pic/ImportRssSourceViaUrl2.png)
 
 #### 3.粘贴订阅源链接，点击确定
-
-![img](pic/SubscriptionAdding.png)
+![img](pic/ImportRssSourceViaUrl4.png)
 
 #### 4.导入完成并启用订阅源
-
-![img](pic/SubscriptionPage.png)
-
+![img](pic/InportRssSourceFinished.png)
 **无法网络导入时，请尝试开启代理，或过段时间重试**
-
-![img](pic/SubscriptionFinished.png)
-
 
 ### D.Schema 链接导入最方便【适用于书源提供方】
 大多一键导入书源/订阅源，都是采用了这种方式

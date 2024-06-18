@@ -55,15 +55,21 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 #### 3.2登录Pixiv账号
 
-**登录你的账号，登录成功后，点击右上角的对勾**
+我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录
+![img](./pic/PixivLoginIn.png)
 
+或者 我的-书源管理-编辑 Pixiv 书源-登录
+
+![img](https://telegra.ph/file/238b6ef145e4098c616f3.png)
+
+**登录你的账号，登录成功后，点击右上角的对勾**
 ![img](https://telegra.ph/file/477498dc3c3cf229981d0.png)
 
-**如果需要验证码，请更换梯子，或过段时间再次尝试**
+**如果需要验证码，请更换代理，或过段时间再次尝试**
 
 
 
-### 4.开启Pixiv的R18设置
+### 4.开启 Pixiv 的 R18 设置
 
 #### 如果你之前已经开启了则可以跳过第4步
 
@@ -74,9 +80,6 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 **请注意，最好使用【电脑版网页】进行此项设定。**
 
 阅读内部打开一般就是电脑版网页
-
-![img](https://telegra.ph/file/238b6ef145e4098c616f3.png)
-
 
 
 #### ①[Pixiv 个人资料设置](https://www.pixiv.net/setting_profile.php) - 个人资料内容 - 出生年份
@@ -110,18 +113,22 @@ Pixiv 的手机版网页只能修改【浏览限制】
 
 ## 二、添加小说，尽情使用
 ### 1.阅读内部搜索
-支持搜索小说名称、作者名称、小说标签（【曾经支持】现暂未修复）
+支持搜索小说名称、系列小说名称（使用系列小说书源）、作者名称、小说标签
 ![img](./pic/SearchViaLegado.png)
 
 ### 2.发现更多小说
-发现：推荐作者、最新小说
+发现：关注作者、追更列表、推荐小说、收藏小说
 
-### 3.添加链接
+![img](./pic/DiscoverPixiv.jpg)
+![img](./pic/DiscoverPixivFallowingAuthor.png)
+
+### 3.添加网址
 首页打开【添加网址】，粘贴小说链接
 ![img](./pic/AddBookViaUrl1.png)
 ![img](./pic/AddBookViaUrl2.png)
+(这里懒得换图片了)
 ![img](./pic/AddBookViaUrl3.png)
-此处使用正则匹配网址，支持 Linpx 多个域名多个格式的网址链接
+此处使用正则匹配网址，支持 Pixiv 多个域名多个格式的网址链接
 
 正则规则：
 `(https?://)?(www.)?pixiv.net/(ajax/|)novel/.*`
@@ -140,45 +147,42 @@ https://www.pixiv.net/ajax/novel/20063566
 ### 4.订阅源添加小说
 导入 Linpx 订阅源，配合书源使用体验更好
 #### 4.1 替代阅读搜索
-受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx 或 Pixiv 的功能。网站的搜索功能更加全面。
-![img](./pic/Searc**h**ViaLinpx.png)
+受阅读设计的限制，阅读内部搜索不可能完全支持 Pixiv 的搜索功能。网站的搜索功能更加全面。
+![img](./pic/SearchViaPixiv.png)
 
 
 #### 4.2 替代阅读发现
-阅读内部浏览器内打开 Pixiv，即可使用 Pixv 书源未完成的功能
-![img](./pic/ConvertPixivUrl.png)
-![img](./pic/ConvertPixivUrl2.png)
+阅读内部浏览器内打开 Pixiv，即可使用 Pixiv 书源未完成的功能，如排行榜等功能
+![img](./pic/PixivNovelRanking.png)
 
 
 #### 4.3 添加小说至书架
 在阅读内部浏览器内打开 Pixiv 小说/系列小说页面，【刷新】，点击【加入书架】按钮添加小说到书架
-![img](./pic/AddBookViaSubscripiton.png)
-
+![img](./pic/AddBookViaPixiv1.png)
+添加小说到书架
+![img](./pic/AddBookViaPixiv2.png)
+添加系列小说到书架
 
 ## 三、故障排查
 ### 1.确定书源可以正常使用
-
 回到主页，点击【**放大镜图标】**，搜索【龙胶危机】测试书源能否正常使用，以及R18设置是否打开。
 
 #### A.如果搜索结果不唯一，说明大功告成！
-
 ![img](https://telegra.ph/file/7a33b98d43b378f0ab59f.png)
 
 
 #### B.如果只有这一个搜索结果
-
 ![img](https://telegra.ph/file/af038f28cb1c88b43912f.png)
 
 说明你的R18设置没有打开，请再回到第4步修改相关设置
 
 
 #### 3.如果没有搜索结果，请检查一下内容：
-
 **⓪检查 Pixiv 书源是否导入**
 
-**①检查 Pixiv 书源是否启用**
+**①检查 Pixiv 书源是否启用** 
 
-**②检查代理是否可用**
+**②检查代理是否可用**  
 
 **③检查阅读软件是否走了代理**
 
@@ -188,11 +192,8 @@ https://www.pixiv.net/ajax/novel/20063566
 
 
 ### 2.图片无法正常显示
-
 #### 解决措施：关闭替换净化
-
-![img](https://telegra.ph/file/c91258bc36af99210c162.png)
-
+![img](./pic/ReplaceTurnOff.png)
 
 
-## 本教程由兽人小说频道 [@FurryNovels](https://t.me/FurryNovels) 提供
+## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供

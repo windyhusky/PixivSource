@@ -47,10 +47,10 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 ### 2.发现更多小说
 发现：推荐作者、最新小说
 
-![img](./pic/Discover.png)
-![img](./pic/DiscoverNewNovels.png)
+![img](./pic/DiscoverLinpx.png)
+![img](./pic/DiscoverLinpxNewNovels.png)
 
-### 3.添加链接
+### 3.添加网址
 首页打开【添加网址】，粘贴小说链接
 ![img](./pic/AddBookViaUrl1.png)
 ![img](./pic/AddBookViaUrl2.png)
@@ -90,13 +90,13 @@ https://www.pixiv.net/novel/show.php?id=20063566
 
 #### 4.2 Pixiv 链接转换
 阅读内部浏览器内打开 Linpx，搜索栏中粘贴 Pixiv 小说链接，进入对应页面，即可添加小说到书架
-![img](./pic/ConvertPixivUrl.png)
-![img](./pic/ConvertPixivUrl2.png)
+![img](./pic/LinpxConvertPixivUrl1.png)
+![img](./pic/LinpxConvertPixivUrl2.png)
 
 
 #### 4.3 添加小说至书架
 在阅读内部浏览器内打开 Linpx 小说页面，即可添加小说到书架
-![img](./pic/AddBookViaSubscripiton.png)
+![img](./pic/AddBookViaLinpx.png)
 
 
 ## 三、故障排查
@@ -126,4 +126,4 @@ https://www.pixiv.net/novel/show.php?id=20063566
 ![img](./pic/ReplaceTurnOff.png)
 
 
-## 本教程由兽人小说频道 [@FurryNovels](https://t.me/FurryNovels) 提供
+## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
