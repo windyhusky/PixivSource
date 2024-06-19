@@ -82,18 +82,23 @@ function combineNovels(novels) {
 //查询作者
 function handNovels(novels) {
     novels.forEach(novel => {
-        if (novel.latestEpisodeId) {
-            // 搜索系列小说一定会返回 novel.latestEpisodeId
-            novel.seriesId = novel.id
-            novel.id = novel.latestEpisodeId
-        }
-
         if (novel.tags === undefined || novel.tags === null) {
             novel.tags = []
         }
-        if (novel.seriesId === undefined || novel.seriesId === null) {
+        if (novel.isOneshot !== false) {
+            // novel.isOneshot === true 单篇小说
+            novel.seriesId = undefined
+            novel.id = novel.novelId
+            novel.name = novel.latestChapter = novel.title
             novel.tags.unshift("单本")
+
         } else {
+            // novel.isOneshot === false 则为 series 系列小说
+            novel.seriesId = novel.id
+            // novel.id = novel.latestEpisodeId  //
+            novel.name = novel.title
+            novel.textCount = novel.publishedWordCount
+
             let userAllWorks = getAjaxJson(util.urlUserAllWorks(novel.userId)).body
             for (let series of userAllWorks.novelSeries) {
                 if (series.id === novel.seriesId) {
