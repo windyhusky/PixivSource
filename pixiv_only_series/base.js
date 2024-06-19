@@ -81,10 +81,15 @@ function publicFunc() {
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
             novel.detailedUrl = util.urlNovelDetailed(novel.id)
-            const time = this.dateFormat(novel.updateDate);
+            novel.name = novel.title
+            novel.author = novel.userName
             novel.tags = novel.tags.join(",")
-            novel.coverUrl = util.urlCoverUrl(novel.url)
+            novel.textCount = novel.wordCount
+            novel.description = novel.caption
+            // const time = this.dateFormat(novel.updateDate);
+            const time = this.dateFormat(novel.updateDateTime);
             novel.description += `\n更新时间:${time}`
+            novel.coverUrl = util.urlCoverUrl(novel.url)
         })
         return novels
     }

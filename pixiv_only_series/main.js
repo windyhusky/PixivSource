@@ -85,6 +85,12 @@ function handNovels(novels) {
         if (novel.tags === undefined || novel.tags === null) {
             novel.tags = []
         }
+        // 最大化使用搜索活得的数据
+        novel.textCount = novel.publishedWordCount
+        novel.url = novel.cover.urls["480mw"]
+        novel.description = novel.caption
+        // novel.tags = novel.tags
+
         if (novel.isOneshot !== false) {
             // novel.isOneshot === true 单篇小说
             novel.seriesId = undefined
@@ -102,12 +108,13 @@ function handNovels(novels) {
             let userAllWorks = getAjaxJson(util.urlUserAllWorks(novel.userId)).body
             for (let series of userAllWorks.novelSeries) {
                 if (series.id === novel.seriesId) {
-                    // let series = getAjaxJson(util.urlSeries(novel.seriesId)).body
-                    novel.textCount = series.publishedTotalCharacterCount
-                    novel.url = series.cover.urls["480mw"]
-                    novel.title = series.title
-                    novel.tags = series.tags
-                    novel.description = series.caption
+                    let series = getAjaxJson(util.urlSeries(novel.seriesId)).body
+                    novel.id = series.firstNovelId
+                    // novel.textCount = series.publishedTotalCharacterCount
+                    // novel.url = series.cover.urls["480mw"]
+                    // novel.title = series.title
+                    // novel.tags = series.tags
+                    // novel.description = series.caption
 
                     // 发送请求获取第一章 获取标签与简介
                     if (novel.tags.length === 0 || novel.description === "") {
@@ -191,5 +198,6 @@ function getUserNovels(username) {
     let resp = JSON.parse(result);
     let novelsList = getUserNovels(String(java.get("key")))
     novelsList = novelsList.concat(resp.body.novel.data)
-    return util.formatNovels(handNovels(combineNovels(novelsList)))
+    // return util.formatNovels(handNovels(combineNovels(novelsList)))
+    return util.formatNovels(handNovels(novelsList))
 })();
