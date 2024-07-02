@@ -1,0 +1,143 @@
+{
+  "error": false,
+  "body": {
+    "novel": {
+      "data": [
+        {
+          "id": "10004217",
+          "title": "龙族不屈",
+          "titleCaptionTranslation": null,
+          "cover": {
+            "urls": {
+              "240mw": "https://i.pximg.net/c/240x480_80/novel-cover-master/img/2023/01/31/02/38/31/sci10004217_3142e6674d886129c26b6f44f59db167_master1200.jpg",
+              "480mw": "https://i.pximg.net/c/480x960/novel-cover-master/img/2023/01/31/02/38/31/sci10004217_3142e6674d886129c26b6f44f59db167_master1200.jpg",
+              "1200x1200": "https://i.pximg.net/c/1200x1200/novel-cover-master/img/2023/01/31/02/38/31/sci10004217_3142e6674d886129c26b6f44f59db167_master1200.jpg",
+              "128x128": "https://i.pximg.net/c/128x128/novel-cover-master/img/2023/01/31/02/38/31/sci10004217_3142e6674d886129c26b6f44f59db167_square1200.jpg",
+              "original": "https://i.pximg.net/novel-cover-original/img/2023/01/31/02/38/31/sci10004217_3142e6674d886129c26b6f44f59db167.jpg"
+            }
+          },
+          "tags": [
+            "R-18",
+            "龙",
+            "Drone",
+            "latex",
+            "Feral",
+            "chastity",
+            "furry",
+            "贞操锁",
+            "榨精",
+            "拘束"
+          ],
+          "xRestrict": 1,
+          "isOriginal": true,
+          "genre": "6",
+          "createDateTime": "2023-01-31T02:38:31+09:00",
+          "updateDateTime": "2023-02-24T02:43:16+09:00",
+          "userId": "34568581",
+          "userName": "罗格",
+          "profileImageUrl": "https://i.pximg.net/user-profile/img/2023/01/31/03/00/51/23958905_799cfe9484696cb84049ae49ddb50daf_50.jpg",
+          "bookmarkCount": 360,
+          "isOneshot": false,
+          "caption": "结合涩文写的自己的世界观和一些奇怪的脑洞。\n主要是讲关于Drone的内容。\n第一次写作出现错误请多包容\n感谢唐尼瑞姆和萨德哈在写作方面的指导。\nQQ860182339欢迎交流（？）",
+          "isConcluded": false,
+          "episodeCount": 9,
+          "publishedEpisodeCount": 9,
+          "latestPublishDateTime": "2023-02-24T02:43:16+09:00",
+          "latestEpisodeId": "19365437",
+          "isWatched": true,
+          "isNotifying": false,
+          "restrict": 0,
+          "textLength": 69416,
+          "wordCount": 38384,
+          "readingTime": 10412,
+          "publishedTextLength": 69416,
+          "publishedWordCount": 38384,
+          "publishedReadingTime": 10412,
+          "useWordCount": false,
+          "aiType": 1
+        }
+      ],
+      "total": 1,
+      "lastPage": 1,
+      "bookmarkRanges": [
+        {
+          "min": null,
+          "max": null
+        },
+        {
+          "min": 10000,
+          "max": null
+        },
+        {
+          "min": 5000,
+          "max": null
+        },
+        {
+          "min": 1000,
+          "max": null
+        },
+        {
+          "min": 500,
+          "max": null
+        },
+        {
+          "min": 300,
+          "max": null
+        },
+        {
+          "min": 100,
+          "max": null
+        },
+        {
+          "min": 50,
+          "max": null
+        }
+      ]
+    },
+    "relatedTags": [
+      "龙",
+      "Drone",
+      "latex",
+      "Feral",
+      "chastity",
+      "furry",
+      "贞操锁",
+      "榨精",
+      "拘束"
+    ],
+    "tagTranslation": {
+      "龙": {
+        "zh": "chinese dragon"
+      },
+      "拘束": {
+        "zh": "束缚"
+      }
+    },
+    "zoneConfig": {
+      "logo": {
+        "url": "https://pixon.ads-pixiv.net/show?zone_id=logo_side&format=js&s=1&up=1&a=25&ng=g&l=zh&uri=%2Fajax%2Fsearch%2Fnovels%2F_PARAM_&ref=www.pixiv.net&K=2472eb9f76c6a&D=5895eeb15cce5bde&ab_test_digits_first=64&uab=22&yuid=N4iAAEQ&num=6684269f683"
+      },
+      "header": {
+        "url": "https://pixon.ads-pixiv.net/show?zone_id=header&format=js&s=1&up=1&a=25&ng=g&l=zh&uri=%2Fajax%2Fsearch%2Fnovels%2F_PARAM_&ref=www.pixiv.net&K=2472eb9f76c6a&D=5895eeb15cce5bde&ab_test_digits_first=64&uab=22&yuid=N4iAAEQ&num=6684269f946"
+      },
+      "footer": {
+        "url": "https://pixon.ads-pixiv.net/show?zone_id=footer&format=js&s=1&up=1&a=25&ng=g&l=zh&uri=%2Fajax%2Fsearch%2Fnovels%2F_PARAM_&ref=www.pixiv.net&K=2472eb9f76c6a&D=5895eeb15cce5bde&ab_test_digits_first=64&uab=22&yuid=N4iAAEQ&num=6684269f779"
+      },
+      "infeed": {
+        "url": "https://pixon.ads-pixiv.net/show?zone_id=illust_search_grid&format=js&s=1&up=1&a=25&ng=g&l=zh&uri=%2Fajax%2Fsearch%2Fnovels%2F_PARAM_&ref=www.pixiv.net&K=2472eb9f76c6a&D=5895eeb15cce5bde&ab_test_digits_first=64&uab=22&yuid=N4iAAEQ&num=6684269f852"
+      }
+    },
+    "extraData": {
+      "meta": {
+        "title": "#龙族不屈の小説・SS一覧 - pixiv",
+        "description": "#龙族不屈の小説、SSは1件投稿されています。与#龙族不屈一起被添加的标签主要还有#chinese dragon、#束缚等。现在立即注册pixiv然后享受邂逅关于#龙族不屈以及各种各样的短片小说，以及作品吧!",
+        "canonical": "https://www.pixiv.net/tags/%E9%BE%99%E6%97%8F%E4%B8%8D%E5%B1%88/novels",
+        "alternateLanguages": {
+          "ja": "https://www.pixiv.net/tags/%E9%BE%99%E6%97%8F%E4%B8%8D%E5%B1%88/novels",
+          "en": "https://www.pixiv.net/en/tags/%E9%BE%99%E6%97%8F%E4%B8%8D%E5%B1%88/novels"
+        },
+        "descriptionHeader": "<a href=\"/tags/%E9%BE%99%E6%97%8F%E4%B8%8D%E5%B1%88/novels\">#龙族不屈</a>の小説、SSは1件投稿されています。与<a href=\"/tags/%E9%BE%99%E6%97%8F%E4%B8%8D%E5%B1%88/novels\">#龙族不屈</a>一起被添加的标签主要还有<a href=\"/tags/%E9%BE%99/novels\">#chinese dragon</a>、<a href=\"/tags/%E6%8B%98%E6%9D%9F/novels\">#束缚</a>等。现在立即注册pixiv然后享受邂逅关于<a href=\"/tags/%E9%BE%99%E6%97%8F%E4%B8%8D%E5%B1%88/novels\">#龙族不屈</a>以及各种各样的短片小说，以及作品吧!"
+      }
+    }
+  }
+}

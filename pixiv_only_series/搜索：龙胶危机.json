@@ -1,0 +1,197 @@
+{
+  "error": false,
+  "body": {
+    "novel": {
+      "data": [
+        {
+          "id": "1152441",
+          "title": "兽人短篇合集",
+          "titleCaptionTranslation": null,
+          "cover": {
+            "urls": {
+              "240mw": "https://i.pximg.net/c/240x480_80/novel-cover-master/img/2022/07/19/18/45/08/ci11775832_963922f7b3d36b37463af6b61f87cb57_master1200.jpg",
+              "480mw": "https://i.pximg.net/c/480x960/novel-cover-master/img/2022/07/19/18/45/08/ci11775832_963922f7b3d36b37463af6b61f87cb57_master1200.jpg",
+              "1200x1200": "https://i.pximg.net/c/1200x1200/novel-cover-master/img/2022/07/19/18/45/08/ci11775832_963922f7b3d36b37463af6b61f87cb57_master1200.jpg",
+              "128x128": "https://i.pximg.net/c/128x128/novel-cover-master/img/2022/07/19/18/45/08/ci11775832_963922f7b3d36b37463af6b61f87cb57_square1200.jpg",
+              "original": "https://i.pximg.net/novel-cover-original/img/2022/07/19/18/45/08/ci11775832_963922f7b3d36b37463af6b61f87cb57.png"
+            }
+          },
+          "tags": [
+            "唐门",
+            "唐尼瑞姆",
+            "龙族秘史",
+            "龙胶危机",
+            "胡狼的中秋",
+            "最后一只龙奴",
+            "失控的龙约",
+            "龙胶爆发",
+            "奇妙龙奴物语"
+          ],
+          "xRestrict": 1,
+          "isOriginal": true,
+          "genre": "2",
+          "createDateTime": "2019-07-22T00:52:07+09:00",
+          "updateDateTime": "2024-03-19T11:56:00+09:00",
+          "userId": "16721009",
+          "userName": "唐尼瑞姆|唐门",
+          "profileImageUrl": "https://i.pximg.net/user-profile/img/2020/10/11/09/53/13/19492813_a90a40833ab6ea8e6edbd45f7871fc60_50.jpg",
+          "bookmarkCount": 438,
+          "isOneshot": false,
+          "caption": "",
+          "isConcluded": false,
+          "episodeCount": 9,
+          "publishedEpisodeCount": 9,
+          "latestPublishDateTime": "2022-12-13T21:37:03+09:00",
+          "latestEpisodeId": "18067115",
+          "isWatched": false,
+          "isNotifying": false,
+          "restrict": 0,
+          "textLength": 93410,
+          "wordCount": 48234,
+          "readingTime": 14011,
+          "publishedTextLength": 93410,
+          "publishedWordCount": 48234,
+          "publishedReadingTime": 14011,
+          "useWordCount": false,
+          "aiType": 0,
+          "watchCount": 27
+        },
+        {
+          "id": "1105534",
+          "title": "龙胶危机",
+          "titleCaptionTranslation": null,
+          "cover": {
+            "urls": {
+              "240mw": "https://i.pximg.net/c/240x480_80/novel-cover-master/img/2024/06/20/01/25/05/sci1105534_853c27afa5f2d18972fbd9b4b24e2d94_master1200.jpg",
+              "480mw": "https://i.pximg.net/c/480x960/novel-cover-master/img/2024/06/20/01/25/05/sci1105534_853c27afa5f2d18972fbd9b4b24e2d94_master1200.jpg",
+              "1200x1200": "https://i.pximg.net/c/1200x1200/novel-cover-master/img/2024/06/20/01/25/05/sci1105534_853c27afa5f2d18972fbd9b4b24e2d94_master1200.jpg",
+              "128x128": "https://i.pximg.net/c/128x128/novel-cover-master/img/2024/06/20/01/25/05/sci1105534_853c27afa5f2d18972fbd9b4b24e2d94_square1200.jpg",
+              "original": "https://i.pximg.net/novel-cover-original/img/2024/06/20/01/25/05/sci1105534_853c27afa5f2d18972fbd9b4b24e2d94.png"
+            }
+          },
+          "tags": [
+            "R-18",
+            "dragon",
+            "furry",
+            "Transfur",
+            "中文",
+            "龙胶危机",
+            "龙胶",
+            "latex"
+          ],
+          "xRestrict": 1,
+          "isOriginal": true,
+          "genre": "6",
+          "createDateTime": "2019-04-11T16:09:13+09:00",
+          "updateDateTime": "2024-06-20T01:25:05+09:00",
+          "userId": "16721009",
+          "userName": "唐尼瑞姆|唐门",
+          "profileImageUrl": "https://i.pximg.net/user-profile/img/2020/10/11/09/53/13/19492813_a90a40833ab6ea8e6edbd45f7871fc60_50.jpg",
+          "bookmarkCount": 342,
+          "isOneshot": false,
+          "caption": "　　几千里外一颗流星坠落旦维尔研究中心附近，随之而来的是莫名的黑色液体。来自天文协会和旦维尔研究所的人开始对这块天外来物展开研究。只是这一切并没有他们想象的顺利。",
+          "isConcluded": false,
+          "episodeCount": 6,
+          "publishedEpisodeCount": 6,
+          "latestPublishDateTime": "2021-03-11T00:26:52+09:00",
+          "latestEpisodeId": "14377817",
+          "isWatched": false,
+          "isNotifying": false,
+          "restrict": 0,
+          "textLength": 149603,
+          "wordCount": 82577,
+          "readingTime": 22440,
+          "publishedTextLength": 149603,
+          "publishedWordCount": 82577,
+          "publishedReadingTime": 22440,
+          "useWordCount": false,
+          "aiType": 0,
+          "watchCount": 47
+        }
+      ],
+      "total": 2,
+      "lastPage": 1,
+      "bookmarkRanges": [
+        {
+          "min": null,
+          "max": null
+        },
+        {
+          "min": 10000,
+          "max": null
+        },
+        {
+          "min": 5000,
+          "max": null
+        },
+        {
+          "min": 1000,
+          "max": null
+        },
+        {
+          "min": 500,
+          "max": null
+        },
+        {
+          "min": 300,
+          "max": null
+        },
+        {
+          "min": 100,
+          "max": null
+        },
+        {
+          "min": 50,
+          "max": null
+        }
+      ]
+    },
+    "relatedTags": [
+      "唐门",
+      "唐尼瑞姆",
+      "龙族秘史",
+      "胡狼的中秋",
+      "最后一只龙奴",
+      "失控的龙约",
+      "龙胶爆发",
+      "奇妙龙奴物语",
+      "dragon",
+      "furry",
+      "Transfur",
+      "中文",
+      "龙胶",
+      "latex"
+    ],
+    "tagTranslation": {
+      "中文": {
+        "zh": "Chinese"
+      }
+    },
+    "zoneConfig": {
+      "logo": {
+        "url": "https://pixon.ads-pixiv.net/show?zone_id=logo_side&format=js&s=1&up=1&a=25&ng=g&l=zh&uri=%2Fajax%2Fsearch%2Fnovels%2F_PARAM_&ref=www.pixiv.net&K=2472eb9f76c6a&D=5895eeb15cce5bde&ab_test_digits_first=64&uab=22&yuid=N4iAAEQ&num=668426df330"
+      },
+      "header": {
+        "url": "https://pixon.ads-pixiv.net/show?zone_id=header&format=js&s=1&up=1&a=25&ng=g&l=zh&uri=%2Fajax%2Fsearch%2Fnovels%2F_PARAM_&ref=www.pixiv.net&K=2472eb9f76c6a&D=5895eeb15cce5bde&ab_test_digits_first=64&uab=22&yuid=N4iAAEQ&num=668426df997"
+      },
+      "footer": {
+        "url": "https://pixon.ads-pixiv.net/show?zone_id=footer&format=js&s=1&up=1&a=25&ng=g&l=zh&uri=%2Fajax%2Fsearch%2Fnovels%2F_PARAM_&ref=www.pixiv.net&K=2472eb9f76c6a&D=5895eeb15cce5bde&ab_test_digits_first=64&uab=22&yuid=N4iAAEQ&num=668426df913"
+      },
+      "infeed": {
+        "url": "https://pixon.ads-pixiv.net/show?zone_id=illust_search_grid&format=js&s=1&up=1&a=25&ng=g&l=zh&uri=%2Fajax%2Fsearch%2Fnovels%2F_PARAM_&ref=www.pixiv.net&K=2472eb9f76c6a&D=5895eeb15cce5bde&ab_test_digits_first=64&uab=22&yuid=N4iAAEQ&num=668426df123"
+      }
+    },
+    "extraData": {
+      "meta": {
+        "title": "#龙胶危机の小説・SS一覧 - pixiv",
+        "description": "#龙胶危机の小説、SSは2件投稿されています。与#龙胶危机一起被添加的标签主要还有#Chinese等。现在立即注册pixiv然后享受邂逅关于#龙胶危机以及各种各样的短片小说，以及作品吧!",
+        "canonical": "https://www.pixiv.net/tags/%E9%BE%99%E8%83%B6%E5%8D%B1%E6%9C%BA/novels",
+        "alternateLanguages": {
+          "ja": "https://www.pixiv.net/tags/%E9%BE%99%E8%83%B6%E5%8D%B1%E6%9C%BA/novels",
+          "en": "https://www.pixiv.net/en/tags/%E9%BE%99%E8%83%B6%E5%8D%B1%E6%9C%BA/novels"
+        },
+        "descriptionHeader": "<a href=\"/tags/%E9%BE%99%E8%83%B6%E5%8D%B1%E6%9C%BA/novels\">#龙胶危机</a>の小説、SSは2件投稿されています。与<a href=\"/tags/%E9%BE%99%E8%83%B6%E5%8D%B1%E6%9C%BA/novels\">#龙胶危机</a>一起被添加的标签主要还有<a href=\"/tags/%E4%B8%AD%E6%96%87/novels\">#Chinese</a>等。现在立即注册pixiv然后享受邂逅关于<a href=\"/tags/%E9%BE%99%E8%83%B6%E5%8D%B1%E6%9C%BA/novels\">#龙胶危机</a>以及各种各样的短片小说，以及作品吧!"
+      }
+    }
+  }
+}
