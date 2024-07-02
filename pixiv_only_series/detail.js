@@ -34,7 +34,7 @@ function objParse(obj) {
                 novelId = baseUrl.match(new RegExp("\\d+"))[0]
                 java.log(`匹配小说ID：${novelId}`)
                 res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
-                // java.log(JSON.stringify(res))
+                java.log(JSON.stringify(res))
             } else {
                 return []
             }
@@ -46,27 +46,22 @@ function objParse(obj) {
             return []
         }
     }
-    // todo 拆分详情部分的搜索与链接导入：
-    //   搜索：减少系列小说链接首篇数据覆盖系列数据
-    //   链接导入：获取系列数据，重新覆盖？
     // java.log(JSON.stringify(res))
     let info = {}
     info.author = res.userName
+    info.name = res.title
     info.tags = res.userNovels[`${res.id}`].tags
+    info.wordCount = res.wordCount
+    info.latestChapter = null
+    info.desc = res.description
+    info.coverUrl = res.coverUrl
     info.catalogUrl = util.urlNovelDetailed(res.id)
 
     if (res.seriesNavData === undefined || res.seriesNavData === null) {
         info.name = res.title
         info.catalog = util.urlNovelDetailed(res.id)
         info.tags.unshift('单本')
-        // info.tags = res.userNovels[`${res.id}`].tags
-        info.wordCount = res.wordCount
-        info.latestChapter = null
-        // info.desc = res.description
-        // info.coverUrl = res.coverUrl
-
     } else {
-        // 尽量少用第一章的数据覆盖系列数据
         info.name = res.seriesNavData.title
         info.catalog = util.urlSeries(res.seriesNavData.id)
         info.tags.unshift('长篇')
