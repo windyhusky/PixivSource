@@ -37,8 +37,14 @@ function publicFunc() {
         }
     }
 
+    u.urlNovelUrl = (nid) => {
+        return `https://www.pixiv.net/novel/show.php?id=${nid}`
+    }
     u.urlNovelDetailed = (nid) => {
         return `https://www.pixiv.net/ajax/novel/${nid}`
+    }
+    u.urlSeriesUrl = (seriesId) => {
+        return `https://www.pixiv.net/novel/series/${seriesId}`
     }
     u.urlSeries = (seriesId) => {
         return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
@@ -68,6 +74,10 @@ function publicFunc() {
         return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
 
+
+    u.urlIllustUrl = (illustId) => {
+        return `https://www.pixiv.net/artworks/${illustId}?lang=zh`
+    }
     u.urlIllustDetailed = (illustId) => {
         return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
     }
