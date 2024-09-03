@@ -168,6 +168,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的[网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的[网站服务](https://www.furrynovel.com)
 - 感谢 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend) 提供的 [Pixiv 图片代理功能](https://pixiv.cat)
+- 感谢 [pixiv-utils](https://github.com/AgMonk/pixiv-utils) 及 [Pixiv go 客户端](https://github.com/NateScarlet/pixiv) 整理的 Pixiv Web API
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
 
 
