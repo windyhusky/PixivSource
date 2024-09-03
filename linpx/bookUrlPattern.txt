@@ -1,1 +1,3 @@
-(https?://)?(api.|www.)?(furrynovel.(ink|xyz)|pixiv.net)/(!).*
+(https?://)?(api\.|www\.)?(furrynovel\.(ink|xyz))/(pn|pixiv/novel)/\d+(/cache)?
+
+(https?://)?(api\.|www\.)?((furrynovel\.(ink|xyz))|pixiv\.net)(/ajax)?/(pn|pixiv/novel|novel)/(show\.php\?id=|series/)?\d+(/cache)?
