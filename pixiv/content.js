@@ -22,24 +22,24 @@ function objParse(obj) {
     let hasEmbeddedImages = res.textEmbeddedImages !== undefined && res.textEmbeddedImages !== null
     if (hasEmbeddedImages) {
         Object.keys(res.textEmbeddedImages).forEach((key) => {
-            // 不再使用 linpx 服务加载图片
-            // content = content.replace(`[uploadedimage:${key}]`, `<img src="https://api.furrynovel.ink/proxy/pximg?url=${res.textEmbeddedImages[key].urls.original}">`)
             content = content.replace(`[uploadedimage:${key}]`, `<img src="${res.textEmbeddedImages[key].urls.original}">`)
-
         })
     }
 
-    // // 获取 [pixivimage:] 的图片链接
-    let matched = content.match(RegExp(/\[pixivimage:(\d+)]/gm))
+    // 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
+    let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
     if (matched) {
         for (let i in matched) {
-            let illustId = matched[i].match(RegExp("\\d+"))
-            let res2 = util.getAjaxJson(util.urlIllustDetailed(illustId)).body
-            let illustOriginal = res2.urls.original
-            content = content.replace(`${matched[i]}`, `<img src="${illustOriginal}">`)
+            let illustId, order
+            let matched2 = matched[i].match(RegExp("(\\d+)-?(\\d+)"))
+            let temp = matched2[0].split("-")
+            illustId = temp[0]
+            if (temp.length === 2){
+                order = temp[1]
+            }
+            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginal(illustId, order)}">`)
         }
     }
-
 
     // 替换 Pixiv 分页标记符号 [newpage]
     matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
@@ -56,7 +56,6 @@ function objParse(obj) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
             let chapter = matched2[1].trim()
-            // content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}${chapter}<p>​<p/>`)
             content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
         }
     }

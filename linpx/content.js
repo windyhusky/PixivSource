@@ -25,17 +25,20 @@ function objParse(obj) {
         })
     }
 
-    // // 获取 [pixivimage:] 的图片链接
-    let rex = /\[pixivimage:(\d+)]/gm
-    let matched = content.match(RegExp(rex))
+    // 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
+    let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
     if (matched) {
         for (let i in matched) {
-            let illustId = matched[i].match(RegExp("\\d+"))
-            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginalUrl (illustId)}">`)
+            let illustId, order
+            let matched2 = matched[i].match(RegExp("(\\d+)-?(\\d+)"))
+            let temp = matched2[0].split("-")
+            illustId = temp[0]
+            if (temp.length >= 1) {
+                order = temp[1]
+            }
+            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginal(illustId, order)}">`)
         }
     }
-
-
 
     // 替换 Pixiv 分页标记符号 [newpage]
     matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))

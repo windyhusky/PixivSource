@@ -63,11 +63,15 @@ function publicFunc() {
     u.urlCoverUrl = function (pxImgUrl) {
         return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
     }
-    u.urlIllustOriginalUrl = function (illustId) {
+    u.urlIllustOriginal = function (illustId, order) {
         // 使用 pixiv.cat 获取插图
-        // return `https://pixiv.cat/${illustId}.png`  // 已墙不可用
-        return `https://pixiv.re/${illustId}.png`
-        // return `https://pixiv.nl/${illustId}.png`
+        let illustOriginal = `https://pixiv.re/${illustId}.png`
+        // let illustOriginal = `https://pixiv.nl/${illustId}.png`
+        if (order >= 1) {
+            illustOriginal = `https://pixiv.re/${illustId}-${order}.png`
+            // illustOriginal = `https://pixiv.nl/${illustId}-${order}.png`
+        }
+        return illustOriginal
     }
 
     util = u
