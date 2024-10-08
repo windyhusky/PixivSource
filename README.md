@@ -4,13 +4,14 @@
 ## 开源阅读 Pixiv 书源
 </div>
 
-### 类 Pixiv 网站的 [阅读 3.0 ](https://github.com/gedoor/legado) 的书源
+
+### Pixiv 等网站的 [阅读 3.0 ](https://github.com/gedoor/legado) 书源
 - [Pixiv](https://www.pixiv.net/) 是一个以插画、漫画、小说为中心的艺术网站
-- [新 Linpx](https://www.furrynovel.ink) 收录了 Pixiv 的大部分兽人小说与部分非兽人小说
+- [Linpx](https://www.furrynovel.ink) 收录了 Pixiv 的大部分兽人小说与部分非兽人小说
 - [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
 
-# 快速导入
 
+## 快速导入
 <details>
 <summary> 免代理导入地址 </summary>
 
@@ -62,7 +63,7 @@ Pixiv 特性：
   
   - ✅ 完美支持的标记符
     - ✅ `[uploadedimage:自动生成ID]` 通过上传图片添加插画
-    - ✅ `[pixivimage:作品ID]` 通过作品ID添加插画
+    - ✅ `[pixivimage:作品ID-序号]` 通过作品ID添加插画
   - ☑️ 受阅读功能限制，无法完美支持的标记符
     - ☑️ `[newpage]` 分页
     - ☑️ `[chapter:章节名称]` 添加本章标题
@@ -86,7 +87,7 @@ Pixiv 特性：
 ### 订阅源
 | 订阅源 | 状态 | 包含内容 | 订阅源 | 状态 | 包含内容 |
 | ----- | ---- | -------|----- | ---- | ------- |
-| btsrk | ✅ | 1️⃣ [Pixiv 小说页](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | ✅ | 1️⃣ [三千书源](https://shuyuan.yiove.com/) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com/) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
+| btsrk | ✅ | 1️⃣ [Pixiv 小说页](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | ✅ | 1️⃣ [三千书源](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
 - btsrk 订阅源：整合了 Pixiv、Linpx、兽人小说站、兽人控游戏索引、兽人控游戏库等网站，旨在快速访问兽人文化网站
 - books 订阅源：整合了多个分享阅读书源、订阅源等的订阅源，旨在快速导入阅读相关资源
@@ -98,6 +99,7 @@ Pixiv 特性：
 <details>
 <summary> Android 版 </summary>
 
+### Android 版
 **点击链接，下载安装包并安装，推荐使用共存版**
 https://miaogongzi.lanzout.com/b01rgkhhe
 
@@ -115,6 +117,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 <details>
 <summary> 苹果 iOS 版 </summary>
 
+### 苹果 iOS 版
 官方正在进行 [iOS版](https://github.com/gedoor/YueDuFlutter) 的开发，[近期在TF测试](https://gedoor.github.io/download) ，最新消息请见：[Telegram 频道(iOS版)](https://t.me/legado_ios)
 
 | 下载站点                                              | 版本           | 备注             |
@@ -132,24 +135,20 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 </details>
 
 
-## 相关教程
+## 使用教程
 <details>
-<summary>  通用教程 </summary>
+<summary> 使用教程 </summary>
 
-### 1. [阅读是什么软件？阅读简介](./doc/Legado.md)
-### 2. [如何获取书源？导入书源？](./doc/Import.md)
-### 3. [如何导入订阅源？](./doc/Import2.md)
-### 4. [如何设置 Webdav 备份？](./doc/WebdavBackup.md)
+### 通用教程
+> #### 1. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
+> #### 2. [如何获取书源？导入书源？](./doc/Import.md)
+> #### 3. [如何导入订阅源？](./doc/Import2.md)
+> #### 4. [如何设置 Webdav 备份？](./doc/WebdavBackup.md)
 更多内容请查看[官方使用说明](https://www.yuque.com/legado/wiki/xz)
-</details>
 
-
-<details>
-<summary>  专用教程 </summary>
-
-## 专用教程 [@FurryReading](https://t.me/FurryReading)
-### 1. [Pixiv 书源的导入与使用](./doc/Pixiv.md)
-### 2. [Linpx 书源的导入与使用](./doc/Linpx.md)
+### 专用教程 [@FurryReading](https://t.me/FurryReading)
+> #### 1. [Pixiv 书源的导入与使用](./doc/Pixiv.md)
+> #### 2. [Linpx 书源的导入与使用](./doc/Linpx.md)
 </details>
 
 
@@ -168,7 +167,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的[网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的[网站服务](https://www.furrynovel.com)
 - 感谢 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend) 提供的 [Pixiv 图片代理功能](https://pixiv.cat)
-- 感谢 [pixiv-utils](https://github.com/AgMonk/pixiv-utils) 及 [Pixiv go 客户端](https://github.com/NateScarlet/pixiv) 整理的 Pixiv Web API
+- 感谢 [Pixiv-utils](https://github.com/AgMonk/pixiv-utils) 及 [Pixiv go 客户端](https://github.com/NateScarlet/pixiv) 整理的 Pixiv Web API
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
 
 

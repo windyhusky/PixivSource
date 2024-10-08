@@ -3,7 +3,7 @@
 ## ⓪ 订阅源来源
 
 **请查看[书源获取方式](./Import.md)，一般二者会同时提供**
-- 官方频道 [@legado_channels](https://t.me/legado_channels)
+- [Legado｜开源阅读 | 频道](https://t.me/legado_channels)
 - [源仓库](https://www.yckceo.com/yuedu/rss/index.html)
 - [阅读论坛](https://legado.cn/forum-rssSources-1.html)
 
@@ -16,23 +16,23 @@
 ## ① 导入订阅源 [官方教程](https://www.yuque.com/legado/wiki/grqch2)
 
 ### O.其他导入方式
-
-**A.文件导入更简单**
-
-**B.规则订阅易更新**
-
+> **A.文件导入更简单**
+> 
+> **B.规则订阅易更新**
+> 
 **上述导入方式大同小异，故不再复述，请查看[书源获取方式](./Import.md)**
 
 
 ### C.网络导入也方便
 
 请【**开启代理**】后，复制下面的【订阅书源】链接
-
+- btsrk 订阅源
 ```
-Linpx 订阅源
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
+```
 
-阅读资源分享 订阅源
+- 书源分享 订阅源
+```
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ```
 
@@ -47,7 +47,9 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 
 #### 4.导入完成并启用订阅源
 ![img](pic/InportRssSourceFinished.png)
+
 **无法网络导入时，请尝试开启代理，或过段时间重试**
+
 
 ### D.Schema 链接导入最方便【适用于书源提供方】
 大多一键导入书源/订阅源，都是采用了这种方式
