@@ -1,8 +1,7 @@
 ## [Linpx 书源的导入与使用](https://telegra.ph/FurryNovelsReading-05-04-07)
-> Linpx 书源的导入与使用
+
+> Linpx 书源的导入与使用 
 > https://telegra.ph/FurryNovelsReading-05-04-07
-
-
 
 
 ### [Linpx](http://www.furrynovel.xyz/) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**。
@@ -84,6 +83,7 @@ https://www.pixiv.net/novel/show.php?id=20063566
 
 ### 4.订阅源添加小说
 导入 Linpx 订阅源，配合书源使用体验更好
+
 #### 4.1 替代阅读搜索
 受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx 或 Pixiv 的功能。网站的搜索功能更加全面。
 
@@ -102,7 +102,8 @@ https://www.pixiv.net/novel/show.php?id=20063566
 
 
 ## 三、故障排查
-
+> 详见：[故障排查与处理](./TroubleShoot.md)
+> 
 ### 1.确认书源可以正常使用
 
 回到第一页，点击【放大镜】，搜索【龙胶危机】，测试书源能否正常使用

@@ -89,3 +89,6 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 #### 微信公众号：**开源阅读**、开源阅读软件、阅读Reader
 #### QQ 频道：[阅读](https://pd.qq.com/s/8qxylhj2s)
 #### Telegram：[Legado｜开源阅读](https://t.me/legado_channels) 、 [Legado Beta](https://t.me/Legado_Beta)
+
+
+### 本页内容由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 整理

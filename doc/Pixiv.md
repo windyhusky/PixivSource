@@ -1,7 +1,7 @@
 ## [Pixiv 书源的导入与使用](https://telegra.ph/FurryNovelsReading-01-04-07)
 
 > Pixiv 书源的导入与使用
-> https://telegra.ph/FurryNovelsReading-01-04-07)
+> https://telegra.ph/FurryNovelsReading-01-04-07
 >
 > Pixiv 書源的導入與使用（繁體版）
 > https://telegra.ph/FurryNovelsReading-02-04-07
@@ -146,7 +146,7 @@ https://www.pixiv.net/ajax/novel/20063566
 
 ### 4.订阅源添加小说
 
-导入 Linpx 订阅源，配合书源使用体验更好
+导入 Pixiv 订阅源，配合书源使用体验更好
 
 #### 4.1 替代阅读搜索
 
@@ -167,7 +167,8 @@ https://www.pixiv.net/ajax/novel/20063566
 添加系列小说到书架
 
 ## 三、故障排查
-
+> 详见：[故障排查与处理](./TroubleShoot.md)
+>
 ### 1.确定书源可以正常使用
 
 回到主页，点击【**放大镜图标】**，搜索【龙胶危机】测试书源能否正常使用，以及R18设置是否打开。
