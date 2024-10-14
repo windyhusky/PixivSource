@@ -37,14 +37,8 @@ function publicFunc() {
         }
     }
 
-    u.urlNovelUrl = (nid) => {
-        return `https://www.pixiv.net/novel/show.php?id=${nid}`
-    }
     u.urlNovelDetailed = (nid) => {
         return `https://www.pixiv.net/ajax/novel/${nid}`
-    }
-    u.urlSeriesUrl = (seriesId) => {
-        return `https://www.pixiv.net/novel/series/${seriesId}`
     }
     u.urlSeries = (seriesId) => {
         return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
@@ -67,17 +61,13 @@ function publicFunc() {
     u.urlSearchUser = (username) => {
         return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
     }
-    u.urlUserAllWorks = (uid) => {
-        return `https://www.pixiv.net/ajax/user/${uid}/profile/all?lang=zh`
+    u.urlUserAllWorks = (uesrId) => {
+        return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`
     }
-    u.urlUserNovels = (uid, nidList) => {
-        return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    u.urlUserNovels = (nid, nidList) => {
+        return `https://www.pixiv.net/ajax/user/${nid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
 
-
-    u.urlIllustUrl = (illustId) => {
-        return `https://www.pixiv.net/artworks/${illustId}?lang=zh`
-    }
     u.urlIllustDetailed = (illustId) => {
         return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
     }
@@ -87,19 +77,26 @@ function publicFunc() {
     u.urlCoverUrl = (url) => {
         return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
     }
+    u.urlIllustOriginal = function (illustId, order) {
+        let illustOriginal = util.getAjaxJson(util.urlIllustDetailed(illustId)).body.urls.original
+        if (order >= 1) {
+            illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
+        }
+        return illustOriginal
+    }
 
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
-            novel.detailedUrl = util.urlNovelDetailed(novel.id)
             novel.name = novel.title
             novel.author = novel.userName
             novel.tags = novel.tags.join(",")
-            novel.textCount = novel.wordCount
-            novel.description = novel.caption
-            // const time = this.dateFormat(novel.updateDate);
-            const time = this.dateFormat(novel.updateDateTime);
-            novel.description += `\n更新时间:${time}`
+            // novel.textCount = novel.textCount
+            novel.lastChapter = ""
             novel.coverUrl = util.urlCoverUrl(novel.url)
+            novel.detailedUrl = util.urlNovelDetailed(novel.id)
+            const time = this.dateFormat(novel.updateDate);
+            novel.description = `${novel.description}\n更新时间:${time}`
+            //novel.description= `书名：${novel.name}\n作者：${novel.author}\n标签：${novel.tags}\n更新：${time}\n简介：${novel.description}`
         })
         return novels
     }

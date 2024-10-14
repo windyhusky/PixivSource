@@ -34,7 +34,7 @@ function objParse(obj) {
                 novelId = baseUrl.match(new RegExp("\\d+"))[0]
                 java.log(`匹配小说ID：${novelId}`)
                 res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
-                java.log(JSON.stringify(res))
+                // java.log(JSON.stringify(res))
             } else {
                 return []
             }
@@ -46,6 +46,8 @@ function objParse(obj) {
             return []
         }
     }
+
+
     // java.log(JSON.stringify(res))
     let info = {}
     info.author = res.userName

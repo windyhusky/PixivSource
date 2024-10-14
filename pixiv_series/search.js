@@ -85,7 +85,7 @@ function handNovels(novels) {
         if (novel.tags === undefined || novel.tags === null) {
             novel.tags = []
         }
-        // 最大化使用搜索活得的数据
+        // 最大化使用搜索获得的数据
         novel.textCount = novel.publishedWordCount
         novel.url = novel.cover.urls["480mw"]
         novel.description = novel.caption
