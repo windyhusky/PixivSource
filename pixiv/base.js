@@ -85,7 +85,7 @@ function publicFunc() {
             illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
         }
         return illustOriginal
-        }
+    }
 
     u.formatNovels = function (novels) {
         novels.forEach(novel => {

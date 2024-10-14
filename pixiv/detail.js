@@ -46,6 +46,8 @@ function objParse(obj) {
             return []
         }
     }
+
+
     // java.log(JSON.stringify(res))
     let info = {}
     info.author = res.userName
