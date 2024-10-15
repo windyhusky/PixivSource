@@ -33,6 +33,7 @@ function seriesHandler(res) {
         res = res.body.page.seriesContents
         res.forEach(v => {
             v.chapterUrl = util.urlNovelDetailed(v.id)
+            v.updateDate = util.timeFormat(v.uploadTimestamp)
         })
         return res;
     }
@@ -49,14 +50,18 @@ function seriesHandler(res) {
     return returnList
 }
 
-function aloneHandler() {
-    return [{title: book.name, chapterUrl: baseUrl}]
+function aloneHandler(res) {
+    return [{
+        title: book.name,
+        chapterUrl: baseUrl,
+        updateDate:`${res.createDate.slice(0, 10)} ${res.createDate.slice(11, 19)}`
+    }]
 }
 
 (() => {
     let res = JSON.parse(result).body
     if (res.seriesNavData === null || res.seriesNavData === undefined) {
-        return aloneHandler()
+        return aloneHandler(res)
     }
     return seriesHandler(res)
 })()

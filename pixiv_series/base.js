@@ -118,7 +118,19 @@ function publicFunc() {
         let D = addZero(time.getDate()) + "日";
         return Y + M + D;
     }
-
+    u.timeFormat = function (int) {
+        let addZero = function (num) {
+            return num < 10 ? '0' + num : num;
+        }
+        let time = new Date(int * 1000);
+        let Y = time.getFullYear()
+        let M = addZero(time.getMonth() + 1)
+        let D = addZero(time.getDate())
+        let h = addZero(time.getHours())
+        let m = addZero(time.getMinutes())
+        let s = addZero(time.getSeconds())
+        return `${Y}-${M}-${D} ${h}:${m}:${s}`
+    }
 
     util = u
     java.put("util", objStringify(u))
