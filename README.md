@@ -150,6 +150,6 @@
 - ☑️ Pixiv 书源：每日每周排行榜 https://github.com/windyhusky/PixivSource/issues/13
 - ✅ Pixiv 系列小说书源 
 - ✅ Pixiv 书源：完善字数统计 https://github.com/windyhusky/PixivSource/issues/18
-- ☑️ Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/18
+- ☑️ Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/17
 </details>
 

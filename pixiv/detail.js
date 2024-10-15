@@ -89,7 +89,7 @@ function objParse(obj) {
         info.textCount = res2.publishedTotalCharacterCount
         info.readingTime = `${res2.publishedReadingTime / 60} 分钟`
         info.latestChapter = ""
-        info.description = res2.caption
+        info.description = `${res2.caption}\n当前章节简介：\n${info.description}`
         // info.coverUrl = res2.firstEpisode.url   // 第一章封面
         info.coverUrl = res2.cover.urls["480mw"] // 240mw, 480mw, 1200x1200, 128x128, original
         info.catalog = util.urlSeries(info.seriesId)

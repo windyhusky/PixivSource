@@ -96,6 +96,10 @@ function publicFunc() {
             novel.lastChapter = ""
             novel.coverUrl = util.urlCoverUrl(novel.url)
             novel.detailedUrl = util.urlNovelDetailed(novel.id)
+            //novel.updateDate = novel.updateDate  // 兼容系列搜索
+            if (novel.updateDate === undefined){
+                novel.updateDate = novel.updateDateTime
+            }
             const time = this.dateFormat(novel.updateDate);
             novel.description = `${novel.description}\n更新时间:${time}`
             //novel.description= `书名：${novel.name}\n作者：${novel.author}\n标签：${novel.tags}\n更新：${time}\n简介：${novel.description}`

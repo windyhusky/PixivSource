@@ -60,6 +60,8 @@ function publicFunc() {
     // 完全匹配用户名
     u.urlSearchUser = (username) => {
         return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
+        // return `https://www.pixiv.net/search_user.php?nick=${encodeURI(username)}&s_mode=s_usr`
+        // return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr`
     }
     u.urlUserAllWorks = (uesrId) => {
         return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`
@@ -94,6 +96,10 @@ function publicFunc() {
             novel.lastChapter = ""
             novel.coverUrl = util.urlCoverUrl(novel.url)
             novel.detailedUrl = util.urlNovelDetailed(novel.id)
+            //novel.updateDate = novel.updateDate  // 兼容系列搜索
+            if (novel.updateDate === undefined){
+                novel.updateDate = novel.updateDateTime
+            }
             const time = this.dateFormat(novel.updateDate);
             novel.description = `${novel.description}\n更新时间:${time}`
             //novel.description= `书名：${novel.name}\n作者：${novel.author}\n标签：${novel.tags}\n更新：${time}\n简介：${novel.description}`
