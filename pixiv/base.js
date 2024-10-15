@@ -89,11 +89,16 @@ function publicFunc() {
 
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
+            novel.name = novel.title
+            novel.author = novel.userName
+            novel.tags = novel.tags.join(",")
+            // novel.textCount = novel.textCount
+            novel.lastChapter = ""
+            novel.coverUrl = util.urlCoverUrl(novel.url)
             novel.detailedUrl = util.urlNovelDetailed(novel.id)
             const time = this.dateFormat(novel.updateDate);
-            novel.tags = novel.tags.join(",")
-            novel.coverUrl = util.urlCoverUrl(novel.url)
-            novel.description += `\n更新时间:${time}`
+            novel.description = `${novel.description}\n更新时间:${time}`
+            //novel.description= `书名：${novel.name}\n作者：${novel.author}\n标签：${novel.tags}\n更新：${time}\n简介：${novel.description}`
         })
         return novels
     }

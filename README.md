@@ -130,11 +130,9 @@
 
 
 # TODO
-- 修复 Pixiv 书源的搜索作者功能
-- 修复 Linpx 书源的搜索作者功能
-- Pixiv 书源：完善字数统计 https://github.com/windyhusky/PixivSource/issues/18
-- Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/18
-- 修复 Linpx 推荐作者的小说
+- Pixiv 书源：修复搜索作者
+- Linpx 书源：修复搜索作者
+- Linpx 书源：修复推荐作者
 - ~~Linpx 系列小说 专用书源~~
 - ~~兽人控小说站：书源（搜索，发现）~~
 
@@ -143,13 +141,15 @@
 
 - ✅ Pixiv 订阅源
 - ✅ 兽人控小说站订阅源
-- ✅ Pixiv 书源：关注作者最新小说（按照时间排序关注作者的小说) https://github.com/windyhusky/PixivSource/issues/11
+- ✅ Pixiv 书源：关注作者最新小说（按照时间排序) https://github.com/windyhusky/PixivSource/issues/11
 - ✅ Linpx 书源：推荐作者的小说
-- ✅ Pixiv 书源：通过作品ID添加的插画 [pixivimage:123-1] 
-- ✅ Linpx 书源：通过作品ID添加的插画 [pixivimage:123-1] （使用 pixiv.cat ）
+- ✅ Pixiv 书源：通过作品ID添加插画 [pixivimage:123-1] 
+- ✅ Linpx 书源：通过作品ID添加插画 [pixivimage:123-1] （使用 pixiv.cat ）
 - ✅ Pixiv 书源：添加网址加入书架；订阅源添加到书架
 - ✅ Pixiv 书源：追更列表 https://github.com/windyhusky/PixivSource/issues/14
 - ☑️ Pixiv 书源：每日每周排行榜 https://github.com/windyhusky/PixivSource/issues/13
 - ✅ Pixiv 系列小说书源 
+- ✅ Pixiv 书源：完善字数统计 https://github.com/windyhusky/PixivSource/issues/18
+- ☑️ Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/18
 </details>
 
