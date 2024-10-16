@@ -151,5 +151,6 @@
 - ✅ Pixiv 系列小说书源 
 - ✅ Pixiv 书源：完善字数统计 https://github.com/windyhusky/PixivSource/issues/18
 - ☑️ Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/17
+- ✅ Pixiv & Linpx 书源：目录页添加小说更新时间
 </details>
 
