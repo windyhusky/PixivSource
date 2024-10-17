@@ -11,18 +11,18 @@ function objParse(obj) {
 }
 
 //不可使用 base 内的 util.getAjaxJson() 替换
-function getAjaxJson(url) {
-    return util.cacheGetAndSet(url, () => {
-        return JSON.parse(java.ajax(url))
-    })
-}
-
-function getWebviewJson(url, parseFunc) {
-    return util.cacheGetAndSet(url, () => {
-        let html = java.webView(null, url, null)
-        return JSON.parse(parseFunc(html))
-    })
-}
+// function getAjaxJson(url) {
+//     return util.cacheGetAndSet(url, () => {
+//         return JSON.parse(java.ajax(url))
+//     })
+// }
+//
+// function getWebviewJson(url, parseFunc) {
+//     return util.cacheGetAndSet(url, () => {
+//         let html = java.webView(null, url, null)
+//         return JSON.parse(parseFunc(html))
+//     })
+// }
 
 var first = true;
 // 存储seriesID·
@@ -105,10 +105,10 @@ function handNovels(novels) {
             novel.name = novel.title
             novel.textCount = novel.publishedWordCount
 
-            let userAllWorks = getAjaxJson(util.urlUserAllWorks(novel.userId)).body
+            let userAllWorks = util.getAjaxJson(util.urlUserAllWorks(novel.userId)).body
             for (let series of userAllWorks.novelSeries) {
                 if (series.id === novel.seriesId) {
-                    let series = getAjaxJson(util.urlSeries(novel.seriesId)).body
+                    let series = util.getAjaxJson(util.urlSeries(novel.seriesId)).body
                     novel.id = series.firstNovelId
                     // novel.textCount = series.publishedTotalCharacterCount
                     // novel.url = series.cover.urls["480mw"]
@@ -118,7 +118,7 @@ function handNovels(novels) {
 
                     // 发送请求获取第一章 获取标签与简介
                     if (novel.tags.length === 0 || novel.description === "") {
-                        let firstNovel = getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                        let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
                         if (novel.tags.length === 0) {
                             novel.tags = firstNovel.tags.tags.map(item => item.tag)
                         }
@@ -172,13 +172,13 @@ function getUserNovels(username) {
     let page = Number(java.get("page"))
 
     uidList.forEach(id => {
-        let r = getAjaxJson(util.urlUserAllWorks(id))
+        let r = util.getAjaxJson(util.urlUserAllWorks(id))
         let novelsId = Object.keys(r.body.novels).reverse().slice((page - 1) * 20, page * 20)
         let url = util.urlUserNovels(id, novelsId)
         util.debugFunc(() => {
             java.log(`发送获取作者小说的Ajax请求:${url}`)
         })
-        let userNovels = getWebviewJson(url, html => {
+        let userNovels = util.getWebviewJson(url, html => {
             return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
         }).body
         // 获取对应的小说 该序列是按照id排序
