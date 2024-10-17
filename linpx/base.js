@@ -98,9 +98,7 @@ function publicFunc() {
         return `${Y}-${M}-${D} ${h}:${m}:${s}`
     }
     u.timeTextFormat = function (text) {
-        let time = text.slice(0, 10) + text.slice(11, 19)
-        // java.log(`${time}`)
-        return time
+        return `${text.slice(0, 10)} ${text.slice(11, 19)}`
     }
 
     util = u

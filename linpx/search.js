@@ -102,26 +102,31 @@ function combineNovels(novels) {
 // 将小说的封面规则与详情地址替换
 function formatNovels(novels) {
     novels.forEach(novel => {
+        // novel.createDate = novel.createDate
+        novel.textLength = novel.length
+        novel.description = novel.desc
         // novel.detailedUrl = `https://api.furrynovel.ink/pixiv/novel/${novel.id}`
         novel.detailedUrl = util.urlNovelUrl(novel.id)
         if (novel.seriesId !== undefined && novel.seriesId !== null) {
             novel.title = novel.seriesTitle
             novel.length = null
 
+            java.log(`正在获取系列小说：${novel.seriesId}`)
             let series = util.getAjaxJson(util.urlSeriesUrl(novel.seriesId))
             // 后端目前没有系列的coverUrl字段
             // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.imageUrl}`
             // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.novels[0].coverUrl}`
             novel.coverUrl = util.urlCoverUrl(series.novels[0].coverUrl)
+
             if (series.caption === "") {
                 let firstNovels = util.getAjaxJson(util.urlNovelsDetailed([series.novels[0].id]))
                 if (firstNovels.length > 0) {
-                    novel.desc = firstNovels[0].desc
+                    novel.description = firstNovels[0].desc
                 } else {
-                    novel.desc = "该小说可能部分章节因为权限或者被删除无法查看"
+                    novel.description = "该小说可能部分章节因为权限或者被删除无法查看"
                 }
             } else {
-                novel.desc = series.caption
+                novel.description = series.caption
             }
 
             //如果没有标签 取第一章的tag
@@ -148,6 +153,8 @@ function formatNovels(novels) {
         }
 
         novel.tags = novel.tags.join(",")
+        novel.time = util.dateFormat(novel.createDate)
+        novel.description = `${novel.description}\n更新时间：${novel.time}`
     })
     return novels
 }

@@ -86,35 +86,28 @@ function handNovels(novels) {
             novel.tags = []
         }
         // 最大化使用搜索获得的数据
-        novel.textCount = novel.publishedWordCount
+        novel.textCount = novel.textLength
         novel.url = novel.cover.urls["480mw"]
         novel.description = novel.caption
         // novel.tags = novel.tags
 
-        if (novel.isOneshot !== false) {
-            // novel.isOneshot === true 单篇小说
+        if (novel.isOneshot === true) {  //单篇小说
             novel.seriesId = undefined
             novel.id = novel.novelId
             novel.name = novel.latestChapter = novel.title
             novel.tags.unshift("单本")
 
-        } else {
-            // novel.isOneshot === false 则为 series 系列小说
-            novel.seriesId = novel.id
-            // novel.id = novel.latestEpisodeId  //
+        } else {  // 系列小说
+            novel.seriesId = novel.id  // 真正的系列小说id
+            // novel.id = novel.latestEpisodeId  // 最近一篇
+            // novel.lastChapter = this.getAjaxJson(this.urlNovelDetailed(novel.id)).body.title
             novel.name = novel.title
-            novel.textCount = novel.publishedWordCount
 
             let userAllWorks = util.getAjaxJson(util.urlUserAllWorks(novel.userId)).body
             for (let series of userAllWorks.novelSeries) {
                 if (series.id === novel.seriesId) {
                     let series = util.getAjaxJson(util.urlSeries(novel.seriesId)).body
                     novel.id = series.firstNovelId
-                    // novel.textCount = series.publishedTotalCharacterCount
-                    // novel.url = series.cover.urls["480mw"]
-                    // novel.title = series.title
-                    // novel.tags = series.tags
-                    // novel.description = series.caption
 
                     // 发送请求获取第一章 获取标签与简介
                     if (novel.tags.length === 0 || novel.description === "") {

@@ -57,6 +57,9 @@ function publicFunc() {
     u.searchNovel = (novelName, page) =>{
         return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
     }
+    u.searchSeries = (seriesName, page) => {
+        return`https://www.pixiv.net/ajax/search/novels/${encodeURI(seriesName)}?word=${encodeURI(seriesName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
+    }
     // 完全匹配用户名
     u.urlSearchUser = (username) => {
         return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
@@ -92,17 +95,44 @@ function publicFunc() {
             novel.name = novel.title
             novel.author = novel.userName
             novel.tags = novel.tags.join(",")
-            // novel.textCount = novel.textCount
-            novel.lastChapter = ""
-            novel.coverUrl = util.urlCoverUrl(novel.url)
-            novel.detailedUrl = util.urlNovelDetailed(novel.id)
-            //novel.updateDate = novel.updateDate  // 兼容系列搜索
-            if (novel.updateDate === undefined){
+
+            if (novel.isOneshot === undefined) {  //单篇小说
+                // novel.textCount = novel.textCount
+                // novel.createDate = novel.createDate
+                // novel.updateDate = novel.updateDate
+                // novel.description = novel.description
+                novel.lastChapter = novel.title
+                novel.coverUrl = novel.url
+                novel.aiType = novel.aiType - 1
+
+            } else {  // 兼容系列搜索
+                if (novel.isOneshot === true) {
+                    novel.id = novel.novelId  //单篇（完结？）小说
+                    novel.lastChapter = novel.title
+                    novel.aiType = novel.aiType / 2
+
+                } else {  // 真正的系列小说
+                    novel.id = novel.latestEpisodeId  // 最近一篇
+                    novel.latestPublishDate = novel.latestPublishDateTime
+                    novel.seriesId = novel.id        // 真正的系列小说id
+                    // let series = this.getAjaxJson(util.urlSeries(novel.seriesId)).body
+                    // novel.id = series.firstNovelId
+                    // novel.aiType = novel.aiType
+                }
+                novel.textCount = novel.textLength
+                novel.createDate = novel.createDateTime
                 novel.updateDate = novel.updateDateTime
+                novel.description = novel.caption
+                novel.coverUrl = novel.cover.urls["480mw"] // 240mw, 480mw, 1200x1200, 128x128, original
             }
-            const time = this.dateFormat(novel.updateDate);
-            novel.description = `${novel.description}\n更新时间:${time}`
-            //novel.description= `书名：${novel.name}\n作者：${novel.author}\n标签：${novel.tags}\n更新：${time}\n简介：${novel.description}`
+
+            novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
+            novel.detailedUrl = this.urlNovelDetailed(novel.id)
+            novel.readingTime = `${novel.readingTime / 60} 分钟`
+            const time1 = this.dateFormat(novel.createDate);
+            const time2 = this.dateFormat(novel.updateDate);
+            novel.description = `${novel.description}\n上传时间：${time1}\n更新时间：${time2}`
+            //novel.description= `书名：${novel.name}\n作者：${novel.author}\n标签：${novel.tags}\n上传：${time1}\n更新：${time2}\n简介：${novel.description}`
         })
         return novels
     }
@@ -131,9 +161,7 @@ function publicFunc() {
         return `${Y}-${M}-${D} ${h}:${m}:${s}`
     }
     u.timeTextFormat = function (text) {
-        let time = text.slice(0, 10) + text.slice(11, 19)
-        // java.log(`${time}`)
-        return time
+        return `${text.slice(0, 10)} ${text.slice(11, 19)}`
     }
 
     util = u
