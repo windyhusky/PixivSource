@@ -97,7 +97,6 @@ function objParse(obj) {
         info.updateDate = res2.updateDate
         info.totalChapterNum = res2.displaySeriesContentCount  //章节总数
         // info.language = res2.language
-        // info.publishedContentCount = res2.publishedTotalCharacterCount
         // info.displaySeriesContentCount =
         // info.total = res2.total
         // info.firstNovelId = res2.firstNovelId

@@ -111,14 +111,13 @@ function publicFunc() {
         let addZero = function (num) {
             return num < 10 ? '0' + num : num;
         }
-
         let time = new Date(str);
         let Y = time.getFullYear() + "年";
         let M = addZero(time.getMonth() + 1) + "月";
         let D = addZero(time.getDate()) + "日";
         return Y + M + D;
     }
-    u.timeFormat = function (int) {
+    u.timeStampFormat = function (int) {
         let addZero = function (num) {
             return num < 10 ? '0' + num : num;
         }
@@ -130,6 +129,11 @@ function publicFunc() {
         let m = addZero(time.getMinutes())
         let s = addZero(time.getSeconds())
         return `${Y}-${M}-${D} ${h}:${m}:${s}`
+    }
+    u.timeTextFormat = function (text) {
+        let time = text.slice(0, 10) + text.slice(11, 19)
+        // java.log(`${time}`)
+        return time
     }
 
     util = u

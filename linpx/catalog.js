@@ -17,14 +17,13 @@ function objParse(obj) {
             // v.url = `https://api.furrynovel.ink/pixiv/novel/${v.id}${cache}`
             v.url = util.urlNovelUrl(v.id)
             // v.updateDate = String(v.coverUrl.match(RegExp("\\d{4}/\\d{2}/\\d{2}")))  //fake
-            v.createDate = util.getAjaxJson(v.url).createDate
-            v.updateDate = `${v.createDate.slice(0, 10)} ${v.createDate.slice(11, 19)}`
+            v.updateDate = util.timeTextFormat(util.getAjaxJson(v.url).createDate)
         })
         return res.novels
     }
     return [{
         id: res.id,
         title: res.title,
-        updateDate:`${res.createDate.slice(0, 10)} ${res.createDate.slice(11, 19)}`
+        updateDate: util.timeTextFormat(res.createDate)
     }]
 })(result)
