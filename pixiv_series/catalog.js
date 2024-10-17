@@ -33,7 +33,7 @@ function seriesHandler(res) {
         res = res.body.page.seriesContents
         res.forEach(v => {
             v.chapterUrl = util.urlNovelDetailed(v.id)
-            v.updateDate = util.timeFormat(v.uploadTimestamp)
+            v.updateDate = util.timeStampFormat(v.uploadTimestamp)
         })
         return res;
     }
@@ -54,7 +54,7 @@ function aloneHandler(res) {
     return [{
         title: book.name,
         chapterUrl: baseUrl,
-        updateDate:`${res.createDate.slice(0, 10)} ${res.createDate.slice(11, 19)}`
+        updateDate: util.timeTextFormat(res.createDate)
     }]
 }
 
