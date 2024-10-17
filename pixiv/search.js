@@ -74,12 +74,13 @@ function handNovels(novels) {
         }
         if (novel.seriesId === undefined || novel.seriesId === null) {
             novel.tags.unshift("单本")
+            novel.latestChapter = novel.title
         } else {
             let userAllWorks = util.getAjaxJson(util.urlUserAllWorks(novel.userId)).body
             for (let series of userAllWorks.novelSeries) {
                 if (series.id === novel.seriesId) {
                     // let series = util.getAjaxJson(util.urlSeries(novel.seriesId)).body
-                    novel.textCount = series.publishedTotalCharacterCount
+                    novel.textCount = series.textLength
                     novel.url = series.cover.urls["480mw"]
                     novel.title = series.title
                     novel.tags = series.tags
