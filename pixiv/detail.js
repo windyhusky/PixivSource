@@ -22,7 +22,7 @@ function objParse(obj) {
             // 获取系列第一篇小说的 id
             let url = util.urlSeriesNovels(seriesId, 30, 0)
             res = util.cacheGetAndSet(url, () => {
-                return JSON.parse(java.ajax(url))
+                return util.getAjaxJson(url)
             })
             novelId = res.body.thumbnails.novel[0].id
             java.log(`首篇小说ID：${novelId}`)
@@ -80,7 +80,7 @@ function objParse(obj) {
         info.seriesId = res.seriesNavData.seriesId
         info.title = res.seriesNavData.title
         java.log(`${info.seriesId}，${info.title}`)
-        res2 = JSON.parse(java.ajax(util.urlSeries(res.seriesNavData.seriesId))).body
+        res2 = util.getAjaxJson(util.urlSeries(res.seriesNavData.seriesId)).body
         // java.log(JSON.stringify(res2))
         // info.title = res2.title
         // info.userName = res2.userName
