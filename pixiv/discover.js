@@ -82,38 +82,41 @@ function handlerFactory() {
     if (baseUrl.indexOf("/bookmark") !== -1) {
         return handlerBookMarks()
     }
-
     if (baseUrl.indexOf("/top") !== -1) {
         return handlerRecommend()
     }
-
-    if (baseUrl.indexOf("/following") !== -1) {
-        return handlerFollowing()
-    }
-
+    // if (baseUrl.indexOf("/following") !== -1) {
+    //     return handlerFollowing()
+    // }
     if (baseUrl.indexOf("/follow_latest") !== -1) {
         return handlerFollowLatest()
     }
-
     if (baseUrl.indexOf("/watch_list") !== -1) {
         return handlerWatchList()
     }
 }
 
-function handlerFollowing() {
+function handlerNoLogin() {
     return () => {
-        let novelList = []
-        JSON.parse(result).body.users
-            .filter(user => user.novels.length > 0)
-            .map(user => user.novels)
-            .forEach(novels => {
-                return novels.forEach(novel => {
-                    novelList.push(novel)
-                })
-            })
-        return util.formatNovels(handNovels(novelList))
+        java.longToast("此功能需要在书源登录后才能使用")
+        return []
     }
 }
+// //关注作者（按顺序）
+// function handlerFollowing() {
+//     return () => {
+//         let novelList = []
+//         JSON.parse(result).body.users
+//             .filter(user => user.novels.length > 0)
+//             .map(user => user.novels)
+//             .forEach(novels => {
+//                 return novels.forEach(novel => {
+//                     novelList.push(novel)
+//                 })
+//             })
+//         return util.formatNovels(handNovels(novelList))
+//     }
+// }
 
 // 推荐小说
 function handlerRecommend() {
@@ -126,13 +129,6 @@ function handlerRecommend() {
         let list = novels.filter(novel => nidSet.has(String(novel.id)))
         // java.log(`过滤结果:${JSON.stringify(list)}`)
         return util.formatNovels(handNovels(combineNovels(list)))
-    }
-}
-
-function handlerNoLogin() {
-    return () => {
-        java.longToast("此功能需要在书源登录后才能使用")
-        return []
     }
 }
 
