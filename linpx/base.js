@@ -74,6 +74,64 @@ function publicFunc() {
         return illustOriginal
     }
 
+    u.formatNovels = function (novels) {
+        novels.forEach(novel => {
+            // novel.createDate = novel.createDate
+            novel.textCount = novel.length
+            novel.description = novel.desc
+            novel.detailedUrl = util.urlNovelUrl(novel.id)
+            if (novel.seriesId !== undefined && novel.seriesId !== null) {
+                novel.title = novel.seriesTitle
+                novel.length = null
+
+                java.log(`正在获取系列小说：${novel.seriesId}`)
+                let series = util.getAjaxJson(util.urlSeriesUrl(novel.seriesId))
+                // 后端目前没有系列的coverUrl字段
+                // novel.coverUrl = util.urlCoverUrl(series.coverUrl)
+                novel.coverUrl = util.urlCoverUrl(series.novels[0].coverUrl)
+
+                if (series.caption === "") {
+                    let firstNovels = util.getAjaxJson(util.urlNovelsDetailed([series.novels[0].id]))
+                    if (firstNovels.length > 0) {
+                        novel.description = firstNovels[0].desc
+                    } else {
+                        novel.description = "该小说可能部分章节因为权限或者被删除无法查看"
+                    }
+                } else {
+                    novel.description = series.caption
+                }
+
+                //如果没有标签 取第一章的tag
+                if (series.tags.length === 0) {
+                    // 系列至少会有一章
+                    novel.tags = series.novels[0].tags
+                } else {
+                    novel.tags = series.tags
+                }
+
+                if (novel.tags === undefined) {
+                    novel.tags = []
+                }
+                novel.tags.unshift("长篇")
+
+
+            } else {
+                if (novel.tags === undefined) {
+                    novel.tags = []
+                }
+                novel.tags.unshift("单本")
+                // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${novel.coverUrl}`
+                novel.coverUrl = util.urlCoverUrl(novel.coverUrl)
+            }
+
+            novel.tags = novel.tags.join(",")
+            novel.time = util.dateFormat(novel.createDate)
+            novel.description = `${novel.description}\n更新时间：${novel.time}`
+            // novel.description = `书名：${novel.title}\n作者：${novel.userName}\n${novel.description}\n更新时间：${novel.time}`
+        })
+        return novels
+    }
+
     u.dateFormat = function (str) {
         let addZero = function (num) {
             return num < 10 ? '0' + num : num;

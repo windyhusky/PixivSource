@@ -31,57 +31,6 @@ function combineNovels(novels) {
     })
 }
 
-// 将小说的封面规则与详情地址替换
-function handlerNovels(novels) {
-    novels.forEach(novel => {
-        // novel.detailedUrl = `https://api.furrynovel.ink/pixiv/novel/${novel.id}/cache`
-        novel.detailedUrl = util.urlNovelUrl(novel.id)
-        if (novel.seriesId !== undefined && novel.seriesId !== null) {
-            novel.title = novel.seriesTitle
-            novel.length = null
-
-            java.log(`正在获取系列小说：${novel.seriesId}`)
-            let series = util.getAjaxJson(util.urlSeriesUrl(novel.seriesId))
-            // 后端目前没有系列的coverUrl字段
-            // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.imageUrl}`
-            // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${series.novels[0].coverUrl}`
-            novel.coverUrl = util.urlCoverUrl(series.novels[0].coverUrl)
-
-            if (series.caption === "") {
-                let firstNovels = util.getAjaxJson(util.urlNovelsDetailed([series.novels[0].id]))
-                if (firstNovels.length > 0) {
-                    novel.desc = firstNovels[0].desc
-                } else {
-                    novel.desc = "该小说可能部分章节因为权限或者被删除无法查看"
-                }
-            } else {
-                novel.desc = series.caption
-            }
-
-            //如果没有标签 取第一章的tag
-            if (series.tags.length === 0) {
-                // 系列至少会有一章
-                novel.tags = series.novels[0].tags
-            } else {
-                novel.tags = series.tags
-            }
-
-            if (novel.tags === undefined) {
-                novel.tags = []
-            }
-            novel.tags.unshift("长篇")
-
-
-        } else {
-            novel.tags.unshift("单本")
-            // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${novel.coverUrl}`
-            novel.coverUrl = util.urlCoverUrl(novel.coverUrl)
-        }
-
-        novel.tags = novel.tags.join(",")
-    })
-    return novels
-}
 
 /**
  * @params arr 传入的源数组
@@ -130,14 +79,14 @@ function handlerRecommendUsers() {
             queryNovelIds = randomChoseArrayItem(queryNovelIds, 10)
         }
         novelList = util.getWebviewJson(util.urlNovelsDetailed(queryNovelIds))
-        return handlerNovels(combineNovels(novelList))
+        return util.formatNovels(combineNovels(novelList))
     }
 }
 
 function handlerFollowLatest() {
     return () => {
         let resp = JSON.parse(result)
-        return handlerNovels(combineNovels(resp))
+        return util.formatNovels(combineNovels(resp))
     }
 }
 
