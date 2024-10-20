@@ -33,7 +33,7 @@ function objParse(obj) {
             let matched2 = matched[i].match(RegExp("(\\d+)-?(\\d+)"))
             let temp = matched2[0].split("-")
             illustId = temp[0]
-            if (temp.length >= 1) {
+            if (temp.length >= 2) {
                 order = temp[1]
             }
             content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginal(illustId, order)}">`)
@@ -55,13 +55,12 @@ function objParse(obj) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
             let chapter = matched2[1].trim()
-            // content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}${chapter}<p>​<p/>`)
             content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
         }
     }
 
     // 替换 Pixiv 跳转页面标记符号 [[jump:]]
-    matched = content.match(/\[jump:(\d+)]/gm)
+    matched = content.match(RegExp(/\[jump:(\d+)]/gm))
     if (matched) {
         for (let i in matched) {
             let page = matched[i].match(/\d+/)
@@ -70,7 +69,7 @@ function objParse(obj) {
     }
 
     // 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
-    matched = content.match(/\[\[jumpuri:(.*?)>(.*?)]]/gm)
+    matched = content.match(RegExp(/\[\[jumpuri:(.*?)>(.*?)]]/gm))
     if (matched) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[\[jumpuri:(.*?)>(.*?)]]/m)
@@ -78,7 +77,7 @@ function objParse(obj) {
             let urlName = matched2[1].trim()
             let urlLink = matched2[2].trim()
             // 阅读不支持超链接
-            //content = content.replace(`${matchedText}`, `<a href=${urlLink}>${urlName}</a>`)
+            // content = content.replace(`${matchedText}`, `<a href=${urlLink}>${urlName}</a>`)
             if (urlLink === urlName) {
                 content = content.replace(`${matchedText}`, `${urlName}`)
             } else {
@@ -88,7 +87,7 @@ function objParse(obj) {
     }
 
     // 替换 Pixiv 注音标记符号 [[rb: > ]]
-    matched = content.match(/\[\[rb:(.*?)>(.*?)]]/gm)
+    matched = content.match(RegExp(/\[\[rb:(.*?)>(.*?)]]/gm))
     if (matched) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[\[rb:(.*?)>(.*?)]]/m)

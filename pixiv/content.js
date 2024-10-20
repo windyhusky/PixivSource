@@ -34,7 +34,7 @@ function objParse(obj) {
             let matched2 = matched[i].match(RegExp("(\\d+)-?(\\d+)"))
             let temp = matched2[0].split("-")
             illustId = temp[0]
-            if (temp.length === 2){
+            if (temp.length >= 2) {
                 order = temp[1]
             }
             content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginal(illustId, order)}">`)

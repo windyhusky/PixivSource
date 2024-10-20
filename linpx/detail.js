@@ -31,26 +31,24 @@ function objParse(obj) {
     }
 
 
-    //为了兼顾导入书架直接走详情页逻辑
-    //这里不能直接用book.xxx 来复用搜索页处理结果
+    // 为了兼顾导入书架直接走详情页逻辑
+    // 这里不能直接用 book.xxx 来复用搜索页处理结果
     // java.log(JSON.stringify(res))
     let info = {}
-    info.author = res.userName
+    info.userName = res.userName
     info.tags = res.tags
-    info.count = res.length
-    info.desc = res.desc
-    info.cover_url = util.urlCoverUrl(res.coverUrl)
+    info.textCount = res.length
+    info.description = res.desc
+    info.coverUrl = util.urlCoverUrl(res.coverUrl)
 
     if (res.series === undefined || res.series === null) {
-        info.name = info.latest_chapter = res.title
+        info.title = info.latest_chapter = res.title
         info.tags.unshift('单本')
-        // info.catalog = `https://api.furrynovel.ink/pixiv/novel/${res.id}/cache`
         info.catalog = util.urlNovelUrl(res.id)
 
     } else {
-        info.name = res.series.title
+        info.title = res.series.title
         info.tags.unshift('长篇')
-        // info.catalog = `https://api.furrynovel.ink/pixiv/series/${res.series.id}/cache`
         info.catalog = util.urlSeriesUrl(res.series.id)
     }
     info.tags = info.tags.join(",")

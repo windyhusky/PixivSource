@@ -92,8 +92,8 @@ function publicFunc() {
 
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
-            novel.name = novel.title
-            novel.author = novel.userName
+            // novel.title = novel.title
+            // novel.userName = novel.userName
             novel.tags = novel.tags.join(",")
 
             if (novel.isOneshot === undefined) {  //单篇小说
@@ -113,7 +113,6 @@ function publicFunc() {
 
                 } else {  // 真正的系列小说
                     novel.id = novel.latestEpisodeId  // 最近一篇
-                    // novel.lastChapter = this.getAjaxJson(this.urlNovelDetailed(novel.id)).body.title
                     novel.latestPublishDate = novel.latestPublishDateTime
                     novel.seriesId = novel.id        // 真正的系列小说id
                     // let series = this.getAjaxJson(util.urlSeries(novel.seriesId)).body
@@ -133,7 +132,7 @@ function publicFunc() {
             const time1 = this.dateFormat(novel.createDate);
             const time2 = this.dateFormat(novel.updateDate);
             novel.description = `${novel.description}\n上传时间：${time1}\n更新时间：${time2}`
-            //novel.description= `书名：${novel.name}\n作者：${novel.author}\n标签：${novel.tags}\n上传：${time1}\n更新：${time2}\n简介：${novel.description}`
+            //novel.description= `书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${time1}\n更新：${time2}\n简介：${novel.description}`
         })
         return novels
     }
