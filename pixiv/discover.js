@@ -1,5 +1,6 @@
 @js:
 var util = objParse(String(java.get("util")))
+var seriesSet = new Set();  // 存储seriesID 有BUG无法处理翻页
 
 function objParse(obj) {
     return JSON.parse(obj, (n, v) => {
@@ -7,27 +8,6 @@ function objParse(obj) {
             return eval(`(${v})`)
         }
         return v;
-    })
-}
-
-
-// 存储seriesID 有BUG无法处理翻页
-var seriesSet = new Set();
-// 将多个长篇小说解析为一本书
-function combineNovels(novels) {
-    return novels.filter(novel => {
-        //单本直接解析为一本书
-        if (novel.seriesId === undefined || novel.seriesId === null) {
-            return true
-        }
-
-        //集合中没有该系列解析为一本书
-        if (!seriesSet.has(novel.seriesId)) {
-            seriesSet.add(novel.seriesId)
-            return true
-        }
-
-        return false
     })
 }
 
@@ -128,7 +108,7 @@ function handlerRecommend() {
         // java.log(nidSet.size)
         let list = novels.filter(novel => nidSet.has(String(novel.id)))
         // java.log(`过滤结果:${JSON.stringify(list)}`)
-        return util.formatNovels(handNovels(combineNovels(list)))
+        return util.formatNovels(handNovels(util.combineNovels(list)))
     }
 }
 
@@ -149,7 +129,7 @@ function handlerBookMarks() {
 function handlerFollowLatest() {
     return () => {
         let resp = JSON.parse(result)
-        return util.formatNovels(handNovels(combineNovels(resp.body.thumbnails.novel)))
+        return util.formatNovels(handNovels(util.combineNovels(resp.body.thumbnails.novel)))
     }
 }
 
@@ -163,7 +143,7 @@ function handlerWatchList(){
             let novelId = seriesList[i].latestEpisodeId  // 使用最后一篇小说，重新请求并合并小说
             novels.push(util.getAjaxJson(util.urlNovelDetailed(novelId)).body.userNovels[`${novelId}`])
         }
-        return util.formatNovels(handNovels(combineNovels(novels)))
+        return util.formatNovels(handNovels(util.combineNovels(novels)))
     }
 }
 

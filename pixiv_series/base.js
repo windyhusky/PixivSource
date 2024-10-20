@@ -137,6 +137,22 @@ function publicFunc() {
         return novels
     }
 
+    // 将多个长篇小说解析为一本书
+    u.combineNovels = function (novels) {
+        return novels.filter(novel => {
+            // 单本直接解析为一本书
+            if (novel.seriesId === undefined || novel.seriesId === null) {
+                return true
+            }
+            // 集合中没有该系列解析为一本书
+            if (!seriesSet.has(novel.seriesId)) {
+                seriesSet.add(novel.seriesId)
+                return true
+            }
+            return false
+        })
+    }
+
     u.dateFormat = function (str) {
         let addZero = function (num) {
             return num < 10 ? '0' + num : num;
