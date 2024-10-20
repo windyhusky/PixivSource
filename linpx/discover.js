@@ -1,5 +1,6 @@
 @js:
 var util = objParse(String(java.get("util")))
+var seriesSet = new Set();  // 存储seriesID
 
 function objParse(obj) {
     return JSON.parse(obj, (n, v) => {
@@ -7,27 +8,6 @@ function objParse(obj) {
             return eval(`(${v})`)
         }
         return v;
-    })
-}
-
-// 存储seriesID
-var seriesSet = new Set();
-// 将多个长篇小说解析为一本书
-function combineNovels(novels) {
-    return novels.filter(novel => {
-        //单本直接解析为一本书
-        //需要判断是否为null
-        if (novel.seriesId === undefined || novel.seriesId === null) {
-            return true
-        }
-
-        //集合中没有该系列解析为一本书
-        if (!seriesSet.has(novel.seriesId)) {
-            seriesSet.add(novel.seriesId)
-            return true
-        }
-
-        return false
     })
 }
 
@@ -79,14 +59,14 @@ function handlerRecommendUsers() {
             queryNovelIds = randomChoseArrayItem(queryNovelIds, 10)
         }
         novelList = util.getWebviewJson(util.urlNovelsDetailed(queryNovelIds))
-        return util.formatNovels(combineNovels(novelList))
+        return util.formatNovels(util.combineNovels(novelList))
     }
 }
 
 function handlerFollowLatest() {
     return () => {
         let resp = JSON.parse(result)
-        return util.formatNovels(combineNovels(resp))
+        return util.formatNovels(util.combineNovels(resp))
     }
 }
 

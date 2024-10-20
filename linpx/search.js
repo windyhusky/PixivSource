@@ -80,24 +80,6 @@ var seriesSet = {
     },
 };
 
-// 将多个长篇小说解析为一本书
-function combineNovels(novels) {
-    return novels.filter(novel => {
-        //单本直接解析为一本书
-        //需要判断是否为null
-        if (novel.seriesId === undefined || novel.seriesId === null) {
-            return true
-        }
-
-        //集合中没有该系列解析为一本书
-        if (!seriesSet.has(novel.seriesId)) {
-            seriesSet.add(novel.seriesId)
-            return true
-        }
-
-        return false
-    })
-}
 
 function findUserNovels(username) {
     let novelList = []
@@ -136,5 +118,5 @@ function findUserNovels(username) {
     if (novels.length === 0) {
         return []
     }
-    return util.formatNovels(combineNovels(novels))
+    return util.formatNovels(util.combineNovels(novels))
 }(result))
