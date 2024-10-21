@@ -121,7 +121,7 @@ function getUserNovels(){
                 seriesList.push(novel.seriesId)
                 novels.push(novel)
             }}
-        })
+    })
     if (resp.users[0].series !== undefined && resp.users[0].series.length >= 1) {
         resp.users[0].series.forEach(series => {
             if (!seriesList.includes(series.id)) {
@@ -132,13 +132,15 @@ function getUserNovels(){
 
     seriesList.forEach(seriesId => {
         let series = util.getAjaxJson(util.urlSeriesUrl(seriesId))
-        novels.push(util.getAjaxJson(util.urlNovelUrl(series.novels[0].id)))
-        // let novel = series.novels[0]
-        // novel.title = series.title
-        // novel.userName = series.userName
-        // novel.description = series.caption
-        // novels.push(novel)
-        })
+        novel = util.getAjaxJson(util.urlNovelUrl(series.novels[0].id))
+        novel.title = series.title
+        if (novel.tags.indexOf("单本") >= 0) {
+            novel.tags = novel.tags.splice(novel.tags.indexOf("单本"), 1 , "长篇")
+        } else {
+            novel.tags.unshift("长篇")
+        }
+        novels.push(novel)
+    })
     // java.log(JSON.stringify(novels))
     return novels
 }
