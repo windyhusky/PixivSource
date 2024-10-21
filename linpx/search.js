@@ -107,16 +107,55 @@ function findUserNovels(username) {
     return novelList
 }
 
-(function (res) {
-    res = JSON.parse(res)
-    let novels = []
-    findUserNovels(java.get("key")).forEach(v => {
-        novels.push(v)
-    })
-    novels = novels.concat(res.novels)
-    // 返回空列表中止流程
-    if (novels.length === 0) {
+
+function getUserNovels(){
+    let novels = [], seriesList = []
+    let resp = util.getAjaxJson(util.urlSearchUsers(java.get("key")))
+    if (resp.total === 0) {
         return []
     }
-    return util.formatNovels(util.combineNovels(novels))
+
+    novels.forEach(novel => {
+        if (novel.seriesId !== undefined && novel.seriesId !== null){
+            if (!seriesList.includes(novel.seriesId)) {
+                seriesList.push(novel.seriesId)
+                novels.push(novel)
+            }}
+        })
+    if (resp.users[0].series !== undefined && resp.users[0].series.length >= 1) {
+        resp.users[0].series.forEach(series => {
+            if (!seriesList.includes(series.id)) {
+                seriesList.push(series.id)
+            }
+        })
+    }
+
+    seriesList.forEach(seriesId => {
+        let series = util.getAjaxJson(util.urlSeriesUrl(seriesId))
+        novels.push(util.getAjaxJson(util.urlNovelUrl(series.novels[0].id)))
+        // let novel = series.novels[0]
+        // novel.title = series.title
+        // novel.userName = series.userName
+        // novel.description = series.caption
+        // novels.push(novel)
+        })
+    // java.log(JSON.stringify(novels))
+    return novels
+}
+
+
+(function (res) {
+    res = JSON.parse(res)
+    // let novels = []
+    // findUserNovels(java.get("key")).forEach(v => {
+    //     novels.push(v)
+    // })
+    // novels = novels.concat(res.novels)
+    // // 返回空列表中止流程
+    // if (novels.length === 0) {
+    //     return []
+    // }
+    let novels = getUserNovels()
+    return util.formatNovels(util.combineNovels(novels.concat(res.novels)))
+    // return util.formatNovels(util.combineNovels(res.novels))
 }(result))

@@ -49,10 +49,10 @@ function publicFunc() {
         return `https://api.furrynovel.ink/pixiv/user/${id}/cache`
     }
     u.urlSearchNovel = function (novelname) {
-        return `https://api.furrynovel.ink/pixiv/search/novel/${novelname}/cache`
+        return `https://api.furrynovel.ink/pixiv/search/novel/${encodeURI(novelname)}/cache`
     }
     u.urlSearchUsers = function (username) {
-        return `https://api.furrynovel.ink/pixiv/search/user/${username}/cache`
+        return `https://api.furrynovel.ink/pixiv/search/user/${encodeURI(username)}/cache`
     }
     u.urlNovelsDetailed = function (nidList) {
         return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
