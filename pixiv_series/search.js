@@ -10,20 +10,6 @@ function objParse(obj) {
     })
 }
 
-//不可使用 base 内的 util.getAjaxJson() 替换
-// function getAjaxJson(url) {
-//     return util.cacheGetAndSet(url, () => {
-//         return JSON.parse(java.ajax(url))
-//     })
-// }
-//
-// function getWebviewJson(url, parseFunc) {
-//     return util.cacheGetAndSet(url, () => {
-//         let html = java.webView(null, url, null)
-//         return JSON.parse(parseFunc(html))
-//     })
-// }
-
 var first = true;
 // 存储seriesID·
 var seriesSet = {
@@ -127,17 +113,26 @@ function getUserNovels(username) {
     let html = java.ajax(util.urlSearchUser(username))
     // java.log(html)
     // 仅匹配有投稿作品的用户
-    let match = html.match(new RegExp("/users/\\d+/novels"))
+    let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
+    // ["\"userIds\":[34568581,4569033,3024386]"]
+    // java.log(JSON.stringify(match))
     if (match === null || match.length === 0) {
-        return []
+        html = java.ajax(util.urlSearchUserPartial(username))
+        match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
+        if (match === null || match.length === 0) {
+            return []
+        }
     }
 
+    match = JSON.stringify(match).replace("\\","").split(",")
+    // java.log(JSON.stringify(match))
     let regNumber = new RegExp("\\d+")
     let uidList = match.map(v => {
         return v.match(regNumber)[0]
     })
 
     // 仅限3个作者
+    java.log(JSON.stringify(uidList))
     if (uidList.length >= 3) {
         uidList.length = 3
     }
@@ -160,7 +155,6 @@ function getUserNovels(username) {
         novels = novels.concat(Object.values(userNovels).reverse())
     })
 
-
     util.debugFunc(() => {
         java.log(`获取用户搜索小说结束`)
     })
@@ -170,7 +164,8 @@ function getUserNovels(username) {
 (() => {
     //作者 TAG 书名都要支持
     let resp = JSON.parse(result);
-    let novelsList = getUserNovels(String(java.get("key")))
-    novelsList = novelsList.concat(resp.body.novel.data)
-    return util.formatNovels(handNovels(util.combineNovels(novelsList)))
+    // let novelsList = getUserNovels(String(java.get("key")))
+    // novelsList = novelsList.concat(resp.body.novel.data)
+    // return util.formatNovels(handNovels(util.combineNovels(novelsList)))
+    return util.formatNovels(handNovels(util.combineNovels(resp.body.novel.data)))
 })();

@@ -62,9 +62,10 @@ function publicFunc() {
     }
     // 完全匹配用户名
     u.urlSearchUser = (username) => {
-        return `https://www.pixiv.net/search_user.php?s_mode=s_usr&nick=${encodeURI(username)}&nick_mf=1`
-        // return `https://www.pixiv.net/search_user.php?nick=${encodeURI(username)}&s_mode=s_usr`
-        // return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr`
+        return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr&nick_mf=1`
+    }
+    u.urlSearchUserPartial = (username) => {
+        return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr`
     }
     u.urlUserAllWorks = (uesrId) => {
         return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`

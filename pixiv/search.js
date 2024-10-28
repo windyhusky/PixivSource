@@ -104,17 +104,26 @@ function getUserNovels(username) {
     let html = java.ajax(util.urlSearchUser(username))
     // java.log(html)
     // 仅匹配有投稿作品的用户
-    let match = html.match(new RegExp("/users/\\d+/novels"))
+    let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
+    // ["\"userIds\":[34568581,4569033,3024386]"]
+    // java.log(JSON.stringify(match))
     if (match === null || match.length === 0) {
-        return []
+        html = java.ajax(util.urlSearchUserPartial(username))
+        match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
+        if (match === null || match.length === 0) {
+            return []
+        }
     }
 
+    match = JSON.stringify(match).replace("\\","").split(",")
+    // java.log(JSON.stringify(match))
     let regNumber = new RegExp("\\d+")
     let uidList = match.map(v => {
         return v.match(regNumber)[0]
     })
 
     // 仅限3个作者
+    java.log(JSON.stringify(uidList))
     if (uidList.length >= 3) {
         uidList.length = 3
     }
@@ -136,7 +145,6 @@ function getUserNovels(username) {
         // 反转以按照更新时间排序
         novels = novels.concat(Object.values(userNovels).reverse())
     })
-
 
     util.debugFunc(() => {
         java.log(`获取用户搜索小说结束`)
