@@ -30,7 +30,7 @@
         "sortUrl": "",
         "sourceGroup": "Furry",
         "sourceIcon": "https://furrynovel.ink/apple-touch-icon.png",
-        "sourceName": "Linpx NURUPO",
+        "sourceName": "Linpx",
         "sourceUrl": "https://furrynovel.ink/?from=read",
         "sourceComment": "Linpx 订阅源（站方支持）\n\n支持功能：✅添加小说至书架（配合 Linpx 书源）\n使用方法：打开小说，点击底部按钮【添加到书架】添加小说到书架\n\n更新时间：2024-06-12\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n规则订阅：https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json"
     },
@@ -46,7 +46,7 @@
         "singleUrl": true,
         "sourceGroup": "Furry",
         "sourceIcon": "https://www.furrynovel.com/static/icon.png",
-        "sourceName": "兽人控小说 NURUPO",
+        "sourceName": "兽人控小说",
         "sourceUrl": "https://www.furrynovel.com/zh/?utm_source=reader",
         "sourceComment": "兽人控小说站订阅源（站方支持）\n\n支持功能：✅添加小说至书架（配合【通用书源】）\n使用方法：打开小说，点击底部按钮【添加到书架】添加小说到书架\n\n更新时间：2024-06-12\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n规则订阅：https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json"
     },
@@ -90,7 +90,7 @@
         "sourceGroup": "Furry",
         "sourceIcon": "https://images.furrycons.cn/logo_800x800.png",
         "sourceName": "兽展日历",
-        "sourceUrl": "https://www.furrycons.cn/"
+        "sourceUrl": "https://www.furrycons.cn"
     },
     {
         "articleStyle": 0,
@@ -104,7 +104,7 @@
         "sourceGroup": "Furry",
         "sourceIcon": "https://www.furryfusion.net/images/LOGO.png",
         "sourceName": "兽聚汇总",
-        "sourceUrl": "https://www.furryfusion.net/"
+        "sourceUrl": "https://www.furryfusion.net"
     },
     {
         "articleStyle": 0,
@@ -117,8 +117,8 @@
         "singleUrl": true,
         "sourceComment": "官网：www.yiove.com",
         "sourceGroup": "书源",
-        "sourceIcon": "https://shuyuan.yiove.com/favicon.ico",
-        "sourceName": "三千书源",
+        "sourceIcon": "https://shuyuan.yiove.com/logo.jpeg",
+        "sourceName": "Yiove 书源仓库",
         "sourceUrl": "https://shuyuan.yiove.com"
     },
     {
