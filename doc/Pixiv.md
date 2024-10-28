@@ -128,11 +128,12 @@ Pixiv 的手机版网页只能修改【浏览限制】
 ![img](./pic/AddBookViaUrl2.png)
 (这里懒得换图片了)
 ![img](./pic/AddBookViaUrl3.png)
-此处使用正则匹配网址，支持 Pixiv 多个域名多个格式的网址链接
+此处使用正则匹配网址，相应正则规则如下：
+```
+(https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(show\.php\?id=|series/)?\d+
+```
 
-正则规则：
-`(https?://)?(www.)?pixiv.net/(ajax/|)novel/.*`
-
+支持 Pixiv 多个格式的网址链接：
 ```
 【需要代理】Pixiv 小说链接
 https://www.pixiv.net/novel/show.php?id=20063566
@@ -171,19 +172,9 @@ https://www.pixiv.net/ajax/novel/20063566
 >
 ### 1.确定书源可以正常使用
 
-回到主页，点击【**放大镜图标】**，搜索【龙胶危机】测试书源能否正常使用，以及R18设置是否打开。
+回到主页，点击【**放大镜图标】**，搜索 `R18` 测试书源能否正常使用，以及R18设置是否打开。
 
-#### A.如果搜索结果不唯一，说明大功告成！
-
-![img](https://telegra.ph/file/7a33b98d43b378f0ab59f.png)
-
-#### B.如果只有这一个搜索结果
-
-![img](https://telegra.ph/file/af038f28cb1c88b43912f.png)
-
-说明你的R18设置没有打开，请再回到第4步修改相关设置
-
-#### 3.如果没有搜索结果，请检查一下内容：
+#### 如果没有搜索结果，请检查一下内容：
 
 **⓪检查 Pixiv 书源是否导入**
 

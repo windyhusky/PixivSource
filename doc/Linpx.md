@@ -56,28 +56,23 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 ![img](./pic/AddBookViaUrl1.png)
 ![img](./pic/AddBookViaUrl2.png)
 ![img](./pic/AddBookViaUrl3.png)
-此处使用正则匹配网址，支持 Linpx 多个域名多个格式的网址链接
-
-正则规则：
-`(https?://)?(api.|www.)?(furrynovel.(ink|xyz)|pixiv.net)/(!).*`
+此处使用正则匹配网址，相应正则规则如下：
 ```
-原 Linpx 小说链接
+(https?://)?(api\.|www\.)?(furrynovel\.(ink|xyz))/(pn|pixiv/novel)/\d+(/cache)?
+```
+
+支持 Linpx 多个格式的网址链接：
+```
+Linpx 小说长链接
 https://www.furrynovel.xyz/pixiv/novel/20063566
-
-原 Linpx 分享链接
-http://furrynovel.xyz/pn/20063566
-
-新 Linpx 小说链接
 https://furrynovel.ink/pixiv/novel/20063566
 
-新 Linpx 分享链接
+Linpx 分享链接
+http://furrynovel.xyz/pn/20063566
 https://furrynovel.ink/pn/20063566
 
-新 Linpx 小说 Api 链接
+Linpx Api 链接
 https://api.furrynovel.ink/pixiv/novel/20063566/cache
-
-Pixiv 小说链接【需要代理】
-https://www.pixiv.net/novel/show.php?id=20063566
 ```
 
 
@@ -104,15 +99,7 @@ https://www.pixiv.net/novel/show.php?id=20063566
 ## 三、故障排查
 > 详见：[故障排查与处理](./TroubleShoot.md)
 > 
-### 1.确认书源可以正常使用
-
-回到第一页，点击【放大镜】，搜索【龙胶危机】，测试书源能否正常使用
-
-#### A.如果搜索结果不唯一，那么大功告成！
-
-![img](https://telegra.ph/file/7a33b98d43b378f0ab59f.png)
-
-#### B.如果没有搜索结果，请自行检查一下内容：
+### 1.没有搜索结果，请自行检查一下内容：
 
 **⓪检查 Linpx 书源是否导入**
 

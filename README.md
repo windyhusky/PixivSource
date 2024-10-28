@@ -21,7 +21,6 @@
 | 所有订阅源　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/allrss.json |
 | Pixiv 书源 　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json |
 | Linpx 书源　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json |
-| 通用书源　   | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/normal.json |
 | btsrk 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json |
 | books 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json |
 - 免代理导入可能会有1天左右的更新延迟
@@ -36,8 +35,7 @@
 | 所有书源　    |  https://raw.githubusercontent.com/windyhusky/PixivSource/main/allbook.json |
 | 所有订阅源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/allrss.json |
 | Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json | 
-| Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |       
-| 通用书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |     
+| Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
 | btsrk 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json |   
 | books 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json |    
 - Github 导入无延迟
@@ -57,6 +55,16 @@
 #### Pixiv 特性：
 - 单篇小说：Pixiv 小说投稿时的【单篇完结作品】，即短篇小说
 - 系列小说：Pixiv 小说投稿时的【连载系列作品】，即长篇小说
+- Pixiv 小说相关功能
+  <details>
+  <summary> 小说相关功能 </summary>
+  
+  - ✅ 关注作者（最新小说）
+  - ✅ 追更列表
+  - ✅ 推荐作品
+  - ✅ 个人收藏
+  </details>
+
 - Pixiv 小说工具（标记符号）
   <details>
   <summary> 已经支持全部 Pixiv 小说标记符号 </summary>
@@ -74,7 +82,7 @@
     - ☑️ `汉字《注音》`（选择`置き換える`后 Pixiv 会进行这样的替换）`汉字《注音》` => `[[rb:汉字 > 注音]]`
       - 当`注音`位置是汉字时，恢复被替换的书名号：`[[rb:汉字 > 注音]]` => `汉字《注音》`
   - 🈚️ 不支持的标记符
-</details>
+  </details>
 
 
 #### 阅读功能：
@@ -130,14 +138,11 @@
 
 
 # TODO
-- Pixiv 书源：修复搜索作者
-- Linpx 书源：修复搜索作者
-- Linpx 书源：修复推荐作者
 - ~~Linpx 系列小说 专用书源~~
 - ~~兽人控小说站：书源（搜索，发现）~~
 
 <details>
-<summary> 已完成 ToDo </summary>
+<summary> 已完成 </summary>
 
 - ✅ Pixiv 订阅源
 - ✅ 兽人控小说站订阅源
@@ -152,5 +157,7 @@
 - ✅ Pixiv 书源：完善字数统计 https://github.com/windyhusky/PixivSource/issues/18
 - ☑️ Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/17
 - ✅ Pixiv & Linpx 书源：目录页添加小说更新时间
+- ✅ Pixiv 书源：修复搜索作者
+- ✅ Linpx 书源：修复搜索作者
 </details>
 
