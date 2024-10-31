@@ -1,4 +1,5 @@
 ### 3.下载阅读
+阅读的各个版本，参见[阅读版本](./Version.md)（不重要）
 <details>
 <summary> Android 版 </summary>
 
@@ -28,12 +29,15 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 | ~~[GitHub](https://github.com/gedoor/YueDuFlutter)~~ |               | 开发中，暂不可下载 |
 | ~~[Telegram 频道(iOS版)](https://t.me/legado_ios)~~   |               | 开发中，暂不可下载 |
 
-可能支持相同书源的软件：
+可能兼容阅读书源的**非官方软件**：
 
 | 软件名称 | 备注                       |
 | ------- | -------------------------- |
-| ~~[读不舍手](https://apps.apple.com/us/app/%E8%AF%BB%E4%B8%8D%E8%88%8D%E6%89%8B/id1662413517)~~ | 不完全兼容阅读书源，广告较多 |
-| ~~[青果阅读](https://apps.apple.com/us/app/qing-guo-du-shu/id1142490639)~~ | 不完全兼容阅读书源，现已下架 |
+| ~~[用心读书](https://apps.apple.com/app/id1569793141)~~ | 不完全兼容阅读书源，非会员可能有功能限制 |
+| ~~[千阅](https://apps.apple.com/app/id1665963317)~~ | 不完全兼容阅读书源，非会员可能有功能限制，有广告 |
+| ~~星文阅读~~ | 停止维护，AppStore 已下架 |
+| ~~[读不舍手](https://apps.apple.com/app/id1662413517)~~ | 不完全兼容阅读书源，广告较多 |
+| ~~[青果阅读](https://apps.apple.com/app/id1142490639)~~ | 不完全兼容阅读书源，现已下架 |
 | ~~[源阅读](https://github.com/kaich/Yuedu)~~ | 停止维护，AppStore 已下架 |
 </details>
 
