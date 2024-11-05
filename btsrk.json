@@ -7,15 +7,15 @@
         "enabledCookieJar": true,
         "header": "{\"User-Agent\"=\"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36\"}",
         "injectJs": "if (!/^https:\\/\\/(so\\.toutiao\\.com\\/search\\/?|quark\\.sm\\.cn\\/s|wap\\.sogou\\.com\\/web\\/searchList\\.jsp|m\\.so\\.com\\/s|cn\\.bing\\.com\\/search|www\\.baidu\\.com\\/s)\\?/.test(window.location.href) && !document.getElementById('open-yuedu-bookshelf')) {\n    const btn = document.createElement('div');\n    btn.innerHTML = `<button type=\"button\" id='open-yuedu-bookshelf' style=\"z-index: 9999999999;\n    position: fixed;bottom: 7%;right: 7%;background-color: rgb(255, 153, 0);border-radius: 2px;border: 1px solid rgb(255, 153, 0);color: #fff;\n    font-size:${window.innerWidth/80}vw;font-weight: 400;padding: ${window.innerWidth/400}vw ${window.innerWidth/150}vw;\n    \"onclick=\"window.open('legado://import/addToBookshelf?src=${encodeURIComponent(window.location.href)}','_blank');location.reload();\">加入书架</button>`;\n    document.body.appendChild(btn);\n    }\n    \n    let time,num=0;\n    const herfs = new Map();\n    function onTouchStart(evt) {\n      for (const el of evt.path) {\n        if (el.tagName === \"A\") {\n          if (el.href !== 'javascript:void(0)') {\n            const inner = el.href;\n            herfs.set(el, inner);\n            el.setAttribute('href', 'javascript:void(0)');\n            time = setTimeout(() => {\twindow.open(`legado://import/addToBookshelf?src=${encodeURIComponent(inner)}`, '_blank')\n            }, 600);\n          }\n          break;\n        }\n      }\n    };\nfunction onTouchEnd(evt) {\n      if (time) {\n        clearTimeout(time);\n        time = undefined;\n      }\n\tfor (const el of evt.path) {\n        if (el.tagName === \"A\") {\n          if (el.href === 'javascript:void(0)') {\n            const herf = herfs.get(el);\n            if (herf) {\n              el.setAttribute('href', herf)\n            }\n          }\n          break;\n        }\n    }\n}\n\nfunction addListener(els){\nArray.from(els, (item) => {\n      if (item.getAttribute('add-yuedu-bookshelf') !== 'add-yuedu-bookshelf' && item.innerText && item.href && !/^#|^javascript:/.test(item.href)) {\n        item.setAttribute('add-yuedu-bookshelf', 'add-yuedu-bookshelf');\n        item.addEventListener('touchstart', onTouchStart);\n        item.addEventListener('touchend', onTouchEnd);\n        item.addEventListener('touchcancel', onTouchEnd);\n        item.addEventListener('mousedown', onTouchStart);\n        item.addEventListener('mouseup', onTouchEnd);\n      }\n    });\nnum= els.length;\n}\n\nfunction reAdd(){\n\t\tconst els = document.getElementsByTagName('a');\n\tif(els.length>num)addListener(els);\n}\n\nreAdd();\n\nconst observer = new ResizeObserver(reAdd);\nobserver.observe(document.body);",
-        "lastUpdateTime": 0,
+        "lastUpdateTime": 1730788862123,
         "loadWithBaseUrl": true,
         "loginUrl": "",
         "singleUrl": true,
-        "sourceGroup": "Furry",
+        "sourceComment": "Pixiv 订阅源（更新时间：2024-11-05）\n\n可用功能：✅添加小说至书架（配合 Pixiv 书源）\n使用方法：打开小说/系列小说，【刷新】，点击【加入书架】按钮，添加小说到书架\n\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n\n规则订阅：\n1️⃣ Pixiv 书源：\nhttps://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json\n\n2️⃣ Pixiv 订阅源：\nhttps://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json",
+        "sourceGroup": "Pixiv,Furry",
         "sourceIcon": "https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png",
         "sourceName": "Pixiv",
-        "sourceUrl": "https://www.pixiv.net/novel",
-        "sourceComment": "Pixiv 订阅源（JS注入，代码源自【聚合搜索】）\n\n支持功能：✅添加小说至书架（配合 Pixiv 书源）\n使用方法：打开小说/系列小说，【刷新】，点击【加入书架】按钮添加小说到书架\n\n更新时间：2024-06-12\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n规则订阅：https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json"
+        "sourceUrl": "https://www.pixiv.net/novel"
     },
     {
         "articleStyle": 0,
@@ -28,11 +28,11 @@
         "loadWithBaseUrl": true,
         "singleUrl": true,
         "sortUrl": "",
+        "sourceComment": "Linpx 订阅源（更新时间：2024-11-05）\n\n可用功能：✅添加小说至书架（配合 Linpx 书源）\n使用方法：打开小说，点击底部按钮【添加到书架】，添加小说到书架\n\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n\n规则订阅：\n1️⃣ Linpx 书源：\nhttps://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json\n\n2️⃣ Linpx 订阅源：\nhttps://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json",
         "sourceGroup": "Furry",
         "sourceIcon": "https://furrynovel.ink/apple-touch-icon.png",
         "sourceName": "Linpx",
-        "sourceUrl": "https://furrynovel.ink/?from=read",
-        "sourceComment": "Linpx 订阅源（站方支持）\n\n支持功能：✅添加小说至书架（配合 Linpx 书源）\n使用方法：打开小说，点击底部按钮【添加到书架】添加小说到书架\n\n更新时间：2024-06-12\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n规则订阅：https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json"
+        "sourceUrl": "https://furrynovel.ink/?from=read"
     },
     {
         "articleStyle": 0,
@@ -44,21 +44,22 @@
         "lastUpdateTime": 0,
         "loadWithBaseUrl": true,
         "singleUrl": true,
+        "sourceComment": "兽人控小说站订阅源（更新时间：2024-11-05）\n\n支持功能：✅添加小说至书架（配合【通用书源】）\n使用方法：打开小说，点击底部按钮【添加到书架】，添加小说到书架\n\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n\n1️⃣ 通用书源：\nhttps://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/normal.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json\n\n2️⃣ 订阅源：\nhttps://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json",
         "sourceGroup": "Furry",
         "sourceIcon": "https://www.furrynovel.com/static/icon.png",
-        "sourceName": "兽人控小说",
-        "sourceUrl": "https://www.furrynovel.com/zh/?utm_source=reader",
-        "sourceComment": "兽人控小说站订阅源（站方支持）\n\n支持功能：✅添加小说至书架（配合【通用书源】）\n使用方法：打开小说，点击底部按钮【添加到书架】添加小说到书架\n\n更新时间：2024-06-12\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n规则订阅：https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json"
+        "sourceName": "兽人控小说站",
+        "sourceUrl": "https://www.furrynovel.com/zh/?utm_source=reader"
     },
     {
         "articleStyle": 0,
-        "customOrder": 5,
+        "customOrder": 4,
         "enableJs": true,
         "enabled": true,
         "enabledCookieJar": false,
         "lastUpdateTime": 0,
         "loadWithBaseUrl": true,
         "singleUrl": true,
+        "sourceComment": "",
         "sourceGroup": "Furry",
         "sourceIcon": "https://raw.githubusercontent.com/FurryGamesIndex/games/master/assets/_README/logo.png",
         "sourceName": "兽人控游戏索引",
@@ -66,7 +67,7 @@
     },
     {
         "articleStyle": 0,
-        "customOrder": 6,
+        "customOrder": 5,
         "enableJs": true,
         "enabled": true,
         "enabledCookieJar": false,
@@ -80,7 +81,7 @@
     },
     {
         "articleStyle": 0,
-        "customOrder": 7,
+        "customOrder": 6,
         "enableJs": true,
         "enabled": true,
         "enabledCookieJar": true,
@@ -94,7 +95,7 @@
     },
     {
         "articleStyle": 0,
-        "customOrder": 8,
+        "customOrder": 7,
         "enableJs": true,
         "enabled": true,
         "enabledCookieJar": true,
