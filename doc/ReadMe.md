@@ -70,12 +70,11 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 
 ### 4.下载安装后应该做什么？
-#### 4.1 [导入书源](./Import.md) & [导入订阅源](./Import2.md)
-#### 4.2 [设置备份](./WebdavBackup.md)(推荐)
-#### 4.3 搜索小说、查看订阅，畅享阅读
+#### 4.1 [导入书源](./ImportBookSource.md) & [导入订阅源](./ImportRssSource.md)
 > ##### 1. [Pixiv 书源的导入与使用](./Pixiv.md)
 > ##### 2. [Linpx 书源的导入与使用](./Linpx.md)
-
+#### 4.2 [设置备份](./WebdavBackup.md)(推荐)
+#### 4.3 搜索小说、查看订阅，畅享阅读
 #### 4.4 [故障排查与处理](./TroubleShoot.md)
 
 
