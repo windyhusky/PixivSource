@@ -1,23 +1,29 @@
 ## 2.导入书源
 
 ## ⓪ 书源（订阅源）来源
-- 官方频道 [@legado_channels](https://t.me/legado_channels)
+- [Legado｜开源阅读 | 频道](https://t.me/legado_channels)
 - [三千书源](https://shuyuan.yiove.com)
 - [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
 - [阅读 APP 源](https://legado.aoaostar.com/)  
 - [一程书源/订阅源](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/)
-- [源仓库](https://www.yckceo.com/yuedu/shuyuan/index.htmll)
-- [阅读论坛](https://legado.cn/forum-rssSources-1.html)
+- [源仓库](https://www.yckceo.com/yuedu/shuyuan/index.html)
 - 其他网络来源
 
 
-## ① 导入书源/订阅源 [官方教程](https://www.yuque.com/legado/wiki/xdroke)
+## ① 导入书源
+
+请【**开启代理**】后，复制下面的【书源】链接
+```
+https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
+```
+```
+https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
+```
+
 
 ### A.文件导入更简单
 #### 1.下载书源/订阅源文件
-> https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
->
-> https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
+Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/PixivSource) ，选择 **链接另存为** 或 **下载链接**，下载相应书源
 
 
 #### 2.使用阅读打开
@@ -29,16 +35,6 @@
 
 
 ### B.规则订阅易更新
-
-请【**开启代理**】后，复制下面的【书源】链接
-
-```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
-```
-```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
-```
-
 #### 1. 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.jpg)
 
@@ -51,36 +47,28 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
+
 ![img](./pic/InportBookSourcePixiv.jpg)
+
 **导入之后，再次点击则会检查更新**
 
 
 
 ### C.网络导入也方便
-请【**开启代理**】后，复制下面的【书源】链接
-
-```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
-```
-```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
-```
-
 #### 1.打开【我的】页面，点击【书源管理】
-![img](https://telegra.ph/file/d07ec9ee37e2c47fc0ebc.png)
+![img](./pic/ImportOnlineBookSource1.jpg)
 
 
 #### 2.点击右上角的三点菜单，选择【网络导入】
-![img](https://telegra.ph/file/34efbe9aaa606cc494ee9.png)
-
+![img](./pic/ImportOnlineBookSource2.jpg)
 
 
 #### 3.粘贴书源链接，点击确定
-![img](https://telegra.ph/file/3e2e96313db44315574da.png)
+![img](./pic/ImportOnlineBookSource3.jpg)
 
 
 #### 4.导入完成并启用书源
-**无法网络导入时，请尝试开启代理，或过段时间重试**
+**如果导入失败，请开启代理，或过段时间重试**
 
 ![img](./pic/InportBookSourcePixiv.jpg)
 
@@ -140,19 +128,16 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 此处略过，请自行学习，**最好开启【全局代理】**
 
 ### 登录账号的方法
-
 #### 1.找到需要登录的书源
+**点击右上角的三点菜单，选择【登录】,登录你的账号**
 
-**点击右上角的三点菜单，选择【登录】**
-
-![img](https://telegra.ph/file/c50639ef1fe61778033ff.png)
+![img](./pic/PixivLoginIn1.jpg)
 
 
 #### 2.登录你的账号
-
 登录成功后，点击右上角的对勾，关闭登录页面
 
-![img](https://telegra.ph/file/477498dc3c3cf229981d0.png)
+![img](./pic/PixivLoginIn2.jpg)
 
 对于Pixiv而言，**如果需要验证码，请更换代理，或过段时间再次尝试**
 

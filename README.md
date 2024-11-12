@@ -90,15 +90,16 @@
 
 
 ### 订阅源
+- btsrk 订阅源：整合了 Pixiv、Linpx、兽人小说站等网站，旨在快速访问兽人文化网站
+- books 订阅源：整合了多个分享阅读书源、订阅源等的订阅源，旨在快速导入阅读相关资源
+
+
 | 订阅源 | 状态 | 包含内容 | 订阅源 | 状态 | 包含内容 |
 | ----- | ---- | -------|----- | ---- | ------- |
 | btsrk | ✅ | 1️⃣ [Pixiv 小说](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | ✅ | 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
-- btsrk 订阅源：整合了 Pixiv、Linpx、兽人小说站、兽人控游戏索引、兽人控游戏库等网站，旨在快速访问兽人文化网站
-- books 订阅源：整合了多个分享阅读书源、订阅源等的订阅源，旨在快速导入阅读相关资源
 
-
-#### 非本项目的其他资源：
+### 非本项目的其他资源：
 - **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇为众多网文网站编写的通用书源，旨在使用搜索引擎获取全网小说资源，建议配合【**聚合搜索**】共同使用
 - **[聚合搜索](https://legado.cn/thread-3723-1-1.html)** ：是不世玄奇制作的多个搜索引擎的聚合入口订阅源，需要配合 **[通用书源/搜索引擎书源](http://yuedu.miaogongzi.net/gx.html)** 使用
 

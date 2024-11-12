@@ -1,6 +1,7 @@
 ## 4. Webdav 备份
+> https://www.yuque.com/legado/wiki/fkx510
 
-阅读支持WebDav云备份，所有支持WebDav的云盘都可以。
+阅读支持 WebDav 云备份，所有支持 WebDav 的云盘都可以用来备份。
 
 建议使用坚果云,每月免费1G流量，备份阅读已经足够了。
 
@@ -9,7 +10,7 @@
 > https://www.jianguoyun.com/d/signup 
 
 
-### 1. [配置坚果云](https://www.yuque.com/legado/wiki/fkx510)
+### 1. 配置坚果云
 > https://www.yuque.com/legado/wiki/fkx510
 
 #### 1.1 在右上角点击【用户名】，选择【账户信息】
@@ -25,7 +26,7 @@
 ![image.png](https://cdn.nlark.com/yuque/0/2021/png/12737724/1614783363300-d74cf960-ddf4-4a04-aee2-df1f21565b0f.png?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_23%2Ctext_TGVnYWRvIMK3IOW8gOa6kOmYheivuw%3D%3D%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10)
 
 
-### 2. [设置备份信息](https://www.yuque.com/legado/wiki/mgu5qu)
+### 2. 设置备份信息
 > https://www.yuque.com/legado/wiki/mgu5qu
 
 #### 2.1 进入备份与恢复
@@ -56,7 +57,7 @@ WebDav同一天的备份会覆盖，不同日期的备份不会覆盖。
 
 
 
-### 3. [恢复数据](https://www.yuque.com/legado/wiki/nxs89y)
+### 3. 恢复数据
 > https://www.yuque.com/legado/wiki/nxs89y
 
 在“备份与恢复”里点击“恢复”， 选择需要恢复的备份文件即可。 

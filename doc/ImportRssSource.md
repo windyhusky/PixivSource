@@ -1,18 +1,17 @@
 ## 3.导入订阅源
 
-## ⓪ 订阅源来源
-
-**请查看[书源获取方式](./ImportBookSource.md)，一般二者会同时提供**
+## 3.0 订阅源来源
 - [Legado｜开源阅读 | 频道](https://t.me/legado_channels)
 - [源仓库](https://www.yckceo.com/yuedu/rss/index.html)
-- [阅读论坛](https://legado.cn/forum-rssSources-1.html)
+> **更多方式请查看[书源获取方式](./ImportBookSource.md)，一般二者会同时提供**
 
 书源分享【订阅源】：
-- [喵公子订阅源](https://yd.mgz6.cc/)
-- [阅读 APP 源](https://legado.aoaostar.com/)
-- [阅读合集 订阅源](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b)
+- [喵公子订阅源](https://yd.mgz6.com)
+- [阅读 APP 源](https://legado.aoaostar.com)
+- [一程 阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b)
 
-## ① 导入订阅源 [官方教程](https://www.yuque.com/legado/wiki/grqch2)
+
+## 3.1 导入订阅源
 
 ### A.文件导入更简单
 #### 1.下载书源/订阅源文件
@@ -103,7 +102,7 @@ legado://import/rssSource?src=https://raw.githubusercontent.com/windyhusky/Pixiv
 ```
 
 #### 1.点击链接，跳转阅读
-浏览器打开：**[喵公子订阅源](https://dy.mgz6.cc/)**
+浏览器打开：**[喵公子订阅源](https://dy.mgz6.com)**
 
 一键导入按钮的链接，即为下面这条链接：
 ```

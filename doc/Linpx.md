@@ -1,12 +1,9 @@
-## Linpx 书源的导入与使用]
-
-> Linpx 书源的导入与使用 
+## Linpx 书源的导入与使用
 > https://telegra.ph/FurryNovelsReading-05-04-07
 
 
-### [Linpx](http://www.furrynovel.xyz/) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**
-
-![img](https://telegra.ph/file/b42876352720a6f4b7515.png)
+### [Linpx](http://www.furrynovel.ink) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**
+![img](./pic/LinpxWebpage.png)
 
 
 ### 本书源使用前提
@@ -24,7 +21,7 @@
 
 
 ### 1.了解阅读功能与用法
-> 请查看[阅读是什么软件？阅读简介](./ReadMe.md)
+> 请查看 [阅读是什么软件？阅读简介](./ReadMe.md)
 
 
 ### 2.导入 Linpx 书源

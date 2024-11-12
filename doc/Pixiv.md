@@ -1,10 +1,6 @@
 ## Pixiv 书源的导入与使用
-
-> Pixiv 书源的导入与使用
 > https://telegra.ph/FurryNovelsReading-01-04-07
-> 
-> Pixiv 書源的導入與使用（繁體版）
-> https://telegra.ph/FurryNovelsReading-02-04-07
+
 
 Pixiv 是以插图、漫画、小说为中心的允许 R18 内容的艺术网站
 
@@ -94,37 +90,36 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 此处略过，请自行学习，**最好开启【全局代理】**
 
 #### 4.2登录 Pixiv 账号
+**我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录**
 
-我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录
-![img](./pic/PixivLoginIn.png)
-
-或者 我的-书源管理-编辑 Pixiv 书源-登录
-
-![img](https://telegra.ph/file/238b6ef145e4098c616f3.png)
+![img](./pic/PixivLoginIn1.jpg)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
-![img](https://telegra.ph/file/477498dc3c3cf229981d0.png)
+
+![img](./pic/PixivLoginIn2.jpg)
 
 **如果需要验证码，请更换代理，或过段时间再次尝试**
 
+
 ### 5.开启 Pixiv 的 R18 设置
 #### 如果你之前已经开启了，则可以跳过第4步
+**再次点击登录，滑动屏幕，点击头像，再次点击头像，编辑个人资料**
 
-**再次点击登录，滑动屏幕，点击头像，选择设置**
-
-### 5.1 [Pixiv 个人资料设置](https://www.pixiv.net/setting_profile.php) - 个人资料内容 - 出生年份
+### 5.1 [Pixiv 个人资料](https://www.pixiv.net/settings/profile) - 编辑个人资料 - 出生年份
 
 出生年份改到：**2000年或2000年之前**，确保你的年龄在20岁及以上
 
-![img](https://telegra.ph/file/6166e2509c3dac50e8f31.png)
+![img](./pic/PixivSettingsBirth.png)
 
-### 5.2 [Pixiv 用户设置](https://www.pixiv.net/setting_user.php) - 基本设定 - 浏览限制
+
+### 5.2 [Pixiv 设置](https://www.pixiv.net/settings/viewing) - 浏览与显示 - 年龄限制作品
+**再次点击登录，滑动屏幕，点击头像，选择设置**
 
 根据自己情况选择显示：R18 作品与 R18G 作品
 
 不知道二者区别的可以自行搜索后了解
 
-![img](https://telegra.ph/file/1c662b6c7f9f60c801c07.png)
+![img](./pic/PixivSettingsView.png)
 
 
 ## 二、添加小说，尽情使用
