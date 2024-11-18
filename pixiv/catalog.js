@@ -15,9 +15,7 @@ function seriesHandler(res) {
     let returnList = [];
     let seriesID = res.seriesNavData.seriesId
     let allChaptersCount = (() => {
-        let result = util.cacheGetAndSet(util.urlSeries(seriesID), () => {
-            return util.getAjaxJson(util.urlSeries(seriesID))
-        }).body.total
+        let result = util.getAjaxJson(util.urlSeries(seriesID)).body.total
         util.debugFunc(() => {
             java.log(`本目录一共有:${result} 章节`);
         })
@@ -31,6 +29,7 @@ function seriesHandler(res) {
             // v.chapterUrl = util.urlNovelDetailed(v.id)
             v.chapterUrl = util.urlNovelUrl(v.id)
             v.updateDate = util.timeStampFormat(v.uploadTimestamp)
+            // java.log(v.chapterUrl)
         })
         return res;
     }
@@ -43,6 +42,7 @@ function seriesHandler(res) {
         let list = sendAjaxForGetChapters(i * limit);
         //取出每个值
         returnList = returnList.concat(list)
+        // java.log(JSON.stringify(returnList))
     }
     return returnList
 }
@@ -79,14 +79,12 @@ function aloneHandler(res) {
             }
         }
     } else {
-        // 从搜索直接获取 json
         res = JSON.parse(result).body
         if (res.total === 0) {
             return []
         }
     }
 
-    let res = JSON.parse(result).body
     if (res.seriesNavData === null || res.seriesNavData === undefined) {
         return aloneHandler(res)
     }
