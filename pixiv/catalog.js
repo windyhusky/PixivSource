@@ -61,6 +61,35 @@ function aloneHandler(res) {
 }
 
 (() => {
+    // 获取网址id，请求并解析数据，调试用
+    let isHtml = result.startsWith("<!DOCTYPE html>")
+    if (isHtml) {
+        var novelId = 0
+        let isSeries = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel/series"))
+        if (isSeries) {
+            let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
+            java.log(`系列ID：${seriesId}`)
+            novelId = util.getAjaxJson(util.urlSeries(seriesId)).body.firstNovelId
+            java.log(`首篇小说ID：${novelId}`)
+            res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+        } else {
+            let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
+            if (isNovel) {
+                novelId = baseUrl.match(new RegExp("\\d+"))[0]
+                java.log(`详情：匹配小说ID：${novelId}`)
+                res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+            } else {
+                return []
+            }
+        }
+    } else {
+        // 从搜索直接获取 json
+        res = JSON.parse(result).body
+        if (res.total === 0) {
+            return []
+        }
+    }
+
     let res = JSON.parse(result).body
     if (res.seriesNavData === null || res.seriesNavData === undefined) {
         return aloneHandler(res)
