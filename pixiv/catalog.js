@@ -26,8 +26,7 @@ function seriesHandler(res) {
     function sendAjaxForGetChapters(lastIndex) {
         res = util.getAjaxJson(util.urlSeriesNovels(seriesID, limit, lastIndex)).body.page.seriesContents
         res.forEach(v => {
-            // v.chapterUrl = util.urlNovelDetailed(v.id)
-            v.chapterUrl = util.urlNovelUrl(v.id)
+            v.chapterUrl = util.urlNovel(v.id)
             v.updateDate = util.timeStampFormat(v.uploadTimestamp)
             // java.log(v.chapterUrl)
         })
@@ -50,17 +49,16 @@ function seriesHandler(res) {
 function aloneHandler(res) {
     return [{
         title: res.title,
-        // chapterUrl: util.urlNovelDetailed(res.id),
-        chapterUrl: util.urlNovelUrl(res.id),
+        chapterUrl: util.urlNovel(res.id),
         updateDate: util.timeTextFormat(res.createDate)
     }]
 }
 
 (() => {
     // 获取网址id，请求并解析数据，调试用
+    var novelId = 0, res = ""
     let isHtml = result.startsWith("<!DOCTYPE html>")
     if (isHtml) {
-        var novelId = 0
         let isSeries = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel/series"))
         if (isSeries) {
             let seriesId = baseUrl.match(new RegExp("\\d+"))[0]

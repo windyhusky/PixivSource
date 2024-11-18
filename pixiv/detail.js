@@ -12,9 +12,9 @@ function objParse(obj) {
 
 (function (res) {
     // 获取网址id，请求并解析数据
+    var novelId = 0
     let isHtml = result.startsWith("<!DOCTYPE html>")
     if (isHtml) {
-        var novelId = 0
         let isSeries = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel/series"))
         if (isSeries) {
             let seriesId = baseUrl.match(new RegExp("\\d+"))[0]

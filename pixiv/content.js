@@ -11,6 +11,7 @@ function objParse(obj) {
 }
 
 (() => {
+    var novelId = 0, res = ""
     let isHtml = result.startsWith("<!DOCTYPE html>")
     if (isHtml) {
         let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))

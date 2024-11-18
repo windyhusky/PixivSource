@@ -10,6 +10,8 @@ function objStringify(obj) {
 
 function publicFunc() {
     let u = {}
+    u.SHOW_ORIGINAL_NOVEL_LINK = true   // 目录处显示 Pixiv 小说链接，但会增加请求次数
+    // u.SHOW_ORIGINAL_NOVEL_LINK = false  // 目录不显示 Pixiv 小说链接，可以减少请求次数
 
     u.cacheGetAndSet = (key, supplyFunc) => {
         let v = cache.get(key)
@@ -37,12 +39,20 @@ function publicFunc() {
         }
     }
 
-    u.urlNovelUrl = (id) =>{
-        return `https://www.pixiv.net/novel/show.php?id=${id}`
+    u.urlNovelUrl = (novelId) =>{
+        return `https://www.pixiv.net/novel/show.php?id=${novelId}`
     }
-    u.urlNovelDetailed = (nid) => {
-        return `https://www.pixiv.net/ajax/novel/${nid}`
+    u.urlNovelDetailed = (novelId) => {
+        return `https://www.pixiv.net/ajax/novel/${novelId}`
     }
+    u.urlNovel = (novelId) => {
+        if (util.SHOW_ORIGINAL_NOVEL_LINK === true) {
+            return util.urlNovelUrl(novelId)
+        } else {
+            return util.urlNovelDetailed(novelId)
+        }
+    }
+
     u.urlSeries = (seriesId) => {
         return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
     }
@@ -57,6 +67,7 @@ function publicFunc() {
 
         return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
     }
+
     u.searchNovel = (novelName, page) =>{
         return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
     }
@@ -70,6 +81,7 @@ function publicFunc() {
     u.urlSearchUserPartial = (username) => {
         return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr`
     }
+
     u.urlUserAllWorks = (uesrId) => {
         return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`
     }
@@ -83,6 +95,7 @@ function publicFunc() {
     u.urlSeriesIllusts = (seriesId) => {
         return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
     }
+
     u.urlCoverUrl = (url) => {
         return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
     }
