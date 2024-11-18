@@ -26,11 +26,7 @@ function seriesHandler(res) {
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        let url = util.urlSeriesNovels(seriesID, limit, lastIndex)
-        res = util.cacheGetAndSet(url, () => {
-            return util.getAjaxJson(url)
-        })
-        res = res.body.page.seriesContents
+        res = util.getAjaxJson(util.urlSeriesNovels(seriesID, limit, lastIndex)).body.page.seriesContents
         res.forEach(v => {
             // v.chapterUrl = util.urlNovelDetailed(v.id)
             v.chapterUrl = util.urlNovelUrl(v.id)

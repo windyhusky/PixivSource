@@ -19,15 +19,9 @@ function objParse(obj) {
         if (isSeries) {
             let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
             java.log(`系列ID：${seriesId}`)
-            // 获取系列第一篇小说的 id
-            let url = util.urlSeriesNovels(seriesId, 30, 0)
-            res = util.cacheGetAndSet(url, () => {
-                return JSON.parse(java.ajax(url))
-            })
-            novelId = res.body.thumbnails.novel[0].id
+            novelId = util.getAjaxJson(util.urlSeries(seriesId)).body.firstNovelId
             java.log(`首篇小说ID：${novelId}`)
             res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
-            // java.log(JSON.stringify(res))
         } else {
             let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
             if (isNovel) {
