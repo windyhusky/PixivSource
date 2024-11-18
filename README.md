@@ -30,7 +30,7 @@
 <details>
 <summary>  Github 导入地址 </summary>
 
-| 名称         | Github 导入网址                                                             |   
+| 名称         | Github 导入网址                                                             |
 | ----------- | -------------------------------------------------------------------------- |
 | Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json   |
 | Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json   |
@@ -42,12 +42,10 @@
 
 ## 源状态、功能
 ### 书源
-| 书源      | 状态 | 获取小说 | 支持P站特性 | 实现阅读功能 |
+| 书源       | 状态 | 获取小说 | 支持P站特性 | 实现阅读功能 |
 | --------- | --- | ------ | ---------- | ------------ |
 | Pixiv     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 小说插画 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 | Linpx     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 小说插画 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
-| 兽人小说站 | ❌ | ⭕️ 部分 | ✅ 单篇 ✅ 系列 ❌ 小说插画 | ❌ 搜索 ❌ 发现 ✅ 添加网址 ✅ 订阅源 |
-| 通用书源   | ✅ | ✅ 全网 |  | ✅ 搜索 🈚️ 发现 ✅ 添加网址 ✅ 订阅源 |
 
 
 #### Pixiv 特性：
@@ -74,12 +72,11 @@
       - ☑️ `[[jumpuri:标题 > 链接目标的URL]]` 添加超链接
       - ☑️ `[[rb:汉字 > 注音]]` 添加注音
         - 当`注音`位置不是汉字时，使用括号注音：`[[rb:汉字 > 注音]]` => `汉字（注音）`
-      - ☑️ `汉字《注音》`（选择`置き換える`后 Pixiv 会进行这样的替换）`汉字《注音》` => `[[rb:汉字 > 注音]]`
-        - 当`注音`位置是汉字时，恢复被替换的书名号：`[[rb:汉字 > 注音]]` => `汉字《注音》`
+      - ☑️ `汉字《注音》`；选择`置き換える`后，Pixiv 会这样替换`汉字《注音》` => `[[rb:汉字 > 注音]]`
+        - 当`注音`位置是汉字时，恢复被替换的书名号：`[[rb:汉字 > 注音]]` => `汉字《注音》`。默认开启，可在书源【基本】修改` u.REPLACE_RUBY_WITH_BOOK_TITLE_MARKS` 设置
     - 🈚️ 不支持的标记符
   </details>
   </details>
-
 
 
 #### 阅读功能：
@@ -88,15 +85,24 @@
 - 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
 - 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
 
+<details>
+<summary> 书源可选设置 </summary>
+
+| 可选设置         | 状态 | 位置 | 名称                               |
+| -------------- | --- | --- | ---------------------------------- |
+| 显示小说源链接　　 | 开启 | 基本 | ` u.SHOW_ORIGINAL_NOVEL_LINK`      |
+| 恢复被替换的书名号 | 开启 | 基本 | ` u.REPLACE_WITH_BOOK_TITLE_MARKS` |
+| 自定义小说简介　　 | 关闭 | 详情 | `info.description`                 |
+</details>
+
 
 ### 订阅源
-- btsrk 订阅源：整合了 Pixiv、Linpx、兽人小说站等网站，旨在快速访问兽人文化网站
-- books 订阅源：整合了多个分享阅读书源、订阅源等的订阅源，旨在快速导入阅读相关资源
-
-
 | 订阅源 | 状态 | 包含内容 | 订阅源 | 状态 | 包含内容 |
 | ----- | ---- | -------|----- | ---- | ------- |
 | btsrk | ✅ | 1️⃣ [Pixiv 小说](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | ✅ | 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
+
+- btsrk 订阅源：整合了 Pixiv、Linpx、兽人小说站等网站，旨在快速访问兽人文化网站
+- books 订阅源：整合了多个分享阅读书源、订阅源等的订阅源，旨在快速导入阅读相关资源
 
 
 ### 非本项目的其他资源：
