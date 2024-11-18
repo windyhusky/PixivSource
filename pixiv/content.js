@@ -107,15 +107,20 @@ function objParse(obj) {
             let matchedText = matched2[0]
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
-            // content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
-            // kana为中文，则替换回《书名号》
-            var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
-            if (reg.test(kana)) {
-                content = content.replace(`${matchedText}`, `${kanji}《${kana}》`)
-            } else{
-                // 阅读不支持 <ruby> <rt> 注音
-                // content = content.replace(`${matchedText}`, `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+
+            if (util.REPLACE_WITH_BOOK_TITLE_MARKS === true) {
+                // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
+            } else {
+                var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+                if (reg.test(kana)) {
+                    // kana为中文，则替换回《书名号》
+                    content = content.replace(`${matchedText}`, `${kanji}《${kana}》`)
+                } else{
+                    // 阅读不支持 <ruby> <rt> 注音
+                    // content = content.replace(`${matchedText}`, `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+                    content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
+                }
             }
         }
     }
