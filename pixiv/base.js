@@ -37,6 +37,9 @@ function publicFunc() {
         }
     }
 
+    u.urlNovelUrl = (id) =>{
+        return `https://www.pixiv.net/novel/show.php?id=${id}`
+    }
     u.urlNovelDetailed = (nid) => {
         return `https://www.pixiv.net/ajax/novel/${nid}`
     }

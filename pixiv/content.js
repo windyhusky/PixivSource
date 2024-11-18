@@ -11,7 +11,18 @@ function objParse(obj) {
 }
 
 (() => {
-    let res = JSON.parse(result).body
+    let isHtml = result.startsWith("<!DOCTYPE html>")
+    if (isHtml) {
+        let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
+        if (isNovel) {
+            novelId = baseUrl.match(new RegExp("\\d+"))[0]
+            java.log(`正文：匹配小说ID：${novelId}`)
+            res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+        }
+    } else {
+        res = JSON.parse(result).body
+    }
+
     let content = res.content
     // 在正文内部添加小说描述
     if (res.seriesNavData !== undefined && res.seriesNavData !== null && res.description !== "") {
@@ -95,6 +106,7 @@ function objParse(obj) {
             let matchedText = matched2[0]
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
+            // content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             // kana为中文，则替换回《书名号》
             var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
             if (reg.test(kana)) {

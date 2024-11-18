@@ -32,9 +32,8 @@ function objParse(obj) {
             let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
             if (isNovel) {
                 novelId = baseUrl.match(new RegExp("\\d+"))[0]
-                java.log(`匹配小说ID：${novelId}`)
+                java.log(`详情：匹配小说ID：${novelId}`)
                 res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
-                // java.log(JSON.stringify(res))
             } else {
                 return []
             }
@@ -72,14 +71,13 @@ function objParse(obj) {
         info.latestChapter = res.title
         info.description = res.description
         info.coverUrl = res.coverUrl
-        info.catalog = util.urlNovelDetailed(info.noveId)
         info.createDate = res.createDate
         info.updateDate = res.uploadDate
 
     } else {  // 系列小说
         info.seriesId = res.seriesNavData.seriesId
         info.title = res.seriesNavData.title
-        java.log(`${info.seriesId}，${info.title}`)
+        java.log(`系列小说：${info.seriesId}，${info.title}`)
         res2 = JSON.parse(java.ajax(util.urlSeries(res.seriesNavData.seriesId))).body
         // java.log(JSON.stringify(res2))
         // info.title = res2.title
@@ -92,7 +90,6 @@ function objParse(obj) {
         info.description = `${res2.caption}\n当前章节简介：\n${info.description}`
         // info.coverUrl = res2.firstEpisode.url   // 第一章封面
         info.coverUrl = res2.cover.urls["480mw"] // 240mw, 480mw, 1200x1200, 128x128, original
-        info.catalog = util.urlSeries(info.seriesId)
         info.createDate = res2.createDate
         info.updateDate = res2.updateDate
         info.totalChapterNum = res2.displaySeriesContentCount  //章节总数
