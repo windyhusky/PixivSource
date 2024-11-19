@@ -10,6 +10,8 @@ function objStringify(obj) {
 
 function publicFunc() {
     let u = {}
+    u.SHOW_ORIGINAL_NOVEL_LINK = true   // 目录处显示 Pixiv 小说链接，但会增加请求次数
+    // u.SHOW_ORIGINAL_NOVEL_LINK = false  // 目录不显示 Pixiv 小说链接，可以减少请求次数
 
     u.cacheGetAndSet = function (key, supplyFunc) {
         let v = cache.get(key)
@@ -31,35 +33,48 @@ function publicFunc() {
             return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
         })
     }
-
-
     u.debugFunc = (func) => {
         if (String(source.getVariable()) === "debug") {
             func()
         }
     }
 
-    u.urlNovelUrl = function (id){
+    u.urlNovelDetailed = function (id){
         return `https://api.furrynovel.ink/pixiv/novel/${id}/cache`
     }
+    u.urlNovelUrl = function (id){
+        return `https://furrynovel.ink/pixiv/novel/${id}/cache`
+    }
+    u.urlNovel = (novelId) => {
+        if (util.SHOW_ORIGINAL_NOVEL_LINK === true) {
+            return util.urlNovelUrl(novelId)
+        } else {
+            return util.urlNovelDetailed(novelId)
+        }
+    }
+
     u.urlSeriesUrl = function (id){
         return `https://api.furrynovel.ink/pixiv/series/${id}/cache`
     }
+
     u.urlUserUrl = function (id) {
         return `https://api.furrynovel.ink/pixiv/user/${id}/cache`
     }
+
     u.urlSearchNovel = function (novelname) {
         return `https://api.furrynovel.ink/pixiv/search/novel/${novelname}/cache`
     }
     u.urlSearchUsers = function (username) {
         return `https://api.furrynovel.ink/pixiv/search/user/${username}/cache`
     }
+
     u.urlNovelsDetailed = function (nidList) {
         return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
     u.urlUserDetailed = function (nidList) {
         return `https://api.furrynovel.ink/pixiv/users/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
+
     u.urlCoverUrl = function (pxImgUrl) {
         return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
     }
@@ -79,7 +94,7 @@ function publicFunc() {
             // novel.createDate = novel.createDate
             novel.textCount = novel.length
             novel.description = novel.desc
-            novel.detailedUrl = util.urlNovelUrl(novel.id)
+            novel.detailedUrl = util.urlNovelDetailed(novel.id)
             if (novel.seriesId !== undefined && novel.seriesId !== null) {
                 novel.title = novel.seriesTitle
                 novel.length = null

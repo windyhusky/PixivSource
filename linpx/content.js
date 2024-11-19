@@ -11,7 +11,26 @@ function objParse(obj) {
 }
 
 (function (res) {
-    res = JSON.parse(res)
+    let isHtml = res.startsWith("<!DOCTYPE html>")
+    let id = baseUrl.match(new RegExp("\\d+"))[0]
+    java.log(`当前小说ID：${id}`)
+    // 处理详情页链接
+    if (isHtml) {
+        let matchResult = baseUrl.match(new RegExp("pn|pixiv/novel|pixiv.net/novel"))
+        if (matchResult == null) {
+            return []
+        }
+        res = util.getAjaxJson(util.urlNovelDetailed(id))
+        java.log(util.urlNovelDetailed(id))
+    } else {
+        // 处理 json ，自搜索或 api 链接
+        res = JSON.parse(res)
+        if (res.error === true || res.total === 0) {
+            java.log(`Linpx 上暂无该小说(${id})，无法获取相关内容`)
+            return []
+        }
+    }
+
     let content = res.content
     if (res.series !== null && res.desc !== undefined && res.desc !== "") {
         content = res.desc + "\n" + "——————————\n".repeat(2) + content

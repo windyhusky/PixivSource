@@ -20,7 +20,7 @@ function objParse(obj) {
         if (matchResult == null) {
             return []
         }
-        res = util.getAjaxJson(util.urlNovelUrl(id))
+        res = util.getAjaxJson(util.urlNovelDetailed(id))
     } else {
         // 处理 json ，自搜索或 api 链接
         res = JSON.parse(res)
@@ -44,8 +44,7 @@ function objParse(obj) {
     if (res.series === undefined || res.series === null) {
         info.title = info.latest_chapter = res.title
         info.tags.unshift('单本')
-        info.catalog = util.urlNovelUrl(res.id)
-
+        info.catalog = util.urlNovelDetailed(res.id)
     } else {
         info.title = res.series.title
         info.tags.unshift('长篇')
