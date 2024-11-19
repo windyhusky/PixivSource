@@ -12,6 +12,8 @@ function publicFunc() {
     let u = {}
     u.SHOW_ORIGINAL_NOVEL_LINK = true   // 目录处显示 Pixiv 小说链接，但会增加请求次数
     // u.SHOW_ORIGINAL_NOVEL_LINK = false  // 目录不显示 Pixiv 小说链接，可以减少请求次数
+    u.REPLACE_WITH_BOOK_TITLE_MARKS = true  // 注音内容为汉字时，替换为书名号 `[[rb:汉字 > 注音]] => 汉字《注音》`
+    // u.REPLACE_WITH_BOOK_TITLE_MARKS = false // 注音内容默认替换为括号`[[rb:汉字 > 注音]] => 汉字（注音）`
 
     u.cacheGetAndSet = function (key, supplyFunc) {
         let v = cache.get(key)
