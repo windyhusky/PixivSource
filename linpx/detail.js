@@ -48,7 +48,7 @@ function objParse(obj) {
     } else {
         info.title = res.series.title
         info.tags.unshift('长篇')
-        info.catalog = util.urlSeriesUrl(res.series.id)
+        info.catalog = util.urlSeriesDetailed(res.series.id)
     }
     info.tags = info.tags.join(",")
     return info

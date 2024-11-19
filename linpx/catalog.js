@@ -41,7 +41,7 @@ function seriesHandler(res) {
         java.log(`目录：当前小说ID：${id}`)
         if (res.series !== undefined) {
             java.log(`目录：当前系列ID：${res.series.id}${res.series.title}`)
-            res = util.getAjaxJson(util.urlSeriesUrl(res.series.id))
+            res = util.getAjaxJson(util.urlSeriesDetailed(res.series.id))
         }
     } else {
         res = JSON.parse(res)

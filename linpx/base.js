@@ -32,7 +32,7 @@ function publicFunc() {
     u.getWebviewJson = function (url) {
         return util.cacheGetAndSet(url, () => {
             let html = java.webView(null, url, null)
-            return JSON.parse((html.match(new RegExp(">\\[\\{.*?}]<"))[0].replace(">", "").replace("<", "")))
+            return JSON.parse((html.match(new RegExp(">\\[{.*?}]<"))[0].replace(">", "").replace("<", "")))
         })
     }
     u.debugFunc = (func) => {
@@ -44,6 +44,9 @@ function publicFunc() {
     u.urlNovelDetailed = function (id){
         return `https://api.furrynovel.ink/pixiv/novel/${id}/cache`
     }
+    u.urlNovelsDetailed = function (nidList) {
+        return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
+    }
     u.urlNovelUrl = function (id){
         return `https://furrynovel.ink/pixiv/novel/${id}/cache`
     }
@@ -54,13 +57,21 @@ function publicFunc() {
             return util.urlNovelDetailed(novelId)
         }
     }
-
-    u.urlSeriesUrl = function (id){
+    // u.urlSeriesUrl = function (id) {
+    //     return `https://furrynovel.ink/pixiv/series/${id}/cache`
+    // }
+    u.urlSeriesDetailed = function (id){
         return `https://api.furrynovel.ink/pixiv/series/${id}/cache`
     }
 
     u.urlUserUrl = function (id) {
+        return `https://furrynovel.ink/pixiv/user/${id}/cache`
+    }
+    u.urlUserDetailed = function (id) {
         return `https://api.furrynovel.ink/pixiv/user/${id}/cache`
+    }
+    u.urlUsersDetailed = function (nidList) {
+        return `https://api.furrynovel.ink/pixiv/users/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
 
     u.urlSearchNovel = function (novelname) {
@@ -68,13 +79,6 @@ function publicFunc() {
     }
     u.urlSearchUsers = function (username) {
         return `https://api.furrynovel.ink/pixiv/search/user/${username}/cache`
-    }
-
-    u.urlNovelsDetailed = function (nidList) {
-        return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
-    }
-    u.urlUserDetailed = function (nidList) {
-        return `https://api.furrynovel.ink/pixiv/users/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
 
     u.urlCoverUrl = function (pxImgUrl) {
@@ -102,7 +106,7 @@ function publicFunc() {
                 novel.length = null
 
                 java.log(`正在获取系列小说：${novel.seriesId}`)
-                let series = util.getAjaxJson(util.urlSeriesUrl(novel.seriesId))
+                let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId))
                 // 后端目前没有系列的coverUrl字段
                 // novel.coverUrl = util.urlCoverUrl(series.coverUrl)
                 novel.coverUrl = util.urlCoverUrl(series.novels[0].coverUrl)

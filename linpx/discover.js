@@ -33,16 +33,13 @@ function handlerRecommendUsers() {
     const MAX_FETCH_USER_NUMBER = 2;
 
     return () => {
-        let novelList = []
         let userIds = JSON.parse(result).map(i => i.id)
         // java.log(`用户id个数:${userIds.length}`)
         if (userIds.length > MAX_FETCH_USER_NUMBER) {
             userIds = randomChoseArrayItem(userIds, MAX_FETCH_USER_NUMBER);
         }
-
         // java.log(`查询的用户Ids:${userIds}`)
-
-        let usersInfo = util.getWebviewJson(util.urlUserDetailed(userIds))
+        let usersInfo = util.getWebviewJson(util.urlUsersDetailed(userIds))
         // java.log(`返回的${JSON.stringify(usersInfo)}`)
         let queryNovelIds = []
         // java.log(`${JSON.stringify(usersInfo)}`)

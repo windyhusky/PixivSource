@@ -14,7 +14,6 @@ function objParse(obj) {
     let isHtml = res.startsWith("<!DOCTYPE html>")
     let id = baseUrl.match(new RegExp("\\d+"))[0]
     java.log(`正文：当前小说ID：${id}`)
-    // 处理详情页链接
     if (isHtml) {
         let matchResult = baseUrl.match(new RegExp("pn|pixiv/novel|pixiv.net/novel"))
         if (matchResult == null) {
@@ -22,7 +21,6 @@ function objParse(obj) {
         }
         res = util.getAjaxJson(util.urlNovelDetailed(id))
     } else {
-        // 处理 json ，自搜索或 api 链接
         res = JSON.parse(res)
         if (res.error === true || res.total === 0) {
             java.log(`Linpx 上暂无该小说(${id})，无法获取相关内容`)

@@ -30,7 +30,7 @@ function getUser(username, exactMatch) {
 // 包含所有小说数据
 function getUserDetailedList(uidList) {
     // java.log(`UIDLIST:${JSON.stringify(uidList)}`)
-    return util.getWebviewJson(util.urlUserDetailed(uidList))
+    return util.getWebviewJson(util.urlUsersDetailed(uidList))
 }
 
 function getNovels(nidList) {
