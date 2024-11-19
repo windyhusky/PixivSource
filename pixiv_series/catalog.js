@@ -10,14 +10,20 @@ function objParse(obj) {
     })
 }
 
+function oneShotHandler(res) {
+    return [{
+        title: res.title,
+        chapterUrl: util.urlNovel(res.id),
+        updateDate: util.timeTextFormat(res.createDate)
+    }]
+}
+
 function seriesHandler(res) {
     const limit = 30
     let returnList = [];
     let seriesID = res.seriesNavData.seriesId
     let allChaptersCount = (() => {
-        let result = util.cacheGetAndSet(util.urlSeries(seriesID), () => {
-            return util.getAjaxJson(util.urlSeries(seriesID))
-        }).body.total
+        let result = util.getAjaxJson(util.urlSeries(seriesID)).body.total
         util.debugFunc(() => {
             java.log(`本目录一共有:${result} 章节`);
         })
@@ -26,14 +32,11 @@ function seriesHandler(res) {
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        let url = util.urlSeriesNovels(seriesID, limit, lastIndex)
-        res = util.cacheGetAndSet(url, () => {
-            return util.getAjaxJson(url)
-        })
-        res = res.body.page.seriesContents
+        res = util.getAjaxJson(util.urlSeriesNovels(seriesID, limit, lastIndex)).body.page.seriesContents
         res.forEach(v => {
-            v.chapterUrl = util.urlNovelDetailed(v.id)
+            v.chapterUrl = util.urlNovel(v.id)
             v.updateDate = util.timeStampFormat(v.uploadTimestamp)
+            // java.log(v.chapterUrl)
         })
         return res;
     }
@@ -46,22 +49,42 @@ function seriesHandler(res) {
         let list = sendAjaxForGetChapters(i * limit);
         //取出每个值
         returnList = returnList.concat(list)
+        // java.log(JSON.stringify(returnList))
     }
     return returnList
 }
 
-function aloneHandler(res) {
-    return [{
-        title: book.name,
-        chapterUrl: baseUrl,
-        updateDate: util.timeTextFormat(res.createDate)
-    }]
-}
-
 (() => {
-    let res = JSON.parse(result).body
+    // 获取网址id，请求并解析数据，调试用
+    var novelId = 0, res = ""
+    let isHtml = result.startsWith("<!DOCTYPE html>")
+    if (isHtml) {
+        let isSeries = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel/series"))
+        if (isSeries) {
+            let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
+            java.log(`系列ID：${seriesId}`)
+            novelId = util.getAjaxJson(util.urlSeries(seriesId)).body.firstNovelId
+            java.log(`首篇小说ID：${novelId}`)
+            res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+        } else {
+            let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
+            if (isNovel) {
+                novelId = baseUrl.match(new RegExp("\\d+"))[0]
+                java.log(`详情：匹配小说ID：${novelId}`)
+                res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+            } else {
+                return []
+            }
+        }
+    } else {
+        res = JSON.parse(result).body
+        if (res.total === 0) {
+            return []
+        }
+    }
+
     if (res.seriesNavData === null || res.seriesNavData === undefined) {
-        return aloneHandler(res)
+        return oneShotHandler(res)
     }
     return seriesHandler(res)
 })()

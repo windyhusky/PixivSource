@@ -12,29 +12,22 @@ function objParse(obj) {
 
 (function (res) {
     // 获取网址id，请求并解析数据
+    var novelId = 0
     let isHtml = result.startsWith("<!DOCTYPE html>")
     if (isHtml) {
-        var novelId = 0
         let isSeries = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel/series"))
         if (isSeries) {
             let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
             java.log(`系列ID：${seriesId}`)
-            // 获取系列第一篇小说的 id
-            let url = util.urlSeriesNovels(seriesId, 30, 0)
-            res = util.cacheGetAndSet(url, () => {
-                return JSON.parse(java.ajax(url))
-            })
-            novelId = res.body.thumbnails.novel[0].id
+            novelId = util.getAjaxJson(util.urlSeries(seriesId)).body.firstNovelId
             java.log(`首篇小说ID：${novelId}`)
             res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
-            // java.log(JSON.stringify(res))
         } else {
             let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
             if (isNovel) {
                 novelId = baseUrl.match(new RegExp("\\d+"))[0]
-                java.log(`匹配小说ID：${novelId}`)
+                java.log(`详情：匹配小说ID：${novelId}`)
                 res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
-                // java.log(JSON.stringify(res))
             } else {
                 return []
             }
@@ -72,14 +65,13 @@ function objParse(obj) {
         info.latestChapter = res.title
         info.description = res.description
         info.coverUrl = res.coverUrl
-        info.catalog = util.urlNovelDetailed(info.noveId)
         info.createDate = res.createDate
         info.updateDate = res.uploadDate
 
     } else {  // 系列小说
         info.seriesId = res.seriesNavData.seriesId
         info.title = res.seriesNavData.title
-        java.log(`${info.seriesId}，${info.title}`)
+        java.log(`系列小说：${info.seriesId}，${info.title}`)
         res2 = JSON.parse(java.ajax(util.urlSeries(res.seriesNavData.seriesId))).body
         // java.log(JSON.stringify(res2))
         // info.title = res2.title
@@ -92,12 +84,10 @@ function objParse(obj) {
         info.description = `${res2.caption}\n当前章节简介：\n${info.description}`
         // info.coverUrl = res2.firstEpisode.url   // 第一章封面
         info.coverUrl = res2.cover.urls["480mw"] // 240mw, 480mw, 1200x1200, 128x128, original
-        info.catalog = util.urlSeries(info.seriesId)
         info.createDate = res2.createDate
         info.updateDate = res2.updateDate
         info.totalChapterNum = res2.displaySeriesContentCount  //章节总数
         // info.language = res2.language
-        // info.displaySeriesContentCount =
         // info.total = res2.total
         // info.firstNovelId = res2.firstNovelId
         // info.latestNovelId = res2.latestNovelId

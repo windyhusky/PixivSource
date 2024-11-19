@@ -11,7 +11,19 @@ function objParse(obj) {
 }
 
 (() => {
-    let res = JSON.parse(result).body
+    var novelId = 0, res = ""
+    let isHtml = result.startsWith("<!DOCTYPE html>")
+    if (isHtml) {
+        let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
+        if (isNovel) {
+            novelId = baseUrl.match(new RegExp("\\d+"))[0]
+            java.log(`正文：匹配小说ID：${novelId}`)
+            res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+        }
+    } else {
+        res = JSON.parse(result).body
+    }
+
     let content = res.content
     // 在正文内部添加小说描述
     if (res.seriesNavData !== undefined && res.seriesNavData !== null && res.description !== "") {
@@ -34,7 +46,7 @@ function objParse(obj) {
             let matched2 = matched[i].match(RegExp("(\\d+)-?(\\d+)"))
             let temp = matched2[0].split("-")
             illustId = temp[0]
-            if (temp.length === 2){
+            if (temp.length >= 2) {
                 order = temp[1]
             }
             content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginal(illustId, order)}">`)
@@ -95,14 +107,20 @@ function objParse(obj) {
             let matchedText = matched2[0]
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
-            // kana为中文，则替换回《书名号》
-            var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
-            if (reg.test(kana)) {
-                content = content.replace(`${matchedText}`, `${kanji}《${kana}》`)
-            } else{
-                // 阅读不支持 <ruby> <rt> 注音
-                // content = content.replace(`${matchedText}`, `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+
+            if (util.REPLACE_WITH_BOOK_TITLE_MARKS === true) {
+                // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
+            } else {
+                var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+                if (reg.test(kana)) {
+                    // kana为中文，则替换回《书名号》
+                    content = content.replace(`${matchedText}`, `${kanji}《${kana}》`)
+                } else{
+                    // 阅读不支持 <ruby> <rt> 注音
+                    // content = content.replace(`${matchedText}`, `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+                    content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
+                }
             }
         }
     }
