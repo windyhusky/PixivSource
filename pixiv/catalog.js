@@ -10,6 +10,14 @@ function objParse(obj) {
     })
 }
 
+function oneShotHandler(res) {
+    return [{
+        title: res.title,
+        chapterUrl: util.urlNovel(res.id),
+        updateDate: util.timeTextFormat(res.createDate)
+    }]
+}
+
 function seriesHandler(res) {
     const limit = 30
     let returnList = [];
@@ -46,14 +54,6 @@ function seriesHandler(res) {
     return returnList
 }
 
-function aloneHandler(res) {
-    return [{
-        title: res.title,
-        chapterUrl: util.urlNovel(res.id),
-        updateDate: util.timeTextFormat(res.createDate)
-    }]
-}
-
 (() => {
     // 获取网址id，请求并解析数据，调试用
     var novelId = 0, res = ""
@@ -84,7 +84,7 @@ function aloneHandler(res) {
     }
 
     if (res.seriesNavData === null || res.seriesNavData === undefined) {
-        return aloneHandler(res)
+        return oneShotHandler(res)
     }
     return seriesHandler(res)
 })()

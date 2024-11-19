@@ -13,7 +13,7 @@ function objParse(obj) {
 (function (res) {
     let isHtml = res.startsWith("<!DOCTYPE html>")
     let id = baseUrl.match(new RegExp("\\d+"))[0]
-    java.log(`当前小说ID：${id}`)
+    java.log(`正文：当前小说ID：${id}`)
     // 处理详情页链接
     if (isHtml) {
         let matchResult = baseUrl.match(new RegExp("pn|pixiv/novel|pixiv.net/novel"))
