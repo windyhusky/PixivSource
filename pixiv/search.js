@@ -152,10 +152,23 @@ function getUserNovels(username) {
     return novels
 }
 
+function getSeries(seriesName){
+    const MAXPAGES = 3
+    let novelList = []
+    java.log(util.urlSearchSeries(seriesName,1))
+    let resp = util.getAjaxJson(util.urlSearchSeries(seriesName,1))
+    novelList = novelList.concat(resp.body.novel.data)
+    for (let i=Number(java.get("page"))+1 ; i<resp.body.novel.lastPage, i<MAXPAGES; i++) {
+        java.log(`页面：${i}`)
+        novelList = novelList.concat(util.getAjaxJson(util.urlSearchSeries(seriesName, i)).body.novel.data)
+    }
+    return novelList
+}
+
 (() => {
-    //作者 TAG 书名都要支持
-    let resp = JSON.parse(result);
-    let novelsList = getUserNovels(String(java.get("key")))
-    novelsList = novelsList.concat(resp.body.novel.data)
+    let novelsList = []
+    novelsList = novelsList.concat(JSON.parse(result).body.novel.data)
+    novelsList = novelsList.concat(getSeries(String(java.get("key"))))
+    novelsList = novelsList.concat(getUserNovels(String(java.get("key"))))
     return util.formatNovels(handNovels(util.combineNovels(novelsList)))
 })();
