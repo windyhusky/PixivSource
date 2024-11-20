@@ -1,0 +1,34 @@
+[
+  {
+    "title": "关注作者",
+    "url": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh",
+    "style": {
+      "layout_flexGrow": 1,
+      "layout_flexBasisPercent":0.3
+    }
+  },
+  {
+    "title": "追更列表",
+    "url": "https://www.pixiv.net/ajax/watch_list/novel?p={{page}}&new=1&lang=zh",
+    "style": {
+      "layout_flexGrow": 1,
+      "layout_flexBasisPercent":0.3
+    }
+  },
+  {
+    "title": "推荐小说",
+    "url": "https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh",
+    "style": {
+      "layout_flexGrow": 1,
+      "layout_flexBasisPercent":0.3
+    }
+  },
+  {
+    "title": "收藏小说",
+    "url": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh",
+    "style": {
+      "layout_flexGrow": 1,
+      "layout_flexBasisPercent":0.3
+    }
+  }
+]
