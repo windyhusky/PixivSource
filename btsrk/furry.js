@@ -1,0 +1,38 @@
+@js:
+li = [
+    {
+        "name":"Pixiv",
+        "link":"https://www.pixiv.net/novel",
+        "icon":"https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png"
+    },
+    {
+        "name":"Linpx",
+        "link":"https://furrynovel.ink/?from=read",
+        "icon":"https://furrynovel.ink/apple-touch-icon.png"
+    },
+    {
+        "name":"兽人控小说站",
+        "link":"https://www.furrynovel.com/zh/?utm_source=reader",
+        "icon":"https://www.furrynovel.com/static/icon.png"
+    },
+    {
+        "name":"兽人控游戏索引",
+        "link":"https://furrygames.top/zh-cn/list-b.html",
+        "icon":"https://raw.githubusercontent.com/FurryGamesIndex/games/master/assets/_README/logo.png"
+    },
+    {
+        "name":"兽人控游戏库",
+        "link":"https://kemono.games/zh-Hans/explore?sort=latest_update",
+        "icon":"https://img.srkyxk.com/logo-512x512.png"
+    },
+    {
+        "name":"兽展日历",
+        "link":"https://www.furrycons.cn",
+        "icon":"https://images.furrycons.cn/logo_800x800.png"
+    },
+    {
+        "name":"兽聚汇总",
+        "link":"https://www.furryfusion.net",
+        "icon":"https://www.furryfusion.net/images/LOGO.png"
+    }
+]
