@@ -1,10 +1,21 @@
-if (!/^https:\/\/(so\.toutiao\.com\/search\/?|quark\.sm\.cn\/s|wap\.sogou\.com\/web\/searchList\.jsp|m\.so\.com\/s|cn\.bing\.com\/search|www\.baidu\.com\/s)\?/.test(window.location.href) && !document.getElementById('open-yuedu-bookshelf')) {
+if (!/^https:\/\/((www|wap|m|cn)\.)?(baidu|google|bing|so|sougou|so\.toutiao|quark\.sm|furrynovel)\.(com|ink|top|cn)(\.(cn|tw|hk))?/.test(window.location.href) && !document.getElementById('open-yuedu-bookshelf')) {
     const btn = document.createElement('div');
-    btn.innerHTML = `<button type="button" id='open-yuedu-bookshelf' style="z-index: 9999999999;position: fixed;bottom: 7%;right: 7%;background-color: rgb(255, 153, 0);border-radius: 2px;border: 1px solid rgb(255, 153, 0);color: #fff;font-size:${window.innerWidth/80}vw;font-weight: 400;padding: ${window.innerWidth/400}vw ${window.innerWidth/150}vw;" onclick="window.open('legado://import/addToBookshelf?src=${encodeURIComponent(window.location.href)}','_blank')">加入书架</button>`;
+    btn.innerHTML =
+        `<button type="button" id='open-yuedu-bookshelf' 
+            style="
+                z-index: 9999999999; position: fixed;bottom: 7%;
+                right: 7%;background-color: rgb(255, 153, 0);
+                border-radius: 2px;border: 1px solid rgb(252,162,26);
+                color: #fff; font-size:${window.innerWidth / 80}vw; font-weight: 400;
+                padding: ${window.innerWidth / 400}vw ${window.innerWidth / 150}vw;"
+            onclick="
+                window.open('legado://import/addToBookshelf?src=${encodeURIComponent(window.location.href)}','_blank');
+                location.reload();">加入书架
+        </button>`;
     document.body.appendChild(btn);
 }
 
-let time,num=0;
+let time, num=0;
 const herfs = new Map();
 function onTouchStart(evt) {
     for (const el of evt.path) {
@@ -19,7 +30,8 @@ function onTouchStart(evt) {
             break;
         }
     }
-};
+}
+
 function onTouchEnd(evt) {
     if (time) {
         clearTimeout(time);
