@@ -11,17 +11,32 @@ function objParse(obj) {
 }
 
 (() => {
+    // 获取网址id，请求并解析数据，调试用
     var novelId = 0, res = ""
     let isHtml = result.startsWith("<!DOCTYPE html>")
     if (isHtml) {
-        let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
-        if (isNovel) {
-            novelId = baseUrl.match(new RegExp("\\d+"))[0]
-            java.log(`正文：匹配小说ID：${novelId}`)
+        let isSeries = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel/series"))
+        if (isSeries) {
+            let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
+            java.log(`系列ID：${seriesId}`)
+            novelId = util.getAjaxJson(util.urlSeries(seriesId)).body.firstNovelId
+            java.log(`首篇小说ID：${novelId}`)
             res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+        } else {
+            let isNovel = baseUrl.match(new RegExp("pixiv.net/(ajax/|)novel"))
+            if (isNovel) {
+                novelId = baseUrl.match(new RegExp("\\d+"))[0]
+                java.log(`正文：匹配小说ID：${novelId}`)
+                res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+            } else {
+                return []
+            }
         }
     } else {
         res = JSON.parse(result).body
+        if (res.total === 0) {
+            return []
+        }
     }
 
     let content = res.content
