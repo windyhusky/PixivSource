@@ -1,0 +1,36 @@
+Pixiv 书源订阅（改自【书源订阅@Thomas喲】）（更新时间：2024-11-28）
+
+登录更改后要【刷新分类】
+刷新分类，刷新分类，刷新分类
+
+
+『🅿️丨Pixiv 书源』
+https://github.com/windyhusky/PixivSource《⬇️ 一键导入 Pixiv 等书源 ⬇️》◎✍️ windyhusky & DowneyRem &nbsp; 🔗 长期更新◎
+
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json《Pixiv 书源》【https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png】◎🏷️ Pixiv &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json《Linpx 书源》【https://furrynovel.ink/apple-touch-icon.png】◎🏷️ Linpx &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json《Pixiv Linpx 等订阅源》◎🏷️Pixiv &nbsp; 🏷️ Linpx &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json《书源分享订阅源》◎🏷️ 订阅源 &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+
+
+『🔎丨不世玄奇』
+https://github.com/bushixuanqi/book-source《⬇️ 一键导入 不世玄奇 的书源 ⬇️》【002/93/87/83】◎✍️ 不世玄奇 &nbsp; 🏷️ 通用书源 & 通用订阅 &nbsp; 📆 2023-05 &nbsp; 🔗 停更◎
+
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/normal.json《通用书源 & 搜索引擎书源》【002/93/87/83】◎ 🏷️ 通用书源 &nbsp; 📆 2023-05 &nbsp; 🔗 停更◎
+
+一键导入https://bushixuanqi.oss-cn-chengdu.aliyuncs.com/通用发现v5.json【002/93/87/83】《聚合搜索 / 通用订阅》◎🏷️ 通用订阅 &nbsp; 📆 2023-04 &nbsp; 🔗 停更◎
+
+
+『📚丨书源整理』
+https://shuyuan.yiove.com《📖丨三千书源》◎✍️ Yiove 书源仓库◎【https://shuyuan.yiove.com/logo.jpeg】
+
+https://yuedu.miaogongzi.net/gx.html《🏣丨喵公子书源管理》◎✍️ 喵公子◎【003/77/52/16】
+
+https://legado.aoaostar.com《📕丨阅读 APP 源》◎✍️ aoaostar &nbsp; 📆 标示日期为采集刷新日期◎【https://avatars.githubusercontent.com/u/86001674】
+
+https://www.yckceo.com/yuedu/shuyuan/index.html《🏚️丨源仓库-阅读书源》◎✍️ 源仓库◎【002/88/03/61】
+
+https://flowus.cn/ycheng/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b《🗞️丨一程书源订阅源阅读合集》◎✍️ 一程 &nbsp; ◎【002/55/79/99】
