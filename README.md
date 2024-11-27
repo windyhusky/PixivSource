@@ -12,10 +12,15 @@
 
 
 ## 快速导入
+| 名称          | 免代理导入网址                                                         |
+| -------------| ------------------------------------------------------------------- |
+| import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
+
+
 <details>
 <summary> 免代理导入地址 </summary>
 
-| 名称         | 免代理导入网址                                                        |
+| 名称         | 免代理导入网址                                                         |
 | ------------| ------------------------------------------------------------------- |
 | Pixiv 书源　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json  |
 | Pixiv 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
@@ -31,12 +36,12 @@
 <summary>  Github 导入地址 </summary>
 
 | 名称         | Github 导入网址                                                             |
-| ----------- | -------------------------------------------------------------------------- |
-| Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json   |
-| Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json   |
-| 通用书源　　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json  |
-| btsrk 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json   |
-| books 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json   |
+| ----------- | ------------------------------------------------------------------------- |
+| Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
+| Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
+| 通用书源　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |
+| btsrk 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
+| books 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
 </details>
 
 
@@ -164,5 +169,6 @@
 - ✅ Pixiv & Linpx 书源：目录页添加小说更新时间
 - ✅ Pixiv 书源：修复搜索作者
 - ✅ Linpx 书源：修复搜索作者
+- ✅ “书源导入/更新”订阅源
 </details>
 
