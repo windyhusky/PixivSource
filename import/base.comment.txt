@@ -11,9 +11,11 @@ https://github.com/windyhusky/PixivSource《⬇️ 一键导入 Pixiv 等书源 
 
 一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json《Linpx 书源》【https://furrynovel.ink/apple-touch-icon.png】◎🏷️ Linpx &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json《Pixiv Linpx 等订阅源》◎🏷️Pixiv &nbsp; 🏷️ Linpx &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json《Pixiv Linpx / btsrk 订阅源》◎🏷️Pixiv &nbsp; 🏷️ Linpx &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json《书源分享订阅源》◎🏷️ 订阅源 &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json《书源分享/ books 订阅源》◎🏷️ 订阅源 &nbsp; 🔗 长期更新◎
+
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json《检查更新 import 订阅源》◎📌 全选-确认-覆盖导入-刷新分类 &nbsp; 🔗 长期更新◎
 
 
 『🔎丨不世玄奇』
