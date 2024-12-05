@@ -11,16 +11,27 @@ function objParse(obj) {
 }
 
 (function (res) {
-    // 处理详情页链接
+    // 获取网址id，请求并解析数据
+    var novelId = 0
     let isHtml = res.startsWith("<!DOCTYPE html>")
-    let id = baseUrl.match(new RegExp("\\d+"))[0]
-    java.log(`当前小说ID：${id}`)
     if (isHtml) {
-        let matchResult = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
-        if (matchResult == null) {
-            return []
+        let isSeries = baseUrl.match(new RegExp("pixiv(\\.net|)/(ajax/)?(novel/)?series/\\d+"))
+        if (isSeries) {
+            let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
+            java.log(`系列ID：${seriesId}`)
+            novelId = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).novels[0].id
+            java.log(`首篇小说ID：${novelId}`)
+            res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+        } else {
+            let isNovel = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
+            if (isNovel) {
+                novelId = baseUrl.match(new RegExp("\\d+"))[0]
+                java.log(`详情：匹配小说ID：${novelId}`)
+                res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+            }else {
+                return []
+            }
         }
-        res = util.getAjaxJson(util.urlNovelDetailed(id))
     } else {
         // 处理 json ，自搜索或 api 链接
         res = JSON.parse(res)
