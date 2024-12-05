@@ -63,12 +63,20 @@ function publicFunc() {
         if (limit > 30) {
             limit = 30
         }
-
         if (limit < 10) {
             limit = 10
         }
-
         return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
+    }
+
+    u.urlUserUrl = function (id) {
+        return `https://www.pixiv.net/users/${id}`
+    }
+    u.urlUserAllWorks = (uesrId) => {
+        return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`
+    }
+    u.urlUserNovels = (nid, nidList) => {
+        return `https://www.pixiv.net/ajax/user/${nid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
 
     u.urlSearchNovel = (novelName, page) =>{
@@ -85,22 +93,14 @@ function publicFunc() {
         return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr`
     }
 
-    u.urlUserAllWorks = (uesrId) => {
-        return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`
-    }
-    u.urlUserNovels = (nid, nidList) => {
-        return `https://www.pixiv.net/ajax/user/${nid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
-    }
-
-    u.urlIllustDetailed = (illustId) => {
-        return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
-    }
-    u.urlSeriesIllusts = (seriesId) => {
-        return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
-    }
-
     u.urlCoverUrl = (url) => {
         return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
+    }
+    u.urlIllustUrl = (illustId) => {
+        return `https://www.pixiv.net/artworks/${illustId}`
+    }
+    u.urlIllustDetailed = (illustId) => {
+        return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
     }
     u.urlIllustOriginal = function (illustId, order) {
         let illustOriginal = util.getAjaxJson(util.urlIllustDetailed(illustId)).body.urls.original
@@ -108,6 +108,13 @@ function publicFunc() {
             illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
         }
         return illustOriginal
+    }
+
+    u.urlSeriesIllustsUrl = (uesrId, seriesId) => {
+        return `https://www.pixiv.net/user/${uesrId}/series/${seriesId}`
+    }
+    u.urlSeriesIllustsDetailed = (seriesId) => {
+        return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
     }
 
     u.formatNovels = function (novels) {
