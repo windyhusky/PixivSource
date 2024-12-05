@@ -16,7 +16,7 @@ function objParse(obj) {
     let id = baseUrl.match(new RegExp("\\d+"))[0]
     java.log(`当前小说ID：${id}`)
     if (isHtml) {
-        let matchResult = baseUrl.match(new RegExp("pn|pixiv/novel|pixiv.net/novel"))
+        let matchResult = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
         if (matchResult == null) {
             return []
         }
