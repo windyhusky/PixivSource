@@ -42,14 +42,14 @@ function publicFunc() {
         }
     }
 
+    u.urlNovelUrl = function (id){
+        return `https://furrynovel.ink/pixiv/novel/${id}/cache`
+    }
     u.urlNovelDetailed = function (id){
         return `https://api.furrynovel.ink/pixiv/novel/${id}/cache`
     }
     u.urlNovelsDetailed = function (nidList) {
         return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
-    }
-    u.urlNovelUrl = function (id){
-        return `https://furrynovel.ink/pixiv/novel/${id}/cache`
     }
     u.urlNovel = (novelId) => {
         if (util.SHOW_ORIGINAL_NOVEL_LINK === true) {
@@ -58,9 +58,13 @@ function publicFunc() {
             return util.urlNovelDetailed(novelId)
         }
     }
+
     // u.urlSeriesUrl = function (id) {
     //     return `https://furrynovel.ink/pixiv/series/${id}/cache`
     // }
+    u.urlSeriesUrl = (seriesId) => {
+        return `https://www.pixiv.net/novel/series/${seriesId}`
+    }
     u.urlSeriesDetailed = function (id){
         return `https://api.furrynovel.ink/pixiv/series/${id}/cache`
     }
@@ -85,6 +89,9 @@ function publicFunc() {
     u.urlCoverUrl = function (pxImgUrl) {
         return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
     }
+    // u.urlIllustUrl = function (illustId) {
+    //     return `https://www.pixiv.net/artworks/${illustId}`
+    // }
     u.urlIllustOriginal = function (illustId, order) {
         // 使用 pixiv.cat 获取插图
         let illustOriginal = `https://pixiv.re/${illustId}.png`
