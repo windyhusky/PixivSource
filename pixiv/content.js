@@ -19,7 +19,7 @@ function objParse(obj) {
         if (isSeries) {
             let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
             java.log(`系列ID：${seriesId}`)
-            novelId = util.getAjaxJson(util.urlSeries(seriesId)).body.firstNovelId
+            novelId = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body.firstNovelId
             java.log(`首篇小说ID：${novelId}`)
             res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
         } else {

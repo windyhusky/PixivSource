@@ -56,7 +56,10 @@ function publicFunc() {
         }
     }
 
-    u.urlSeries = (seriesId) => {
+    u.urlSeriesUrl = (seriesId) => {
+        return `https://www.pixiv.net/novel/series/${seriesId}`
+    }
+    u.urlSeriesDetailed = (seriesId) => {
         return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
     }
     u.urlSeriesNovels = (seriesId, limit, offset) => {
@@ -142,7 +145,7 @@ function publicFunc() {
                     novel.id = novel.latestEpisodeId  // 最近一篇
                     novel.latestPublishDate = novel.latestPublishDateTime
                     novel.seriesId = novel.id        // 真正的系列小说id
-                    // let series = this.getAjaxJson(util.urlSeries(novel.seriesId)).body
+                    // let series = this.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
                     // novel.id = series.firstNovelId
                     // novel.aiType = novel.aiType
                 }

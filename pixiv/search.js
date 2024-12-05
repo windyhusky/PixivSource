@@ -84,7 +84,7 @@ function handNovels(novels){
         }
 
         if (novel.seriesId !== undefined && novel.seriesId !== null) {
-            let series = util.getAjaxJson(util.urlSeries(novel.seriesId)).body
+            let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
             novel.id = series.firstNovelId
             // 发送请求获取第一章 获取标签与简介
             if (novel.tags.length === 0 || novel.description === "") {

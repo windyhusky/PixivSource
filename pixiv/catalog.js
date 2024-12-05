@@ -23,7 +23,7 @@ function seriesHandler(res) {
     let returnList = [];
     let seriesID = res.seriesNavData.seriesId
     let allChaptersCount = (() => {
-        let result = util.getAjaxJson(util.urlSeries(seriesID)).body.total
+        let result = util.getAjaxJson(util.urlSeriesDetailed(seriesID)).body.total
         util.debugFunc(() => {
             java.log(`本目录一共有:${result} 章节`);
         })
@@ -66,7 +66,7 @@ function seriesHandler(res) {
         if (isSeries) {
             let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
             java.log(`系列ID：${seriesId}`)
-            novelId = util.getAjaxJson(util.urlSeries(seriesId)).body.firstNovelId
+            novelId = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body.firstNovelId
             java.log(`首篇小说ID：${novelId}`)
             res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
         } else {

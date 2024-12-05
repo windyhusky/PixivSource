@@ -23,7 +23,7 @@ function handNovels(novels) {
             let userAllWorks = util.getAjaxJson(util.urlUserAllWorks(novel.userId)).body
             for (let series of userAllWorks.novelSeries) {
                 if (series.id === novel.seriesId) {
-                    // let series = util.getAjaxJson(util.urlSeries(novel.seriesId)).body
+                    // let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
                     novel.textCount = series.publishedTotalCharacterCount
                     novel.url = series.cover.urls["480mw"]
                     novel.title = series.title
