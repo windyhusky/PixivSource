@@ -15,7 +15,7 @@ function objParse(obj) {
     var novelId = 0
     let isHtml = result.startsWith("<!DOCTYPE html>")
     if (isHtml) {
-        let isSeries = baseUrl.match(new RegExp("pixiv\.net/(ajax/|)novel/series"))
+        let isSeries = baseUrl.match(new RegExp("pixiv(\\.net|)/(ajax/)?(novel/)?series/\\d+"))
         if (isSeries) {
             let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
             java.log(`系列ID：${seriesId}`)
