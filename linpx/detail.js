@@ -33,24 +33,28 @@ function objParse(obj) {
 
     // 为了兼顾导入书架直接走详情页逻辑
     // 这里不能直接用 book.xxx 来复用搜索页处理结果
-    // java.log(JSON.stringify(res))
-    let info = {}
-    info.userName = res.userName
-    info.tags = res.tags
-    info.textCount = res.length
-    info.description = res.desc
-    info.coverUrl = util.urlCoverUrl(res.coverUrl)
+    try {
+        let info = {}
+        info.userName = res.userName
+        info.tags = res.tags
+        info.textCount = res.length
+        info.description = res.desc
+        info.coverUrl = util.urlCoverUrl(res.coverUrl)
 
-    if (res.series === undefined || res.series === null) {
-        info.title = info.latest_chapter = res.title
-        info.tags.unshift('单本')
-        info.catalog = util.urlNovelDetailed(res.id)
-    } else {
-        info.title = res.series.title
-        info.tags.unshift('长篇')
-        info.catalog = util.urlSeriesDetailed(res.series.id)
+        if (res.series === undefined || res.series === null) {
+            info.title = info.latest_chapter = res.title
+            info.tags.unshift('单本')
+            info.catalog = util.urlNovelDetailed(res.id)
+        } else {
+            info.title = res.series.title
+            info.tags.unshift('长篇')
+            info.catalog = util.urlSeriesDetailed(res.series.id)
+        }
+        info.tags = info.tags.join(",")
+        return info
+
+    }catch (e) {
+        java.log(`受 Linpx 的限制，无法获取小说ID： ${novelId} 的数据`)
+        java.longToast(`受 Linpx 的限制，无法获取小说ID： ${novelId} 的数据`)
     }
-    info.tags = info.tags.join(",")
-    return info
-
 })(result)
