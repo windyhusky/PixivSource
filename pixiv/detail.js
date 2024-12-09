@@ -65,6 +65,7 @@ function objParse(obj) {
             info.latestChapter = res.title
             info.description = res.description
             info.coverUrl = res.coverUrl
+            info.catalogUrl = util.urlNovelDetailed(info.noveId)
             info.createDate = res.createDate
             info.updateDate = res.uploadDate
 

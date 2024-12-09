@@ -20,15 +20,12 @@ function oneShotHandler(res) {
 
 function seriesHandler(res) {
     const limit = 30
-    let returnList = [];
-    let seriesID = res.seriesNavData.seriesId
-    let allChaptersCount = (() => {
-        let result = util.getAjaxJson(util.urlSeriesDetailed(seriesID)).body.total
-        util.debugFunc(() => {
-            java.log(`本目录一共有:${result} 章节`);
-        })
-        return result;
-    })();
+    let returnList = []
+    let seriesID = res.id
+    let allChaptersCount = res.total
+    util.debugFunc(() => {
+        java.log(`本目录一共有:${allChaptersCount}章`);
+    })
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
@@ -86,8 +83,10 @@ function seriesHandler(res) {
         }
     }
 
+    if (res.firstNovelId !== null || res.firstNovelId !== undefined) {
+        return seriesHandler(res)
+    }
     if (res.seriesNavData === null || res.seriesNavData === undefined) {
         return oneShotHandler(res)
     }
-    return seriesHandler(res)
 })()
