@@ -53,10 +53,9 @@ function objParse(obj) {
         // info.readingTime = `${res.userNovels[`${info.noveId}`].readingTime / 60} 分钟`
         info.latestChapter = ""
         info.description = res.description
-        info.coverUrl = res.coverUrl
-        info.catalogUrl = util.urlNovelDetailed(info.noveId)
 
         if (res.seriesNavData === undefined || res.seriesNavData === null) {
+            info.noveId = res.id
             info.title = info.latestChapter = res.title
             info.userName = res.userName
             // info.tags = res.userNovels[`${info.noveId}`].tags
@@ -80,16 +79,16 @@ function objParse(obj) {
             info.tags.push.apply(res2.tags)   //合并当前章节 tags
             info.tags.unshift('长篇')
             info.textCount = res2.publishedTotalCharacterCount
-            info.readingTime = `${res2.publishedReadingTime / 60} 分钟`
-            info.latestChapter = ""
             info.description = `${res2.caption}\n当前章节简介：\n${info.description}`
-            // info.coverUrl = res2.firstEpisode.url   // 第一章封面
             info.coverUrl = res2.cover.urls["480mw"] // 240mw, 480mw, 1200x1200, 128x128, original
+            info.catalogUrl = util.urlSeriesDetailed(info.seriesId)
             info.createDate = res2.createDate
             info.updateDate = res2.updateDate
-            info.totalChapterNum = res2.displaySeriesContentCount  //章节总数
+
+            info.readingTime = `${res2.publishedReadingTime / 60} 分钟`
+            info.latestChapter = ""
             // info.language = res2.language
-            // info.total = res2.total
+            // info.total = res2.total  //章节总数
             // info.firstNovelId = res2.firstNovelId
             // info.latestNovelId = res2.latestNovelId
         }
