@@ -36,7 +36,7 @@ function seriesHandler(res) {
     let isHtml = res.startsWith("<!DOCTYPE html>")
     let id = baseUrl.match(new RegExp("\\d+"))[0]
     if (isHtml) {
-        let matchResult = baseUrl.match(new RegExp("pn|pixiv/novel|pixiv.net/novel"))
+        let matchResult = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
         if (matchResult == null) {
             return []
         }
