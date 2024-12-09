@@ -18,21 +18,6 @@
 
 
 <details>
-<summary> 免代理导入地址 </summary>
-
-| 名称         | 免代理导入网址                                                         |
-| ------------| ------------------------------------------------------------------- |
-| Pixiv 书源　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json  |
-| Pixiv 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
-| Linpx 书源　 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json  |
-| Linpx 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
-| 通用书源　　  | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/normal.json |
-| books 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json  |
-- 免代理导入可能会有1天左右的更新延迟
-</details>
-
-
-<details>
 <summary>  Github 导入地址 </summary>
 
 | 名称         | Github 导入网址                                                             |

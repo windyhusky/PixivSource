@@ -168,7 +168,7 @@ function getSeries(seriesName){
 (() => {
     let novelsList = []
     novelsList = novelsList.concat(JSON.parse(result).body.novel.data)
-    novelsList = novelsList.concat(getSeries(String(java.get("key"))))
-    novelsList = novelsList.concat(getUserNovels(String(java.get("key"))))
+    // novelsList = novelsList.concat(getSeries(String(java.get("key"))))
+    // novelsList = novelsList.concat(getUserNovels(String(java.get("key"))))
     return util.formatNovels(handNovels(util.combineNovels(novelsList)))
 })();
