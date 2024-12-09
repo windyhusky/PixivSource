@@ -56,34 +56,35 @@ function seriesHandler(res) {
 
 (() => {
     // 获取网址id，请求并解析数据，调试用
-    var novelId = 0, res = ""
+    var res = ""
     let isHtml = result.startsWith("<!DOCTYPE html>")
     if (isHtml) {
         let isSeries = baseUrl.match(new RegExp("pixiv(\\.net)?/(ajax/)?(novel/)?series/\\d+"))
         if (isSeries) {
             let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
-            java.log(`系列ID：${seriesId}`)
-            novelId = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body.firstNovelId
-            java.log(`首篇小说ID：${novelId}`)
-            res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+            java.log(`目录：系列ID：${seriesId}`)
+            res = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body
         } else {
             let isNovel = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
             if (isNovel) {
-                novelId = baseUrl.match(new RegExp("\\d+"))[0]
-                java.log(`详情：匹配小说ID：${novelId}`)
+                let novelId = baseUrl.match(new RegExp("\\d+"))[0]
+                java.log(`目录：匹配小说ID：${novelId}`)
                 res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
-            } else {
-                return []
+                if (res.seriesNavData !== null && res.seriesNavData !== undefined) {
+                    let seriesId = res.seriesNavData.seriesId
+                    java.log(`目录：系列ID：${seriesId}`)
+                    res = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body
+                }
             }
         }
     } else {
         res = JSON.parse(result).body
         if (res.total === 0) {
-            return []
+            return
         }
     }
 
-    if (res.firstNovelId !== null || res.firstNovelId !== undefined) {
+    if (res.firstNovelId !== null && res.firstNovelId !== undefined) {
         return seriesHandler(res)
     }
     if (res.seriesNavData === null || res.seriesNavData === undefined) {
