@@ -14,8 +14,10 @@ function publicFunc() {
     try {
         if (input == "debug"|| input == "" || input == null) {
             var settings = JSON.parse(String(source.variableComment).split("//")[0])
+            java.log("使用默认的设置")
         } else {
             var settings = JSON.parse(String(input).split("//")[0])
+            java.log("使用自定义设置")
         }
     } catch (e) {
         java.log(e)
