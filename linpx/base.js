@@ -10,12 +10,38 @@ function objStringify(obj) {
 
 function publicFunc() {
     let u = {}
-    u.SHOW_ORIGINAL_NOVEL_LINK = true   // 目录处显示 Pixiv 小说链接，但会增加请求次数
-    // u.SHOW_ORIGINAL_NOVEL_LINK = false  // 目录不显示 Pixiv 小说链接，可以减少请求次数
-    u.REPLACE_WITH_BOOK_TITLE_MARKS = true  // 注音内容为汉字时，替换为书名号 `[[rb:汉字 > 注音]] => 汉字《注音》`
-    // u.REPLACE_WITH_BOOK_TITLE_MARKS = false // 注音内容默认替换为括号`[[rb:汉字 > 注音]] => 汉字（注音）`
-    u.DEBUG = false  // 调试模式
+    let input = source.getVariable()  // [object JavaObject]
+    try {
+        if (input == "debug"|| input == "" || input == null) {
+            var settings = JSON.parse(String(source.variableComment).split("//")[0])
+        } else {
+            var settings = JSON.parse(String(input).split("//")[0])
+        }
+    } catch (e) {
+        java.log(e)
+    }
 
+    u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
+    u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
+    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
+    u.DEBUG = settings.DEBUG // 调试模式
+    if (String(source.getVariable()) === "debug") {
+        u.DEBUG = true // 调试模式
+    }
+    if (u.DEBUG === true) {
+        // java.log(JSON.stringify(settings))
+        java.log(`SHOW_ORIGINAL_NOVEL_LINK = ${u.SHOW_ORIGINAL_NOVEL_LINK}`)
+        java.log(`REPLACE_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
+        java.log(`MORE_INFO_IN_DESCRIPTION = ${u.MORE_INFO_IN_DESCRIPTION}`)
+        java.log(`DEBUG = ${u.DEBUG}`)
+    }
+
+
+    u.debugFunc = (func) => {
+        if (String(source.getVariable()) === "debug" || util.DEBUG) {
+            func()
+        }
+    }
     u.cacheGetAndSet = function (key, supplyFunc) {
         let v = cache.get(key)
         if (v === undefined || v === null) {
@@ -35,11 +61,6 @@ function publicFunc() {
             let html = java.webView(null, url, null)
             return JSON.parse((html.match(new RegExp(">\\[{.*?}]<"))[0].replace(">", "").replace("<", "")))
         })
-    }
-    u.debugFunc = (func) => {
-        if (String(source.getVariable()) === "debug" || util.DEBUG === true) {
-            func()
-        }
     }
 
     u.urlNovelUrl = function (id){
@@ -156,7 +177,9 @@ function publicFunc() {
             novel.tags = novel.tags.join(",")
             novel.time = util.dateFormat(novel.createDate)
             novel.description = `${novel.description}\n更新时间：${novel.time}`
-            // novel.description = `书名：${novel.title}\n作者：${novel.userName}\n${novel.description}\n更新时间：${novel.time}`
+            if (util.MORE_INFO_IN_DESCRIPTION) {
+                novel.description = `书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n更新：${novel.time}简介：n${novel.description}\n`
+            }
         })
         return novels
     }
