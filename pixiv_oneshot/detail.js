@@ -91,8 +91,10 @@ function objParse(obj) {
         }
         info.tags = info.tags.join(",")
         const time = util.dateFormat(info.updateDate)
-        info.description  = `${info.description}\n更新时间:${time}`
-        //info.description = `\n书名：${info.title}\n作者：${info.userName}\n标签：${info.tags}\n更新：${time}\n简介：${info.description}`
+        info.description = `${info.description}\n更新时间:${time}`
+        if (util.MORE_INFO_IN_DESCRIPTION) {
+            info.description = `\n书名：${info.title}\n作者：${info.userName}\n标签：${info.tags}\n更新：${time}\n简介：${info.description}`
+        }
         return info
 
     } catch (e) {
