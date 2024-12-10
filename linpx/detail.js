@@ -59,6 +59,10 @@ function objParse(obj) {
             info.catalog = util.urlSeriesDetailed(res.series.id)
         }
         info.tags = info.tags.join(",")
+        // info.description = `${info.description}\n更新时间：${info.time}`
+        if (util.MORE_INFO_IN_DESCRIPTION) {
+            info.description = `书名：${info.title}\n作者：${info.userName}\n标签：${info.tags}\n更新：${info.time}\n简介：${info.description}`
+        }
         return info
 
     }catch (e) {

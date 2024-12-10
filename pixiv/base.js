@@ -38,7 +38,7 @@ function publicFunc() {
 
 
     u.debugFunc = (func) => {
-        if (String(source.getVariable()) === "debug" || util.DEBUG) {
+        if (String(source.getVariable()) === "debug" || util.DEBUG === true) {
             func()
         }
     }
@@ -183,7 +183,7 @@ function publicFunc() {
             const time1 = this.dateFormat(novel.createDate);
             const time2 = this.dateFormat(novel.updateDate);
             novel.description = `${novel.description}\n上传时间：${time1}\n更新时间：${time2}`
-            if (util.MORE_INFO_IN_DESCRIPTION) {
+            if (util.MORE_INFO_IN_DESCRIPTION === true) {
                 novel.description = `书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${time1}\n更新：${time2}\n简介：${novel.description}`
             }
         })
