@@ -31,7 +31,7 @@ function publicFunc() {
     if (u.DEBUG === true) {
         // java.log(JSON.stringify(settings))
         java.log(`SHOW_ORIGINAL_NOVEL_LINK = ${u.SHOW_ORIGINAL_NOVEL_LINK}`)
-        java.log(`REPLACE_WITH_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
+        java.log(`REPLACE_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
         java.log(`MORE_INFO_IN_DESCRIPTION = ${u.MORE_INFO_IN_DESCRIPTION}`)
         java.log(`DEBUG = ${u.DEBUG}`)
     }
