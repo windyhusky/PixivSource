@@ -1,6 +1,6 @@
 [
     {
-        "bookSourceComment": "Linpx 书源（更新时间：2024-12-12）\n\n可用功能：✅搜索✅发现✅添加网址✅订阅源\n搜索小说：✅小说名称✅作者名称✅小说标签\n发现小说：✅推荐作者✅最近更新\n添加网址：✅Linpx小说链接(✅分享链接✅原链接)\n订阅用法：点击订阅源打开小说，点击【添加到书架】按钮添加小说到书架\n温馨提示：⚠️ Linpx 的系列小说 api 目前不会返回小说id，添加系列小说后，无法再次获取目录\n\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n\n规则订阅：\n1️⃣ Linpx 书源：\nhttps://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json\n\n2️⃣ Linpx 订阅源：\nhttps://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json",
+        "bookSourceComment": "Linpx 书源（更新时间：2024-12-12）\n\n可用功能：✅搜索✅发现✅添加网址✅订阅源\n搜索小说：✅小说名称✅作者名称✅小说标签\n发现小说：✅推荐作者✅最近更新\n添加网址：✅Linpx小说链接(✅分享链接✅原链接)\n订阅用法：点击订阅源打开小说，点击【添加到书架】按钮添加小说到书架\n温馨提示：⚠️ Linpx 的系列小说 api 目前不会返回小说id，添加系列小说后，无法再次获取目录\n\n书源发布：兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/windyhusky/PixivSource\n\n规则订阅：Import 订阅源\nhttps://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json\nhttps://raw.githubusercontent.com/windyhusky/PixivSource/main/.json\n\n可选设置：\n编辑书源 - 设置源变量 - 复制代码模板 - 修改并保存\n若源变量为空，则使用默认设置（书源 - 基本 - 变量说明）",
         "bookSourceGroup": "🔞 Pixiv",
         "bookSourceName": "Linpx",
         "bookSourceType": 0,
@@ -64,7 +64,7 @@
             "updateTime": "updateDate"
         },
         "searchUrl": "@js:\njava.put(\"page\",page);java.put(\"key\",key);\n`https://api.furrynovel.ink/pixiv/search/novel/${encodeURI(key)}/cache?page=${page}`;",
-        "variableComment": "{\n    \"SHOW_ORIGINAL_NOVEL_LINK\": true,\n    \"REPLACE_BOOK_TITLE_MARKS\": true,\n    \"MORE_INFO_IN_DESCRIPTION\": false,\n    \"DEBUG\": false\n}\n// SHOW_ORIGINAL_NOVEL_LINK\n// 目录处显示小说源链接，但会增加请求次数\n// REPLACE_BOOK_TITLE_MARKS\n// 注音内容为汉字时，替换为书名号\n// MORE_INFO_IN_DESCRIPTION\n// 书籍简介显示更多信息\n// DEBUG\n// 调试模式",
+        "variableComment": "{\n    \"SHOW_ORIGINAL_NOVEL_LINK\": true,\n    \"REPLACE_BOOK_TITLE_MARKS\": true,\n    \"MORE_INFO_IN_DESCRIPTION\": false,\n    \"DEBUG\": false\n}\n// 此处以上内容为默认设置\n// 若源变量为空，则使用上述默认设置\n// 自定义设置：复制 { } 及内部代码，修改 true 或 false\n// 注意不要添加或删除尾随逗号\",\"\n\n// SHOW_ORIGINAL_NOVEL_LINK\n// 目录处显示小说源链接，但会增加请求次数\n// REPLACE_BOOK_TITLE_MARKS\n// 注音内容为汉字时，替换为书名号\n// MORE_INFO_IN_DESCRIPTION\n// 书籍简介显示更多信息\n// DEBUG\n// 调试模式",
         "weight": 0
     }
 ]

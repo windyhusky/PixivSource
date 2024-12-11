@@ -20,7 +20,7 @@
 <details>
 <summary>  Github 导入地址 </summary>
 
-| 名称         | Github 导入网址                                                             |
+| 名称         | Github 导入网址                                                            |
 | ----------- | ------------------------------------------------------------------------- |
 | Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
 | Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
@@ -78,15 +78,23 @@
 <details>
 <summary> 书源可选设置 </summary>
 
+| 可选设置         | 默认状态 | 常量名称                    |
+| -------------- | ------ | -------------------------- |
+| 显示小说源链接　　 | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK` |
+| 恢复被替换的书名号 | ✅ 开启 | `REPLACE_BOOK_TITLE_MARKS` |
+| 简介显示更多信息　 | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION` |
+| 调试模式　　　　　 | ⭕ 关闭 | `DEBUG`                    |
 - 自定义设置：编辑书源 - 设置源变量 - 复制代码模板 - 修改并保存
-- 源变量为空，则默认使用以下设置（书源 - 基本 - 变量说明）
+```
+{
+  "SHOW_ORIGINAL_NOVEL_LINK": true,
+  "REPLACE_BOOK_TITLE_MARKS": true,
+  "MORE_INFO_IN_DESCRIPTION": false,
+  "DEBUG": false
+}
+```
+- 若源变量为空，则使用上述默认设置（书源 - 基本 - 变量说明）
 
-| 可选设置         | 状态 | 名称                        |
-| -------------- | --- | -------------------------- |
-| 显示小说源链接　　 | 开启 | `SHOW_ORIGINAL_NOVEL_LINK` |
-| 恢复被替换的书名号 | 开启 | `REPLACE_BOOK_TITLE_MARKS` |
-| 简介显示更多信息　 | 关闭 | `MORE_INFO_IN_DESCRIPTION` |
-| 调试模式　　　　　 | 关闭 | `DEBUG`                    |
 </details>
 
 
