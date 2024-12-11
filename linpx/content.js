@@ -111,7 +111,7 @@ function objParse(obj) {
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
 
-            if (util.REPLACE_BOOK_TITLE_MARKS === true) {
+            if (!util.REPLACE_BOOK_TITLE_MARKS) {
                 // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             } else {
