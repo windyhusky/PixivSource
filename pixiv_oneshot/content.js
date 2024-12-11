@@ -10,32 +10,9 @@ function objParse(obj) {
     })
 }
 
-(() => {
-    // 获取网址id，请求并解析数据，调试用
-    var novelId = 0, res = ""
-    let isHtml = result.startsWith("<!DOCTYPE html>")
-    if (isHtml) {
-        let isSeries = baseUrl.match(new RegExp("pixiv(\\.net|)/(ajax/)?(novel/)?series/\\d+"))
-        if (isSeries) {
-            let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
-            novelId = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body.firstNovelId
-            java.log(`系列ID：${seriesId}`)
-        } else {
-            let isNovel = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
-            if (isNovel) {
-                novelId = baseUrl.match(new RegExp("\\d+"))[0]
-            }
-        }
-        java.log(`正文：匹配小说ID：${novelId}`)
-        res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
 
-    } else {
-        res = JSON.parse(result).body
-        if (res.total === 0) {
-            return []
-        }
-    }
-
+(function (res) {
+    res = util.getNovelResFromWebpage(result)
     let content = res.content
     // 在正文内部添加小说描述
     if (res.seriesNavData !== undefined && res.seriesNavData !== null && res.description !== "") {

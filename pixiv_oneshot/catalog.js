@@ -54,9 +54,8 @@ function seriesHandler(res) {
     return returnList
 }
 
-(() => {
+(function (res) {
     // 获取网址id，请求并解析数据，调试用
-    var res = ""
     let isHtml = result.startsWith("<!DOCTYPE html>")
     if (isHtml) {
         let isSeries = baseUrl.match(new RegExp("pixiv(\\.net)?/(ajax/)?(novel/)?series/\\d+"))
