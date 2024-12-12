@@ -32,15 +32,15 @@ function publicFunc() {
     }
     if (u.DEBUG === true) {
         // java.log(JSON.stringify(settings))
-        java.log(`SHOW_ORIGINAL_NOVEL_LINK = ${u.SHOW_ORIGINAL_NOVEL_LINK}`)
-        java.log(`REPLACE_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
-        java.log(`MORE_INFO_IN_DESCRIPTION = ${u.MORE_INFO_IN_DESCRIPTION}`)
+        // java.log(`SHOW_ORIGINAL_NOVEL_LINK = ${u.SHOW_ORIGINAL_NOVEL_LINK}`)
+        // java.log(`REPLACE_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
+        // java.log(`MORE_INFO_IN_DESCRIPTION = ${u.MORE_INFO_IN_DESCRIPTION}`)
         java.log(`DEBUG = ${u.DEBUG}`)
     }
 
 
     u.debugFunc = (func) => {
-        if (String(source.getVariable()) === "debug" || util.DEBUG === true) {
+        if (util.DEBUG) {
             func()
         }
     }
@@ -226,15 +226,17 @@ function publicFunc() {
                 }
             }
             java.log(`匹配小说ID：${novelId}`)
-            res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+            res = util.getAjaxJson(util.urlNovelDetailed(novelId))
 
         } else {
-            res = JSON.parse(result).body
-            if (res.total === 0) {
-                return []
-            }
+            res = JSON.parse(result)
         }
-        return res
+        if (res.error === true || res.total === 0) {
+            let novelId = baseUrl.match(new RegExp("\\d+"))[0]
+            java.log(`无法从 Pixiv 获取小说(${novelId})内容`)
+            return []
+        }
+        return res.body
     }
     // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
     u.getNovelResSeries = function(result) {
@@ -249,7 +251,7 @@ function publicFunc() {
                 if (isNovel) {
                     let novelId = baseUrl.match(new RegExp("\\d+"))[0]
                     java.log(`匹配小说ID：${novelId}`)
-                    res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+                    res = util.getAjaxJson(util.urlNovelDetailed(novelId))
                     if (res.seriesNavData !== null && res.seriesNavData !== undefined) {
                         seriesId = res.seriesNavData.seriesId
                     }
@@ -257,15 +259,37 @@ function publicFunc() {
             }
             if (seriesId) {
                 java.log(`系列ID：${seriesId}`)
-                res = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body
+                res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
             }
         } else {
-            res = JSON.parse(result).body
-            if (res.total === 0) {
-                return
-            }
+            res = JSON.parse(result)
         }
-        return res
+        if (res.error === true || res.total === 0) {
+            let novelId = baseUrl.match(new RegExp("\\d+"))[0]
+            java.log(`无法从 Pixiv 获取小说(${novelId})内容`)
+            return []
+        }
+        return res.body
+    }
+    // 从网址获取id，返回单篇小说 res，不处理系列
+    u.getNovelResOneshot = function(result) {
+        let isHtml = result.startsWith("<!DOCTYPE html>")
+        if (isHtml) {
+            let novelId = baseUrl.match(new RegExp("\\d+"))[0]
+            let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+            let isNovel = baseUrl.match(new RegExp(pattern))
+            if (isNovel) {
+                java.log(`匹配小说ID：${novelId}`)
+                res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+            }
+        } else {
+            res = JSON.parse(result)
+        }
+        if (res.error|| res.total === 0) {
+            java.log(`无法从 Pixiv 获取当前小说`)
+            return []
+        }
+        return res.body
     }
 
     u.dateFormat = function (str) {
