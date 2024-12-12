@@ -1,1 +1,20 @@
+Pixiv：小说 + 系列
 (https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(show\.php\?id=|series/)?\d+
+
+Pixiv：小说
+(https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(show\.php\?id=)?\d+
+
+Pixiv：系列
+(https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(series/)?\d+
+
+Linpx：小说
+(https?://)?(api\.|www\.)?(furrynovel\.(ink|xyz))/(pn|pixiv/novel)/\d+(/cache)?
+
+
+
+详情、目录、正文处，网址处理用
+Pixiv：系列
+(https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(series/)?\d+
+
+Pixiv & Linpx：小说，简
+((furrynovel\.(ink|xyz))|pixiv\.net)/(pn|(pixiv/)?novel)/(show\.php\?id=)?\d+

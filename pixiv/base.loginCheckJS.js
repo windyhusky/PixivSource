@@ -212,13 +212,16 @@ function publicFunc() {
         var novelId = 0
         let isHtml = result.startsWith("<!DOCTYPE html>")
         if (isHtml) {
-            let isSeries = baseUrl.match(new RegExp("pixiv(\\.net|)/(ajax/)?(novel/)?series/\\d+"))
+            let novelId = 0
+            let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
+            let isSeries = baseUrl.match(new RegExp(pattern))
             if (isSeries) {
                 let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
                 novelId = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body.firstNovelId
                 java.log(`系列ID：${seriesId}`)
             } else {
-                let isNovel = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
+                let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+                let isNovel = baseUrl.match(new RegExp(pattern))
                 if (isNovel) {
                     novelId = baseUrl.match(new RegExp("\\d+"))[0]
                 }
