@@ -11,7 +11,8 @@ function objParse(obj) {
 }
 
 (function (res) {
-    res = util.getNovelResFromWebpage(result)
+    res = util.getNovelRes(result)
+    let novelId = res.id
     try {
         let info = {}
         info.noveId = res.id
@@ -72,7 +73,7 @@ function objParse(obj) {
         return info
 
     } catch (e) {
-        java.log(`受 Pixiv 的限制，无法获取小说ID： ${novelId} 的数据`)
-        java.longToast(`受 Pixiv 的限制，无法获取小说ID： ${novelId} 的数据`)
+        java.log(`受 Pixiv 的限制，无法获取当前小说数据`)
+        java.longToast(`受 Pixiv 的限制，无法获取当前小说数据`)
     }
 })();

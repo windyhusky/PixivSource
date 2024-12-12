@@ -207,9 +207,8 @@ function publicFunc() {
             return false
         })
     }
-    u.getNovelResFromWebpage = function(result) {
-        // 获取网址id，请求并解析数据
-        var novelId = 0
+    // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
+    u.getNovelRes = function(result) {
         let isHtml = result.startsWith("<!DOCTYPE html>")
         if (isHtml) {
             let novelId = 0
