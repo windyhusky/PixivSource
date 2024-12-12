@@ -236,6 +236,37 @@ function publicFunc() {
         }
         return res
     }
+    // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
+    u.getNovelResSeries = function(result) {
+        let isHtml = result.startsWith("<!DOCTYPE html>")
+        if (isHtml) {
+            let seriesId =0
+            let isSeries = baseUrl.match(new RegExp("pixiv(\\.net)?/(ajax/)?(novel/)?series/\\d+"))
+            if (isSeries) {
+                seriesId = baseUrl.match(new RegExp("\\d+"))[0]
+            } else {
+                let isNovel = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/novel"))
+                if (isNovel) {
+                    let novelId = baseUrl.match(new RegExp("\\d+"))[0]
+                    java.log(`匹配小说ID：${novelId}`)
+                    res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
+                    if (res.seriesNavData !== null && res.seriesNavData !== undefined) {
+                        seriesId = res.seriesNavData.seriesId
+                    }
+                }
+            }
+            if (seriesId) {
+                java.log(`系列ID：${seriesId}`)
+                res = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body
+            }
+        } else {
+            res = JSON.parse(result).body
+            if (res.total === 0) {
+                return
+            }
+        }
+        return res
+    }
 
     u.dateFormat = function (str) {
         let addZero = function (num) {
