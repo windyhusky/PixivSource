@@ -241,6 +241,40 @@ function publicFunc() {
         }
         return res.body
     }
+    // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
+    u.getNovelResSeries = function (result) {
+        let seriesId = 0, res = {}
+        let isHtml = result.startsWith("<!DOCTYPE html>")
+        if (isHtml) {
+            let id = baseUrl.match(new RegExp("\\d+"))[0]
+            let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
+            let isSeries = baseUrl.match(new RegExp(pattern))
+            if (isSeries) {
+                seriesId = id
+            } else {
+                let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+                let isNovel = baseUrl.match(new RegExp(pattern))
+                if (isNovel) {
+                    java.log(`匹配小说ID：${id}`)
+                    res = util.getAjaxJson(util.urlNovelDetailed(id))
+                }
+            }
+        } else {
+            res = JSON.parse(result)
+        }
+        if (res.body !== undefined && res.body.seriesNavData !== undefined && res.body.seriesNavData !== null) {
+            seriesId = res.body.seriesNavData.seriesId
+        }
+        if (seriesId) {
+            java.log(`系列ID：${seriesId}`)
+            res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
+        }
+        if (res.error === true || res.total === 0) {
+            java.log(`无法从 Pixiv 获取当前小说`)
+            return []
+        }
+        return res.body
+    }
 
     u.dateFormat = function (str) {
         let addZero = function (num) {
