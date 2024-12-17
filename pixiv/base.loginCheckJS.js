@@ -208,84 +208,34 @@ function publicFunc() {
         })
     }
     // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
-    u.getNovelRes = function(result) {
-        let isHtml = result.startsWith("<!DOCTYPE html>")
+    u.getNovelRes = function (result) {
+        let novelId = 0, res = {}
+            let isHtml = result.startsWith("<!DOCTYPE html>")
         if (isHtml) {
-            let novelId = 0
+            let id = baseUrl.match(new RegExp("\\d+"))[0]
             let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
             let isSeries = baseUrl.match(new RegExp(pattern))
             if (isSeries) {
-                let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
-                novelId = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body.firstNovelId
-                java.log(`系列ID：${seriesId}`)
+                java.log(`系列ID：${id}`)
+                res = util.getAjaxJson(util.urlSeriesDetailed(id))
             } else {
                 let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
                 let isNovel = baseUrl.match(new RegExp(pattern))
                 if (isNovel) {
-                    novelId = baseUrl.match(new RegExp("\\d+"))[0]
+                    novelId = id
                 }
             }
+        } else {
+            res = JSON.parse(result)
+        }
+        if (res.body !== undefined && res.body.firstNovelId !== undefined && res.body.firstNovelId !== null) {
+            novelId = res.body.firstNovelId
+        }
+        if (novelId) {
             java.log(`匹配小说ID：${novelId}`)
             res = util.getAjaxJson(util.urlNovelDetailed(novelId))
-
-        } else {
-            res = JSON.parse(result)
         }
-        if (res.error === true || res.total === 0) {
-            let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-            java.log(`无法从 Pixiv 获取小说(${novelId})内容`)
-            return []
-        }
-        return res.body
-    }
-    // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
-    u.getNovelResSeries = function(result) {
-        let isHtml = result.startsWith("<!DOCTYPE html>")
-        if (isHtml) {
-            let seriesId =0
-            let isSeries = baseUrl.match(new RegExp("pixiv(\\.net)?/(ajax/)?(novel/)?series/\\d+"))
-            if (isSeries) {
-                seriesId = baseUrl.match(new RegExp("\\d+"))[0]
-            } else {
-                let isNovel = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/novel"))
-                if (isNovel) {
-                    let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-                    java.log(`匹配小说ID：${novelId}`)
-                    res = util.getAjaxJson(util.urlNovelDetailed(novelId))
-                    if (res.seriesNavData !== null && res.seriesNavData !== undefined) {
-                        seriesId = res.seriesNavData.seriesId
-                    }
-                }
-            }
-            if (seriesId) {
-                java.log(`系列ID：${seriesId}`)
-                res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
-            }
-        } else {
-            res = JSON.parse(result)
-        }
-        if (res.error === true || res.total === 0) {
-            let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-            java.log(`无法从 Pixiv 获取小说(${novelId})内容`)
-            return []
-        }
-        return res.body
-    }
-    // 从网址获取id，返回单篇小说 res，不处理系列
-    u.getNovelResOneshot = function(result) {
-        let isHtml = result.startsWith("<!DOCTYPE html>")
-        if (isHtml) {
-            let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-            let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
-            let isNovel = baseUrl.match(new RegExp(pattern))
-            if (isNovel) {
-                java.log(`匹配小说ID：${novelId}`)
-                res = util.getAjaxJson(util.urlNovelDetailed(novelId))
-            }
-        } else {
-            res = JSON.parse(result)
-        }
-        if (res.error|| res.total === 0) {
+        if (res.error || res.total === 0) {
             java.log(`无法从 Pixiv 获取当前小说`)
             return []
         }
