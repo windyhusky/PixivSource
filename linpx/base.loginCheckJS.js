@@ -229,6 +229,60 @@ function publicFunc() {
         }
         return res
     }
+    // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
+    u.getNovelResSeries = function (result) {
+        let isHtml = result.startsWith("<!DOCTYPE html>")
+        if (isHtml) {
+            let seriesId = 0
+            let id = baseUrl.match(new RegExp("\\d+"))[0]
+            let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
+            let isSeries = baseUrl.match(new RegExp(pattern))
+            if (isSeries) {
+                seriesId = id
+            } else {
+                let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+                let isNovel = baseUrl.match(new RegExp(pattern))
+                if (isNovel) {
+                    java.log(`匹配小说ID：${id}`)
+                    res = util.getAjaxJson(util.urlNovelDetailed(id))
+                    if (res.seriesNavData !== null && res.seriesNavData !== undefined) {
+                        seriesId = res.seriesNavData.seriesId
+                    }
+                }
+            }
+            if (seriesId) {
+                java.log(`系列ID：${seriesId}`)
+                res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
+            }
+        } else {
+            res = JSON.parse(res)
+        }
+        if (res.error || res.total === 0) {
+            java.log(`无法从 Linpx 获取当前小说`)
+            return []
+        }
+        return res
+    }
+    // 从网址获取id，返回单篇小说 res，不处理系列
+    u.getNovelResOneShot = function (result) {
+        let isHtml = result.startsWith("<!DOCTYPE html>")
+        if (isHtml) {
+            let novelId = baseUrl.match(new RegExp("\\d+"))[0]
+            let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+            let isNovel = baseUrl.match(new RegExp(pattern))
+            if (isNovel) {
+                java.log(`匹配小说ID：${novelId}`)
+                res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+            }
+        } else {
+            res = JSON.parse(result)
+        }
+        if (res.error || res.total === 0) {
+            java.log(`无法从 Linpx 获取当前小说`)
+            return []
+        }
+        return res
+    }
 
     u.dateFormat = function (str) {
         let addZero = function (num) {
