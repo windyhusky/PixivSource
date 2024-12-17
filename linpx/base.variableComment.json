@@ -4,9 +4,9 @@
     "MORE_INFO_IN_DESCRIPTION": false,
     "DEBUG": false
 }
-// 此处以上内容为默认配置
+// 此处以上内容为默认设置
 // 若源变量为空，则使用上述默认设置
-// 复制 { } 及内部代码，修改 true 或 false
+// 自定义设置：复制 { } 及内部代码，修改 true 或 false
 // 注意不要添加或删除尾随逗号","
 
 // SHOW_ORIGINAL_NOVEL_LINK
