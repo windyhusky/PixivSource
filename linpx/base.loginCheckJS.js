@@ -32,19 +32,19 @@ function publicFunc() {
     }
     if (u.DEBUG === true) {
         // java.log(JSON.stringify(settings))
-        java.log(`SHOW_ORIGINAL_NOVEL_LINK = ${u.SHOW_ORIGINAL_NOVEL_LINK}`)
-        java.log(`REPLACE_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
-        java.log(`MORE_INFO_IN_DESCRIPTION = ${u.MORE_INFO_IN_DESCRIPTION}`)
+        // java.log(`SHOW_ORIGINAL_NOVEL_LINK = ${u.SHOW_ORIGINAL_NOVEL_LINK}`)
+        // java.log(`REPLACE_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
+        // java.log(`MORE_INFO_IN_DESCRIPTION = ${u.MORE_INFO_IN_DESCRIPTION}`)
         java.log(`DEBUG = ${u.DEBUG}`)
     }
 
 
     u.debugFunc = (func) => {
-        if (String(source.getVariable()) === "debug" || util.DEBUG) {
+        if (util.DEBUG) {
             func()
         }
     }
-    u.cacheGetAndSet = function (key, supplyFunc) {
+    u.cacheGetAndSet = (key, supplyFunc) => {
         let v = cache.get(key)
         if (v === undefined || v === null) {
             v = JSON.stringify(supplyFunc())
@@ -53,25 +53,25 @@ function publicFunc() {
         }
         return JSON.parse(v)
     }
-    u.getAjaxJson = function (url) {
+    u.getAjaxJson = (url) => {
         return util.cacheGetAndSet(url, () => {
             return JSON.parse(java.ajax(url))
         })
     }
-    u.getWebviewJson = function (url) {
+    u.getWebviewJson = (url) => {
         return util.cacheGetAndSet(url, () => {
             let html = java.webView(null, url, null)
             return JSON.parse((html.match(new RegExp(">\\[{.*?}]<"))[0].replace(">", "").replace("<", "")))
         })
     }
 
-    u.urlNovelUrl = function (id){
+    u.urlNovelUrl = (id) => {
         return `https://furrynovel.ink/pixiv/novel/${id}/cache`
     }
-    u.urlNovelDetailed = function (id){
+    u.urlNovelDetailed = (id) => {
         return `https://api.furrynovel.ink/pixiv/novel/${id}/cache`
     }
-    u.urlNovelsDetailed = function (nidList) {
+    u.urlNovelsDetailed = (nidList) => {
         return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
     u.urlNovel = (novelId) => {
@@ -88,34 +88,34 @@ function publicFunc() {
     u.urlSeriesUrl = (seriesId) => {
         return `https://www.pixiv.net/novel/series/${seriesId}`
     }
-    u.urlSeriesDetailed = function (id){
+    u.urlSeriesDetailed = (id) => {
         return `https://api.furrynovel.ink/pixiv/series/${id}/cache`
     }
 
-    u.urlUserUrl = function (id) {
+    u.urlUserUrl = (id) => {
         return `https://furrynovel.ink/pixiv/user/${id}/cache`
     }
-    u.urlUserDetailed = function (id) {
+    u.urlUserDetailed = (id) => {
         return `https://api.furrynovel.ink/pixiv/user/${id}/cache`
     }
-    u.urlUsersDetailed = function (nidList) {
+    u.urlUsersDetailed = (nidList) => {
         return `https://api.furrynovel.ink/pixiv/users/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
 
-    u.urlSearchNovel = function (novelname) {
+    u.urlSearchNovel = (novelname) => {
         return `https://api.furrynovel.ink/pixiv/search/novel/${novelname}/cache`
     }
-    u.urlSearchUsers = function (username) {
+    u.urlSearchUsers = (username) => {
         return `https://api.furrynovel.ink/pixiv/search/user/${username}/cache`
     }
 
-    u.urlCoverUrl = function (pxImgUrl) {
+    u.urlCoverUrl = (pxImgUrl) => {
         return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
     }
     // u.urlIllustUrl = function (illustId) {
     //     return `https://www.pixiv.net/artworks/${illustId}`
     // }
-    u.urlIllustOriginal = function (illustId, order) {
+    u.urlIllustOriginal = (illustId, order) => {
         // 使用 pixiv.cat 获取插图
         let illustOriginal = `https://pixiv.re/${illustId}.png`
         // let illustOriginal = `https://pixiv.nl/${illustId}.png`
@@ -172,7 +172,6 @@ function publicFunc() {
                     novel.tags = []
                 }
                 novel.tags.unshift("单本")
-                // novel.coverUrl = `https://api.furrynovel.ink/proxy/pximg?url=${novel.coverUrl}`
                 novel.coverUrl = util.urlCoverUrl(novel.coverUrl)
             }
 
@@ -263,26 +262,6 @@ function publicFunc() {
         }
         return res
     }
-    // 从网址获取id，返回单篇小说 res，不处理系列
-    u.getNovelResOneShot = function (result) {
-        let isHtml = result.startsWith("<!DOCTYPE html>")
-        if (isHtml) {
-            let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-            let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
-            let isNovel = baseUrl.match(new RegExp(pattern))
-            if (isNovel) {
-                java.log(`匹配小说ID：${novelId}`)
-                res = util.getAjaxJson(util.urlNovelDetailed(novelId))
-            }
-        } else {
-            res = JSON.parse(result)
-        }
-        if (res.error || res.total === 0) {
-            java.log(`无法从 Linpx 获取当前小说`)
-            return []
-        }
-        return res
-    }
 
     u.dateFormat = function (str) {
         let addZero = function (num) {
@@ -293,19 +272,6 @@ function publicFunc() {
         let M = addZero(time.getMonth() + 1) + "月";
         let D = addZero(time.getDate()) + "日";
         return Y + M + D;
-    }
-    u.timeStampFormat = function (int) {
-        let addZero = function (num) {
-            return num < 10 ? '0' + num : num;
-        }
-        let time = new Date(int * 1000);
-        let Y = time.getFullYear()
-        let M = addZero(time.getMonth() + 1)
-        let D = addZero(time.getDate())
-        let h = addZero(time.getHours())
-        let m = addZero(time.getMinutes())
-        let s = addZero(time.getSeconds())
-        return `${Y}-${M}-${D} ${h}:${m}:${s}`
     }
     u.timeTextFormat = function (text) {
         if (text === undefined) {

@@ -38,5 +38,4 @@ function seriesHandler(res) {
     } else {
         return oneShotHandler(res)
     }
-    return seriesHandler(res)
 })(result)

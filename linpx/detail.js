@@ -39,7 +39,8 @@ function objParse(obj) {
         return info
 
     }catch (e) {
-        java.log(`受 Linpx 的限制，无法获取小说ID： ${novelId} 的数据`)
-        java.longToast(`受 Linpx 的限制，无法获取小说ID： ${novelId} 的数据`)
+        java.log(e)
+        java.log(`受 Linpx 的限制，无法获取当前小说的数据`)
+        java.longToast(`受 Linpx 的限制，无法获取当前小说的数据`)
     }
 })(result)
