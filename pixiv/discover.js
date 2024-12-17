@@ -102,7 +102,6 @@ function handlerBookMarks() {
             //流程无法本环节中止 只能交给下一流程处理
             return []
         }
-
         return util.formatNovels(handNovels(resp))
     }
 }

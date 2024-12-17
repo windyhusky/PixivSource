@@ -65,7 +65,7 @@ function publicFunc() {
         })
     }
 
-    u.urlNovelUrl = (novelId) =>{
+    u.urlNovelUrl = (novelId) => {
         return `https://www.pixiv.net/novel/show.php?id=${novelId}`
     }
     u.urlNovelDetailed = (novelId) => {
@@ -95,7 +95,7 @@ function publicFunc() {
         return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
     }
 
-    u.urlUserUrl = function (id) {
+    u.urlUserUrl = (id) => {
         return `https://www.pixiv.net/users/${id}`
     }
     u.urlUserAllWorks = (uesrId) => {
@@ -128,7 +128,7 @@ function publicFunc() {
     u.urlIllustDetailed = (illustId) => {
         return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
     }
-    u.urlIllustOriginal = function (illustId, order) {
+    u.urlIllustOriginal = (illustId, order) => {
         let illustOriginal = util.getAjaxJson(util.urlIllustDetailed(illustId)).body.urls.original
         if (order >= 1) {
             illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
@@ -301,19 +301,6 @@ function publicFunc() {
         let M = addZero(time.getMonth() + 1) + "月";
         let D = addZero(time.getDate()) + "日";
         return Y + M + D;
-    }
-    u.timeStampFormat = function (int) {
-        let addZero = function (num) {
-            return num < 10 ? '0' + num : num;
-        }
-        let time = new Date(int * 1000);
-        let Y = time.getFullYear()
-        let M = addZero(time.getMonth() + 1)
-        let D = addZero(time.getDate())
-        let h = addZero(time.getHours())
-        let m = addZero(time.getMinutes())
-        let s = addZero(time.getSeconds())
-        return `${Y}-${M}-${D} ${h}:${m}:${s}`
     }
     u.timeTextFormat = function (text) {
         return `${text.slice(0, 10)} ${text.slice(11, 19)}`
