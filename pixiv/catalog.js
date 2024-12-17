@@ -56,10 +56,9 @@ function seriesHandler(res) {
 
 (function (res) {
     res = util.getNovelResSeries(result)
-    if (res.firstNovelId !== null && res.firstNovelId !== undefined) {
+    if (res.firstNovelId !== undefined || res.seriesNavData !== null) {
         return seriesHandler(res)
-    }
-    if (res.seriesNavData === null || res.seriesNavData === undefined) {
+    } else {
         return oneShotHandler(res)
     }
 })()
