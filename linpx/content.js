@@ -11,23 +11,7 @@ function objParse(obj) {
 }
 
 (function (res) {
-    let isHtml = res.startsWith("<!DOCTYPE html>")
-    let id = baseUrl.match(new RegExp("\\d+"))[0]
-    java.log(`正文：当前小说ID：${id}`)
-    if (isHtml) {
-        let matchResult = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
-        if (matchResult == null) {
-            return []
-        }
-        res = util.getAjaxJson(util.urlNovelDetailed(id))
-    } else {
-        res = JSON.parse(res)
-        if (res.error === true || res.total === 0) {
-            java.log(`Linpx 上暂无该小说(${id})，无法获取相关内容`)
-            return []
-        }
-    }
-
+    res = util.getNovelRes(result)
     let content = res.content
     if (res.series !== null && res.desc !== undefined && res.desc !== "") {
         content = res.desc + "\n" + "——————————\n".repeat(2) + content

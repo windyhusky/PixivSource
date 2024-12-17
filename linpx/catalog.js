@@ -32,29 +32,10 @@ function seriesHandler(res) {
 }
 
 (function (res) {
-    // 获取网址id，请求并解析数据，调试用
-    let isHtml = res.startsWith("<!DOCTYPE html>")
-    let id = baseUrl.match(new RegExp("\\d+"))[0]
-    if (isHtml) {
-        let matchResult = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
-        if (matchResult == null) {
-            return []
-        }
-        res = util.getAjaxJson(util.urlNovelDetailed(id))
-        java.log(`目录：当前小说ID：${id}`)
-        if (res.series !== undefined) {
-            java.log(`目录：当前系列ID：${res.series.id}${res.series.title}`)
-            res = util.getAjaxJson(util.urlSeriesDetailed(res.series.id))
-        }
+    res = util.getNovelResSeries(result)
+    if (res.novels !== undefined) {
+        return seriesHandler(res)
     } else {
-        res = JSON.parse(res)
-        if (res.error === true || res.total === 0) {
-            java.log(`Linpx 上暂无该小说(${id})，无法获取相关内容`)
-            return []
-        }
-    }
-
-    if (res.novels === undefined) {
         return oneShotHandler(res)
     }
     return seriesHandler(res)

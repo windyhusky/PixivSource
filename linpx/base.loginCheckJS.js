@@ -200,6 +200,35 @@ function publicFunc() {
             return false
         })
     }
+    // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
+    u.getNovelRes = function (result) {
+        let isHtml = result.startsWith("<!DOCTYPE html>")
+        if (isHtml) {
+            let novelId = 0
+            let id = baseUrl.match(new RegExp("\\d+"))[0]
+            let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
+            let isSeries = baseUrl.match(new RegExp(pattern))
+            if (isSeries) {
+                java.log(`系列ID：${id}`)
+                novelId = util.getAjaxJson(util.urlSeriesDetailed(id)).novels[0].id
+            } else {
+                let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+                let isNovel = baseUrl.match(new RegExp(pattern))
+                if (isNovel) {
+                    novelId = id
+                }
+            }
+            java.log(`匹配小说ID：${novelId}`)
+            res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+        } else {
+            res = JSON.parse(result)
+        }
+        if (res.error || res.total === 0) {
+            java.log(`无法从 Linpx 获取当前小说`)
+            return []
+        }
+        return res
+    }
 
     u.dateFormat = function (str) {
         let addZero = function (num) {
