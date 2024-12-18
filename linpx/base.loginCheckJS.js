@@ -230,9 +230,9 @@ function publicFunc() {
     }
     // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
     u.getNovelResSeries = function (result) {
+        let seriesId = 0, res = {}
         let isHtml = result.startsWith("<!DOCTYPE html>")
         if (isHtml) {
-            let seriesId = 0
             let id = baseUrl.match(new RegExp("\\d+"))[0]
             let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
             let isSeries = baseUrl.match(new RegExp(pattern))
@@ -244,17 +244,17 @@ function publicFunc() {
                 if (isNovel) {
                     java.log(`匹配小说ID：${id}`)
                     res = util.getAjaxJson(util.urlNovelDetailed(id))
-                    if (res.seriesNavData !== null && res.seriesNavData !== undefined) {
-                        seriesId = res.seriesNavData.seriesId
-                    }
                 }
             }
-            if (seriesId) {
-                java.log(`系列ID：${seriesId}`)
-                res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
-            }
         } else {
-            res = JSON.parse(res)
+            res = JSON.parse(result)
+        }
+        if (res.series !== undefined && res.series !== null) {
+            seriesId = res.series.id
+        }
+        if (seriesId) {
+            java.log(`系列ID：${seriesId}`)
+            res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
         }
         if (res.error || res.total === 0) {
             java.log(`无法从 Linpx 获取当前小说`)
