@@ -12,7 +12,7 @@ function objParse(obj) {
 
 
 (function (res) {
-    res = util.getNovelResFromWebpage(result)
+    res = util.getNovelRes(result)
     let content = res.content
     // 在正文内部添加小说描述
     if (res.seriesNavData !== undefined && res.seriesNavData !== null && res.description !== "") {

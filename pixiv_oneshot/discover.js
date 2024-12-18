@@ -65,9 +65,6 @@ function handlerFactory() {
     if (baseUrl.indexOf("/top") !== -1) {
         return handlerRecommend()
     }
-    // if (baseUrl.indexOf("/following") !== -1) {
-    //     return handlerFollowing()
-    // }
     if (baseUrl.indexOf("/follow_latest") !== -1) {
         return handlerFollowLatest()
     }
@@ -82,21 +79,6 @@ function handlerNoLogin() {
         return []
     }
 }
-// //关注作者（按顺序）
-// function handlerFollowing() {
-//     return () => {
-//         let novelList = []
-//         JSON.parse(result).body.users
-//             .filter(user => user.novels.length > 0)
-//             .map(user => user.novels)
-//             .forEach(novels => {
-//                 return novels.forEach(novel => {
-//                     novelList.push(novel)
-//                 })
-//             })
-//         return util.formatNovels(handNovels(novelList))
-//     }
-// }
 
 // 推荐小说
 function handlerRecommend() {
@@ -120,7 +102,6 @@ function handlerBookMarks() {
             //流程无法本环节中止 只能交给下一流程处理
             return []
         }
-
         return util.formatNovels(handNovels(resp))
     }
 }

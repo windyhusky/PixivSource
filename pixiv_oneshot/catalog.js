@@ -21,10 +21,16 @@ function oneShotHandler(res) {
 function seriesHandler(res) {
     const limit = 30
     let returnList = []
-    let seriesID = res.id
-    let allChaptersCount = res.total
+    let seriesID = 0, allChaptersCount = 0
+    if (res.seriesNavData !== undefined) {
+        seriesID = res.seriesNavData.seriesId
+        allChaptersCount = util.getAjaxJson(util.urlSeriesDetailed(seriesID)).body.total
+    } else {
+        seriesID = res.id
+        allChaptersCount = res.total
+    }
     util.debugFunc(() => {
-        java.log(`本目录一共有:${allChaptersCount}章`);
+        java.log(`本系列 ${seriesID} 一共有${allChaptersCount}章`);
     })
 
     //发送请求获得相应数量的目录列表
@@ -55,38 +61,10 @@ function seriesHandler(res) {
 }
 
 (function (res) {
-    // 获取网址id，请求并解析数据，调试用
-    let isHtml = result.startsWith("<!DOCTYPE html>")
-    if (isHtml) {
-        let isSeries = baseUrl.match(new RegExp("pixiv(\\.net)?/(ajax/)?(novel/)?series/\\d+"))
-        if (isSeries) {
-            let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
-            java.log(`目录：系列ID：${seriesId}`)
-            res = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body
-        } else {
-            let isNovel = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
-            if (isNovel) {
-                let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-                java.log(`目录：匹配小说ID：${novelId}`)
-                res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
-                if (res.seriesNavData !== null && res.seriesNavData !== undefined) {
-                    let seriesId = res.seriesNavData.seriesId
-                    java.log(`目录：系列ID：${seriesId}`)
-                    res = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body
-                }
-            }
-        }
-    } else {
-        res = JSON.parse(result).body
-        if (res.total === 0) {
-            return
-        }
-    }
-
-    if (res.firstNovelId !== null && res.firstNovelId !== undefined) {
+    res = util.getNovelResSeries(result)
+    if (res.firstNovelId !== undefined || res.seriesNavData !== null) {
         return seriesHandler(res)
-    }
-    if (res.seriesNavData === null || res.seriesNavData === undefined) {
+    } else {
         return oneShotHandler(res)
     }
 })()

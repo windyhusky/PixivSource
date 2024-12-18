@@ -32,15 +32,15 @@ function publicFunc() {
     }
     if (u.DEBUG === true) {
         // java.log(JSON.stringify(settings))
-        java.log(`SHOW_ORIGINAL_NOVEL_LINK = ${u.SHOW_ORIGINAL_NOVEL_LINK}`)
-        java.log(`REPLACE_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
-        java.log(`MORE_INFO_IN_DESCRIPTION = ${u.MORE_INFO_IN_DESCRIPTION}`)
+        // java.log(`SHOW_ORIGINAL_NOVEL_LINK = ${u.SHOW_ORIGINAL_NOVEL_LINK}`)
+        // java.log(`REPLACE_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
+        // java.log(`MORE_INFO_IN_DESCRIPTION = ${u.MORE_INFO_IN_DESCRIPTION}`)
         java.log(`DEBUG = ${u.DEBUG}`)
     }
 
 
     u.debugFunc = (func) => {
-        if (String(source.getVariable()) === "debug" || util.DEBUG === true) {
+        if (util.DEBUG) {
             func()
         }
     }
@@ -65,7 +65,7 @@ function publicFunc() {
         })
     }
 
-    u.urlNovelUrl = (novelId) =>{
+    u.urlNovelUrl = (novelId) => {
         return `https://www.pixiv.net/novel/show.php?id=${novelId}`
     }
     u.urlNovelDetailed = (novelId) => {
@@ -95,7 +95,7 @@ function publicFunc() {
         return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
     }
 
-    u.urlUserUrl = function (id) {
+    u.urlUserUrl = (id) => {
         return `https://www.pixiv.net/users/${id}`
     }
     u.urlUserAllWorks = (uesrId) => {
@@ -128,7 +128,7 @@ function publicFunc() {
     u.urlIllustDetailed = (illustId) => {
         return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
     }
-    u.urlIllustOriginal = function (illustId, order) {
+    u.urlIllustOriginal = (illustId, order) => {
         let illustOriginal = util.getAjaxJson(util.urlIllustDetailed(illustId)).body.urls.original
         if (order >= 1) {
             illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
@@ -207,32 +207,73 @@ function publicFunc() {
             return false
         })
     }
-    u.getNovelResFromWebpage = function(result) {
-        // 获取网址id，请求并解析数据
-        var novelId = 0
-        let isHtml = result.startsWith("<!DOCTYPE html>")
+    // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
+    u.getNovelRes = function (result) {
+        let novelId = 0, res = {}
+            let isHtml = result.startsWith("<!DOCTYPE html>")
         if (isHtml) {
-            let isSeries = baseUrl.match(new RegExp("pixiv(\\.net|)/(ajax/)?(novel/)?series/\\d+"))
+            let id = baseUrl.match(new RegExp("\\d+"))[0]
+            let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
+            let isSeries = baseUrl.match(new RegExp(pattern))
             if (isSeries) {
-                let seriesId = baseUrl.match(new RegExp("\\d+"))[0]
-                novelId = util.getAjaxJson(util.urlSeriesDetailed(seriesId)).body.firstNovelId
-                java.log(`系列ID：${seriesId}`)
+                java.log(`系列ID：${id}`)
+                res = util.getAjaxJson(util.urlSeriesDetailed(id))
             } else {
-                let isNovel = baseUrl.match(new RegExp("pn|pixiv(\\.net)?/(ajax/)?novel"))
+                let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+                let isNovel = baseUrl.match(new RegExp(pattern))
                 if (isNovel) {
-                    novelId = baseUrl.match(new RegExp("\\d+"))[0]
+                    novelId = id
                 }
             }
-            java.log(`匹配小说ID：${novelId}`)
-            res = util.getAjaxJson(util.urlNovelDetailed(novelId)).body
-
         } else {
-            res = JSON.parse(result).body
-            if (res.total === 0) {
-                return []
-            }
+            res = JSON.parse(result)
         }
-        return res
+        if (res.body !== undefined && res.body.firstNovelId !== undefined && res.body.firstNovelId !== null) {
+            novelId = res.body.firstNovelId
+        }
+        if (novelId) {
+            java.log(`匹配小说ID：${novelId}`)
+            res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+        }
+        if (res.error || res.total === 0) {
+            java.log(`无法从 Pixiv 获取当前小说`)
+            return []
+        }
+        return res.body
+    }
+    // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
+    u.getNovelResSeries = function (result) {
+        let seriesId = 0, res = {}
+        let isHtml = result.startsWith("<!DOCTYPE html>")
+        if (isHtml) {
+            let id = baseUrl.match(new RegExp("\\d+"))[0]
+            let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
+            let isSeries = baseUrl.match(new RegExp(pattern))
+            if (isSeries) {
+                seriesId = id
+            } else {
+                let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+                let isNovel = baseUrl.match(new RegExp(pattern))
+                if (isNovel) {
+                    java.log(`匹配小说ID：${id}`)
+                    res = util.getAjaxJson(util.urlNovelDetailed(id))
+                }
+            }
+        } else {
+            res = JSON.parse(result)
+        }
+        if (res.body !== undefined && res.body.seriesNavData !== undefined && res.body.seriesNavData !== null) {
+            seriesId = res.body.seriesNavData.seriesId
+        }
+        if (seriesId) {
+            java.log(`系列ID：${seriesId}`)
+            res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
+        }
+        if (res.error === true || res.total === 0) {
+            java.log(`无法从 Pixiv 获取当前小说`)
+            return []
+        }
+        return res.body
     }
 
     u.dateFormat = function (str) {
@@ -244,19 +285,6 @@ function publicFunc() {
         let M = addZero(time.getMonth() + 1) + "月";
         let D = addZero(time.getDate()) + "日";
         return Y + M + D;
-    }
-    u.timeStampFormat = function (int) {
-        let addZero = function (num) {
-            return num < 10 ? '0' + num : num;
-        }
-        let time = new Date(int * 1000);
-        let Y = time.getFullYear()
-        let M = addZero(time.getMonth() + 1)
-        let D = addZero(time.getDate())
-        let h = addZero(time.getHours())
-        let m = addZero(time.getMinutes())
-        let s = addZero(time.getSeconds())
-        return `${Y}-${M}-${D} ${h}:${m}:${s}`
     }
     u.timeTextFormat = function (text) {
         return `${text.slice(0, 10)} ${text.slice(11, 19)}`
