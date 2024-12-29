@@ -37,7 +37,7 @@ function seriesHandler(res) {
     function sendAjaxForGetChapters(lastIndex) {
         res = util.getAjaxJson(util.urlSeriesNovels(seriesID, limit, lastIndex)).body.thumbnails.novel
         res.forEach(v => {
-            v.title = v.title.replace(`${v.seriesTitle}`, "").replace(RegExp(/（|）|-/g), "")
+            v.title = v.title.replace(RegExp(/（|）|-/g), "")
             v.chapterUrl = util.urlNovel(v.id)
             v.updateDate = util.timeTextFormat(v.createDate)
             util.debugFunc(() => {
