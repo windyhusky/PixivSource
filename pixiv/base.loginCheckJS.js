@@ -239,7 +239,7 @@ function publicFunc() {
             java.log(`匹配小说ID：${novelId}`)
             res = util.getAjaxJson(util.urlNovelDetailed(novelId))
         }
-        if (res.error || res.total === 0) {
+        if (res.error === true || res.body.total === 0) {
             java.log(`无法从 Pixiv 获取当前小说`)
             return []
         }
@@ -273,7 +273,7 @@ function publicFunc() {
             java.log(`系列ID：${seriesId}`)
             res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
         }
-        if (res.error === true || res.total === 0) {
+        if (res.error === true || res.body.total === 0) {
             java.log(`无法从 Pixiv 获取当前小说`)
             return []
         }
