@@ -24,7 +24,7 @@ function oneShotHandler(res) {
     info.coverUrl = util.urlCoverUrl(res.coverUrl)
     info.catalogUrl = util.urlNovelDetailed(info.noveId)
     info.createDate = util.dateFormat(res.createDate)
-    info.updateDate = util.dateFormat(res.updateDate)
+    info.updateDate = util.dateFormat(res.uploadDate)
 
     info.readingTime = `${res.userNovels[`${info.noveId}`].readingTime / 60} 分钟`
     return info
