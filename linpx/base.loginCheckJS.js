@@ -179,10 +179,12 @@ function publicFunc() {
             }
 
             novel.tags = novel.tags.join(",")
-            novel.time = util.dateFormat(novel.createDate)
-            novel.description = `${novel.description}\n更新时间：${novel.time}`
+            novel.createDate = util.dateFormat(novel.createDate)
+            // novel.description = `${novel.description}\n更新时间：${novel.time}`
             if (util.MORE_INFO_IN_DESCRIPTION) {
-                novel.description = `书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n更新：${novel.time}简介：n${novel.description}\n`
+                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
+            } else {
+                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}`
             }
         })
         return novels

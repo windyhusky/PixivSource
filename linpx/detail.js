@@ -39,9 +39,9 @@ function novelHandler(res){
     }
     info.tags = info.tags.join(",")
     if (util.MORE_INFO_IN_DESCRIPTION) {
-        info.description = `书名：${info.title}\n作者：${info.userName}\n标签：${info.tags}\n更新：${info.time}\n简介：${info.description}`
+        info.description = `\n书名：${info.title}\n作者：${info.userName}\n标签：${info.tags}\n上传：${info.createDate}\n简介：${info.description}`
     } else {
-        info.description = `${info.description}\n更新时间：${info.time}`
+        info.description = `\n${info.description}\n上传时间：${info.createDate}`
     }
     return info
 }
