@@ -10,24 +10,27 @@ function objStringify(obj) {
 
 function publicFunc() {
     let u = {}
-    let input = source.getVariable()  // [object JavaObject]
+    let input =  String(source.getVariable())  // [object JavaObject]
+    var settings = {}
     try {
-        if (input == "debug"|| input == "" || input == null) {
-            var settings = JSON.parse(String(source.variableComment).split("//")[0])
-            java.log("使用默认的设置")
-        } else {
-            var settings = JSON.parse(String(input).split("//")[0])
+        if (input != "debug" && input != "" && input != null) {
+            settings = JSON.parse(input.split("//")[0])
             java.log("使用自定义设置")
+        } else {
+            settings = JSON.parse(String(source.variableComment).split("//")[0])
+            java.log("自定义设置为空，使用默认设置")
         }
     } catch (e) {
-        java.log(e)
+        settings = JSON.parse(String(source.variableComment).split("//")[0])
+        java.log("自定义设置有误，使用默认设置")
+    } finally {
+        u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
+        u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
+        u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
+        u.DEBUG = settings.DEBUG // 调试模式
     }
 
-    u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
-    u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
-    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
-    u.DEBUG = settings.DEBUG // 调试模式
-    if (String(source.getVariable()) === "debug") {
+    if (input === "debug") {
         u.DEBUG = true // 调试模式
     }
     if (u.DEBUG === true) {
