@@ -185,11 +185,12 @@ function publicFunc() {
             novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
             novel.detailedUrl = this.urlNovelDetailed(novel.id)
             novel.readingTime = `${novel.readingTime / 60} 分钟`
-            const time1 = this.dateFormat(novel.createDate);
-            const time2 = this.dateFormat(novel.updateDate);
-            novel.description = `${novel.description}\n上传时间：${time1}\n更新时间：${time2}`
+            novel.createDate = this.dateFormat(novel.createDate);
+            novel.updateDate = this.dateFormat(novel.updateDate);
             if (util.MORE_INFO_IN_DESCRIPTION) {
-                novel.description = `书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${time1}\n更新：${time2}\n简介：${novel.description}`
+                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
+            } else {
+                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
             }
         })
         return novels
