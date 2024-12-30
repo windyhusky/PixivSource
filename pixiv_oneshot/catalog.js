@@ -11,10 +11,11 @@ function objParse(obj) {
 }
 
 function oneShotHandler(res) {
+    res.textCount = res.userNovels[`${res.id}`].textCount
     return [{
         title: res.title,
         chapterUrl: util.urlNovel(res.id),
-        updateDate: util.timeTextFormat(res.createDate)
+        updateDate: `${util.timeTextFormat(res.createDate)}　　${res.textCount}字`
     }]
 }
 
@@ -39,7 +40,7 @@ function seriesHandler(res) {
         res.forEach(v => {
             v.title = v.title.replace(RegExp(/（|）|-/g), "")
             v.chapterUrl = util.urlNovel(v.id)
-            v.updateDate = util.timeTextFormat(v.createDate)
+            v.updateDate = `${util.timeTextFormat(v.createDate)}　　${v.textCount}字`
             util.debugFunc(() => {
                 java.log(`${v.title}`)
             })

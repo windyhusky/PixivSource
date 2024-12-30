@@ -10,24 +10,27 @@ function objStringify(obj) {
 
 function publicFunc() {
     let u = {}
-    let input = source.getVariable()  // [object JavaObject]
+    let input =  String(source.getVariable())  // [object JavaObject]
+    var settings = {}
     try {
-        if (input == "debug"|| input == "" || input == null) {
-            var settings = JSON.parse(String(source.variableComment).split("//")[0])
-            java.log("使用默认的设置")
-        } else {
-            var settings = JSON.parse(String(input).split("//")[0])
+        if (input != "debug" && input != "" && input != null) {
+            settings = JSON.parse(input.split("//")[0])
             java.log("使用自定义设置")
+        } else {
+            settings = JSON.parse(String(source.variableComment).split("//")[0])
+            java.log("自定义设置为空，使用默认设置")
         }
     } catch (e) {
-        java.log(e)
+        settings = JSON.parse(String(source.variableComment).split("//")[0])
+        java.log("自定义设置有误，使用默认设置")
+    } finally {
+        u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
+        u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
+        u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
+        u.DEBUG = settings.DEBUG // 调试模式
     }
 
-    u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
-    u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
-    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
-    u.DEBUG = settings.DEBUG // 调试模式
-    if (String(source.getVariable()) === "debug") {
+    if (input === "debug") {
         u.DEBUG = true // 调试模式
     }
     if (u.DEBUG === true) {
@@ -182,11 +185,12 @@ function publicFunc() {
             novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
             novel.detailedUrl = this.urlNovelDetailed(novel.id)
             novel.readingTime = `${novel.readingTime / 60} 分钟`
-            const time1 = this.dateFormat(novel.createDate);
-            const time2 = this.dateFormat(novel.updateDate);
-            novel.description = `${novel.description}\n上传时间：${time1}\n更新时间：${time2}`
+            novel.createDate = this.dateFormat(novel.createDate);
+            novel.updateDate = this.dateFormat(novel.updateDate);
             if (util.MORE_INFO_IN_DESCRIPTION) {
-                novel.description = `书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${time1}\n更新：${time2}\n简介：${novel.description}`
+                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
+            } else {
+                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
             }
         })
         return novels
