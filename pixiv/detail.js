@@ -58,25 +58,30 @@ function seriesHandler(res) {
     return info
 }
 
+function novelHandler(res){
+    let info = {}
+    if (res.firstNovelId !== undefined) {
+        info = seriesHandler(res)
+    } else {
+        info = oneShotHandler(res)
+    }
+    info.tags = info.tags.join(",")
+    if (util.MORE_INFO_IN_DESCRIPTION) {
+        info.description = `\n书名：${info.title}\n作者：${info.userName}\n标签：${info.tags}\n上传：${info.createDate}\n更新：${info.updateDate}\n简介：${info.description}`
+    } else {
+        info.description = `\n${info.description}\n上传时间：${info.createDate}\n更新时间：${info.updateDate}`
+    }
+    return info
+}
+
 (function (res) {
     res = util.getNovelResSeries(result)
+    // res = util.getNovelRes(result)
+    // if (res.seriesNavData !== null) {     // 使用 util.getNovelRes(result) 时
+    //     res = util.getAjaxJson(util.urlSeriesDetailed(res.seriesNavData.seriesId)).body
+    // }
     try {
-        let info = {}
-        // if (res.seriesNavData !== null) {     // 使用 util.getNovelRes(result) 时
-        //     res = util.getAjaxJson(util.urlSeriesDetailed(res.seriesNavData.seriesId)).body
-        // }
-        if (res.firstNovelId !== undefined) {
-            info = seriesHandler(res)
-        } else {
-            info = oneShotHandler(res)
-        }
-        info.tags = info.tags.join(",")
-        if (util.MORE_INFO_IN_DESCRIPTION) {
-            info.description = `\n书名：${info.title}\n作者：${info.userName}\n标签：${info.tags}\n更新：${info.updateDate}\n简介：${info.description}`
-        } else {
-            info.description = `${info.description}\n更新时间:${info.updateDate}`
-        }
-    return info
+        return novelHandler(res)
     } catch (e) {
         java.log(e)
         java.log(`受 Pixiv 的限制，无法获取当前小说数据`)
