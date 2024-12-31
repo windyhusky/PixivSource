@@ -232,10 +232,10 @@ function publicFunc() {
             java.log(`匹配小说ID：${novelId}`)
             res = util.getAjaxJson(util.urlNovelDetailed(novelId))
         }
-        if (res.error || res.total === 0) {
-            java.log(`无法从 Linpx 获取当前小说`)
-            return []
-        }
+        // if (res.error || res.total === 0) {
+        //     java.log(`无法从 Linpx 获取当前小说`)
+        //     return []
+        // }
         return res
     }
     // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
@@ -266,10 +266,10 @@ function publicFunc() {
             java.log(`系列ID：${seriesId}`)
             res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
         }
-        if (res.error || res.total === 0) {
-            java.log(`无法从 Linpx 获取当前小说`)
-            return []
-        }
+        // if (res.error || res.total === 0) {
+        //     java.log(`无法从 Linpx 获取当前小说`)
+        //     return []
+        // }
         return res
     }
 
