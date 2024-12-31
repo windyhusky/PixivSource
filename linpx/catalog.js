@@ -11,7 +11,7 @@ function objParse(obj) {
 }
 
 function oneShotHandler(res) {
-    res.textCount =　res.detail.content.length
+    res.textCount =　res.content.length
     res.updateDate = util.timeTextFormat(res.createDate)
     return [{
         title: res.title,
