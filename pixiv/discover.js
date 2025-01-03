@@ -122,7 +122,12 @@ function handlerWatchList(){
         let seriesList = resp.body.thumbnails.novelSeries
         for (let i in seriesList) {
             let novelId = seriesList[i].latestEpisodeId  // 使用最后一篇小说，重新请求并合并小说
-            novels.push(util.getAjaxJson(util.urlNovelDetailed(novelId)).body.userNovels[`${novelId}`])
+            let resp = util.getAjaxJson(util.urlNovelDetailed(novelId))
+            if (resp.error !== true) {
+                novels.push(resp.body.userNovels[`${novelId}`])
+            } else {
+                java.log(JSON.stringify(resp))
+            }
         }
         return util.formatNovels(handNovels(util.combineNovels(novels)))
     }
