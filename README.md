@@ -20,13 +20,14 @@
 <details>
 <summary>  Github 导入地址 </summary>
 
-| 名称         | Github 导入网址                                                            |
-| ----------- | ------------------------------------------------------------------------- |
-| Pixiv 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
-| Linpx 书源　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
-| 通用书源　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |
-| btsrk 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
-| books 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
+| 名称          | Github 导入网址                                                            |
+| ------------ | ------------------------------------------------------------------------- |
+| Pixiv 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
+| Linpx 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
+| 通用书源 　　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |
+| btsrk 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
+| books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
+| import 订阅源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
 </details>
 
 
@@ -41,16 +42,14 @@
 #### Pixiv 特性：
 - 单篇小说：Pixiv 小说投稿时的【单篇完结作品】，即短篇小说
 - 系列小说：Pixiv 小说投稿时的【连载系列作品】，即长篇小说
-- <details>
-  <summary> 小说相关功能 </summary>
+- <details><summary> 小说功能 </summary>
   
   - ✅ 关注作者（最新小说）
   - ✅ 追更列表
   - ✅ 推荐作品
   - ✅ 个人收藏
   - ✅ Pixiv 小说工具（标记符号）
-    <details>
-    <summary> 已支持全部小说标记符号 </summary>
+    <details><summary> 已支持全部小说标记符号 </summary>
 
     - ✅ 完美支持的标记符
       - ✅ `[uploadedimage:自动生成ID]` 通过上传图片添加插画
@@ -75,8 +74,7 @@
 - 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
 - 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
 
-<details>
-<summary> 书源可选设置 </summary>
+<details><summary> 书源可选设置 </summary>
 
 | 可选设置         | 默认状态 | 常量名称                    |
 | -------------- | ------ | -------------------------- |

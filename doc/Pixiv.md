@@ -1,6 +1,4 @@
 ## Pixiv 书源的导入与使用
-> https://telegra.ph/FurryNovelsReading-01-04-07
-
 
 Pixiv 是以插图、漫画、小说为中心的允许 R18 内容的艺术网站
 
