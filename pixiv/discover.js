@@ -139,14 +139,28 @@ function handlerWatchList(){
 // 排行榜
 function handlerRanking(){
     return () => {
-        novels = []; links = []; novelLinks = []
-        if (result.startsWith("<!DOCTYPE html>")) {
-            let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d+/gm))
-            for (let i in matched) {
-                let novelId = matched[i].match(RegExp(/\d+/))[0]
-                java.log(util.urlNovelDetailed(novelId))
-                novels.push(util.getAjaxJson(util.urlNovelDetailed(novelId)).body)
-                break
+        let novels = []
+        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
+        for (let i in matched) {
+            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
+            // java.log(util.urlNovelDetailed(novelId))
+
+            let res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+            if (res.error !== true) {
+                res = res.body
+                res.tags = res.userNovels[`${novelId}`].tags
+                res.textCount = res.userNovels[`${novelId}`].textCount
+                res.catalogUrl = util.urlNovelDetailed(res.novelId)
+                // res.createDate = res.createDate
+                res.updateDate = res.uploadDate
+
+                if (res.seriesNavData !== null) {
+                    res.title = res.seriesNavData.title
+                    res.catalogUrl = util.urlSeriesDetailed(res.seriesNavData.seriesId)
+                }
+                novels.push(res)
+            } else {
+                java.log(JSON.stringify(res))
             }
         }
         return util.formatNovels(handNovels(util.combineNovels(novels)))
