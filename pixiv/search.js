@@ -155,6 +155,7 @@ function getUserNovels(username) {
         let userNovels = util.getWebviewJson(url, html => {
             return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
         }).body
+        userNovels.coverUrl = userNovels.url  // 标准化为通用名
         // 获取对应的小说 该序列是按照id排序
         // 反转以按照更新时间排序
         novels = novels.concat(Object.values(userNovels).reverse())

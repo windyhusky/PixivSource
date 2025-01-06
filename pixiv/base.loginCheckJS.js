@@ -158,12 +158,12 @@ function publicFunc() {
                 // novel.updateDate = novel.updateDate
                 // novel.description = novel.description
                 novel.lastChapter = novel.title
-                novel.coverUrl = novel.url
+                // novel.coverUrl = novel.coverUrl
                 novel.aiType = novel.aiType - 1
 
             } else {  // 兼容系列搜索
                 if (novel.isOneshot === true) {
-                    novel.id = novel.novelId  //单篇（完结？）小说
+                    novel.id = novel.novelId  //单篇小说
                     novel.lastChapter = novel.title
                     novel.aiType = novel.aiType / 2
 
