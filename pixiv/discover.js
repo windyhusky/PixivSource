@@ -71,6 +71,9 @@ function handlerFactory() {
     if (baseUrl.indexOf("/watch_list") !== -1) {
         return handlerWatchList()
     }
+    if (baseUrl.indexOf("/ranking") !== -1) {
+        return handlerRanking()
+    }
 }
 
 function handlerNoLogin() {
@@ -132,6 +135,24 @@ function handlerWatchList(){
         return util.formatNovels(handNovels(util.combineNovels(novels)))
     }
 }
+
+// 排行榜
+function handlerRanking(){
+    return () => {
+        novels = []; links = []; novelLinks = []
+        if (result.startsWith("<!DOCTYPE html>")) {
+            let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d+/gm))
+            for (let i in matched) {
+                let novelId = matched[i].match(RegExp(/\d+/))[0]
+                java.log(util.urlNovelDetailed(novelId))
+                novels.push(util.getAjaxJson(util.urlNovelDetailed(novelId)).body)
+                break
+            }
+        }
+        return util.formatNovels(handNovels(util.combineNovels(novels)))
+    }
+}
+
 
 (() => {
     return handlerFactory()()
