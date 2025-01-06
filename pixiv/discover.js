@@ -100,36 +100,36 @@ function handlerRecommend() {
 // 收藏小说
 function handlerBookMarks() {
     return () => {
-        let resp = JSON.parse(result).body.works
-        if (resp === undefined || resp.length === 0) {
+        let res = JSON.parse(result).body.works
+        if (res === undefined || res.length === 0) {
             //流程无法本环节中止 只能交给下一流程处理
             return []
         }
-        return util.formatNovels(handNovels(resp))
+        return util.formatNovels(handNovels(res))
     }
 }
 
 //关注作者，近期小说
 function handlerFollowLatest() {
     return () => {
-        let resp = JSON.parse(result)
-        return util.formatNovels(handNovels(util.combineNovels(resp.body.thumbnails.novel)))
+        let res = JSON.parse(result)
+        return util.formatNovels(handNovels(util.combineNovels(res.body.thumbnails.novel)))
     }
 }
 
 // 追更列表
 function handlerWatchList(){
     return () => {
-        let resp = JSON.parse(result)
+        let res = JSON.parse(result)
         let novels = []
-        let seriesList = resp.body.thumbnails.novelSeries
+        let seriesList = res.body.thumbnails.novelSeries
         for (let i in seriesList) {
             let novelId = seriesList[i].latestEpisodeId  // 使用最后一篇小说，重新请求并合并小说
-            let resp = util.getAjaxJson(util.urlNovelDetailed(novelId))
-            if (resp.error !== true) {
-                novels.push(resp.body.userNovels[`${novelId}`])
+            let res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+            if (res.error !== true) {
+                novels.push(res.body.userNovels[`${novelId}`])
             } else {
-                java.log(JSON.stringify(resp))
+                java.log(JSON.stringify(res))
             }
         }
         return util.formatNovels(handNovels(util.combineNovels(novels)))
