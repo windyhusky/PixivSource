@@ -1,36 +1,44 @@
-[
+@js:
+let SHOW_GENERAL_NOVELS_RANK = false
+// 发现：排行榜显示一般小说
+// 无法从 util 获取；从源变量获取有延迟，无法实时修改
+
+li = [
     {
-        "title": "关注作者",
+        "title": "关注",
         "url": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent":0.3
+            "layout_flexBasisPercent":0.2
         }
     },
     {
-        "title": "追更列表",
+        "title": "追更",
         "url": "https://www.pixiv.net/ajax/watch_list/novel?p={{page}}&new=1&lang=zh",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent":0.3
+            "layout_flexBasisPercent":0.2
         }
     },
     {
-        "title": "推荐小说",
+        "title": "推荐",
         "url": "https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent":0.3
+            "layout_flexBasisPercent":0.2
         }
     },
     {
-        "title": "收藏小说",
+        "title": "收藏",
         "url": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent":0.3
+            "layout_flexBasisPercent":0.2
         }
-    },
+    }
+]
+
+r18 = [
     {
         "title": "\uD83D\uDD1E 排行榜",
         "url": "",
@@ -78,7 +86,10 @@
             "layout_flexGrow": 0.25,
             "layout_flexBasisPercent":0
         }
-    },
+    }
+]
+
+general = [
     {
         "title": "\uD83C\uDD97 排行榜",
         "url": "",
@@ -152,3 +163,10 @@
         }
     }
 ]
+
+
+li = li.concat(r18)
+if (SHOW_GENERAL_NOVELS_RANK === true){
+    li = li.concat(general)
+}
+JSON.stringify(li)

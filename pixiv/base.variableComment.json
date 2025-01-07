@@ -15,5 +15,7 @@
 // 注音内容为汉字时，替换为书名号
 // MORE_INFO_IN_DESCRIPTION
 // 书籍简介显示更多信息
+// SHOW_GENERAL_NOVELS_RANK
+// 发现：排行榜显示一般小说
 // DEBUG
 // 调试模式
