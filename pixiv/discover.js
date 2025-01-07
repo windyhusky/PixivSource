@@ -144,7 +144,7 @@ function handlerRanking(){
         let matched = html.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
         for (let i in matched) {
             let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            // java.log(util.urlNovelDetailed(novelId))
+            java.log(util.urlNovelDetailed(novelId))
 
             let res = util.getAjaxJson(util.urlNovelDetailed(novelId))
             if (res.error !== true) {

@@ -48,6 +48,7 @@
   - ✅ 追更列表
   - ✅ 推荐作品
   - ✅ 个人收藏
+  - ✅ 小说排行榜
   - ✅ Pixiv 小说工具（标记符号）
     <details><summary> 已支持全部小说标记符号 </summary>
 
@@ -155,17 +156,18 @@
 - ✅ 兽人控小说站订阅源
 - ✅ Pixiv 书源：关注作者的最新小说 https://github.com/windyhusky/PixivSource/issues/11
 - ✅ Linpx 书源：推荐作者的近期小说
-- ✅ Pixiv 书源：通过作品ID添加插画 [pixivimage:123-1] 
-- ✅ Linpx 书源：通过作品ID添加插画 [pixivimage:123-1] （使用 pixiv.cat ）
+- ✅ Pixiv 书源：通过作品ID添加插画
+- ✅ Linpx 书源：通过作品ID添加插画（使用 pixiv.cat ）
 - ✅ Pixiv 书源：添加网址加入书架；订阅源添加到书架
 - ✅ Pixiv 书源：追更列表 https://github.com/windyhusky/PixivSource/issues/14
-- ☑️ Pixiv 书源：每日每周排行榜 https://github.com/windyhusky/PixivSource/issues/13
+- ✅ Pixiv 书源：排行榜 https://github.com/windyhusky/PixivSource/issues/13
 - ✅ Pixiv 系列小说书源 
 - ✅ Pixiv 书源：完善字数统计 https://github.com/windyhusky/PixivSource/issues/18
-- ☑️ Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/17
+- ✅ Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/17
 - ✅ Pixiv & Linpx 书源：目录页添加小说更新时间
 - ✅ Pixiv 书源：修复搜索作者
 - ✅ Linpx 书源：修复搜索作者
 - ✅ import 订阅源：导入其他书源、订阅源
+- ✅ Pixiv & Linpx 书源：目录页添加小说字数
 </details>
 
