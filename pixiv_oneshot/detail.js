@@ -12,21 +12,21 @@ function objParse(obj) {
 
 function oneShotHandler(res) {
     let info = {}
-    info.noveId = res.id
+    info.novelId = res.id
     info.title = info.latestChapter = res.title
     info.userName = res.userName
     // info.tags = res.tags 　// complex array 不好取数据
-    info.tags = res.userNovels[`${info.noveId}`].tags
+    info.tags = res.userNovels[`${info.novelId}`].tags
     info.tags.unshift('单本')
     // info.textCount = res.textCount  // 无数据
-    info.textCount = res.userNovels[`${info.noveId}`].textCount
+    info.textCount = res.userNovels[`${info.novelId}`].textCount
     info.description = res.description
     info.coverUrl = util.urlCoverUrl(res.coverUrl)
-    info.catalogUrl = util.urlNovelDetailed(info.noveId)
+    info.catalogUrl = util.urlNovelDetailed(info.novelId)
     info.createDate = util.dateFormat(res.createDate)
     info.updateDate = util.dateFormat(res.uploadDate)
 
-    info.readingTime = `${res.userNovels[`${info.noveId}`].readingTime / 60} 分钟`
+    info.readingTime = `${res.userNovels[`${info.novelId}`].readingTime / 60} 分钟`
     return info
 }
 
@@ -85,6 +85,5 @@ function novelHandler(res){
     } catch (e) {
         java.log(e)
         java.log(`受 Pixiv 的限制，无法获取当前小说数据`)
-        java.longToast(`受 Pixiv 的限制，无法获取当前小说数据`)
     }
 })();

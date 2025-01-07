@@ -1,0 +1,172 @@
+@js:
+let SHOW_GENERAL_NOVELS_RANK = false
+// 发现：排行榜显示一般小说
+// 无法从 util 获取；从源变量获取有延迟，无法实时修改
+
+li = [
+    {
+        "title": "关注",
+        "url": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "追更",
+        "url": "https://www.pixiv.net/ajax/watch_list/novel?p={{page}}&new=1&lang=zh",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "推荐",
+        "url": "https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "收藏",
+        "url": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent":0.2
+        }
+    }
+]
+
+r18 = [
+    {
+        "title": "\uD83D\uDD1E 排行榜",
+        "url": "",
+        "style": {
+            "layout_flexGrow": 0,
+            "layout_flexBasisPercent": 1
+        }
+    },
+    {
+        "title": "今日",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=daily_r18",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0
+        }
+    },
+    {
+        "title": "本周",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=weekly_r18",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0
+        }
+    },
+    {
+        "title": "AI",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=weekly_r18_ai",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0
+        }
+    },
+    {
+        "title": "男性",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=male_r18",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0
+        }
+    },
+    {
+        "title": "女性",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=female_r18",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0
+        }
+    }
+]
+
+general = [
+    {
+        "title": "\uD83C\uDD97 排行榜",
+        "url": "",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent": 1
+        }
+    },
+    {
+        "title": "今日",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=daily",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "本周",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=weekly",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "本月",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=monthly",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "新人",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=rookie",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "原创",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=weekly_original",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "AI",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=weekly_ai",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "男性",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=male",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0.2
+        }
+    },
+    {
+        "title": "女性",
+        "url": "https://www.pixiv.net/novel/ranking.php?mode=female",
+        "style": {
+            "layout_flexGrow": 0.25,
+            "layout_flexBasisPercent":0.2
+        }
+    }
+]
+
+
+li = li.concat(r18)
+if (SHOW_GENERAL_NOVELS_RANK === true){
+    li = li.concat(general)
+}
+JSON.stringify(li)

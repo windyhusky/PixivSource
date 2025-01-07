@@ -134,7 +134,7 @@ function getUserNovels(username) {
     uidList.forEach(id => {
         let r = util.getAjaxJson(util.urlUserAllWorks(id))
         let novelsId = Object.keys(r.body.novels).reverse().slice((page - 1) * 20, page * 20)
-        let url = util.urlUserNovels(id, novelsId)
+        let url = util.urlNovelsDetailed(id, novelsId)
         util.debugFunc(() => {
             java.log(`发送获取作者小说的Ajax请求:${url}`)
         })

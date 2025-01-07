@@ -74,6 +74,9 @@ function publicFunc() {
     u.urlNovelDetailed = (novelId) => {
         return `https://www.pixiv.net/ajax/novel/${novelId}`
     }
+    u.urlNovelsDetailed = (uid, nidList) => {
+        return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    }
     u.urlNovel = (novelId) => {
         if (util.SHOW_ORIGINAL_NOVEL_LINK) {
             return util.urlNovelUrl(novelId)
@@ -103,9 +106,6 @@ function publicFunc() {
     }
     u.urlUserAllWorks = (uesrId) => {
         return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`
-    }
-    u.urlUserNovels = (nid, nidList) => {
-        return `https://www.pixiv.net/ajax/user/${nid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
 
     u.urlSearchNovel = (novelName, page) =>{
