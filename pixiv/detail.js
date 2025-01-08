@@ -44,10 +44,12 @@ function seriesHandler(res) {
     info.createDate = util.dateFormat(res.createDate)
     info.updateDate = util.dateFormat(res.updateDate)
 
-    let res2 = util.getAjaxJson(util.urlNovelDetailed(info.novelId)).body
-    info.tags = info.tags.concat(res2.tags.tags.map(item => item.tag))   //合并首章章节 tags
+    let firstnovel = util.getAjaxJson(util.urlNovelDetailed(info.novelId)).body
+    info.tags = info.tags.concat(firstnovel.tags.tags.map(item => item.tag))   //合并首章章节 tags
     info.tags = Array.from(new Set(info.tags))
-    info.description = `${res.caption}\n首篇章节简介：\n${res2.description}`
+    if (info.description === "") {
+        info.description = firstnovel.description
+    }
 
     info.readingTime = `${res.publishedReadingTime / 60} 分钟`
     info.latestChapter = ""
