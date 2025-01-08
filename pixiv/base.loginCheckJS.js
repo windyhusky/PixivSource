@@ -161,7 +161,7 @@ function publicFunc() {
             return false
         })
     }
-    
+
     // 处理 novels 列表
     u.handNovels = (novels) => {
         novels.forEach(novel => {
@@ -245,7 +245,7 @@ function publicFunc() {
         return novels
     }
 
-    // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
+    // 正文：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
         let novelId = 0, res = {}
         let isHtml = result.startsWith("<!DOCTYPE html>")
@@ -279,7 +279,8 @@ function publicFunc() {
         }
         return res.body
     }
-    // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
+
+    // 详情、目录：从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
     u.getNovelResSeries = function (result) {
         let seriesId = 0, res = {}
         let isHtml = result.startsWith("<!DOCTYPE html>")
