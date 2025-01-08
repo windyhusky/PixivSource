@@ -51,58 +51,54 @@ function handNovels(novels){
         if (novel.tags === undefined || novel.tags === null) {
             novel.tags = []
         }
-
+        // novel.id = novel.id
+        // novel.title = novel.title
+        // novel.userName = novel.userName
         if (novel.isOneshot !== undefined) { // 搜索系列
-            // novel.title = novel.title
-            // novel.userName = novel.userName
-            // novel.textCount = novel.textLength
-            // novel.latestChapter = novel.title
-            // novel.description = novel.caption
+            novel.textCount = novel.textLength
+            novel.description = novel.caption
             novel.coverUrl = novel.cover.urls["480mw"]
-            // novel.detailedUrl = util.urlNovelDetailed(novel.id)
+            novel.createDate = novel.createDateTime
+            novel.updateDate = novel.updateDateTime
 
             if (novel.isOneshot === true) {
                 novel.id = novel.novelId  // 获取真正的 novelid
-                novel.tags.unshift("单本")
+                novel.seriesId = undefined
             } else {  //系列
-                novel.seriesId = novel.id  // 获取系列小说id
                 // novel.id = novel.latestEpisodeId  // 最近一篇
+                novel.seriesId = novel.id  // 获取系列小说id
                 // novel.lastChapter = this.getAjaxJson(this.urlNovelDetailed(novel.id)).body.title
             }
 
         } else {  // 搜索作者
-            // novel.id = novel.id
-            // novel.title = novel.title
-            // novel.userName = novel.userName
             // novel.textCount = novel.textCount
-            novel.coverUrl = novel.url
             // novel.description = novel.description
-            // novel.textCount = novel.textCount
-            if (novel.seriesId === undefined || novel.seriesId === null) {
-                // novel.title = novel.title  // 搜索作者获取的单篇
-                novel.seriesId = undefined
-                novel.latestChapter = novel.title
-                novel.tags.unshift("单本")
-            } else {  // 搜索作者获取的系列篇目
-                novel.title = novel.seriesTitle
-                // novel.seriesId = novel.seriesId
-            }
+            novel.coverUrl = novel.url
+            // novel.createDate = novel.createDate
+            // novel.updateDate = novel.updateDate
         }
 
-        if (novel.seriesId !== undefined && novel.seriesId !== null) {
+        if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
+            novel.tags.unshift("单本")
+            novel.latestChapter = novel.title
+            novel.detailedUrl = util.urlNovelDetailed(novel.id)
+        } else { // 系列
+            // novel.seriesId = novel.seriesId
             let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
             novel.id = series.firstNovelId
+            novel.title = series.title
+            novel.textCount = series.publishedTotalCharacterCount
+            novel.description = series.caption
+            novel.coverUrl = novel.cover.urls["480mw"]
+            novel.detailedUrl = util.urlSeriesDetailed(novel.seriesId)
             // 发送请求获取第一章 获取标签与简介
-            if (novel.tags.length === 0 || novel.description === "") {
-                let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
-                if (novel.tags.length === 0) {
-                    novel.tags = firstNovel.tags.tags.map(item => item.tag)
-                }
-                if (novel.description === "") {
-                    novel.description = firstNovel.description
-                }
-            }
+            let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+            novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
             novel.tags.unshift("长篇")
+            novel.tags = Array.from(new Set(novel.tags))
+            if (novel.description === "") {
+                novel.description = firstNovel.description
+            }
         }
     })
     util.debugFunc(() => {
