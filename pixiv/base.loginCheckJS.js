@@ -146,44 +146,11 @@ function publicFunc() {
         return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
     }
 
+    // 小说信息格式化
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
-            // novel.title = novel.title
-            // novel.userName = novel.userName
             novel.tags = novel.tags.join(",")
-
-            if (novel.isOneshot === undefined) {  //单篇小说
-                // novel.textCount = novel.textCount
-                // novel.createDate = novel.createDate
-                // novel.updateDate = novel.updateDate
-                // novel.description = novel.description
-                novel.lastChapter = novel.title
-                // novel.coverUrl = novel.coverUrl
-                novel.aiType = novel.aiType - 1
-
-            } else {  // 兼容系列搜索
-                if (novel.isOneshot === true) {
-                    novel.id = novel.novelId  //单篇小说
-                    novel.lastChapter = novel.title
-                    novel.aiType = novel.aiType / 2
-
-                } else {  // 真正的系列小说
-                    novel.id = novel.latestEpisodeId  // 最近一篇
-                    novel.latestPublishDate = novel.latestPublishDateTime
-                    novel.seriesId = novel.id        // 真正的系列小说id
-                    // let series = this.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
-                    // novel.id = series.firstNovelId
-                    // novel.aiType = novel.aiType
-                }
-                novel.textCount = novel.textLength
-                novel.createDate = novel.createDateTime
-                novel.updateDate = novel.updateDateTime
-                novel.description = novel.caption
-                novel.coverUrl = novel.cover.urls["480mw"] // 240mw, 480mw, 1200x1200, 128x128, original
-            }
-
             novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
-            novel.detailedUrl = this.urlNovelDetailed(novel.id)
             novel.readingTime = `${novel.readingTime / 60} 分钟`
             novel.createDate = this.dateFormat(novel.createDate);
             novel.updateDate = this.dateFormat(novel.updateDate);
@@ -211,10 +178,28 @@ function publicFunc() {
             return false
         })
     }
+
+    // 小说信息格式化
+    u.formatNovels = function (novels) {
+        novels.forEach(novel => {
+            novel.tags = novel.tags.join(",")
+            novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
+            novel.readingTime = `${novel.readingTime / 60} 分钟`
+            novel.createDate = this.dateFormat(novel.createDate);
+            novel.updateDate = this.dateFormat(novel.updateDate);
+            if (util.MORE_INFO_IN_DESCRIPTION) {
+                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
+            } else {
+                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
+            }
+        })
+        return novels
+    }
+
     // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
         let novelId = 0, res = {}
-            let isHtml = result.startsWith("<!DOCTYPE html>")
+        let isHtml = result.startsWith("<!DOCTYPE html>")
         if (isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
             let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
