@@ -48,40 +48,59 @@ var seriesSet = {
 };
 
 // 处理 novels 列表, 查询作者
-function handNovels(novels) {
+function handNovels(novels){
     novels.forEach(novel => {
         if (novel.tags === undefined || novel.tags === null) {
             novel.tags = []
         }
-        if (novel.seriesId === undefined || novel.seriesId === null) {
+        // novel.id = novel.id
+        // novel.title = novel.title
+        // novel.userName = novel.userName
+        if (novel.isOneshot !== undefined) { // 搜索系列
+            novel.textCount = novel.textLength
+            novel.description = novel.caption
+            novel.coverUrl = novel.cover.urls["480mw"]
+            novel.createDate = novel.createDateTime
+            novel.updateDate = novel.updateDateTime
+
+            if (novel.isOneshot === true) {
+                novel.id = novel.novelId  // 获取真正的 novelid
+                novel.seriesId = undefined
+            } else {  //系列
+                // novel.id = novel.latestEpisodeId  // 最近一篇
+                novel.seriesId = novel.id  // 获取系列小说id
+            }
+
+        } else {  // 搜索作者
+            // novel.textCount = novel.textCount
+            // novel.description = novel.description
+            novel.coverUrl = novel.url
+            // novel.createDate = novel.createDate
+            // novel.updateDate = novel.updateDate
+        }
+
+        if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
             novel.tags.unshift("单本")
             novel.latestChapter = novel.title
-        } else {
-            let userAllWorks = util.getAjaxJson(util.urlUserAllWorks(novel.userId)).body
-            for (let series of userAllWorks.novelSeries) {
-                if (series.id === novel.seriesId) {
-                    // let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
-                    novel.textCount = series.textLength
-                    novel.url = series.cover.urls["480mw"]
-                    novel.title = series.title
-                    novel.tags = series.tags
-                    novel.description = series.caption
-
-                    // 发送请求获取第一章 获取标签与简介
-                    if (novel.tags.length === 0 || novel.description === "") {
-                        let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
-                        if (novel.tags.length === 0) {
-                            novel.tags = firstNovel.tags.tags.map(item => item.tag)
-                        }
-
-                        if (novel.description === "") {
-                            novel.description = firstNovel.description
-                        }
-                    }
-
-                    novel.tags.unshift("长篇")
-                    break
-                }
+            novel.detailedUrl = util.urlNovelDetailed(novel.id)
+        } else { // 系列
+            // novel.seriesId = novel.seriesId
+            let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
+            novel.id = series.firstNovelId
+            novel.title = series.title
+            novel.tags = series.tags
+            novel.textCount = series.publishedTotalCharacterCount
+            // novel.lastChapter = util.getAjaxJson(util.urlNovelDetailed(series.lastNovelId)).body.title
+            novel.description = series.caption
+            novel.coverUrl = series.cover.urls["480mw"]
+            novel.detailedUrl = util.urlSeriesDetailed(novel.seriesId)
+            // 发送请求获取第一章 获取标签与简介
+            let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+            novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
+            novel.tags.unshift("长篇")
+            novel.tags = Array.from(new Set(novel.tags))
+            if (novel.description === "") {
+                novel.description = firstNovel.description
             }
         }
     })
