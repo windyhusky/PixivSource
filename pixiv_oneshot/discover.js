@@ -11,41 +11,6 @@ function objParse(obj) {
     })
 }
 
-function handNovels(novels){
-    novels.forEach(novel => {
-        if (novel.tags === undefined || novel.tags === null) {
-            novel.tags = []
-        }
-
-        if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
-            novel.tags.unshift("单本")
-            novel.latestChapter = novel.title
-            if (novel.coverUrl === undefined) {
-                novel.coverUrl = novel.url
-            }
-            novel.detailedUrl = util.urlNovelDetailed(novel.id)
-        } else { // 系列
-            // novel.seriesId = novel.seriesId
-            let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
-            novel.id = series.firstNovelId
-            novel.title = series.title
-            novel.textCount = series.publishedTotalCharacterCount
-            novel.description = series.caption
-            novel.coverUrl = series.cover.urls["480mw"]
-            novel.detailedUrl = util.urlSeriesDetailed(novel.seriesId)
-            // 发送请求获取第一章 获取标签与简介
-            let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
-            novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
-            novel.tags.unshift("长篇")
-            novel.tags = Array.from(new Set(novel.tags))
-            if (novel.description === "") {
-                novel.description = firstNovel.description
-            }
-        }
-    })
-    return novels
-}
-
 function handlerFactory() {
     let cookie = String(java.getCookie("https://www.pixiv.net/", null))
     if (cookie === null || cookie === undefined || cookie === "") {
@@ -85,7 +50,7 @@ function handlerRecommend() {
         // java.log(nidSet.size)
         let list = novels.filter(novel => nidSet.has(String(novel.id)))
         // java.log(`过滤结果:${JSON.stringify(list)}`)
-        return util.formatNovels(handNovels(util.combineNovels(list)))
+        return util.formatNovels(util.handNovels(util.combineNovels(list)))
     }
 }
 
@@ -97,7 +62,7 @@ function handlerBookMarks() {
             //流程无法本环节中止 只能交给下一流程处理
             return []
         }
-        return util.formatNovels(handNovels(res))
+        return util.formatNovels(util.handNovels(res))
     }
 }
 
@@ -105,7 +70,7 @@ function handlerBookMarks() {
 function handlerFollowLatest() {
     return () => {
         let res = JSON.parse(result)
-        return util.formatNovels(handNovels(util.combineNovels(res.body.thumbnails.novel)))
+        return util.formatNovels(util.handNovels(util.combineNovels(res.body.thumbnails.novel)))
     }
 }
 
@@ -124,7 +89,7 @@ function handlerWatchList(){
                 java.log(JSON.stringify(res))
             }
         }
-        return util.formatNovels(handNovels(util.combineNovels(novels)))
+        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
     }
 }
 
@@ -154,7 +119,7 @@ function handlerRanking(){
                 java.log(JSON.stringify(novel))
             }
         }
-        return util.formatNovels(handNovels(util.combineNovels(novels)))
+        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
     }
 }
 
