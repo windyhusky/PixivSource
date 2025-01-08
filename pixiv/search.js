@@ -54,9 +54,12 @@ function handNovels(novels){
 
         if (novel.isOneshot !== undefined) { // 搜索系列
             // novel.title = novel.title
-            novel.url = novel.cover.urls["480mw"]
-            novel.description = novel.caption
-            novel.textCount = novel.textLength
+            // novel.userName = novel.userName
+            // novel.textCount = novel.textLength
+            // novel.latestChapter = novel.title
+            // novel.description = novel.caption
+            novel.coverUrl = novel.cover.urls["480mw"]
+            // novel.detailedUrl = util.urlNovelDetailed(novel.id)
 
             if (novel.isOneshot === true) {
                 novel.id = novel.novelId  // 获取真正的 novelid
@@ -69,7 +72,10 @@ function handNovels(novels){
 
         } else {  // 搜索作者
             // novel.id = novel.id
-            // novel.url = novel.url
+            // novel.title = novel.title
+            // novel.userName = novel.userName
+            // novel.textCount = novel.textCount
+            novel.coverUrl = novel.url
             // novel.description = novel.description
             // novel.textCount = novel.textCount
             if (novel.seriesId === undefined || novel.seriesId === null) {
@@ -155,7 +161,6 @@ function getUserNovels(username) {
         let userNovels = util.getWebviewJson(url, html => {
             return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
         }).body
-        userNovels.coverUrl = userNovels.url  // 标准化为通用名
         // 获取对应的小说 该序列是按照id排序
         // 反转以按照更新时间排序
         novels = novels.concat(Object.values(userNovels).reverse())
