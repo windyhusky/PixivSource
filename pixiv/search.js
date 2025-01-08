@@ -67,7 +67,6 @@ function handNovels(novels){
             } else {  //系列
                 // novel.id = novel.latestEpisodeId  // 最近一篇
                 novel.seriesId = novel.id  // 获取系列小说id
-                // novel.lastChapter = this.getAjaxJson(this.urlNovelDetailed(novel.id)).body.title
             }
 
         } else {  // 搜索作者
@@ -87,9 +86,11 @@ function handNovels(novels){
             let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
             novel.id = series.firstNovelId
             novel.title = series.title
+            novel.tags = series.tags
             novel.textCount = series.publishedTotalCharacterCount
+            // novel.lastChapter = util.getAjaxJson(util.urlNovelDetailed(series.lastNovelId)).body.title
             novel.description = series.caption
-            novel.coverUrl = novel.cover.urls["480mw"]
+            novel.coverUrl = series.cover.urls["480mw"]
             novel.detailedUrl = util.urlSeriesDetailed(novel.seriesId)
             // 发送请求获取第一章 获取标签与简介
             let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
