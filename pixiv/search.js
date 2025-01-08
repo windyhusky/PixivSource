@@ -60,14 +60,9 @@ function getUserNovels(username) {
     // java.log(html)
     // 仅匹配有投稿作品的用户
     let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
-    // ["\"userIds\":[34568581,4569033,3024386]"]
     // java.log(JSON.stringify(match))
     if (match === null || match.length === 0) {
-        html = java.ajax(util.urlSearchUserPartial(username))
-        match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
-        if (match === null || match.length === 0) {
-            return []
-        }
+        return []
     }
 
     match = JSON.stringify(match).replace("\\","").split(",")

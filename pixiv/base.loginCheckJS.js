@@ -118,9 +118,6 @@ function publicFunc() {
     u.urlSearchUser = (username) => {
         return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr&nick_mf=1`
     }
-    u.urlSearchUserPartial = (username) => {
-        return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr`
-    }
 
     u.urlCoverUrl = (url) => {
         return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
