@@ -146,23 +146,6 @@ function publicFunc() {
         return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
     }
 
-    // 小说信息格式化
-    u.formatNovels = function (novels) {
-        novels.forEach(novel => {
-            novel.tags = novel.tags.join(",")
-            novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
-            novel.readingTime = `${novel.readingTime / 60} 分钟`
-            novel.createDate = this.dateFormat(novel.createDate);
-            novel.updateDate = this.dateFormat(novel.updateDate);
-            if (util.MORE_INFO_IN_DESCRIPTION) {
-                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
-            } else {
-                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
-            }
-        })
-        return novels
-    }
-
     // 将多个长篇小说解析为一本书
     u.combineNovels = function (novels) {
         return novels.filter(novel => {
@@ -177,6 +160,72 @@ function publicFunc() {
             }
             return false
         })
+    }
+    
+    // 处理 novels 列表
+    u.handNovels = (novels) => {
+        novels.forEach(novel => {
+            if (novel.tags === undefined || novel.tags === null) {
+                novel.tags = []
+            }
+            // novel.id = novel.id
+            // novel.title = novel.title
+            // novel.userName = novel.userName
+            if (novel.isOneshot !== undefined) { // 搜索系列
+                novel.textCount = novel.textLength
+                novel.description = novel.caption
+                novel.coverUrl = novel.cover.urls["480mw"]
+                novel.createDate = novel.createDateTime
+                novel.updateDate = novel.updateDateTime
+
+                if (novel.isOneshot === true) {
+                    novel.seriesId = undefined
+                    novel.id = novel.novelId  // 获取真正的 novelid
+                } else {  //系列
+                    novel.seriesId = novel.id  // 获取系列小说id
+                    // novel.id = novel.latestEpisodeId  // 最近一篇
+                }
+
+            } else {  // 搜索作者，发现排行榜
+                // novel.textCount = novel.textCount
+                // novel.description = novel.description
+                if (novel.coverUrl === undefined) {  // 兼容发现排行榜
+                    novel.coverUrl = novel.url
+                }
+                // novel.createDate = novel.createDate
+                // novel.updateDate = novel.updateDate
+            }
+
+            if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
+                novel.tags.unshift("单本")
+                novel.latestChapter = novel.title
+                novel.detailedUrl = util.urlNovelDetailed(novel.id)
+            } else { // 系列
+                // novel.seriesId = novel.seriesId
+                let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
+                novel.id = series.firstNovelId
+                novel.title = series.title
+                // novel.userName = novel.userName
+                novel.tags = series.tags
+                novel.textCount = series.publishedTotalCharacterCount
+                // novel.lastChapter = util.getAjaxJson(util.urlNovelDetailed(series.lastNovelId)).body.title
+                novel.description = series.caption
+                novel.coverUrl = series.cover.urls["480mw"]
+                novel.detailedUrl = util.urlSeriesDetailed(novel.seriesId)
+                // 发送请求获取第一章 获取标签与简介
+                let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
+                novel.tags.unshift("长篇")
+                novel.tags = Array.from(new Set(novel.tags))
+                if (novel.description === "") {
+                    novel.description = firstNovel.description
+                }
+            }
+        })
+        util.debugFunc(() => {
+            java.log(`处理小说完成`)
+        })
+        return novels
     }
 
     // 小说信息格式化
