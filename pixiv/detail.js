@@ -15,8 +15,7 @@ function oneShotHandler(res) {
     info.novelId = res.id
     info.title = info.latestChapter = res.title
     info.userName = res.userName
-    // info.tags = res.tags 　// complex array 不好取数据
-    info.tags = res.userNovels[`${info.novelId}`].tags
+    info.tags = res.tags.tags.map(item => item.tag)
     info.tags.unshift('单本')
     // info.textCount = res.textCount  // 无数据
     info.textCount = res.userNovels[`${info.novelId}`].textCount
@@ -46,7 +45,7 @@ function seriesHandler(res) {
     info.updateDate = util.dateFormat(res.updateDate)
 
     let res2 = util.getAjaxJson(util.urlNovelDetailed(info.novelId)).body
-    info.tags = info.tags.concat(res2.userNovels[`${info.novelId}`].tags)   //合并首章章节 tags
+    info.tags = info.tags.concat(res2.tags.tags.map(item => item.tag))   //合并首章章节 tags
     info.tags = Array.from(new Set(info.tags))
     info.description = `${res.caption}\n首篇章节简介：\n${res2.description}`
 

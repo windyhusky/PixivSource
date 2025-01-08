@@ -149,7 +149,7 @@ function handlerRanking(){
             let res = util.getAjaxJson(util.urlNovelDetailed(novelId))
             if (res.error !== true) {
                 res = res.body
-                res.tags = res.userNovels[`${novelId}`].tags
+                res.tags = res.tags.tags.map(item => item.tag)
                 res.textCount = res.userNovels[`${novelId}`].textCount
                 res.catalogUrl = util.urlNovelDetailed(res.novelId)
                 // res.createDate = res.createDate
