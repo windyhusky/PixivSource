@@ -236,6 +236,7 @@ function publicFunc() {
     // 小说信息格式化
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
+            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.tags = novel.tags.join(",")
             novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
             novel.readingTime = `${novel.readingTime / 60} 分钟`
