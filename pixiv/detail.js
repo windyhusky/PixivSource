@@ -13,7 +13,7 @@ function objParse(obj) {
 function oneShotHandler(res) {
     let info = {}
     info.novelId = res.id
-    info.title = info.latestChapter = res.title
+    info.title = info.latestChapter = res.title.replace(RegExp(/^\s+|\s+$/g), "")
     info.userName = res.userName
     info.tags = res.tags.tags.map(item => item.tag)
     info.tags.unshift('单本')
@@ -33,7 +33,7 @@ function seriesHandler(res) {
     let info = {}
     info.novelId = res.firstNovelId
     info.seriesId = res.id
-    info.title = res.title
+    info.title = res.title.replace(RegExp(/^\s+|\s+$/g), "")
     info.userName = res.userName
     info.tags = res.tags   //合并当前章节 tags
     info.tags.unshift('长篇')
