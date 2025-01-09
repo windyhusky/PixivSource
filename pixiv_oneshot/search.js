@@ -113,18 +113,42 @@ function getSeries(seriesName){
     let novelList = []
     java.log(util.urlSearchSeries(seriesName,1))
     let resp = util.getAjaxJson(util.urlSearchSeries(seriesName,1))
-    novelList = novelList.concat(resp.body.novel.data)
-    for (let i=Number(java.get("page"))+1 ; i<resp.body.novel.lastPage, i<MAXPAGES; i++) {
-        java.log(`页面：${i}`)
-        novelList = novelList.concat(util.getAjaxJson(util.urlSearchSeries(seriesName, i)).body.novel.data)
+    if (resp.error !== true) {
+        novelList = novelList.concat(resp.body.novel.data)
+        for (let i=Number(java.get("page"))+1 ; i<resp.body.novel.lastPage, i<MAXPAGES; i++) {
+            java.log(`页面：${i}`)
+            novelList = novelList.concat(util.getAjaxJson(util.urlSearchSeries(seriesName, i)).body.novel.data)
+        }
+        return novelList
+    } else {
+        return []
     }
-    return novelList
 }
+
+function getLinkNovels(link) {
+    try {
+        baseUrl = link.match(RegExp("(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(show\\.php\\?id=|series/)?\\d+"))[0]
+        return util.getNovelRes(baseUrl)
+    } catch (e) {
+        return []
+    }
+}
+
+function getNovels(result){
+    if (JSON.parse(result).error !== true){
+        return JSON.parse(result).body.novel.data
+    } else {
+        return []
+    }
+}
+
 
 (() => {
     let novelsList = []
-    novelsList = novelsList.concat(JSON.parse(result).body.novel.data)
+    novelsList = novelsList.concat(getNovels(result))
     // novelsList = novelsList.concat(getSeries(String(java.get("key"))))
     // novelsList = novelsList.concat(getUserNovels(String(java.get("key"))))
+    novelsList = novelsList.concat(getLinkNovels(String(java.get("key"))))
+    // java.log(JSON.stringify(novelsList))
     return util.formatNovels(util.handNovels(util.combineNovels(novelsList)))
 })();
