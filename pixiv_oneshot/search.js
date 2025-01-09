@@ -52,23 +52,19 @@ function isLogin() {
     return typeof cookie === "string" && cookie !== ""
 }
 
-function getUserNovels(username) {
+function getUserNovels() {
     if (!isLogin()) {
         return []
     }
 
+    let username = String(java.get("key"))
     let html = java.ajax(util.urlSearchUser(username))
     // java.log(html)
     // 仅匹配有投稿作品的用户
     let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
-    // ["\"userIds\":[34568581,4569033,3024386]"]
     // java.log(JSON.stringify(match))
     if (match === null || match.length === 0) {
-        html = java.ajax(util.urlSearchUserPartial(username))
-        match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
-        if (match === null || match.length === 0) {
-            return []
-        }
+        return []
     }
 
     match = JSON.stringify(match).replace("\\","").split(",")
@@ -97,6 +93,7 @@ function getUserNovels(username) {
         let userNovels = util.getWebviewJson(url, html => {
             return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
         }).body
+        // let userNovels = util.getAjaxJson(url).body
         // 获取对应的小说 该序列是按照id排序
         // 反转以按照更新时间排序
         novels = novels.concat(Object.values(userNovels).reverse())
@@ -108,33 +105,24 @@ function getUserNovels(username) {
     return novels
 }
 
-function getSeries(seriesName){
-    const MAXPAGES = 3
-    let novelList = []
+function getSeries(){
+    let MAXPAGES = 3, novels = []
+    let seriesName = String(java.get("key"))
     java.log(util.urlSearchSeries(seriesName,1))
     let resp = util.getAjaxJson(util.urlSearchSeries(seriesName,1))
     if (resp.error !== true) {
-        novelList = novelList.concat(resp.body.novel.data)
+        novels = novels.concat(resp.body.novel.data)
         for (let i=Number(java.get("page"))+1 ; i<resp.body.novel.lastPage, i<MAXPAGES; i++) {
             java.log(`页面：${i}`)
-            novelList = novelList.concat(util.getAjaxJson(util.urlSearchSeries(seriesName, i)).body.novel.data)
+            novels = novels.concat(util.getAjaxJson(util.urlSearchSeries(seriesName, i)).body.novel.data)
         }
-        return novelList
+        return novels
     } else {
         return []
     }
 }
 
-function getLinkNovels(link) {
-    try {
-        baseUrl = link.match(RegExp("(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(show\\.php\\?id=|series/)?\\d+"))[0]
-        return util.getNovelRes(baseUrl)
-    } catch (e) {
-        return []
-    }
-}
-
-function getNovels(result){
+function getNovels(){
     if (JSON.parse(result).error !== true){
         return JSON.parse(result).body.novel.data
     } else {
@@ -142,13 +130,22 @@ function getNovels(result){
     }
 }
 
+function getLinkNovels() {
+    try {
+        link = String(java.get("key"))
+        baseUrl = link.match(RegExp("(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(show\\.php\\?id=|series/)?\\d+"))[0]
+        return util.getNovelRes(baseUrl)
+    } catch (e) {
+        return []
+    }
+}
 
 (() => {
     let novelsList = []
-    novelsList = novelsList.concat(getNovels(result))
-    // novelsList = novelsList.concat(getSeries(String(java.get("key"))))
-    // novelsList = novelsList.concat(getUserNovels(String(java.get("key"))))
-    novelsList = novelsList.concat(getLinkNovels(String(java.get("key"))))
+    novelsList = novelsList.concat(getNovels())
+    novelsList = novelsList.concat(getSeries())
+    novelsList = novelsList.concat(getUserNovels())
+    novelsList = novelsList.concat(getLinkNovels())
     // java.log(JSON.stringify(novelsList))
     return util.formatNovels(util.handNovels(util.combineNovels(novelsList)))
 })();
