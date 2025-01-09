@@ -131,6 +131,7 @@ function publicFunc() {
 
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
+            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             // novel.createDate = novel.createDate
             novel.textCount = novel.length
             novel.description = novel.desc

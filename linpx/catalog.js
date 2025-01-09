@@ -14,7 +14,7 @@ function oneShotHandler(res) {
     res.textCount =　res.content.length
     res.updateDate = util.timeTextFormat(res.createDate)
     return [{
-        title: res.title,
+        title: res.title.replace(RegExp(/^\s+|\s+$/g), ""),
         chapterUrl: util.urlNovel(res.id),
         updateDate:`${res.updateDate}　　${res.textCount}字`
     }]
@@ -22,7 +22,7 @@ function oneShotHandler(res) {
 
 function seriesHandler(res) {
     res.novels.forEach(v => {
-        v.title = v.title.replace(RegExp(/（|）|-/g), "")
+        v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
         v.chapterUrl = util.urlNovel(v.id)
         // v.updateDate = String(v.coverUrl.match(RegExp("\\d{4}/\\d{2}/\\d{2}")))  //fake
         v.detail = util.getAjaxJson(util.urlNovelDetailed(v.id))

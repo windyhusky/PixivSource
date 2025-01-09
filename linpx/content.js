@@ -13,7 +13,7 @@ function objParse(obj) {
 (function (res) {
     res = util.getNovelRes(result)
     let content = res.content
-    if (res.series !== null && res.desc !== undefined && res.desc !== "") {
+    if (res.desc !== "") {
         content = res.desc + "\n" + "——————————\n".repeat(2) + content
     }
 

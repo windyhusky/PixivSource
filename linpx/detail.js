@@ -13,7 +13,7 @@ function objParse(obj) {
 function novelHandler(res){
     let info = {}
     info.novelId = res.id
-    // info.title = res.title
+    info.title = res.title.replace(RegExp(/^\s+|\s+$/g), "")
     info.userName = res.userName
     info.tags = res.tags
     info.textCount = res.length
@@ -28,7 +28,7 @@ function novelHandler(res){
         info.catalogUrl = util.urlNovelDetailed(info.novelId)
     } else {
         info.seriesId = res.series.id
-        info.title = res.series.title
+        info.title = res.series.title.replace(RegExp(/^\s+|\s+$/g), "")
         info.tags.unshift('长篇')
         info.catalogUrl = util.urlSeriesDetailed(info.seriesId)
 
