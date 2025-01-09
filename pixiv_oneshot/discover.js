@@ -31,6 +31,9 @@ function handlerFactory() {
     if (baseUrl.indexOf("/ranking") !== -1) {
         return handlerRanking()
     }
+    if (baseUrl.indexOf("/discovery") !== -1) {
+        return handlerDiscovery()
+    }
 }
 
 function handlerNoLogin() {
@@ -74,22 +77,24 @@ function handlerFollowLatest() {
     }
 }
 
+//推荐小说
+function handlerDiscovery() {
+    return () => {
+        let res = JSON.parse(result)
+        return util.formatNovels(util.handNovels(util.combineNovels(res.body.novels)))
+    }
+}
+
 // 追更列表
 function handlerWatchList(){
     return () => {
         let res = JSON.parse(result)
         let novels = []
-        let seriesList = res.body.thumbnails.novelSeries
-        for (let i in seriesList) {
-            let novelId = seriesList[i].latestEpisodeId  // 使用最后一篇小说，重新请求并合并小说
-            let res = util.getAjaxJson(util.urlNovelDetailed(novelId))
-            if (res.error !== true) {
-                novels.push(res.body.userNovels[`${novelId}`])
-            } else {
-                java.log(JSON.stringify(res))
-            }
-        }
-        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
+        res.body.thumbnails.novelSeries.forEach(novel => {
+            novel.oneShot = false
+            novels.push(novel)
+        })
+        return util.formatNovels(util.handNovels(novels))
     }
 }
 
