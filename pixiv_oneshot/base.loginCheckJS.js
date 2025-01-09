@@ -77,6 +77,12 @@ function publicFunc() {
     u.urlNovelsDetailed = (uid, nidList) => {
         return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
+    u.urlNovelComments = (novelId, offset, limit) => {
+        return `https://www.pixiv.net/ajax/novels/comments/roots?novel_id=${novelId}&offset=${offset}&limit=${limit}&lang=zh`
+    }
+    u.urlNovelCommentsReply = (commentId, page) => {
+        return `https://www.pixiv.net/ajax/novels/comments/replies?comment_id=${commentId}&page=${page}&lang=zh`
+    }
     u.urlNovel = (novelId) => {
         if (util.SHOW_ORIGINAL_NOVEL_LINK) {
             return util.urlNovelUrl(novelId)

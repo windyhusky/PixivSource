@@ -77,6 +77,9 @@ function publicFunc() {
     u.urlNovelsDetailed = (nidList) => {
         return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
+    u.urlNovelComments = (novelId) => {
+        return `https://api.furrynovel.ink/pixiv/novel/${novelId}/comments`
+    }
     u.urlNovel = (novelId) => {
         if (util.SHOW_ORIGINAL_NOVEL_LINK) {
             return util.urlNovelUrl(novelId)
