@@ -102,9 +102,28 @@ function getUserNovels(username) {
     return novels
 }
 
+function getLinkNovels(link) {
+    try {
+        baseUrl = link.match(RegExp("(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(show\\.php\\?id=|series/)?\\d+"))[0]
+        return util.getNovelRes(baseUrl)
+    } catch (e) {
+        return []
+    }
+}
+
+function getNovels(result){
+    if (JSON.parse(result).error !== true){
+        return JSON.parse(result).body.novel.data
+    } else {
+        return []
+    }
+}
+
 (() => {
     let novelsList = []
-    novelsList = novelsList.concat((JSON.parse(result).body.novel.data))
+    novelsList = novelsList.concat(getNovels(result))
     novelsList = novelsList.concat(getUserNovels(String(java.get("key"))))
+    novelsList = novelsList.concat(getLinkNovels(String(java.get("key"))))
+    // java.log(JSON.stringify(novelsList))
     return util.formatNovels(util.handNovels(novelsList))
 })();

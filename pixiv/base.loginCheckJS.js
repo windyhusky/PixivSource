@@ -162,6 +162,14 @@ function publicFunc() {
     // 处理 novels 列表
     u.handNovels = (novels) => {
         novels.forEach(novel => {
+            // 处理正文 tag
+            if (!(novel.tags instanceof Array)) {
+                novel.tags = novel.tags.tags.map(item => item.tag)
+                novel.updateDate = novel.uploadDate
+                if (novel.seriesNavData !== null){
+                    novel.seriesId = novel.seriesNavData.seriesId
+                }
+            }
             if (novel.tags === undefined || novel.tags === null) {
                 novel.tags = []
             }
@@ -242,9 +250,16 @@ function publicFunc() {
         return novels
     }
 
-    // 正文：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
+    // 正文，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
         let novelId = 0, res = {}
+        // 兼容搜索直接输入链接
+        if (result.startsWith("https://www.pixiv.net")) {
+            baseUrl = result
+            result = "<!DOCTYPE html>"
+            java.log(`匹配链接：${baseUrl}`)
+        }
+
         let isHtml = result.startsWith("<!DOCTYPE html>")
         if (isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
@@ -263,6 +278,7 @@ function publicFunc() {
         } else {
             res = JSON.parse(result)
         }
+
         if (res.body !== undefined && res.body.firstNovelId !== undefined && res.body.firstNovelId !== null) {
             novelId = res.body.firstNovelId
         }
