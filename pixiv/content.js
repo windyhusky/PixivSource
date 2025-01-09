@@ -15,7 +15,7 @@ function objParse(obj) {
     res = util.getNovelRes(result)
     let content = res.content
     // 在正文内部添加小说描述
-    if (res.seriesNavData !== undefined && res.seriesNavData !== null && res.description !== "") {
+    if (res.description !== "") {
         content = res.description + "\n" + "——————————\n".repeat(2) + content
     }
 
@@ -46,7 +46,6 @@ function objParse(obj) {
     matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
     if (matched) {
         for (let i in matched){
-            java.log(matched[i])
             content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}`)
         }
     }
