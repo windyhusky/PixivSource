@@ -31,6 +31,9 @@ function handlerFactory() {
     if (baseUrl.indexOf("/ranking") !== -1) {
         return handlerRanking()
     }
+    if (baseUrl.indexOf("/discovery") !== -1) {
+        return handlerDiscovery()
+    }
 }
 
 function handlerNoLogin() {
@@ -71,6 +74,14 @@ function handlerFollowLatest() {
     return () => {
         let res = JSON.parse(result)
         return util.formatNovels(util.handNovels(util.combineNovels(res.body.thumbnails.novel)))
+    }
+}
+
+//推荐小说
+function handlerDiscovery() {
+    return () => {
+        let res = JSON.parse(result)
+        return util.formatNovels(util.handNovels(util.combineNovels(res.body.novels)))
     }
 }
 
