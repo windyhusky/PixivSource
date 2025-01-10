@@ -10,9 +10,7 @@ function objParse(obj) {
     })
 }
 
-
-(function (res) {
-    res = util.getNovelRes(result)
+function getContent(res) {
     let content = res.content
     // 在正文内部添加小说描述
     if (res.description !== "") {
@@ -112,6 +110,33 @@ function objParse(obj) {
             }
         }
     }
+    return content + getComment(res)
+}
 
-    return content
+function getComment(res) {
+    let comments = ""
+    let resp = util.getAjaxJson(util.urlNovelComments(res.id, 0, 50))
+    if (resp.error === true){
+        return ""
+    }
+    resp.body.comments.forEach(comment =>{
+        comments += `${comment.userName}：${comment.comment}\n`
+        if (comment.hasReplies === true) {
+            let resp = util.getAjaxJson(util.urlNovelCommentsReply(comment.id, 1))
+            if (resp.error === true) {
+                return ""
+            }
+            resp.body.comments.reverse().forEach(reply =>{
+                comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}\n`
+            })
+        }
+    })
+    if (comments) {
+        comments = "\n" + "——————————\n".repeat(2) + "章节评论：\n" + comments
+    }
+    return comments
+}
+
+(function () {
+    return getContent(util.getNovelRes(result))
 })()
