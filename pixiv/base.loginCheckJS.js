@@ -183,18 +183,19 @@ function publicFunc() {
             // novel.title = novel.title
             // novel.userName = novel.userName
             if (novel.isOneshot !== undefined) { // 搜索系列
-                novel.textCount = novel.textLength
-                novel.description = novel.caption
-                novel.coverUrl = novel.cover.urls["480mw"]
-                novel.createDate = novel.createDateTime
-                novel.updateDate = novel.updateDateTime
-
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelid
                 } else {  //系列
                     novel.seriesId = novel.id  // 获取系列小说id
                     // novel.id = novel.latestEpisodeId  // 最近一篇
+                }
+                novel.textCount = novel.textLength
+                novel.description = novel.caption
+                novel.coverUrl = novel.cover.urls["480mw"]
+                if (novel.createDate === undefined) {  // 兼容搜索作者获取获取系列小说
+                    novel.createDate = novel.createDateTime
+                    novel.updateDate = novel.updateDateTime
                 }
 
             } else {  // 搜索作者，发现排行榜

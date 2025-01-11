@@ -83,8 +83,21 @@ function getUserNovels() {
     let page = Number(java.get("page"))
 
     uidList.forEach(id => {
-        let r = util.getAjaxJson(util.urlUserAllWorks(id))
-        let novelsId = Object.keys(r.body.novels).reverse().slice((page - 1) * 20, page * 20)
+        // 获取系列小说
+        let resp = util.getAjaxJson(util.urlUserAllWorks(id))
+        // java.log(util.urlUserAllWorks(id))
+        if (resp.error === true) {
+            return []
+        }
+        // resp.body.novelSeries.forEach(novel =>{
+        //     novel.isOneshot = false
+        //     novel.createDate = novel.createDateTime
+        //     novel.updateDate = novel.updateDateTime
+        // })
+        // novels = novels.concat(resp.body.novelSeries)
+
+        // 获取单篇小说
+        let novelsId = Object.keys(resp.body.novels).reverse().slice((page - 1) * 20, page * 20)
         let url = util.urlNovelsDetailed(id, novelsId)
         util.debugFunc(() => {
             java.log(`发送获取作者小说的Ajax请求:${url}`)
