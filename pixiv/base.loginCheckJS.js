@@ -74,8 +74,8 @@ function publicFunc() {
     u.urlNovelDetailed = (novelId) => {
         return `https://www.pixiv.net/ajax/novel/${novelId}`
     }
-    u.urlNovelsDetailed = (uid, nidList) => {
-        return `https://www.pixiv.net/ajax/user/${uid}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    u.urlNovelsDetailed = (userId, nidList) => {
+        return `https://www.pixiv.net/ajax/user/${userId}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
     }
     u.urlNovelComments = (novelId, offset, limit) => {
         return `https://www.pixiv.net/ajax/novels/comments/roots?novel_id=${novelId}&offset=${offset}&limit=${limit}&lang=zh`
@@ -107,14 +107,14 @@ function publicFunc() {
         return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
     }
 
-    u.urlUserUrl = (id) => {
-        return `https://www.pixiv.net/users/${id}`
+    u.urlUserUrl = (userId) => {
+        return `https://www.pixiv.net/users/${userId}`
     }
-    u.urlUserDetailed = (uesrId) => {
-        return `https://www.pixiv.net/ajax/user/${uesrId}`
+    u.urlUserDetailed = (userId) => {
+        return `https://www.pixiv.net/ajax/user/${userId}`
     }
-    u.urlUserAllWorks = (uesrId) => {
-        return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`
+    u.urlUserAllWorks = (userId) => {
+        return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
     }
 
     u.urlSearchNovel = (novelName, page) =>{
@@ -124,8 +124,8 @@ function publicFunc() {
         return`https://www.pixiv.net/ajax/search/novels/${encodeURI(seriesName)}?word=${encodeURI(seriesName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
     }
     // 完全匹配用户名
-    u.urlSearchUser = (username) => {
-        return `https://www.pixiv.net/search/users?nick=${encodeURI(username)}&s_mode=s_usr&nick_mf=1`
+    u.urlSearchUser = (userName) => {
+        return `https://www.pixiv.net/search/users?nick=${encodeURI(userName)}&s_mode=s_usr&nick_mf=1`
     }
 
     u.urlCoverUrl = (url) => {
@@ -145,8 +145,8 @@ function publicFunc() {
         return illustOriginal
     }
 
-    u.urlSeriesIllustsUrl = (uesrId, seriesId) => {
-        return `https://www.pixiv.net/user/${uesrId}/series/${seriesId}`
+    u.urlSeriesIllustsUrl = (userId, seriesId) => {
+        return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
     }
     u.urlSeriesIllustsDetailed = (seriesId) => {
         return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
@@ -188,7 +188,7 @@ function publicFunc() {
             if (novel.isOneshot !== undefined) { // 搜索系列
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
-                    novel.id = novel.novelId  // 获取真正的 novelid
+                    novel.id = novel.novelId  // 获取真正的 novelId
                 } else {  //系列
                     novel.seriesId = novel.id  // 获取系列小说id
                     // novel.id = novel.latestEpisodeId  // 最近一篇

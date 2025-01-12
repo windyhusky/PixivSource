@@ -102,7 +102,7 @@ function getContent(res) {
                 if (reg.test(kana)) {
                     // kana为中文，则替换回《书名号》
                     content = content.replace(`${matchedText}`, `${kanji}《${kana}》`)
-                } else{
+                } else {
                     // 阅读不支持 <ruby> <rt> 注音
                     // content = content.replace(`${matchedText}`, `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
                     content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
