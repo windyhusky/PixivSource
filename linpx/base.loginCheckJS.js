@@ -210,23 +210,6 @@ function publicFunc() {
             return false
         })
     }
-
-    // 小说信息格式化
-    u.formatNovels = function (novels) {
-        novels.forEach(novel => {
-            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
-            novel.tags = novel.tags.join(",")
-            novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
-            novel.createDate = this.dateFormat(novel.createDate);
-            if (util.MORE_INFO_IN_DESCRIPTION) {
-                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
-            } else {
-                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}`
-            }
-        })
-        return novels
-    }
-
     // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
         let novelId = 0, res = {}
@@ -321,3 +304,4 @@ function publicFunc() {
 }
 
 publicFunc()
+java.getStrResponse(null, null)
