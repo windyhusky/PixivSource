@@ -12,7 +12,8 @@ function objParse(obj) {
 
 function oneShotHandler(res) {
     let info = {}
-    info.novelId = res.id
+    info.seriesId = undefined
+    info.id = info.novelId = res.id
     info.title = info.latestChapter = res.title.replace(RegExp(/^\s+|\s+$/g), "")
     info.userName = res.userName
     info.tags = res.tags.tags.map(item => item.tag)
@@ -31,8 +32,9 @@ function oneShotHandler(res) {
 
 function seriesHandler(res) {
     let info = {}
-    info.novelId = res.firstNovelId
+    // info.oneShot = false
     info.seriesId = res.id
+    info.id = info.novelId = res.firstNovelId
     info.title = res.title.replace(RegExp(/^\s+|\s+$/g), "")
     info.userName = res.userName
     info.tags = res.tags   //合并当前章节 tags
@@ -44,11 +46,13 @@ function seriesHandler(res) {
     info.createDate = util.dateFormat(res.createDate)
     info.updateDate = util.dateFormat(res.updateDate)
 
-    let firstnovel = util.getAjaxJson(util.urlNovelDetailed(info.novelId)).body
-    info.tags = info.tags.concat(firstnovel.tags.tags.map(item => item.tag))   //合并首章章节 tags
+    // 防止首篇无权限获取
+    let firstNovel = util.getAjaxJson(util.urlSeriesNovels(info.seriesId, 30, 0)).body.thumbnails.novel[0]
+    info.id = info.novelId = firstNovel.id
+    info.tags = info.tags.concat(firstNovel.tags)   //合并首章章节 tags
     info.tags = Array.from(new Set(info.tags))
     if (info.description === "") {
-        info.description = firstnovel.description
+        info.description = firstNovel.description
     }
 
     info.readingTime = `${res.publishedReadingTime / 60} 分钟`

@@ -186,18 +186,19 @@ function publicFunc() {
             // novel.title = novel.title
             // novel.userName = novel.userName
             if (novel.isOneshot !== undefined) { // 搜索系列
-                novel.textCount = novel.textLength
-                novel.description = novel.caption
-                novel.coverUrl = novel.cover.urls["480mw"]
-                novel.createDate = novel.createDateTime
-                novel.updateDate = novel.updateDateTime
-
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelId
                 } else {  //系列
                     novel.seriesId = novel.id  // 获取系列小说id
                     // novel.id = novel.latestEpisodeId  // 最近一篇
+                }
+                novel.textCount = novel.textLength
+                novel.description = novel.caption
+                novel.coverUrl = novel.cover.urls["480mw"]
+                if (novel.createDate === undefined) {  // 兼容搜索作者获取获取系列小说
+                    novel.createDate = novel.createDateTime
+                    novel.updateDate = novel.updateDateTime
                 }
 
             } else {  // 搜索作者，发现排行榜
@@ -226,9 +227,9 @@ function publicFunc() {
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
                 novel.detailedUrl = util.urlSeriesDetailed(novel.seriesId)
-                // 发送请求获取第一章 获取标签与简介
-                let firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
-                novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
+                // 防止系列首篇无权限获取  // 发送请求获取第一章 获取标签与简介
+                let firstNovel = util.getAjaxJson(util.urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
+                novel.tags = novel.tags.concat(firstNovel.tags)
                 novel.tags.unshift("长篇")
                 novel.tags = Array.from(new Set(novel.tags))
                 if (novel.description === "") {
@@ -262,7 +263,7 @@ function publicFunc() {
 
     // 正文，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
-        let novelId = 0, res = {}
+        let novelId = 0, seriesId = 0, res = {}
         // 兼容搜索直接输入链接
         if (result.startsWith("https://www.pixiv.net")) {
             baseUrl = result
@@ -277,11 +278,12 @@ function publicFunc() {
             let isSeries = baseUrl.match(new RegExp(pattern))
             if (isSeries) {
                 java.log(`系列ID：${id}`)
-                res = util.getAjaxJson(util.urlSeriesDetailed(id))
+                seriesId = id
             } else {
                 let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
                 let isNovel = baseUrl.match(new RegExp(pattern))
                 if (isNovel) {
+                    res = util.getAjaxJson(util.urlNovelDetailed(id))
                     novelId = id
                 }
             }
@@ -290,15 +292,18 @@ function publicFunc() {
         }
 
         if (res.body !== undefined && res.body.firstNovelId !== undefined && res.body.firstNovelId !== null) {
-            novelId = res.body.firstNovelId
+            seriesId = res.body.seriesNavData.seriesId
         }
-        if (novelId) {
-            java.log(`匹配小说ID：${novelId}`)
-            res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+        if (seriesId) {  // 防止系列首篇无权限获取
+            res = util.getAjaxJson(util.urlSeriesNovels(seriesId, 30, 0))
+            res.body = res.body.thumbnails.novel[0]
+            novelId = res.body.id
         }
+        java.log(`匹配小说ID：${novelId}`)
         if (res.error === true) {
             java.log(`无法从 Pixiv 获取当前小说`)
             java.log(JSON.stringify(res))
+            return {}
         }
         return res.body
     }
