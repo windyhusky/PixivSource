@@ -110,6 +110,9 @@ function publicFunc() {
     u.urlUserUrl = (id) => {
         return `https://www.pixiv.net/users/${id}`
     }
+    u.urlUserDetailed = (uesrId) => {
+        return `https://www.pixiv.net/ajax/user/${uesrId}`
+    }
     u.urlUserAllWorks = (uesrId) => {
         return `https://www.pixiv.net/ajax/user/${uesrId}/profile/all?lang=zh`
     }
@@ -126,7 +129,7 @@ function publicFunc() {
     }
 
     u.urlCoverUrl = (url) => {
-        return `${url},{"headers": {"Referer":"https://www.pixiv.net/"}}`
+        return `${url}, {"headers": {"Referer":"https://www.pixiv.net/"}}`
     }
     u.urlIllustUrl = (illustId) => {
         return `https://www.pixiv.net/artworks/${illustId}`
@@ -166,7 +169,7 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = (novels) => {
+    u.handNovels = function (novels) {
         novels.forEach(novel => {
             // 处理正文 tag
             if (!(novel.tags instanceof Array)) {
