@@ -45,6 +45,7 @@ Pixiv & Linpx：作者：
 
 Pixiv & Linpx：小说 + 系列
 (https?://)?(api\.|www\.)?((furrynovel\.(ink|xyz))|pixiv\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\.php\?id=|series/)?\d+(/cache)?
+((furrynovel\.(ink|xyz))|pixiv\.net)/(pn|(pixiv/)?novel)/(show\.php\?id=|series/)?\d+
 
 
 Pixiv & Linpx：小说 + 系列 + 作者
