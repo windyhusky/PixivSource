@@ -10,7 +10,6 @@ function objParse(obj) {
     })
 }
 
-
 function getUser(username, exactMatch) {
     // 修复传入object的bug
     username = String(username)

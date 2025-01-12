@@ -71,11 +71,9 @@ function handlerFactory() {
     if (baseUrl.indexOf("/fav/user") !== -1) {
         return handlerRecommendUsers()
     }
-
     if (baseUrl.indexOf("/pixiv/novels/recent") !== -1) {
         return handlerFollowLatest()
     }
-
 }
 
 (() => {

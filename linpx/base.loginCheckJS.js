@@ -193,6 +193,7 @@ function publicFunc() {
         })
         return novels
     }
+
     // 将多个长篇小说解析为一本书
     u.combineNovels = function(novels) {
         return novels.filter(novel => {
@@ -243,6 +244,7 @@ function publicFunc() {
         }
         return res
     }
+
     // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
     u.getNovelResSeries = function (result) {
         let seriesId = 0, res = {}
@@ -301,10 +303,3 @@ function publicFunc() {
 }
 
 publicFunc()
-
-// 获取请求的user id方便其他ajax请求构造
-let uid = java.getResponse().headers().get("x-userid")
-if (uid != null) {
-    cache.put("pixiv:uid", uid)
-}
-java.getStrResponse(null, null)
