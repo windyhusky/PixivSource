@@ -11,7 +11,7 @@ function objParse(obj) {
 }
 
 var first = true;
-// 存储seriesID·
+// 存储seriesID
 var seriesSet = {
     keywords: "Pixiv:Search",
     has: (value) => {
@@ -130,16 +130,19 @@ function getNovels(){
     let novelName = String(java.get("key"))
     java.log(util.urlSearchNovel(novelName, 1))
     let resp = util.getAjaxJson(util.urlSearchNovel(novelName, 1))
-    if (resp.error !== true) {
-        novels = novels.concat(resp.body.novel.data)
-        for (let i=Number(java.get("page"))+1 ; i<resp.body.novel.lastPage, i<MAXPAGES; i++) {
-            java.log(`页面：${i}`)
-            novels = novels.concat(util.getAjaxJson(util.urlSearchSeries(novelName, i)).body.novel.data)
-        }
-        return novels
-    } else {
+    if (resp.error === true) {
         return []
     }
+    novels = novels.concat(resp.body.novel.data)
+    for (let i = Number(java.get("page")) + 1; i < resp.body.novel.lastPage, i < MAXPAGES; i++) {
+        java.log(`页面：${i}`)
+        let resp = util.getAjaxJson(util.urlSearchNovel(novelName, i))
+        if (resp.error === true) {
+            return []
+        }
+        novels = novels.concat(resp.body.novel.data)
+    }
+    return novels
 }
 
 function getLinkNovels() {

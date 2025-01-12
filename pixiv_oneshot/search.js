@@ -10,7 +10,6 @@ function objParse(obj) {
     })
 }
 
-
 var first = true;
 // 存储seriesID
 var seriesSet = {
@@ -84,8 +83,21 @@ function getUserNovels() {
     let page = Number(java.get("page"))
 
     uidList.forEach(id => {
-        let r = util.getAjaxJson(util.urlUserAllWorks(id))
-        let novelsId = Object.keys(r.body.novels).reverse().slice((page - 1) * 20, page * 20)
+        // 获取系列小说
+        let resp = util.getAjaxJson(util.urlUserAllWorks(id))
+        // java.log(util.urlUserAllWorks(id))
+        if (resp.error === true) {
+            return []
+        }
+        // resp.body.novelSeries.forEach(novel =>{
+        //     novel.isOneshot = false
+        //     novel.createDate = novel.createDateTime
+        //     novel.updateDate = novel.updateDateTime
+        // })
+        // novels = novels.concat(resp.body.novelSeries)
+
+        // 获取单篇小说
+        let novelsId = Object.keys(resp.body.novels).reverse().slice((page - 1) * 20, page * 20)
         let url = util.urlNovelsDetailed(id, novelsId)
         util.debugFunc(() => {
             java.log(`发送获取作者小说的Ajax请求:${url}`)
@@ -108,18 +120,21 @@ function getUserNovels() {
 function getSeries(){
     let MAXPAGES = 3, novels = []
     let seriesName = String(java.get("key"))
-    java.log(util.urlSearchSeries(seriesName,1))
-    let resp = util.getAjaxJson(util.urlSearchSeries(seriesName,1))
-    if (resp.error !== true) {
-        novels = novels.concat(resp.body.novel.data)
-        for (let i=Number(java.get("page"))+1 ; i<resp.body.novel.lastPage, i<MAXPAGES; i++) {
-            java.log(`页面：${i}`)
-            novels = novels.concat(util.getAjaxJson(util.urlSearchSeries(seriesName, i)).body.novel.data)
-        }
-        return novels
-    } else {
+    java.log(util.urlSearchSeries(seriesName, 1))
+    let resp = util.getAjaxJson(util.urlSearchSeries(seriesName, 1))
+    if (resp.error === true) {
         return []
     }
+    novels = novels.concat(resp.body.novel.data)
+    for (let i = Number(java.get("page")) + 1; i < resp.body.novel.lastPage, i < MAXPAGES; i++) {
+        java.log(`页面：${i}`)
+        let resp = util.getAjaxJson(util.urlSearchSeries(seriesName, i))
+        if (resp.error === true) {
+            return []
+        }
+        novels = novels.concat(resp.body.novel.data)
+    }
+    return novels
 }
 
 function getNovels(){
