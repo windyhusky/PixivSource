@@ -11,9 +11,12 @@ function objParse(obj) {
 }
 
 function getUser(username, exactMatch) {
-    // 修复传入object的bug
-    username = String(username)
-    let resp = util.getAjaxJson(util.urlSearchUsers(username))
+    // let resp = util.getAjaxJson(util.urlSearchUsers(String(username)))
+    let resp = java.ajax(util.urlSearchUsers(String(username)))  // 兼容搜索链接
+    if (resp.startsWith("<!DOCTYPE html>") || JSON.parse(result).error) {
+        return []
+    }
+    resp = JSON.parse(resp)
     if (resp.users.length === 0) {
         return []
     }
@@ -106,13 +109,32 @@ function findUserNovels(username) {
     return novelList
 }
 
-(function (res) {
-    res = JSON.parse(res)
+function getNovel(){
+    if (result.startsWith("<!DOCTYPE html>") || JSON.parse(result).error) {
+        return []
+    } else {
+        return JSON.parse(result).novels
+    }
+}
+
+function getLinkNovels() {
+    try {
+        link = String(java.get("key"))
+        pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
+        baseUrl = link.match(RegExp(pattern))[0]
+        return util.getNovelRes(baseUrl)
+    } catch (e) {
+        return []
+    }
+}
+
+(function () {
     let novels = []
+    novels = novels.concat(getNovel())
+    novels = novels.concat(getLinkNovels())
     findUserNovels(java.get("key")).forEach(v => {
         novels.push(v)
     })
-    novels = novels.concat(res.novels)
     // 返回空列表中止流程
     if (novels.length === 0) {
         return []

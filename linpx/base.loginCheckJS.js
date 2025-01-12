@@ -213,6 +213,14 @@ function publicFunc() {
     // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
         let novelId = 0, res = {}
+        // 兼容搜索直接输入链接
+        pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
+        if (RegExp(pattern).test(result)) {
+            baseUrl = result
+            result = "<!DOCTYPE html>"
+            java.log(`匹配链接：${baseUrl}`)
+        }
+
         let isHtml = result.startsWith("<!DOCTYPE html>")
         if (isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
