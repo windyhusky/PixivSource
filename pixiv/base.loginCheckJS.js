@@ -10,19 +10,20 @@ function objStringify(obj) {
 
 function publicFunc() {
     let u = {}
-    let input =  String(source.getVariable())  // [object JavaObject]
+    java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
+    let input = String(source.getVariable())  // [object JavaObject]
     var settings = {}
     try {
         if (input != "debug" && input != "" && input != null) {
             settings = JSON.parse(input.split("//")[0])
-            java.log("使用自定义设置")
+            java.log("⚙️ 使用自定义设置")
         } else {
             settings = JSON.parse(String(source.variableComment).split("//")[0])
-            java.log("自定义设置为空，使用默认设置")
+            java.log("⚙️ 自定义设置为空，使用默认设置")
         }
     } catch (e) {
         settings = JSON.parse(String(source.variableComment).split("//")[0])
-        java.log("自定义设置有误，使用默认设置")
+        java.log("⚙️ 自定义设置有误，使用默认设置")
     } finally {
         u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
         u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号

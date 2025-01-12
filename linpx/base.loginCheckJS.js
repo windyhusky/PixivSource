@@ -10,19 +10,20 @@ function objStringify(obj) {
 
 function publicFunc() {
     let u = {}
-    let input =  String(source.getVariable())  // [object JavaObject]
+    java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
+    let input = String(source.getVariable())  // [object JavaObject]
     var settings = {}
     try {
         if (input != "debug" && input != "" && input != null) {
             settings = JSON.parse(input.split("//")[0])
-            java.log("使用自定义设置")
+            java.log("⚙️ 使用自定义设置")
         } else {
             settings = JSON.parse(String(source.variableComment).split("//")[0])
-            java.log("自定义设置为空，使用默认设置")
+            java.log("⚙️ 自定义设置为空，使用默认设置")
         }
     } catch (e) {
         settings = JSON.parse(String(source.variableComment).split("//")[0])
-        java.log("自定义设置有误，使用默认设置")
+        java.log("⚙️ 自定义设置有误，使用默认设置")
     } finally {
         u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
         u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
@@ -209,6 +210,23 @@ function publicFunc() {
             return false
         })
     }
+
+    // 小说信息格式化
+    u.formatNovels = function (novels) {
+        novels.forEach(novel => {
+            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
+            novel.tags = novel.tags.join(",")
+            novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
+            novel.createDate = this.dateFormat(novel.createDate);
+            if (util.MORE_INFO_IN_DESCRIPTION) {
+                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
+            } else {
+                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}`
+            }
+        })
+        return novels
+    }
+
     // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
         let novelId = 0, res = {}
