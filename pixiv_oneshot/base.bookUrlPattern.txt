@@ -1,3 +1,6 @@
+Pixiv：小说 + 系列 + 作者
+(https?://)?(www\.)?pixiv\.net(/ajax)?/(novel/(show\.php\?id=|series/)?|users?/)\d+
+
 Pixiv：小说 + 系列
 (https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(show\.php\?id=|series/)?\d+
 
@@ -5,16 +8,45 @@ Pixiv：小说
 (https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(show\.php\?id=)?\d+
 
 Pixiv：系列
-(https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(series/)?\d+
+(https?://)?(www\.)?pixiv\.net(/ajax)?/novel/series/\d+
+
+Pixiv：作者
+(https?://)?(www\.)?pixiv\.net(/ajax)?/users?/\d+
 
 Linpx：小说
 (https?://)?(api\.|www\.)?(furrynovel\.(ink|xyz))/(pn|pixiv/novel)/\d+(/cache)?
 
+Linpx：系列
+(https?://)?(api\.|www\.)?(furrynovel\.(ink|xyz))/pixiv/series/\d+(/cache)?
+
+Linpx：作者
+(https?://)?(api\.|www\.)?(furrynovel\.(ink|xyz))/pixiv/user/\d+(/cache)?
 
 
-详情、目录、正文处，网址处理用
+详情、目录、正文处，网址处理用，无需请求 api
 Pixiv：系列
-(https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(series/)?\d+
+(https?://)?(www\.)?pixiv\.net(/ajax)?/novel/series/\d+
 
-Pixiv & Linpx：小说，简
+
+Pixiv & Linpx：小说
+(https?://)?(api\.|www\.)?((furrynovel\.(ink|xyz))|pixiv\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\.php\?id=)?\d+(/cache)?
 ((furrynovel\.(ink|xyz))|pixiv\.net)/(pn|(pixiv/)?novel)/(show\.php\?id=)?\d+
+
+
+Pixiv & Linpx：系列
+(https?://)?(api\.|www\.)?((furrynovel\.(ink|xyz))|pixiv\.net)(/ajax)?/(pixiv|novel)/series/\d+(/cache)?
+((furrynovel\.(ink|xyz))|pixiv\.net)/(pixiv|novel)/series/\d+
+
+
+Pixiv & Linpx：作者：
+(https?://)?(api\.|www\.)?((furrynovel\.(ink|xyz))|pixiv\.net)(/ajax)?(/pixiv)?/users?/\d+(/cache)?
+((furrynovel\.(ink|xyz))|pixiv\.net)(/pixiv)?/users?/\d+
+
+
+Pixiv & Linpx：小说 + 系列
+(https?://)?(api\.|www\.)?((furrynovel\.(ink|xyz))|pixiv\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\.php\?id=|series/)?\d+(/cache)?
+
+
+Pixiv & Linpx：小说 + 系列 + 作者
+(https?://)?(api\.|www\.)?((furrynovel\.(ink|xyz))|pixiv\.net)(/ajax)?/((pn|(pixiv/)?novel)/(show\.php\?id=|series/)?|(pixiv)?/users?/)\d+(/cache)?
+((furrynovel\.(ink|xyz))|pixiv\.net)/((pn|(pixiv/)?novel)/(show\.php\?id=|series/)?|(pixiv)?/users?/)\d+
