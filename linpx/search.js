@@ -29,13 +29,7 @@ function getUser(username, exactMatch) {
     })
 }
 
-// 包含所有小说数据
-function getUserDetailedList(uidList) {
-    // java.log(`UIDLIST:${JSON.stringify(uidList)}`)
-    return util.getWebviewJson(util.urlUsersDetailed(uidList))
-}
-
-function getNovels(nidList) {
+function getUserNovels(nidList) {
     let page = Number(java.get("page"))
     // 分页
     let list = nidList.slice((page - 1) * 20, page * 20)
@@ -93,7 +87,7 @@ function findUserNovels(username) {
     }).map(user => user.id)
 
     if (uidList.length > 0) {
-        let list = getUserDetailedList(uidList)
+        let list = util.getWebviewJson(util.urlUsersDetailed(uidList))  // 包含所有小说数据
         let nidList = []
         // 从两层数组中提取novelsId
         list.forEach(user => {
@@ -102,14 +96,14 @@ function findUserNovels(username) {
                 .reverse()
                 .forEach(nid => nidList.push(nid))
         })
-        getNovels(nidList).forEach(novel => {
+        getUserNovels(nidList).forEach(novel => {
             novelList.push(novel)
         })
     }
     return novelList
 }
 
-function getNovel(){
+function getNovels(){
     if (result.startsWith("<!DOCTYPE html>") || JSON.parse(result).error) {
         return []
     } else {
@@ -130,7 +124,7 @@ function getLinkNovels() {
 
 (function () {
     let novels = []
-    novels = novels.concat(getNovel())
+    novels = novels.concat(getNovels())
     novels = novels.concat(getLinkNovels())
     findUserNovels(java.get("key")).forEach(v => {
         novels.push(v)
