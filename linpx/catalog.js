@@ -26,9 +26,11 @@ function seriesHandler(res) {
         v.chapterUrl = util.urlNovel(v.id)
         // v.updateDate = String(v.coverUrl.match(RegExp("\\d{4}/\\d{2}/\\d{2}")))  //fake
         v.detail = util.getAjaxJson(util.urlNovelDetailed(v.id))
-        v.textCount = v.detail.content.length
-        v.updateDate = util.timeTextFormat(v.detail.createDate)
-        v.updateDate = `${v.updateDate}　　${v.textCount}字`
+        try{
+            v.textCount = v.detail.content.length
+            v.updateDate = util.timeTextFormat(v.detail.createDate)
+            v.updateDate = `${v.updateDate}　　${v.textCount}字`
+        } catch (e) {}
         util.debugFunc(() => {
             java.log(`${v.title}`)
         })
