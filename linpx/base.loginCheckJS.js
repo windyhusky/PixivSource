@@ -215,7 +215,8 @@ function publicFunc() {
         let novelId = 0, res = {}
         // 兼容搜索直接输入链接
         pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
-        if (RegExp(pattern).test(result)) {
+        // if (RegExp(pattern).test(result)){
+        if (RegExp(pattern).test(result) && !(result.startsWith("<!DOCTYPE html>"))) {
             baseUrl = result
             result = "<!DOCTYPE html>"
             java.log(`匹配链接：${baseUrl}`)
@@ -304,7 +305,7 @@ function publicFunc() {
         if (text === undefined) {
             return ""
         }
-            return `${text.slice(0, 10)} ${text.slice(11, 19)}`
+        return `${text.slice(0, 10)} ${text.slice(11, 19)}`
     }
 
     util = u
