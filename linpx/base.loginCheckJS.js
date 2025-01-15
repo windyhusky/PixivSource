@@ -11,6 +11,7 @@ function objStringify(obj) {
 function publicFunc() {
     let u = {}
     java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
+    java.log(`更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
     let input = String(source.getVariable())  // [object JavaObject]
     var settings = {}
     try {
