@@ -269,7 +269,7 @@ function publicFunc() {
         // 兼容搜索直接输入链接
         pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
         if (RegExp(pattern).test(result) && !(result.startsWith("<!DOCTYPE html>"))) {
-            baseUrl = result
+            baseUrl = result.match(RegExp(pattern))[0]
             result = "<!DOCTYPE html>"
             java.log(`匹配链接：${baseUrl}`)
         }

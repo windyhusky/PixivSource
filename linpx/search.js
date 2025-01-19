@@ -113,10 +113,7 @@ function getNovels(){
 
 function getLinkNovels() {
     try {
-        link = String(java.get("key"))
-        pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
-        baseUrl = link.match(RegExp(pattern))[0]
-        return util.getNovelRes(baseUrl)
+        return util.getNovelRes(String(java.get("key")))
     } catch (e) {
         return []
     }
