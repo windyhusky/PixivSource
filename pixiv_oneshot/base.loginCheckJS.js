@@ -314,6 +314,16 @@ function publicFunc() {
     // 详情、目录：从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
     u.getNovelResSeries = function (result) {
         let seriesId = 0, res = {}
+        // 兼容详情，添加网址直接输入链接
+        // pixiv 默认分享信息中有 # 号，不会被识别成链接，无法使用添加网址
+        // baseUrl = baseUrl.replace("#", "%23")
+        pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
+        if (!(result.startsWith("<!DOCTYPE html>")) && JSON.parse(result).error === true && RegExp(pattern).test(baseUrl)) {
+            baseUrl = baseUrl.match(RegExp(pattern))[0]
+            result = "<!DOCTYPE html>"
+            java.log(`匹配链接：${baseUrl}`)
+        }
+
         let isHtml = result.startsWith("<!DOCTYPE html>")
         if (isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
