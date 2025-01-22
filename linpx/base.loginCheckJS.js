@@ -232,6 +232,7 @@ function publicFunc() {
         let novelId = 0, res = {}
         // 兼容搜索直接输入链接
         pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
+        // pattern = String(bookSourceUrl).replace(".*", "")
         if (RegExp(pattern).test(result) && !(result.startsWith("<!DOCTYPE html>"))) {
             baseUrl = result.match(RegExp(pattern))[0]
             result = "<!DOCTYPE html>"

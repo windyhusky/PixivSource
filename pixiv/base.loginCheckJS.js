@@ -275,6 +275,7 @@ function publicFunc() {
         let novelId = 0, seriesId = 0, res = {}
         // 兼容搜索直接输入链接
         pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
+        // pattern = String(bookSourceUrl).replace(".*", "")
         if (RegExp(pattern).test(result) && !(result.startsWith("<!DOCTYPE html>"))) {
             baseUrl = result.match(RegExp(pattern))[0]
             result = "<!DOCTYPE html>"
@@ -325,6 +326,7 @@ function publicFunc() {
         // pixiv 默认分享信息中有 # 号，不会被识别成链接，无法使用添加网址
         // baseUrl = baseUrl.replace("#", "%23")
         pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
+        // pattern = String(bookSourceUrl).replace(".*", "")
         if (!(result.startsWith("<!DOCTYPE html>")) && JSON.parse(result).error === true && RegExp(pattern).test(baseUrl)) {
             baseUrl = baseUrl.match(RegExp(pattern))[0]
             result = "<!DOCTYPE html>"
