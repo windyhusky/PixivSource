@@ -158,58 +158,52 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function (novels) {
+    u.handNovels = function (novels){
         novels.forEach(novel => {
+            if (novel.tags === undefined) {
+                novel.tags = []
+            }
             // novel.id = novel.id
             // novel.title = novel.title
             // novel.userName = novel.userName
-            // novel.tags = novel.tags
-            novel.textCount = novel.length
-            // novel.createDate = novel.createDate
-            novel.latestChapter = null
-            novel.description = novel.desc
-            // novel.coverUrl = novel.coverUrl
-            novel.detailedUrl = util.urlNovel(novel.id)  // linpx 系列数据过少，暂用章节数据
-            if (novel.seriesId !== undefined && novel.seriesId !== null) {
-                novel.title = novel.seriesTitle
-                novel.length = null
+            if (novel.seriesId === undefined || novel.seriesId === null) {
+                // novel.tags = novel.tags
+                novel.tags.unshift("单本")
+                novel.textCount = novel.length
+                novel.latestChapter = novel.title
+                novel.description = novel.desc
+                // novel.coverUrl = novel.coverUrl
+                novel.detailedUrl = util.urlNovel(novel.id)
 
+            } else {
                 java.log(`正在获取系列小说：${novel.seriesId}`)
                 let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId))
-                // 后端目前没有系列的coverUrl字段
-                // novel.coverUrl = util.urlCoverUrl(series.coverUrl)
-                novel.coverUrl = util.urlCoverUrl(series.novels[0].coverUrl)
+                novel.id = series.novels[0].id
+                novel.title = novel.seriesTitle
+                novel.tags = series.tags
+                // novel.tags = novel.tags.concat(series.tags)
+                novel.tags = novel.tags.concat(series.novels[0].tags)
+                novel.tags.unshift("长篇")
+                novel.tags = Array.from(new Set(novel.tags))
+                novel.textCount = null  // 无数据
+                novel.createDate = null  // 无数据
+                novel.latestChapter = series.novels[series.novels.length-1].title
+                novel.description = series.caption
+                // 后端目前没有系列的 coverUrl 字段
+                // novel.coverUrl = series.coverUrl
+                novel.coverUrl = series.novels[0].coverUrl
+                novel.detailedUrl = util.urlNovel(novel.id)
+                // novel.detailedUrl = util.urlSeries(novel.id)
 
                 if (series.caption === "") {
-                    let firstNovels = util.getAjaxJson(util.urlNovelsDetailed([series.novels[0].id]))
-                    if (firstNovels.length > 0) {
-                        novel.description = firstNovels[0].desc
+                    let firstNovel = util.getAjaxJson(util.urlNovelDetailed(novel.id))
+                    novel.createDate = firstNovel.createDate
+                    if (firstNovel.length > 0) {
+                        novel.description = firstNovel[0].desc
                     } else {
                         novel.description = "该小说可能部分章节因为权限或者被删除无法查看"
                     }
-                } else {
-                    novel.description = series.caption
                 }
-
-                //如果没有标签 取第一章的tag
-                if (series.tags.length === 0) {
-                    // 系列至少会有一章
-                    novel.tags = series.novels[0].tags
-                } else {
-                    novel.tags = series.tags
-                }
-
-                if (novel.tags === undefined) {
-                    novel.tags = []
-                }
-                novel.tags.unshift("长篇")
-
-
-            } else {
-                if (novel.tags === undefined) {
-                    novel.tags = []
-                }
-                novel.tags.unshift("单本")
             }
         })
         return novels
