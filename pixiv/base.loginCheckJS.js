@@ -108,6 +108,13 @@ function publicFunc() {
         }
         return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
     }
+    u.urlSeries = (seriesId) => {
+        if (util.SHOW_ORIGINAL_NOVEL_LINK) {
+            return util.urlSeriesUrl(seriesId)
+        } else {
+            return util.urlSeriesDetailed(seriesId)
+        }
+    }
 
     u.urlUserUrl = (userId) => {
         return `https://www.pixiv.net/users/${userId}`
@@ -216,7 +223,7 @@ function publicFunc() {
             if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
-                novel.detailedUrl = util.urlNovelDetailed(novel.id)
+                novel.detailedUrl = util.urlNovel(novel.id)
             } else { // 系列
                 // novel.seriesId = novel.seriesId
                 let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
@@ -228,7 +235,7 @@ function publicFunc() {
                 // novel.lastChapter = util.getAjaxJson(util.urlNovelDetailed(series.lastNovelId)).body.title
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
-                novel.detailedUrl = util.urlSeriesDetailed(novel.seriesId)
+                novel.detailedUrl = util.urlSeries(novel.seriesId)
                 // 防止系列首篇无权限获取  // 发送请求获取第一章 获取标签与简介
                 let firstNovel = util.getAjaxJson(util.urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
                 novel.tags = novel.tags.concat(firstNovel.tags)

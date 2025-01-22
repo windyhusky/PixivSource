@@ -99,6 +99,13 @@ function publicFunc() {
     u.urlSeriesDetailed = (id) => {
         return `https://api.furrynovel.ink/pixiv/series/${id}/cache`
     }
+    u.urlSeries = (seriesId) => {
+        if (util.SHOW_ORIGINAL_NOVEL_LINK) {
+            return util.urlSeriesUrl(seriesId)
+        } else {
+            return util.urlSeriesDetailed(seriesId)
+        }
+    }
 
     u.urlUserUrl = (id) => {
         return `https://furrynovel.ink/pixiv/user/${id}/cache`
@@ -140,7 +147,7 @@ function publicFunc() {
             // novel.createDate = novel.createDate
             novel.textCount = novel.length
             novel.description = novel.desc
-            novel.detailedUrl = util.urlNovelDetailed(novel.id)
+            novel.detailedUrl = util.urlNovel(novel.id)  // linpx 系列数据过少，暂用章节数据
             if (novel.seriesId !== undefined && novel.seriesId !== null) {
                 novel.title = novel.seriesTitle
                 novel.length = null
