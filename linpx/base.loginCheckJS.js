@@ -157,13 +157,18 @@ function publicFunc() {
         })
     }
 
-
-    u.formatNovels = function (novels) {
+    // 处理 novels 列表
+    u.handNovels = function (novels) {
         novels.forEach(novel => {
-            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
-            // novel.createDate = novel.createDate
+            // novel.id = novel.id
+            // novel.title = novel.title
+            // novel.userName = novel.userName
+            // novel.tags = novel.tags
             novel.textCount = novel.length
+            // novel.createDate = novel.createDate
+            novel.latestChapter = null
             novel.description = novel.desc
+            // novel.coverUrl = novel.coverUrl
             novel.detailedUrl = util.urlNovel(novel.id)  // linpx 系列数据过少，暂用章节数据
             if (novel.seriesId !== undefined && novel.seriesId !== null) {
                 novel.title = novel.seriesTitle
@@ -205,12 +210,20 @@ function publicFunc() {
                     novel.tags = []
                 }
                 novel.tags.unshift("单本")
-                novel.coverUrl = util.urlCoverUrl(novel.coverUrl)
             }
+        })
+        return novels
+    }
 
+    // 小说信息格式化
+    u.formatNovels = function (novels) {
+        novels.forEach(novel => {
+            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.tags = novel.tags.join(",")
-            novel.createDate = util.dateFormat(novel.createDate)
-            // novel.description = `${novel.description}\n更新时间：${novel.time}`
+            novel.coverUrl = util.urlCoverUrl(novel.coverUrl)
+            // novel.readingTime = `${novel.readingTime / 60} 分钟`
+            novel.createDate = util.dateFormat(novel.createDate);
+            // novel.updateDate = this.dateFormat(novel.updateDate);
             if (util.MORE_INFO_IN_DESCRIPTION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
             } else {

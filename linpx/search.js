@@ -130,5 +130,5 @@ function getLinkNovels() {
     if (novels.length === 0) {
         return []
     }
-    return util.formatNovels(util.combineNovels(novels))
+    return util.formatNovels(util.handNovels(util.combineNovels(novels)))
 }(result))

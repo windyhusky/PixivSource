@@ -56,14 +56,14 @@ function handlerRecommendUsers() {
             queryNovelIds = randomChoseArrayItem(queryNovelIds, 10)
         }
         novelList = util.getWebviewJson(util.urlNovelsDetailed(queryNovelIds))
-        return util.formatNovels(util.combineNovels(novelList))
+        return util.formatNovels(util.handNovels(util.combineNovels(novelList)))
     }
 }
 
 function handlerFollowLatest() {
     return () => {
         let resp = JSON.parse(result)
-        return util.formatNovels(util.combineNovels(resp))
+        return util.formatNovels(util.handNovels(util.combineNovels(resp)))
     }
 }
 
