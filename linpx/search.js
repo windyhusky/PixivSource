@@ -77,9 +77,9 @@ var seriesSet = {
 };
 
 
-function findUserNovels(username) {
+function findUserNovels() {
     let novelList = []
-    // 查询用户
+    let username = String(java.get("key"))
     let userArr = getUser(username, true)
     // 获取用户所有小说
     let uidList = userArr.filter(user => {
@@ -123,9 +123,8 @@ function getLinkNovels() {
     let novels = []
     novels = novels.concat(getNovels())
     novels = novels.concat(getLinkNovels())
-    findUserNovels(java.get("key")).forEach(v => {
-        novels.push(v)
-    })
+    novels = novels.concat(findUserNovels())
+    // java.log(JSON.stringify(novels))
     // 返回空列表中止流程
     if (novels.length === 0) {
         return []
