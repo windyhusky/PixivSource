@@ -154,11 +154,15 @@ function getLinkNovels() {
 }
 
 (() => {
-    let novelsList = []
-    novelsList = novelsList.concat(getNovels())
-    novelsList = novelsList.concat(getSeries())
-    novelsList = novelsList.concat(getUserNovels())
-    novelsList = novelsList.concat(getLinkNovels())
+    let novels = []
+    novels = novels.concat(getNovels())
+    novels = novels.concat(getSeries())
+    novels = novels.concat(getUserNovels())
+    novels = novels.concat(getLinkNovels())
     // java.log(JSON.stringify(novelsList))
-    return util.formatNovels(util.handNovels(util.combineNovels(novelsList)))
+    // 返回空列表中止流程
+    if (novels.length === 0) {
+        return []
+    }
+    return util.formatNovels(util.handNovels(util.combineNovels(novels)))
 })();
