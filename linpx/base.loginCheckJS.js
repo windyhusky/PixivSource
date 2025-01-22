@@ -70,11 +70,11 @@ function publicFunc() {
         })
     }
 
-    u.urlNovelUrl = (id) => {
-        return `https://furrynovel.ink/pixiv/novel/${id}/cache`
+    u.urlNovelUrl = (novelId) => {
+        return `https://furrynovel.ink/pixiv/novel/${novelId}/cache`
     }
-    u.urlNovelDetailed = (id) => {
-        return `https://api.furrynovel.ink/pixiv/novel/${id}/cache`
+    u.urlNovelDetailed = (novelId) => {
+        return `https://api.furrynovel.ink/pixiv/novel/${novelId}/cache`
     }
     u.urlNovelsDetailed = (nidList) => {
         return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
@@ -96,8 +96,8 @@ function publicFunc() {
     u.urlSeriesUrl = (seriesId) => {
         return `https://www.pixiv.net/novel/series/${seriesId}`
     }
-    u.urlSeriesDetailed = (id) => {
-        return `https://api.furrynovel.ink/pixiv/series/${id}/cache`
+    u.urlSeriesDetailed = (seriesId) => {
+        return `https://api.furrynovel.ink/pixiv/series/${seriesId}/cache`
     }
     u.urlSeries = (seriesId) => {
         if (util.SHOW_ORIGINAL_NOVEL_LINK) {
@@ -107,21 +107,21 @@ function publicFunc() {
         }
     }
 
-    u.urlUserUrl = (id) => {
-        return `https://furrynovel.ink/pixiv/user/${id}/cache`
+    u.urlUserUrl = (userId) => {
+        return `https://furrynovel.ink/pixiv/user/${userId}/cache`
     }
-    u.urlUserDetailed = (id) => {
-        return `https://api.furrynovel.ink/pixiv/user/${id}/cache`
+    u.urlUserDetailed = (userId) => {
+        return `https://api.furrynovel.ink/pixiv/user/${userId}/cache`
     }
-    u.urlUsersDetailed = (nidList) => {
-        return `https://api.furrynovel.ink/pixiv/users/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
+    u.urlUsersDetailed = (uidList) => {
+        return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
     }
 
-    u.urlSearchNovel = (novelname) => {
-        return `https://api.furrynovel.ink/pixiv/search/novel/${novelname}/cache`
+    u.urlSearchNovel = (novelName) => {
+        return `https://api.furrynovel.ink/pixiv/search/novel/${novelName}/cache`
     }
-    u.urlSearchUsers = (username) => {
-        return `https://api.furrynovel.ink/pixiv/search/user/${username}/cache`
+    u.urlSearchUsers = (userName) => {
+        return `https://api.furrynovel.ink/pixiv/search/user/${userName}/cache`
     }
 
     u.urlCoverUrl = (pxImgUrl) => {
@@ -140,6 +140,23 @@ function publicFunc() {
         }
         return illustOriginal
     }
+
+    // 将多个长篇小说解析为一本书
+    u.combineNovels = function(novels) {
+        return novels.filter(novel => {
+            // 单本直接解析为一本书，需要判断是否为 null
+            if (novel.seriesId === undefined || novel.seriesId === null) {
+                return true
+            }
+            //集合中没有该系列解析为一本书
+            if (!seriesSet.has(novel.seriesId)) {
+                seriesSet.add(novel.seriesId)
+                return true
+            }
+            return false
+        })
+    }
+
 
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
@@ -203,21 +220,6 @@ function publicFunc() {
         return novels
     }
 
-    // 将多个长篇小说解析为一本书
-    u.combineNovels = function(novels) {
-        return novels.filter(novel => {
-            // 单本直接解析为一本书，需要判断是否为 null
-            if (novel.seriesId === undefined || novel.seriesId === null) {
-                return true
-            }
-            //集合中没有该系列解析为一本书
-            if (!seriesSet.has(novel.seriesId)) {
-                seriesSet.add(novel.seriesId)
-                return true
-            }
-            return false
-        })
-    }
     // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
         let novelId = 0, res = {}
