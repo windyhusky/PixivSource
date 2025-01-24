@@ -18,7 +18,11 @@ if(url.match(/^..导入/)){
             uri=="书源"?"bookSource":
                 uri=="订阅"?"rssSource":
                     uri=="净化"?"replaceRule":
-                        "";
+                        url=="目录"?"textTocRule":
+                            url=="TTS"?"httpTTS":
+                                url=="主题"?"theme":
+                                    url=="排版"?"readConfig":
+                                        "";
     url=url.match(/^legado\:\/\//)?url:`legado://import/${path}?src=`+url;
     url = String(url).replace(/^(.*?src=)(.*)/,(mat, $1, $2)=>{
         return $1+encodeURIComponent($2);
