@@ -88,13 +88,14 @@
 <details><summary> 书源设置 </summary>
 
 | 书源设置         | 默认状态 | 常量名称                    |
-| --------------- | ------ | -------------------------- |
+| -------------- | ------ | -------------------------- |
 | 显示小说源链接　　 | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK` |
 | 恢复被替换的书名号 | ✅ 开启 | `REPLACE_BOOK_TITLE_MARKS` |
 | 简介显示更多信息　 | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION` |
 | 显示一般小说排行榜 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK` |
 | 调试模式　　　　　 | ⭕ 关闭 | `DEBUG`                    |
-- 自定义设置：编辑书源 - 设置源变量 - 复制代码模板 - 修改并保存
+- 自定义设置：编辑书源 - 基本 - 变量说明 - 修改并保存
+- 修改时，请修改`true` 为 `false`，或相反
 ```
 {
   "SHOW_ORIGINAL_NOVEL_LINK": true,
@@ -103,7 +104,6 @@
   "DEBUG": false
 }
 ```
-- 若源变量为空，则使用上述默认设置（`书源 - 基本 - 变量说明`）
 - `SHOW_GENERAL_NOVELS_RANK` 需要在`书源-发现-发现地址规则`修改
 
 </details>
