@@ -75,7 +75,8 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 > ##### 2. [Linpx 书源的导入与使用](./Linpx.md)
 #### 4.2 [设置备份](./WebdavBackup.md)(推荐)
 #### 4.3 搜索小说、查看订阅，畅享阅读
-#### 4.4 [故障排查与处理](./TroubleShoot.md)
+#### 4.4 [添加远程小说](Remotebooks)，畅享阅读
+#### 4.5 [故障排查与处理](./TroubleShoot.md)
 
 
 ### 5.常用功能（转自 [官方使用指南](https://www.yuque.com/legado/wiki/xz) ）

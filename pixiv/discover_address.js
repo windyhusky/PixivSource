@@ -1,7 +1,6 @@
 @js:
 let SHOW_GENERAL_NOVELS_RANK = false
 // 发现：排行榜显示一般小说
-// 无法从 util 获取；从源变量获取有延迟，无法实时修改
 
 li = [
     {
