@@ -229,9 +229,17 @@ function publicFunc() {
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
                 novel.detailedUrl = util.urlSeries(novel.seriesId)
-                // 防止系列首篇无权限获取  // 发送请求获取第一章 获取标签与简介
-                let firstNovel = util.getAjaxJson(util.urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
-                novel.tags = novel.tags.concat(firstNovel.tags)
+
+                // 发送请求获取第一章 获取标签与简介
+                let firstNovel = {}
+                try {
+                    firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                    novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
+                } catch (e) {  // 防止系列首篇无权限获取
+                    firstNovel = util.getAjaxJson(util.urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
+                    novel.id = novel.firstNovelId = firstNovel.id
+                    novel.tags = novel.tags.concat(firstNovel.tags)
+                }
                 novel.tags.unshift("长篇")
                 novel.tags = Array.from(new Set(novel.tags))
                 if (novel.description === "") {

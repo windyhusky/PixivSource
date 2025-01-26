@@ -32,7 +32,6 @@ function oneShotHandler(res) {
 
 function seriesHandler(res) {
     let info = {}
-    // info.oneShot = false
     info.seriesId = res.id
     info.id = info.novelId = res.firstNovelId
     info.title = res.title.replace(RegExp(/^\s+|\s+$/g), "")
@@ -46,10 +45,16 @@ function seriesHandler(res) {
     info.createDate = util.dateFormat(res.createDate)
     info.updateDate = util.dateFormat(res.updateDate)
 
-    // 防止首篇无权限获取
-    let firstNovel = util.getAjaxJson(util.urlSeriesNovels(info.seriesId, 30, 0)).body.thumbnails.novel[0]
-    info.id = info.novelId = firstNovel.id
-    info.tags = info.tags.concat(firstNovel.tags)   //合并首章章节 tags
+    // 发送请求获取第一章 获取标签与简介
+    let firstNovel = {}
+    try {
+        firstNovel = util.getAjaxJson(util.urlNovelDetailed(info.novelId)).body
+        info.tags = info.tags.concat(firstNovel.tags.tags.map(item => item.tag))
+    } catch (e) {  // 防止系列首篇无权限获取
+        firstNovel = util.getAjaxJson(util.urlSeriesNovels(info.seriesId, 30, 0)).body.thumbnails.novel[0]
+        info.id = info.novelId = firstNovel.id
+        info.tags = info.tags.concat(firstNovel.tags)
+    }
     info.tags = Array.from(new Set(info.tags))
     if (info.description === "") {
         info.description = firstNovel.description
