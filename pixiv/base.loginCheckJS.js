@@ -216,7 +216,7 @@ function publicFunc() {
             if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
-                novel.detailedUrl = util.urlNovel(novel.id)
+                novel.detailedUrl = util.urlNovelDetailed(novel.id)
             } else { // 系列
                 // novel.seriesId = novel.seriesId
                 let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
@@ -228,7 +228,7 @@ function publicFunc() {
                 // novel.lastChapter = util.getAjaxJson(util.urlNovelDetailed(series.lastNovelId)).body.title
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
-                novel.detailedUrl = util.urlSeries(novel.seriesId)
+                novel.detailedUrl = util.urlSeriesDetailed(novel.seriesId)
 
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}

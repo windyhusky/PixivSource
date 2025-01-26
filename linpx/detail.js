@@ -25,11 +25,13 @@ function novelHandler(res){
     if (res.series === undefined || res.series === null) {
         info.title = info.latestChapter = info.title
         info.tags.unshift('单本')
+        info.detailedUrl = util.urlNovelUrl(info.novelId)
         info.catalogUrl = util.urlNovelDetailed(info.novelId)
     } else {
         info.seriesId = res.series.id
         info.title = res.series.title.replace(RegExp(/^\s+|\s+$/g), "")
         info.tags.unshift('长篇')
+        info.detailedUrl = util.urlSeriesUrl(info.seriesId)
         info.catalogUrl = util.urlSeriesDetailed(info.seriesId)
 
         let res2 = util.getAjaxJson(util.urlSeriesDetailed(info.seriesId))

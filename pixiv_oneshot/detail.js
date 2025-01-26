@@ -22,6 +22,7 @@ function oneShotHandler(res) {
     info.textCount = res.userNovels[`${info.novelId}`].textCount
     info.description = res.description
     info.coverUrl = util.urlCoverUrl(res.coverUrl)
+    info.detailedUrl = util.urlNovelUrl(info.novelId)
     info.catalogUrl = util.urlNovelDetailed(info.novelId)
     info.createDate = util.dateFormat(res.createDate)
     info.updateDate = util.dateFormat(res.uploadDate)
@@ -41,6 +42,7 @@ function seriesHandler(res) {
     info.textCount = res.publishedTotalCharacterCount
     info.description = res.caption
     info.coverUrl = util.urlCoverUrl(res.cover.urls["480mw"]) // 240mw, 480mw, 1200x1200, 128x128, original
+    info.detailedUrl = util.urlSeriesUrl(info.seriesId)
     info.catalogUrl = util.urlSeriesDetailed(info.seriesId)
     info.createDate = util.dateFormat(res.createDate)
     info.updateDate = util.dateFormat(res.updateDate)
