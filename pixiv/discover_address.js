@@ -1,6 +1,6 @@
 @js:
 try {
-    settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+    settings = JSON.parse(String(source.variableComment).split("//")[0])
     SHOW_GENERAL_NOVELS_RANK = settings.SHOW_GENERAL_NOVELS_RANK  // 发现：排行榜显示一般小说
 } catch (e) {
     SHOW_GENERAL_NOVELS_RANK = false
@@ -38,7 +38,6 @@ li = li.concat(r18)
 if (SHOW_GENERAL_NOVELS_RANK === true) {
     li = li.concat(general)
 }
-// 添加他人收藏
 try {
     authors = String(source.getVariable()).split("\n")
     if (authors[0].trim() !== "" && authors.length >= 1) {
