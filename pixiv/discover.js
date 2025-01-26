@@ -89,26 +89,24 @@ function handlerDiscovery() {
 function handlerWatchList(){
     return () => {
         let res = JSON.parse(result)
-        let novels = []
-        res.body.thumbnails.novelSeries.forEach(novel => {
-            novel.oneShot = false
-            novels.push(novel)
-        })
-        return util.formatNovels(util.handNovels(novels))
+        return util.formatNovels(util.handNovels(res.body.thumbnails.novelSeries))
     }
 }
 
 // 排行榜
 function handlerRanking(){
     return () => {
-        let novels = []
+        let novels = [], novelIds = []
         // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
         let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
-
         for (let i in matched) {
             let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
+            if (novelIds.indexOf(novelId) === -1) {
+                novelIds.push(novelId)
+            }
+        }
+        novelIds.forEach(novelId => {
             java.log(util.urlNovelDetailed(novelId))
-
             let res = util.getAjaxJson(util.urlNovelDetailed(novelId))
             if (res.error !== true) {
                 novel = res.body
@@ -121,9 +119,9 @@ function handlerRanking(){
                 }
                 novels.push(novel)
             } else {
-                java.log(JSON.stringify(novel))
+                java.log(JSON.stringify(res))
             }
-        }
+        })
         return util.formatNovels(util.handNovels(util.combineNovels(novels)))
     }
 }
