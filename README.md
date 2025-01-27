@@ -41,7 +41,7 @@
 #### 🅿️ Pixiv 特性：
 - 单篇小说：Pixiv 小说投稿时的【单篇完结作品】，即短篇小说
 - 系列小说：Pixiv 小说投稿时的【连载系列作品】，即长篇小说
-- <details><summary> ✅ 小说功能 </summary>
+- <details><summary> ✅ ⭐️ 小说功能 </summary>
   
   - ✅ 关注作者（最新小说）
   - ✅ 追更列表
@@ -51,14 +51,14 @@
   - ✅ 章节评论
   </details>
 
-- <details><summary> ✅ 小说排行榜 </summary>
+- <details><summary> ✅ 👑 小说排行 </summary>
   
   - ✅ R18 小说排行榜
   - ✅ 一般小说排行榜 
-    >（默认隐藏，可在书源设置中修改`SHOW_GENERAL_NOVELS_RANK`）
+    >（默认隐藏，可在书源设置中修改`SHOW_GENERAL_NOVELS_RANK`)，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
   
-- <details><summary> ✅ Pixiv 小说工具（标记符号） </summary>
+- <details><summary> ✅ 🔧 小说工具（标记符号） </summary>
 
   - ✅ 完美支持的标记符
     - ✅ `[uploadedimage:自动生成ID]` 通过上传图片添加插画
@@ -89,7 +89,7 @@
 <details><summary> ⚙️ 书源设置 </summary>
 
 | 书源设置         | 默认状态 | 常量名称                    | 作用 |
-| -------------- | ------ | -------------------------- | --- |
+| --------------- | ------ | -------------------------- | --- |
 | 显示一般小说排行榜 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK` | 发现 |
 | 简介显示更多信息　 | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION` | 详情 |
 | 显示小说源链接　　 | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK` | 目录 |

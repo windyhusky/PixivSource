@@ -6,7 +6,8 @@
 
 ### 本书源使用前提
 1. 使用阅读 3.0 版本
-2. 导入 Linpx 的书源、订阅源
+2. ⚠️ 部分区域需要代理（建议先准备好）
+3. 导入 Linpx 的书源、订阅源
 
 
 ## 一、导入书源 & 订阅源
@@ -70,12 +71,21 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 > 更多导入方法请查看[如何导入订阅源](./ImportRssSource.md)
 
 
-**Linpx 无需登录，无需代理，即可访问 R18 小说，因此你不必做过多的操作**
+### 4.确保 Linpx 可以访问
+订阅 - 点击 Linpx - 打开 Linpx 订阅源/网页
 
+- 如果你可以直接打开，那么一切大功告成！
+  - **多数网络下，Linpx 无需代理即可访问**
+  - Linpx 没有账号体系，**无需登录即可使用**，你不必做过多的操作
+- 如果你 **无法直接打开 Linpx** 则可以：
+  - 切换至其他网络（**更换网络运营商、使用流量或 WIFI**）后再尝试 
+  - 开启代理后再尝试
 
 ## 二、添加小说，尽情使用
 ### 1.阅读内部搜索
-支持搜索小说名称、作者名称、小说标签
+- ✅ 支持搜索：小说名称、作者名称、小说标签、小说链接
+- ⚠️ 暂不支持：系列小说名称
+
 ![img](./pic/SearchViaLegado.png)
 
 
@@ -87,11 +97,13 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 
 ### 3.添加网址
-首页打开【添加网址】，粘贴小说链接，可以同时添加多个小说的链接
+书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
+
 ![img](./pic/AddBookViaUrl1.png)
 ![img](./pic/AddBookViaUrl2.png)
 ![img](./pic/AddBookViaUrl3.png)
-此处使用正则匹配网址，支持 Linpx 多个格式的网址链接：
+
+支持 Linpx 多个格式的网址链接：
 
 ```
 Linpx 小说长链接
@@ -119,12 +131,14 @@ https://furrynovel.ink/pn/20063566
 
 #### 4.2 Pixiv 链接转换
 阅读内部浏览器内打开 Linpx，搜索栏中粘贴 Pixiv 小说链接，进入对应页面，即可添加小说到书架
+
 ![img](./pic/LinpxConvertPixivUrl1.png)
 ![img](./pic/LinpxConvertPixivUrl2.png)
 
 
 #### 4.3 添加小说至书架
-在阅读内部浏览器内打开 Linpx 小说页面，即可添加小说到书架
+在阅读内部浏览器内打开 Linpx 小说页面，点击【添加到书架】按钮即可添加小说到书架
+
 ![img](./pic/AddBookViaLinpx.png)
 
 
@@ -137,7 +151,11 @@ https://furrynovel.ink/pn/20063566
 
 **①检查 Linpx 书源是否启用**
 
-**②检查网络是否可用**
+**②检查代理是否可用**
+
+**③检查阅读是否走了代理**
+
+**④检查网络是否可用**
 
 **如果上述均无问题，但依然没有搜索结果，那就是书源需要更新了**
 
