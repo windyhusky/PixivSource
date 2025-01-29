@@ -19,7 +19,9 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 ```
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 ```
-
+以下导入方法任选其一即可
+<details>
+<summary> A. 文件导入 </summary>
 
 ### A.文件导入更简单
 #### 1.下载书源/订阅源文件
@@ -32,7 +34,11 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 
 #### 3.导入完成并启用书源/订阅源
 ![img](./pic/InportBookSourcePixiv.jpg)
+</details>
 
+
+<details>
+<summary> B. 规则订阅 </summary>
 
 ### B.规则订阅易更新
 #### 1. 打开【订阅】页面，点击【规则订阅】
@@ -51,8 +57,11 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 ![img](./pic/InportBookSourcePixiv.jpg)
 
 **导入之后，再次点击则会检查更新**
+</details>
 
 
+<details>
+<summary> C. 网络导入 </summary>
 
 ### C.网络导入也方便
 #### 1.打开【我的】页面，点击【书源管理】
@@ -71,16 +80,17 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 **如果导入失败，请开启代理，或过段时间重试**
 
 ![img](./pic/InportBookSourcePixiv.jpg)
+</details>
 
+
+<details>
+<summary> D. Schema 链接导入 </summary>
 
 ### D.Schema 链接导入最方便【适用于书源提供方】
-
 大多点击链接一键导入书源/订阅源，都是是采用了这种方式，如：**[喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)**
 
 #### 0.【书源提供方】为按钮等添加链接
 大多一键导入书源/订阅源，都是采用了这种方式
-
-#### 0.【书源提供方】为按钮等添加链接
 > ```
 > 可通过url唤起阅读进行一键导入,url格式: legado://import/{path}?src={url}
 > path类型: bookSource,rssSource,replaceRule,textTocRule,httpTTS,theme,readConfig,addToBookshelf
@@ -93,7 +103,8 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 导入 Pixiv 书源的连接如下：
 ```
 yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
-
+```
+```
 legado://import/bookSource?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 ```
 
@@ -110,6 +121,7 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 
 #### 2.导入完成并启用书源
 ![img](./pic/InportBookSourcePixiv.jpg)
+</details>
 
 
 ## ② 确认启用书源

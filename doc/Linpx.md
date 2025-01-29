@@ -1,7 +1,6 @@
 ## Linpx 书源的导入与使用
 
 ### [Linpx](http://www.furrynovel.ink) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**
-![img](./pic/LinpxWebpage.png)
 
 
 ### 本书源使用前提
@@ -29,7 +28,7 @@
 https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json
 ```
 #### 2.1 打开【订阅】页面，点击【规则订阅】
-![img](./pic/SubscribeEntry.jpg)
+![img](./pic/SubscribeEntry.png)
 
 
 #### 2.2 点击加号，粘贴链接，保存订阅
@@ -52,7 +51,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json
 https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 ```
 #### 3.1 打开【订阅】页面，点击【规则订阅】
-![img](./pic/SubscribeEntry.jpg)
+![img](./pic/SubscribeEntry.png)
 
 
 #### 3.2 点击加号，更改规则类型，粘贴链接，保存订阅
@@ -83,20 +82,30 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 ## 二、添加小说，尽情使用
 ### 1.阅读内部搜索
+<details>
+<summary> 🔎 搜索小说 </summary>
+
 - ✅ 支持搜索：小说名称、作者名称、小说标签、小说链接
 - ⚠️ 暂不支持：系列小说名称
 
 ![img](./pic/SearchViaLegado.png)
+</details>
 
 
 ### 2.发现更多小说
+<details>
+<summary> ⭐️ 常规功能 </summary>
+
 发现：推荐作者、最新小说
 
 ![img](./pic/DiscoverLinpx.jpg)
-![img](./pic/DiscoverLinpxNewNovels.png)
+</details>
 
 
 ### 3.添加网址
+<details>
+<summary> 🔗 添加网址 </summary>
+
 书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
 
 ![img](./pic/AddBookViaUrl1.png)
@@ -118,10 +127,12 @@ Linpx 分享信息
 我正在看唐尼瑞姆创作的《测试页面》一起来看吧！
 https://furrynovel.ink/pn/20063566
 ```
+</details>
 
 
 ### 4.订阅源添加小说
-导入 Linpx 订阅源，配合书源使用体验更好
+<details>
+<summary> 🏠 订阅源 </summary>
 
 #### 4.1 替代阅读搜索
 受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx的功能。网站的搜索功能更加全面。
@@ -140,11 +151,14 @@ https://furrynovel.ink/pn/20063566
 在阅读内部浏览器内打开 Linpx 小说页面，点击【添加到书架】按钮即可添加小说到书架
 
 ![img](./pic/AddBookViaLinpx.png)
+</details>
 
 
 ## 三、故障排查
 > 详见：[故障排查与处理](./TroubleShoot.md)
-> 
+<details>
+<summary> 🐞 故障排查 </summary>
+
 ### 1.没有搜索结果，请自行检查一下内容：
 
 **⓪检查 Linpx 书源是否导入**
@@ -164,6 +178,7 @@ https://furrynovel.ink/pn/20063566
 
 #### 解决措施：关闭替换净化
 ![img](./pic/ReplaceTurnOff.png)
+</details>
 
 
 ## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供

@@ -36,7 +36,7 @@
 | Linpx     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 
 
-<details><summary> 🔧 书源功能 </summary>
+<details><summary> 🧩 书源功能 </summary>
 
 #### 🅿️ Pixiv 特性：
 - 单篇小说：Pixiv 小说投稿时的【单篇完结作品】，即短篇小说
@@ -137,7 +137,7 @@
 | 聚合搜索(books 订阅源)  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
 | 书源订阅(import 订阅源) | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
 
-- **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇 为网文网站编写的通用书源，旨在用搜索引擎获取全网小说，建议配合【**聚合搜索**】使用
+- **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇 为网文网站编写的通用书源，用搜索引擎获取全网小说，建议配合【**聚合搜索**】使用
 - **[聚合搜索](https://legado.cn/thread-3723-1-1.html)** ：是不世玄奇 制作的聚合多个搜索引擎的订阅源，需要配合 **[通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用。(集入 books 订阅源)
 - **[书源订阅](https://gitee.com/feiniao6/yd)** ：是Thomas喲 制作的第三方规则订阅，旨在快速导入书源/订阅源。(部分修改)
 </details>

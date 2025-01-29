@@ -1,4 +1,4 @@
-_## Pixiv 书源的导入与使用
+## Pixiv 书源的导入与使用
 
 Pixiv 是以插图、漫画、小说为中心的允许 R18 内容的艺术网站
 
@@ -32,7 +32,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 
 
 #### 2.1 打开【订阅】页面，点击【规则订阅】
-![img](./pic/SubscribeEntry.jpg)
+![img](./pic/SubscribeEntry.png)
 
 
 #### 2.2 点击加号，粘贴链接，保存订阅
@@ -58,7 +58,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 ```
 
 #### 3.1 打开【订阅】页面，点击【规则订阅】
-![img](./pic/SubscribeEntry.jpg)
+![img](./pic/SubscribeEntry.png)
 
 
 #### 3.2 点击加号，更改规则类型，粘贴链接，保存订阅
@@ -78,8 +78,10 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 
 
 ### 4.登录 Pixiv 账号
-正版付费书源，以及Pixiv这种，都是需要登录账号的才能正常观看的相关内容的。
+Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
+<details>
+<summary> 🅿️ 登录 Pixiv 账号 </summary>
 
 #### 4.1开启代理工具
 此处略过，请自行学习，**最好开启【全局代理】**
@@ -95,10 +97,14 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 ![img](./pic/PixivLoginIn2.jpg)
 
 **如果需要验证码，请更换代理，或过段时间再次尝试**
+</details>
 
 
 ### 5.开启 Pixiv 的 R18 设置
 #### 如果你之前已经开启过了，则可以跳过这一步
+<details>
+<summary> 🔞 修改 Pixiv 浏览范围 </summary>
+
 **再次点击登录，滑动屏幕，点击头像，再次点击头像，编辑个人资料**
 
 
@@ -118,37 +124,55 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 不知道二者区别的可以查看这篇文档 [作品评级是什么？](https://www.pixiv.help/hc/zh-cn/articles/39125149371289-%E4%BD%9C%E5%93%81%E8%AF%84%E7%BA%A7%E6%98%AF%E4%BB%80%E4%B9%88)
 
 ![img](./pic/PixivSettingsView.png)
+</details>
 
 
 ## 二、添加小说，尽情使用
 ### 1.阅读内部搜索
+<details>
+<summary> 🔎 搜索小说 </summary>
+
 ✅ 支持搜索：小说名称、系列小说名称、作者名称、小说标签、小说链接
 
 ![img](./pic/SearchViaLegado.png)
+</details>
 
 
 ### 2.发现更多小说
-- ⭐️ 常规功能
+<details>
+<summary> ⭐️ 常规功能 </summary>
 
-![img](./pic/DiscoverPixiv.jpg)
-
-- 👑 小说排行
-  - ✅ R18小说排行榜
-  - ✅ 一般小说排行榜
-    >（默认隐藏，可在书源设置中修改`SHOW_GENERAL_NOVELS_RANK`)，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
-  
-
-- ❤️ 他人收藏
-  - 发现 - 长按"Pixiv" - 编辑 - 右上角菜单 - 设置源变量
-  - 设置源变量：输入作者ID，一行一个，可添加作者名，保存
-    ```
-    12345 // 作者A
-    67890 # 作者B
-    ```
-  - 发现：长按"Pixiv"，刷新，查看他人收藏
+![img](./pic/DiscoverPixiv.png)
+</details>
 
 
-### 3.添加网址【需要代理】
+<details>
+<summary> 👑 小说排行 </summary>
+
+![img](./pic/DiscoverPixivRanking.png)
+  - ✅ R18小说排行榜(🔞 排行榜)
+  - ✅ 一般小说排行榜(🆗 排行榜)
+    >（默认隐藏，可在书源设置中修改`SHOW_GENERAL_NOVELS_RANK`)，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新
+</details>
+
+
+<details>
+<summary> ❤️ 他人收藏 </summary>
+
+- 发现 - 长按"Pixiv" - 编辑 - 右上角菜单 - 设置源变量
+- ![img](./pic/DiscoverPixivLikes0.png)
+- ![img](./pic/DiscoverPixivLikes1.png)
+- 设置源变量：输入作者ID，一行一个，可添加作者名，保存
+- ![img](./pic/DiscoverPixivLikes2.png)
+- 发现：长按"Pixiv"，刷新，查看他人收藏
+- ![img](./pic/DiscoverPixivLikes3.png)
+- ![img](./pic/DiscoverPixivLikes4.png)
+</details>
+
+
+### 3.添加网址
+<details>
+<summary> 🔗 添加网址 </summary>
 书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
 
 ![img](./pic/AddBookViaUrl1.png)
@@ -168,11 +192,12 @@ https://www.pixiv.net/novel/series/8054073
 Pixiv App 小说分享链接（删掉#号即可正常添加）
 测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
 ```
+</details>
 
 
 ### 4.订阅源添加小说
-导入 Pixiv 订阅源，配合书源使用体验更好
-
+<details>
+<summary> 🏠 订阅源 </summary>
 
 #### 4.1 替代阅读搜索
 受阅读所限，阅读内部搜索不可能完全支持 Pixiv 的全部搜索功能。网站的搜索功能更加全面
@@ -181,7 +206,7 @@ Pixiv App 小说分享链接（删掉#号即可正常添加）
 
 
 #### 4.2 替代阅读发现
-阅读内部浏览器内打开 Pixiv，即可使用 Pixiv 书源未完成的功能，如排行榜等功能
+阅读内部浏览器打开 Pixiv，即可使用 Pixiv 书源未完成的功能，如排行榜等功能
 ![img](./pic/PixivNovelRanking.png)
 
 
@@ -193,10 +218,13 @@ Pixiv App 小说分享链接（删掉#号即可正常添加）
 
 - 添加系列小说到书架
 ![img](./pic/AddBookViaPixiv2.png)
-
+</details>
 
 ## 三、故障排查
 > 详见：[故障排查与处理](./TroubleShoot.md)
+<details>
+<summary> 🐞 故障排查 </summary>
+
 ### 1.确定书源可以正常使用
 书架页面，搜索 `R18` 测试书源能否正常使用，以及R18设置是否开启。
 
@@ -217,6 +245,7 @@ Pixiv App 小说分享链接（删掉#号即可正常添加）
 ### 2.图片无法正常显示
 #### 解决措施：关闭替换净化
 ![img](./pic/ReplaceTurnOff.png)
+</details>
 
 
 ## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供

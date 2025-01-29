@@ -12,6 +12,10 @@
 
 
 ## 3.1 导入订阅源
+以下导入方法任选其一即可
+
+<details>
+<summary> A. 文件导入 </summary>
 
 ### A.文件导入更简单
 #### 1.下载书源/订阅源文件
@@ -27,7 +31,11 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 
 #### 3.导入完成并启用书源/订阅源
 ![img](./pic/InportRssSourceBtsrk.jpg)
+</details>
 
+
+<details>
+<summary> B. 规则订阅 </summary>
 
 ### B.规则订阅易更新
 【**开启代理**】后，复制下方的订阅源链接
@@ -52,7 +60,11 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 **首次点击【订阅规则】 即可导入**
 ![img](./pic/InportRssSourceBtsrk.jpg)
 **导入之后，再次点击则会检查更新**
+</details>
 
+
+<details>
+<summary> C. 网络导入 </summary>
 
 ### C.网络导入也方便
 请【**开启代理**】后，复制下面的【订阅书源】链接
@@ -80,9 +92,13 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ![img](pic/ImportOnlineRssSource4.jpg)
 
 **无法网络导入时，请尝试开启代理，或过段时间重试**
+</details>
 
 
-### D.Schema 链接导入最方便【适用于书源提供方】
+<details>
+<summary> D. Schema 链接导入 </summary>
+
+### D.Schema 链接导入
 大多一键导入书源/订阅源，都是采用了这种方式
 
 #### 0.【书源提供方】为按钮等添加链接
@@ -97,7 +113,8 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 导入 Pixiv 订阅源的连接如下：
 ```
 yuedu://rsssource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
-
+```
+```
 legado://import/rssSource?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 ```
 
@@ -114,3 +131,4 @@ yuedu://rsssource/importonline?src=http://yuedu.miaogongzi.net/shuyuan/miaogongz
 #### 2.选择订阅源并导入
 
 ![img](./pic/InportRssSourceBtsrk.jpg)
+</details>
