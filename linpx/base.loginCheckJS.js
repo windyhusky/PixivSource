@@ -12,27 +12,24 @@ function publicFunc() {
     let u = {}, settings = {}
     java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
     java.log(`手动更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
-    try {
-        settings = String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm))
+    settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+    if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
-    } catch (e) {
+    } else {
+        settings = {}
         settings.SHOW_ORIGINAL_NOVEL_LINK = true
         settings.REPLACE_BOOK_TITLE_MARKS = true
         settings.MORE_INFO_IN_DESCRIPTION = false
         settings.DEBUG = false
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
-    } finally {
-        u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
-        u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
-        u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
-        u.DEBUG = settings.DEBUG // 调试模式
     }
+    u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
+    u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
+    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
+    u.DEBUG = settings.DEBUG // 调试模式
 
     if (u.DEBUG === true) {
-        // java.log(JSON.stringify(settings))
-        // java.log(`SHOW_ORIGINAL_NOVEL_LINK = ${u.SHOW_ORIGINAL_NOVEL_LINK}`)
-        // java.log(`REPLACE_BOOK_TITLE_MARKS = ${u.REPLACE_BOOK_TITLE_MARKS}`)
-        // java.log(`MORE_INFO_IN_DESCRIPTION = ${u.MORE_INFO_IN_DESCRIPTION}`)
+        java.log(JSON.stringify(settings, null, 4))
         java.log(`DEBUG = ${u.DEBUG}`)
     }
 
