@@ -66,6 +66,33 @@ function handNovels(novels){
     return novels
 }
 
+
+function dateFormat(text) {
+    return `${text.slice(0, 10)}`
+}
+function timeTextFormat(text) {
+    return `${text.slice(0, 10)} ${text.slice(11, 19)}`
+}
+
+
+// 小说信息格式化
+function formatNovels(novels) {
+    novels.forEach(novel => {
+        novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
+        novel.tags = novel.tags.join(",")
+        novel.createDate = dateFormat(novel.createDate)
+        novel.updateDate = dateFormat(novel.updateDate)
+        novel.syncDate = dateFormat(novel.syncDate)
+        if (MORE_INFO_IN_DESCRIPTION) {
+            novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n同步：${novel.syncDate}\n简介：${novel.description}`
+        } else {
+            novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}\n
+            同步时间：${novel.syncDate}`
+        }
+    })
+    return novels
+}
+
 (() => {
     let novels = []
     novels = novels.concat(getNovels())
