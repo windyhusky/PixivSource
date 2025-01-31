@@ -69,6 +69,9 @@ function publicFunc() {
     u.urlNovelDetail = (novelId) => {
         return `https://api.furrynovel.com/api/zh/novel/${novelId}`
     }
+    u.urlNovelChapterInfo = (novelId) => {
+        return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter`
+    }
 
 
 
