@@ -11,20 +11,24 @@ function urlIllustOriginal(illustId, order) {
     return illustOriginal
 }
 
+function urlLinpxCoverUrl(pxImgUrl) {
+    return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+}
+
+function urlLinpxNovelDetailed(novelId) {
+    return `https://api.furrynovel.ink/pixiv/novel/${novelId}/cache`
+}
+
 function getContent(res) {
     let content = res.content
-    // 在正文内部添加小说描述
-    if (res.description !== "") {
-        content = res.description + "\n" + "——————————\n".repeat(2) + content
+    // 获取 [uploadedimage:] 的图片链接
+    let hasEmbeddedImages = content.match(RegExp(/\[uploadedimage:(\d+)-?(\d+)]/gm))
+    if (hasEmbeddedImages) {
+        resp = JSON.parse(java.ajax(urlLinpxNovelDetailed(res.source_id)))
+        Object.keys(resp.images).forEach((key) => {
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlLinpxCoverUrl(resp.images[key].origin)}">`)
+        })
     }
-
-    // // 获取 [uploadedimage:] 的图片链接
-    // let hasEmbeddedImages = res.textEmbeddedImages !== undefined && res.textEmbeddedImages !== null
-    // if (hasEmbeddedImages) {
-    //     Object.keys(res.textEmbeddedImages).forEach((key) => {
-    //         content = content.replace(`[uploadedimage:${key}]`, `<img src="${res.textEmbeddedImages[key].urls.original}">`)
-    //     })
-    // }
 
     // 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
     let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
