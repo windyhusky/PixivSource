@@ -72,7 +72,9 @@ function publicFunc() {
     u.urlNovelChapterInfo = (novelId) => {
         return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter`
     }
-
+    u.urlNovelChapterDetail = (novelId, chapterId) => {
+        return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter/${chapterId}`
+    }
 
 
     u.urlPixivNovelUrl = (pixivNovelId) => {
