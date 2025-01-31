@@ -10,7 +10,8 @@ function objParse(obj) {
     })
 }
 
-function getContent(res) {
+(function () {
+    res = JSON.parse(result).data
     let content = res.content
     // 获取 [uploadedimage:] 的图片链接
     let hasEmbeddedImages = content.match(RegExp(/\[uploadedimage:(\d+)-?(\d+)]/gm))
@@ -106,10 +107,6 @@ function getContent(res) {
             }
         }
     }
-    return content
-}
 
-(function () {
-    res = JSON.parse(result).data
-    return getContent(res)
+    return content
 })()

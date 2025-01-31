@@ -10,10 +10,14 @@ function objParse(obj) {
     })
 }
 
-(() => {
-    res = JSON.parse(result).data
-    novel = util.formatNovels(util.handNovels([res]))[0]
+function novelHandler(novel) {
+    novel = util.formatNovels(util.handNovels([novel]))[0]
     novel.detailedUrl = util.urlNovelUrl(novel.id)
     novel.catalogUrl = util.urlNovelChapterInfo(novel.id)
     return novel
+}
+
+(() => {
+    res = JSON.parse(result).data
+    return novelHandler(res)
 })();

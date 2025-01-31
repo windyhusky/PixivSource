@@ -36,7 +36,6 @@ function publicFunc() {
         java.log(`DEBUG = ${u.DEBUG}`)
     }
 
-
     u.debugFunc = (func) => {
         if (util.DEBUG) {
             func()
