@@ -63,6 +63,42 @@ function publicFunc() {
         })
     }
 
+    u.urlNovelUrl = (novelId) => {
+        return `https://furrynovel.com/zh/novel/${novelId}`
+    }
+    u.urlNovelDetail = (novelId) => {
+        return `https://api.furrynovel.com/api/zh/novel/${novelId}`
+    }
+
+
+
+    u.urlPixivNovelUrl = (pixivNovelId) => {
+        return `https://www.pixiv.net/novel/show.php?id=${pixivNovelId}`
+    }
+    u.urlPixivSeriesUrl = (pixivSeriesId) =>{
+        return `https://www.pixiv.net/novel/series/${pixivSeriesId}`
+    }
+    u.urlBiliNovelUrl = (biliNovelId) => {
+        return `https://www.bilibili.com/read/readlist/rl${biliNovelId}/`
+    }
+    u.urlSourceUrl = (source, oneShot, id) => {
+        if (source === "bilibili") {
+            return util.urlBiliNovelUrl(id)
+        }
+        if (source === "pixiv" && oneShot === true) {
+            return util.urlPixivNovelUrl(id)
+        }
+        if (source === "pixiv" && oneShot === false) {
+            return util.urlPixivSeriesUrl(id)
+        }
+    }
+
+    u.dateFormat = function(text) {
+        return `${text.slice(0, 10)}`
+    }
+    u.timeTextFormat = function(text) {
+        return `${text.slice(0, 10)} ${text.slice(11, 19)}`
+    }
 
     util = u
     java.put("util", objStringify(u))
