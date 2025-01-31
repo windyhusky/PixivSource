@@ -76,6 +76,25 @@ function publicFunc() {
         return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter/${chapterId}`
     }
 
+    u.urlLinpxNovelUrl = (novelId) => {
+        return `https://furrynovel.ink/pixiv/novel/${novelId}/cache`
+    }
+    u.urlLinpxNovelDetail = (novelId) => {
+        return `https://api.furrynovel.ink/pixiv/novel/${novelId}/cache`
+    }
+    u.urlLinpxCoverUrl = (pxImgUrl) => {
+        return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+    }
+    u.urlIllustOriginal = (illustId, order) => {
+        // 使用 pixiv.cat 获取插图
+        let illustOriginal = `https://pixiv.re/${illustId}.png`
+        // let illustOriginal = `https://pixiv.nl/${illustId}.png`
+        if (order >= 1) {
+            illustOriginal = `https://pixiv.re/${illustId}-${order}.png`
+            // illustOriginal = `https://pixiv.nl/${illustId}-${order}.png`
+        }
+        return illustOriginal
+    }
 
     u.urlPixivNovelUrl = (pixivNovelId) => {
         return `https://www.pixiv.net/novel/show.php?id=${pixivNovelId}`

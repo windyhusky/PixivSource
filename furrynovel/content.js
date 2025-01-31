@@ -1,22 +1,13 @@
 @js:
+var util = objParse(String(java.get("util")))
 
-function urlIllustOriginal(illustId, order) {
-    // 使用 pixiv.cat 获取插图
-    let illustOriginal = `https://pixiv.re/${illustId}.png`
-    // let illustOriginal = `https://pixiv.nl/${illustId}.png`
-    if (order >= 1) {
-        illustOriginal = `https://pixiv.re/${illustId}-${order}.png`
-        // illustOriginal = `https://pixiv.nl/${illustId}-${order}.png`
-    }
-    return illustOriginal
-}
-
-function urlLinpxCoverUrl(pxImgUrl) {
-    return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
-}
-
-function urlLinpxNovelDetailed(novelId) {
-    return `https://api.furrynovel.ink/pixiv/novel/${novelId}/cache`
+function objParse(obj) {
+    return JSON.parse(obj, (n, v) => {
+        if (typeof v == "string" && v.match("()")) {
+            return eval(`(${v})`)
+        }
+        return v;
+    })
 }
 
 function getContent(res) {
@@ -24,9 +15,9 @@ function getContent(res) {
     // 获取 [uploadedimage:] 的图片链接
     let hasEmbeddedImages = content.match(RegExp(/\[uploadedimage:(\d+)-?(\d+)]/gm))
     if (hasEmbeddedImages) {
-        resp = JSON.parse(java.ajax(urlLinpxNovelDetailed(res.source_id)))
+        resp = JSON.parse(java.ajax(util.urlLinpxNovelDetail(res.source_id)))
         Object.keys(resp.images).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlLinpxCoverUrl(resp.images[key].origin)}">`)
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${util.urlLinpxCoverUrl(resp.images[key].origin)}">`)
         })
     }
 
@@ -41,7 +32,7 @@ function getContent(res) {
             if (temp.length >= 2) {
                 order = temp[1]
             }
-            content = content.replace(`${matched[i]}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
+            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginal(illustId, order)}">`)
         }
     }
 
