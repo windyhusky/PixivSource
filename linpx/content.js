@@ -43,7 +43,7 @@ function objParse(obj) {
     // 替换 Pixiv 分页标记符号 [newpage]
     matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
     if (matched) {
-        for (let i in matched){
+        for (let i in matched) {
             java.log(matched[i])
             content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}`)
         }
@@ -99,7 +99,7 @@ function objParse(obj) {
                 // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             } else {
-                var reg = new RegExp("[\\u4E00-\\u9FFF]+","g");
+                let reg = RegExp("[\\u4E00-\\u9FFF]+", "g");
                 if (reg.test(kana)) {
                     // kana为中文，则替换回《书名号》
                     content = content.replace(`${matchedText}`, `${kanji}《${kana}》`)
