@@ -6,6 +6,28 @@ function urlNovelDetail(novelId) {
     return `https://api.furrynovel.com/api/zh/novel/${novelId}`
 }
 
+function urlPixivNovelUrl(pixivNovelId) {
+    return `https://www.pixiv.net/novel/show.php?id=${pixivNovelId}`
+}
+function urlPixivSeriesUrl(pixivSeriesId) {
+    return `https://www.pixiv.net/novel/series/${pixivSeriesId}`
+}
+function urlBiliNovelUrl(biliNovelId) {
+    return `https://www.bilibili.com/read/readlist/rl${biliNovelId}/`
+}
+
+function urlSourceUrl(source, oneShot, id) {
+    if (source === "bilibili") {
+        return urlBiliNovelUrl(id)
+    }
+    if (source === "pixiv" && oneShot === true) {
+        return urlPixivNovelUrl(id)
+    }
+    if (source === "pixiv" && oneShot === false) {
+        return urlPixivSeriesUrl(id)
+    }
+}
+
 function getNovels(){
     if (JSON.parse(result).code === 200 && JSON.parse(result).count > 0){
         return JSON.parse(result).data
