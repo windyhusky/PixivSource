@@ -1,9 +1,15 @@
 @js:
+let key = String(source.getVariable()).trim()
+if (key === undefined || key === ""){
+    java.longToast("可设置源变量，筛选发现内容")
+} else {
+    java.longToast(`正在搜索：${key}`)
+}
 
 li = [
-    {"热门小说": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=popular`},
-    {"最新小说": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=latest`},
-    {"随便来点": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=random`}
+    {"热门小说": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=popular&tags[]=${key}`},
+    {"最新小说": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=latest&tags[]=${key}`},
+    {"随便来点": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=random&tags[]=${key}`}
 ]
 
 // 格式化发现地址
