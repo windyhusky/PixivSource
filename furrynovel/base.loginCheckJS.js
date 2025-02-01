@@ -66,11 +66,17 @@ function publicFunc() {
     u.urlNovelDetail = (novelId) => {
         return `https://api.furrynovel.com/api/zh/novel/${novelId}`
     }
+    u.urlNovelsDetail = (novelIds) => {
+        return `https://api.furrynovel.com/api/zh/novel?${novelIds.map(v => "ids[]=" + v).join("&")}`
+    }
     u.urlNovelChapterInfo = (novelId) => {
         return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter`
     }
     u.urlNovelChapterDetail = (novelId, chapterId) => {
         return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter/${chapterId}`
+    }
+    u.urlCoverUrl = (pxImgUrl) => {
+        return `https://img.furrynovel.com/?url=${pxImgUrl}`
     }
 
     u.urlLinpxNovelUrl = (novelId) => {
@@ -92,25 +98,15 @@ function publicFunc() {
         }
         return illustOriginal
     }
-
-    u.urlPixivNovelUrl = (pixivNovelId) => {
-        return `https://www.pixiv.net/novel/show.php?id=${pixivNovelId}`
-    }
-    u.urlPixivSeriesUrl = (pixivSeriesId) =>{
-        return `https://www.pixiv.net/novel/series/${pixivSeriesId}`
-    }
-    u.urlBiliNovelUrl = (biliNovelId) => {
-        return `https://www.bilibili.com/read/readlist/rl${biliNovelId}/`
-    }
     u.urlSourceUrl = (source, oneShot, id) => {
         if (source === "bilibili") {
-            return util.urlBiliNovelUrl(id)
+            return `https://www.bilibili.com/read/readlist/rl${id}/`
         }
         if (source === "pixiv" && oneShot === true) {
-            return util.urlPixivNovelUrl(id)
+            return `https://www.pixiv.net/novel/show.php?id=${id}`
         }
         if (source === "pixiv" && oneShot === false) {
-            return util.urlPixivSeriesUrl(id)
+            return `https://www.pixiv.net/novel/series/${id}`
         }
     }
 
