@@ -15,7 +15,7 @@ function novelHandler(novels) {
         novel.chapterId = novel.id
         novel.novelId = baseUrl.match(RegExp(/\d+/))[0]
         novel.chapterName = novel.title = novel.name
-        novel.chapterUrl =  util.urlNovelChapterDetail(novel.novelId, novel.chapterId)
+        novel.chapterUrl =  util.urlNovelChapter(novel.novelId, novel.chapterId)
         novel.chapterInfo = `${novel.created_at}　　${novel.text_count}字`
     })
     return novels

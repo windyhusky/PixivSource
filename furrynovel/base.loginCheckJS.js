@@ -69,11 +69,21 @@ function publicFunc() {
     u.urlNovelsDetail = (novelIds) => {
         return `https://api.furrynovel.com/api/zh/novel?${novelIds.map(v => "ids[]=" + v).join("&")}`
     }
+    u.urlNovelChapterUrl = (novelId, chapterId) => {
+        return `https://furrynovel.com/zh/novel/${novelId}/chapter/${chapterId}`
+    }
     u.urlNovelChapterInfo = (novelId) => {
         return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter`
     }
     u.urlNovelChapterDetail = (novelId, chapterId) => {
         return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter/${chapterId}`
+    }
+    u.urlNovelChapter = (novelId, chapterId) => {
+        if (util.SHOW_ORIGINAL_NOVEL_LINK) {
+            return util.urlNovelChapterUrl(novelId, chapterId)
+        } else {
+            return util.urlNovelChapterDetail(novelId, chapterId)
+        }
     }
     u.urlCoverUrl = (pxImgUrl) => {
         return `https://img.furrynovel.com/?url=${pxImgUrl}`
