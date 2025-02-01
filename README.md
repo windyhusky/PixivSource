@@ -20,21 +20,22 @@
 <details>
 <summary>  Github 导入地址 </summary>
 
-| 名称          | Github 导入网址                                                            |
+| 名称          | Github 导入网址                                                             |
 | ------------ | ------------------------------------------------------------------------- |
 | Pixiv 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
 | Linpx 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
+| 兽人小说站书源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
 | btsrk 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
 | books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
 </details>
 
 
 ## 源状态 & 功能
-| 书源       | 状态 | 获取小说 | 支持P站特性 | 实现阅读功能 |
-| --------- | --- | ------ | ---------- | ------------ |
-| Pixiv     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
-| Linpx     | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
-
+| 书源      | 状态 | 获取小说 | 支持P站特性 | 实现阅读功能 |
+| -------- | --- | ------ | --------- | ---------- |
+| Pixiv    | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
+| Linpx    | ✅ | ☑️ 部分 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
+| 兽人小说站 | ✅ | ☑️ 部分 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 
 <details><summary> 🧩 书源功能 </summary>
 
@@ -109,7 +110,7 @@
 </details>
 
 
-<details><summary> ❤️ 他人收藏 </summary>
+<details><summary> ❤️ 他人收藏（Pixiv 书源）</summary>
 
 - 发现 - 长按"Pixiv" - 编辑 - 右上角菜单 - 设置源变量
 - 设置源变量：输入作者ID，一行一个，可添加作者名，保存
@@ -120,6 +121,12 @@
 - 发现：长按"Pixiv"，刷新，查看他人收藏
 </details>
 
+<details><summary> 🔎 筛选发现（兽人小说站书源）</summary>
+
+- 发现 - 长按"兽人小说站" - 编辑 - 右上角菜单 - 设置源变量  
+- 设置源变量：输入标签，保存  
+- 发现 - 长按"兽人小说站" - 刷新 - 查看他人收藏
+</details>
 
 | 订阅源 | 状态 | 包含内容 | 订阅源 | 状态 | 包含内容 |
 | ----- | ---- | -------|----- | ---- | ------- |
@@ -176,11 +183,10 @@
 
 
 # TODO
-- ~~Linpx 系列小说书源~~
-- ~~兽人控小说站：书源（搜索，发现）~~
+- ~~Linpx 系列小说书源（上游不支持）~~
 
 <details>
-<summary> 已完成 </summary>
+<summary> ✅ 已完成 </summary>
 
 - ✅ Linpx 订阅源
 - ✅ Pixiv 订阅源（使用JS注入，代码来自【聚合搜索】）
@@ -203,5 +209,8 @@
 - ✅ Pixiv 书源：正文尾部加入小说评论
 - ✅ Pixiv & Linpx 书源：搜索链接
 - ✅ Pixiv & Linpx 书源：添加分享链接
+- ✅ 兽人控小说站书源：搜索
+- ✅ 兽人控小说站书源：添加链接
+- ✅ 兽人控小说站书源：发现
 </details>
 
