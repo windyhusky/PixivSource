@@ -1,8 +1,7 @@
-Pixiv 书源订阅（改自【书源订阅@Thomas喲】）（更新时间：2024-11-28）
+Pixiv 书源订阅（更新📆：2025-02-01）
 
-登录更改后要【刷新分类】
+更新后/设置源变量后，要【刷新分类】
 刷新分类，刷新分类，刷新分类
-
 
 『🅿️丨Pixiv 书源』
 https://github.com/windyhusky/PixivSource《⬇️ 一键导入 Pixiv 等书源 ⬇️》◎✍️ windyhusky & DowneyRem &nbsp; 🔗 长期更新◎
@@ -11,7 +10,9 @@ https://github.com/windyhusky/PixivSource《⬇️ 一键导入 Pixiv 等书源 
 
 一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json《Linpx 书源》【https://furrynovel.ink/apple-touch-icon.png】◎🏷️ Linpx &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json《Pixiv Linpx / btsrk 订阅源》◎🏷️Pixiv &nbsp; 🏷️ Linpx &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/furrynovel.json《兽人控小说站书源》【https://www.furrynovel.com/static/icon.png】◎🏷️ 兽人控小说站 &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+
+一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json《Pixiv Linpx / btsrk 订阅源》◎🏷️Pixiv &nbsp; 🏷️ Linpx &nbsp; 🏷️ 兽人控小说站 &nbsp; 🔗 长期更新◎
 
 一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json《书源分享/ books 订阅源》◎🏷️ 订阅源 &nbsp; 🔗 长期更新◎
 
