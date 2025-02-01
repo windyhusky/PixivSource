@@ -10,14 +10,6 @@ function objParse(obj) {
     })
 }
 
-function getNovels() {
-    if (JSON.parse(result).code === 200 && JSON.parse(result).count > 0){
-        return JSON.parse(result).data
-    } else {
-        return []
-    }
-}
-
 (() => {
-    return util.formatNovels(util.handNovels(getNovels()))
+    return util.formatNovels(util.handNovels(util.getNovels()))
 })();

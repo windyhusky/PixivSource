@@ -110,6 +110,14 @@ function publicFunc() {
         }
     }
 
+    u.getNovels = function () {
+        if (JSON.parse(result).code === 200 && JSON.parse(result).count > 0){
+            return JSON.parse(result).data
+        } else {
+            return []
+        }
+    }
+
     u.handNovels = function (novels) {
         novels.forEach(novel =>{
             // novel.id = novel.id
