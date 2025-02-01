@@ -118,7 +118,11 @@ function publicFunc() {
             novel.userName = novel.author.name
             // novel.userId = novel.author.id
             novel.textCount = null
-            novel.latestChapter = novel.latest_chapters[0].name
+            try {
+                novel.latestChapter = novel.latest_chapters[0].name}
+            catch (e) {
+                novel.latestChapter = null
+            }
             novel.description = novel.desc
             novel.coverUrl = novel.cover
             novel.detailedUrl = util.urlNovelDetail(novel.id)
@@ -132,10 +136,10 @@ function publicFunc() {
             novel.updateDate = novel.updated_at
             novel.syncDate = novel.fetched_at
             // novel.status = novel.status
-            if (novel.status !== "publish"){  // suspend
-                java.log(util.urlNovelUrl(novel.id))
-                java.log(novel.sourceUrl)
-            }
+            // if (novel.status !== "publish"){  // suspend
+            //     java.log(util.urlNovelUrl(novel.id))
+            //     java.log(novel.sourceUrl)
+            // }
         })
         return novels
     }
