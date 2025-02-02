@@ -160,13 +160,17 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 <summary> ❤️ 他人收藏 </summary>
 
 - 发现 - 长按"Pixiv" - 编辑 - 右上角菜单 - 设置源变量
-- ![img](./pic/DiscoverPixivLikes0.png)
-- ![img](./pic/DiscoverPixivLikes1.png)
+- ![img](./pic/SetSourceVariable0.png)
+- ![img](./pic/SetSourceVariable1.png)
+- ![img](./pic/SetSourceVariable2.png)
 - 设置源变量：输入作者ID，一行一个，可添加作者名，保存
-- ![img](./pic/DiscoverPixivLikes2.png)
+- ```
+  12345 // 作者A
+  67890 # 作者B
+  ```
 - 发现：长按"Pixiv"，刷新，查看他人收藏
-- ![img](./pic/DiscoverPixivLikes3.png)
-- ![img](./pic/DiscoverPixivLikes4.png)
+- ![img](./pic/SetSourceVariable0.png)
+- ![img](./pic/DiscoverPixivLikes.png)
 </details>
 
 

@@ -42,7 +42,7 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 
 ### B.规则订阅易更新
 #### 1. 打开【订阅】页面，点击【规则订阅】
-![img](./pic/SubscribeEntry.jpg)
+![img](./pic/SubscribeEntry.png)
 
 
 #### 2. 点击加号，粘贴链接，保存订阅

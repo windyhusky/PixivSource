@@ -141,9 +141,10 @@ https://furrynovel.ink/pn/20063566
 
 
 #### 4.2 Pixiv 链接转换
-阅读内部浏览器内打开 Linpx，搜索栏中粘贴 Pixiv 小说链接，进入对应页面，即可添加小说到书架
+阅读内部浏览器内打开 Linpx，搜索栏中粘贴 Pixiv 小说链接，即可进入对应页面
 
 ![img](./pic/LinpxConvertPixivUrl1.png)
+
 ![img](./pic/LinpxConvertPixivUrl2.png)
 
 

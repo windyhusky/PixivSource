@@ -46,7 +46,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ```
 #### 1. 打开【订阅】页面，点击【规则订阅】
-![img](./pic/SubscribeEntry.jpg)
+![img](./pic/SubscribeEntry.png)
 
 #### 2. 点击加号，更改规则类型，粘贴链接，保存订阅
 **注意这里要把【书源】改成【订阅源】**
