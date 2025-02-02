@@ -38,7 +38,9 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
+
 ![img](./pic/InportBookSourceLinpx.png)
+
 **导入之后，再次点击则会检查更新**
 
 > 更多导入方法请查看[如何获取书源？导入书源？](./ImportBookSource.md)
@@ -63,7 +65,9 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
+
 ![img](./pic/InportRssSourceBtsrk.png)
+
 **导入之后，再次点击则会检查更新**
 
 > 更多导入方法请查看[如何导入订阅源](./ImportRssSource.md)

@@ -43,7 +43,9 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
+
 ![img](./pic/InportBookSourcePixiv.jpg)
+
 **【系列书源】与【单篇书源】功能完全一致，导入/启用其中一个即可**
 
 **导入之后，再次点击则会检查更新**
@@ -71,7 +73,9 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
-![img](./pic/InportRssSourceBtsrk.jpg)
+
+![img](./pic/InportRssSourceBtsrk.png)
+
 **导入之后，再次点击则会检查更新**
 
 > 更多导入方法请查看[如何导入订阅源](./ImportRssSource.md)

@@ -1,6 +1,6 @@
 ## 2.导入书源
 
-## ⓪ 书源（订阅源）来源
+## 2.0 书源（订阅源）来源
 - [Legado｜开源阅读 | 频道](https://t.me/legado_channels)
 - [三千书源](https://shuyuan.yiove.com)
 - [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
@@ -10,7 +10,7 @@
 - 其他网络来源
 
 
-## ① 导入书源
+## 2.1 导入书源
 
 请【**开启代理**】后，复制下面的【书源】链接
 ```
@@ -124,7 +124,7 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 </details>
 
 
-## ② 确认启用书源
+## 2.2 确认启用书源
 ![img](https://telegra.ph/file/7b866f92fa9b556818206.png)
 
 转载网站一般无需登录，基本上到这里就可以回到主页面，搜索书名看小说了
@@ -133,20 +133,18 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 
 
 
-## ③ 登录账号
-
-### 【根据需要】开启代理工具
-
+## 2.3 登录账号
+### 0.【根据需要】开启代理工具
 此处略过，请自行学习，**最好开启【全局代理】**
 
-### 登录账号的方法
-#### 1.找到需要登录的书源
+
+### 1.找到需要登录的书源
 **点击右上角的三点菜单，选择【登录】,登录你的账号**
 
 ![img](./pic/PixivLoginIn1.jpg)
 
 
-#### 2.登录你的账号
+### 2.登录你的账号
 登录成功后，点击右上角的对勾，关闭登录页面
 
 ![img](./pic/PixivLoginIn2.jpg)

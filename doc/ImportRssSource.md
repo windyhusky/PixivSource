@@ -30,7 +30,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ![img](pic/OpenInLegado.png)
 
 #### 3.导入完成并启用书源/订阅源
-![img](./pic/InportRssSourceBtsrk.jpg)
+![img](./pic/InportRssSourceBtsrk.png)
 </details>
 
 
@@ -58,7 +58,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
-![img](./pic/InportRssSourceBtsrk.jpg)
+![img](./pic/InportRssSourceBtsrk.png)
 **导入之后，再次点击则会检查更新**
 </details>
 
@@ -87,7 +87,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ![img](pic/ImportOnlineRssSource3.jpg)
 
 #### 4.导入完成并启用订阅源
-![img](./pic/InportRssSourceBtsrk.jpg)
+![img](./pic/InportRssSourceBtsrk.png)
 
 ![img](pic/ImportOnlineRssSource4.jpg)
 
@@ -130,5 +130,5 @@ yuedu://rsssource/importonline?src=http://yuedu.miaogongzi.net/shuyuan/miaogongz
 
 #### 2.选择订阅源并导入
 
-![img](./pic/InportRssSourceBtsrk.jpg)
+![img](./pic/InportRssSourceBtsrk.png)
 </details>

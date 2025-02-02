@@ -9,8 +9,8 @@
 
 > **阅读是一个 免费、开源、可更换小说来源的 无广告 阅读软件**
 > 
-> **阅读只是个特殊的浏览器，通过特定规则【书源/订阅源】访问网页，并进行重新排版**
->
+> **阅读是一个特殊的浏览器，通过特定规则【书源/订阅源】访问网页，并进行重新排版**
+> 
 > **阅读软件本身不提供任何小说/漫画/有声/视频内容，提供内容是所访问的网站**
 
 
@@ -73,10 +73,12 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 #### 4.1 [导入书源](./ImportBookSource.md) & [导入订阅源](./ImportRssSource.md)
 > ##### 1. [Pixiv 书源的导入与使用](./Pixiv.md)
 > ##### 2. [Linpx 书源的导入与使用](./Linpx.md)
-#### 4.2 [设置备份](./WebdavBackup.md)(推荐)
-#### 4.3 搜索小说、查看订阅，畅享阅读
-#### 4.4 [添加远程小说](Remotebooks)，畅享阅读
-#### 4.5 [故障排查与处理](./TroubleShoot.md)
+>  #### 3. [兽人控小说站 书源的导入与使用](./FurryNovel.md)
+> #### 4. 搜索小说、查看订阅，畅享阅读
+
+#### 4.2 [添加远程小说](Remotebooks)，畅享阅读
+#### 4.3 [设置备份](./WebdavBackup.md)
+#### 4.4 [故障排查与处理](./TroubleShoot.md)
 
 
 ### 5.常用功能（转自 [官方使用指南](https://www.yuque.com/legado/wiki/xz) ）
@@ -90,7 +92,6 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 
 ### 6.[官方社群](https://www.yuque.com/legado/wiki/community)
-#### 微信公众号：**开源阅读**、开源阅读软件、阅读Reader
 #### QQ 频道：[阅读](https://pd.qq.com/s/8qxylhj2s)
 #### Telegram：[Legado｜开源阅读](https://t.me/legado_channels) 、 [Legado Beta](https://t.me/Legado_Beta)
 
