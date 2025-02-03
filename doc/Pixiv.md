@@ -1,9 +1,9 @@
-## Pixiv 书源的导入与使用
+# Pixiv 书源的导入与使用
 
-Pixiv 是以插图、漫画、小说为中心的允许 R18 内容的艺术网站
+### [Pixiv](www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 
-### 本书源使用前提
 
+## 本书源使用前提
 1. 使用阅读 3.0 版本
 2. 开启代理【必须】
 3. 导入 Pixiv 的书源、订阅源
@@ -11,35 +11,42 @@ Pixiv 是以插图、漫画、小说为中心的允许 R18 内容的艺术网站
 5. 开启 Pixiv R18 设置
 
 
-## 一、导入书源 & 订阅源
-### 0.下载阅读 3.0 版本
-点击链接，下载安装包并安装，**推荐使用共存版**
+## 〇、下载并安装阅读
+### 1.下载阅读 3.0 版本
+<details>
+<summary> ⬇️ 下载阅读 </summary>
 
+点击链接，下载安装包并安装，**推荐使用共存版**
 > https://miaogongzi.lanzout.com/b01rgkhhe
 > 
 > 最新下载链接请查看 [阅读是什么软件？3.下载阅读](./ReadMe.md#3.下载阅读)
 
 
-### 1.了解阅读功能与用法
+### 2.了解阅读功能与用法
 > 请查看[阅读是什么软件？阅读简介](./ReadMe.md)
+</details>
 
 
-### 2.导入 Pixiv 书源
+## 一、导入书源 & 订阅源
+### 1.导入 Pixiv 书源
+<details>
+<summary> ➕ 导入书源 </summary>
+
 【**开启代理**】后，复制下方的书源链接
 ```
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 ```
 
 
-#### 2.1 打开【订阅】页面，点击【规则订阅】
+#### 1.1 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
 
 
-#### 2.2 点击加号，粘贴链接，保存订阅
+#### 1.2 点击加号，粘贴链接，保存订阅
 ![img](./pic/SubscribeBoookSourcePixiv.jpg)
 
 
-#### 2.3 点击相应订阅规则，导入并启用/更新书源
+#### 1.3 点击相应订阅规则，导入并启用/更新书源
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
@@ -51,25 +58,29 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 **导入之后，再次点击则会检查更新**
 
 > 更多导入方法请查看[如何获取书源？导入书源？](./ImportBookSource.md)
+</details>
 
 
-### 3.导入 Pixiv 订阅源
+### 2.导入 Pixiv 订阅源
+<details>
+<summary> ➕ 导入订阅源 </summary>
+
 【**开启代理**】后，复制下方的订阅源链接
 ```
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 ```
 
-#### 3.1 打开【订阅】页面，点击【规则订阅】
+#### 2.1 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
 
 
-#### 3.2 点击加号，更改规则类型，粘贴链接，保存订阅
+#### 2.2 点击加号，更改规则类型，粘贴链接，保存订阅
 **注意这里要把【书源】改成【订阅源】**
 
 ![img](./pic/SubscribeRssSourceBtsrk.jpg)
 
 
-#### 3.3 点击相应订阅规则，导入并启用/更新书源
+#### 2.3 点击相应订阅规则，导入并启用/更新书源
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
@@ -79,19 +90,21 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 **导入之后，再次点击则会检查更新**
 
 > 更多导入方法请查看[如何导入订阅源](./ImportRssSource.md)
+</details>
 
 
-### 4.登录 Pixiv 账号
+## 二、登录账号
 Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
+### 1. 登录 Pixiv 账号
 
 <details>
 <summary> 🅿️ 登录 Pixiv 账号 </summary>
 
-#### 4.1开启代理工具
+#### 1.1 开启代理工具
 此处略过，请自行学习，**最好开启【全局代理】**
 
 
-#### 4.2登录 Pixiv 账号
+#### 1.2 登录 Pixiv 账号
 **我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录**
 
 ![img](./pic/PixivLoginIn1.jpg)
@@ -104,15 +117,15 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 </details>
 
 
-### 5.开启 Pixiv 的 R18 设置
-#### 如果你之前已经开启过了，则可以跳过这一步
+### 2. 开启 Pixiv 的 R18 设置
+#### 如果你已经开启了，则可以跳过这一步
 <details>
 <summary> 🔞 修改 Pixiv 浏览范围 </summary>
 
 **再次点击登录，滑动屏幕，点击头像，再次点击头像，编辑个人资料**
 
 
-### 5.1 编辑出生年份
+#### 2.1 编辑出生年份
 [Pixiv 个人资料](https://www.pixiv.net/settings/profile) - 编辑个人资料 - 出生年份
 
 出生年份改到：**2000年或2000年之前**，确保你的年龄在20岁及以上
@@ -120,7 +133,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 ![img](./pic/PixivSettingsBirth.png)
 
 
-### 5.2 修改作品浏览范围
+#### 2.2 修改作品浏览范围
 [Pixiv 设置](https://www.pixiv.net/settings/viewing) - 浏览与显示 - 年龄限制作品
 
 根据自己情况选择显示：R18 作品 与 R18G 作品
@@ -131,7 +144,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 </details>
 
 
-## 二、添加小说，尽情使用
+## 三、添加小说，尽情使用
 ### 1.阅读内部搜索
 <details>
 <summary> 🔎 搜索小说 </summary>
@@ -163,18 +176,24 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 <details>
 <summary> ❤️ 他人收藏 </summary>
 
-- 发现 - 长按"Pixiv" - 编辑 - 右上角菜单 - 设置源变量
-- ![img](./pic/SetSourceVariable0.png)
-- ![img](./pic/SetSourceVariable1.png)
-- ![img](./pic/SetSourceVariable2.png)
-- 设置源变量：输入作者ID，一行一个，可添加作者名，保存
-- ```
-  12345 // 作者A
-  67890 # 作者B
-  ```
-- 发现：长按"Pixiv"，刷新，查看他人收藏
-- ![img](./pic/SetSourceVariable0.png)
-- ![img](./pic/DiscoverPixivLikes.png)
+发现 - 长按"Pixiv" - 编辑 - 右上角菜单 - 设置源变量
+
+![img](./pic/SetSourceVariable0.png)
+
+![img](./pic/SetSourceVariable1.png)
+
+![img](./pic/SetSourceVariable2.png)
+
+设置源变量：输入作者ID，一行一个，可添加作者名，保存
+```
+12345 // 作者A
+67890 # 作者B
+```
+发现：长按"Pixiv"，刷新，查看他人收藏
+
+![img](./pic/SetSourceVariable0.png)
+
+![img](./pic/DiscoverPixivLikes.png)
 </details>
 
 
@@ -228,7 +247,8 @@ Pixiv App 小说分享链接（删掉#号即可正常添加）
 ![img](./pic/AddBookViaPixiv2.png)
 </details>
 
-## 三、故障排查
+
+## 四、故障排查
 > 详见：[故障排查与处理](./TroubleShoot.md)
 <details>
 <summary> 🐞 故障排查 </summary>

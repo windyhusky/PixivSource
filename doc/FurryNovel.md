@@ -1,40 +1,47 @@
-## FurryNovel 书源的导入与使用
+# FurryNovel 书源的导入与使用
 
 ### [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
 
-### 本书源使用前提
+## 本书源使用前提
 1. 使用阅读 3.0 版本
 2. ⚠️ 部分区域需要代理（建议先准备好）
 3. 导入 兽人控小说站 的书源、订阅源
 
 
-## 一、导入书源 & 订阅源
-### 0.下载阅读 3.0 版本
-点击链接，下载安装包并安装，**推荐使用共存版**
+## 〇、下载并安装阅读
+### 1.下载阅读 3.0 版本
+<details>
+<summary> ⬇️ 下载阅读 </summary>
 
+点击链接，下载安装包并安装，**推荐使用共存版**
 > https://miaogongzi.lanzout.com/b01rgkhhe
 >
 > 最新下载链接请查看 [阅读是什么软件？3.下载阅读](./ReadMe.md#3.下载阅读)
 
 
-### 1.了解阅读功能与用法
-> 请查看 [阅读是什么软件？阅读简介](./ReadMe.md)
+### 2.了解阅读功能与用法
+> 请查看[阅读是什么软件？阅读简介](./ReadMe.md)
+</details>
 
 
-### 2.导入 兽人控小说站 书源
+## 一、导入书源 & 订阅源
+### 1.导入 兽人控小说站 书源
+<details>
+<summary> ➕ 导入书源 </summary>
+
 复制下方【免代理】书源链接
 ```
 https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json
 ```
-#### 2.1 打开【订阅】页面，点击【规则订阅】
+#### 1.1 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
 
 
-#### 2.2 点击加号，粘贴链接，保存订阅
+#### 1.2 点击加号，粘贴链接，保存订阅
 ![img](./pic/SubscribeBoookSourceLinpx.jpg)
 
 
-#### 2.3 点击相应订阅规则，导入并启用/更新书源
+#### 1.3 点击相应订阅规则，导入并启用/更新书源
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
@@ -44,24 +51,28 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json
 **导入之后，再次点击则会检查更新**
 
 > 更多导入方法请查看[如何获取书源？导入书源？](./ImportBookSource.md)
+</details>
 
 
-### 3.导入 兽人控小说站 订阅源
+### 2.导入 兽人控小说站 订阅源
+<details>
+<summary> ➕ 导入订阅源 </summary>
+
 复制下方【免代理】订阅源链接
 ```
 https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 ```
-#### 3.1 打开【订阅】页面，点击【规则订阅】
+#### 2.1 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
 
 
-#### 3.2 点击加号，更改规则类型，粘贴链接，保存订阅
+#### 2.2 点击加号，更改规则类型，粘贴链接，保存订阅
 **注意这里要把【书源】改成【订阅源】**
 
 ![img](./pic/SubscribeRssSourceBtsrk.jpg)
 
 
-#### 3.3 点击相应订阅规则，导入并启用/更新书源
+#### 2.3 点击相应订阅规则，导入并启用/更新书源
 ![img](./pic/SubscribeHomePage.jpg)
 
 **首次点击【订阅规则】 即可导入**
@@ -71,19 +82,25 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 **导入之后，再次点击则会检查更新**
 
 > 更多导入方法请查看[如何导入订阅源](./ImportRssSource.md)
+</details>
 
 
-### 4.确保 兽人控小说站 可以访问
-订阅 - 点击 兽人控小说站 - 打开 兽人控小说站 订阅源/网页
+## 二、确保网站可以访问
+<details>
+<summary> 🌐 检查网站能否访问 </summary>
 
-- 如果你可以直接打开，那么一切大功告成！
-    - **多数网络下，兽人控小说站 无需代理即可访问**
-    - 兽人控小说站 没有账号体系，**无需登录即可使用**，你不必做过多的操作
-- 如果你 **无法直接打开 兽人控小说站** 则可以：
-    - 切换至其他网络（**更换网络运营商、使用流量或 WIFI**）后再尝试
-    - 开启代理后再尝试
+订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
+- 如果可以直接打开，那么一切大功告成！
+  - **多数网络下，Linpx & 兽人控小说站 无需代理即可访问**
+  - Linpx & 兽人控小说站 没有账号体系，**无需登录即可使用**，不必做过多的操作
 
-## 二、添加小说，尽情使用
+- 如果 **无法直接打开** 则可以：
+  - 切换至其他网络（**更换网络运营商、使用流量或 WIFI**）后再尝试
+  - 开启代理后再尝试
+</details>
+
+
+## 三、添加小说，尽情使用
 ### 1.阅读内部搜索
 <details>
 <summary> 🔎 搜索小说 </summary>
@@ -106,16 +123,21 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 <details><summary> 🔎 筛选发现 </summary>
 
-- 发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量
-- ![img](./pic/SetSourceVariable0.png)
-- ![img](./pic/SetSourceVariable1.png)
-- ![img](./pic/SetSourceVariable2.png)
-- 设置源变量：输入标签，保存
-- ```
-  龙
-  ```
-- 发现 - 长按 **"兽人小说站"** - 刷新 - 查看筛选后的小说
-- ![img](./pic/DiscoverFurryNovelSort.png)
+发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量
+
+![img](./pic/SetSourceVariable0.png)
+
+![img](./pic/SetSourceVariable1.png)
+
+![img](./pic/SetSourceVariable2.png)
+
+设置源变量：输入标签，保存
+```
+龙
+```
+发现 - 长按 **"兽人小说站"** - 刷新 - 查看筛选后的小说
+
+![img](./pic/DiscoverFurryNovelSort.png)
 </details>
 
 
@@ -168,7 +190,7 @@ https://api.furrynovel.com/api/zh/novel/8312
 </details>
 
 
-## 三、故障排查
+## 四、故障排查
 > 详见：[故障排查与处理](./TroubleShoot.md)
 <details>
 <summary> 🐞 故障排查 </summary>

@@ -158,10 +158,13 @@
 <details>
 <summary> 使用教程 </summary>
 
-> #### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
-> #### 1. [Pixiv 书源的导入与使用](./doc/Pixiv.md)
-> #### 2. [Linpx 书源的导入与使用](./doc/Linpx.md)
-> #### 3. [兽人控小说站 书源的导入与使用](./doc/FurryNovel.md)
+> ### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
+> ### 1. [阅读使用教程（太长不看版）](./doc/TooLongToRead.md)
+>> #### 1. [Pixiv 书源的导入与使用](./doc/Pixiv.md)
+>> #### 2. [Linpx 书源的导入与使用](./doc/Linpx.md)
+>> #### 3. [兽人控小说站 书源的导入与使用](./doc/FurryNovel.md)
+> ### 2. [远程书籍](./doc/RemoteBooks.md)
+> ### 3. [Webdav 备份](./doc/WebdavBackup.md)
 #### 此处教程由 [@FurryReading](https://t.me/FurryReading) 提供
 </details>
 
