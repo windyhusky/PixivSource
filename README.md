@@ -15,6 +15,7 @@
 | 名称          | 免代理导入网址                                                         |
 | -------------| ------------------------------------------------------------------- |
 | import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
+> **[使用 import 订阅源导入相关书源](./doc/Import.md)**
 
 
 <details>
@@ -27,6 +28,9 @@
 | 兽人小说站书源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
 | btsrk 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
 | books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
+
+> **[导入书源](./doc/ImportBookSource.md)** &
+> **[导入订阅源](./doc/ImportRssSource.md)**
 </details>
 
 
@@ -163,16 +167,17 @@
 
 
 ## 免责声明
-<details><summary> 免责声明 </summary>
-
 1. 开源阅读 Legado 是一个做了很多阅读功能的浏览器
 2. 书源(及订阅源)是浏览器向网站请求数据、处理数据的一套方法
 3. 使用开源阅读 Legado 阅读小说，相当于访问相关网页阅读小说
 4. 开源阅读 Legado 内的作品数据均来自书源内的网站，作品版权归原作者或站方所有
 5. 如有版权问题，请找到书源内的网站，向站方投诉
-</details>
 
-# 鸣谢
+
+## 鸣谢
+<details>
+<summary> 鸣谢 </summary>
+
 - 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)
@@ -181,9 +186,10 @@
 - 感谢 [书源订阅(非官方仓库)](https://gitee.com/feiniao6/yd) 提供的导入书源、订阅源的方法
 - 感谢 [Pixiv-utils](https://github.com/AgMonk/pixiv-utils) 及 [Pixiv go 客户端](https://github.com/NateScarlet/pixiv) 整理的 Pixiv Web API
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
+</details>
 
 
-# TODO
+## TODO
 - ~~Linpx 系列小说书源（上游不支持）~~
 
 <details>
@@ -214,4 +220,8 @@
 - ✅ 兽人控小说站书源：添加链接
 - ✅ 兽人控小说站书源：发现
 </details>
+
+
+## Stargazers over time
+[![Stargazers over time](https://starchart.cc/windyhusky/PixivSource.svg?variant=adaptive)](https://starchart.cc/windyhusky/PixivSource)
 

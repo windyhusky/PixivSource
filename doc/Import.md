@@ -9,17 +9,17 @@
 ```
 https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
 ```
-#### 1.1 打开【订阅】页面，点击【规则订阅】
+#### 1. 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
 
 
-#### 1.2 点击加号，更改规则类型，粘贴链接，保存订阅
+#### 2. 点击加号，更改规则类型，粘贴链接，保存订阅
 **注意这里要把【书源】改成【订阅源】**
 
 ![img](./pic/SubscribeRssSourceImport.png)
 
 
-#### 1.3 点击相应订阅规则，导入并启用/更新书源
+#### 3. 点击相应订阅规则，导入并启用/更新书源
 ![img](./pic/SubscribeHomePage.png)
 
 **首次点击【订阅规则】 即可导入**
@@ -43,7 +43,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
 <details>
 <summary> 2.1 Pixiv【需要代理】</summary>
 
-#### 2.1 导入 Pixiv 相关资源
+#### 1. 导入 Pixiv 相关资源
 - 点击 Pixiv 书源，导入书源
 
 ![img](./pic/InportBookSourcePixiv.jpg)
@@ -61,7 +61,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
 <details>
 <summary> 2.2 Linpx 【无需代理】</summary>
 
-#### 2.2 导入 Linpx 相关资源
+#### 2. 导入 Linpx 相关资源
 - 点击 Linpx 书源，导入书源
 
 ![img](./pic/InportBookSourceLinpx.png)
@@ -75,7 +75,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
 <details>
 <summary> 2.3 兽人控小说站 【无需代理】</summary>
 
-#### 2.3 导入 兽人控小说站 相关资源
+#### 3. 导入 兽人控小说站 相关资源
 - 点击 Linpx 书源，导入书源
 
 ![img](./pic/InportBookSourceLinpx.png)
