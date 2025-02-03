@@ -29,6 +29,8 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 
 
 #### 2.使用阅读打开
+点击书源，选择用阅读打开
+
 ![img](pic/OpenInLegado.png)
 
 
@@ -124,13 +126,39 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 </details>
 
 
+<details>
+<summary> E. 书源订阅（ import 订阅源） </summary>
+
+### E.书源订阅（ import 订阅源）
+如果你已经导入了【书源订阅】（ import 订阅源），则可以用其导入书源
+
+#### 1.打开“书源订阅”
+点击 “书源订阅”（ import 订阅源）
+
+![img](./pic/RssSourceImportLogo.png)
+
+点击相应书源/订阅源，导入该源
+ 
+![img](./pic/RssSourceImportWebpage.png)
+
+
+#### 2.导入相关资源
+点击书源，导入书源
+
+![img](./pic/InportBookSourceLinpx.png)
+
+点击订阅源，导入订阅源
+
+![img](./pic/InportRssSourceBtsrk.png)
+</details>
+
+
 ## 2.2 确认启用书源
 ![img](https://telegra.ph/file/7b866f92fa9b556818206.png)
 
 转载网站一般无需登录，基本上到这里就可以回到主页面，搜索书名看小说了
 
 **正版付费网站，以及一些登陆后才能看所有小说的网站，都需要登录账号**
-
 
 
 ## 2.3 登录账号

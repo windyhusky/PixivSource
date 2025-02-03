@@ -27,6 +27,8 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ```
 
 #### 2.使用阅读打开
+点击书源，选择用阅读打开
+
 ![img](pic/OpenInLegado.png)
 
 #### 3.导入完成并启用书源/订阅源
@@ -129,6 +131,33 @@ yuedu://rsssource/importonline?src=http://yuedu.miaogongzi.net/shuyuan/miaogongz
 ![img](pic/OpenInLegado.png)
 
 #### 2.选择订阅源并导入
+
+![img](./pic/InportRssSourceBtsrk.png)
+</details>
+
+
+<details>
+<summary> E. 书源订阅（ import 订阅源） </summary>
+
+### E.书源订阅（ import 订阅源）
+如果你已经导入了【书源订阅】（ import 订阅源），则可以用其导入书源
+
+#### 1.打开“书源订阅”
+点击 “书源订阅”（ import 订阅源）
+
+![img](./pic/RssSourceImportLogo.png)
+
+点击相应书源/订阅源，导入该源
+
+![img](./pic/RssSourceImportWebpage.png)
+
+
+#### 2.导入相关资源
+点击书源，导入书源
+
+![img](./pic/InportBookSourceLinpx.png)
+
+点击订阅源，导入订阅源
 
 ![img](./pic/InportRssSourceBtsrk.png)
 </details>
