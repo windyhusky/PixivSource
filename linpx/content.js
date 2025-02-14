@@ -10,10 +10,9 @@ function objParse(obj) {
     })
 }
 
-(function (res) {
-    res = util.getNovelRes(result)
+function getContent(res) {
     let content = res.content
-    if (res.desc !== "") {
+    if (util.SHOW_NOVEL_COMMENTS === true && res.desc !== "") {
         content = res.desc + "\n" + "——————————\n".repeat(2) + content
     }
 
@@ -111,6 +110,9 @@ function objParse(obj) {
             }
         }
     }
-
     return content
-})(result)
+}
+
+(function () {
+    return getContent(util.getNovelRes(result))
+})()
