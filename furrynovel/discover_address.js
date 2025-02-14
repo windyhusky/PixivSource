@@ -1,15 +1,24 @@
 @js:
-let key = String(source.getVariable()).trim()
-if (key === undefined || key === ""){
+let key = []
+let keyword = String(source.getVariable()).replace("#", "")
+if (keyword.includes("\n")) {
+    keyword = keyword.replace(RegExp(/\s+/g), "\n")
+    key = keyword.split("\n")
+}
+if (keyword.includes(" ")) {
+    keyword = keyword.replace(RegExp(/\s+/g), " ")
+    key = keyword.split(" ")
+}
+if (key.length === 0){
     java.longToast("可设置源变量，筛选发现内容")
 } else {
-    java.longToast(`正在搜索：${key}`)
+    java.longToast(`正在搜索：${key.join("、")}`)
 }
 
-li = [
-    {"热门小说": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=popular&tags[]=${key}`},
-    {"最新小说": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=latest&tags[]=${key}`},
-    {"随便来点": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=random&tags[]=${key}`}
+let li = [
+    {"热门小说": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=popular&${key.map(v => "tags[]=" + v).join("&")}`},
+    {"最新小说": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=latest&${key.map(v => "tags[]=" + v).join("&")}`},
+    {"随便来点": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=random&${key.map(v => "tags[]=" + v).join("&")}`}
 ]
 
 // 格式化发现地址
