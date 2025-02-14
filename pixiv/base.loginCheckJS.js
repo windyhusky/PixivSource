@@ -380,6 +380,14 @@ function publicFunc() {
     u.timeTextFormat = function (text) {
         return `${text.slice(0, 10)} ${text.slice(11, 19)}`
     }
+    u.sleep = function (time) {
+        let endTime = new Date().getTime() + time
+        while(true){
+            if (new Date().getTime() > endTime){
+                return;
+            }
+        }
+    }
 
     util = u
     java.put("util", objStringify(u))
