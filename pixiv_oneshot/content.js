@@ -13,7 +13,7 @@ function objParse(obj) {
 function getContent(res) {
     let content = res.content
     // 在正文内部添加小说描述
-    if (res.description !== "") {
+    if (util.SHOW_NOVEL_COMMENTS === true && res.description !== "") {
         content = res.description + "\n" + "——————————\n".repeat(2) + content
     }
 
@@ -110,7 +110,12 @@ function getContent(res) {
             }
         }
     }
-    return content + getComment(res)
+
+    if (util.SHOW_NOVEL_COMMENTS === true) {
+        return content + getComment(res)
+    } else {
+        return content
+    }
 }
 
 function getComment(res) {

@@ -19,6 +19,8 @@
 "MORE_INFO_IN_DESCRIPTION": false,
 "SHOW_ORIGINAL_NOVEL_LINK": true,
 "REPLACE_BOOK_TITLE_MARKS": true,
+"SHOW_NOVEL_CAPTIONS": true,
+"SHOW_NOVEL_COMMENTS": true,
 "DEBUG": false
 }
 
@@ -30,6 +32,10 @@
 // 目录：显示源链接，但会增加请求次数
 // REPLACE_BOOK_TITLE_MARKS
 // 正文：注音内容为汉字时，替换为书名号
+// SHOW_NOVEL_CAPTIONS
+// 正文：章首显示小说描述
+// SHOW_NOVEL_COMMENTS
+// 正文：章尾显示小说评论
 // DEBUG
 // 调试模式
 

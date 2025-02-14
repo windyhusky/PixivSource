@@ -99,6 +99,8 @@
 | 简介显示更多信息　 | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION` | 详情 |
 | 显示小说源链接　　 | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK` | 目录 |
 | 恢复被替换的书名号 | ✅ 开启 | `REPLACE_BOOK_TITLE_MARKS` | 正文 |
+| 章首显示小说描述　 | ✅ 开启 | `SHOW_NOVEL_CAPTIONS`      | 正文 |
+| 章尾显示小说评论　 | ✅ 开启 | `SHOW_NOVEL_COMMENTS`      | 正文 |
 | 调试模式　　　　　 | ⭕ 关闭 | `DEBUG`                    | 全局 |
 - 自定义设置：编辑书源 - 基本 - 变量说明 - 修改并保存
 - 修改时，请修改`true` 为 `false`，或相反
@@ -108,6 +110,8 @@
     "MORE_INFO_IN_DESCRIPTION": false,
     "SHOW_ORIGINA4L_NOVEL_LINK": true,
     "REPLACE_BOOK_TITLE_MARKS": true,
+    "SHOW_NOVEL_CAPTIONS": true,
+    "SHOW_NOVEL_COMMENTS": true,
     "DEBUG": false
 }
 ```
@@ -129,6 +133,9 @@
 
 - 发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量  
 - 设置源变量：输入标签，保存  
+```
+R18 
+```
 - 发现 - 长按 **"兽人小说站"** - 刷新 - 查看筛选后的小说
 </details>
 
