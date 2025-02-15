@@ -1,0 +1,32 @@
+name: Refresh Sources
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+  
+jobs:
+  echoAddress:
+    name: Echo Test Address
+    runs-on: ubuntu-latest
+    steps:
+      - name: test address
+        run: echo "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json"
+
+  purgeCache:
+    name: Purge Jsdelivr Cache
+    runs-on: ubuntu-latest
+    needs: echoAddress
+    steps:
+    - name: Linpx BookSource
+      run: echo "Purge Linpx BookSource Cache"
+
+    - name: Purge Jsdelivr Cache
+      run: |
+        result=$(curl -s https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+        if echo $result |grep -q 'success.*true'; then
+          echo "Linpx 书源 jsdelivr 缓存更新成功"
+        else
+          echo $result
+        fi
