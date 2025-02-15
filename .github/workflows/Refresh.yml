@@ -40,19 +40,6 @@ jobs:
         fi
 
   purgeCache3:
-    name: Purge FurryNovel Cache
-    runs-on: ubuntu-latest
-    steps:
-      - name: Purge Jsdelivr Cache
-        run: |
-          result=$(curl -s https://purge.jsdelivr.net/gh/windyhusky/PixivSource@main/furrynovel.json)
-          if echo $result |grep -q 'finished'; then
-            echo "FurryNovel 书源 jsdelivr 缓存更新成功"
-          else
-            echo $result
-          fi
-
-  purgeCache4:
     name: Purge BTSRK Cache
     runs-on: ubuntu-latest
     steps:
@@ -65,7 +52,7 @@ jobs:
             echo $result
           fi
 
-  purgeCache5:
+  purgeCache4:
     name: Purge Books Cache
     runs-on: ubuntu-latest
     steps:
@@ -78,7 +65,7 @@ jobs:
             echo $result
           fi
 
-  purgeCache6:
+  purgeCache5:
     name: Purge Import Cache
     runs-on: ubuntu-latest
     steps:
@@ -91,7 +78,7 @@ jobs:
             echo $result
           fi
 
-  purgeCache7:
+  purgeCache6:
     name: Purge Normal Cache
     runs-on: ubuntu-latest
     steps:
