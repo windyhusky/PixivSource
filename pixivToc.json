@@ -1,0 +1,10 @@
+[
+  {
+    "enable": true,
+    "example": "[newpage]\n[chapter:章节标题]",
+    "id": 1739548800251,
+    "name": "Pixiv 标记符号",
+    "rule": "(\\[newpage\\])|(?<=[\\s　]{0,4})\\[chapter:.{1,30}\\][ 　]{0,4}$",
+    "serialNumber": -1
+  }
+]
