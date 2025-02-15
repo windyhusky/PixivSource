@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'ver*.*.*'
+    paths:
+      - "**.json"
+  release:
+    types: [created, edited, published]
   workflow_dispatch:
   
 jobs:
