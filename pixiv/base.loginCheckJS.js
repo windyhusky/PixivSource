@@ -198,7 +198,11 @@ function publicFunc() {
                 }
                 novel.textCount = novel.textLength
                 novel.description = novel.caption
-                novel.coverUrl = novel.cover.urls["480mw"]
+                try {
+                    novel.coverUrl = novel.cover.urls["480mw"]
+                } catch (e) { // 可能 novel.cover === null
+                    novel.coverUrl = ""
+                }
                 if (novel.createDate === undefined) {  // 兼容搜索作者获取获取系列小说
                     novel.createDate = novel.createDateTime
                     novel.updateDate = novel.updateDateTime
@@ -237,9 +241,14 @@ function publicFunc() {
                     firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
                     novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
                 } catch (e) {  // 防止系列首篇无权限获取
-                    firstNovel = util.getAjaxJson(util.urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
-                    novel.id = novel.firstNovelId = firstNovel.id
-                    novel.tags = novel.tags.concat(firstNovel.tags)
+                    try {
+                        firstNovel = util.getAjaxJson(util.urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
+                        novel.id = novel.firstNovelId = firstNovel.id
+                        novel.tags = novel.tags.concat(firstNovel.tags)
+                    } catch (e) { // 防止系列首篇无权限获取
+                        firstNovel = {}
+                        firstNovel.description = ""
+                    }
                 }
                 novel.tags.unshift("长篇")
                 novel.tags = Array.from(new Set(novel.tags))

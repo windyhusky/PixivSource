@@ -53,9 +53,14 @@ function seriesHandler(res) {
         firstNovel = util.getAjaxJson(util.urlNovelDetailed(info.novelId)).body
         info.tags = info.tags.concat(firstNovel.tags.tags.map(item => item.tag))
     } catch (e) {  // 防止系列首篇无权限获取
-        firstNovel = util.getAjaxJson(util.urlSeriesNovels(info.seriesId, 30, 0)).body.thumbnails.novel[0]
-        info.id = info.novelId = firstNovel.id
-        info.tags = info.tags.concat(firstNovel.tags)
+        try {
+            firstNovel = util.getAjaxJson(util.urlSeriesNovels(info.seriesId, 30, 0)).body.thumbnails.novel[0]
+            info.id = info.novelId = firstNovel.id
+            info.tags = info.tags.concat(firstNovel.tags)
+        } catch (e) {
+            firstNovel = {}
+            firstNovel.description = ""
+        }
     }
     info.tags = Array.from(new Set(info.tags))
     if (info.description === "") {
