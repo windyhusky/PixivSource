@@ -5,16 +5,22 @@
 </div>
 
 
-### Pixiv 等网站的 [阅读 3.0 ](https://github.com/gedoor/legado) 书源
-- [Pixiv](https://www.pixiv.net/) 是一个以插画、漫画、小说为中心的艺术网站
-- [Linpx](https://www.furrynovel.ink) 收录了 Pixiv 的大部分兽人小说与部分非兽人小说
-- [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
+### 源起：为了更好的阅读体验
+- Pixiv 官方 APP 阅读功能不够完善，阅读体验不佳
+- 多数第三方 APP 没有优化过小说阅读功能
+- [阅读 3.0 ](https://github.com/gedoor/legado) 可以自定义书源，阅读体验较好
 
 
-## 快速导入
+### 支持网站：
+- [Pixiv](https://www.pixiv.net)，一个以插画、漫画、小说为中心的艺术网站
+- [Linpx](https://www.furrynovel.ink)，收录了 Pixiv 的大部分兽人小说与部分非兽人小说
+- [兽人控小说站](https://www.furrynovel.com)，收录了 Pixiv, Bilibili 的大部分兽人小说
+
+
+## 快速导入 => [导入订阅源](./doc/ImportRssSource.md)
 | 名称          | 免代理导入网址                                                         |
 | -------------| ------------------------------------------------------------------- |
-| import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
+| Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
 - 免代理导入无延迟（使用 Github Action 自动刷新 jsdelivr CDN 缓存）
 > **[使用 import 订阅源导入相关书源](./doc/Import.md)**
 
@@ -27,8 +33,8 @@
 | Pixiv 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
 | Linpx 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
 | 兽人小说站书源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
-| btsrk 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
-| books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
+| BTSRK 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
+| Books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
 
 > **[导入书源](./doc/ImportBookSource.md)** &
 > **[导入订阅源](./doc/ImportRssSource.md)**
@@ -61,7 +67,7 @@
   
   - ✅ R18 小说排行榜
   - ✅ 一般小说排行榜 
-    >（默认隐藏，可在书源设置中修改`SHOW_GENERAL_NOVELS_RANK`)，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
+    > 默认隐藏，可在书源设置中修改`SHOW_GENERAL_NOVELS_RANK`，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
   
 - <details><summary> ✅ 🔧 小说工具（标记符号） </summary>
@@ -105,6 +111,7 @@
 | 调试模式　　　　　 | ⭕ 关闭 | `DEBUG`                    | 全局 |
 - 自定义设置：编辑书源 - 基本 - 变量说明 - 修改并保存
 - 修改时，请修改`true` 为 `false`，或相反
+- 更改排行榜设置后，需要刷新分类（发现：长按"Pixiv"，刷新）
 ```
 {
     "SHOW_GENERAL_NOVELS_RANK": false,
@@ -142,9 +149,9 @@
 </details>
 
 
-| 订阅源 | 状态 | 包含内容 | 订阅源 | 状态 | 包含内容 |
-| ----- | ---- | -------|----- | ---- | ------- |
-| btsrk | ✅ | 1️⃣ [Pixiv 小说](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | ✅ | 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
+| 订阅源 | 包含内容 | 订阅源 | 包含内容 |
+| ----- | -------|----- | ------- |
+| btsrk | 1️⃣ [Pixiv 小说](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
 - import 订阅源：一键导入本项目所整理提供的书源、订阅源
 
@@ -154,13 +161,15 @@
 
 | 名称          | Github 导入网址                                                            |
 | ------------ | ------------------------------------------------------------------------- |
-| 通用书源(normal 书源)  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |
-| 聚合搜索(books 订阅源)  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
-| 书源订阅(import 订阅源) | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
+| 通用书源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |
+| 聚合搜索 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
+| 书源订阅 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
+| Pixiv 目录规则 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json |
 
-- **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇 为网文网站编写的通用书源，用搜索引擎获取全网小说，建议配合【**聚合搜索**】使用
+- **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇 为网文网站编写的通用书源，用搜索引擎获取全网小说。
 - **[聚合搜索](https://legado.cn/thread-3723-1-1.html)** ：是不世玄奇 制作的聚合多个搜索引擎的订阅源，需要配合 **[通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用。(集入 books 订阅源)
-- **[书源订阅](https://gitee.com/feiniao6/yd)** ：是Thomas喲 制作的第三方规则订阅，旨在快速导入书源/订阅源。(部分修改)
+- **[书源订阅](https://gitee.com/feiniao6/yd)** ：是Thomas喲 制作的第三方规则订阅，旨在快速导入书源/订阅源。(已修改)
+- **[Pixiv 目录规则](https://akaito.xyz/post/Legado)** ：是[一片痴心俱成灰](https://akaito.xyz/post/Legado) 为 Pixiv 本地小说制作的目录规则
 </details>
 
 
@@ -170,10 +179,10 @@
 
 > ### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
 > ### 1. [阅读使用教程（太长不看版）](./doc/TooLongToRead.md)
->> #### 1. [Pixiv 书源的导入与使用](./doc/Pixiv.md)
->> #### 2. [Linpx 书源的导入与使用](./doc/Linpx.md)
->> #### 3. [兽人控小说站 书源的导入与使用](./doc/FurryNovel.md)
-> ### 2. [远程书籍](./doc/RemoteBooks.md)
+>> #### 1.1 [Pixiv 书源的导入与使用](./doc/Pixiv.md)
+>> #### 1.2 [Linpx 书源的导入与使用](./doc/Linpx.md)
+>> #### 1.3 [兽人控小说站 书源的导入与使用](./doc/FurryNovel.md)
+> ### 2. [远程书籍设置](./doc/RemoteBooks.md)
 > ### 3. [Webdav 备份](./doc/WebdavBackup.md)
 #### 此处教程由 [@FurryReading](https://t.me/FurryReading) 提供
 </details>
