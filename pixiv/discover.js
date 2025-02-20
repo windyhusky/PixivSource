@@ -16,23 +16,48 @@ function handlerFactory() {
     if (cookie === null || cookie === undefined || cookie === "") {
         return handlerNoLogin()
     }
-    if (baseUrl.indexOf("/bookmark") !== -1) {
+    if (baseUrl.includes("/bookmark")) {
         return handlerBookMarks()
     }
-    if (baseUrl.indexOf("/top") !== -1) {
+    if (baseUrl.includes("/top")) {
         return handlerRecommend()
     }
-    if (baseUrl.indexOf("/follow_latest") !== -1) {
+    if (baseUrl.includes("/follow_latest")) {
         return handlerFollowLatest()
     }
-    if (baseUrl.indexOf("/watch_list") !== -1) {
+    if (baseUrl.includes("/watch_list")) {
         return handlerWatchList()
     }
-    if (baseUrl.indexOf("/ranking") !== -1) {
+    if (baseUrl.includes("/discovery")) {
+        return handlerDiscovery()
+    }
+    if (baseUrl.includes("/new")) {
+        return handlerDiscovery()
+    }
+    if (baseUrl.includes("/commission/")) {
+        return handlerFollowLatest()
+    }
+    if (baseUrl.includes("/user_event/portal")) {
+        return handlerFollowLatest()
+    }
+    if (baseUrl.includes("/genre")) {
+        return handlerWatchList()
+    }
+    // 正则匹配网址内容
+    if (baseUrl.includes("/ranking")) {
         return handlerRanking()
     }
-    if (baseUrl.indexOf("/discovery") !== -1) {
-        return handlerDiscovery()
+    if (baseUrl.includes("/marker_all")) {
+        return handlerRanking()
+    }
+    if (baseUrl.includes("/editors_picks")) {
+        return handlerRegexNovels()
+    }
+    if (baseUrl.includes("https://www.pixiv.net")) {
+        return handlerRegexNovels()
+    }
+    else {
+        return []
     }
 }
 
