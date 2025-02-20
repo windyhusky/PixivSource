@@ -57,17 +57,34 @@
   
   - ✅ 关注作者（最新小说）
   - ✅ 追更列表
-  - ✅ 推荐小说（电脑网页）
-  - ✅ 发现小说（手机网页）
+  - ✅ 推荐小说
+  - ✅ 发现小说
   - ✅ 收藏小说（自己 & 他人）
+  - ✅ 小说书签
+  - ✅ 首页推荐
+  - ✅ 编辑部推荐
   - ✅ 章节评论
+  </details>
+
+- <details><summary> ✅ 🆕 最新 企划 约稿 </summary>
+
+  - ✅ R18 小说
+  - ✅ 一般小说
+    >（默认隐藏，可在书源设置中修改 `SHOW_GENERAL_NOVELS_NEW` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
 
 - <details><summary> ✅ 👑 小说排行 </summary>
   
   - ✅ R18 小说排行榜
   - ✅ 一般小说排行榜 
-    > 默认隐藏，可在书源设置中修改`SHOW_GENERAL_NOVELS_RANK`，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
+    > (默认隐藏，可在书源设置中修改 `SHOW_GENERAL_NOVELS_RANK` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
+  </details>
+
+- <details><summary> ✅ 🔥 原创热门 </summary>
+
+  - ✅ R18 小说热门分类
+  - ✅ 一般小说热门分类
+    >（默认隐藏，可在书源设置中修改 `SHOW_GENERAL_NOVELS_GENRE` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
   
 - <details><summary> ✅ 🔧 小说工具（标记符号） </summary>
@@ -100,23 +117,26 @@
 
 <details><summary> ⚙️ 书源设置 </summary>
 
-| 书源设置         | 默认状态 | 常量名称                    | 作用 |
-| --------------- | ------ | -------------------------- | --- |
-| 显示一般小说排行榜 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK` | 发现 |
-| 简介显示更多信息　 | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION` | 详情 |
-| 显示小说源链接　　 | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK` | 目录 |
-| 恢复被替换的书名号 | ✅ 开启 | `REPLACE_BOOK_TITLE_MARKS` | 正文 |
-| 章首显示小说描述　 | ✅ 开启 | `SHOW_NOVEL_CAPTIONS`      | 正文 |
-| 章尾显示小说评论　 | ✅ 开启 | `SHOW_NOVEL_COMMENTS`      | 正文 |
-| 调试模式　　　　　 | ⭕ 关闭 | `DEBUG`                    | 全局 |
+| 书源设置           | 默认状态 | 常量名称                    | 作用 |
+| ---------------- | ------ | -------------------------- | --- |
+| 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_NEW`   | 发现 |
+| 排行榜显示一般小说   | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK`  | 发现 |
+| 热门分类显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_GENRE` | 发现 |
+| 简介显示更多信息　   | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION`  | 详情 |
+| 显示小说源链接　　   | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK`  | 目录 |
+| 恢复被替换的书名号   | ✅ 开启 | `REPLACE_BOOK_TITLE_MARKS`  | 正文 |
+| 章首显示小说描述　   | ✅ 开启 | `SHOW_NOVEL_CAPTIONS`       | 正文 |
+| 章尾显示小说评论　   | ✅ 开启 | `SHOW_NOVEL_COMMENTS`       | 正文 |
+| 调试模式　　　　　   | ⭕ 关闭 | `DEBUG`                     | 全局 |
 - 自定义设置：编辑书源 - 基本 - 变量说明 - 修改并保存
 - 修改时，请修改`true` 为 `false`，或相反
-- 更改排行榜设置后，需要刷新分类（发现：长按"Pixiv"，刷新）
 ```
 {
+    "SHOW_GENERAL_NOVELS_NEW": false,
     "SHOW_GENERAL_NOVELS_RANK": false,
+    "SHOW_GENERAL_NOVELS_GENRE": false,
     "MORE_INFO_IN_DESCRIPTION": false,
-    "SHOW_ORIGINA4L_NOVEL_LINK": true,
+    "SHOW_ORIGINAL_NOVEL_LINK": true,
     "REPLACE_BOOK_TITLE_MARKS": true,
     "SHOW_NOVEL_CAPTIONS": true,
     "SHOW_NOVEL_COMMENTS": true,
@@ -150,7 +170,7 @@
 
 
 | 订阅源 | 包含内容 | 订阅源 | 包含内容 |
-| ----- | -------|----- | ------- |
+| ----- | ------ | ----- | ------- |
 | btsrk | 1️⃣ [Pixiv 小说](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
 - import 订阅源：一键导入本项目所整理提供的书源、订阅源
@@ -159,12 +179,12 @@
 ### 非本项目的其他资源
 <details> <summary> 其他资源 </summary>
 
-| 名称          | Github 导入网址                                                            |
-| ------------ | ------------------------------------------------------------------------- |
-| 通用书源 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json |
-| 聚合搜索 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
-| 书源订阅 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
-| Pixiv 目录规则 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json |
+| 名称           | Github 导入网址                                                              |
+| ------------- | --------------------------------------------------------------------------- |
+| 通用书源　　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json   |
+| 聚合搜索　　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json    |
+| 书源订阅　　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json   |
+| Pixiv目录规则  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json |
 
 - **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇 为网文网站编写的通用书源，用搜索引擎获取全网小说。
 - **[聚合搜索](https://legado.cn/thread-3723-1-1.html)** ：是不世玄奇 制作的聚合多个搜索引擎的订阅源，需要配合 **[通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用。(集入 books 订阅源)
