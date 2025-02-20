@@ -16,23 +16,48 @@ function handlerFactory() {
     if (cookie === null || cookie === undefined || cookie === "") {
         return handlerNoLogin()
     }
-    if (baseUrl.indexOf("/bookmark") !== -1) {
+    if (baseUrl.includes("/bookmark")) {
         return handlerBookMarks()
     }
-    if (baseUrl.indexOf("/top") !== -1) {
+    if (baseUrl.includes("/top")) {
         return handlerRecommend()
     }
-    if (baseUrl.indexOf("/follow_latest") !== -1) {
+    if (baseUrl.includes("/follow_latest")) {
         return handlerFollowLatest()
     }
-    if (baseUrl.indexOf("/watch_list") !== -1) {
+    if (baseUrl.includes("/watch_list")) {
         return handlerWatchList()
     }
-    if (baseUrl.indexOf("/ranking") !== -1) {
+    if (baseUrl.includes("/discovery")) {
+        return handlerDiscovery()
+    }
+    if (baseUrl.includes("/new")) {
+        return handlerDiscovery()
+    }
+    if (baseUrl.includes("/commission/")) {
+        return handlerFollowLatest()
+    }
+    if (baseUrl.includes("/user_event/portal")) {
+        return handlerFollowLatest()
+    }
+    if (baseUrl.includes("/genre")) {
+        return handlerWatchList()
+    }
+    // 正则匹配网址内容
+    if (baseUrl.includes("/ranking")) {
         return handlerRanking()
     }
-    if (baseUrl.indexOf("/discovery") !== -1) {
-        return handlerDiscovery()
+    if (baseUrl.includes("/marker_all")) {
+        return handlerRanking()
+    }
+    if (baseUrl.includes("/editors_picks")) {
+        return handlerRegexNovels()
+    }
+    if (baseUrl.includes("https://www.pixiv.net")) {
+        return handlerRegexNovels()
+    }
+    else {
+        return []
     }
 }
 
@@ -59,7 +84,7 @@ function handlerRecommend() {
     }
 }
 
-// 收藏小说
+// 收藏小说，他人收藏
 function handlerBookMarks() {
     return () => {
         let res = JSON.parse(result).body.works
@@ -71,7 +96,7 @@ function handlerBookMarks() {
     }
 }
 
-//关注作者，近期小说
+//关注作者，小说委托，小说企划
 function handlerFollowLatest() {
     return () => {
         let res = JSON.parse(result)
@@ -79,7 +104,7 @@ function handlerFollowLatest() {
     }
 }
 
-//推荐小说
+//推荐小说，最近小说
 function handlerDiscovery() {
     return () => {
         let res = JSON.parse(result)
@@ -87,16 +112,35 @@ function handlerDiscovery() {
     }
 }
 
-// 追更列表
-function handlerWatchList(){
+// 追更列表，热门分类
+function handlerWatchList() {
     return () => {
         let res = JSON.parse(result)
         return util.formatNovels(util.handNovels(res.body.thumbnails.novelSeries))
     }
 }
 
-// 排行榜
-function handlerRanking(){
+//首页，编辑部推荐，顺序随机
+function handlerRegexNovels() {
+    return () => {
+        let novelIds = []  // 正则获取网址中的 novelId
+        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
+        for (let i in matched) {
+            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
+            if (novelIds.indexOf(novelId) === -1) {
+                novelIds.push(novelId)
+            }
+        }
+        let userNovels = util.getWebviewJson(
+            util.urlNovelsDetailed(`${cache.get("pixiv:uid")}`, novelIds), html => {
+                return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
+            }).body
+        return util.formatNovels(util.handNovels(util.combineNovels(Object.values(userNovels))))
+    }
+}
+
+// 排行榜，书签，顺序相同
+function handlerRanking() {
     return () => {
         let novels = [], novelIds = []
         // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
