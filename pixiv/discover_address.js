@@ -5,6 +5,9 @@ try {
 } catch (e) {
     SHOW_GENERAL_NOVELS_RANK = false
 }
+SHOW_GENERAL_NOVELS_NEW = false
+SHOW_GENERAL_NOVELS_RANK = false
+SHOW_GENERAL_NOVELS_GENRE = false
 
 li = [
     {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh"},
@@ -97,10 +100,19 @@ generalgGenre = [
 
 bookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
-li = li.concat(r18)
-if (SHOW_GENERAL_NOVELS_RANK === true) {
-    li = li.concat(general)
+li = li.concat(r18New)
+li = li.concat(r18Rank)
+li = li.concat(r18Genre)
+if (SHOW_GENERAL_NOVELS_NEW === true) {
+    li = li.concat(generalNew)
 }
+if (SHOW_GENERAL_NOVELS_RANK === true) {
+    li = li.concat(generalRank)
+}
+if (SHOW_GENERAL_NOVELS_GENRE === true) {
+    li = li.concat(generalgGenre)
+}
+
 try {
     authors = String(source.getVariable()).split("\n")
     if (authors[0].trim() !== "" && authors.length >= 1) {
