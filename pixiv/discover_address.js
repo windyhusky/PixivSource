@@ -1,13 +1,15 @@
 @js:
+let SHOW_GENERAL_NOVELS_NEW, SHOW_GENERAL_NOVELS_RANK, SHOW_GENERAL_NOVELS_GENRE
 try {
-    settings = String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm))
-    SHOW_GENERAL_NOVELS_RANK = settings.SHOW_GENERAL_NOVELS_RANK  // 发现：排行榜显示一般小说
+    settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+    SHOW_GENERAL_NOVELS_NEW = settings.SHOW_GENERAL_NOVELS_NEW     // 发现：最新、企划、约稿显示一般小说
+    SHOW_GENERAL_NOVELS_RANK = settings.SHOW_GENERAL_NOVELS_RANK   // 发现：排行榜显示一般小说
+    SHOW_GENERAL_NOVELS_GENRE = settings.SHOW_GENERAL_NOVELS_RANK  // 发现：热门分类显示一般小说
 } catch (e) {
+    SHOW_GENERAL_NOVELS_NEW = false
     SHOW_GENERAL_NOVELS_RANK = false
+    SHOW_GENERAL_NOVELS_GENRE = false
 }
-SHOW_GENERAL_NOVELS_NEW = false
-SHOW_GENERAL_NOVELS_RANK = false
-SHOW_GENERAL_NOVELS_GENRE = false
 
 li = [
     {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh"},
