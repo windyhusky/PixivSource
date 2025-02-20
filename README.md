@@ -120,10 +120,10 @@
 | 书源设置           | 默认状态 | 常量名称                    | 作用 |
 | ---------------- | ------ | -------------------------- | --- |
 | 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_NEW`   | 发现 |
-| 排行榜显示一般小说   | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK`  | 发现 |
+| 排行榜单显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK`  | 发现 |
 | 热门分类显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_GENRE` | 发现 |
 | 简介显示更多信息　   | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION`  | 详情 |
-| 显示小说源链接　　   | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK`  | 目录 |
+| 显示小说原始链接　   | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK`  | 目录 |
 | 恢复被替换的书名号   | ✅ 开启 | `REPLACE_BOOK_TITLE_MARKS`  | 正文 |
 | 章首显示小说描述　   | ✅ 开启 | `SHOW_NOVEL_CAPTIONS`       | 正文 |
 | 章尾显示小说评论　   | ✅ 开启 | `SHOW_NOVEL_COMMENTS`       | 正文 |
@@ -223,7 +223,7 @@
 - 感谢 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend) 提供的 [Pixiv 图片代理功能](https://pixiv.cat)
 - 感谢 [通用书源](https://github.com/bushixuanqi/book-source) 及 [聚合搜索](https://legado.cn/thread-3723-1-1.html) 提供的添加书架的方法
 - 感谢 [书源订阅(非官方仓库)](https://gitee.com/feiniao6/yd) 提供的导入书源、订阅源的方法
-- 感谢 [Pixiv-utils](https://github.com/AgMonk/pixiv-utils) 及 [Pixiv go 客户端](https://github.com/NateScarlet/pixiv) 整理的 Pixiv Web API
+- 感谢 [Pixiv-utils](https://github.com/AgMonk/pixiv-utils) 、 [Pixiv go 客户端](https://github.com/NateScarlet/pixiv) 、 [Pixiv-web-api](https://github.com/YieldRay/pixiv-web-api) 整理的 Pixiv Web API
 - 感谢 [一片痴心俱成灰](https://akaito.xyz/post/Legado) 提供的 Pixiv (标记符号) 目录规则
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
 
