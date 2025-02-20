@@ -7,11 +7,11 @@ try {
 }
 
 li = [
-    {"关注": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh"},
-    {"追更": "https://www.pixiv.net/ajax/watch_list/novel?p={{page}}&new=1&lang=zh"},
-    {"推荐": "https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh"},
-    {"发现": "https://www.pixiv.net/ajax/novel/discovery?mode=all"},
-    {"收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"}
+    {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh"},
+    {"📃 追更": "https://www.pixiv.net/ajax/watch_list/novel?p={{page}}&new=1&lang=zh"},
+    {"💯 推荐": "https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh"},
+    {"🔍 发现": "https://www.pixiv.net/ajax/novel/discovery?mode=all"},
+    {"❤️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"},
     {"🏷️ 书签": "https://www.pixiv.net/novel/marker_all.php"},
     {"🏠 首页": "https://www.pixiv.net"},
     {"📝 编辑": "https://www.pixiv.net/novel/editors_picks"}
@@ -31,8 +31,8 @@ generalNew = [
     {"💰 约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=all&p={{page}}&lang=zh"}
 ]
 
-r18 = [
-    {"\uD83D\uDD1E 排行榜": ""},
+r18Rank = [
+    {"👑 排行榜单 👑": ""},
     {"今日": "https://www.pixiv.net/novel/ranking.php?mode=daily_r18"},
     {"本周": "https://www.pixiv.net/novel/ranking.php?mode=weekly_r18"},
     {"R18G": "https://www.pixiv.net/novel/ranking.php?mode=r18g"},
@@ -40,8 +40,8 @@ r18 = [
     {"女性": "https://www.pixiv.net/novel/ranking.php?mode=female_r18"}
 ]
 
-general = [
-    {"\uD83C\uDD97 排行榜": ""},
+generalRank = [
+    {"🔝 排行榜单 🔝": ""},
     {"今日": "https://www.pixiv.net/novel/ranking.php?mode=daily"},
     {"本周": "https://www.pixiv.net/novel/ranking.php?mode=weekly"},
     {"本月": "https://www.pixiv.net/novel/ranking.php?mode=monthly"},
@@ -95,7 +95,7 @@ generalgGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
-bookmarks = [{"❤️ 收藏": ""}]
+bookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
 li = li.concat(r18)
 if (SHOW_GENERAL_NOVELS_RANK === true) {
