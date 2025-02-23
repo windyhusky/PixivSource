@@ -82,7 +82,18 @@ function novelHandler(res){
     } else {
         info = oneShotHandler(res)
     }
-    info.tags = info.tags.join(",")
+
+    info.tags2 = []
+    for (let i in info.tags) {
+        tag = info.tags[i]
+        if (tag.includes("/")) {
+            let tags = tag.split("/")
+            info.tags2 = info.tags2.concat(tags)
+        } else {
+            info.tags2.push(tag)
+        }
+    }
+    info.tags = info.tags2.join(",")
     if (util.MORE_INFO_IN_DESCRIPTION) {
         info.description = `\n书名：${info.title}\n作者：${info.userName}\n标签：${info.tags}\n上传：${info.createDate}\n更新：${info.updateDate}\n简介：${info.description}`
     } else {

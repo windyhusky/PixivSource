@@ -15,6 +15,7 @@
 ⚠️ 发现页需要长按"Pixiv"，手动刷新
 以下内容为书源设置：
 {
+"SHOW_R18_NOVELS_GENRE": false,
 "SHOW_GENERAL_NOVELS_NEW": false,
 "SHOW_GENERAL_NOVELS_RANK": false,
 "SHOW_GENERAL_NOVELS_GENRE": false,

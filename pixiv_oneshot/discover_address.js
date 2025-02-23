@@ -1,11 +1,13 @@
 @js:
-let SHOW_GENERAL_NOVELS_NEW, SHOW_GENERAL_NOVELS_RANK, SHOW_GENERAL_NOVELS_GENRE
+let SHOW_R18_NOVELS_GENRE, SHOW_GENERAL_NOVELS_NEW, SHOW_GENERAL_NOVELS_RANK, SHOW_GENERAL_NOVELS_GENRE
 try {
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+    SHOW_R18_NOVELS_GENRE = settings.SHOW_R18_NOVELS_GENRE         // 发现：热门分类显示R18小说
     SHOW_GENERAL_NOVELS_NEW = settings.SHOW_GENERAL_NOVELS_NEW     // 发现：最新、企划、约稿显示一般小说
     SHOW_GENERAL_NOVELS_RANK = settings.SHOW_GENERAL_NOVELS_RANK   // 发现：排行榜显示一般小说
     SHOW_GENERAL_NOVELS_GENRE = settings.SHOW_GENERAL_NOVELS_RANK  // 发现：热门分类显示一般小说
 } catch (e) {
+    SHOW_R18_NOVELS_GENRE = false
     SHOW_GENERAL_NOVELS_NEW = false
     SHOW_GENERAL_NOVELS_RANK = false
     SHOW_GENERAL_NOVELS_GENRE = false
@@ -14,12 +16,12 @@ try {
 li = [
     {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh"},
     {"📃 追更": "https://www.pixiv.net/ajax/watch_list/novel?p={{page}}&new=1&lang=zh"},
-    {"💯 推荐": "https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh"},
-    {"🔍 发现": "https://www.pixiv.net/ajax/novel/discovery?mode=all"},
+    {"💯 推荐": "https://www.pixiv.net/ajax/top/novel?mode=r18&lang=zh"},
+    {"🔍 发现": "https://www.pixiv.net/ajax/novel/discovery?mode=all&lang=zh"},
     {"❤️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"},
+    {"㊙️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=hide&lang=zh"},
     {"🏷️ 书签": "https://www.pixiv.net/novel/marker_all.php"},
     {"🏠 首页": "https://www.pixiv.net"},
-    {"📝 编辑": "https://www.pixiv.net/novel/editors_picks"}
 ]
 
 r18New = [
@@ -27,13 +29,17 @@ r18New = [
     {"🆕 最新": "https://www.pixiv.net/ajax/novel/new?lastId=0&limit=20&r18=true&lang=zh"},
     {"📑 企划": "https://www.pixiv.net/ajax/user_event/portal/novels?mode=r18&p={{page}}&lang=zh"},
     {"💰 约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=r18&p={{page}}&lang=zh"},
+    {"🔍 发现": "https://www.pixiv.net/ajax/novel/discovery?mode=r18&lang=zh"},
 ]
 
 generalNew = [
     {"🆙 最新 企划 约稿 💰": ""},
     {"🆙 最新": "https://www.pixiv.net/ajax/novel/new?lastId=0&limit=20&r18=false&lang=zh"},
-    {"📄 企划": "https://www.pixiv.net/ajax/user_event/portal/novels?mode=&p={{page}}&lang=zh"},
-    {"💰 约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=all&p={{page}}&lang=zh"}
+    {"📄 企划": "https://www.pixiv.net/ajax/user_event/portal/novels?mode=all&p={{page}}&lang=zh"},
+    {"💰 约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=all&p={{page}}&lang=zh"},
+    {"📝 编辑": "https://www.pixiv.net/novel/editors_picks"},
+    {"💯 推荐": "https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh"},
+    {"🔍 发现": "https://www.pixiv.net/ajax/novel/discovery?mode=safe&lang=zh"},
 ]
 
 r18Rank = [
@@ -104,7 +110,9 @@ bookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
 li = li.concat(r18New)
 li = li.concat(r18Rank)
-li = li.concat(r18Genre)
+if (SHOW_R18_NOVELS_GENRE === true) {
+    li = li.concat(r18Genre)
+}
 if (SHOW_GENERAL_NOVELS_NEW === true) {
     li = li.concat(generalNew)
 }
