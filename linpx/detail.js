@@ -39,7 +39,17 @@ function novelHandler(res){
         info.tags = Array.from(new Set(info.tags))
         info.description = `${res2.caption}\n当前章节简介：\n${info.description}`
     }
-    info.tags = info.tags.join(",")
+    info.tags2 = []
+    for (let i in info.tags) {
+        tag = info.tags[i]
+        if (tag.includes("/")) {
+            let tags = tag.split("/")
+            info.tags2 = info.tags2.concat(tags)
+        } else {
+            info.tags2.push(tag)
+        }
+    }
+    info.tags = info.tags2.join(",")
     if (util.MORE_INFO_IN_DESCRIPTION) {
         info.description = `\n书名：${info.title}\n作者：${info.userName}\n标签：${info.tags}\n上传：${info.createDate}\n简介：${info.description}`
     } else {

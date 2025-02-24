@@ -207,11 +207,23 @@ function publicFunc() {
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
-            novel.tags = novel.tags.join(",")
             novel.coverUrl = util.urlCoverUrl(novel.coverUrl)
             // novel.readingTime = `${novel.readingTime / 60} 分钟`
             novel.createDate = util.dateFormat(novel.createDate);
             // novel.updateDate = this.dateFormat(novel.updateDate);
+
+            novel.tags2 = []
+            for (let i in novel.tags) {
+                let tag = novel.tags[i]
+                if (tag.includes("/")) {
+                    let tags = tag.split("/")
+                    novel.tags2 = novel.tags2.concat(tags)
+                } else {
+                    novel.tags2.push(tag)
+                }
+            }
+            novel.tags = novel.tags2.join(",")
+
             if (util.MORE_INFO_IN_DESCRIPTION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
             } else {

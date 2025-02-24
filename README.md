@@ -62,21 +62,20 @@
   - ✅ 收藏小说（自己 & 他人）
   - ✅ 小说书签
   - ✅ 首页推荐
-  - ✅ 编辑部推荐
   - ✅ 章节评论
   </details>
 
 - <details><summary> ✅ 🆕 最新 企划 约稿 </summary>
-
-  - ✅ R18 小说
-  - ✅ 一般小说
+  
+  - ✅ R18 小说（最新 企划 约稿 发现）
+  - ✅ 一般小说（最新 企划 约稿 编辑部推荐）
     >（默认隐藏，可在书源设置中修改 `SHOW_GENERAL_NOVELS_NEW` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
 
 - <details><summary> ✅ 👑 小说排行 </summary>
   
   - ✅ R18 小说排行榜
-  - ✅ 一般小说排行榜 
+  - ✅ 一般小说排行榜
     > (默认隐藏，可在书源设置中修改 `SHOW_GENERAL_NOVELS_RANK` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
 
@@ -121,6 +120,7 @@
 | ---------------- | ------ | -------------------------- | --- |
 | 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_NEW`   | 发现 |
 | 排行榜单显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK`  | 发现 |
+| 热门分类显示R18小说 | ⭕ 关闭 | `SHOW_R18_NOVELS_GENRE`     | 发现 |
 | 热门分类显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_GENRE` | 发现 |
 | 简介显示更多信息　   | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION`  | 详情 |
 | 显示小说原始链接　   | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK`  | 目录 |
