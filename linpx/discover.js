@@ -68,11 +68,17 @@ function handlerFollowLatest() {
 }
 
 function handlerFactory() {
-    if (baseUrl.indexOf("/fav/user") !== -1) {
+    if (baseUrl.includes("/fav/user")) {
         return handlerRecommendUsers()
     }
-    if (baseUrl.indexOf("/pixiv/novels/recent") !== -1) {
+    if (baseUrl.includes("/pixiv/novels/recent")) {
         return handlerFollowLatest()
+    }
+    if (baseUrl.includes("https://cdn.jsdelivr.net")) {
+        return updateSource()
+    }
+    else {
+        return []
     }
 }
 

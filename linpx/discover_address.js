@@ -1,7 +1,8 @@
 @js:
 li = [
-    {"推荐作者": "https://api.furrynovel.ink/fav/user/cache"},
-    {"最新小说": "https://api.furrynovel.ink/pixiv/novels/recent/cache?page={{page}}"}
+    {"💯 推荐作者": "https://api.furrynovel.ink/fav/user/cache"},
+    {"🆕 最新小说": "https://api.furrynovel.ink/pixiv/novels/recent/cache?page={{page}}"},
+    {"🆙 更新书源": "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json"},
 ]
 
 // 格式化发现地址
