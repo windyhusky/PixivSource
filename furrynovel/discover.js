@@ -10,6 +10,17 @@ function objParse(obj) {
     })
 }
 
+function handlerFactory() {
+    if (baseUrl.includes("furrynovel.com")) {
+        return util.formatNovels(util.handNovels(util.getNovels()))
+    }
+    if (baseUrl.includes("https://cdn.jsdelivr.net")) {
+        return updateSource()
+    } else {
+        return []
+    }
+}
+
 (() => {
-    return util.formatNovels(util.handNovels(util.getNovels()))
-})();
+    return handlerFactory()
+})()
