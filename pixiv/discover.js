@@ -56,6 +56,9 @@ function handlerFactory() {
     if (baseUrl.includes("https://www.pixiv.net")) {
         return handlerRegexNovels()
     }
+    if (baseUrl.includes("https://cdn.jsdelivr.net")) {
+        return updateSource()
+    }
     else {
         return []
     }
