@@ -10,12 +10,20 @@ function objParse(obj) {
     })
 }
 
+function urlNovel(novelId){
+    if (util.SHOW_ORIGINAL_NOVEL_LINK) {
+        return urlNovelUrl(novelId)
+    } else {
+        return urlNovelDetailed(novelId)
+    }
+}
+
 function oneShotHandler(res) {
     res.textCount = res.userNovels[`${res.id}`].textCount
-    res.createDate = util.timeTextFormat(res.createDate)
+    res.createDate = timeTextFormat(res.createDate)
     return [{
         title: res.title.replace(RegExp(/^\s+|\s+$/g), ""),
-        chapterUrl: util.urlNovel(res.id),
+        chapterUrl: urlNovel(res.id),
         chapterInfo: `${res.createDate}　　${res.textCount}字`
     }]
 }
@@ -26,7 +34,7 @@ function seriesHandler(res) {
     let seriesID = 0, allChaptersCount = 0
     if (res.seriesNavData !== undefined) {
         seriesID = res.seriesNavData.seriesId
-        allChaptersCount = util.getAjaxJson(util.urlSeriesDetailed(seriesID)).body.total
+        allChaptersCount = getAjaxJson(urlSeriesDetailed(seriesID)).body.total
     } else {
         seriesID = res.id
         allChaptersCount = res.total
@@ -37,11 +45,11 @@ function seriesHandler(res) {
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        res = util.getAjaxJson(util.urlSeriesNovels(seriesID, limit, lastIndex)).body.thumbnails.novel
+        res = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex)).body.thumbnails.novel
         res.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
-            v.chapterUrl = util.urlNovel(v.id)
-            v.updateDate = util.timeTextFormat(v.createDate)
+            v.chapterUrl = urlNovel(v.id)
+            v.updateDate = timeTextFormat(v.createDate)
             v.chapterInfo = `${v.updateDate}　　${v.textCount}字`
             util.debugFunc(() => {
                 java.log(`${v.title}`)

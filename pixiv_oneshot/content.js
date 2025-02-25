@@ -36,7 +36,7 @@ function getContent(res) {
             if (temp.length >= 2) {
                 order = temp[1]
             }
-            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginal(illustId, order)}">`)
+            content = content.replace(`${matched[i]}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
         }
     }
 
@@ -120,14 +120,14 @@ function getContent(res) {
 
 function getComment(res) {
     let comments = ""
-    let resp = util.getAjaxJson(util.urlNovelComments(res.id, 0, 50))
+    let resp = getAjaxJson(urlNovelComments(res.id, 0, 50))
     if (resp.error === true){
         return ""
     }
     resp.body.comments.forEach(comment =>{
         comments += `${comment.userName}：${comment.comment}\n`
         if (comment.hasReplies === true) {
-            let resp = util.getAjaxJson(util.urlNovelCommentsReply(comment.id, 1))
+            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1))
             if (resp.error === true) {
                 return ""
             }
