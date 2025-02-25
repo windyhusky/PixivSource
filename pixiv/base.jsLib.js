@@ -1,3 +1,27 @@
+function cacheGetAndSet(cache, key, supplyFunc) {
+    let v = cache.get(key)
+    if (v === undefined || v === null) {
+        v = JSON.stringify(supplyFunc())
+        // 缓存10分钟
+        cache.put(key, v, 600)
+    }
+    return JSON.parse(v)
+}
+
+function getAjaxJson(url) {
+    const {java, cache} = this
+    return cacheGetAndSet(cache, url, () => {
+        return JSON.parse(java.ajax(url))
+    })
+}
+
+function getWebviewJson(url, parseFunc) {
+    return cacheGetAndSet(url, () => {
+        let html = java.webView(null, url, null)
+        return JSON.parse(parseFunc(html))
+    })
+}
+
 function urlNovelUrl(novelId) {
     return `https://www.pixiv.net/novel/show.php?id=${novelId}`
 }
@@ -61,13 +85,13 @@ function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
 
-// function urlIllustOriginal(illustId, order) {
-//     let illustOriginal = getAjaxJson(urlIllustDetailed(illustId)).body.urls.original
-//     if (order >= 1) {
-//         illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
-//     }
-//     return illustOriginal
-// }
+function urlIllustOriginal(illustId, order) {
+    let illustOriginal = getAjaxJson(urlIllustDetailed(illustId)).body.urls.original
+    if (order >= 1) {
+        illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
+    }
+    return illustOriginal
+}
 
 function urlSeriesIllustsUrl(userId, seriesId) {
     return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
