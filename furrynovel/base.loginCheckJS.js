@@ -11,7 +11,7 @@ function objStringify(obj) {
 function publicFunc() {
     let u = {}, settings = {}
     java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
-    java.log(`手动更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
+    java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
