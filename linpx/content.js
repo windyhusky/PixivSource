@@ -20,7 +20,7 @@ function getContent(res) {
     // 将存在的 pixiv 图片链接替换为可访问的直连
     if (res.images !== undefined && res.images !== null) {
         Object.keys(res.images).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${util.urlCoverUrl(res.images[key].origin)}">`)
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(res.images[key].origin)}">`)
         })
     }
 
@@ -35,7 +35,7 @@ function getContent(res) {
             if (temp.length >= 2) {
                 order = temp[1]
             }
-            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginal(illustId, order)}">`)
+            content = content.replace(`${matched[i]}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
         }
     }
 

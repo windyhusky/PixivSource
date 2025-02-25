@@ -1,3 +1,110 @@
+function cacheGetAndSet(cache, key, supplyFunc) {
+    let v = cache.get(key)
+    if (v === undefined || v === null) {
+        v = JSON.stringify(supplyFunc())
+        // 缓存10分钟
+        cache.put(key, v, 600)
+    }
+    return JSON.parse(v)
+}
+function getAjaxJson(url) {
+    const {java, cache} = this
+    return cacheGetAndSet(cache, url, () => {
+        return JSON.parse(java.ajax(url))
+    })
+}
+function getWebviewJson(url) {
+    const {java, cache} = this
+    return cacheGetAndSet(cache, url, () => {
+        let html = java.webView(null, url, null)
+        return JSON.parse((html.match(new RegExp(">\\[{.*?}]<"))[0].replace(">", "").replace("<", "")))
+    })
+}
+function getWebJson(url) {
+    const {java, cache} = this
+    return cacheGetAndSet(cache, url, () => {
+        return JSON.parse(java.get(url, java.getWebViewUA()).body())
+    })
+}
+
+function urlNovelUrl(novelId) {
+    return `https://furrynovel.ink/pixiv/novel/${novelId}/cache`
+}
+function urlNovelDetailed(novelId) {
+    return `https://api.furrynovel.ink/pixiv/novel/${novelId}/cache`
+}
+function urlNovelsDetailed(nidList) {
+    return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
+}
+function urlNovelComments(novelId) {
+    return `https://api.furrynovel.ink/pixiv/novel/${novelId}/comments`
+}
+
+function urlSeriesUrl(seriesId) {
+    return `https://www.pixiv.net/novel/series/${seriesId}`
+}
+function urlSeriesDetailed(seriesId) {
+    return `https://api.furrynovel.ink/pixiv/series/${seriesId}/cache`
+}
+
+function urlUserUrl(userId) {
+    return `https://furrynovel.ink/pixiv/user/${userId}/cache`
+}
+function urlUserDetailed(userId) {
+    return `https://api.furrynovel.ink/pixiv/user/${userId}/cache`
+}
+function urlUsersDetailed(uidList) {
+    return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
+}
+
+function urlSearchNovel(novelName) {
+    return `https://api.furrynovel.ink/pixiv/search/novel/${novelName}/cache`
+}
+function urlSearchUsers(userName) {
+    return `https://api.furrynovel.ink/pixiv/search/user/${userName}/cache`
+}
+
+function urlCoverUrl(pxImgUrl) {
+    return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+}
+function urlIllustOriginal(illustId, order) {
+    // 使用 pixiv.cat 获取插图
+    let illustOriginal = `https://pixiv.re/${illustId}.png`
+    // let illustOriginal = `https://pixiv.nl/${illustId}.png`
+    if (order >= 1) {
+        illustOriginal = `https://pixiv.re/${illustId}-${order}.png`
+        // illustOriginal = `https://pixiv.nl/${illustId}-${order}.png`
+    }
+    return illustOriginal
+}
+
+
+function dateFormat(str) {
+    let addZero = function (num) {
+        return num < 10 ? '0' + num : num;
+    }
+    let time = new Date(str);
+    let Y = time.getFullYear() + "年";
+    let M = addZero(time.getMonth() + 1) + "月";
+    let D = addZero(time.getDate()) + "日";
+    return Y + M + D;
+}
+function timeTextFormat(text) {
+    if (text === undefined) {
+        return ""
+    }
+    return `${text.slice(0, 10)} ${text.slice(11, 19)}`
+}
+function sleep(time) {
+    let endTime = new Date().getTime() + time
+    while(true){
+        if (new Date().getTime() > endTime){
+            return;
+        }
+    }
+}
+
+
 function updateSource(){
     return () => {
         const {java, source} = this;

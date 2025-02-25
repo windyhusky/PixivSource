@@ -11,8 +11,8 @@ function objParse(obj) {
 }
 
 function getUser(username, exactMatch) {
-    // let resp = util.getAjaxJson(util.urlSearchUsers(String(username)))
-    let resp = java.ajax(util.urlSearchUsers(String(username)))  // 兼容搜索链接
+    // let resp = getAjaxJson(urlSearchUsers(String(username)))
+    let resp = java.ajax(urlSearchUsers(String(username)))  // 兼容搜索链接
     if (resp.startsWith("<!DOCTYPE html>") || JSON.parse(result).error) {
         return []
     }
@@ -36,8 +36,8 @@ function getUserNovels(nidList) {
     if (list.length === 0) {
         return []
     }
-    // java.log(`NIDURL:${util.urlNovelsDetailed(list)}`)
-    return util.getWebviewJson(util.urlNovelsDetailed(list))
+    // java.log(`NIDURL:${urlNovelsDetailed(list)}`)
+    return getWebviewJson(urlNovelsDetailed(list))
 }
 
 // 存储seriesID
@@ -87,7 +87,8 @@ function findUserNovels() {
     }).map(user => user.id)
 
     if (uidList.length > 0) {
-        let list = util.getWebviewJson(util.urlUsersDetailed(uidList))  // 包含所有小说数据
+        let list = getWebviewJson(urlUsersDetailed(uidList))  // 包含所有小说数据
+        // java.log(JSON.stringify(list))
         let nidList = []
         // 从两层数组中提取novelsId
         list.forEach(user => {
@@ -96,10 +97,12 @@ function findUserNovels() {
                 .reverse()
                 .forEach(nid => nidList.push(nid))
         })
+        // java.log(JSON.stringify(nidList))
         getUserNovels(nidList).forEach(novel => {
             novelList.push(novel)
         })
     }
+    // java.log(JSON.stringify(novelList))
     return novelList
 }
 

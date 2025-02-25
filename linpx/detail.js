@@ -18,23 +18,23 @@ function novelHandler(res){
     info.tags = res.tags
     info.textCount = res.length
     info.description = res.desc
-    info.coverUrl = util.urlCoverUrl(res.coverUrl)
-    // info.catalogUrl = util.urlNovelDetailed(res.id)
-    info.createDate = util.timeTextFormat(res.createDate)
+    info.coverUrl = urlCoverUrl(res.coverUrl)
+    // info.catalogUrl = urlNovelDetailed(res.id)
+    info.createDate = timeTextFormat(res.createDate)
 
     if (res.series === undefined || res.series === null) {
         info.title = info.latestChapter = info.title
         info.tags.unshift('单本')
-        info.detailedUrl = util.urlNovelUrl(info.novelId)
-        info.catalogUrl = util.urlNovelDetailed(info.novelId)
+        info.detailedUrl = urlNovelUrl(info.novelId)
+        info.catalogUrl = urlNovelDetailed(info.novelId)
     } else {
         info.seriesId = res.series.id
         info.title = res.series.title.replace(RegExp(/^\s+|\s+$/g), "")
         info.tags.unshift('长篇')
-        info.detailedUrl = util.urlSeriesUrl(info.seriesId)
-        info.catalogUrl = util.urlSeriesDetailed(info.seriesId)
+        info.detailedUrl = urlSeriesUrl(info.seriesId)
+        info.catalogUrl = urlSeriesDetailed(info.seriesId)
 
-        let res2 = util.getAjaxJson(util.urlSeriesDetailed(info.seriesId))
+        let res2 = getAjaxJson(urlSeriesDetailed(info.seriesId))
         info.tags = info.tags.concat(res2.tags)   //合并系列 tags
         info.tags = Array.from(new Set(info.tags))
         info.description = `${res2.caption}\n当前章节简介：\n${info.description}`

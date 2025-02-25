@@ -11,7 +11,6 @@ function objParse(obj) {
     })
 }
 
-
 /**
  * @params arr 传入的源数组
  * @params length 需要获取的元素的个数
@@ -39,7 +38,7 @@ function handlerRecommendUsers() {
             userIds = randomChoseArrayItem(userIds, MAX_FETCH_USER_NUMBER);
         }
         // java.log(`查询的用户Ids:${userIds}`)
-        let usersInfo = util.getWebviewJson(util.urlUsersDetailed(userIds))
+        let usersInfo = getWebviewJson(urlUsersDetailed(userIds))
         // java.log(`返回的${JSON.stringify(usersInfo)}`)
         let queryNovelIds = []
         // java.log(`${JSON.stringify(usersInfo)}`)
@@ -55,7 +54,7 @@ function handlerRecommendUsers() {
         if (queryNovelIds.length > 10) {
             queryNovelIds = randomChoseArrayItem(queryNovelIds, 10)
         }
-        novelList = util.getWebviewJson(util.urlNovelsDetailed(queryNovelIds))
+        novelList = getWebviewJson(urlNovelsDetailed(queryNovelIds))
         return util.formatNovels(util.handNovels(util.combineNovels(novelList)))
     }
 }
