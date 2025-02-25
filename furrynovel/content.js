@@ -15,9 +15,9 @@ function getContent(res) {
     // 获取 [uploadedimage:] 的图片链接
     let hasEmbeddedImages = content.match(RegExp(/\[uploadedimage:(\d+)-?(\d+)]/gm))
     if (hasEmbeddedImages) {
-        resp = JSON.parse(java.ajax(util.urlLinpxNovelDetail(res.source_id)))
+        resp = getAjaxJson(urlLinpxNovelDetail(res.source_id))
         Object.keys(resp.images).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${util.urlLinpxCoverUrl(resp.images[key].origin)}">`)
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlLinpxCoverUrl(resp.images[key].origin)}">`)
         })
     }
 
@@ -32,7 +32,7 @@ function getContent(res) {
             if (temp.length >= 2) {
                 order = temp[1]
             }
-            content = content.replace(`${matched[i]}`, `<img src="${util.urlIllustOriginal(illustId, order)}">`)
+            content = content.replace(`${matched[i]}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
         }
     }
 
@@ -119,9 +119,9 @@ function getNovelRes(result){
         try {
             chapterId = baseUrl.match(RegExp(/\/(\d+)\/chapter\/(\d+)/))[2]
         } catch (e) {
-            chapterId = util.getAjaxJson(util.urlNovelChapterInfo(novelId)).data[0].id
+            chapterId = getAjaxJson(urlNovelChapterInfo(novelId)).data[0].id
         } finally {
-            res = util.getAjaxJson(util.urlNovelChapterDetail(novelId, chapterId))
+            res = getAjaxJson(urlNovelChapterDetail(novelId, chapterId))
         }
     } else {
         res = JSON.parse(result)

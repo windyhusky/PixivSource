@@ -12,19 +12,20 @@ function objParse(obj) {
 
 function novelHandler(novel) {
     novel = util.formatNovels(util.handNovels([novel]))[0]
-    novel.detailedUrl = util.urlNovelUrl(novel.id)
-    novel.catalogUrl = util.urlNovelChapterInfo(novel.id)
+    novel.detailedUrl = urlNovelUrl(novel.id)
+    novel.catalogUrl = urlNovelChapterInfo(novel.id)
     return novel
 }
 
-function getNovelRes(result){
+function getNovelRes(result) {
     let res = {}
     let isHtml = result.startsWith("<!DOCTYPE html>")
     let pattern = "(https?://)?(www\\.)?furrynovel\\.com/(zh|en|ja)/novel/\\d+(/chapter/d+)?"
     let fnWebpage = baseUrl.match(new RegExp(pattern))
     if (isHtml && fnWebpage) {
         let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-        res = util.getAjaxJson(util.urlNovelDetail(novelId))
+        res = getAjaxJson(urlNovelDetail(novelId))
+        // res = getAjaxJson(urlNovelChapterInfo(novelId))
     } else {
         res = JSON.parse(result)
     }

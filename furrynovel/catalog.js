@@ -10,26 +10,34 @@ function objParse(obj) {
     })
 }
 
+function urlNovelChapter(novelId, chapterId) {
+    if (util.SHOW_ORIGINAL_NOVEL_LINK) {
+        return urlNovelChapterUrl(novelId, chapterId)
+    } else {
+        return urlNovelChapterDetail(novelId, chapterId)
+    }
+}
+
 function novelHandler(novels) {
     novels.forEach(novel => {
         novel.chapterId = novel.id
         novel.novelId = baseUrl.match(RegExp(/\d+/))[0]
         novel.chapterName = novel.title = novel.name
-        novel.chapterUrl =  util.urlNovelChapter(novel.novelId, novel.chapterId)
+        novel.chapterUrl =  urlNovelChapter(novel.novelId, novel.chapterId)
         novel.chapterInfo = `${novel.created_at}　　${novel.text_count}字`
     })
     return novels
 }
 
-function getNovelRes(result){
+function getNovelRes(result) {
     let res = {}
     let isHtml = result.startsWith("<!DOCTYPE html>")
     let pattern = "(https?://)?(www\\.)?furrynovel\\.com/(zh|en|ja)/novel/\\d+(/chapter/d+)?"
     let fnWebpage = baseUrl.match(new RegExp(pattern))
     if (isHtml && fnWebpage) {
         let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-        // res = util.getAjaxJson(util.urlNovelDetail(novelId))
-        res = util.getAjaxJson(util.urlNovelChapterInfo(novelId))
+        // res = getAjaxJson(urlNovelDetail(novelId))
+        res = getAjaxJson(urlNovelChapterInfo(novelId))
     } else {
         res = JSON.parse(result)
     }

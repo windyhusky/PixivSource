@@ -36,91 +36,9 @@ function publicFunc() {
         java.log(JSON.stringify(settings, null, 4))
         java.log(`DEBUG = ${u.DEBUG}`)
     }
-
-
     u.debugFunc = (func) => {
         if (util.DEBUG) {
             func()
-        }
-    }
-    u.cacheGetAndSet = (key, supplyFunc) => {
-        let v = cache.get(key)
-        if (v === undefined || v === null) {
-            v = JSON.stringify(supplyFunc())
-            // 缓存10分钟
-            cache.put(key, v, 600)
-        }
-        return JSON.parse(v)
-    }
-    u.getAjaxJson = (url) => {
-        return util.cacheGetAndSet(url, () => {
-            return JSON.parse(java.ajax(url))
-        })
-    }
-    u.getWebviewJson = (url) => {
-        return util.cacheGetAndSet(url, () => {
-            let html = java.webView(null, url, null)
-            return JSON.parse((html.match(new RegExp(">\\[{.*?}]<"))[0].replace(">", "").replace("<", "")))
-        })
-    }
-
-    u.urlNovelUrl = (novelId) => {
-        return `https://furrynovel.com/zh/novel/${novelId}`
-    }
-    u.urlNovelDetail = (novelId) => {
-        return `https://api.furrynovel.com/api/zh/novel/${novelId}`
-    }
-    u.urlNovelsDetail = (novelIds) => {
-        return `https://api.furrynovel.com/api/zh/novel?${novelIds.map(v => "ids[]=" + v).join("&")}`
-    }
-    u.urlNovelChapterUrl = (novelId, chapterId) => {
-        return `https://furrynovel.com/zh/novel/${novelId}/chapter/${chapterId}`
-    }
-    u.urlNovelChapterInfo = (novelId) => {
-        return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter`
-    }
-    u.urlNovelChapterDetail = (novelId, chapterId) => {
-        return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter/${chapterId}`
-    }
-    u.urlNovelChapter = (novelId, chapterId) => {
-        if (util.SHOW_ORIGINAL_NOVEL_LINK) {
-            return util.urlNovelChapterUrl(novelId, chapterId)
-        } else {
-            return util.urlNovelChapterDetail(novelId, chapterId)
-        }
-    }
-    u.urlCoverUrl = (pxImgUrl) => {
-        return `https://img.furrynovel.com/?url=${pxImgUrl}`
-    }
-
-    u.urlLinpxNovelUrl = (novelId) => {
-        return `https://furrynovel.ink/pixiv/novel/${novelId}/cache`
-    }
-    u.urlLinpxNovelDetail = (novelId) => {
-        return `https://api.furrynovel.ink/pixiv/novel/${novelId}/cache`
-    }
-    u.urlLinpxCoverUrl = (pxImgUrl) => {
-        return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
-    }
-    u.urlIllustOriginal = (illustId, order) => {
-        // 使用 pixiv.cat 获取插图
-        let illustOriginal = `https://pixiv.re/${illustId}.png`
-        // let illustOriginal = `https://pixiv.nl/${illustId}.png`
-        if (order >= 1) {
-            illustOriginal = `https://pixiv.re/${illustId}-${order}.png`
-            // illustOriginal = `https://pixiv.nl/${illustId}-${order}.png`
-        }
-        return illustOriginal
-    }
-    u.urlSourceUrl = (source, oneShot, id) => {
-        if (source === "bilibili") {
-            return `https://www.bilibili.com/read/readlist/rl${id}/`
-        }
-        if (source === "pixiv" && oneShot === true) {
-            return `https://www.pixiv.net/novel/show.php?id=${id}`
-        }
-        if (source === "pixiv" && oneShot === false) {
-            return `https://www.pixiv.net/novel/series/${id}`
         }
     }
 
@@ -147,19 +65,19 @@ function publicFunc() {
             }
             novel.description = novel.desc
             novel.coverUrl = novel.cover
-            novel.detailedUrl = util.urlNovelDetail(novel.id)
+            novel.detailedUrl = urlNovelDetail(novel.id)
 
             // novel.source = novel.source
             novel.oneShot = novel.ext_data.oneShot
             novel.sourceId = novel.source_id
-            novel.sourceUrl = util.urlSourceUrl(novel.source, novel.oneShot, novel.sourceId)
+            novel.sourceUrl = urlSourceUrl(novel.source, novel.oneShot, novel.sourceId)
 
             novel.createDate = novel.created_at
             novel.updateDate = novel.updated_at
             novel.syncDate = novel.fetched_at
             // novel.status = novel.status
             // if (novel.status !== "publish"){  // suspend
-            //     java.log(util.urlNovelUrl(novel.id))
+            //     java.log(urlNovelUrl(novel.id))
             //     java.log(novel.sourceUrl)
             // }
         })
@@ -170,9 +88,9 @@ function publicFunc() {
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.tags = novel.tags.join(",")
-            novel.createDate = util.dateFormat(novel.createDate)
-            novel.updateDate = util.dateFormat(novel.updateDate)
-            novel.syncDate = util.dateFormat(novel.syncDate)
+            novel.createDate = dateFormat(novel.createDate)
+            novel.updateDate = dateFormat(novel.updateDate)
+            novel.syncDate = dateFormat(novel.syncDate)
             if (util.MORE_INFO_IN_DESCRIPTION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n同步：${novel.syncDate}\n简介：${novel.description}`
             } else {
@@ -181,13 +99,6 @@ function publicFunc() {
             }
         })
         return novels
-    }
-
-    u.dateFormat = function(text) {
-        return `${text.slice(0, 10)}`
-    }
-    u.timeTextFormat = function(text) {
-        return `${text.slice(0, 10)} ${text.slice(11, 19)}`
     }
 
     util = u

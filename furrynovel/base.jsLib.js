@@ -1,3 +1,79 @@
+function cacheGetAndSet(cache, key, supplyFunc) {
+    let v = cache.get(key)
+    if (v === undefined || v === null) {
+        v = JSON.stringify(supplyFunc())
+        // 缓存10分钟
+        cache.put(key, v, 600)
+    }
+    return JSON.parse(v)
+}
+
+function getAjaxJson(url) {
+    const {java, cache} = this
+    return cacheGetAndSet(cache, url, () => {
+        return JSON.parse(java.ajax(url))
+    })
+}
+
+function urlNovelUrl(novelId) {
+    return `https://furrynovel.com/zh/novel/${novelId}`
+}
+function urlNovelDetail(novelId) {
+    return `https://api.furrynovel.com/api/zh/novel/${novelId}`
+}
+function urlNovelsDetail(novelIds) {
+    return `https://api.furrynovel.com/api/zh/novel?${novelIds.map(v => "ids[]=" + v).join("&")}`
+}
+function urlNovelChapterUrl(novelId, chapterId) {
+    return `https://furrynovel.com/zh/novel/${novelId}/chapter/${chapterId}`
+}
+function urlNovelChapterInfo(novelId) {
+    return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter`
+}
+function urlNovelChapterDetail(novelId, chapterId) {
+    return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter/${chapterId}`
+}
+
+function urlCoverUrl(pxImgUrl) {
+    return `https://img.furrynovel.com/?url=${pxImgUrl}`
+}
+
+function urlLinpxNovelDetail(sourceId) {
+    return `https://api.furrynovel.ink/pixiv/novel/${sourceId}/cache`
+}
+function urlLinpxCoverUrl(pxImgUrl) {
+    return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+}
+function urlIllustOriginal(illustId, order) {
+    // 使用 pixiv.cat 获取插图
+    let illustOriginal = `https://pixiv.re/${illustId}.png`
+    // let illustOriginal = `https://pixiv.nl/${illustId}.png`
+    if (order >= 1) {
+        illustOriginal = `https://pixiv.re/${illustId}-${order}.png`
+        // illustOriginal = `https://pixiv.nl/${illustId}-${order}.png`
+    }
+    return illustOriginal
+}
+function urlSourceUrl(source, oneShot, sourceId) {
+    if (source === "bilibili") {
+        return `https://www.bilibili.com/read/readlist/rl${sourceId}/`
+    }
+    if (source === "pixiv" && oneShot === true) {
+        return `https://www.pixiv.net/novel/show.php?id=${sourceId}`
+    }
+    if (source === "pixiv" && oneShot === false) {
+        return `https://www.pixiv.net/novel/series/${sourceId}`
+    }
+}
+
+function dateFormat(text) {
+    return `${text.slice(0, 10)}`
+}
+function timeTextFormat(text) {
+    return `${text.slice(0, 10)} ${text.slice(11, 19)}`
+}
+
+
 function updateSource(){
     const {java, source} = this;
     let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json"
