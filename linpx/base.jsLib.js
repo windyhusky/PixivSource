@@ -4,7 +4,6 @@ function updateSource(){
         let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json"
         let onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
         let comment = onlineSource.bookSourceComment.split("\n")
-
         let htm = `data:text/html; charset=utf-8,
 <html>
 <head>
