@@ -36,125 +36,12 @@ function publicFunc() {
         java.log(JSON.stringify(settings, null, 4))
         java.log(`DEBUG = ${u.DEBUG}`)
     }
-
-
     u.debugFunc = (func) => {
         if (util.DEBUG) {
             func()
         }
     }
-    u.cacheGetAndSet = (key, supplyFunc) => {
-        let v = cache.get(key)
-        if (v === undefined || v === null) {
-            v = JSON.stringify(supplyFunc())
-            // 缓存10分钟
-            cache.put(key, v, 600)
-        }
-        return JSON.parse(v)
-    }
-    u.getAjaxJson = (url) => {
-        return util.cacheGetAndSet(url, () => {
-            return JSON.parse(java.ajax(url))
-        })
-    }
-    u.getWebviewJson = (url, parseFunc) => {
-        return util.cacheGetAndSet(url, () => {
-            let html = java.webView(null, url, null)
-            return JSON.parse(parseFunc(html))
-        })
-    }
-
-    u.urlNovelUrl = (novelId) => {
-        return `https://www.pixiv.net/novel/show.php?id=${novelId}`
-    }
-    u.urlNovelDetailed = (novelId) => {
-        return `https://www.pixiv.net/ajax/novel/${novelId}`
-    }
-    u.urlNovelsDetailed = (userId, nidList) => {
-        return `https://www.pixiv.net/ajax/user/${userId}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
-    }
-    u.urlNovelComments = (novelId, offset, limit) => {
-        return `https://www.pixiv.net/ajax/novels/comments/roots?novel_id=${novelId}&offset=${offset}&limit=${limit}&lang=zh`
-    }
-    u.urlNovelCommentsReply = (commentId, page) => {
-        return `https://www.pixiv.net/ajax/novels/comments/replies?comment_id=${commentId}&page=${page}&lang=zh`
-    }
-    u.urlNovel = (novelId) => {
-        if (util.SHOW_ORIGINAL_NOVEL_LINK) {
-            return util.urlNovelUrl(novelId)
-        } else {
-            return util.urlNovelDetailed(novelId)
-        }
-    }
-
-    u.urlSeriesUrl = (seriesId) => {
-        return `https://www.pixiv.net/novel/series/${seriesId}`
-    }
-    u.urlSeriesDetailed = (seriesId) => {
-        return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
-    }
-    u.urlSeriesNovels = (seriesId, limit, offset) => {
-        if (limit > 30) {
-            limit = 30
-        }
-        if (limit < 10) {
-            limit = 10
-        }
-        return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
-    }
-    u.urlSeries = (seriesId) => {
-        if (util.SHOW_ORIGINAL_NOVEL_LINK) {
-            return util.urlSeriesUrl(seriesId)
-        } else {
-            return util.urlSeriesDetailed(seriesId)
-        }
-    }
-
-    u.urlUserUrl = (userId) => {
-        return `https://www.pixiv.net/users/${userId}`
-    }
-    u.urlUserDetailed = (userId) => {
-        return `https://www.pixiv.net/ajax/user/${userId}`
-    }
-    u.urlUserAllWorks = (userId) => {
-        return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
-    }
-
-    u.urlSearchNovel = (novelName, page) =>{
-        return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
-    }
-    u.urlSearchSeries = (seriesName, page) => {
-        return`https://www.pixiv.net/ajax/search/novels/${encodeURI(seriesName)}?word=${encodeURI(seriesName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
-    }
-    // 完全匹配用户名
-    u.urlSearchUser = (userName) => {
-        return `https://www.pixiv.net/search/users?nick=${encodeURI(userName)}&s_mode=s_usr&nick_mf=1`
-    }
-
-    u.urlCoverUrl = (url) => {
-        return `${url}, {"headers": {"Referer":"https://www.pixiv.net/"}}`
-    }
-    u.urlIllustUrl = (illustId) => {
-        return `https://www.pixiv.net/artworks/${illustId}`
-    }
-    u.urlIllustDetailed = (illustId) => {
-        return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
-    }
-    u.urlIllustOriginal = (illustId, order) => {
-        let illustOriginal = util.getAjaxJson(util.urlIllustDetailed(illustId)).body.urls.original
-        if (order >= 1) {
-            illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
-        }
-        return illustOriginal
-    }
-
-    u.urlSeriesIllustsUrl = (userId, seriesId) => {
-        return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
-    }
-    u.urlSeriesIllustsDetailed = (seriesId) => {
-        return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
-    }
-
+    
     // 将多个长篇小说解析为一本书
     u.combineNovels = function (novels) {
         return novels.filter(novel => {
@@ -221,28 +108,28 @@ function publicFunc() {
             if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
-                novel.detailedUrl = util.urlNovelDetailed(novel.id)
+                novel.detailedUrl = urlNovelDetailed(novel.id)
             } else { // 系列
                 // novel.seriesId = novel.seriesId
-                let series = util.getAjaxJson(util.urlSeriesDetailed(novel.seriesId)).body
+                let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
                 // novel.userName = novel.userName
                 novel.tags = series.tags
                 novel.textCount = series.publishedTotalCharacterCount
-                // novel.lastChapter = util.getAjaxJson(util.urlNovelDetailed(series.lastNovelId)).body.title
+                // novel.lastChapter = getAjaxJson(urlNovelDetailed(series.lastNovelId)).body.title
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
-                novel.detailedUrl = util.urlSeriesDetailed(novel.seriesId)
+                novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
 
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}
                 try {
-                    firstNovel = util.getAjaxJson(util.urlNovelDetailed(series.firstNovelId)).body
+                    firstNovel = getAjaxJson(urlNovelDetailed(series.firstNovelId)).body
                     novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
                 } catch (e) {  // 防止系列首篇无权限获取
                     try {
-                        firstNovel = util.getAjaxJson(util.urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
+                        firstNovel = getAjaxJson(urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
                         novel.id = novel.firstNovelId = firstNovel.id
                         novel.tags = novel.tags.concat(firstNovel.tags)
                     } catch (e) { // 防止系列首篇无权限获取
@@ -267,10 +154,10 @@ function publicFunc() {
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
-            novel.coverUrl = this.urlCoverUrl(novel.coverUrl)
+            novel.coverUrl = urlCoverUrl(novel.coverUrl)
             novel.readingTime = `${novel.readingTime / 60} 分钟`
-            novel.createDate = this.dateFormat(novel.createDate);
-            novel.updateDate = this.dateFormat(novel.updateDate);
+            novel.createDate = dateFormat(novel.createDate);
+            novel.updateDate = dateFormat(novel.updateDate);
 
             novel.tags2 = []
             for (let i in novel.tags) {
@@ -317,7 +204,7 @@ function publicFunc() {
                 let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
                 let isNovel = baseUrl.match(new RegExp(pattern))
                 if (isNovel) {
-                    res = util.getAjaxJson(util.urlNovelDetailed(id))
+                    res = getAjaxJson(urlNovelDetailed(id))
                     novelId = id
                 }
             }
@@ -329,7 +216,7 @@ function publicFunc() {
             seriesId = res.body.seriesNavData.seriesId
         }
         if (seriesId) {  // 防止系列首篇无权限获取
-            res = util.getAjaxJson(util.urlSeriesNovels(seriesId, 30, 0))
+            res = getAjaxJson(urlSeriesNovels(seriesId, 30, 0))
             res.body = res.body.thumbnails.novel[0]
             novelId = res.body.id
         }
@@ -368,7 +255,7 @@ function publicFunc() {
                 let isNovel = baseUrl.match(new RegExp(pattern))
                 if (isNovel) {
                     java.log(`匹配小说ID：${id}`)
-                    res = util.getAjaxJson(util.urlNovelDetailed(id))
+                    res = getAjaxJson(urlNovelDetailed(id))
                 }
             }
         } else {
@@ -379,35 +266,13 @@ function publicFunc() {
         }
         if (seriesId) {
             java.log(`系列ID：${seriesId}`)
-            res = util.getAjaxJson(util.urlSeriesDetailed(seriesId))
+            res = getAjaxJson(urlSeriesDetailed(seriesId))
         }
         if (res.error === true) {
             java.log(`无法从 Pixiv 获取当前小说`)
             java.log(JSON.stringify(res))
         }
         return res.body
-    }
-
-    u.dateFormat = function (str) {
-        let addZero = function (num) {
-            return num < 10 ? '0' + num : num;
-        }
-        let time = new Date(str);
-        let Y = time.getFullYear() + "年";
-        let M = addZero(time.getMonth() + 1) + "月";
-        let D = addZero(time.getDate()) + "日";
-        return Y + M + D;
-    }
-    u.timeTextFormat = function (text) {
-        return `${text.slice(0, 10)} ${text.slice(11, 19)}`
-    }
-    u.sleep = function (time) {
-        let endTime = new Date().getTime() + time
-        while(true){
-            if (new Date().getTime() > endTime){
-                return;
-            }
-        }
     }
 
     util = u

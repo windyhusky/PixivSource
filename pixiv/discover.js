@@ -67,7 +67,7 @@ function handlerFactory() {
 function handlerNoLogin() {
     return () => {
         java.longToast("此功能需要在书源登录后才能使用")
-        util.sleep(2000)
+        sleep(2000)
         java.longToast('发现页 - 长按"Pixiv" - 登录 - 登录账号')
         return []
     }
@@ -134,8 +134,8 @@ function handlerRegexNovels() {
                 novelIds.push(novelId)
             }
         }
-        let userNovels = util.getWebviewJson(
-            util.urlNovelsDetailed(`${cache.get("pixiv:uid")}`, novelIds), html => {
+        let userNovels = getWebviewJson(
+            urlNovelsDetailed(`${cache.get("pixiv:uid")}`, novelIds), html => {
                 return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
             }).body
         return util.formatNovels(util.handNovels(util.combineNovels(Object.values(userNovels))))
@@ -155,8 +155,8 @@ function handlerRanking() {
             }
         }
         novelIds.forEach(novelId => {
-            java.log(util.urlNovelDetailed(novelId))
-            let res = util.getAjaxJson(util.urlNovelDetailed(novelId))
+            java.log(urlNovelDetailed(novelId))
+            let res = getAjaxJson(urlNovelDetailed(novelId))
             if (res.error !== true) {
                 novel = res.body
                 novel.updateDate = novel.uploadDate

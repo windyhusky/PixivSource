@@ -16,7 +16,8 @@ function getAjaxJson(url) {
 }
 
 function getWebviewJson(url, parseFunc) {
-    return cacheGetAndSet(url, () => {
+    const {java, cache} = this
+    return cacheGetAndSet(cache, url, () => {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })

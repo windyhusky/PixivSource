@@ -21,11 +21,11 @@ function oneShotHandler(res) {
     // info.textCount = res.textCount  // 无数据
     info.textCount = res.userNovels[`${info.novelId}`].textCount
     info.description = res.description
-    info.coverUrl = util.urlCoverUrl(res.coverUrl)
-    info.detailedUrl = util.urlNovelUrl(info.novelId)
-    info.catalogUrl = util.urlNovelDetailed(info.novelId)
-    info.createDate = util.dateFormat(res.createDate)
-    info.updateDate = util.dateFormat(res.uploadDate)
+    info.coverUrl = urlCoverUrl(res.coverUrl)
+    info.detailedUrl = urlNovelUrl(info.novelId)
+    info.catalogUrl = urlNovelDetailed(info.novelId)
+    info.createDate = dateFormat(res.createDate)
+    info.updateDate = dateFormat(res.uploadDate)
 
     info.readingTime = `${res.userNovels[`${info.novelId}`].readingTime / 60} 分钟`
     return info
@@ -41,20 +41,20 @@ function seriesHandler(res) {
     info.tags.unshift('长篇')
     info.textCount = res.publishedTotalCharacterCount
     info.description = res.caption
-    info.coverUrl = util.urlCoverUrl(res.cover.urls["480mw"]) // 240mw, 480mw, 1200x1200, 128x128, original
-    info.detailedUrl = util.urlSeriesUrl(info.seriesId)
-    info.catalogUrl = util.urlSeriesDetailed(info.seriesId)
-    info.createDate = util.dateFormat(res.createDate)
-    info.updateDate = util.dateFormat(res.updateDate)
+    info.coverUrl = urlCoverUrl(res.cover.urls["480mw"]) // 240mw, 480mw, 1200x1200, 128x128, original
+    info.detailedUrl = urlSeriesUrl(info.seriesId)
+    info.catalogUrl = urlSeriesDetailed(info.seriesId)
+    info.createDate = dateFormat(res.createDate)
+    info.updateDate = dateFormat(res.updateDate)
 
     // 发送请求获取第一章 获取标签与简介
     let firstNovel = {}
     try {
-        firstNovel = util.getAjaxJson(util.urlNovelDetailed(info.novelId)).body
+        firstNovel = getAjaxJson(urlNovelDetailed(info.novelId)).body
         info.tags = info.tags.concat(firstNovel.tags.tags.map(item => item.tag))
     } catch (e) {  // 防止系列首篇无权限获取
         try {
-            firstNovel = util.getAjaxJson(util.urlSeriesNovels(info.seriesId, 30, 0)).body.thumbnails.novel[0]
+            firstNovel = getAjaxJson(urlSeriesNovels(info.seriesId, 30, 0)).body.thumbnails.novel[0]
             info.id = info.novelId = firstNovel.id
             info.tags = info.tags.concat(firstNovel.tags)
         } catch (e) {
@@ -106,7 +106,7 @@ function novelHandler(res){
     res = util.getNovelResSeries(result)
     // res = util.getNovelRes(result)
     // if (res.seriesNavData !== null) {     // 使用 util.getNovelRes(result) 时
-    //     res = util.getAjaxJson(util.urlSeriesDetailed(res.seriesNavData.seriesId)).body
+    //     res = getAjaxJson(urlSeriesDetailed(res.seriesNavData.seriesId)).body
     // }
     try {
         return novelHandler(res)

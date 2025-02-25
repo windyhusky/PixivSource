@@ -57,7 +57,7 @@ function getUserNovels() {
     }
 
     let username = String(java.get("key"))
-    let html = java.ajax(util.urlSearchUser(username))
+    let html = java.ajax(urlSearchUser(username))
     // java.log(html)
     // 仅匹配有投稿作品的用户
     let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
@@ -84,8 +84,8 @@ function getUserNovels() {
 
     uidList.forEach(id => {
         // 获取系列小说
-        let resp = util.getAjaxJson(util.urlUserAllWorks(id))
-        // java.log(util.urlUserAllWorks(id))
+        let resp = getAjaxJson(urlUserAllWorks(id))
+        // java.log(urlUserAllWorks(id))
         if (resp.error === true) {
             return []
         }
@@ -98,14 +98,14 @@ function getUserNovels() {
 
         // 获取单篇小说
         let novelsId = Object.keys(resp.body.novels).reverse().slice((page - 1) * 20, page * 20)
-        let url = util.urlNovelsDetailed(id, novelsId)
+        let url = urlNovelsDetailed(id, novelsId)
         util.debugFunc(() => {
             java.log(`发送获取作者小说的Ajax请求:${url}`)
         })
-        let userNovels = util.getWebviewJson(url, html => {
+        let userNovels = getWebviewJson(url, html => {
             return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
         }).body
-        // let userNovels = util.getAjaxJson(url).body
+        // let userNovels = getAjaxJson(url).body
         // 获取对应的小说 该序列是按照id排序
         // 反转以按照更新时间排序
         novels = novels.concat(Object.values(userNovels).reverse())
@@ -128,15 +128,15 @@ function getSeries(){
 function getNovels(){
     let MAXPAGES = 3, novels = []
     let novelName = String(java.get("key"))
-    java.log(util.urlSearchNovel(novelName, 1))
-    let resp = util.getAjaxJson(util.urlSearchNovel(novelName, 1))
+    java.log(urlSearchNovel(novelName, 1))
+    let resp = getAjaxJson(urlSearchNovel(novelName, 1))
     if (resp.error === true) {
         return []
     }
     novels = novels.concat(resp.body.novel.data)
     for (let i = Number(java.get("page")) + 1; i < resp.body.novel.lastPage, i < MAXPAGES; i++) {
         java.log(`页面：${i}`)
-        let resp = util.getAjaxJson(util.urlSearchNovel(novelName, i))
+        let resp = getAjaxJson(urlSearchNovel(novelName, i))
         if (resp.error === true) {
             return []
         }
