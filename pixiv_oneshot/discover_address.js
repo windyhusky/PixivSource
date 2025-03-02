@@ -145,6 +145,10 @@ try {
             }
         }
         li = li.concat(bookmarks)
+    } else {
+        java.longToast("可设置源变量，查看他人收藏 ❤️ ")
+        sleep(2000)
+        java.longToast('发现页 - 长按"Pixiv" - 登录 - 编辑 - 右上角菜单 - 设置源变量')
     }
 } catch (e) {
     java.longToast("源变量设置有误")
