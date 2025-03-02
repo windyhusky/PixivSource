@@ -118,7 +118,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 发现：推荐作者、最新小说
 
-![img](./pic/DiscoverLinpx.jpg)
+![img](./pic/DiscoverLinpx.png)
 </details>
 
 
@@ -155,7 +155,7 @@ https://furrynovel.ink/pn/20063566
 <summary> 🏠 订阅源 </summary>
 
 #### 4.1 替代阅读搜索
-受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx的功能。网站的搜索功能更加全面。
+受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx 的功能。网站的搜索功能更加全面。
 
 ![img](./pic/SearchViaLinpx.png)
 
@@ -169,7 +169,7 @@ https://furrynovel.ink/pn/20063566
 
 
 #### 4.3 添加小说至书架
-在阅读内部浏览器内打开 Linpx 小说页面，点击【添加到书架】按钮即可添加小说到书架
+打开 Linpx 小说页面，点击【添加到书架】按钮，即可添加小说到书架
 
 ![img](./pic/AddBookViaLinpx.png)
 </details>

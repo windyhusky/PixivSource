@@ -17,7 +17,7 @@
 - [兽人控小说站](https://www.furrynovel.com)，收录了 Pixiv, Bilibili 的大部分兽人小说
 
 
-## 快速导入 => [导入订阅源](./doc/ImportRssSource.md)
+## 快速导入 => [导入订阅源](./doc/ImportRssSource.md) 
 | 名称          | 免代理导入网址                                                         |
 | -------------| ------------------------------------------------------------------- |
 | Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
@@ -41,16 +41,17 @@
 </details>
 
 
-## 源状态 & 功能
+## 书源状态 & 功能
 | 书源      | 状态 | 获取小说 | 支持P站特性 | 实现阅读功能 |
 | -------- | --- | ------- | --------- | ---------- |
 | Pixiv    | ✅ | ✅ 全站 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 | Linpx    | ✅ | ☑️ 部分 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 | 兽人小说  | ✅ | ☑️ 部分 | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 ✅ 订阅源 |
 
-<details><summary> 🧩 书源功能 </summary>
+### 书源功能
+<details><summary> 🅿️ Pixiv 特性 </summary>
 
-#### 🅿️ Pixiv 特性：
+#### 已支持 Pixiv 特性
 - 单篇小说：Pixiv 小说投稿时的【单篇完结作品】，即短篇小说
 - 系列小说：Pixiv 小说投稿时的【连载系列作品】，即长篇小说
 - <details><summary> ✅ ⭐️ 小说功能 </summary>
@@ -104,15 +105,40 @@
       > 默认开启，可在书源设置中修改 `REPLACE_BOOK_TITLE_MARKS`
   - 🈚️ 不支持的标记符
   </details>
+</details>
 
 
-#### 📖 阅读功能：
+<details><summary> 📖 阅读功能 </summary>
+
+#### 已实现书源功能
 - ✅ 搜索：书架页面，搜索小说，添加小说到书架
   - ✅ 搜索小说名称、标签、作者、链接
 - ✅ 发现：发现页面，查看小说，添加小说到书架
   - ✅ 常规发现
   - ✅ 更新书源、订阅源
-  - ✅ 设置源变量：他人收藏（Pixiv 书源）、筛选发现（兽人控小说站 书源）
+  - ✅ 设置源变量
+    - <details><summary> ❤️ 他人收藏（Pixiv 书源）</summary>
+  
+      - 发现 - 长按 **"Pixiv"** - 编辑 - 右上角菜单 - 设置源变量
+      - 设置源变量：输入作者ID，一行一个，可添加作者名，保存
+        ```
+        12345 // 作者A
+        67890 # 作者B
+        ```
+      - 发现：长按 **"Pixiv"**，刷新，查看他人收藏
+      </details>
+      
+    - <details><summary> 🔎 筛选发现（兽人小说站书源）</summary>
+
+      - 发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量  
+      - 设置源变量：输入想要筛选的标签，以空格间隔（或一行一个），保存
+        ```
+        中文 原创  纯爱
+        ```
+      - 发现 - 长按 **"兽人小说站"** - 刷新 - 查看筛选后的小说
+      </details>
+
+
 - ✅ 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
   -  ✅ 支持同时添加多条网址链接
 - ✅ 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
@@ -123,6 +149,7 @@
 
 <details><summary> ⚙️ 书源设置 </summary>
 
+#### 书源功能设置
 | 书源设置           | 默认状态 | 常量名称                    | 作用 |
 | ---------------- | ------ | -------------------------- | --- |
 | 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_NEW`   | 发现 |
@@ -139,49 +166,31 @@
 - 修改时，请修改`true` 为 `false`，或相反
 ```
 {
-    "SHOW_GENERAL_NOVELS_NEW": false,
-    "SHOW_GENERAL_NOVELS_RANK": false,
-    "SHOW_GENERAL_NOVELS_GENRE": false,
-    "MORE_INFO_IN_DESCRIPTION": false,
-    "SHOW_ORIGINAL_NOVEL_LINK": true,
-    "REPLACE_BOOK_TITLE_MARKS": true,
-    "SHOW_NOVEL_CAPTIONS": true,
-    "SHOW_NOVEL_COMMENTS": true,
-    "DEBUG": false
+  "SHOW_GENERAL_NOVELS_NEW": false,
+  "SHOW_GENERAL_NOVELS_RANK": false,
+  "SHOW_R18_NOVELS_GENRE": false,
+  "SHOW_GENERAL_NOVELS_GENRE": false,
+  "MORE_INFO_IN_DESCRIPTION": false,
+  "SHOW_ORIGINAL_NOVEL_LINK": true,
+  "REPLACE_BOOK_TITLE_MARKS": true,
+  "SHOW_NOVEL_CAPTIONS": true,
+  "SHOW_NOVEL_COMMENTS": true,
+  "DEBUG": false
 }
 ```
 </details>
 
 
-<details><summary> ❤️ 他人收藏（Pixiv 书源）</summary>
-
-- 发现 - 长按 **"Pixiv"** - 编辑 - 右上角菜单 - 设置源变量
-- 设置源变量：输入作者ID，一行一个，可添加作者名，保存
-```
-12345 // 作者A
-67890 # 作者B
-```
-- 发现：长按 **"Pixiv"**，刷新，查看他人收藏
-</details>
-
-
-<details><summary> 🔎 筛选发现（兽人小说站书源）</summary>
-
-- 发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量  
-  设置源变量：输入想要搜索/筛选的标签，以空格间隔（或一行一个），保存
-```
-中文 原创  纯爱
-```
-- 发现 - 长按 **"兽人小说站"** - 刷新 - 查看筛选后的小说
-</details>
-
-
-| 订阅源 | 包含内容 | 订阅源 | 包含内容 |
+### 订阅源功能
+| 订阅源 | 包含网站 | 订阅源 | 包含网站 |
 | ----- | ------ | ----- | ------- |
 | btsrk | 1️⃣ [Pixiv 小说](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
-- Pixiv 、Linpx、兽人控小说站订阅源内可导入相应书源
-- import 订阅源：一键导入本项目所整理提供的书源、订阅源
+
+- btsrk 订阅源：Pixiv 、Linpx、兽人控小说站
+  - ✅ 添加小说到书架 ✅ 导入相应书源
+- books 订阅源：快速导入阅读相关资源（书源分享订阅源）
+- import 订阅源：便捷导入本项目整理的书源、订阅源
 
 
 ### 非本项目的其他资源
