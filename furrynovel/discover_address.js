@@ -11,6 +11,8 @@ if (keyword.includes(" ")) {
 }
 if (key.length === 0){
     java.longToast("可设置源变量，筛选发现内容")
+    sleep(2000)
+    java.longToast('发现页 - 长按"兽人控小说站" - 登录 - 编辑 - 右上角菜单 - 设置源变量')
 } else {
     java.longToast(`正在搜索：${key.join("、")}`)
 }

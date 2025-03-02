@@ -72,7 +72,14 @@ function dateFormat(text) {
 function timeTextFormat(text) {
     return `${text.slice(0, 10)} ${text.slice(11, 19)}`
 }
-
+function sleep(time) {
+    let endTime = new Date().getTime() + time
+    while(true){
+        if (new Date().getTime() > endTime){
+            return;
+        }
+    }
+}
 
 function updateSource(){
     const {java, source} = this;
