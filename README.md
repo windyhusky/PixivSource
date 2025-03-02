@@ -81,9 +81,9 @@
 
 - <details><summary> ✅ 🔥 原创热门 </summary>
 
-  - ✅ R18 小说热门分类
-  - ✅ 一般小说热门分类
-    >（默认隐藏，可在书源设置中修改 `SHOW_GENERAL_NOVELS_GENRE` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
+  - ✅ R18 小说热门分类（默认隐藏）
+  - ✅ 一般小说热门分类（默认隐藏）
+    >（可在书源设置中修改 `SHOW_GENERAL_NOVELS_GENRE` `SHOW_GENERAL_NOVELS_GENRE` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
   
 - <details><summary> ✅ 🔧 小说工具（标记符号） </summary>
@@ -108,9 +108,16 @@
 
 #### 📖 阅读功能：
 - ✅ 搜索：书架页面，搜索小说，添加小说到书架
+  - ✅ 搜索小说名称、标签、作者、链接
 - ✅ 发现：发现页面，查看小说，添加小说到书架
+  - ✅ 常规发现
+  - ✅ 更新书源、订阅源
+  - ✅ 设置源变量：他人收藏（Pixiv 书源）、筛选发现（兽人控小说站 书源）
 - ✅ 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
+  -  ✅ 支持同时添加多条网址链接
 - ✅ 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
+  - ✅ 添加小说到书架
+  - ✅ 导入相应书源
 </details>
 
 
@@ -173,6 +180,7 @@
 | ----- | ------ | ----- | ------- |
 | btsrk | 1️⃣ [Pixiv 小说](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
 
+- Pixiv 、Linpx、兽人控小说站订阅源内可导入相应书源
 - import 订阅源：一键导入本项目所整理提供的书源、订阅源
 
 
@@ -257,6 +265,8 @@
 - ✅ 兽人控小说站 书源：搜索
 - ✅ 兽人控小说站 书源：添加链接
 - ✅ 兽人控小说站 书源：发现
+- ✅ 书源-发现-更新：更新书源和订阅源
+- ✅ 订阅源：导入/更新书源
 </details>
 
 
