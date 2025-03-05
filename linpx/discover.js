@@ -66,12 +66,27 @@ function handlerFollowLatest() {
     }
 }
 
+function handlerRegexNovels() {
+    return () => {
+        let result = java.webView(null, "https://furrynovel.ink", null)
+        let name = result.match(RegExp('<div class=" font-bold text-xl line-clamp-1">(.*?)</div>'))[1]
+        let resp = getAjaxJson(urlSearchNovel(name))
+        if (resp.total !== undefined) {
+            return util.formatNovels(util.handNovels(util.combineNovels(resp.novels)))
+        }
+        return []
+    }
+}
+
 function handlerFactory() {
     if (baseUrl.includes("/fav/user")) {
         return handlerRecommendUsers()
     }
     if (baseUrl.includes("/pixiv/novels/recent")) {
         return handlerFollowLatest()
+    }
+    if (baseUrl.includes("https://furrynovel.ink")) {
+        return handlerRegexNovels()
     }
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return updateSource()
