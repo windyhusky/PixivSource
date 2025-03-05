@@ -66,9 +66,8 @@ function handlerFactory() {
 
 function handlerNoLogin() {
     return () => {
-        java.longToast("此功能需要在书源登录后才能使用")
-        sleep(2000)
-        java.longToast('发现页 - 长按"Pixiv" - 登录 - 登录账号')
+        sleepToast("此功能需要在书源登录后才能使用")
+        sleepToast('发现页 - 长按"Pixiv" - 登录 - 登录账号')
         return []
     }
 }

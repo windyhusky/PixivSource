@@ -146,12 +146,12 @@ try {
         }
         li = li.concat(bookmarks)
     } else {
-        java.longToast("可设置源变量，查看他人收藏 ❤️ ")
-        sleep(2000)
-        java.longToast('发现页 - 长按"Pixiv" - 登录 - 编辑 - 右上角菜单 - 设置源变量')
+        sleepToast("可设置源变量，查看他人收藏 ❤️ ")
+        sleepToast('发现 - 长按"Pixiv" - 编辑 - 右上角菜单 - 设置源变量')
     }
 } catch (e) {
-    java.longToast("源变量设置有误")
+    sleepToast("⚠️源变量设置有误")
+    sleepToast("设置源变量：输入作者ID，一行一个，可添加作者名，保存")
 }
 
 li.forEach(item => {

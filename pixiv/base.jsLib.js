@@ -123,7 +123,11 @@ function sleep(time) {
         }
     }
 }
-
+function sleepToast(text) {
+    const {java} = this
+    java.longToast(text)
+    sleep(2000)
+}
 
 function updateSource(){
     return () => {
