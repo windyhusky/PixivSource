@@ -29,7 +29,7 @@ normal = [
     {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=all&lang=zh"},
     {"💯 推荐": "https://www.pixiv.net/ajax/top/novel?mode=all&lang=zh"},
     {"🔍 发现": "https://www.pixiv.net/ajax/novel/discovery?mode=safe&lang=zh"},
-    {"🅿️ 更新": "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"},
+    {"🆙 更新": "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"},
 ]
 
 r18New = [
