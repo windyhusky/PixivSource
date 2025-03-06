@@ -1,6 +1,9 @@
 @js:
 let keyword = String(source.getVariable()).replace("#", "")
 let key = keyword.split(/[ 　,，、\n]/)
+if (key.includes("")) {
+    key.splice(key.indexOf(""), 1)
+}
 if (key.length === 0) {
     sleepToast("可设置源变量，筛选发现 🔍 ")
     sleepToast('发现页 - 长按"兽人控小说站" - 编辑 - 右上角菜单 - 设置源变量')
