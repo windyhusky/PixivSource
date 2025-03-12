@@ -143,33 +143,33 @@ function publicFunc() {
     // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
         let novelId = 0, res = {}
+        let isJson = isJsonString(result)
+        let isHtml = result.startsWith("<!DOCTYPE html>")
         // 兼容搜索直接输入链接
         pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
         // pattern = String(bookSourceUrl).replace(".*", "")
-        if (RegExp(pattern).test(result) && !(result.startsWith("<!DOCTYPE html>"))) {
+        if (!isJson && !isHtml && (pattern).test(result)) {
             baseUrl = result.match(RegExp(pattern))[0]
-            result = "<!DOCTYPE html>"
             java.log(`匹配链接：${baseUrl}`)
         }
 
-        let isHtml = result.startsWith("<!DOCTYPE html>")
-        if (isHtml) {
-            let id = baseUrl.match(new RegExp("\\d+"))[0]
-            let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
-            let isSeries = baseUrl.match(new RegExp(pattern))
-            if (isSeries) {
-                java.log(`系列ID：${id}`)
-                res = getAjaxJson(urlSeriesDetailed(id))
-            } else {
-                let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
-                let isNovel = baseUrl.match(new RegExp(pattern))
-                if (isNovel) {
-                    novelId = id
-                }
-            }
+        let id = baseUrl.match(new RegExp("\\d+"))[0]
+        let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
+        let isSeries = baseUrl.match(new RegExp(pattern))
+        if (isSeries) {
+            java.log(`系列ID：${id}`)
+            res = getAjaxJson(urlSeriesDetailed(id))
         } else {
+            let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+            let isNovel = baseUrl.match(new RegExp(pattern))
+            if (isNovel) {
+                novelId = id
+            }
+        }
+        if (isJson) {
             res = JSON.parse(result)
         }
+
         if (res.total !== undefined && res.total !== null) {
             novelId = res.novels[0].id
         }
@@ -188,8 +188,9 @@ function publicFunc() {
     // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
     u.getNovelResSeries = function (result) {
         let seriesId = 0, res = {}
+        let isJson = isJsonString(result)
         let isHtml = result.startsWith("<!DOCTYPE html>")
-        if (isHtml) {
+        if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
             let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
             let isSeries = baseUrl.match(new RegExp(pattern))
@@ -203,9 +204,11 @@ function publicFunc() {
                     res = getAjaxJson(urlNovelDetailed(id))
                 }
             }
-        } else {
+        }
+        if (isJson) {
             res = JSON.parse(result)
         }
+
         if (res.series !== undefined && res.series !== null) {
             seriesId = res.series.id
         }

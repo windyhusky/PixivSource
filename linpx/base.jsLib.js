@@ -95,15 +95,15 @@ function timeTextFormat(text) {
     }
     return `${text.slice(0, 10)} ${text.slice(11, 19)}`
 }
-function sleep(time) {
-    let endTime = new Date().getTime() + time
-    while(true){
-        if (new Date().getTime() > endTime){
-            return;
-        }
-    }
-}
 
+function isJsonString(str) {
+    try {
+        if (typeof JSON.parse(str) === "object") {
+            return true
+        }
+    } catch(e) {}
+    return false
+}
 
 function updateSource(){
     return () => {
