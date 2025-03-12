@@ -129,6 +129,15 @@ function sleepToast(text) {
     sleep(2000)
 }
 
+function isJsonString(str) {
+    try {
+        if (typeof JSON.parse(str) === "object") {
+            return true
+        }
+    } catch(e) {}
+    return false
+}
+
 function updateSource(){
     return () => {
         const {java, source} = this;
