@@ -61,16 +61,23 @@ function publicFunc() {
     // 处理 novels 列表
     u.handNovels = function (novels){
         novels.forEach(novel => {
-            if (novel.tags === undefined) {
-                novel.tags = []
-            }
             // novel.id = novel.id
             // novel.title = novel.title
             // novel.userName = novel.userName
+            // novel.tags = novel.tags
+            if (novel.tags === undefined) {
+                novel.tags = []
+            }
+            if (novel.series !== undefined && novel.series !== null) {
+                novel.seriesId = novel.series.id  // 兼容详情页
+            }
             if (novel.seriesId === undefined || novel.seriesId === null) {
-                // novel.tags = novel.tags
                 novel.tags.unshift("单本")
-                novel.textCount = novel.length
+                try {
+                    novel.textCount = novel.length
+                } catch (e) {
+                    novel.textCount = novel.content.length  // 兼容详情页
+                }
                 novel.latestChapter = novel.title
                 novel.description = novel.desc
                 // novel.coverUrl = novel.coverUrl
@@ -80,12 +87,9 @@ function publicFunc() {
                 java.log(`正在获取系列小说：${novel.seriesId}`)
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
                 novel.id = series.novels[0].id
-                novel.title = novel.seriesTitle
-                novel.tags = series.tags
-                // novel.tags = novel.tags.concat(series.tags)
-                novel.tags = novel.tags.concat(series.novels[0].tags)
+                novel.title = series.title
+                novel.tags = novel.tags.concat(series.tags)
                 novel.tags.unshift("长篇")
-                novel.tags = Array.from(new Set(novel.tags))
                 novel.textCount = null  // 无数据
                 novel.createDate = null  // 无数据
                 novel.latestChapter = series.novels[series.novels.length-1].title
@@ -94,16 +98,13 @@ function publicFunc() {
                 // novel.coverUrl = series.coverUrl
                 novel.coverUrl = series.novels[0].coverUrl
                 novel.detailedUrl = urlNovelDetailed(novel.id)
-                // novel.detailedUrl = urlSeries(novel.id)
 
-                if (series.caption === "") {
-                    let firstNovel = getAjaxJson(urlNovelDetailed(novel.id))
-                    novel.createDate = firstNovel.createDate
-                    if (firstNovel.length > 0) {
-                        novel.description = firstNovel[0].desc
-                    } else {
-                        novel.description = "该小说可能部分章节因为权限或者被删除无法查看"
-                    }
+                let firstNovel = getAjaxJson(urlNovelDetailed(novel.id))
+                novel.tags = novel.tags.concat(firstNovel.tags)
+                novel.tags = Array.from(new Set(novel.tags))
+                novel.createDate = firstNovel.createDate
+                if (novel.description === "") {
+                    novel.description = firstNovel[0].desc
                 }
             }
         })
@@ -115,9 +116,7 @@ function publicFunc() {
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
-            // novel.readingTime = `${novel.readingTime / 60} 分钟`
             novel.createDate = dateFormat(novel.createDate);
-            // novel.updateDate = dateFormat(novel.updateDate);
 
             novel.tags2 = []
             for (let i in novel.tags) {
