@@ -27,8 +27,6 @@ function oneShotHandler(res) {
     }]
 }
 
-
 (() => {
     return oneShotHandler(JSON.parse(result).body)
-
 })()
