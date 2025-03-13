@@ -10,23 +10,43 @@ function objParse(obj) {
     })
 }
 
-function getIllusts() {
+function getManga() {
     if (JSON.parse(result).error !== true){
         java.log(JSON.parse(result).length)
-        return JSON.parse(result).body.illustManga.data
+        illusts = JSON.parse(result).body.illustManga.data
+        illusts.forEach(illust =>{
+            illust.tags.unshift("漫画")
+        })
+        return illusts
     } else {
         return []
     }
 
 }
 
-function getManga() {
-
+function getIllust() {
+    let MAXPAGES = 3, illusts = []
+    let name = String(java.get("key"))
+    java.log(urlSearchIllust(name, 1))
+    let resp = getAjaxJson(urlSearchIllust(name, 1))
+    if (resp.error === true) {
+        return []
+    }
+    illusts = illusts.concat(resp.body.illustManga.data)
+    for (let page = Number(java.get("page")) + 1; page < resp.body.novel.lastPage, page < MAXPAGES; page++) {
+        java.log(`正在搜索第${page}页`)
+        let resp = getAjaxJson(urlSearchIllust(name, page))
+        if (resp.error === true) {
+            return []
+        }
+        illusts = illusts.concat(resp.body.illustManga.data)
+    }
+    illusts.forEach(illust =>{
+        illust.tags.unshift("插画")
+    })
+    return illusts
 }
 
-function isNotUndefined(obj) {
-    return (obj !== undefined && obj !== null)
-}
 function handIllusts(illusts) {
     illusts.forEach(illust => {
         // illust.id = illust.id
@@ -34,6 +54,7 @@ function handIllusts(illusts) {
         // illust.userName = illust.userName
         // illust.tags = illust.tags
         illust.textCount = null
+        // illust.pageCount = illust.pageCount
         // illust.latestChapter = illust.latestChapter
         // illust.description = illust.description
 
@@ -44,7 +65,6 @@ function handIllusts(illusts) {
         }
         illust.detailedUrl = urlIllustDetailed(illust.id)
 
-        // illust.pageCount = illust.pageCount
         // illust.createDate = illust.createDate
         if (isNotUndefined(illust.updateDate)) {
             // illust.updateDate = illust.updateDate
@@ -59,6 +79,7 @@ function handIllusts(illusts) {
 function formatIllusts(illusts) {
     illusts.forEach(illust => {
         illust.title = illust.title.replace(RegExp(/^\s+|\s+$/g), "")
+        illust.tags = Array.from(new Set(illust.tags))
         illust.tags = illust.tags.join(",")
         illust.coverUrl = urlCoverUrl(illust.coverUrl)
         illust.createDate = dateFormat(illust.createDate)
@@ -73,13 +94,14 @@ function formatIllusts(illusts) {
 }
 
 (() => {
-    let illusts = []
-    illusts = illusts.concat(getIllusts())
-    // java.log(JSON.stringify(illusts))
+    let artworks = []
+    artworks = artworks.concat(getManga())
+    // artworks = artworks.concat(getIllust())
+    // java.log(JSON.stringify(artworks))
     // 返回空列表中止流程
-    if (illusts.length === 0) {
+    if (artworks.length === 0) {
         return []
     }
-    // return util.formatIllusts(util.handIllusts(illusts))
-    return formatIllusts(handIllusts(illusts))
+    // return util.formatIllusts(util.handIllusts(artworks))
+    return formatIllusts(handIllusts(artworks))
 })();

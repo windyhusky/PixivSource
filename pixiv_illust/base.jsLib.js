@@ -40,7 +40,9 @@ function urlSearchArtwork(name, page) {
 function urlSearchManga(name, page) {
     return `https://www.pixiv.net/ajax/search/manga/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=manga&lang=zh`
 }
-
+function urlSearchUgoira(name, page) {
+    return `https://www.pixiv.net/ajax/search/manga/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=ugoira&lang=zh`
+}
 
 // 完全匹配用户名
 function urlSearchUser(userName) {
@@ -55,14 +57,6 @@ function urlIllustUrl(illustId) {
 }
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
-}
-
-function urlIllustOriginal(illustId, order) {
-    let illustOriginal = getAjaxJson(urlIllustDetailed(illustId)).body.urls.original
-    if (order >= 1) {
-        illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
-    }
-    return illustOriginal
 }
 
 function urlSeriesIllustsUrl(userId, seriesId) {
@@ -98,6 +92,18 @@ function sleepToast(text) {
     const {java} = this
     java.longToast(text)
     sleep(2000)
+}
+
+function isJsonString(str) {
+    try {
+        if (typeof JSON.parse(str) === "object") {
+            return true
+        }
+    } catch(e) {}
+    return false
+}
+function isNotUndefined(obj) {
+    return (obj !== undefined && obj !== null)
 }
 
 function updateSource(){
