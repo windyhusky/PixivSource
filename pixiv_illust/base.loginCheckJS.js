@@ -34,6 +34,53 @@ function publicFunc() {
         }
     }
 
+    u.handIllusts = function(illusts) {
+        illusts.forEach(illust => {
+            // illust.id = illust.id
+            // illust.title = illust.title
+            // illust.userName = illust.userName
+            // illust.tags = illust.tags
+            if (!(illust.tags instanceof Array)) {
+                illust.tags = illust.tags.tags.map(item => item.tag)
+                illust.coverUrl = illust.urls.regular
+                illust.updateDate = illust.uploadDate
+
+                if (illust.seriesNavData !== null){
+                    illust.seriesId = illust.seriesNavData.seriesId
+                } else {
+                    illust.latestChapter = illust.title
+                }
+            }
+            illust.textCount = null
+            // illust.pageCount = illust.pageCount
+            // illust.description = illust.description
+            illust.coverUrl = illust.url
+            illust.detailedUrl = urlIllustDetailed(illust.id)
+
+            // illust.createDate = illust.createDate
+            // illust.updateDate = illust.updateDate
+            // illust.aiType = illust.aiType
+        })
+        return illusts
+    }
+
+    u.formatIllusts = function(illusts) {
+        illusts.forEach(illust => {
+            illust.title = illust.title.replace(RegExp(/^\s+|\s+$/g), "")
+            illust.tags = Array.from(new Set(illust.tags))
+            illust.tags = illust.tags.join(",")
+            illust.coverUrl = urlCoverUrl(illust.coverUrl)
+            illust.createDate = dateFormat(illust.createDate)
+            illust.updateDate = dateFormat(illust.updateDate)
+            if (util.MORE_INFO_IN_DESCRIPTION) {
+                illust.description = `\n书名：${illust.title}\n作者：${illust.userName}\n标签：${illust.tags}\n上传：${illust.createDate}\n更新：${illust.updateDate}\n简介：${illust.description}`
+            } else {
+                illust.description = `\n${illust.description}\n上传时间：${illust.createDate}\n更新时间：${illust.updateDate}`
+            }
+        })
+        return illusts
+    }
+
     util = u
     java.put("util", objStringify(u))
 }
