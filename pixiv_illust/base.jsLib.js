@@ -7,14 +7,12 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     }
     return JSON.parse(v)
 }
-
 function getAjaxJson(url) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     })
 }
-
 function getWebviewJson(url, parseFunc) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
@@ -23,16 +21,8 @@ function getWebviewJson(url, parseFunc) {
     })
 }
 
-
 function urlUserAllWorks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
-}
-
-function urlSearchNovel(name, page) {
-    return `https://www.pixiv.net/ajax/search/novels/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
-}
-function urlSearchSeries(name, page) {
-    return`https://www.pixiv.net/ajax/search/novels/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
 }
 function urlSearchArtwork(name, page) {
     return `https://www.pixiv.net/ajax/search/artworks/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=all&lang=zh`

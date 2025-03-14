@@ -57,4 +57,4 @@ function getIllust() {
         return []
     }
     return util.formatIllusts(util.handIllusts(artworks))
-})();
+})()
