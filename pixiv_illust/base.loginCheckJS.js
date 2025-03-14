@@ -21,7 +21,7 @@ function publicFunc() {
         settings.DEBUG = false
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-    u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_ILLUST_LINK  // 目录处显示小说源链接，但会增加请求次数
+    u.SHOW_ORIGINAL_ILLUST_LINK = settings.SHOW_ORIGINAL_ILLUST_LINK  // 目录处显示小说源链接，但会增加请求次数
     u.DEBUG = settings.DEBUG // 调试模式
 
     if (u.DEBUG === true) {
@@ -42,7 +42,7 @@ function publicFunc() {
             // illust.tags = illust.tags
             if (!(illust.tags instanceof Array)) {
                 illust.tags = illust.tags.tags.map(item => item.tag)
-                illust.coverUrl = illust.urls.regular
+                illust.coverUrl = illust.url = illust.urls.regular
                 illust.updateDate = illust.uploadDate
 
                 if (illust.seriesNavData !== null){
