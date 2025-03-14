@@ -6,11 +6,11 @@
 ⚠️ 发现页需要长按"Pixiv"，手动刷新
 以下内容为书源设置：
 {
-"SHOW_ORIGINAL_NOVEL_LINK": true,
+"SHOW_ORIGINAL_ILLUST_LINK": true,
 "DEBUG": false
 }
 
-// SHOW_ORIGINAL_NOVEL_LINK
+// SHOW_ORIGINAL_ILLUST_LINK
 // 目录：显示源链接，但会增加请求次数
 // DEBUG
 // 调试模式
