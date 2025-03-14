@@ -37,6 +37,9 @@ function urlSearchSeries(name, page) {
 function urlSearchArtwork(name, page) {
     return `https://www.pixiv.net/ajax/search/artworks/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=all&lang=zh`
 }
+function urlSearchIllust(name, page) {
+    return `https://www.pixiv.net/ajax/search/artworks/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=illust&lang=zh`
+}
 function urlSearchManga(name, page) {
     return `https://www.pixiv.net/ajax/search/manga/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=manga&lang=zh`
 }

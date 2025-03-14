@@ -33,7 +33,7 @@ function getIllust() {
         return []
     }
     illusts = illusts.concat(resp.body.illustManga.data)
-    for (let page = Number(java.get("page")) + 1; page < resp.body.novel.lastPage, page < MAXPAGES; page++) {
+    for (let page = Number(java.get("page")) + 1; page < resp.body.illustManga.lastPage, page < MAXPAGES; page++) {
         java.log(`正在搜索第${page}页`)
         let resp = getAjaxJson(urlSearchIllust(name, page))
         if (resp.error === true) {
