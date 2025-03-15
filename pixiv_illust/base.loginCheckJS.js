@@ -46,7 +46,13 @@ function publicFunc() {
                 illust.updateDate = illust.uploadDate
 
                 if (illust.seriesNavData !== null){
-                    illust.seriesId = illust.seriesNavData.seriesId
+                    illust.series = {}
+                    illust.series.id = illust.seriesNavData.seriesId
+                    illust.series.title = illust.seriesNavData.title
+                    // illust.illustId = illusts.id
+                    // illust.seriesId = illust.id
+                    // illust.id = illust.series.id
+                    // illust.title = illusts.series.title
                 } else {
                     illust.latestChapter = illust.title
                 }
