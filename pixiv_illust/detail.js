@@ -13,15 +13,14 @@ function objParse(obj) {
 function illustHandler(illust){
     illust = util.formatIllusts(util.handIllusts([illust]))[0]
     illust.detailedUrl = urlIllustUrl(illust.id)
-    if (illust.seriesId === undefined || illust.seriesId === null) {
-        illust.catalogUrl = urlIllustDetailed(illust.id)
-    }
+    illust.catalogUrl = urlIllustDetailed(illust.id)
+    // if (illust.seriesId !== undefined && illust.seriesId !== null) {}
     return illust
 }
 
 (() => {
     try {
-        return illustHandler(JSON.parse(result).body)
+        return illustHandler(getIllustRes(result))
     } catch (e) {
         java.log(e)
         java.log(`受 Pixiv 的限制，无法获取当前插画的数据`)

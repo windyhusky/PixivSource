@@ -21,12 +21,11 @@ function urlIllust(novelId){
 function oneShotHandler(res) {
     return [{
         title: res.title.replace(RegExp(/^\s+|\s+$/g), ""),
-        // chapterUrl: urlIllust(res.id),
-        chapterUrl: urlIllustDetailed(res.id),
+        chapterUrl: urlIllust(res.id),
         chapterInfo: `${timeTextFormat(res.createDate)}`
     }]
 }
 
 (() => {
-    return oneShotHandler(JSON.parse(result).body)
+    return oneShotHandler(util.getIllustRes(result))
 })()

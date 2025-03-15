@@ -34,7 +34,7 @@ function publicFunc() {
         }
     }
 
-    u.handIllusts = function(illusts) {
+    u.handIllusts = function (illusts) {
         illusts.forEach(illust => {
             // illust.id = illust.id
             // illust.title = illust.title
@@ -64,7 +64,7 @@ function publicFunc() {
         return illusts
     }
 
-    u.formatIllusts = function(illusts) {
+    u.formatIllusts = function (illusts) {
         illusts.forEach(illust => {
             illust.title = illust.title.replace(RegExp(/^\s+|\s+$/g), "")
             illust.tags = Array.from(new Set(illust.tags))
@@ -79,6 +79,38 @@ function publicFunc() {
             }
         })
         return illusts
+    }
+
+    u.getIllustRes = function (result) {
+        let seriesId = 0, res = {}
+        let isJson = isJsonString(result)
+        let isHtml = result.startsWith("<!DOCTYPE html>")
+        if (!isJson && isHtml) {
+            let id = baseUrl.match(new RegExp("\\d+"))[0]
+            let pattern = "(https?://)?(www\\.)?pixiv\\.net/(artworks|ajax/illust)/\\d+"
+            let isIllust = baseUrl.match(new RegExp(pattern))
+            if (isIllust) {
+                java.log(`匹配插画ID：${id}`)
+                res = getAjaxJson(urlIllustDetailed(id))
+            }
+        }
+        if (isJson) {
+            res = JSON.parse(result)
+        }
+
+        if (res.body !== undefined && res.body.seriesNavData !== null) {
+            seriesId = res.body.seriesNavData.seriesId
+        }
+        if (seriesId) {
+            java.log(`系列ID：${seriesId}`)
+            res = getAjaxJson(urlSeriesDetailed(seriesId))
+        }
+        if (res.error) {
+            java.log(`无法从 Pixiv 获取当前漫画`)
+            java.log(JSON.stringify(res))
+            return []
+        }
+        return res.body
     }
 
     util = u

@@ -23,5 +23,5 @@ function getContent(res) {
 }
 
 (function () {
-    return getContent(JSON.parse(result).body)
+    return getContent(util.getIllustRes(result))
 })()
