@@ -21,9 +21,30 @@ function getWebviewJson(url, parseFunc) {
     })
 }
 
+function urlIllustUrl(illustId) {
+    return `https://www.pixiv.net/artworks/${illustId}`
+}
+function urlIllustDetailed(illustId) {
+    return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
+}
+
+function urlSeriesUrl(userId, seriesId) {
+    return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
+}
+function urlSeriesDetailed(seriesId) {
+    return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
+}
+
+function urlUserUrl(userId) {
+    return `https://www.pixiv.net/users/${userId}`
+}
+function urlUserDetailed(userId) {
+    return `https://www.pixiv.net/ajax/user/${userId}`
+}
 function urlUserAllWorks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
 }
+
 function urlSearchArtwork(name, page) {
     return `https://www.pixiv.net/ajax/search/artworks/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=all&lang=zh`
 }
@@ -36,7 +57,6 @@ function urlSearchManga(name, page) {
 function urlSearchUgoira(name, page) {
     return `https://www.pixiv.net/ajax/search/manga/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=ugoira&lang=zh`
 }
-
 // 完全匹配用户名
 function urlSearchUser(name) {
     return `https://www.pixiv.net/search/users?nick=${encodeURI(name)}&s_mode=s_usr&nick_mf=1`
@@ -45,20 +65,6 @@ function urlSearchUser(name) {
 function urlCoverUrl(url) {
     return `${url}, {"headers": {"Referer":"https://www.pixiv.net/"}}`
 }
-function urlIllustUrl(illustId) {
-    return `https://www.pixiv.net/artworks/${illustId}`
-}
-function urlIllustDetailed(illustId) {
-    return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
-}
-
-function urlSeriesIllustsUrl(userId, seriesId) {
-    return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
-}
-function urlSeriesIllustsDetailed(seriesId) {
-    return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
-}
-
 
 function dateFormat(str) {
     let addZero = function (num) {

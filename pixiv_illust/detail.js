@@ -20,7 +20,7 @@ function illustHandler(illust){
 
 (() => {
     try {
-        return illustHandler(getIllustRes(result))
+        return illustHandler(util.getIllustRes(result))
     } catch (e) {
         java.log(e)
         java.log(`受 Pixiv 的限制，无法获取当前插画的数据`)
