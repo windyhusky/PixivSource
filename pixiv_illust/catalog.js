@@ -28,13 +28,27 @@ function oneShotHandler(res) {
 
 function seriesHandler(res) {
     // todo：漫画目录翻页
-    res = getAjaxJson(urlSeriesDetailed(res.seriesId)).body
-    let page = res.page.total
-    // let page = res.illustSeries.total
-    let illusts_id = res.page.series.map(item => item.workId).reverse()
-    let illusts = res.thumbnails.illust.filter(illust => illusts_id.includes(illust.id)).reverse()
-    java.log(JSON.stringify(illusts_id))
-    illusts.forEach(illust => {
+    let limit = 12, seriesId = 0, total = 0, illusts = []
+    if (res.seriesNavData !== undefined) {
+        seriesId = res.seriesNavData.seriesId
+        total = getAjaxJson(urlSeriesDetailed(res.seriesNavData.seriesId)).body.page.total
+    } else {
+        // seriesId = 0
+        // total = 0
+    }
+    util.debugFunc(() => {
+        java.log(`本系列 ${seriesId} 一共有${total}章`);
+    })
+
+    //要爬取的总次数
+    let max = (total / limit) + 1
+    for (let page = 1; page < max; page++) {
+        // java.log(urlSeriesDetailed(seriesId, page))
+        res = getAjaxJson(urlSeriesDetailed(seriesId, page)).body
+        let illusts_id = res.page.series.map(item => item.workId)
+        illusts = illusts.concat(res.thumbnails.illust.filter(illust => illusts_id.includes(illust.id)))
+    }
+    illusts.reverse().forEach(illust => {
         illust.title = illust.title.replace(RegExp(/^\s+|\s+$/g), "")
         illust.chapterUrl = urlIllust(illust.id)
         illust.chapterInfo = timeTextFormat(illust.createDate)
