@@ -27,21 +27,13 @@ function oneShotHandler(res) {
 }
 
 function seriesHandler(res) {
-    let seriesID = 0, allChaptersCount = 0
-    if (res.seriesNavData !== undefined) {
-        seriesID = res.seriesNavData.seriesId
-        // allChaptersCount = getAjaxJson(urlSeriesDetailed(seriesID)).body.total
-    // } else {
-    //     seriesID = res.id
-        // allChaptersCount = res.total
-    }
     // todo：漫画目录翻页
-    res = getAjaxJson(urlSeriesDetailed(seriesID)).body
+    res = getAjaxJson(urlSeriesDetailed(res.seriesId)).body
     let page = res.page.total
     // let page = res.illustSeries.total
     let illusts_id = res.page.series.map(item => item.workId).reverse()
-    let illusts = res.thumbnails.illust.filter(illust => illust_ids.includes(illust.id)).reverse()
-    java.log(JSON.stringify(illust_ids))
+    let illusts = res.thumbnails.illust.filter(illust => illusts_id.includes(illust.id)).reverse()
+    java.log(JSON.stringify(illusts_id))
     illusts.forEach(illust => {
         illust.title = illust.title.replace(RegExp(/^\s+|\s+$/g), "")
         illust.chapterUrl = urlIllust(illust.id)
