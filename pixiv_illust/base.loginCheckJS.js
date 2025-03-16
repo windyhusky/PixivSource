@@ -59,7 +59,7 @@ function publicFunc() {
             } else {
                 illust.seriesId = illust.seriesNavData.seriesId
                 illust.title = illust.seriesNavData.title
-                let resp = getAjaxJson(urlSeriesDetailed(illust.seriesId, 1)).body
+                let resp = getAjaxJson(urlSeriesDetailed(illust.seriesId)).body
                 // let illusts = resp.thumbnails.illust
                 let series = resp.illustSeries.filter(item => item.id === illust.seriesId)[0]
                 illust.description = series.description
@@ -90,28 +90,30 @@ function publicFunc() {
     }
 
     u.getIllustRes = function (result) {
-        let seriesId = 0, res = {}
+        let illustId = 0, res = {}
         let isJson = isJsonString(result)
         let isHtml = result.startsWith("<!DOCTYPE html>")
         if (!isJson && isHtml) {
-            let id = baseUrl.match(new RegExp("\\d+"))[0]
-            let pattern = "(https?://)?(www\\.)?pixiv\\.net/(artworks|ajax/illust)/\\d+"
-            let isIllust = baseUrl.match(new RegExp(pattern))
+            let pattern1 = "(https?://)?(www\\.)?pixiv\\.net/(artworks|ajax/illust)/(\\d+)"
+            let isIllust = baseUrl.match(new RegExp(pattern1))
+            let pattern2 = "(https?://)?(www\\.)?pixiv\\.net/user/\\d+/series/(\\d+)"
+            let isSeries = baseUrl.match(new RegExp(pattern2))
+
             if (isIllust) {
-                java.log(`匹配插画ID：${id}`)
-                res = getAjaxJson(urlIllustDetailed(id))
+                illustId = isIllust[4]
+            } else if (isSeries) {
+                seriesId = isSeries[3]
+                java.log(`匹配系列ID：${seriesId}`)
+                illustId = getAjaxJson(urlSeriesDetailed(seriesId)).body.page.series.reverse()[0].workId
             }
         }
         if (isJson) {
             res = JSON.parse(result)
         }
 
-        if (res.body !== undefined && res.body.seriesNavData !== null) {
-            seriesId = res.body.seriesNavData.seriesId
-        }
-        if (seriesId) {
-            java.log(`系列ID：${seriesId}`)
-            res = getAjaxJson(urlSeriesDetailed(seriesId))
+        if (illustId) {
+            java.log(`匹配插画ID：${illustId}`)
+            res = getAjaxJson(urlIllustDetailed(illustId))
         }
         if (res.error) {
             java.log(`无法从 Pixiv 获取当前漫画`)

@@ -31,7 +31,7 @@ function urlIllustDetailed(illustId) {
 function urlSeriesUrl(userId, seriesId) {
     return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
 }
-function urlSeriesDetailed(seriesId, page) {
+function urlSeriesDetailed(seriesId, page=1) {
     return `https://www.pixiv.net/ajax/series/${seriesId}?p=${page}&lang=zh`
 }
 
