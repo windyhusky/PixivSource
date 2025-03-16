@@ -11,17 +11,14 @@ function objParse(obj) {
 }
 
 function getManga() {
-    if (JSON.parse(result).error !== true){
-        java.log(JSON.parse(result).length)
-        illusts = JSON.parse(result).body.illustManga.data
-        illusts.forEach(illust =>{
-            illust.tags.unshift("漫画")
-        })
-        return illusts
-    } else {
+    if (JSON.parse(result).error === true) {
         return []
     }
-
+    let illusts = JSON.parse(result).body.illustManga.data
+    illusts.forEach(illust => {
+        illust.tags.unshift("漫画")
+    })
+    return illusts
 }
 
 function getIllust() {
@@ -41,7 +38,7 @@ function getIllust() {
         }
         illusts = illusts.concat(resp.body.illustManga.data)
     }
-    illusts.forEach(illust =>{
+    illusts.forEach(illust => {
         illust.tags.unshift("插画")
     })
     return illusts

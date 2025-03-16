@@ -31,8 +31,8 @@ function urlIllustDetailed(illustId) {
 function urlSeriesUrl(userId, seriesId) {
     return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
 }
-function urlSeriesDetailed(seriesId) {
-    return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
+function urlSeriesDetailed(seriesId, page) {
+    return `https://www.pixiv.net/ajax/series/${seriesId}?p=${page}&lang=zh`
 }
 
 function urlUserUrl(userId) {
@@ -46,16 +46,16 @@ function urlUserAllWorks(userId) {
 }
 
 function urlSearchArtwork(name, page) {
-    return `https://www.pixiv.net/ajax/search/artworks/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=all&lang=zh`
+    return `https://www.pixiv.net/ajax/search/artworks/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tc&type=all&lang=zh`
 }
 function urlSearchIllust(name, page) {
-    return `https://www.pixiv.net/ajax/search/artworks/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=illust&lang=zh`
+    return `https://www.pixiv.net/ajax/search/artworks/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tc&type=illust&lang=zh`
 }
 function urlSearchManga(name, page) {
-    return `https://www.pixiv.net/ajax/search/manga/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=manga&lang=zh`
+    return `https://www.pixiv.net/ajax/search/manga/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tc&type=manga&lang=zh`
 }
 function urlSearchUgoira(name, page) {
-    return `https://www.pixiv.net/ajax/search/manga/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tag&type=ugoira&lang=zh`
+    return `https://www.pixiv.net/ajax/search/manga/${encodeURI(name)}?word=${encodeURI(name)}&order=date_d&mode=all&p=${page}s_mode=s_tc&type=ugoira&lang=zh`
 }
 // 完全匹配用户名
 function urlSearchUser(name) {
