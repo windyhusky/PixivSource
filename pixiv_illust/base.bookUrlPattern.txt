@@ -1,6 +1,11 @@
+Pixiv：插画 + 漫画
+(https?://)?(www\.)?pixiv\.net/((artworks|user/\d+/series)|ajax/(illust|series))/\d+
+
 Pixiv：插画
 (https?://)?(www\.)?pixiv\.net/(artworks|ajax/illust)/\d+
 
+Pixiv 漫画
+(https?://)?(www\.)?pixiv\.net/(user/\d+|ajax)/series/\d+
 
 Pixiv：作者
 (https?://)?(www\.)?pixiv\.net(/ajax)?/users?/\d+

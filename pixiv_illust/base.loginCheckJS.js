@@ -96,13 +96,13 @@ function publicFunc() {
         if (!isJson && isHtml) {
             let pattern1 = "(https?://)?(www\\.)?pixiv\\.net/(artworks|ajax/illust)/(\\d+)"
             let isIllust = baseUrl.match(new RegExp(pattern1))
-            let pattern2 = "(https?://)?(www\\.)?pixiv\\.net/user/\\d+/series/(\\d+)"
+            let pattern2 = "(https?://)?(www\\.)?pixiv\\.net/(user/\\d+|ajax)/series/(\\d+)"
             let isSeries = baseUrl.match(new RegExp(pattern2))
 
             if (isIllust) {
                 illustId = isIllust[4]
             } else if (isSeries) {
-                seriesId = isSeries[3]
+                seriesId = isSeries[4]
                 java.log(`匹配系列ID：${seriesId}`)
                 illustId = getAjaxJson(urlSeriesDetailed(seriesId)).body.page.series.reverse()[0].workId
             }
