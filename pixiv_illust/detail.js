@@ -14,7 +14,6 @@ function illustHandler(illust){
     illust = util.formatIllusts(util.handIllusts([illust]))[0]
     illust.detailedUrl = urlIllustUrl(illust.id)
     illust.catalogUrl = urlIllustDetailed(illust.id)
-    // if (illust.seriesId !== undefined && illust.seriesId !== null) {}
     return illust
 }
 

@@ -42,30 +42,32 @@ function publicFunc() {
             // illust.tags = illust.tags
             if (!(illust.tags instanceof Array)) {
                 illust.tags = illust.tags.tags.map(item => item.tag)
-                illust.coverUrl = illust.url = illust.urls.regular
+                illust.coverUrl = illust.url = illust.urls.regular  // 兼容正文搜索
                 illust.updateDate = illust.uploadDate
-
-                if (illust.seriesNavData !== null){
-                    illust.series = {}
-                    illust.series.id = illust.seriesNavData.seriesId
-                    illust.series.title = illust.seriesNavData.title
-                    // illust.illustId = illusts.id
-                    // illust.seriesId = illust.id
-                    // illust.id = illust.series.id
-                    // illust.title = illusts.series.title
-                } else {
-                    illust.latestChapter = illust.title
-                }
             }
             illust.textCount = null
             // illust.pageCount = illust.pageCount
             // illust.description = illust.description
             illust.coverUrl = illust.url
             illust.detailedUrl = urlIllustDetailed(illust.id)
-
             // illust.createDate = illust.createDate
             // illust.updateDate = illust.updateDate
             // illust.aiType = illust.aiType
+
+            if (illust.seriesNavData === undefined || illust.seriesNavData === null) {
+                illust.latestChapter = illust.title
+            } else {
+                illust.seriesId = illust.seriesNavData.seriesId
+                illust.title = illust.seriesNavData.title
+                let resp = getAjaxJson(urlSeriesDetailed(illust.seriesId, 1)).body
+                // let illusts = resp.thumbnails.illust
+                let series = resp.illustSeries.filter(item => item.id === illust.seriesId)[0]
+                illust.description = series.description
+                illust.coverUrl = series.url
+                // illust.latestIllustId = series.url
+                illust.createDate = series.createDate
+                illust.updateDate = series.updateDate
+            }
         })
         return illusts
     }
