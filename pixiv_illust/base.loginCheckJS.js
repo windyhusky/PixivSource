@@ -60,13 +60,23 @@ function publicFunc() {
                 illust.seriesId = illust.seriesNavData.seriesId
                 illust.title = illust.seriesNavData.title
                 let resp = getAjaxJson(urlSeriesDetailed(illust.seriesId)).body
-                // let illusts = resp.thumbnails.illust
                 let series = resp.illustSeries.filter(item => item.id === illust.seriesId)[0]
+                illust.tags = illust.tags.concat(series.tags)
+                illust.latestChapter = resp.thumbnails.illust.filter(item =>item.id === series.latestIllustId)[0].title
                 illust.description = series.description
-                illust.coverUrl = series.url
-                // illust.latestIllustId = series.url
+                if (series.url === undefined) {
+                    let firstChapter = getAjaxJson(urlIllustDetailed(series.firstIllustId)).body
+                    illust.coverUrl = firstChapter.urls.regular
+                    illust.tags = illust.tags.concat(firstChapter.tags.tags.map(item => item.tag))
+                }
+                // else {
+                //     java.log("")
+                //     java.log(illust.coverUrl)
+                //     illust.coverUrl = series.url
+                // }
                 illust.createDate = series.createDate
                 illust.updateDate = series.updateDate
+                illust.total = series.total
             }
         })
         return illusts
