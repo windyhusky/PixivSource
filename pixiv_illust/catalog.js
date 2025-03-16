@@ -27,14 +27,12 @@ function oneShotHandler(res) {
 }
 
 function seriesHandler(res) {
-    // todo：漫画目录翻页
-    let limit = 12, seriesId = 0, total = 0, illusts = []
-    if (res.seriesNavData !== undefined) {
-        seriesId = res.seriesNavData.seriesId
+    let limit = 12, total = 0, illusts = []
+    let seriesId = res.seriesNavData.seriesId
+    if (res.seriesId === undefined) {
         total = getAjaxJson(urlSeriesDetailed(res.seriesNavData.seriesId)).body.page.total
     } else {
-        // seriesId = 0
-        // total = 0
+        total = res.total
     }
     util.debugFunc(() => {
         java.log(`本系列 ${seriesId} 一共有${total}章`);
