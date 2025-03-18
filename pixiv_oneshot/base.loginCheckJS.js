@@ -194,7 +194,7 @@ function publicFunc() {
         }
 
         let id = baseUrl.match(new RegExp("\\d+"))[0]
-        let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
+        let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/series/\\d+"
         let isSeries = baseUrl.match(new RegExp(pattern))
         if (isSeries) {
             java.log(`系列ID：${id}`)
@@ -245,7 +245,7 @@ function publicFunc() {
         }
 
         let id = baseUrl.match(new RegExp("\\d+"))[0]
-        let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
+        let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/series/\\d+"
         let isSeries = baseUrl.match(new RegExp(pattern))
         if (isSeries) {
             seriesId = id
