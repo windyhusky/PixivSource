@@ -69,11 +69,6 @@ function publicFunc() {
                     illust.coverUrl = firstChapter.urls.regular
                     illust.tags = illust.tags.concat(firstChapter.tags.tags.map(item => item.tag))
                 }
-                // else {
-                //     java.log("")
-                //     java.log(illust.coverUrl)
-                //     illust.coverUrl = series.url
-                // }
                 illust.createDate = series.createDate
                 illust.updateDate = series.updateDate
                 illust.total = series.total

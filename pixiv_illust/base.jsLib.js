@@ -7,6 +7,14 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     }
     return JSON.parse(v)
 }
+function isJsonString(str) {
+    try {
+        if (typeof JSON.parse(str) === "object") {
+            return true
+        }
+    } catch(e) {}
+    return false
+}
 function getAjaxJson(url) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
@@ -35,12 +43,6 @@ function urlSeriesDetailed(seriesId, page=1) {
     return `https://www.pixiv.net/ajax/series/${seriesId}?p=${page}&lang=zh`
 }
 
-function urlUserUrl(userId) {
-    return `https://www.pixiv.net/users/${userId}`
-}
-function urlUserDetailed(userId) {
-    return `https://www.pixiv.net/ajax/user/${userId}`
-}
 function urlUserAllWorks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
 }
@@ -91,13 +93,4 @@ function sleepToast(text) {
     const {java} = this
     java.longToast(text)
     sleep(2000)
-}
-
-function isJsonString(str) {
-    try {
-        if (typeof JSON.parse(str) === "object") {
-            return true
-        }
-    } catch(e) {}
-    return false
 }
