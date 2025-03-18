@@ -188,17 +188,9 @@ function publicFunc() {
     // 正文，详情，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     // pixiv 默认分享信息中有#号，不会被识别成链接，无法使用添加网址
     u.getNovelRes = function (result) {
-        let novelId = 0, seriesId = 0, res = {}
+        let novelId = 0, res = {}
         let isJson = isJsonString(result)
         let isHtml = result.startsWith("<!DOCTYPE html>")
-        // 兼容搜索直接输入链接
-        pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
-        // pattern = String(bookSourceUrl).replace(".*", "")
-        if (!isJson && !isHtml && result.match(pattern)) {
-            baseUrl = result.match(RegExp(pattern))[0]
-            isHtml = true
-            java.log(`匹配链接：${baseUrl}`)
-        }
 
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
