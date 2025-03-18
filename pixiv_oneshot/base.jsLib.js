@@ -7,14 +7,20 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     }
     return JSON.parse(v)
 }
-
+function isJsonString(str) {
+    try {
+        if (typeof JSON.parse(str) === "object") {
+            return true
+        }
+    } catch(e) {}
+    return false
+}
 function getAjaxJson(url) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     })
 }
-
 function getWebviewJson(url, parseFunc) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
@@ -55,12 +61,6 @@ function urlSeriesNovels(seriesId, limit, offset) {
     return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
 }
 
-function urlUserUrl(userId) {
-    return `https://www.pixiv.net/users/${userId}`
-}
-function urlUserDetailed(userId) {
-    return `https://www.pixiv.net/ajax/user/${userId}`
-}
 function urlUserAllWorks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
 }
@@ -79,13 +79,9 @@ function urlSearchUser(userName) {
 function urlCoverUrl(url) {
     return `${url}, {"headers": {"Referer":"https://www.pixiv.net/"}}`
 }
-function urlIllustUrl(illustId) {
-    return `https://www.pixiv.net/artworks/${illustId}`
-}
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
-
 function urlIllustOriginal(illustId, order) {
     let illustOriginal = getAjaxJson(urlIllustDetailed(illustId)).body.urls.original
     if (order >= 1) {
@@ -93,14 +89,6 @@ function urlIllustOriginal(illustId, order) {
     }
     return illustOriginal
 }
-
-function urlSeriesIllustsUrl(userId, seriesId) {
-    return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
-}
-function urlSeriesIllustsDetailed(seriesId) {
-    return `https://www.pixiv.net/ajax/series/${seriesId}?p=1&lang=zh`
-}
-
 
 function dateFormat(str) {
     let addZero = function (num) {
@@ -127,15 +115,6 @@ function sleepToast(text) {
     const {java} = this
     java.longToast(text)
     sleep(2000)
-}
-
-function isJsonString(str) {
-    try {
-        if (typeof JSON.parse(str) === "object") {
-            return true
-        }
-    } catch(e) {}
-    return false
 }
 
 function updateSource(){

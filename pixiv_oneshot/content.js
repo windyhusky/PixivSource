@@ -142,6 +142,6 @@ function getComment(res) {
     return comments
 }
 
-(function () {
+(() => {
     return getContent(util.getNovelRes(result))
 })()
