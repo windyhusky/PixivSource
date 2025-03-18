@@ -188,7 +188,7 @@ function publicFunc() {
         // 兼容搜索直接输入链接
         pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
         // pattern = String(bookSourceUrl).replace(".*", "")
-        if (!isJson && !isHtml && (pattern).test(result)) {
+        if (!isJson && !isHtml && result.match(pattern)) {
             baseUrl = result.match(RegExp(pattern))[0]
             java.log(`匹配链接：${baseUrl}`)
         }
@@ -238,7 +238,7 @@ function publicFunc() {
         // baseUrl = baseUrl.replace("#", "%23")
         pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
         // pattern = String(bookSourceUrl).replace(".*", "")
-        if (!isJson && !isHtml && RegExp(pattern).test(baseUrl)) {
+        if (!isJson && !isHtml && result.match(pattern)) {
             baseUrl = baseUrl.match(RegExp(pattern))[0]
             result = "<!DOCTYPE html>"
             java.log(`匹配链接：${baseUrl}`)

@@ -146,11 +146,11 @@ function getNovels(){
 }
 
 function getLinkNovels() {
-    try {
-        return util.getNovelRes(String(java.get("key")))
-    } catch (e) {
-        return []
+    let novels = util.getNovelRes(String(java.get("key")))
+    if (novels !== undefined) {
+        return novels
     }
+    return []
 }
 
 (() => {
