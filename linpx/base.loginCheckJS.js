@@ -104,7 +104,7 @@ function publicFunc() {
                 novel.tags = Array.from(new Set(novel.tags))
                 novel.createDate = firstNovel.createDate
                 if (novel.description === "") {
-                    novel.description = firstNovel[0].desc
+                    novel.description = firstNovel.desc
                 }
             }
         })
