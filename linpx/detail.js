@@ -23,7 +23,7 @@ function novelHandler(novel){
 
 (() => {
     try {
-        return novelHandler(util.getNovelRes(result)) // 系列数据过少，暂不分流
+        return novelHandler(util.getNovelRes(result))
     } catch (e) {
         java.log(e)
         java.log(`受 Linpx 的限制，无法获取当前小说的数据`)

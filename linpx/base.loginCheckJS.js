@@ -68,21 +68,21 @@ function publicFunc() {
             if (novel.tags === undefined) {
                 novel.tags = []
             }
-            if (novel.series !== undefined && novel.series !== null) {
-                novel.seriesId = novel.series.id  // 兼容详情页
+            // 兼容详情页
+            if (novel.content !== undefined) {
+                if (novel.series !== undefined && novel.series !== null) {
+                    novel.seriesId = novel.series.id
+                    novel.seriesTitle = novel.series.title
+                }
+                novel.textCount = novel.length = novel.content.length
             }
             if (novel.seriesId === undefined || novel.seriesId === null) {
                 novel.tags.unshift("单本")
-                try {
-                    novel.textCount = novel.length
-                } catch (e) {
-                    novel.textCount = novel.content.length  // 兼容详情页
-                }
+                novel.textCount = novel.length
                 novel.latestChapter = novel.title
                 novel.description = novel.desc
                 // novel.coverUrl = novel.coverUrl
                 novel.detailedUrl = urlNovelDetailed(novel.id)
-
             } else {
                 java.log(`正在获取系列小说：${novel.seriesId}`)
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
@@ -92,7 +92,7 @@ function publicFunc() {
                 novel.tags.unshift("长篇")
                 novel.textCount = null  // 无数据
                 novel.createDate = null  // 无数据
-                novel.latestChapter = series.novels[series.novels.length-1].title
+                novel.latestChapter = series.novels.reverse()[0].title
                 novel.description = series.caption
                 // 后端目前没有系列的 coverUrl 字段
                 // novel.coverUrl = series.coverUrl
@@ -147,7 +147,7 @@ function publicFunc() {
         // 兼容搜索直接输入链接
         pattern = "(https?://)?(api\\.|www\\.)?((furrynovel\\.(ink|xyz))|pixiv\\.net)(/ajax)?/(pn|(pixiv/)?novel)/(show\\.php\\?id=|series/)?\\d+(/cache)?"
         // pattern = String(bookSourceUrl).replace(".*", "")
-        if (!isJson && !isHtml && (pattern).test(result)) {
+        if (!isJson && !isHtml && result.match(new RegExp(pattern))) {
             baseUrl = result.match(RegExp(pattern))[0]
             java.log(`匹配链接：${baseUrl}`)
         }
