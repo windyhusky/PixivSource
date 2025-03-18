@@ -88,6 +88,7 @@ function publicFunc() {
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.tags = novel.tags.join(",")
+            novel.coverUrl = urlCoverUrl(novel.coverUrl)
             novel.createDate = dateFormat(novel.createDate)
             novel.updateDate = dateFormat(novel.updateDate)
             novel.syncDate = dateFormat(novel.syncDate)

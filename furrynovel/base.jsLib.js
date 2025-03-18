@@ -7,7 +7,6 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     }
     return JSON.parse(v)
 }
-
 function getAjaxJson(url) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
@@ -37,7 +36,6 @@ function urlNovelChapterDetail(novelId, chapterId) {
 function urlCoverUrl(pxImgUrl) {
     return `https://img.furrynovel.com/?url=${pxImgUrl}`
 }
-
 function urlLinpxNovelDetail(sourceId) {
     return `https://api.furrynovel.ink/pixiv/novel/${sourceId}/cache`
 }
