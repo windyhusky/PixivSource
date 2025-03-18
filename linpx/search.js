@@ -122,7 +122,7 @@ function getLinkNovels() {
     }
 }
 
-(function () {
+(() => {
     let novels = []
     novels = novels.concat(getNovels())
     novels = novels.concat(getLinkNovels())
@@ -133,4 +133,4 @@ function getLinkNovels() {
         return []
     }
     return util.formatNovels(util.handNovels(util.combineNovels(novels)))
-}(result))
+})()

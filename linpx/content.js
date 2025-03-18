@@ -113,6 +113,6 @@ function getContent(res) {
     return content
 }
 
-(function () {
+(() => {
     return getContent(util.getNovelRes(result))
 })()

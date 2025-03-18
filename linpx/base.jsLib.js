@@ -20,12 +20,6 @@ function getWebviewJson(url) {
         return JSON.parse((html.match(new RegExp(">\\[{.*?}]<"))[0].replace(">", "").replace("<", "")))
     })
 }
-function getWebJson(url) {
-    const {java, cache} = this
-    return cacheGetAndSet(cache, url, () => {
-        return JSON.parse(java.get(url, java.getWebViewUA()).body())
-    })
-}
 
 function urlNovelUrl(novelId) {
     return `https://furrynovel.ink/pixiv/novel/${novelId}/cache`

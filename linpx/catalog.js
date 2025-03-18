@@ -46,11 +46,11 @@ function seriesHandler(res) {
     return res.novels
 }
 
-(function (res) {
-    res = util.getNovelResSeries(result)
+(() => {
+    let res = util.getNovelResSeries(result)
     if (res.novels !== undefined) {
         return seriesHandler(res)
     } else {
         return oneShotHandler(res)
     }
-})(result)
+})()
