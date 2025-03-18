@@ -7,6 +7,14 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     }
     return JSON.parse(v)
 }
+function isJsonString(str) {
+    try {
+        if (typeof JSON.parse(str) === "object") {
+            return true
+        }
+    } catch(e) {}
+    return false
+}
 function getAjaxJson(url) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
@@ -41,12 +49,6 @@ function urlSeriesDetailed(seriesId) {
     return `https://api.furrynovel.ink/pixiv/series/${seriesId}/cache`
 }
 
-function urlUserUrl(userId) {
-    return `https://furrynovel.ink/pixiv/user/${userId}/cache`
-}
-function urlUserDetailed(userId) {
-    return `https://api.furrynovel.ink/pixiv/user/${userId}/cache`
-}
 function urlUsersDetailed(uidList) {
     return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
 }
@@ -72,7 +74,6 @@ function urlIllustOriginal(illustId, order) {
     return illustOriginal
 }
 
-
 function dateFormat(str) {
     let addZero = function (num) {
         return num < 10 ? '0' + num : num;
@@ -88,15 +89,6 @@ function timeTextFormat(text) {
         return ""
     }
     return `${text.slice(0, 10)} ${text.slice(11, 19)}`
-}
-
-function isJsonString(str) {
-    try {
-        if (typeof JSON.parse(str) === "object") {
-            return true
-        }
-    } catch(e) {}
-    return false
 }
 
 function updateSource(){
