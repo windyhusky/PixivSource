@@ -41,7 +41,7 @@ function publicFunc() {
             func()
         }
     }
-    
+
     // 将多个长篇小说解析为一本书
     u.combineNovels = function (novels) {
         return novels.filter(novel => {
@@ -98,7 +98,7 @@ function publicFunc() {
                 novel.textCount = novel.userNovels[`${novel.id}`].textCount
                 // novel.latestChapter = novel.title
                 // novel.description = novel.description
-                // novel.coverUrl = novel.coverUrl
+                novel.coverUrl = novel.userNovels[`${novel.id}`].url
                 // novel.createDate = novel.createDate
                 novel.updateDate = novel.uploadDate
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
@@ -175,7 +175,7 @@ function publicFunc() {
                 }
             }
             novel.tags = novel.tags2.join(",")
-            
+
             if (util.MORE_INFO_IN_DESCRIPTION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
             } else {
