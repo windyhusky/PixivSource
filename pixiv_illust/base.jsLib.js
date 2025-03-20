@@ -35,7 +35,9 @@ function urlIllustUrl(illustId) {
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
-
+function urlIllustsDetailed(userId, idList) {
+    return `https://www.pixiv.net/ajax/user/${userId}/illusts?${idList.map(v => "ids[]=" + v).join("&")}`
+}
 function urlSeriesUrl(userId, seriesId) {
     return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
 }
