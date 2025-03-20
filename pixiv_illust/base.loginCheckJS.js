@@ -61,10 +61,14 @@ function publicFunc() {
             } else {
                 illust.seriesId = illust.seriesNavData.seriesId
                 illust.title = illust.seriesNavData.title
+            }
+
+            if (illust.seriesId !== undefined) {
                 let resp = getAjaxJson(urlSeriesDetailed(illust.seriesId)).body
                 let series = resp.illustSeries.filter(item => item.id === illust.seriesId)[0]
+                // illust.title = illust.title
                 illust.tags = illust.tags.concat(series.tags)
-                illust.latestChapter = resp.thumbnails.illust.filter(item =>item.id === series.latestIllustId)[0].title
+                illust.latestChapter = resp.thumbnails.illust.filter(item => item.id === series.latestIllustId)[0].title
                 illust.description = series.description
                 if (series.url === undefined) {
                     let firstChapter = getAjaxJson(urlIllustDetailed(series.firstIllustId)).body

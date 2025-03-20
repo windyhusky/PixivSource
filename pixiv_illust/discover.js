@@ -42,12 +42,12 @@ function handlerFactory() {
         return handlerFollowLatest()
     }
     // 正则匹配网址内容
-    // if (baseUrl.includes("/ranking")) {
-    //     return handlerRanking()
-    // }
-    // if (baseUrl.includes("https://www.pixiv.net")) {
-    //     return handlerRegexIllusts()
-    // }
+    if (baseUrl.includes("/ranking") && isJsonString(result)) {
+        return handlerRanking()
+    }
+    if (baseUrl.includes("/ranking") && !isJsonString(result)) {
+        return handlerRegexIllusts()
+    }
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return updateSource()
     }
@@ -89,7 +89,7 @@ function handlerRecommend() {
         const illusts = res.body.thumbnails.illust
         let nidSet = new Set(recommend.ids)
         // java.log(nidSet.size)
-        let list = illusts.filter(novel => nidSet.has(String(novel.id)))
+        let list = illusts.filter(illust => nidSet.has(String(illust.id)))
         // java.log(`过滤结果:${JSON.stringify(list)}`)
         return util.formatIllusts(util.handIllusts(list))
     }
@@ -114,6 +114,39 @@ function handlerBookMarks() {
         return util.formatIllusts(util.handIllusts(res))
     }
 }
+
+// 排行榜，顺序相同
+function handlerRanking() {
+    return () => {
+        let res = JSON.parse(result)
+        res.contents.forEach(item =>{
+            item.id = item.illust_id
+            // item.title = item.title
+            item.userName = item.user_name
+            // item.tags = item.tags
+            item.latestChapter = item.title
+            item.description = null
+            item.coverUrl = item.url
+            item.detailedUrl = urlIllustDetailed(item.id)
+            item.createDate = item.updateDate = item.illust_upload_timestamp * 1000
+
+            if (item.illust_series !== false) {
+                let series = item.illust_series
+                item.seriesId = series.illust_series_id
+                item.order = series.illust_series_content_order
+                item.total = series.illust_series_content_count
+                if (item.order === item.total) item.latestChapter = item.title
+                item.title = series.illust_series_title
+                item.description = series.illust_series_caption
+                item.pageCount = series.illust_page_count
+                item.createDate = item.updateDate = series.illust_series_create_datetime
+            }
+        })
+        return util.formatIllusts(util.handIllusts(res.contents))
+    }
+}
+
+
 
 (() => {
     return handlerFactory()()
