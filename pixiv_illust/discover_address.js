@@ -13,11 +13,11 @@ li = [
     {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/illust?p={{page}}&mode=all&lang=zh"},
     {"📃 追更": "https://www.pixiv.net/ajax/watch_list/manga?p={{page}}&new=1&lang=zh"},
     {"💯 推荐": "https://www.pixiv.net/ajax/top/illust?mode=all&lang=zh"},
-    {"🔍 发现": "https://www.pixiv.net/ajax/illust/discovery?mode=r18&lang=zh"},
+    {"🔍 发现": "https://www.pixiv.net/ajax/illust/discovery?mode=all&lang=zh"},
     {"❤️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/illusts/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"},
     {"㊙️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/illusts/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=hide&lang=zh"},
     {"🏠 首页": "https://www.pixiv.net"},
-    {"🆙 更新": "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"},
+    {"🆙 更新": "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"}
 ]
 
 generalNew = [
@@ -25,7 +25,7 @@ generalNew = [
     {"🆕 最新": "https://www.pixiv.net/ajax/illust/new?lastId=0&limit=20&type=manga&lang=zh"},
     {"📑 企划": "https://www.pixiv.net/ajax/user_event/portal/artworks?mode=all&p={{page}}&lang=zh"},
     {"💰 约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/manga?mode=all&p={{page}}&lang=zh"},
-    {"🔍 发现": "https://www.pixiv.net/ajax/illust/discovery?mode=all&lang=zh"},
+    {"🔍 发现": "https://www.pixiv.net/ajax/illust/discovery?mode=all&lang=zh"}
 ]
 
 r18Rank = [
@@ -34,7 +34,7 @@ r18Rank = [
     {"本周": "https://www.pixiv.net/ranking.php?mode=weekly_r18&content=manga&p={{page}}&format=json"},
     {"R18G": "https://www.pixiv.net/ranking.php?mode=r18g&content=manga&p={{page}}&format=json"},
     {"男性": "https://www.pixiv.net/ranking.php?mode=male_r18"},
-    {"女性": "https://www.pixiv.net/ranking.php?mode=female_r18"},
+    {"女性": "https://www.pixiv.net/ranking.php?mode=female_r18"}
 ]
 
 generalRank = [
@@ -42,7 +42,7 @@ generalRank = [
     {"今日": "https://www.pixiv.net/ranking.php?mode=daily&content=manga&p={{page}}&format=json"},
     {"本周": "https://www.pixiv.net/ranking.php?mode=weekly&content=manga&p={{page}}&format=json"},
     {"本月": "https://www.pixiv.net/ranking.php?mode=monthly&content=manga&p={{page}}&format=json"},
-    {"新人": "https://www.pixiv.net/ranking.php?mode=rookie&content=manga&p={{page}}&format=json"},
+    {"新人": "https://www.pixiv.net/ranking.php?mode=rookie&content=manga&p={{page}}&format=json"}
 ]
 
 if (SHOW_GENERAL_ILLUST_RANK === true) {

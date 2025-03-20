@@ -13,7 +13,6 @@ function objParse(obj) {
 
 function handlerFactory() {
     let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    java.log(baseUrl)
     if (cookie === null || cookie === undefined || cookie === "") {
         return handlerNoLogin()
     }
@@ -42,10 +41,10 @@ function handlerFactory() {
         return handlerFollowLatest()
     }
     // 正则匹配网址内容
-    if (baseUrl.includes("/ranking") && isJsonString(result)) {
+    if (baseUrl.includes("/ranking") && (baseUrl.endsWith("json"))) {
         return handlerRanking()
     }
-    if (baseUrl.includes("/ranking") && !isJsonString(result)) {
+    if (baseUrl.includes("/ranking")) {
         return handlerRegexIllusts()
     }
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
@@ -146,7 +145,24 @@ function handlerRanking() {
     }
 }
 
-
+//首页，编辑部推荐，顺序随机
+function handlerRegexIllusts() {
+    return () => {
+        let illustIds = []  // 正则获取网址中的 illustId
+        let matched = result.match(RegExp(/\/artworks\/\d{5,}/gm))
+        for (let i in matched) {
+            let illustId = matched[i].match(RegExp(/\d{5,}/))[0]
+            if (illustIds.indexOf(illustId) === -1) {
+                illustIds.push(illustId)
+            }
+        }
+        let userIllusts = getWebviewJson(
+            urlIllustsDetailed(`${cache.get("pixiv:uid")}`, illustIds), html => {
+                return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
+            }).body
+        return util.formatIllusts(util.handIllusts(Object.values(userIllusts)))
+    }
+}
 
 (() => {
     return handlerFactory()()
