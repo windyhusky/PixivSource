@@ -7,11 +7,17 @@
 以下内容为书源设置：
 {
 "SHOW_ORIGINAL_ILLUST_LINK": true,
+"SHOW_GENERAL_ILLUST_NEW": false,
+"SHOW_GENERAL_ILLUST_RANK": false,
 "DEBUG": false
 }
 
 // SHOW_ORIGINAL_ILLUST_LINK
 // 目录：显示源链接，但会增加请求次数
+// SHOW_GENERAL_ILLUST_NEW
+// 发现：最新、企划、约稿显示一般漫画
+// SHOW_GENERAL_ILLUST_RANK
+// 发现：排行榜显示一般漫画
 // DEBUG
 // 调试模式
 
