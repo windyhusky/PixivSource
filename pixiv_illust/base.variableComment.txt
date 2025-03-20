@@ -6,18 +6,21 @@
 ⚠️ 发现页需要长按"Pixiv"，手动刷新
 以下内容为书源设置：
 {
-"SHOW_ORIGINAL_ILLUST_LINK": true,
+"SEARCH_ILLUSTS": false,
 "SHOW_GENERAL_ILLUST_NEW": false,
 "SHOW_GENERAL_ILLUST_RANK": false,
+"SHOW_ORIGINAL_ILLUST_LINK": true,
 "DEBUG": false
 }
 
-// SHOW_ORIGINAL_ILLUST_LINK
-// 目录：显示源链接，但会增加请求次数
+// SEARCH_ILLUSTS
+// 搜索：同时搜索插画
 // SHOW_GENERAL_ILLUST_NEW
 // 发现：最新、企划、约稿显示一般漫画
 // SHOW_GENERAL_ILLUST_RANK
 // 发现：排行榜显示一般漫画
+// SHOW_ORIGINAL_ILLUST_LINK
+// 目录：显示源链接，但会增加请求次数
 // DEBUG
 // 调试模式
 

@@ -17,10 +17,12 @@ function publicFunc() {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
+        settings.SEARCH_ILLUSTS = true
         settings.SHOW_ORIGINAL_ILLUST_LINK = true
         settings.DEBUG = false
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
+    u.SEARCH_ILLUSTS = settings.SEARCH_ILLUSTS  // 搜索插画
     u.SHOW_ORIGINAL_ILLUST_LINK = settings.SHOW_ORIGINAL_ILLUST_LINK  // 目录处显示小说源链接，但会增加请求次数
     u.DEBUG = settings.DEBUG // 调试模式
 

@@ -47,7 +47,7 @@ function getIllust() {
 (() => {
     let artworks = []
     artworks = artworks.concat(getManga())
-    // artworks = artworks.concat(getIllust())
+    if (util.SEARCH_ILLUSTS === true) artworks = artworks.concat(getIllust())
     // java.log(JSON.stringify(artworks))
     // 返回空列表中止流程
     if (artworks.length === 0) {
