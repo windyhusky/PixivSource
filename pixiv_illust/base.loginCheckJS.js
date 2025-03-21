@@ -17,7 +17,7 @@ function publicFunc() {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
-        settings.SEARCH_ILLUSTS = true
+        settings.SEARCH_ILLUSTS = false
         settings.SHOW_ORIGINAL_ILLUST_LINK = true
         settings.DEBUG = false
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
