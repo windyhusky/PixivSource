@@ -94,9 +94,9 @@ function publicFunc() {
             illust.createDate = dateFormat(illust.createDate)
             illust.updateDate = dateFormat(illust.updateDate)
             if (util.MORE_INFO_IN_DESCRIPTION) {
-                illust.description = `\n书名：${illust.title}\n作者：${illust.userName}\n标签：${illust.tags}\n上传：${illust.createDate}\n更新：${illust.updateDate}\n简介：${illust.description}`
+                illust.description = `\n书名：${illust.title}\n作者：${illust.userName}\n标签：${illust.tags}\n页面：${illust.pageCount}\n上传：${illust.createDate}\n更新：${illust.updateDate}\n简介：${illust.description}`
             } else {
-                illust.description = `\n${illust.description}\n上传时间：${illust.createDate}\n更新时间：${illust.updateDate}`
+                illust.description = `\n${illust.title}，共${illust.pageCount}页\n${illust.description}\n上传时间：${illust.createDate}\n更新时间：${illust.updateDate}`
             }
         })
         return illusts
