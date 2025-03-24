@@ -14,6 +14,7 @@
 ⚠️ 发现页需要长按"兽人控小说站"，手动刷新
 以下内容为书源设置：
 {
+"CONVERT_CHINESE_CHARACTERS":true,
 "MORE_INFO_IN_DESCRIPTION": false,
 "SHOW_ORIGINAL_NOVEL_LINK": true,
 "REPLACE_BOOK_TITLE_MARKS": true,
@@ -21,6 +22,8 @@
 "DEBUG": false
 }
 
+// CONVERT_CHINESE_CHARACTERS
+// 搜索：搜索时进行繁简转换
 // MORE_INFO_IN_DESCRIPTION
 // 详情：书籍简介显示更多信息
 // SHOW_ORIGINAL_NOVEL_LINK
