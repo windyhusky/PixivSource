@@ -17,6 +17,7 @@ function publicFunc() {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
+        settings.CONVERT_CHINESE_CHARACTERS = true
         settings.SHOW_ORIGINAL_NOVEL_LINK = true
         settings.REPLACE_BOOK_TITLE_MARKS = true
         settings.MORE_INFO_IN_DESCRIPTION = false
@@ -25,11 +26,12 @@ function publicFunc() {
         settings.DEBUG = false
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
+    u.CONVERT_CHINESE_CHARACTERS = settings.CONVERT_CHINESE_CHARACTERS  // 搜索：搜索时进行繁简转换
+    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
     u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
     u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
-    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
-    u.SHOW_NOVEL_CAPTIONS = settings.SHOW_NOVEL_CAPTIONS  // 书籍简介显示更多信息
-    u.SHOW_NOVEL_COMMENTS = settings.SHOW_NOVEL_COMMENTS  // 书籍简介显示更多信息
+    u.SHOW_NOVEL_CAPTIONS = settings.SHOW_NOVEL_CAPTIONS  // 章首显示描述
+    u.SHOW_NOVEL_COMMENTS = settings.SHOW_NOVEL_COMMENTS  // 章尾显示评论
     u.DEBUG = settings.DEBUG // 调试模式
 
     if (u.DEBUG === true) {

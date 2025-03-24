@@ -117,32 +117,64 @@ function getUserNovels() {
     return novels
 }
 
-function getSeries(){
-    let MAXPAGES = 3, novels = []
-    let seriesName = String(java.get("key"))
-    java.log(urlSearchSeries(seriesName, 1))
-    let resp = getAjaxJson(urlSearchSeries(seriesName, 1))
-    if (resp.error === true) {
-        return []
+function search(name, type, page) {
+    let resp = {}
+    if (type.includes("novel")) {
+        resp = getAjaxJson(urlSearchNovel(name, page))
+        java.log(urlSearchNovel(name, page))
     }
-    novels = novels.concat(resp.body.novel.data)
-    for (let i = Number(java.get("page")) + 1; i < resp.body.novel.lastPage, i < MAXPAGES; i++) {
-        java.log(`页面：${i}`)
-        let resp = getAjaxJson(urlSearchSeries(seriesName, i))
-        if (resp.error === true) {
-            return []
-        }
-        novels = novels.concat(resp.body.novel.data)
+    if (type.includes("series")) {
+        resp = getAjaxJson(urlSearchSeries(name, page))
+        java.log(urlSearchSeries(name, page))
+    }
+    if (resp.error === true || resp.total === 0) {
+        return {"data": [], "lastPage": 0}
+    }
+    return resp.body.novel
+}
+
+
+function getSeries() {
+    let MAXPAGES = 2, novels = [], resp = {} , name1
+    let novelName = String(java.get("key"))
+    if (util.CONVERT_CHINESE_CHARACTERS) {
+        name1 = java.t2s(java.s2t(novelName))
+    } else {
+        name1 = novelName
+    }
+    resp = search(name1, "series", 1)
+    novels = novels.concat(resp.data)
+    // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
+    //     novels = novels.concat(search(name1, "series", page).data)
+    // }
+
+    if (util.CONVERT_CHINESE_CHARACTERS) {
+        let name2 = java.s2t(name1)
+        resp = search(name2, "series", 1)
+        novels = novels.concat(resp.data)
+        // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
+        //     novels = novels.concat(search(name2, "series", page).data)
+        // }
     }
     return novels
 }
 
-function getNovels(){
-    if (JSON.parse(result).error !== true){
-        return JSON.parse(result).body.novel.data
-    } else {
-        return []
+function getNovels() {
+    let MAXPAGES = 2, novels = []
+    let novelName = String(java.get("key"))
+    if (JSON.parse(result).error !== true) {
+        novels = novels.concat(JSON.parse(result).body.novel.data)
     }
+
+    if (util.CONVERT_CHINESE_CHARACTERS) {
+        let name = java.s2t(java.t2s(java.s2t(novelName)))
+        let resp = search(name, "novel", 1)
+        novels = novels.concat(resp.data)
+        // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
+        //     novels = novels.concat(search(name, "series", page).data)
+        // }
+    }
+    return novels
 }
 
 (() => {
