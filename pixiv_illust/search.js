@@ -15,9 +15,22 @@ function getManga() {
         return []
     }
     let illusts = JSON.parse(result).body.illustManga.data
-    illusts.forEach(illust => {
-        illust.tags.unshift("漫画")
-    })
+    illusts.forEach(illust => {illust.tags.unshift("漫画")})
+    return illusts
+}
+
+function getConvertManga() {
+    let MAXPAGES = 2, illusts = []
+    let novelName = String(java.get("key"))
+    let name = java.s2t(java.t2s(java.s2t(novelName)))
+    let resp = getAjaxJson(urlSearchManga(name, 1)).body
+    java.log(urlSearchManga(name, 1))
+    illusts = illusts.concat(resp.illustManga.data)
+    // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
+    //     illusts = illusts.concat(getAjaxJson(urlSearchManga(name, page)).body.illustManga.data)
+    //     java.log(urlSearchManga(name, page))
+    // }
+    illusts.forEach(illust => {illust.tags.unshift("漫画")})
     return illusts
 }
 
@@ -38,16 +51,15 @@ function getIllust() {
         }
         illusts = illusts.concat(resp.body.illustManga.data)
     }
-    illusts.forEach(illust => {
-        illust.tags.unshift("插画")
-    })
+    illusts.forEach(illust => {illust.tags.unshift("插画")})
     return illusts
 }
 
 (() => {
     let artworks = []
     artworks = artworks.concat(getManga())
-    if (util.SEARCH_ILLUSTS === true) artworks = artworks.concat(getIllust())
+    if (util.CONVERT_CHINESE_CHARACTERS) artworks = artworks.concat(getConvertManga())
+    if (util.SEARCH_ILLUSTS) artworks = artworks.concat(getIllust())
     // java.log(JSON.stringify(artworks))
     // 返回空列表中止流程
     if (artworks.length === 0) {

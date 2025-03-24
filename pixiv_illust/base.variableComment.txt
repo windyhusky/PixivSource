@@ -6,6 +6,7 @@
 ⚠️ 发现页需要长按"Pixiv"，手动刷新
 以下内容为书源设置：
 {
+"CONVERT_CHINESE_CHARACTERS": true,
 "SEARCH_ILLUSTS": false,
 "SHOW_GENERAL_ILLUST_NEW": false,
 "SHOW_GENERAL_ILLUST_RANK": false,
@@ -13,6 +14,8 @@
 "DEBUG": false
 }
 
+// CONVERT_CHINESE_CHARACTERS
+// 搜索：搜索时进行繁简转换
 // SEARCH_ILLUSTS
 // 搜索：同时搜索插画
 // SHOW_GENERAL_ILLUST_NEW
