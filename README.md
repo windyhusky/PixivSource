@@ -68,16 +68,16 @@
 
 - <details><summary> ✅ 🆕 最新 企划 约稿 </summary>
   
-  - ✅ R18 小说（最新 企划 约稿 发现）
-  - ✅ 一般小说（最新 企划 约稿 编辑部推荐）
-    >（默认隐藏，可在书源设置中修改 `SHOW_GENERAL_NOVELS_NEW` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
+  - ✅ R18 小说
+  - ✅ 一般小说（默认隐藏）
+    >（可在书源设置中修改 `SHOW_GENERAL_NOVELS_NEW` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
 
 - <details><summary> ✅ 👑 小说排行 </summary>
   
   - ✅ R18 小说排行榜
-  - ✅ 一般小说排行榜
-    > (默认隐藏，可在书源设置中修改 `SHOW_GENERAL_NOVELS_RANK` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
+  - ✅ 一般小说排行榜（默认隐藏）
+    > (可在书源设置中修改 `SHOW_GENERAL_NOVELS_RANK` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
 
 - <details><summary> ✅ 🔥 原创热门 </summary>
@@ -112,12 +112,13 @@
 
 #### 已实现书源功能
 - ✅ 搜索：书架页面，搜索小说，添加小说到书架
-  - ✅ 搜索小说名称、标签、作者、链接
+  - ✅ 搜索小说名称、标签、作者
+  - ✅ 繁简通搜（小说名称、标签）
 - ✅ 发现：发现页面，查看小说，添加小说到书架
   - ✅ 常规发现
   - ✅ 更新书源、订阅源
   - ✅ 设置源变量
-    - <details><summary> ❤️ 他人收藏（Pixiv 书源）</summary>
+    - <details><summary> ❤️ 他人收藏（Pixiv 小说 书源）</summary>
   
       - 发现 - 长按 **"Pixiv"** - 编辑 - 右上角菜单 - 设置源变量
       - 设置源变量：输入作者ID，一行一个，可添加作者名，保存
@@ -128,7 +129,7 @@
       - 发现：长按 **"Pixiv"**，刷新，查看他人收藏
       </details>
       
-    - <details><summary> 🔎 筛选发现（兽人小说站书源）</summary>
+    - <details><summary> 🔎 筛选发现（兽人小说站 书源）</summary>
 
       - 发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量  
       - 设置源变量：输入想要筛选的标签，以空格间隔（或一行一个），保存
@@ -140,7 +141,7 @@
 
 
 - ✅ 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
-  -  ✅ 支持同时添加多条网址链接
+  -  ✅ 支持同时添加多条网址链接（✅ 单篇 ✅ 系列）
 - ✅ 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
   - ✅ 添加小说到书架
   - ✅ 导入相应书源
@@ -150,8 +151,9 @@
 <details><summary> ⚙️ 书源设置 </summary>
 
 #### 书源功能设置
-| 书源设置           | 默认状态 | 常量名称                    | 作用 |
+| 书源设置           | 默认状态 | 对应常量名称                    | 作用 |
 | ---------------- | ------ | -------------------------- | --- |
+| 繁简通搜　　　　　　 | ✅ 开启 | `CONVERT_CHINESE_CHARACTERS`| 搜索 |
 | 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_NEW`   | 发现 |
 | 排行榜单显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK`  | 发现 |
 | 热门分类显示R18小说 | ⭕ 关闭 | `SHOW_R18_NOVELS_GENRE`     | 发现 |
@@ -164,8 +166,12 @@
 | 调试模式　　　　　   | ⭕ 关闭 | `DEBUG`                     | 全局 |
 - 自定义设置：编辑书源 - 基本 - 变量说明 - 修改并保存
 - 修改时，请修改`true` 为 `false`，或相反
+- 每次更新书源后，需要重新设置
+<details><summary> ⚙️ 书源配置代码 </summary>
+
 ```
 {
+  "CONVERT_CHINESE_CHARACTERS": true,
   "SHOW_GENERAL_NOVELS_NEW": false,
   "SHOW_GENERAL_NOVELS_RANK": false,
   "SHOW_R18_NOVELS_GENRE": false,
@@ -179,6 +185,7 @@
 }
 ```
 </details>
+</details>
 
 
 ### 订阅源功能
@@ -189,12 +196,12 @@
 
 - btsrk 订阅源：Pixiv 、Linpx、兽人控小说站
   - ✅ 添加小说到书架 ✅ 导入相应书源
-- books 订阅源：快速导入阅读相关资源（书源分享订阅源）
+- books 订阅源：快速导入阅读相关资源（书源等）
 - import 订阅源：便捷导入本项目整理的书源、订阅源
 
 
 ### 非本项目的其他资源
-<details> <summary> 其他资源 </summary>
+<details><summary> 📄 其他资源 </summary>
 
 | 名称           | Github 导入网址                                                              |
 | ------------- | --------------------------------------------------------------------------- |
@@ -211,8 +218,7 @@
 
 
 ## 使用教程
-<details>
-<summary> 使用教程 </summary>
+<details><summary> 📌 使用教程 </summary>
 
 > ### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
 > ### 1. [阅读使用教程（太长不看版）](./doc/TooLongToRead.md)
@@ -234,6 +240,8 @@
 
 
 ## 鸣谢
+<details><summary> 📢 鸣谢 </summary>
+
 - 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)
@@ -243,7 +251,7 @@
 - 感谢 [Pixiv-utils](https://github.com/AgMonk/pixiv-utils) 、 [Pixiv go 客户端](https://github.com/NateScarlet/pixiv) 、 [Pixiv-web-api](https://github.com/YieldRay/pixiv-web-api) 整理的 Pixiv Web API
 - 感谢 [一片痴心俱成灰](https://akaito.xyz/post/Legado) 提供的 Pixiv (标记符号) 目录规则
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
-
+</details>
 
 ## TODO
 - ~~Linpx 系列小说书源（上游不支持）~~
@@ -269,14 +277,13 @@
 - ✅ import 订阅源：导入其他书源、订阅源
 - ✅ Pixiv & Linpx 书源：添加小说章节字数
 - ✅ Pixiv 书源：正文尾部加入小说评论
-- ✅ Pixiv & Linpx 书源：搜索链接
-- ✅ Pixiv & Linpx 书源：添加分享链接
-- ✅ 兽人控小说站 书源：搜索
-- ✅ 兽人控小说站 书源：添加链接
-- ✅ 兽人控小说站 书源：发现
-- ✅ 书源-发现-更新：更新书源和订阅源
+- ✅ Linpx 书源：搜索链接
+- ✅ Pixiv & Linpx 书源：添加链接
+- ✅ 兽人控小说站 书源
+- ✅ 书源发现：更新书源和订阅源
 - ✅ 订阅源：导入/更新书源
 - ✅ Pixiv 漫画书源：搜索、详情、目录、正文
+- ✅ Pixiv & Linpx & 兽人控小说站 书源：繁简通搜
 </details>
 
 
