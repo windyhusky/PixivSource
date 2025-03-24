@@ -130,7 +130,7 @@ function getConvertNovels() {
 
 function getLinkNovels() {
     let novels = util.getNovelRes(String(java.get("key")))
-    if (novels !== undefined) {
+    if (novels !== undefined && novels.length === 0) {
         return novels
     }
     return []
