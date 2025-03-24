@@ -106,12 +106,26 @@ function findUserNovels() {
     return novelList
 }
 
-function getNovels(){
+function getNovels() {
     if (result.startsWith("<!DOCTYPE html>") || JSON.parse(result).error) {
         return []
     } else {
         return JSON.parse(result).novels
     }
+}
+
+function getConvertNovels() {
+    let MAXPAGES = 2, novels = []
+    let novelName = String(java.get("key"))
+    let name = java.s2t(java.t2s(java.s2t(novelName)))
+    let resp = getAjaxJson(urlSearchNovel(name, 1))
+    java.log(urlSearchNovel(name, 1))
+    novels = novels.concat(resp.novels)
+    // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
+    //     java.log(urlSearchNovel(name, page))
+    //     novels = novels.concat(getAjaxJson(urlSearchNovel(name, page)).novels)
+    // }
+    return novels
 }
 
 function getLinkNovels() {
@@ -125,6 +139,7 @@ function getLinkNovels() {
 (() => {
     let novels = []
     novels = novels.concat(getNovels())
+    if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
     novels = novels.concat(getLinkNovels())
     novels = novels.concat(findUserNovels())
     // java.log(JSON.stringify(novels))

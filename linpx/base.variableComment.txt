@@ -5,7 +5,8 @@
 ⚠️ 注意不要添加或删除尾随逗号","
 以下内容为书源设置：
 {
-"MORE_INFO_IN_DESCRIPTION": false,
+"CONVERT_CHINESE_CHARACTERS":true,
+"MORE_INFO_IN_DESCRIPTION":false,
 "SHOW_ORIGINAL_NOVEL_LINK": true,
 "REPLACE_BOOK_TITLE_MARKS": true,
 "SHOW_NOVEL_CAPTIONS": true,
@@ -13,6 +14,8 @@
 "DEBUG": false
 }
 
+// CONVERT_CHINESE_CHARACTERS
+// 搜索：搜索时进行繁简转换
 // MORE_INFO_IN_DESCRIPTION
 // 详情：书籍简介显示更多信息
 // SHOW_ORIGINAL_NOVEL_LINK
