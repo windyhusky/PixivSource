@@ -15,6 +15,7 @@
 ⚠️ 发现页需要长按"Pixiv"，手动刷新
 以下内容为书源设置：
 {
+"CONVERT_CHINESE_CHARACTERS":true,
 "SHOW_GENERAL_NOVELS_NEW": false,
 "SHOW_GENERAL_NOVELS_RANK": false,
 "SHOW_R18_NOVELS_GENRE": false,
@@ -27,6 +28,8 @@
 "DEBUG": false
 }
 
+// CONVERT_CHINESE_CHARACTERS
+// 搜索：搜索时进行繁简转换，但搜索会变慢
 // SHOW_GENERAL_NOVELS_NEW
 // 发现：最新、企划、约稿显示一般小说
 // SHOW_GENERAL_NOVELS_RANK

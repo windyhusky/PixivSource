@@ -117,30 +117,61 @@ function getUserNovels() {
     return novels
 }
 
-function getSeries(){
-    if (JSON.parse(result).error !== true){
-        return JSON.parse(result).body.novel.data
-    } else {
-        return []
+function search(name, type, page) {
+    let resp = {}
+    if (type.includes("novel")) {
+        resp = getAjaxJson(urlSearchNovel(name, page))
+        java.log(urlSearchNovel(name, page))
     }
+    if (type.includes("series")) {
+        resp = getAjaxJson(urlSearchSeries(name, page))
+        java.log(urlSearchSeries(name, page))
+    }
+    if (resp.error === true || resp.total === 0) {
+        return {"data": [], "lastPage": 0}
+    }
+    return resp.body.novel
 }
 
-function getNovels(){
-    let MAXPAGES = 3, novels = []
+function getSeries() {
+    let MAXPAGES = 2, novels = []
     let novelName = String(java.get("key"))
-    java.log(urlSearchNovel(novelName, 1))
-    let resp = getAjaxJson(urlSearchNovel(novelName, 1))
-    if (resp.error === true) {
-        return []
+    if (JSON.parse(result).error !== true) {
+        novels = novels.concat(JSON.parse(result).body.novel.data)
     }
-    novels = novels.concat(resp.body.novel.data)
-    for (let i = Number(java.get("page")) + 1; i < resp.body.novel.lastPage, i < MAXPAGES; i++) {
-        java.log(`页面：${i}`)
-        let resp = getAjaxJson(urlSearchNovel(novelName, i))
-        if (resp.error === true) {
-            return []
-        }
-        novels = novels.concat(resp.body.novel.data)
+
+    if (util.CONVERT_CHINESE_CHARACTERS) {
+        let name = java.s2t(java.t2s(java.s2t(novelName)))
+        let resp = search(name, "series", 1)
+        novels = novels.concat(resp.data)
+        // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
+        //     novels = novels.concat(search(name, "series", page).data)
+        // }
+    }
+    return novels
+}
+
+function getNovels() {
+    let MAXPAGES = 2, novels = [], resp = {} , name1
+    let novelName = String(java.get("key"))
+    if (util.CONVERT_CHINESE_CHARACTERS) {
+        name1 = java.t2s(java.s2t(novelName))
+    } else {
+        name1 = novelName
+    }
+    resp = search(name1, "novel", 1)
+    novels = novels.concat(resp.data)
+    // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
+    //     novels = novels.concat(search(name1, "novel", page).data)
+    // }
+
+    if (util.CONVERT_CHINESE_CHARACTERS) {
+        let name2 = java.s2t(name1)
+        resp = search(name2, "novel", 1)
+        novels = novels.concat(resp.data)
+        // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
+        //     novels = novels.concat(search(name2, "novel", page).data)
+        // }
     }
     return novels
 }
