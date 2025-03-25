@@ -91,7 +91,7 @@ function timeTextFormat(text) {
     return `${text.slice(0, 10)} ${text.slice(11, 19)}`
 }
 
-function updateSource(){
+function updateSource() {
     return () => {
         const {java, source} = this;
         let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json"

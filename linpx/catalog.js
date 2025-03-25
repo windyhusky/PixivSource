@@ -10,7 +10,7 @@ function objParse(obj) {
     })
 }
 
-function urlNovel(novelId){
+function urlNovel(novelId) {
     if (util.SHOW_ORIGINAL_NOVEL_LINK) {
         return urlNovelUrl(novelId)
     } else {

@@ -10,7 +10,7 @@ function objParse(obj) {
     })
 }
 
-function novelHandler(novel){
+function novelHandler(novel) {
     novel = util.formatNovels(util.handNovels([novel]))[0]
     novel.detailedUrl = urlNovelUrl(novel.id)
     if (novel.seriesId === undefined || novel.seriesId === null) {
@@ -22,10 +22,5 @@ function novelHandler(novel){
 }
 
 (() => {
-    try {
-        return novelHandler(util.getNovelRes(result))
-    } catch (e) {
-        java.log(e)
-        java.log(`受 Linpx 的限制，无法获取当前小说的数据`)
-    }
+    return novelHandler(util.getNovelRes(result))
 })();

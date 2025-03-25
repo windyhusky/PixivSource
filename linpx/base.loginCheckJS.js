@@ -61,7 +61,7 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function (novels){
+    u.handNovels = function (novels) {
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
