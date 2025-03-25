@@ -37,9 +37,6 @@ function urlSearchNovel(name, page) {
     return `https://api.furrynovel.com/api/zh/novel?page=${page}&order_by=popular&keyword=${encodeURI(name)}`
 }
 
-function urlCoverUrl(pxImgUrl) {
-    return `https://img.furrynovel.com/?url=${pxImgUrl}`
-}
 function urlLinpxNovelDetail(sourceId) {
     return `https://api.furrynovel.ink/pixiv/novel/${sourceId}/cache`
 }

@@ -90,15 +90,13 @@ function publicFunc() {
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.tags = novel.tags.join(",")
-            novel.coverUrl = urlCoverUrl(novel.coverUrl)
             novel.createDate = dateFormat(novel.createDate)
             novel.updateDate = dateFormat(novel.updateDate)
             novel.syncDate = dateFormat(novel.syncDate)
             if (util.MORE_INFO_IN_DESCRIPTION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n同步：${novel.syncDate}\n简介：${novel.description}`
             } else {
-                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}\n
-            同步时间：${novel.syncDate}`
+                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}\n同步时间：${novel.syncDate}`
             }
         })
         return novels
