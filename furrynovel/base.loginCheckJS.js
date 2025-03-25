@@ -60,14 +60,15 @@ function publicFunc() {
             novel.userName = novel.author.name
             // novel.userId = novel.author.id
             novel.textCount = null
-            try {
-                novel.latestChapter = novel.latest_chapters[0].name}
-            catch (e) {
+            if (novel.latest_chapters === undefined) {
                 novel.latestChapter = null
+                novel.detailedUrl = urlNovelDetail(novel.id)
+            } else {
+                novel.latestChapter = novel.latest_chapters[0].name
+                novel.detailedUrl = urlNovelUrl(novel.id)
             }
             novel.description = novel.desc
             novel.coverUrl = novel.cover
-            novel.detailedUrl = urlNovelDetail(novel.id)
 
             // novel.source = novel.source
             novel.oneShot = novel.ext_data.oneShot
@@ -127,7 +128,7 @@ function publicFunc() {
             res = JSON.parse(result)
         }
         if (res.data.length === 0) {
-            java.log(`无法从 FurryNovel.com 获取当前小说`)
+            java.log(`无法从 FurryNovel 获取当前小说`)
             java.log(JSON.stringify(res))
         }
         return res.data

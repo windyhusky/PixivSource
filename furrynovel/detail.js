@@ -18,10 +18,5 @@ function novelHandler(novel) {
 }
 
 (() => {
-    try {
-        return novelHandler(util.getNovelRes(result, "detail"))
-    } catch (e) {
-        java.log(e)
-        java.log(`受 FurryNovel.com 限制，无法获取当前小说数据`)
-    }
+    return novelHandler(util.getNovelRes(result, "detail"))
 })();
