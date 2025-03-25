@@ -114,17 +114,23 @@ function getNovels() {
     }
 }
 
+function search(name, page=1) {
+    let resp = getAjaxJson(urlSearchNovel(name, page))
+    java.log(urlSearchNovel(name, page))
+    if (resp.error === undefined && resp.total > 0) {
+        return resp.novels
+    } else {
+        return []
+    }
+}
+
 function getConvertNovels() {
-    let MAXPAGES = 2, novels = []
+    let novels = []
     let novelName = String(java.get("key"))
-    let name = java.s2t(java.t2s(java.s2t(novelName)))
-    let resp = getAjaxJson(urlSearchNovel(name, 1))
-    java.log(urlSearchNovel(name, 1))
-    novels = novels.concat(resp.novels)
-    // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
-    //     java.log(urlSearchNovel(name, page))
-    //     novels = novels.concat(getAjaxJson(urlSearchNovel(name, page)).novels)
-    // }
+    let name1 = String(java.s2t(novelName))
+    let name2 = String(java.t2s(novelName))
+    if (name1 !== novelName) novels = novels.concat(search(name1))
+    if (name2 !== novelName) novels = novels.concat(search(name2))
     return novels
 }
 
