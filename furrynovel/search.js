@@ -10,17 +10,23 @@ function objParse(obj) {
     })
 }
 
+function search(name, page=1) {
+    let resp = getAjaxJson(urlSearchNovel(name, page))
+    java.log(urlSearchNovel(name, page))
+    if (resp.code === 200 && resp.count > 0) {
+        return resp.data
+    } else {
+        return []
+    }
+}
+
 function getConvertNovels() {
-    let MAXPAGES = 2, novels = []
+    let novels = []
     let novelName = String(java.get("key"))
-    let name = java.s2t(java.t2s(java.s2t(novelName)))
-    let resp = getAjaxJson(urlSearchNovel(name, 1))
-    java.log(urlSearchNovel(name, 1))
-    novels = novels.concat(resp.data)
-    // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
-    //     novels = novels.concat(getAjaxJson(urlSearchNovel(name, page)).data)
-    //     java.log(urlSearchNovel(name, page))
-    // }
+    let name1 = String(java.s2t(novelName))
+    let name2 = String(java.t2s(novelName))
+    if (name1 !== novelName) novels = novels.concat(search(name1))
+    if (name2 !== novelName) novels = novels.concat(search(name2))
     return novels
 }
 
