@@ -22,6 +22,7 @@ function novelHandler(novels) {
     novels.forEach(novel => {
         novel.chapterId = novel.id
         novel.novelId = baseUrl.match(RegExp(/\d+/))[0]
+        novel.detailedUrl = urlNovelUrl(novel.novelId)
         novel.chapterName = novel.title = novel.name
         novel.chapterUrl =  urlNovelChapter(novel.novelId, novel.chapterId)
         novel.chapterInfo = `${novel.created_at}　　${novel.text_count}字`
@@ -29,25 +30,6 @@ function novelHandler(novels) {
     return novels
 }
 
-function getNovelRes(result) {
-    let res = {}
-    let isHtml = result.startsWith("<!DOCTYPE html>")
-    let pattern = "(https?://)?(www\\.)?furrynovel\\.com/(zh|en|ja)/novel/\\d+(/chapter/d+)?"
-    let fnWebpage = baseUrl.match(new RegExp(pattern))
-    if (isHtml && fnWebpage) {
-        let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-        // res = getAjaxJson(urlNovelDetail(novelId))
-        res = getAjaxJson(urlNovelChapterInfo(novelId))
-    } else {
-        res = JSON.parse(result)
-    }
-    if (res.data.length === 0) {
-        java.log(`无法从 FurryNovel.com 获取当前小说`)
-        java.log(JSON.stringify(res))
-    }
-    return res.data
-}
-
 (function () {
-    return novelHandler(getNovelRes(result))
+    return novelHandler(util.getNovelRes(result, "catalog"))
 })()

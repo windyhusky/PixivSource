@@ -76,8 +76,8 @@ function timeTextFormat(text) {
 }
 function sleep(time) {
     let endTime = new Date().getTime() + time
-    while(true){
-        if (new Date().getTime() > endTime){
+    while(true) {
+        if (new Date().getTime() > endTime) {
             return;
         }
     }
@@ -88,7 +88,7 @@ function sleepToast(text) {
     sleep(2000)
 }
 
-function updateSource(){
+function updateSource() {
     const {java, source} = this;
     let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json"
     let onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[1]  // 第2个书源

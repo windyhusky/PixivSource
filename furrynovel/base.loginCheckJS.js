@@ -45,7 +45,7 @@ function publicFunc() {
     }
 
     u.getNovels = function () {
-        if (JSON.parse(result).code === 200 && JSON.parse(result).count > 0){
+        if (JSON.parse(result).code === 200 && JSON.parse(result).count > 0) {
             return JSON.parse(result).data
         } else {
             return []
@@ -78,7 +78,7 @@ function publicFunc() {
             novel.updateDate = novel.updated_at
             novel.syncDate = novel.fetched_at
             // novel.status = novel.status
-            // if (novel.status !== "publish"){  // suspend
+            // if (novel.status !== "publish") {  // suspend
             //     java.log(urlNovelUrl(novel.id))
             //     java.log(novel.sourceUrl)
             // }
@@ -102,6 +102,37 @@ function publicFunc() {
             }
         })
         return novels
+    }
+
+    u.getNovelRes = function (result, type) {
+        let res = {}, chapterId = 0
+        let isHtml = result.startsWith("<!DOCTYPE html>")
+        let pattern = "(https?://)?(www\\.)?furrynovel\\.com/(zh|en|ja)/novel/\\d+(/chapter/d+)?"
+        let fnWebpage = baseUrl.match(new RegExp(pattern))
+
+        if (isHtml && fnWebpage) {
+            let novelId = baseUrl.match(new RegExp("\\d+"))[0]
+            if (type === "detail") {
+                res = getAjaxJson(urlNovelDetail(novelId))
+            } else if (type === "catalog") {
+                res = getAjaxJson(urlNovelChapterInfo(novelId))
+            } else if (type === "content") {
+                try {
+                    chapterId = baseUrl.match(RegExp(/\/(\d+)\/chapter\/(\d+)/))[2]
+                } catch (e) {
+                    chapterId = getAjaxJson(urlNovelChapterInfo(novelId)).data[0].id
+                } finally {
+                    res = getAjaxJson(urlNovelChapterDetail(novelId, chapterId))
+                }
+            }
+        } else {
+            res = JSON.parse(result)
+        }
+        if (res.data.length === 0) {
+            java.log(`无法从 FurryNovel.com 获取当前小说`)
+            java.log(JSON.stringify(res))
+        }
+        return res.data
     }
 
     util = u

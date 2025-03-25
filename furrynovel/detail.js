@@ -17,28 +17,9 @@ function novelHandler(novel) {
     return novel
 }
 
-function getNovelRes(result) {
-    let res = {}
-    let isHtml = result.startsWith("<!DOCTYPE html>")
-    let pattern = "(https?://)?(www\\.)?furrynovel\\.com/(zh|en|ja)/novel/\\d+(/chapter/d+)?"
-    let fnWebpage = baseUrl.match(new RegExp(pattern))
-    if (isHtml && fnWebpage) {
-        let novelId = baseUrl.match(new RegExp("\\d+"))[0]
-        res = getAjaxJson(urlNovelDetail(novelId))
-        // res = getAjaxJson(urlNovelChapterInfo(novelId))
-    } else {
-        res = JSON.parse(result)
-    }
-    if (res.data.length === 0) {
-        java.log(`无法从 FurryNovel.com 获取当前小说`)
-        java.log(JSON.stringify(res))
-    }
-    return res.data
-}
-
 (() => {
     try {
-        return novelHandler(getNovelRes(result))
+        return novelHandler(util.getNovelRes(result, "detail"))
     } catch (e) {
         java.log(e)
         java.log(`受 FurryNovel.com 限制，无法获取当前小说数据`)

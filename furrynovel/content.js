@@ -109,30 +109,6 @@ function getContent(res) {
     return content
 }
 
-function getNovelRes(result){
-    let chapterId = 0, res = {}
-    let isHtml = result.startsWith("<!DOCTYPE html>")
-    let pattern = "(https?://)?(www\\.)?furrynovel\\.com/(zh|en|ja)/novel/\\d+(/chapter/\\d+)?"
-    let fnWebpage = baseUrl.match(new RegExp(pattern))
-    if (isHtml && fnWebpage) {
-        let novelId = baseUrl.match(RegExp(/\/(\d+)\/chapter/))[1]
-        try {
-            chapterId = baseUrl.match(RegExp(/\/(\d+)\/chapter\/(\d+)/))[2]
-        } catch (e) {
-            chapterId = getAjaxJson(urlNovelChapterInfo(novelId)).data[0].id
-        } finally {
-            res = getAjaxJson(urlNovelChapterDetail(novelId, chapterId))
-        }
-    } else {
-        res = JSON.parse(result)
-    }
-    if (res.data.length === 0) {
-        java.log(`无法从 FurryNovel.com 获取当前小说`)
-        java.log(JSON.stringify(res))
-    }
-    return res.data
-}
-
 (function () {
-    return getContent(getNovelRes(result))
+    return getContent(util.getNovelRes(result, "content"))
 })()
