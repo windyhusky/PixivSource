@@ -34,5 +34,10 @@ function getConvertNovels() {
     let novels = []
     novels = novels.concat(util.getNovels())
     if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
+    // java.log(JSON.stringify(novels))
+    // 返回空列表中止流程
+    if (novels.length === 0) {
+        return []
+    }
     return util.formatNovels(util.handNovels(novels))
 })();
