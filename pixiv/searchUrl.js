@@ -1,11 +1,15 @@
 @js:
-java.put("page", page)
 java.put("key", key)
+java.put("page", page)
 let keyword = key.split(" ")
+let limitedTextCount
 if (key.includes("字数")) {
     limitedTextCount = keyword.pop()
     keyword = keyword.join(" ")
-    java.put("keyword", keyword)
-    java.put("limitedTextCount", limitedTextCount)
+} else {
+    limitedTextCount = ""
+    keyword = key
 }
-`https://www.pixiv.net/ajax/search/novels/${keyword}?word=${keyword}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`;
+java.put("keyword", keyword)
+java.put("limitedTextCount", limitedTextCount)
+urlSearchSeries(keyword, page)

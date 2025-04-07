@@ -167,8 +167,7 @@ function getConvertNovels() {
 function novelFilter(novels) {
     let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "")
     // limitedTextCount = `3w 3k 3w5 3k5`.[0]
-    java.log(`字数限制：${limitedTextCount}`)
-    let textCount
+    let textCount = 0
     if (limitedTextCount.includes("w")) {
         let num = limitedTextCount.split("w")
         textCount = 10000 * num[0] + 1000 * num[1]
@@ -177,6 +176,7 @@ function novelFilter(novels) {
         let num = limitedTextCount.split("k")
         textCount = 1000 * num[0] + 100 * num[1]
     }
+    java.log(`字数限制：${limitedTextCount}`)
     java.log(`字数限制：${textCount}`)
     return novels.filter(novel => novel.textCount >= textCount)
 }
@@ -193,4 +193,4 @@ function novelFilter(novels) {
         return []
     }
     return novelFilter(util.formatNovels(util.handNovels(novels)))
-})();
+})()
