@@ -152,6 +152,18 @@ function getNovels(){
     return novels
 }
 
+function getConvertNovels() {
+    let novels = []
+    let novelName = String(java.get("keyword"))
+    let name1 = String(java.s2t(novelName))
+    let name2 = String(java.t2s(novelName))
+    if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
+    if (name2 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
+    if (name1 !== novelName) novels = novels.concat(search(name1, "novel", 1).data)
+    if (name2 !== novelName) novels = novels.concat(search(name1, "novel", 1).data)
+    return novels
+}
+
 function novelFilter(novels) {
     let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "")
     // limitedTextCount = `3w 3k 3w5 3k5`.[0]
@@ -174,6 +186,7 @@ function novelFilter(novels) {
     novels = novels.concat(getNovels())
     novels = novels.concat(getSeries())
     novels = novels.concat(getUserNovels())
+    if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程
     if (novels.length === 0) {

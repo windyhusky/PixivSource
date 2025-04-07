@@ -145,9 +145,9 @@ function getLinkNovels() {
 (() => {
     let novels = []
     novels = novels.concat(getNovels())
-    if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
     novels = novels.concat(getLinkNovels())
     novels = novels.concat(findUserNovels())
+    if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程
     if (novels.length === 0) {
