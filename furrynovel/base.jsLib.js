@@ -34,7 +34,7 @@ function urlNovelChapterDetail(novelId, chapterId) {
 }
 
 function urlSearchNovel(name, page) {
-    return `https://api.furrynovel.com/api/zh/novel?page=${page}&order_by=popular&keyword=${encodeURI(name)}`
+    return `https://api.furrynovel.com/api/zh/novel?page=${page}&order_by=popular&keyword=${name}`
 }
 
 function urlLinpxNovelDetail(sourceId) {
