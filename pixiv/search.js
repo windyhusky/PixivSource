@@ -158,9 +158,9 @@ function getConvertNovels() {
     let name1 = String(java.s2t(novelName))
     let name2 = String(java.t2s(novelName))
     if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
-    if (name2 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
+    if (name2 !== novelName) novels = novels.concat(search(name2, "series", 1).data)
     if (name1 !== novelName) novels = novels.concat(search(name1, "novel", 1).data)
-    if (name2 !== novelName) novels = novels.concat(search(name1, "novel", 1).data)
+    if (name2 !== novelName) novels = novels.concat(search(name2, "novel", 1).data)
     return novels
 }
 
