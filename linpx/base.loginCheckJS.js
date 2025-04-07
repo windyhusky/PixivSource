@@ -90,7 +90,9 @@ function publicFunc() {
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
                 novel.id = series.novels[0].id
                 novel.title = series.title
-                novel.tags = novel.tags.concat(series.tags)
+                if (series.tags !== undefined && series.tags !== null) {
+                    novel.tags = novel.tags.concat(series.tags)
+                }
                 novel.tags.unshift("长篇")
                 novel.textCount = null  // 无数据
                 novel.createDate = null  // 无数据
@@ -102,11 +104,13 @@ function publicFunc() {
                 novel.detailedUrl = urlNovelDetailed(novel.id)
 
                 let firstNovel = getAjaxJson(urlNovelDetailed(novel.id))
-                novel.tags = novel.tags.concat(firstNovel.tags)
+                if (firstNovel.error !== true) {
+                    novel.tags = novel.tags.concat(firstNovel.tags)
+                    novel.createDate = firstNovel.createDate
+                    if (novel.description === "") {
+                        novel.description = firstNovel.desc
+                }
                 novel.tags = Array.from(new Set(novel.tags))
-                novel.createDate = firstNovel.createDate
-                if (novel.description === "") {
-                    novel.description = firstNovel.desc
                 }
             }
         })
@@ -118,7 +122,7 @@ function publicFunc() {
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
-            novel.createDate = dateFormat(novel.createDate);
+            novel.createDate = dateFormat(novel.createDate)
 
             novel.tags2 = []
             for (let i in novel.tags) {
