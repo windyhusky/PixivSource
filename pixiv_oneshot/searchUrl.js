@@ -1,6 +1,6 @@
 @js:
-java.put("page", page)
 java.put("key", key)
+java.put("page", page)
 let keyword = key.split(" ")
 let limitedTextCount
 if (key.includes("字数")) {
