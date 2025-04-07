@@ -23,10 +23,5 @@ function novelHandler(novel){
 }
 
 (() => {
-    try {
-        return novelHandler(util.getNovelRes(result))
-    } catch (e) {
-        java.log(e)
-        java.log(`受 Pixiv 的限制，无法获取当前小说数据`)
-    }
+    return novelHandler(util.getNovelRes(result))
 })()
