@@ -53,8 +53,8 @@ function urlUsersDetailed(uidList) {
     return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
 }
 
-function urlSearchNovel(novelName) {
-    return `https://api.furrynovel.ink/pixiv/search/novel/${novelName}/cache`
+function urlSearchNovel(novelName, page) {
+    return `https://api.furrynovel.ink/pixiv/search/novel/${novelName}/cache?page=${page}`
 }
 function urlSearchUsers(userName) {
     return `https://api.furrynovel.ink/pixiv/search/user/${userName}/cache`
