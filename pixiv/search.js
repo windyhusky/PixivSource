@@ -56,7 +56,7 @@ function getUserNovels() {
         return []
     }
 
-    let username = String(java.get("key"))
+    let username = String(java.get("keyword"))
     let html = java.ajax(urlSearchUser(username))
     // java.log(html)
     // 仅匹配有投稿作品的用户
@@ -135,7 +135,7 @@ function search(name, type, page) {
 
 function getSeries() {
     let MAXPAGES = 2, novels = []
-    let novelName = String(java.get("key"))
+    let novelName = String(java.get("keyword"))
     if (JSON.parse(result).error !== true) {
         novels = novels.concat(JSON.parse(result).body.novel.data)
     }
@@ -153,7 +153,7 @@ function getSeries() {
 
 function getNovels() {
     let MAXPAGES = 2, novels = [], resp = {} , name1
-    let novelName = String(java.get("key"))
+    let novelName = String(java.get("keyword"))
     if (util.CONVERT_CHINESE_CHARACTERS) {
         name1 = java.t2s(java.s2t(novelName))
     } else {
