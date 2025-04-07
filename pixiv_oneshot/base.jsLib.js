@@ -127,7 +127,7 @@ function updateSource(){
     <title>更新 ${source.bookSourceName} 书源</title>
     <style> 
     table { text-align: center; margin: 0 auto; } .ann { display: flex; justify-content: center; align-items: center; height: 20vh; } 
-    button { background-color: rgb(76, 175, 80); color: white; border: none; border-radius: 4px; height: 5vh; width: 30vw; overflow: hidden; } 
+    button { background-color: rgb(76, 175, 80); color: white; border: none; border-radius: 4px; height: 5vh; width: 40vw; overflow: hidden; } 
     button span { cursor: pointer; display: inline-block; position: relative; transition: 0.4s; } 
     button span:after { content: '>'; position: absolute; opacity: 0; top: 0; right: 30px; transition: 0.2s; } 
     button:active span { padding-right: 20px; } 
