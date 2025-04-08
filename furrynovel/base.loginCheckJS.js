@@ -90,6 +90,17 @@ function publicFunc() {
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
+            novel.tags2 = []
+            for (let i in novel.tags) {
+                let tag = novel.tags[i]
+                if (tag.includes("/")) {
+                    let tags = tag.split("/")
+                    novel.tags2 = novel.tags2.concat(tags)
+                } else {
+                    novel.tags2.push(tag)
+                }
+            }
+            novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
             novel.createDate = dateFormat(novel.createDate)
             novel.updateDate = dateFormat(novel.updateDate)
@@ -104,7 +115,7 @@ function publicFunc() {
     }
 
     u.getNovelRes = function (result, type) {
-        let res = {}, chapterId = 0
+        let res = {data: []}, chapterId = 0
         let isHtml = result.startsWith("<!DOCTYPE html>")
         let pattern = "(https?://)?(www\\.)?furrynovel\\.com/(zh|en|ja)/novel/\\d+(/chapter/d+)?"
         let fnWebpage = baseUrl.match(new RegExp(pattern))
