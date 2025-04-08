@@ -109,8 +109,7 @@ function publicFunc() {
                     novel.createDate = firstNovel.createDate
                     if (novel.description === "") {
                         novel.description = firstNovel.desc
-                }
-                novel.tags = Array.from(new Set(novel.tags))
+                    }
                 }
             }
         })
@@ -134,7 +133,8 @@ function publicFunc() {
                     novel.tags2.push(tag)
                 }
             }
-            novel.tags = novel.tags2.join(",")
+            novel.tags = Array.from(new Set(novel.tags2))
+            novel.tags = novel.tags.join(",")
 
             if (util.MORE_INFO_IN_DESCRIPTION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
@@ -147,7 +147,7 @@ function publicFunc() {
 
     // 从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     u.getNovelRes = function (result) {
-        let novelId = 0, res = {}
+        let novelId = 0, res = []
         let isJson = isJsonString(result)
         let isHtml = result.startsWith("<!DOCTYPE html>")
         // 兼容搜索直接输入链接
@@ -188,14 +188,13 @@ function publicFunc() {
         if (res.error) {
             java.log(`无法从 Linpx 获取当前小说`)
             java.log(JSON.stringify(res))
-            return []
         }
         return res
     }
 
     // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
     u.getNovelResSeries = function (result) {
-        let seriesId = 0, res = {}
+        let seriesId = 0, res = []
         let isJson = isJsonString(result)
         let isHtml = result.startsWith("<!DOCTYPE html>")
         if (!isJson && isHtml) {
