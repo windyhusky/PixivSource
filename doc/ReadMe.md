@@ -44,14 +44,15 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 
 ## 4.下载安装后应该做什么？
+> ### 0. [阅读是什么软件？阅读简介](./ReadMe.md) 【你在这里】
 > ### 1. [阅读使用教程（太长不看版）](./TooLongToRead.md)
->> #### 1. [Pixiv 书源的导入与使用](./Pixiv.md)
->> #### 2. [Linpx 书源的导入与使用](./Linpx.md)
->> #### 3. [兽人控小说站 书源的导入与使用](./FurryNovel.md)
->> #### 4. 搜索小说、查看订阅，畅享阅读
-> ### 4.2 [添加远程小说](Remotebooks)，畅享阅读
-> ### 4.3 [设置备份](./WebdavBackup.md)
-> ### 4.4 [故障排查与处理](./TroubleShoot.md)
+>> #### 1.1 [Pixiv 书源的导入与使用](./Pixiv.md)
+>> #### 1.2 [Linpx 书源的导入与使用](./Linpx.md)
+>> #### 1.3 [兽人控小说站 书源的导入与使用](./FurryNovel.md)
+>> #### 1.4 搜索小说、查看订阅，畅享阅读
+> ### 2. [添加远程书籍](./RemoteBooks.md)，畅享阅读
+> ### 3. [设置 Webdav 备份](./WebdavBackup.md)
+> ### 4. [故障排查与处理](./TroubleShoot.md)
 
 
 ## 5.常用功能（转自 [官方使用指南](https://www.yuque.com/legado/wiki/xz) ）
