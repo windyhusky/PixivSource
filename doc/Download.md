@@ -1,10 +1,10 @@
-### 3.下载阅读
+## 3.下载阅读
 阅读的各个版本，参见[阅读版本](./Version.md)（不重要）
 
-####  3.1 Android 版
+###  3.1 Android 版
 <details><summary> 阅读 Android 版 </summary>
 
-##### 3.1.1 Android Beta 版
+#### 3.1.1 Android Beta 版
 **点击链接，下载安装包并安装，推荐使用共存版**
 https://miaogongzi.lanzout.com/b01rgkhhe
 
@@ -18,7 +18,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 <details><summary> Android 正式版 & Pro 版 </summary>
 
-##### ~~3.1.2 Android 正式版~~
+#### ~~3.1.2 Android 正式版~~
 **Android 正式版已经停止更新，不推荐继续使用**
 
 | 下载站点                                                      | 版本   | 备注            |
@@ -28,17 +28,17 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 | [Telegram 频道](https://t.me/Legado_Channels)                 | 稳定版 | 需要代理，需要登录 |
 
 
-##### ~~3.1.3 阅读 Pro 版~~
+#### ~~3.1.3 阅读 Pro 版~~
 **阅读 Pro 版已经停止更新，不推荐继续使用。所有 Pro 版限定功能已经移植到普通版（2023.11.01）**
 </details>
 </details>
 
 
-#### 3.2 苹果 iOS 版
+### 3.2 苹果 iOS 版
 <details><summary> 阅读 iOS 版 </summary>
 <details><summary> 阅读官方 iOS 版 </summary>
 
-##### ~~3.2.1 官方 iOS 版~~【已停止开发】
+#### ~~3.2.1 官方 iOS 版~~【已停止开发】
 官方 iOS 版已经停止开发
 ~~官方正在进行 [iOS版](https://github.com/gedoor/YueDuFlutter) 的测试，[近期在TF测试](https://gedoor.github.io/download) ，最新消息请见：[Telegram 频道(iOS版)](https://t.me/legado_ios)~~
 
@@ -49,18 +49,33 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 </details>
 
 
-##### 3.2.2 非官方 iOS 版
-可能兼容阅读书源的**非官方软件**：
+#### 3.2.2 非官方 iOS 版
+兼容阅读书源的**非官方软件**：
 
 | 软件名称 | 备注                       |
 | ------- | -------------------------- |
-| [源阅](https://github.com/kaich/SourceReadSite) | 【源阅读】的后续版本，付费 TestFlight 可用书源 |
-| ~~[用心读书](https://apps.apple.com/app/id1569793141)~~ | 不完全兼容阅读书源，非会员可能有功能限制 |
-| ~~[千阅](https://apps.apple.com/app/id1665963317)~~ | 不完全兼容阅读书源，非会员可能有功能限制，有广告 |
-| ~~星文阅读~~ | 停止维护，AppStore 已下架 |
+| [源阅](https://github.com/kaich/SourceReadSite) | 兼容阅读书源，【源阅读】的后续版本，付费 TestFlight |
+| [千阅](https://apps.apple.com/app/id1665963317) | 兼容阅读书源，需要付费 |
 | ~~[读不舍手](https://apps.apple.com/app/id1662413517)~~ | 不完全兼容阅读书源，广告较多 |
-| ~~[青果阅读](https://apps.apple.com/app/id1142490639)~~ | 不完全兼容阅读书源，现已下架 |
-| ~~[源阅读](https://github.com/kaich/Yuedu)~~ | 停止维护，AppStore 已下架 |
+
+
+<details><summary> 已下架软件 </summary>
+
+#### 3.2.2 已下架软件
+| 软件名称 | 备注                       |
+| ------- | -------------------------- |
+| ~~星文阅读~~ | 停止维护，现已下架 |
+| ~~[青果阅读](https://apps.apple.com/app/id1142490639)~~ | 停止维护，现已下架，不完全兼容阅读书源
+| ~~[源阅读](https://github.com/kaich/Yuedu)~~ | 停止维护，现已下架 |
+</details>
+
+
+#### 3.2.3 iOS 替代软件
+不兼容阅读书源的，其他换源阅读软件
+
+| 软件名称 | 备注                        |
+| ------- | -------------------------- |
+| [用心读书](https://apps.apple.com/app/id1569793141) | 付费 TestFlight |
 </details>
 
 
