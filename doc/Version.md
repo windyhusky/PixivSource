@@ -12,11 +12,9 @@
 
 
 #### 2.0 安卓版与苹果版
-目前阅读 3.0 仅支持 Android 安卓设备，官方正在开发 [iOS版](https://github.com/gedoor/YueDuFlutter) ，[近期在TF测试](https://gedoor.github.io/download) ，最新消息请见：[Telegram 频道(iOS版)](https://t.me/legado_ios)
-
-![img](./pic/Legado-Version-iOS.png)
-> https://t.me/legado_ios/17
-
+- 目前阅读 3.0 仅支持 Android 安卓设备
+- ~~官方正在开发 [iOS版](https://github.com/gedoor/YueDuFlutter) ，[近期在TF测试](https://gedoor.github.io/download) ，最新消息请见：[Telegram 频道(iOS版)](https://t.me/legado_ios)~~
+- 官方已放弃开发苹果版
 
 #### 2.1 限制版与R18版（原包名、共存版）
 ![img](./pic/Legado-Version-R18.png)

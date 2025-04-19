@@ -80,22 +80,23 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 
 ### 3.3 服务器版/桌面版
+项目地址：https://github.com/hectorqin/reader
 <details><summary> 阅读 服务器版/桌面版 </summary>
-阅读3 服务器版，不需要手机
 
 | 下载站点                                              | 版本   | 备注            |
 | ---------------------------------------------------- | ----- | -------------- |
-| [Github](https://github.com/hectorqin/reader)        |  | 需要代理 |
+| [Github](https://github.com/hectorqin/reader/releases)        |  | 需要代理 |
 | [Telegram 频道](https://t.me/facker_channel)          |  | 需要代理，需要登录 |
 | 微信公众号【假装大佬】 |  |  |
 </details>
 
 
 ### 3.4 鸿蒙版【开发中，暂不可用】
+项目地址：https://github.com/mgz0227/legado-Harmony
 <details><summary> 阅读 鸿蒙版 </summary>
 
 | 下载站点                                              | 版本   | 备注            |
 | ---------------------------------------------------- | ----- | -------------- |
-| [Github](https://github.com/mgz0227/legado-Harmony)  | 开发中 |   |
-| [Gitee](https://gitee.com/mgz0227/legado-Harmony)    | 开发中 |   |
+| [Github](https://github.com/mgz0227/legado-Harmony/releases)  | 开发中 |   |
+| [Gitee](https://gitee.com/mgz0227/legado-Harmony/releases)    | 开发中 |   |
 </details>
