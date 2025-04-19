@@ -1,5 +1,8 @@
 # 阅读使用教程（太长不看版）
 ## 1.下载并安装阅读（内置订阅版）
+**点击链接，下载安装包并安装，推荐使用共存版**
+https://miaogongzi.lanzout.com/b01rgkhhe
+
 ![img](./pic/DownloadLegado.png)
 
 
@@ -33,6 +36,8 @@
 <summary> B. 书源订阅（ import 订阅源） </summary>
 
 ### B.书源订阅（ import 订阅源）
+如果你下载的是 **【内置 import 订阅源】的阅读** 或者 **【已导入 import 订阅源】的阅读** ，可用其导入
+
 #### 1.打开“书源订阅”
 点击 “书源订阅”（ import 订阅源）
 
