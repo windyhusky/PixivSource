@@ -54,9 +54,9 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 | 软件名称 | 备注                       |
 | ------- | -------------------------- |
-| [源阅](https://github.com/kaich/SourceReadSite) | 兼容阅读书源，【源阅读】的后续版本，付费 TestFlight |
-| [千阅](https://apps.apple.com/app/id1665963317) | 兼容阅读书源，需要付费 |
-| ~~[读不舍手](https://apps.apple.com/app/id1662413517)~~ | 不完全兼容阅读书源，广告较多 |
+| [源阅](https://github.com/kaich/SourceReadSite) | 兼容阅读书源，【源阅读】的后续版本，TestFlight 付费 ￥128 |
+| [千阅](https://apps.apple.com/app/id1665963317) | 不完全兼容阅读书源，需要付费 ￥98 |
+| ~~[读不舍手](https://apps.apple.com/app/id1662413517)~~ | 不完全兼容阅读书源，广告较多，会员付费 |
 
 
 <details><summary> 已下架软件 </summary>
@@ -67,6 +67,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 | ~~星文阅读~~ | 停止维护，现已下架 |
 | ~~[青果阅读](https://apps.apple.com/app/id1142490639)~~ | 停止维护，现已下架，不完全兼容阅读书源
 | ~~[源阅读](https://github.com/kaich/Yuedu)~~ | 停止维护，现已下架 |
+| ~~[花火阅读](https://apps.apple.com/app/id1546631588)~~ | 停止维护，现已下架 |
 </details>
 
 
@@ -75,7 +76,10 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 | 软件名称 | 备注                        |
 | ------- | -------------------------- |
+| [益达](https://github.com/xiaohucode/yidaRule/releases) | 开源（苹果&安卓） |
 | [用心读书](https://apps.apple.com/app/id1569793141) | 付费 TestFlight |
+| 香色闺阁 | 已下架 |
+| 爱阅书香 | 已下架 |
 </details>
 
 

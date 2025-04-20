@@ -35,9 +35,9 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 | 软件名称 | 备注                       |
 | ------- | -------------------------- |
-| [源阅](https://github.com/kaich/SourceReadSite) | 兼容阅读书源，【源阅读】的后续版本，付费 TestFlight |
-| [千阅](https://apps.apple.com/app/id1665963317) | 兼容阅读书源，需要付费 |
-| ~~[读不舍手](https://apps.apple.com/app/id1662413517)~~ | 不完全兼容阅读书源，广告较多 |
+| [源阅](https://github.com/kaich/SourceReadSite) | 兼容阅读书源，【源阅读】的后续版本，TestFlight 付费 ￥128 |
+| [千阅](https://apps.apple.com/app/id1665963317) | 不完全兼容阅读书源，需要付费 ￥98 |
+| ~~[读不舍手](https://apps.apple.com/app/id1662413517)~~ | 不完全兼容阅读书源，广告较多，会员付费 |
 </details>
 
 ### 3.3 更多版本详见 [下载阅读](./Download.md)
