@@ -20,8 +20,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 ```
 以下导入方法任选其一即可
-<details>
-<summary> A. 文件导入 </summary>
+<details><summary> A. 文件导入 </summary>
 
 ### A.文件导入更简单
 #### 1.下载书源/订阅源文件
@@ -39,8 +38,7 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 </details>
 
 
-<details>
-<summary> B. 规则订阅 </summary>
+<details><summary> B. 规则订阅 </summary>
 
 ### B.规则订阅易更新
 #### 1. 打开【订阅】页面，点击【规则订阅】
@@ -62,8 +60,7 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 </details>
 
 
-<details>
-<summary> C. 网络导入 </summary>
+<details><summary> C. 网络导入 </summary>
 
 ### C.网络导入也方便
 #### 1.打开【我的】页面，点击【书源管理】
@@ -85,8 +82,7 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 </details>
 
 
-<details>
-<summary> D. Schema 链接导入 </summary>
+<details><summary> D. Schema 链接导入 </summary>
 
 ### D.Schema 链接导入最方便【适用于书源提供方】
 大多点击链接一键导入书源/订阅源，都是是采用了这种方式，如：**[喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)**
@@ -126,8 +122,7 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 </details>
 
 
-<details>
-<summary> E. 书源订阅（ import 订阅源） </summary>
+<details><summary> E. 书源订阅（ import 订阅源） </summary>
 
 ### E.书源订阅（ import 订阅源）
 如果你已经导入了【书源订阅】（ import 订阅源），则可以用其导入书源
@@ -162,6 +157,8 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 
 
 ## 2.3 登录账号
+<details><summary> 登陆账号 </summary>
+
 ### 0.【根据需要】开启代理工具
 此处略过，请自行学习，**最好开启【全局代理】**
 
@@ -178,4 +175,4 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 ![img](./pic/PixivLoginIn2.jpg)
 
 对于Pixiv而言，**如果需要验证码，请更换代理，或过段时间再次尝试**
-
+</details>
