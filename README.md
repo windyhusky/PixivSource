@@ -17,7 +17,7 @@
 - [兽人控小说站](https://www.furrynovel.com)，收录了 Pixiv, Bilibili 的大部分兽人小说
 
 
-## 快速导入 => [导入订阅源](./doc/ImportRssSource.md) 
+## 快速导入：[下载阅读](./doc/Download.md) => [导入订阅源](./doc/ImportRssSource.md) 
 | 名称          | 免代理导入网址                                                         |
 | -------------| ------------------------------------------------------------------- |
 | Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
@@ -223,6 +223,7 @@
 <details><summary> 📌 使用教程 </summary>
 
 > ### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
+> ### 0. [下载 开源阅读 Legado](./doc/Download.md)
 > ### 1. [阅读使用教程（太长不看版）](./doc/TooLongToRead.md)
 >> #### 1.1 [Pixiv 书源的导入与使用](./doc/Pixiv.md)
 >> #### 1.2 [Linpx 书源的导入与使用](./doc/Linpx.md)
