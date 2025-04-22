@@ -17,12 +17,12 @@
 - [兽人控小说站](https://www.furrynovel.com)，收录了 Pixiv, Bilibili 的大部分兽人小说
 
 
-## 快速导入：[下载阅读](./doc/Download.md) => [导入订阅源](./doc/ImportRssSource.md) 
+## 快速导入：[下载阅读](./doc/Download.md) =>  [导入书源](./doc/Import.md)
+
 | 名称          | 免代理导入网址                                                         |
 | -------------| ------------------------------------------------------------------- |
 | Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
 - 免代理导入无延迟（使用 Github Action 自动刷新 jsdelivr CDN 缓存）
-> **[使用 import 订阅源导入相关书源](./doc/Import.md)**
 
 
 <details>
@@ -36,6 +36,7 @@
 | BTSRK 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
 | Books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
 
+> 更多导入方法详见：
 > **[导入书源](./doc/ImportBookSource.md)** &
 > **[导入订阅源](./doc/ImportRssSource.md)**
 </details>

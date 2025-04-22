@@ -1,6 +1,15 @@
 ## 使用 import 订阅源导入书源
 
 ### 0.下载并安装阅读
+<details>
+<summary> ⬇️ 下载阅读 </summary>
+
+点击链接，下载安装包并安装，**推荐使用共存版**
+> https://miaogongzi.lanzout.com/b01rgkhhe
+>
+> 最新下载链接请查看 [下载阅读](./Download.md)
+</details>
+
 ![img](./pic/DownloadLegado.png)
 
 
@@ -39,6 +48,9 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
 <details>
 <summary> ➕ 导入书源 & 订阅源 </summary>
 
+> 更多方法详见：
+> **[导入书源](./ImportBookSource.md)** &
+> **[导入订阅源](./ImportRssSource.md)**
 
 #### 2.1 打开“书源订阅”
 点击 “书源订阅”（ import 订阅源）
@@ -62,9 +74,14 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
 
 
 ### 3.使用书源，畅享阅读
-> #### 1. [Pixiv 书源的导入与使用](./Pixiv.md)
-> #### 2. [Linpx 书源的导入与使用](./Linpx.md)
-> #### 3. [兽人控小说站 书源的导入与使用](./FurryNovel.md)
+> ### 1. [阅读使用教程（太长不看版）](./TooLongToRead.md)
+>> #### 1.1 [Pixiv 书源的导入与使用](./Pixiv.md)
+>> #### 1.2 [Linpx 书源的导入与使用](./Linpx.md)
+>> #### 1.3 [兽人控小说站 书源的导入与使用](./FurryNovel.md)
+>> #### 1.4 搜索小说、查看订阅，畅享阅读
+> ### 2. [添加远程书籍](./Remotebooks)，畅享阅读
+> ### 3. [设置 Webdav 备份](./WebdavBackup.md)
+> ### 4. [故障排查与处理](./TroubleShoot.md)
 
 
 ## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
