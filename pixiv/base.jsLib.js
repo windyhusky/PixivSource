@@ -79,7 +79,8 @@ function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
 function urlIllustOriginal(illustId, order) {
-    let illustOriginal = getAjaxJson(urlIllustDetailed(illustId)).body.urls.original
+    const {java} = this
+    let illustOriginal = JSON.parse(java.ajax(urlIllustDetailed(illustId))).body.urls.original
     if (order >= 1) {
         illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
     }

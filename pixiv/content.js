@@ -28,16 +28,17 @@ function getContent(res) {
     // 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
     let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
     if (matched) {
-        for (let i in matched) {
-            let illustId, order
-            let matched2 = matched[i].match(RegExp("(\\d+)-?(\\d+)"))
-            let temp = matched2[0].split("-")
-            illustId = temp[0]
-            if (temp.length >= 2) {
-                order = temp[1]
+        matched.forEach(pixivimage => {
+            let matched2, illustId, order = 0
+            if (pixivimage.includes("-")) {
+                matched2 = pixivimage.match(RegExp("(\\d+)-(\\d+)"))
+                illustId = matched2[1]; order = matched2[2]
+            } else {
+                matched2 = pixivimage.match(RegExp("\\d+"))
+                illustId = matched2[0];
             }
-            content = content.replace(`${matched[i]}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
-        }
+            content = content.replace(`${pixivimage}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
+        })
     }
 
     // 替换 Pixiv 分页标记符号 [newpage]
@@ -144,4 +145,5 @@ function getComment(res) {
 
 (() => {
     return getContent(util.getNovelRes(result))
+    // return getContent2(util.getNovelRes(result))
 })()
