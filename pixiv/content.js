@@ -145,5 +145,4 @@ function getComment(res) {
 
 (() => {
     return getContent(util.getNovelRes(result))
-    // return getContent2(util.getNovelRes(result))
 })()
