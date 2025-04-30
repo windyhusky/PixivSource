@@ -22,6 +22,7 @@
 | 名称          | 免代理导入网址                                                         |
 | -------------| ------------------------------------------------------------------- |
 | Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
+| BTSRK 订阅源  | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
 - 免代理导入无延迟（使用 Github Action 自动刷新 jsdelivr CDN 缓存）
 
 
