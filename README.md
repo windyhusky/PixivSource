@@ -1,5 +1,5 @@
 <div align="center">
-<img width="125" height="125" src="https://github.com/windyhusky/PixivSource/raw/main/doc/pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
+<img width="125" height="125" src="doc/pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
 
 ## 开源阅读 Pixiv 书源
 </div>
