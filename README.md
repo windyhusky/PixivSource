@@ -26,19 +26,32 @@
 
 
 <details>
-<summary>  Github 导入地址 </summary>
+<summary> Github 导入地址 </summary>
 
-| 名称          | Github 导入网址                                                             |
-| ------------ | ------------------------------------------------------------------------- |
-| Pixiv 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
-| Linpx 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
-| 兽人小说站书源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
-| BTSRK 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
-| Books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
+| 名称          | Github 导入网址                                                           |
+| ------------ | ------------------------------------------------------------------------ |
+| Pixiv 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
+| Linpx 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
+| 兽人小说站书源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
+| BTSRK 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json |
+| Books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json |
 
 > 更多导入方法详见：
 > **[导入书源](./doc/ImportBookSource.md)** &
 > **[导入订阅源](./doc/ImportRssSource.md)**
+</details>
+
+
+<details>
+<summary> Codeberg 镜像地址 </summary>
+
+| 名称          | Codeberg 镜像网址　                                                       |
+| ------------ | --------------------------------------------------------------------- |
+| Pixiv 书源　  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json |
+| Linpx 书源　  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json |
+| 兽人小说站书源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json |
+| BTSRK 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json |
+| Books 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/books.json |
 </details>
 
 
