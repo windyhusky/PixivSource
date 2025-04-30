@@ -30,14 +30,14 @@ jobs:
     name: Purge Linpx Cache
     runs-on: ubuntu-latest
     steps:
-    - name: Purge Jsdelivr Cache
-      run: |
-        result=$(curl -s https://purge.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
-        if echo $result |grep -q 'finished'; then
-          echo "Linpx 书源 jsdelivr 缓存更新成功"
-        else
-          echo $result
-        fi
+      - name: Purge Jsdelivr Cache
+        run: |
+          result=$(curl -s https://purge.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+          if echo $result |grep -q 'finished'; then
+            echo "Linpx 书源 jsdelivr 缓存更新成功"
+          else
+            echo $result
+          fi
 
   purgeCache3:
     name: Purge BTSRK Cache
