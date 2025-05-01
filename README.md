@@ -23,7 +23,7 @@
 | -------------| ------------------------------------------------------------------- |
 | Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
 | BTSRK 订阅源  | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
-- 免代理导入无延迟（使用 Github Action 自动刷新 jsdelivr CDN 缓存）
+- 免代理导入可能有1天左右的延迟
 
 
 <details>
@@ -46,7 +46,7 @@
 <details>
 <summary> Codeberg 镜像地址 </summary>
 
-| 名称          | Codeberg 镜像网址　                                                       |
+| 名称          | [Codeberg 镜像网址](https://codeberg.org/DowneyRem/PixivSource)　                                                       |
 | ------------ | --------------------------------------------------------------------- |
 | Pixiv 书源　  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json |
 | Linpx 书源　  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json |
