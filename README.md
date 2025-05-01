@@ -20,37 +20,38 @@
 ## 快速导入：[下载阅读](./doc/Download.md) =>  [导入书源](./doc/Import.md)
 
 | 名称          | 免代理导入网址                                                         |
-| -------------| ------------------------------------------------------------------- |
+| ------------ | ------------------------------------------------------------------- |
 | Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
 | BTSRK 订阅源  | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
-- 免代理导入有1-2h的延迟（使用 Github Action 自动刷新 jsdelivr CDN 缓存）
+- jsdelivr CDN 免代理导入有1-2h的延迟（使用 Github Action 自动刷新 jsdelivr CDN 缓存）
 
 
 <details>
 <summary> Codeberg 镜像地址 </summary>
 
-
-| 名称          | [Codeberg 镜像网址](https://codeberg.org/DowneyRem/PixivSource)　                                                       |
-| ------------ | --------------------------------------------------------------------- |
-| Pixiv 书源　  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json |
-| Linpx 书源　  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json |
-| 兽人小说站书源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json |
-| BTSRK 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json |
-| Books 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/books.json |
-- Codeberg 导入免代理，更新无延迟（网站服务不是很稳定）
+| 名称           | [Codeberg 镜像网址](https://codeberg.org/DowneyRem/PixivSource)　        |
+| ------------- | ---------------------------------------------------------------------- |
+| Pixiv 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json  |
+| Linpx 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
+| 兽人小说站书源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
+| BTSRK 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json  |
+| Books 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/books.json  |
+| Import 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/import.json |
+- [Codeberg](https://codeberg.org/DowneyRem/PixivSource) 导入免代理，更新无延迟（网站服务不是很稳定）
 </details>
 
 
 <details>
 <summary> Github 导入地址 </summary>
 
-| 名称          | Github 导入网址                                                           |
-| ------------ | ------------------------------------------------------------------------ |
-| Pixiv 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
-| Linpx 书源　  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
-| 兽人小说站书源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json |
-| BTSRK 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json |
-| Books 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json |
+| 名称           | Github 导入网址                                                            |
+| ------------- | ------------------------------------------------------------------------ |
+| Pixiv 书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
+| Linpx 书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
+| 兽人小说站书源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
+| BTSRK 订阅源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
+| Books 订阅源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
+| Import 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
 
 > 更多导入方法详见：
 > **[导入书源](./doc/ImportBookSource.md)** &
