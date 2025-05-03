@@ -13,7 +13,7 @@ function objParse(obj) {
 
 function handlerFactory() {
     let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (cookie === null || cookie === undefined || cookie === "") {
+    if (!cookie.includes("first_visit_datetime")) {
         return handlerNoLogin()
     }
     if (baseUrl.includes("/bookmark")) {
@@ -67,7 +67,7 @@ function handlerFactory() {
 function handlerNoLogin() {
     return () => {
         sleepToast("此功能需要在书源登录后才能使用")
-        sleepToast('发现页 - 长按"Pixiv" - 登录 - 登录账号')
+        sleepToast('发现 - 长按"Pixiv" - 登录 - 登录账号')
         return []
     }
 }
