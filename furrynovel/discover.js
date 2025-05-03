@@ -11,12 +11,13 @@ function objParse(obj) {
 }
 
 function handlerFactory() {
+    if (baseUrl.includes("https://cdn.jsdelivr.net")) {
+        return updateSource()
+    }
     if (baseUrl.includes("furrynovel.com")) {
         return util.formatNovels(util.handNovels(util.getNovels()))
     }
-    if (baseUrl.includes("https://cdn.jsdelivr.net")) {
-        return updateSource()
-    } else {
+    else {
         return []
     }
 }

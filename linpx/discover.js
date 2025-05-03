@@ -79,6 +79,9 @@ function handlerRegexNovels() {
 }
 
 function handlerFactory() {
+    if (baseUrl.includes("https://cdn.jsdelivr.net")) {
+        return updateSource()
+    }
     if (baseUrl.includes("/fav/user")) {
         return handlerRecommendUsers()
     }
@@ -87,9 +90,6 @@ function handlerFactory() {
     }
     if (baseUrl.includes("https://furrynovel.ink")) {
         return handlerRegexNovels()
-    }
-    if (baseUrl.includes("https://cdn.jsdelivr.net")) {
-        return updateSource()
     }
     else {
         return []
