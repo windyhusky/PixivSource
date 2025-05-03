@@ -110,6 +110,7 @@ function sleep(time) {
 }
 function sleepToast(text) {
     const {java} = this
+    java.log(text)
     java.longToast(text)
     sleep(2000)
 }
