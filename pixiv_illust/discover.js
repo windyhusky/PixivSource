@@ -12,6 +12,9 @@ function objParse(obj) {
 }
 
 function handlerFactory() {
+    if (baseUrl.includes("https://cdn.jsdelivr.net")) {
+        return updateSource()
+    }
     let cookie = String(java.getCookie("https://www.pixiv.net/", null))
     if (!cookie.includes("first_visit_datetime")) {
         return handlerNoLogin()
@@ -46,9 +49,6 @@ function handlerFactory() {
     }
     if (baseUrl.includes("/ranking")) {
         return handlerRegexIllusts()
-    }
-    if (baseUrl.includes("https://cdn.jsdelivr.net")) {
-        return updateSource()
     }
     else {
         return []
