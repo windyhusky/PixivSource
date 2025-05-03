@@ -13,7 +13,7 @@ function objParse(obj) {
 
 function handlerFactory() {
     let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (cookie === null || cookie === undefined || cookie === "") {
+    if (!cookie.includes("first_visit_datetime")) {
         return handlerNoLogin()
     }
     if (baseUrl.includes("/bookmark")) {
