@@ -1,6 +1,6 @@
 name: BUG 提交 / BUG Report
 description: 反馈 bug / Report bugs to developers
-title: "[BUG]: "
+title: "[BUG]"
 labels: ["BUG"]
 body:
   - type: checkboxes
