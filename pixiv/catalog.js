@@ -45,12 +45,19 @@ function seriesHandler(res) {
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        res = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex)).body.thumbnails.novel
+        resp = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex))
+        res = resp.body.thumbnails.novel
+        // res = resp.body.page.seriesContents
         res.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
             v.chapterUrl = urlNovel(v.id)
-            v.updateDate = timeTextFormat(v.createDate)
-            v.chapterInfo = `${v.updateDate}　　${v.textCount}字`
+            if (v.updateDate !== undefined) {
+                v.updateDate = timeTextFormat(v.createDate)
+                v.chapterInfo = `${v.updateDate}　　${v.textCount}字`
+            } else {
+                v.updateDate = java.timeFormat(v.uploadTimestamp)
+                v.chapterInfo = `${v.updateDate}　　${v.textLength}字`
+            }
             util.debugFunc(() => {
                 java.log(`${v.title}`)
             })
