@@ -1,3 +1,5 @@
+var checkTimes = 0
+
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
     if (v === undefined || v === null) {
@@ -88,8 +90,6 @@ function urlIllustOriginal(illustId, order=1) {
 }
 
 function urlMessageThreadLatest(max=5) {
-    const {java} = this
-    java.log(`https://www.pixiv.net/rpc/index.php?mode=latest_message_threads2&num=${max}&lang=zh`)
     return `https://www.pixiv.net/rpc/index.php?mode=latest_message_threads2&num=${max}&lang=zh`
 }
 function urlMessageThreadContents(threadId, max) {
