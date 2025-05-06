@@ -87,6 +87,21 @@ function urlIllustOriginal(illustId, order=1) {
     return illustOriginal.replace(`_p0`, `_p${order - 1}`)
 }
 
+function urlMessageThreadLatest(max=5) {
+    const {java} = this
+    java.log(`https://www.pixiv.net/rpc/index.php?mode=latest_message_threads2&num=${max}&lang=zh`)
+    return `https://www.pixiv.net/rpc/index.php?mode=latest_message_threads2&num=${max}&lang=zh`
+}
+function urlMessageThreadContents(threadId, max) {
+    return `https://www.pixiv.net/rpc/index.php?mode=message_thread_contents&thread_id=${threadId}&num=${max}`
+}
+function urlMessageThreadDetail(threadId) {
+    return `https://www.pixiv.net/rpc/index.php?mode=message_thread&thread_id=${threadId}`
+}
+function urlNotification() {
+    return `https://www.pixiv.net/ajax/notification&lang=zh`
+}
+
 function dateFormat(str) {
     let addZero = function (num) {
         return num < 10 ? '0' + num : num;
