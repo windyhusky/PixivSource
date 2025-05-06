@@ -271,8 +271,30 @@ function publicFunc() {
     java.put("util", objStringify(u))
 }
 
-publicFunc()
+function checkMessageThread(checkTimes) {
+    if (checkTimes === undefined) {
+        checkTimes = Number(cache.get("checkTimes"))
+    }
+    if (checkTimes === 0) {
+        let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
+        if (latestMsg.error === true) {
+            java.log(JSON.stringify(latestMsg))
+        } else if (latestMsg.body.total >= 1) {
+            let msg = latestMsg.body.message_threads.filter(item => item.thread_name === "pixiv事務局")[0]
+            if (msg !== undefined && new Date().getTime()- 1000*msg.modified_at <= 24*60*60*1000) { // 1天内进行提示
+                sleepToast(`您于 ${java.timeFormat(1000*msg.modified_at)} 触发 Pixiv 【过度访问】，请修改密码并重新登录。\n如已修改请忽略`, 3)
+                sleepToast(`${msg.latest_content}`, 5)
+                java.startBrowser("https://accounts.pixiv.net/password/change",'修改密码')
+            }
+        }
+    }
+    cache.put("checkTimes", checkTimes + 1, 4*60*60)  // 缓存4h，每4h提醒一次
+    // cache.put("checkTimes", checkTimes + 1, 60)  // 测试用，缓存60s，每分钟提醒一次
+    // java.log(checkTimes + 1)
+}
 
+publicFunc()
+checkMessageThread()
 // 获取请求的user id方便其他ajax请求构造
 let uid = java.getResponse().headers().get("x-userid")
 if (uid != null) {

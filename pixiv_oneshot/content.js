@@ -11,7 +11,12 @@ function objParse(obj) {
 }
 
 function getContent(res) {
-    let content = res.content
+    let content = String(res.content)
+    // let content = "undefined"
+    if (content.includes("undefined")) {
+        return checkContent()
+    }
+
     // 在正文内部添加小说描述
     if (util.SHOW_NOVEL_COMMENTS === true && res.description !== "") {
         content = res.description + "\n" + "——————————\n".repeat(2) + content
@@ -141,6 +146,25 @@ function getComment(res) {
         comments = "\n" + "——————————\n".repeat(2) + "章节评论：\n" + comments
     }
     return comments
+}
+
+function checkContent() {
+    let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
+    if (latestMsg.error === true) {
+        java.log(JSON.stringify(latestMsg))
+    } else if (latestMsg.body.total >= 1) {
+        let msg = latestMsg.body.message_threads.filter(item => item.thread_name === "pixiv事務局")[0]
+        if (msg === undefined) {
+            sleepToast(`您于 ${java.timeFormat(new Date().getTime())} 触发 Pixiv 【请求限制】，建议稍候/重新登录再继续`, 3)
+            // java.startBrowser("https://www.pixiv.net", '退出登录')
+            // java.startBrowser("https://www.pixiv.net/logout.php",'退出登录')  // 不清除 WebView 缓存无法重新登录
+
+        } else if (new Date().getTime()- 1000*msg.modified_at <= 24*60*60*1000) { // 24h内提醒
+            sleepToast(`您于 ${java.timeFormat(1000*msg.modified_at)} 触发 Pixiv 【过度访问】，请修改密码并重新登录`, 3)
+            sleepToast(`${msg.latest_content}`, 5)
+            java.startBrowser("https://accounts.pixiv.net/password/change",'修改密码')
+        }
+    }
 }
 
 (() => {

@@ -1,3 +1,5 @@
+var checkTimes = 0
+
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
     if (v === undefined || v === null) {
@@ -56,6 +58,9 @@ function urlSeriesNovels(seriesId, limit, offset) {
     if (limit < 10) limit = 10
     return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
 }
+function urlSeriesNovelsTitles(seriesId) {
+    return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}`
+}
 
 function urlUserAllWorks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
@@ -78,13 +83,23 @@ function urlCoverUrl(url) {
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
-function urlIllustOriginal(illustId, order) {
+function urlIllustOriginal(illustId, order=1) {
     const {java} = this
     let illustOriginal = JSON.parse(java.ajax(urlIllustDetailed(illustId))).body.urls.original
-    if (order >= 1) {
-        illustOriginal = illustOriginal.replace(`_p0`, `_p${order - 1}`)
-    }
-    return illustOriginal
+    return illustOriginal.replace(`_p0`, `_p${order - 1}`)
+}
+
+function urlMessageThreadLatest(max=5) {
+    return `https://www.pixiv.net/rpc/index.php?mode=latest_message_threads2&num=${max}&lang=zh`
+}
+function urlMessageThreadContents(threadId, max) {
+    return `https://www.pixiv.net/rpc/index.php?mode=message_thread_contents&thread_id=${threadId}&num=${max}`
+}
+function urlMessageThreadDetail(threadId) {
+    return `https://www.pixiv.net/rpc/index.php?mode=message_thread&thread_id=${threadId}`
+}
+function urlNotification() {
+    return `https://www.pixiv.net/ajax/notification&lang=zh`
 }
 
 function dateFormat(str) {
@@ -108,11 +123,11 @@ function sleep(time) {
         }
     }
 }
-function sleepToast(text) {
+function sleepToast(text, second=2) {
     const {java} = this
     java.log(text)
     java.longToast(text)
-    sleep(2000)
+    sleep(1000*second)
 }
 
 function updateSource(){
