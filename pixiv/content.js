@@ -12,6 +12,7 @@ function objParse(obj) {
 
 function getContent(res) {
     let content = String(res.content)
+    // let content = "undefined"
     if (content.includes("undefined")) {
         return checkContent()
     }
@@ -158,8 +159,8 @@ function checkContent() {
             // java.startBrowser("https://www.pixiv.net", '退出登录')
             // java.startBrowser("https://www.pixiv.net/logout.php",'退出登录')  // 不清除 WebView 缓存无法重新登录
 
-        } else {
-            sleepToast(`您于 ${java.timeFormat(1000*msg.modified_at)} 触发 Pixiv 【过度访问】，请修改密码并重新登录`)
+        } else if (new Date().getTime()- 1000*msg.modified_at <= 24*60*60*1000) { // 24h内提醒
+            sleepToast(`您于 ${java.timeFormat(1000*msg.modified_at)} 触发 Pixiv 【过度访问】，请修改密码并重新登录`, 3)
             sleepToast(`${msg.latest_content}`, 5)
             java.startBrowser("https://accounts.pixiv.net/password/change",'修改密码')
         }
