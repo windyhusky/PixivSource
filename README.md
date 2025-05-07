@@ -23,7 +23,7 @@
 | ------------ | ------------------------------------------------------------------- |
 | Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
 | BTSRK 订阅源  | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
-- jsdelivr CDN 免代理导入有1-2h的延迟（使用 Github Action 自动刷新 jsdelivr CDN 缓存）
+- 免代理导入有一定延迟（使用 Github Action 自动刷新缓存）
 
 
 <details>
@@ -37,7 +37,7 @@
 | BTSRK 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json  |
 | Books 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/books.json  |
 | Import 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/import.json |
-- [Codeberg](https://codeberg.org/DowneyRem/PixivSource) 导入免代理，更新无延迟（网站服务不是很稳定）
+- [Codeberg](https://codeberg.org/DowneyRem/PixivSource) 免代理，更新无延迟（网站服务不是很稳定）
 </details>
 
 
