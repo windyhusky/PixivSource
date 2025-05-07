@@ -247,7 +247,7 @@
 >> #### 1.2 [Linpx 书源的导入与使用](./doc/Linpx.md)
 >> #### 1.3 [兽人控小说站 书源的导入与使用](./doc/FurryNovel.md)
 >> #### 1.4 搜索小说、查看订阅，畅享阅读
-> ### 2. [添加远程书籍](./doc/Remotebooks)，畅享阅读
+> ### 2. [添加远程书籍](./doc/Remotebooks.md)，畅享阅读
 > ### 3. [设置 Webdav 备份](./doc/WebdavBackup.md)
 > ### 4. [故障排查与处理](./doc/TroubleShoot.md)
 #### 此处教程由 [@FurryReading](https://t.me/FurryReading) 提供
