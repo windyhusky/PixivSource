@@ -83,13 +83,15 @@ function urlCoverUrl(url) {
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
-function urlIllustOriginal(illustId, order=1) {
+function urlIllustOriginal(illustId, order) {
     const {java} = this
+    if (order <= 1) order = 1
     let illustOriginal = JSON.parse(java.ajax(urlIllustDetailed(illustId))).body.urls.original
     return illustOriginal.replace(`_p0`, `_p${order - 1}`)
 }
 
-function urlMessageThreadLatest(max=5) {
+function urlMessageThreadLatest(max) {
+    if (max === undefined || max <= 5) max = 5
     return `https://www.pixiv.net/rpc/index.php?mode=latest_message_threads2&num=${max}&lang=zh`
 }
 function urlMessageThreadContents(threadId, max) {
@@ -123,10 +125,11 @@ function sleep(time) {
         }
     }
 }
-function sleepToast(text, second=2) {
+function sleepToast(text, second) {
     const {java} = this
     java.log(text)
     java.longToast(text)
+    if (second === undefined || second <= 2) {second = 2}
     sleep(1000*second)
 }
 
