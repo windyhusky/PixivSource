@@ -159,15 +159,7 @@ function handlerRanking() {
             java.log(urlNovelDetailed(novelId))
             let res = getAjaxJson(urlNovelDetailed(novelId))
             if (res.error !== true) {
-                novel = res.body
-                novel.updateDate = novel.uploadDate
-                novel.tags = novel.tags.tags.map(item => item.tag)
-                novel.textCount = novel.userNovels[`${novelId}`].textCount
-                if (novel.seriesNavData !== null) {
-                    novel.seriesId = novel.seriesNavData.seriesId
-                    novel.title = novel.seriesNavData.title
-                }
-                novels.push(novel)
+                novels.push(res.body)
             } else {
                 java.log(JSON.stringify(res))
             }

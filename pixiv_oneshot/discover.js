@@ -68,6 +68,8 @@ function handlerNoLogin() {
     return () => {
         sleepToast("此功能需要在书源登录后才能使用")
         sleepToast('发现 - 长按"Pixiv" - 登录 - 登录账号')
+        sleepToast('订阅源处退出账号后，需要清除 Webview 数据，才能重新登录')
+        sleepToast('我的 - 其他设置 - 清除 Webview 数据 - 确定 - 重新登录')
         return []
     }
 }
@@ -157,15 +159,7 @@ function handlerRanking() {
             java.log(urlNovelDetailed(novelId))
             let res = getAjaxJson(urlNovelDetailed(novelId))
             if (res.error !== true) {
-                novel = res.body
-                novel.updateDate = novel.uploadDate
-                novel.tags = novel.tags.tags.map(item => item.tag)
-                novel.textCount = novel.userNovels[`${novelId}`].textCount
-                if (novel.seriesNavData !== null) {
-                    novel.seriesId = novel.seriesNavData.seriesId
-                    novel.title = novel.seriesNavData.title
-                }
-                novels.push(novel)
+                novels.push(res.body)
             } else {
                 java.log(JSON.stringify(res))
             }
