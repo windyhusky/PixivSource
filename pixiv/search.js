@@ -185,10 +185,18 @@ function novelFilter(novels) {
 
 (() => {
     let novels = []
-    novels = novels.concat(getNovels())
-    novels = novels.concat(getSeries())
-    novels = novels.concat(getUserNovels())
-    if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
+    let keyword = String(java.get("keyword"))
+    if (keyword.startsWith("@") || keyword.startsWith("＠")) {
+        keyword = keyword.slice(1)
+        java.log(`搜索作者：${keyword}`)
+        java.put("keyword", keyword)
+        novels = novels.concat(getUserNovels())
+    } else {
+        novels = novels.concat(getNovels())
+        novels = novels.concat(getSeries())
+        novels = novels.concat(getUserNovels())
+        if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
+    }
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程
     if (novels.length === 0) {
