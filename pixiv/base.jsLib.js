@@ -67,6 +67,9 @@ function urlSeriesNovelsTitles(seriesId) {
     return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}`
 }
 
+function urlUserWorkLatest(userID) {
+    return `https://www.pixiv.net/ajax/user/${userID}/works/latest`
+}
 function urlUserAllWorks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
 }
