@@ -31,6 +31,12 @@ function getWebviewJson(url, parseFunc) {
     })
 }
 
+function isLogin() {
+    const {java} = this
+    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+    return cookie.includes("first_visit_datetime")
+}
+
 function urlNovelUrl(novelId) {
     return `https://www.pixiv.net/novel/show.php?id=${novelId}`
 }

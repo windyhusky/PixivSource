@@ -46,11 +46,6 @@ var seriesSet = {
     },
 };
 
-function isLogin() {
-    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    return typeof cookie === "string" && cookie !== ""
-}
-
 function getUserNovels() {
     if (!isLogin()) {
         return []
