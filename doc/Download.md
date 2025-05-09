@@ -1,6 +1,13 @@
 ## 3.下载阅读
 阅读的各个版本，参见[阅读版本](./Version.md)（不重要）
 
+###  3.0 书源兼容性
+| 阅读版本           | 书源版本  | Github 链接     |
+| ---------------- | -------- | -------------- |
+|　3.23.0503 及之后 | 最新版　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json |
+|　3.23.0503 之前　 | 1.7.4版本 | https://raw.githubusercontent.com/windyhusky/PixivSource/2d6ced432578f7ff870bdd17292c85a321e3437a/pixiv.json |
+
+
 ###  3.1 Android 版
 <details><summary> 阅读 Android 版 </summary>
 
@@ -52,23 +59,22 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 #### 3.2.2 非官方 iOS 版
 兼容阅读书源的**非官方软件**：
 
-
-| 软件名称     | AppStore  | Github                                          | 付费                        | 备注                          |
-|------------ | --------- | ----------------------------------------------- | -------------------------- | ----------------------------- |
-| 源阅        | 无         | [源阅](https://github.com/kaich/SourceReadSite) | TestFlight 付费 ￥128       | 兼容阅读书源，【源阅读】的后续版本 |
-| 千阅        | [千阅](https://apps.apple.com/app/id1665963317)     | 无     | 订阅制 & 永久 ~~￥98~~ ￥199 | 不完全兼容阅读书源               |
-| ~~读不舍手~~ | [读不舍手](https://apps.apple.com/app/id1662413517) | 无     | 订阅制                      | 不完全兼容阅读书源，广告较多      |
+| 软件名称                                                 | 备注                         |
+| ------------------------------------------------------ | --------------------------- |
+| [源阅](https://github.com/kaich/SourceReadSite)         | 兼容阅读书源，【源阅读】的后续版本，TestFlight 付费 ￥128 |
+| [千阅](https://apps.apple.com/app/id1665963317)         | 不完全兼容阅读书源，需要付费 ￥98 |
+| ~~[读不舍手](https://apps.apple.com/app/id1662413517)~~  | 不完全兼容阅读书源，广告较多，会员付费 |
 
 
 <details><summary> iOS 已下架软件 </summary>
 
 #### 3.2.2 iOS 已下架软件
-| 软件名称     | AppStore                                           | Github                                 | 备注            |
-|------------ | ------------------------------------------------- | --------------------------------------- | -------------- |
-| 源阅读       | [源阅读](https://apps.apple.com/app/id1561787704 ) | [源阅读](https://github.com/kaich/Yuedu) | 停止维护，现已下架 |
-| ~~青果阅读~~ | [青果阅读](https://apps.apple.com/app/id1142490639) | 无                                      | 停止维护，现已下架 |
-| ~~花火阅读~~ | [花火阅读](https://apps.apple.com/app/id1546631588) | 无                                      | 停止维护，现已下架 |
-| ~~星文阅读~~ | [星文阅读](https://apps.apple.com/app/id1662197753) | 无                                      | 停止维护，现已下架 |
+| 软件名称                                                | 备注             |
+| ----------------------------------------------------- | --------------- |
+| ~~星文阅读~~                                            | 停止维护，现已下架 |
+| ~~[青果阅读](https://apps.apple.com/app/id1142490639)~~ | 停止维护，现已下架 |
+| ~~[源阅读](https://github.com/kaich/Yuedu)~~            | 停止维护，现已下架 |
+| ~~[花火阅读](https://apps.apple.com/app/id1546631588)~~ | 停止维护，现已下架 |
 </details>
 
 
