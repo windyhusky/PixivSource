@@ -51,31 +51,38 @@ function getUserNovels() {
         return []
     }
 
+    let uidList = [] ,novels = []
     let username = String(java.get("keyword"))
-    let html = java.ajax(urlSearchUser(username))
-    // java.log(html)
-    // 仅匹配有投稿作品的用户
-    let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
-    // java.log(JSON.stringify(match))
-    if (match === null || match.length === 0) {
-        return []
-    }
-
-    match = JSON.stringify(match).replace("\\","").split(",")
-    // java.log(JSON.stringify(match))
-    let regNumber = new RegExp("\\d+")
-    let uidList = match.map(v => {
-        return v.match(regNumber)[0]
-    })
-
-    // 仅限3个作者
-    java.log(JSON.stringify(uidList))
-    if (uidList.length >= 3) {
-        uidList.length = 3
-    }
-
-    let novels = []
     let page = Number(java.get("page"))
+
+    let userid = cache.get(username)
+    if (userid !== undefined && userid !== null) {
+        uidList = [userid]
+        java.log(`缓存作者ID：${userid}`)
+    }
+    else {
+        let html = java.ajax(urlSearchUser(username))
+        // java.log(html)
+        // 仅匹配有投稿作品的用户
+        let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
+        // java.log(JSON.stringify(match))
+        if (match === null || match.length === 0) {
+            return []
+        }
+
+        match = JSON.stringify(match).replace("\\","").split(",")
+        // java.log(JSON.stringify(match))
+        let regNumber = new RegExp("\\d+")
+        uidList = match.map(v => {
+            return v.match(regNumber)[0]
+        })
+
+        // 仅限3个作者
+        java.log(JSON.stringify(uidList))
+        if (uidList.length >= 3) {
+            uidList.length = 3
+        }
+    }
 
     uidList.forEach(id => {
         // 获取系列小说
