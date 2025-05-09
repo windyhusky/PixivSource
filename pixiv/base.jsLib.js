@@ -90,9 +90,12 @@ function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
 function urlIllustOriginal(illustId, order) {
-    const {java} = this
+    const {java, cache} = this
     if (order <= 1) order = 1
-    let illustOriginal = JSON.parse(java.ajax(urlIllustDetailed(illustId))).body.urls.original
+    let url = urlIllustDetailed(illustId)
+    let illustOriginal = cacheGetAndSet(cache, url, () => {
+        return JSON.parse(java.ajax(url))
+    }).body.urls.original
     return illustOriginal.replace(`_p0`, `_p${order - 1}`)
 }
 
