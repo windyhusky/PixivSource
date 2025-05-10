@@ -46,41 +46,47 @@ var seriesSet = {
     },
 };
 
-function isLogin() {
-    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    return typeof cookie === "string" && cookie !== ""
-}
-
 function getUserNovels() {
     if (!isLogin()) {
         return []
     }
 
-    let username = String(java.get("key"))
-    let html = java.ajax(urlSearchUser(username))
-    // java.log(html)
-    // 仅匹配有投稿作品的用户
-    let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
-    // java.log(JSON.stringify(match))
-    if (match === null || match.length === 0) {
-        return []
-    }
-
-    match = JSON.stringify(match).replace("\\","").split(",")
-    // java.log(JSON.stringify(match))
-    let regNumber = new RegExp("\\d+")
-    let uidList = match.map(v => {
-        return v.match(regNumber)[0]
-    })
-
-    // 仅限3个作者
-    java.log(JSON.stringify(uidList))
-    if (uidList.length >= 3) {
-        uidList.length = 3
-    }
-
-    let novels = []
+    let uidList = [] ,novels = []
+    let username = String(java.get("keyword"))
     let page = Number(java.get("page"))
+
+    let userid = cache.get(username)
+    if (userid !== undefined && userid !== null) {
+        uidList = [userid]
+        java.log(`缓存作者ID：${userid}`)
+    }
+    else {
+        let html = java.get(username)
+        if (html === undefined || html === null) {
+            html = java.ajax(urlSearchUser(username))
+            cache.put(username, html)
+        }
+        // java.log(html)
+        // 仅匹配有投稿作品的用户
+        let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
+        // java.log(JSON.stringify(match))
+        if (match === null || match.length === 0) {
+            return []
+        }
+
+        match = JSON.stringify(match).replace("\\","").split(",")
+        // java.log(JSON.stringify(match))
+        let regNumber = new RegExp("\\d+")
+        uidList = match.map(v => {
+            return v.match(regNumber)[0]
+        })
+
+        // 仅限3个作者
+        java.log(JSON.stringify(uidList))
+        if (uidList.length >= 3) {
+            uidList.length = 3
+        }
+    }
 
     uidList.forEach(id => {
         // 获取系列小说
@@ -146,7 +152,8 @@ function getSeries() {
 }
 
 function getNovels() {
-    if (JSON.parse(result).error !== true){
+    if (JSON.parse(result).error !== true) {
+        cache.put(urlSearchSeries(java.get("keyword")), result, 30*60)
         return JSON.parse(result).body.novel.data
     } else {
         return []
@@ -184,10 +191,18 @@ function novelFilter(novels) {
 
 (() => {
     let novels = []
-    novels = novels.concat(getNovels())
-    novels = novels.concat(getSeries())
-    novels = novels.concat(getUserNovels())
-    if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
+    let keyword = String(java.get("keyword"))
+    if (keyword.startsWith("@") || keyword.startsWith("＠")) {
+        keyword = keyword.slice(1)
+        java.log(`搜索作者：${keyword}`)
+        java.put("keyword", keyword)
+        novels = novels.concat(getUserNovels())
+    } else {
+        novels = novels.concat(getNovels())
+        novels = novels.concat(getSeries())
+        novels = novels.concat(getUserNovels())
+        if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
+    }
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程
     if (novels.length === 0) {
