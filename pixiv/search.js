@@ -139,15 +139,16 @@ function search(name, type, page) {
     return resp.body.novel
 }
 
-function getSeries(){
-    if (JSON.parse(result).error !== true){
+function getSeries() {
+    if (JSON.parse(result).error !== true) {
+        cache.put(urlSearchSeries(java.get("keyword")), result, 30*60)
         return JSON.parse(result).body.novel.data
     } else {
         return []
     }
 }
 
-function getNovels(){
+function getNovels() {
     let MAXPAGES = 1, novels = []
     let novelName = String(java.get("keyword"))
     let resp = search(novelName, "novel", 1)
