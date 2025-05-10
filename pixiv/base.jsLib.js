@@ -98,7 +98,7 @@ function urlIllustOriginal(illustId, order) {
     let illustOriginal = cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     }).body.urls.original
-    return illustOriginal.replace(`_p0`, `_p${order - 1}`)
+    return urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
 function urlMessageThreadLatest(max) {
