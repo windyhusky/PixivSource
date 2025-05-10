@@ -4,8 +4,7 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
     if (v === undefined || v === null) {
         v = JSON.stringify(supplyFunc())
-        // 缓存10分钟
-        cache.put(key, v, 600)
+        cache.put(key, v, 30*60) // 缓存 30 min
     }
     return JSON.parse(v)
 }
@@ -29,6 +28,12 @@ function getWebviewJson(url, parseFunc) {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })
+}
+
+function isLogin() {
+    const {java} = this
+    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+    return cookie.includes("first_visit_datetime")
 }
 
 function urlNovelUrl(novelId) {
@@ -62,6 +67,9 @@ function urlSeriesNovelsTitles(seriesId) {
     return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}`
 }
 
+function urlUserWorkLatest(userID) {
+    return `https://www.pixiv.net/ajax/user/${userID}/works/latest`
+}
 function urlUserAllWorks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
 }
@@ -84,10 +92,13 @@ function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
 function urlIllustOriginal(illustId, order) {
-    const {java} = this
+    const {java, cache} = this
     if (order <= 1) order = 1
-    let illustOriginal = JSON.parse(java.ajax(urlIllustDetailed(illustId))).body.urls.original
-    return illustOriginal.replace(`_p0`, `_p${order - 1}`)
+    let url = urlIllustDetailed(illustId)
+    let illustOriginal = cacheGetAndSet(cache, url, () => {
+        return JSON.parse(java.ajax(url))
+    }).body.urls.original
+    return urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
 function urlMessageThreadLatest(max) {

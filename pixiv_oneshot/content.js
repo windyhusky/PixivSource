@@ -26,7 +26,7 @@ function getContent(res) {
     let hasEmbeddedImages = res.textEmbeddedImages !== undefined && res.textEmbeddedImages !== null
     if (hasEmbeddedImages) {
         Object.keys(res.textEmbeddedImages).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${res.textEmbeddedImages[key].urls.original}">`)
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(res.textEmbeddedImages[key].urls.original)}">`)
         })
     }
 

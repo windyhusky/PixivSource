@@ -66,7 +66,9 @@ function publicFunc() {
             // novel.id = novel.id
             // novel.title = novel.title
             // novel.userName = novel.userName
+            // novel.userId = novel.userId
             // novel.tags = novel.tags
+            cache.put(`${novel.userName}`, novel.userId)  // 加入缓存，便于搜索作者
             if (novel.tags === undefined || novel.tags === null) {
                 novel.tags = []
             }
@@ -275,7 +277,7 @@ function checkMessageThread(checkTimes) {
     if (checkTimes === undefined) {
         checkTimes = Number(cache.get("checkTimes"))
     }
-    if (checkTimes === 0) {
+    if (checkTimes === 0 && isLogin()) {
         let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
         if (latestMsg.error === true) {
             java.log(JSON.stringify(latestMsg))

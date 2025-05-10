@@ -15,8 +15,7 @@ function handlerFactory() {
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return updateSource()
     }
-    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (!cookie.includes("first_visit_datetime")) {
+    if (!isLogin()) {
         return handlerNoLogin()
     }
     if (baseUrl.includes("/bookmark")) {
