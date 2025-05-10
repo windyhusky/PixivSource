@@ -61,7 +61,11 @@ function getUserNovels() {
         java.log(`缓存作者ID：${userid}`)
     }
     else {
-        let html = java.ajax(urlSearchUser(username))
+        let html = java.get(username)
+        if (html === undefined || html === null) {
+            html = java.ajax(urlSearchUser(username))
+            cache.put(username, html)
+        }
         // java.log(html)
         // 仅匹配有投稿作品的用户
         let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
