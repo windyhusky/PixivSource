@@ -139,25 +139,24 @@ function search(name, type, page) {
     return resp.body.novel
 }
 
-
 function getSeries() {
-    let MAXPAGES = 1, novels = []
-    let novelName = String(java.get("keyword"))
-    let resp = search(novelName, "series", 1)
-    novels = novels.concat(resp.data)
-    for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
-        novels = novels.concat(search(novelName,"series", page).data)
-    }
-    return novels
-}
-
-function getNovels() {
     if (JSON.parse(result).error !== true) {
         cache.put(urlSearchSeries(java.get("keyword")), result, 30*60)
         return JSON.parse(result).body.novel.data
     } else {
         return []
     }
+}
+
+function getNovels() {
+    let MAXPAGES = 1, novels = []
+    let novelName = String(java.get("keyword"))
+    let resp = search(novelName, "novel", 1)
+    novels = novels.concat(resp.data)
+    for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
+        novels = novels.concat(search(novelName,"novel", page).data)
+    }
+    return novels
 }
 
 function getConvertNovels() {
@@ -173,7 +172,7 @@ function getConvertNovels() {
 }
 
 function novelFilter(novels) {
-    let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "")
+    let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "").replace("字數", "")
     // limitedTextCount = `3w 3k 3w5 3k5`.[0]
     let textCount = 0
     if (limitedTextCount.includes("w")) {

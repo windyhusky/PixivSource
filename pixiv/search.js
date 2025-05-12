@@ -172,7 +172,7 @@ function getConvertNovels() {
 }
 
 function novelFilter(novels) {
-    let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "")
+    let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "").replace("字數", "")
     // limitedTextCount = `3w 3k 3w5 3k5`.[0]
     let textCount = 0
     if (limitedTextCount.includes("w")) {

@@ -3,7 +3,7 @@ java.put("key", key)
 java.put("page", page)
 let keyword = key.split(" ")
 let limitedTextCount
-if (key.includes("字数")) {
+if (key.includes("字数") || key.includes("字數") ) {
     limitedTextCount = keyword.pop()
     keyword = keyword.join(" ")
 } else {
@@ -12,4 +12,4 @@ if (key.includes("字数")) {
 }
 java.put("keyword", keyword)
 java.put("limitedTextCount", limitedTextCount)
-urlSearchNovel(keyword, page)
+urlSearchSeries(keyword, page)
