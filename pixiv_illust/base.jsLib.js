@@ -97,11 +97,12 @@ function sleep(time) {
         }
     }
 }
-function sleepToast(text) {
+function sleepToast(text, second) {
     const {java} = this
     java.log(text)
     java.longToast(text)
-    sleep(2000)
+    if (second === undefined || second <= 2) {second = 2}
+    sleep(1000*second)
 }
 
 function updateSource(){
