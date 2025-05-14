@@ -75,6 +75,13 @@ function seriesHandler(res) {
         returnList = returnList.concat(list)
         // java.log(JSON.stringify(returnList))
     }
+
+    // returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID)).body
+    // returnList.forEach(v => {
+    //     v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
+    //     v.chapterUrl = urlNovel(v.id)
+    // })
+    // java.log(JSON.stringify(returnList))
     return returnList
 }
 
