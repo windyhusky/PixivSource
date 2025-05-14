@@ -23,6 +23,7 @@ function publicFunc() {
         settings.MORE_INFO_IN_DESCRIPTION = false
         settings.SHOW_NOVEL_CAPTIONS = true
         settings.SHOW_NOVEL_COMMENTS = true
+        settings.FAST = false
         settings.DEBUG = false
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
@@ -34,6 +35,10 @@ function publicFunc() {
     u.SHOW_NOVEL_COMMENTS = settings.SHOW_NOVEL_COMMENTS  // 章尾显示评论
     u.DEBUG = settings.DEBUG // 调试模式
 
+    if (u.FAST === true) {
+        u.CONVERT_CHINESE_CHARACTERS = false
+        u.SHOW_ORIGINAL_NOVEL_LINK = false
+    }
     if (u.DEBUG === true) {
         java.log(JSON.stringify(settings, null, 4))
         java.log(`DEBUG = ${u.DEBUG}`)
@@ -296,7 +301,7 @@ function checkMessageThread(checkTimes) {
 }
 
 publicFunc()
-checkMessageThread()
+if (!util.FAST) checkMessageThread()
 // 获取请求的user id方便其他ajax请求构造
 let uid = java.getResponse().headers().get("x-userid")
 if (uid != null) {
