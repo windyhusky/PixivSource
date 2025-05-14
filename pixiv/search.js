@@ -141,7 +141,7 @@ function search(name, type, page) {
 
 function getSeries() {
     if (JSON.parse(result).error !== true) {
-        cache.put(urlSearchSeries(java.get("keyword")), result, 30*60)
+        cache.put(urlSearchSeries(java.get("keyword")), result, 30*60)  // 加入缓存
         return JSON.parse(result).body.novel.data
     } else {
         return []

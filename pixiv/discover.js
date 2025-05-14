@@ -12,6 +12,11 @@ function objParse(obj) {
 }
 
 function handlerFactory() {
+    cache.put(baseUrl, result) // 发现加入缓存
+    // resp = cache.get(baseUrl)
+    // if (resp !== undefined && resp !== null) {
+    //     result = resp
+    // }
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return updateSource()
     }
