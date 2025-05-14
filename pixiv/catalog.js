@@ -65,22 +65,23 @@ function seriesHandler(res) {
         return res;
     }
 
-    //逻辑控制者 也就是使用上面定义的两个函数来做对应功能
-    //要爬取的总次数
-    let max = (allChaptersCount / limit) + 1
-    for (let i = 0; i < max; i++) {
-        //java.log("i的值:"+i)
-        let list = sendAjaxForGetChapters(i * limit);
-        //取出每个值
-        returnList = returnList.concat(list)
-        // java.log(JSON.stringify(returnList))
+    if (util.FAST) {
+        returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID)).body
+        returnList.forEach(v => {
+            v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
+            v.chapterUrl = urlNovel(v.id)
+        })
+    } else {
+        //逻辑控制者 也就是使用上面定义的两个函数来做对应功能
+        //要爬取的总次数
+        let max = (allChaptersCount / limit) + 1
+        for (let i = 0; i < max; i++) {
+            //java.log("i的值:"+i)
+            let list = sendAjaxForGetChapters(i * limit);
+            //取出每个值
+            returnList = returnList.concat(list)
+        }
     }
-
-    // returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID)).body
-    // returnList.forEach(v => {
-    //     v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
-    //     v.chapterUrl = urlNovel(v.id)
-    // })
     // java.log(JSON.stringify(returnList))
     return returnList
 }
