@@ -130,6 +130,8 @@ if (SHOW_GENERAL_NOVELS_GENRE === true) {
     li = li.concat(generalgGenre)
 }
 
+sleepToast('使用说明🔖\n\n发现 - 更新 - 点击"🔰 使用教程" - 查看')
+
 try {
     authors = String(source.getVariable()).split("\n")
     if (authors[0].trim() !== "" && authors.length >= 1) {
@@ -146,12 +148,10 @@ try {
         }
         li = li.concat(bookmarks)
     } else {
-        sleepToast("可设置源变量，查看他人收藏 ❤️ ")
-        sleepToast('发现 - 长按"Pixiv" - 编辑 - 右上角菜单 - 设置源变量')
+        sleepToast('查看他人收藏❤️\n\n发现 - 长按"Pixiv" - 编辑 - 菜单 - 设置源变量')
     }
 } catch (e) {
-    sleepToast("⚠️源变量设置有误")
-    sleepToast("设置源变量：输入作者ID，一行一个，可添加作者名，保存")
+    sleepToast("⚠️源变量设置有误\n\n输入作者ID，一行一个，可添加作者名，保存")
 }
 
 li.forEach(item => {

@@ -58,13 +58,13 @@ function urlSeriesUrl(seriesId) {
 function urlSeriesDetailed(seriesId) {
     return `https://www.pixiv.net/ajax/novel/series/${seriesId}?lang=zh`
 }
+function urlSeriesNovelsTitles(seriesId) {
+    return `https://www.pixiv.net/ajax/novel/series/${seriesId}/content_titles`
+}
 function urlSeriesNovels(seriesId, limit, offset) {
     if (limit > 30) limit = 30
     if (limit < 10) limit = 10
     return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
-}
-function urlSeriesNovelsTitles(seriesId) {
-    return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}`
 }
 
 function urlUserWorkLatest(userID) {
