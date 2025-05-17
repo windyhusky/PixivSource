@@ -1,4 +1,5 @@
 var checkTimes = 0
+let time = 0
 
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
@@ -18,10 +19,19 @@ function isJsonString(str) {
 }
 function getAjaxJson(url) {
     const {java, cache} = this
-    return cacheGetAndSet(cache, url, () => {
+    let time1 = new Date().getTime()
+    let a = cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     })
+    let time2 = new Date().getTime()
+    let time = Number(java.get("time"))
+    time += (time2 - time1)
+    java.log(`请求时间：${time2 - time1}ms\n请求内容：${url}`)
+    java.log(`累计请求时间：${time}ms`)
+    java.put("time", time)
+    return a
 }
+
 function getWebviewJson(url, parseFunc) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
