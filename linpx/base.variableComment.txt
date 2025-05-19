@@ -5,27 +5,31 @@
 ⚠️ 注意不要添加或删除尾随逗号","
 以下内容为书源设置：
 {
-"CONVERT_CHINESE_CHARACTERS":true,
-"MORE_INFO_IN_DESCRIPTION":false,
-"SHOW_ORIGINAL_NOVEL_LINK": true,
-"REPLACE_BOOK_TITLE_MARKS": true,
-"SHOW_NOVEL_CAPTIONS": true,
-"SHOW_NOVEL_COMMENTS": true,
+"CONVERT_CHINESE": true,
+"MORE_INFORMATION": false,
+"SHOW_ORIGINAL_LINK": true,
+
+"REPLACE_TITLE_MARKS": true,
+"SHOW_CAPTIONS": true,
+"SHOW_COMMENTS": true,
+
 "DEBUG": false
 }
 
-// CONVERT_CHINESE_CHARACTERS
+// CONVERT_CHINESE
 // 搜索：搜索时进行繁简转换
-// MORE_INFO_IN_DESCRIPTION
+// MORE_INFORMATION
 // 详情：书籍简介显示更多信息
-// SHOW_ORIGINAL_NOVEL_LINK
+// SHOW_ORIGINAL_LINK
 // 目录：显示源链接，但会增加请求次数
-// REPLACE_BOOK_TITLE_MARKS
+
+// REPLACE_TITLE_MARKS
 // 正文：注音内容为汉字时，替换为书名号
-// SHOW_NOVEL_CAPTIONS
+// SHOW_CAPTIONS
 // 正文：章首显示小说描述
-// SHOW_NOVEL_COMMENTS
+// SHOW_COMMENTS
 // 正文：章尾显示小说评论
+
 // DEBUG
 // 调试模式
 

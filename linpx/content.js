@@ -12,7 +12,7 @@ function objParse(obj) {
 
 function getContent(res) {
     let content = res.content
-    if (util.SHOW_NOVEL_COMMENTS === true && res.desc !== "") {
+    if (util.SHOW_COMMENTS === true && res.desc !== "") {
         content = res.desc + "\n" + "——————————\n".repeat(2) + content
     }
 
@@ -94,7 +94,7 @@ function getContent(res) {
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
 
-            if (!util.REPLACE_BOOK_TITLE_MARKS) {
+            if (!util.REPLACE_TITLE_MARKS) {
                 // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             } else {

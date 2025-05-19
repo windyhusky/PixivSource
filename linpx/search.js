@@ -143,7 +143,7 @@ function getLinkNovels() {
     novels = novels.concat(getNovels())
     novels = novels.concat(getLinkNovels())
     novels = novels.concat(findUserNovels())
-    if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
+    if (util.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程
     if (novels.length === 0) {

@@ -11,7 +11,7 @@ function objParse(obj) {
 }
 
 function urlNovel(novelId) {
-    if (util.SHOW_ORIGINAL_NOVEL_LINK) {
+    if (util.SHOW_ORIGINAL_LINK) {
         return urlNovelUrl(novelId)
     } else {
         return urlNovelDetailed(novelId)
