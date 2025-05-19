@@ -95,13 +95,14 @@ function getUserNovels() {
         if (resp.error === true) {
             return []
         }
-        // resp.body.novelSeries.forEach(novel =>{
-        //     novel.isOneshot = false
-        //     novel.createDate = novel.createDateTime
-        //     novel.updateDate = novel.updateDateTime
-        // })
-        // novels = novels.concat(resp.body.novelSeries)
 
+        // 获取系列小说，与 util.handnovels 系列详情兼容
+        resp.body.novelSeries.forEach(novel =>{
+            novel.textCount = novel.publishedTotalCharacterCount
+            novel.description = novel.caption
+        })
+        novels = novels.concat(resp.body.novelSeries)
+        
         // 获取单篇小说
         let novelsId = Object.keys(resp.body.novels).reverse().slice((page - 1) * 20, page * 20)
         let url = urlNovelsDetailed(id, novelsId)
