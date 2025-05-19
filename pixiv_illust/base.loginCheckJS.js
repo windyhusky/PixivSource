@@ -17,16 +17,16 @@ function publicFunc() {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
-        settings.CONVERT_CHINESE_CHARACTERS = true
-        settings.SEARCH_ILLUSTS = false
-        settings.SHOW_ORIGINAL_ILLUST_LINK = true
-        settings.DEBUG = false
+        settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+        settings.SEARCH_ILLUSTS = false     // 搜索插画
+        settings.SHOW_ORIGINAL_LINK = true  // 目录处显示源链接，但会增加请求次数
+        settings.DEBUG = false              // 调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-    u.CONVERT_CHINESE_CHARACTERS = settings.CONVERT_CHINESE_CHARACTERS // 搜索：搜索时进行繁简转换
-    u.SEARCH_ILLUSTS = settings.SEARCH_ILLUSTS  // 搜索插画
-    u.SHOW_ORIGINAL_ILLUST_LINK = settings.SHOW_ORIGINAL_ILLUST_LINK  // 目录处显示小说源链接，但会增加请求次数
-    u.DEBUG = settings.DEBUG // 调试模式
+    u.CONVERT_CHINESE = settings.CONVERT_CHINESE
+    u.SEARCH_ILLUSTS = settings.SEARCH_ILLUSTS
+    u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK
+    u.DEBUG = settings.DEBUG
 
     if (u.DEBUG === true) {
         java.log(JSON.stringify(settings, null, 4))
@@ -93,7 +93,7 @@ function publicFunc() {
             illust.coverUrl = urlCoverUrl(illust.coverUrl)
             illust.createDate = dateFormat(illust.createDate)
             illust.updateDate = dateFormat(illust.updateDate)
-            if (util.MORE_INFO_IN_DESCRIPTION) {
+            if (util.MORE_INFORMATION) {
                 illust.description = `\n书名：${illust.title}\n作者：${illust.userName}\n标签：${illust.tags}\n页面：${illust.pageCount}\n上传：${illust.createDate}\n更新：${illust.updateDate}\n简介：${illust.description}`
             } else {
                 illust.description = `\n${illust.title}，共${illust.pageCount}页\n${illust.description}\n上传时间：${illust.createDate}\n更新时间：${illust.updateDate}`

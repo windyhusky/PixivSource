@@ -58,7 +58,7 @@ function getIllust() {
 (() => {
     let artworks = []
     artworks = artworks.concat(getManga())
-    if (util.CONVERT_CHINESE_CHARACTERS) artworks = artworks.concat(getConvertManga())
+    if (util.CONVERT_CHINESE) artworks = artworks.concat(getConvertManga())
     if (util.SEARCH_ILLUSTS) artworks = artworks.concat(getIllust())
     // java.log(JSON.stringify(artworks))
     // 返回空列表中止流程

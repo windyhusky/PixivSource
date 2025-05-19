@@ -1,12 +1,12 @@
 @js:
-let SHOW_GENERAL_ILLUST_NEW, SHOW_GENERAL_ILLUST_RANK
+let SHOW_GENERAL_NEW, SHOW_GENERAL_RANK
 try {
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
-    SHOW_GENERAL_ILLUST_NEW = settings.SHOW_GENERAL_ILLUST_NEW     // 发现：最新、企划、约稿显示一般小说
-    SHOW_GENERAL_ILLUST_RANK = settings.SHOW_GENERAL_ILLUST_RANK   // 发现：排行榜显示一般小说
+    SHOW_GENERAL_NEW = settings.SHOW_GENERAL_NEW     // 发现：最新、企划、约稿显示一般小说
+    SHOW_GENERAL_RANK = settings.SHOW_GENERAL_RANK   // 发现：排行榜显示一般小说
 } catch (e) {
-    SHOW_GENERAL_ILLUST_NEW = false
-    SHOW_GENERAL_ILLUST_RANK = false
+    SHOW_GENERAL_NEW = false
+    SHOW_GENERAL_RANK = false
 }
 
 li = [
@@ -45,11 +45,11 @@ generalRank = [
     {"新人": "https://www.pixiv.net/ranking.php?mode=rookie&content=manga&p={{page}}&format=json"}
 ]
 
-if (SHOW_GENERAL_ILLUST_RANK === true) {
+if (SHOW_GENERAL_RANK === true) {
     li = li.concat(generalNew)
 }
 li = li.concat(r18Rank)
-if (SHOW_GENERAL_ILLUST_RANK === true) {
+if (SHOW_GENERAL_RANK === true) {
     li = li.concat(generalRank)
 }
 

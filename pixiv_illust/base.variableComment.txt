@@ -6,24 +6,28 @@
 ⚠️ 发现页需要长按"Pixiv"，手动刷新
 以下内容为书源设置：
 {
-"CONVERT_CHINESE_CHARACTERS": true,
+"CONVERT_CHINESE": true,
 "SEARCH_ILLUSTS": false,
-"SHOW_GENERAL_ILLUST_NEW": false,
-"SHOW_GENERAL_ILLUST_RANK": false,
-"SHOW_ORIGINAL_ILLUST_LINK": true,
-"DEBUG": false
+"SHOW_GENERAL_NEW": false,
+
+"DEBUG": false,
+
+"SHOW_GENERAL_RANK": false,
+"SHOW_ORIGINAL_LINK": true
 }
 
-// CONVERT_CHINESE_CHARACTERS
+// CONVERT_CHINESE
 // 搜索：搜索时进行繁简转换
 // SEARCH_ILLUSTS
 // 搜索：同时搜索插画
-// SHOW_GENERAL_ILLUST_NEW
-// 发现：最新、企划、约稿显示一般漫画
-// SHOW_GENERAL_ILLUST_RANK
-// 发现：排行榜显示一般漫画
-// SHOW_ORIGINAL_ILLUST_LINK
+// SHOW_ORIGINAL_LINK
 // 目录：显示源链接，但会增加请求次数
+
 // DEBUG
 // 调试模式
+
+// SHOW_GENERAL_NEW
+// 发现：最新、企划、约稿显示一般漫画
+// SHOW_GENERAL_RANK
+// 发现：排行榜显示一般漫画
 
