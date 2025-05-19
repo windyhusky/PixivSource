@@ -18,6 +18,7 @@ function publicFunc() {
     } else {
         settings = {}
         settings.CONVERT_CHINESE_CHARACTERS = true
+        settings.SHOW_UPDATE_TIME = true
         settings.SHOW_ORIGINAL_NOVEL_LINK = true
         settings.REPLACE_BOOK_TITLE_MARKS = true
         settings.MORE_INFO_IN_DESCRIPTION = false
@@ -29,6 +30,7 @@ function publicFunc() {
     }
     u.CONVERT_CHINESE_CHARACTERS = settings.CONVERT_CHINESE_CHARACTERS  // 搜索：搜索时进行繁简转换
     u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
+    u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME
     u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
     u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
     u.SHOW_NOVEL_CAPTIONS = settings.SHOW_NOVEL_CAPTIONS  // 章首显示描述
@@ -37,6 +39,7 @@ function publicFunc() {
 
     if (u.FAST === true) {
         u.CONVERT_CHINESE_CHARACTERS = false
+        u.SHOW_UPDATE_TIME = true
         u.SHOW_ORIGINAL_NOVEL_LINK = false
     }
     if (u.DEBUG === true) {

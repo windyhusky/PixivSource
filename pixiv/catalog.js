@@ -65,7 +65,7 @@ function seriesHandler(res) {
         return res;
     }
 
-    if (util.FAST) {
+    if (!util.SHOW_UPDATE_TIME) {
         returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID)).body
         returnList.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
