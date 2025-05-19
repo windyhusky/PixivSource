@@ -9,7 +9,7 @@ function objStringify(obj) {
 }
 
 function publicFunc() {
-    let u = {}, settings = {}
+    let u = {}
     java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
     java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
@@ -130,7 +130,6 @@ function publicFunc() {
                 novel.seriesTitle = novel.title
             }
 
-
             if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
@@ -146,6 +145,7 @@ function publicFunc() {
                 // novel.seriesNavData.seriesId = novel.seriesId
                 // novel.seriesNavData.title = novel.seriesTitle
             }
+
             if (novel.seriesId && detailed) {
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
                 novel.id = series.firstNovelId
@@ -156,6 +156,26 @@ function publicFunc() {
                 novel.textCount = series.publishedTotalCharacterCount
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
+
+                // 发送请求获取第一章 获取标签与简介
+                let firstNovel = {}
+                try {
+                    firstNovel = getAjaxJson(urlNovelDetailed(series.firstNovelId)).body
+                    novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
+                } catch (e) {  // 防止系列首篇无权限获取
+                    try {
+                        firstNovel = getAjaxJson(urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
+                        novel.id = novel.firstNovelId = firstNovel.id
+                        novel.tags = novel.tags.concat(firstNovel.tags)
+                    } catch (e) { // 防止系列首篇无权限获取
+                        firstNovel = {}
+                        firstNovel.description = ""
+                    }
+                }
+                novel.tags.unshift("长篇")
+                if (novel.description === "") {
+                    novel.description = firstNovel.description
+                }
             }
             // delete novel.titleCaptionTranslation
             // delete novel.genre
