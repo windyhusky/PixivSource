@@ -133,31 +133,11 @@ function publicFunc() {
                 novel.id = series.firstNovelId
                 novel.title = series.title
                 // novel.userName = novel.userName
-                novel.tags = series.tags
+                novel.tags = novel.tags.concat(series.tags)
+                novel.tags.unshift("长篇")
                 novel.textCount = series.publishedTotalCharacterCount
-                // novel.lastChapter = getAjaxJson(urlNovelDetailed(series.lastNovelId)).body.title
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
-
-                // 发送请求获取第一章 获取标签与简介
-                let firstNovel = {}
-                try {
-                    firstNovel = getAjaxJson(urlNovelDetailed(series.firstNovelId)).body
-                    novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
-                } catch (e) {  // 防止系列首篇无权限获取
-                    try {
-                        firstNovel = getAjaxJson(urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
-                        novel.id = novel.firstNovelId = firstNovel.id
-                        novel.tags = novel.tags.concat(firstNovel.tags)
-                    } catch (e) { // 防止系列首篇无权限获取
-                        firstNovel = {}
-                        firstNovel.description = ""
-                    }
-                }
-                novel.tags.unshift("长篇")
-                if (novel.description === "") {
-                    novel.description = firstNovel.description
-                }
             }
         })
         util.debugFunc(() => {
