@@ -9,7 +9,7 @@ function objStringify(obj) {
 }
 
 function publicFunc() {
-    let u = {}, settings = {}
+    let u = {}
     java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
     java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
@@ -17,22 +17,24 @@ function publicFunc() {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
-        settings.CONVERT_CHINESE_CHARACTERS = true
-        settings.SHOW_ORIGINAL_NOVEL_LINK = true
-        settings.REPLACE_BOOK_TITLE_MARKS = true
-        settings.MORE_INFO_IN_DESCRIPTION = false
-        // settings.SHOW_NOVEL_CAPTIONS = true    //无数据
-        settings.SHOW_NOVEL_COMMENTS = true
-        settings.DEBUG = false
+        settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+        settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
+        // settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
+        settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
+        settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
+        // settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
+        settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
+        settings.DEBUG = false   // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-    u.CONVERT_CHINESE_CHARACTERS = settings.CONVERT_CHINESE_CHARACTERS  // 搜索：搜索时进行繁简转换
-    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
-    u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
-    u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
-    // u.SHOW_NOVEL_CAPTIONS = settings.SHOW_NOVEL_CAPTIONS  // 章首显示描述  //无数据
-    u.SHOW_NOVEL_COMMENTS = settings.SHOW_NOVEL_COMMENTS  // 章尾显示评论
-    u.DEBUG = settings.DEBUG // 调试模式
+    u.CONVERT_CHINESE = settings.CONVERT_CHINESE
+    u.MORE_INFORMATION = settings.MORE_INFORMATION
+    // u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME
+    u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK
+    u.REPLACE_TITLE_MARKS = settings.REPLACE_TITLE_MARKS
+    // u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS
+    u.SHOW_COMMENTS = settings.SHOW_COMMENTS
+    u.DEBUG = settings.DEBUG
 
     if (u.DEBUG === true) {
         java.log(JSON.stringify(settings, null, 4))
@@ -105,7 +107,7 @@ function publicFunc() {
             novel.createDate = dateFormat(novel.createDate)
             novel.updateDate = dateFormat(novel.updateDate)
             novel.syncDate = dateFormat(novel.syncDate)
-            if (util.MORE_INFO_IN_DESCRIPTION) {
+            if (util.MORE_INFORMATION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n同步：${novel.syncDate}\n简介：${novel.description}`
             } else {
                 novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}\n同步时间：${novel.syncDate}`
