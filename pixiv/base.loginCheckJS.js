@@ -178,22 +178,6 @@ function publicFunc() {
                     novel.description = firstNovel.description
                 }
             }
-            // delete novel.titleCaptionTranslation
-            // delete novel.genre
-            // delete novel.profileImageUrl
-            // delete novel.bookmarkCount
-            // delete novel.isConcluded
-            // delete novel.isWatched
-            // delete novel.isNotifying
-            // delete novel.wordCount
-            // delete novel.publishedTextLength
-            // delete novel.publishedWordCount
-            // delete novel.publishedReadingTime
-            // delete novel.useWordCount
-            // delete novel.aiType
-            // delete novel.isOriginal
-            // delete novel.cover
-            // delete novel.titleCaptionTranslation
         })
         util.debugFunc(() => {
             java.log(`处理小说完成`)
