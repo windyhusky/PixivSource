@@ -128,6 +128,7 @@ function publicFunc() {
                 novel.seriesId = novel.id
                 novel.id = novel.novelId = novel.firstNovelId
                 novel.seriesTitle = novel.title
+                novel.coverUrl = novel.cover.urls["480mw"]
             }
 
             if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
