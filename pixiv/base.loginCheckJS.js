@@ -95,9 +95,11 @@ function publicFunc() {
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelId
+                    novel.seriesTitle = undefined
                 } else {
                     novel.seriesId = novel.id
                     novel.id = novel.latestEpisodeId  // 获取真正的 novelId
+                    novel.seriesTitle = novel.title
                 }
                 novel.textCount = novel.textLength
                 novel.description = novel.caption
@@ -117,12 +119,14 @@ function publicFunc() {
                 novel.updateDate = novel.uploadDate
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
                     novel.seriesId = novel.seriesNavData.seriesId
+                    novel.seriesTitle = novel.seriesNavData.title
                 }
             }
             // 系列详情
             if (novel.firstNovelId) {
                 novel.seriesId = novel.id
                 novel.id = novel.firstNovelId
+                novel.seriesTitle = novel.title
             }
 
             novel.detailedUrl = urlNovelDetailed(novel.id)
@@ -131,15 +135,12 @@ function publicFunc() {
                 novel.latestChapter = novel.title
             }
             if (novel.seriesId) {
-                let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
-                novel.id = series.firstNovelId
-                novel.title = series.title
-                // novel.userName = novel.userName
-                novel.tags = novel.tags.concat(series.tags)
+                novel.title = novel.seriesTitle
                 novel.tags.unshift("长篇")
-                novel.textCount = series.publishedTotalCharacterCount
-                novel.description = series.caption
-                novel.coverUrl = series.cover.urls["480mw"]
+                // novel.firstNovelId
+                novel.seriesNavData = {}
+                novel.seriesNavData.seriesId = novel.seriesId
+                novel.seriesNavData.title = novel.seriesTitle
             }
             // delete novel.titleCaptionTranslation
             // delete novel.genre
