@@ -95,12 +95,13 @@ function getUserNovels() {
         if (resp.error === true) {
             return []
         }
-        // resp.body.novelSeries.forEach(novel =>{
-        //     novel.isOneshot = false
-        //     novel.createDate = novel.createDateTime
-        //     novel.updateDate = novel.updateDateTime
-        // })
-        // novels = novels.concat(resp.body.novelSeries)
+
+        // 获取系列小说，与 util.handnovels 系列详情兼容
+        resp.body.novelSeries.forEach(novel =>{
+            novel.textCount = novel.publishedTotalCharacterCount
+            novel.description = novel.caption
+        })
+        novels = novels.concat(resp.body.novelSeries)
 
         // 获取单篇小说
         let novelsId = Object.keys(resp.body.novels).reverse().slice((page - 1) * 20, page * 20)
@@ -140,23 +141,23 @@ function search(name, type, page) {
 }
 
 function getSeries() {
+    let MAXPAGES = 1, novels = []
+    let novelName = String(java.get("keyword"))
+    let resp = search(novelName, "series", 1)
+    novels = novels.concat(resp.data)
+    for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
+        novels = novels.concat(search(novelName,"series", page).data)
+    }
+    return novels
+}
+
+function getNovels() {
     if (JSON.parse(result).error !== true) {
-        cache.put(urlSearchSeries(java.get("keyword")), result, 30*60)  // 加入缓存
+        cache.put(urlSearchNovel(java.get("keyword"), java.get("page")), result, 30*60)  // 加入缓存
         return JSON.parse(result).body.novel.data
     } else {
         return []
     }
-}
-
-function getNovels() {
-    let MAXPAGES = 1, novels = []
-    let novelName = String(java.get("keyword"))
-    let resp = search(novelName, "novel", 1)
-    novels = novels.concat(resp.data)
-    for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
-        novels = novels.concat(search(novelName,"novel", page).data)
-    }
-    return novels
 }
 
 function getConvertNovels() {
@@ -200,7 +201,7 @@ function novelFilter(novels) {
         novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
         novels = novels.concat(getUserNovels())
-        if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
+        if (util.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程

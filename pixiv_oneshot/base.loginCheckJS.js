@@ -9,7 +9,7 @@ function objStringify(obj) {
 }
 
 function publicFunc() {
-    let u = {}, settings = {}
+    let u = {}
     java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
     java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
@@ -17,27 +17,32 @@ function publicFunc() {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
-        settings.CONVERT_CHINESE_CHARACTERS = true
-        settings.SHOW_ORIGINAL_NOVEL_LINK = true
-        settings.REPLACE_BOOK_TITLE_MARKS = true
-        settings.MORE_INFO_IN_DESCRIPTION = false
-        settings.SHOW_NOVEL_CAPTIONS = true
-        settings.SHOW_NOVEL_COMMENTS = true
-        settings.FAST = false
-        settings.DEBUG = false
+        settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+        settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
+        settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
+        settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
+        settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
+        settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
+        settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
+        settings.FAST  = false   // 全局：快速模式
+        settings.DEBUG = false   // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-    u.CONVERT_CHINESE_CHARACTERS = settings.CONVERT_CHINESE_CHARACTERS  // 搜索：搜索时进行繁简转换
-    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
-    u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
-    u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
-    u.SHOW_NOVEL_CAPTIONS = settings.SHOW_NOVEL_CAPTIONS  // 章首显示描述
-    u.SHOW_NOVEL_COMMENTS = settings.SHOW_NOVEL_COMMENTS  // 章尾显示评论
-    u.DEBUG = settings.DEBUG // 调试模式
+    u.CONVERT_CHINESE = settings.CONVERT_CHINESE
+    u.MORE_INFORMATION = settings.MORE_INFORMATION
+    u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME
+    u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK
+    u.REPLACE_TITLE_MARKS = settings.REPLACE_TITLE_MARKS
+    u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS
+    u.SHOW_COMMENTS = settings.SHOW_COMMENTS
+    u.FAST = settings.FAST
+    u.DEBUG = settings.DEBUG
 
     if (u.FAST === true) {
-        u.CONVERT_CHINESE_CHARACTERS = false
-        u.SHOW_ORIGINAL_NOVEL_LINK = false
+        u.CONVERT_CHINESE = false    // 搜索：繁简通搜
+        u.SHOW_UPDATE_TIME = true    // 目录：显示章节更新时间
+        u.SHOW_ORIGINAL_LINK = false // 目录：显示章节源链接
+        u.SHOW_COMMENTS = true       // 正文：
     }
     if (u.DEBUG === true) {
         java.log(JSON.stringify(settings, null, 4))
@@ -66,7 +71,7 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function (novels) {
+    u.handNovels = function (novels, detailed=false) {
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
@@ -90,9 +95,11 @@ function publicFunc() {
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelId
+                    novel.seriesTitle = undefined
                 } else {
                     novel.seriesId = novel.id
-                    novel.id = novel.latestEpisodeId  // 获取真正的 novelId
+                    novel.id = novel.novelId= novel.latestEpisodeId  // 获取真正的 novelId
+                    novel.seriesTitle = novel.title
                 }
                 novel.textCount = novel.textLength
                 novel.description = novel.caption
@@ -103,6 +110,7 @@ function publicFunc() {
 
             // 正文详情页
             if (novel.content !== undefined) {
+                novel.novelId = novel.id
                 novel.tags = novel.tags.tags.map(item => item.tag)
                 novel.textCount = novel.userNovels[`${novel.id}`].textCount
                 // novel.latestChapter = novel.title
@@ -112,27 +120,41 @@ function publicFunc() {
                 novel.updateDate = novel.uploadDate
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
                     novel.seriesId = novel.seriesNavData.seriesId
+                    novel.seriesTitle = novel.seriesNavData.title
                 }
             }
             // 系列详情
-            if (novel.firstNovelId) {
+            if (novel.firstNovelId !== undefined) {
                 novel.seriesId = novel.id
-                novel.id = novel.firstNovelId
+                novel.id = novel.novelId = novel.firstNovelId
+                novel.seriesTitle = novel.title
+                novel.coverUrl = novel.cover.urls["480mw"]
             }
 
-            novel.detailedUrl = urlNovelDetailed(novel.id)
             if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
+                novel.detailedUrl = urlNovelDetailed(novel.id)
             }
-            if (novel.seriesId) {
+            if (novel.seriesId !== undefined && detailed === false) {
+                novel.id = novel.seriesId
+                novel.firstNovelId = novel.novelId
+                novel.title = novel.seriesTitle
+                novel.tags.unshift("长篇")
+                novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
+                // novel.seriesNavData = {}
+                // novel.seriesNavData.seriesId = novel.seriesId
+                // novel.seriesNavData.title = novel.seriesTitle
+            }
+
+            if (novel.seriesId !== undefined && detailed === true) {
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
                 // novel.userName = novel.userName
-                novel.tags = series.tags
+                novel.tags = novel.tags.concat(series.tags)
+                novel.tags.unshift("长篇")
                 novel.textCount = series.publishedTotalCharacterCount
-                // novel.lastChapter = getAjaxJson(urlNovelDetailed(series.lastNovelId)).body.title
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
 
@@ -185,7 +207,7 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
 
-            if (util.MORE_INFO_IN_DESCRIPTION) {
+            if (util.MORE_INFORMATION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
             } else {
                 novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
