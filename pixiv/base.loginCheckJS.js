@@ -124,7 +124,7 @@ function publicFunc() {
                 }
             }
             // 系列详情
-            if (novel.firstNovelId) {
+            if (novel.firstNovelId !== undefined) {
                 novel.seriesId = novel.id
                 novel.id = novel.novelId = novel.firstNovelId
                 novel.seriesTitle = novel.title
@@ -135,7 +135,7 @@ function publicFunc() {
                 novel.latestChapter = novel.title
                 novel.detailedUrl = urlNovelDetailed(novel.id)
             }
-            if (novel.seriesId || util.FAST) {
+            if (novel.seriesId !== undefined && detailed === false) {
                 novel.id = novel.seriesId
                 novel.firstNovelId = novel.novelId
                 novel.title = novel.seriesTitle
@@ -146,7 +146,7 @@ function publicFunc() {
                 // novel.seriesNavData.title = novel.seriesTitle
             }
 
-            if (novel.seriesId && detailed) {
+            if (novel.seriesId !== undefined && detailed === true) {
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
