@@ -98,7 +98,7 @@ function publicFunc() {
                     novel.seriesTitle = undefined
                 } else {
                     novel.seriesId = novel.id
-                    novel.id = novel.latestEpisodeId  // 获取真正的 novelId
+                    novel.id = novel.novelId= novel.latestEpisodeId  // 获取真正的 novelId
                     novel.seriesTitle = novel.title
                 }
                 novel.textCount = novel.textLength
@@ -110,6 +110,7 @@ function publicFunc() {
 
             // 正文详情页
             if (novel.content !== undefined) {
+                novel.novelId = novel.id
                 novel.tags = novel.tags.tags.map(item => item.tag)
                 novel.textCount = novel.userNovels[`${novel.id}`].textCount
                 // novel.latestChapter = novel.title
@@ -125,22 +126,25 @@ function publicFunc() {
             // 系列详情
             if (novel.firstNovelId) {
                 novel.seriesId = novel.id
-                novel.id = novel.firstNovelId
+                novel.id = novel.novelId = novel.firstNovelId
                 novel.seriesTitle = novel.title
             }
 
-            novel.detailedUrl = urlNovelDetailed(novel.id)
+
             if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
+                novel.detailedUrl = urlNovelDetailed(novel.id)
             }
-            if (novel.seriesId) {
+            if (novel.seriesId || util.FAST) {
+                novel.id = novel.seriesId
+                novel.firstNovelId = novel.novelId
                 novel.title = novel.seriesTitle
                 novel.tags.unshift("长篇")
-                // novel.firstNovelId
-                novel.seriesNavData = {}
-                novel.seriesNavData.seriesId = novel.seriesId
-                novel.seriesNavData.title = novel.seriesTitle
+                novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
+                // novel.seriesNavData = {}
+                // novel.seriesNavData.seriesId = novel.seriesId
+                // novel.seriesNavData.title = novel.seriesTitle
             }
             // delete novel.titleCaptionTranslation
             // delete novel.genre
