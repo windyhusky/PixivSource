@@ -31,14 +31,7 @@ function oneShotHandler(res) {
 function seriesHandler(res) {
     const limit = 30
     let returnList = []
-    let seriesID = 0, allChaptersCount = 0
-    if (res.seriesNavData !== undefined) {
-        seriesID = res.seriesNavData.seriesId
-        allChaptersCount = getAjaxJson(urlSeriesDetailed(seriesID)).body.total
-    } else {
-        seriesID = res.id
-        allChaptersCount = res.total
-    }
+    let seriesID = res.id, allChaptersCount = res.total
     util.debugFunc(() => {
         java.log(`本系列 ${seriesID} 一共有${allChaptersCount}章`);
     })
