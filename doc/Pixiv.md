@@ -169,7 +169,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 ![img](./pic/DiscoverPixivRanking.png)
   - ✅ R18小说排行榜(🔞 排行榜)
   - ✅ 一般小说排行榜(🆗 排行榜)
-    >（默认隐藏，可在书源设置中修改`SHOW_GENERAL_NOVELS_RANK`)，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新
+    >（默认隐藏，可在书源设置中修改`SHOW_GENERAL_RANK`)，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新
 </details>
 
 

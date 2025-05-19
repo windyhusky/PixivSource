@@ -88,21 +88,21 @@
   
   - ✅ R18 小说
   - ✅ 一般小说（默认隐藏）
-    >（可在书源设置中修改 `SHOW_GENERAL_NOVELS_NEW` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
+    >（可在书源设置中修改 `SHOW_GENERAL_NEW` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
 
 - <details><summary> ✅ 👑 小说排行 </summary>
   
   - ✅ R18 小说排行榜
   - ✅ 一般小说排行榜（默认隐藏）
-    > (可在书源设置中修改 `SHOW_GENERAL_NOVELS_RANK` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
+    > (可在书源设置中修改 `SHOW_GENERAL_RANK` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
 
 - <details><summary> ✅ 🔥 原创热门 </summary>
 
   - ✅ R18 小说热门分类（默认隐藏）
   - ✅ 一般小说热门分类（默认隐藏）
-    >（可在书源设置中修改 `SHOW_GENERAL_NOVELS_GENRE` `SHOW_GENERAL_NOVELS_GENRE` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
+    >（可在书源设置中修改 `SHOW_GENERAL_GENRE` `SHOW_GENERAL_GENRE` )，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新）
   </details>
   
 - <details><summary> ✅ 🔧 小说工具（标记符号） </summary>
@@ -120,7 +120,7 @@
     - ☑️ `汉字《注音》`选择`置き換える`后，Pixiv 会转换成`[[rb:汉字 > 注音]]`
       > 当`注音`位置是汉字时，恢复被替换的书名号：`[[rb:汉字 > 注音]]` => `汉字《注音》`
       > 
-      > 默认开启，可在书源设置中修改 `REPLACE_BOOK_TITLE_MARKS`
+      > 默认开启，可在书源设置中修改 `REPLACE_TITLE_MARKS`
   - 🈚️ 不支持的标记符
   </details>
 </details>
@@ -171,19 +171,20 @@
 <details><summary> ⚙️ 书源设置 </summary>
 
 #### 书源功能设置
-| 书源设置           | 默认状态 | 对应常量名称                    | 作用 |
-| ---------------- | ------ | -------------------------- | --- |
-| 繁简通搜　　　　　　 | ✅ 开启 | `CONVERT_CHINESE_CHARACTERS`| 搜索 |
-| 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_NEW`   | 发现 |
-| 排行榜单显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_RANK`  | 发现 |
-| 热门分类显示R18小说 | ⭕ 关闭 | `SHOW_R18_NOVELS_GENRE`     | 发现 |
-| 热门分类显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NOVELS_GENRE` | 发现 |
-| 简介显示更多信息　   | ⭕ 关闭 | `MORE_INFO_IN_DESCRIPTION`  | 详情 |
-| 显示小说原始链接　   | ✅ 开启 | `SHOW_ORIGINAL_NOVEL_LINK`  | 目录 |
-| 恢复被替换的书名号   | ✅ 开启 | `REPLACE_BOOK_TITLE_MARKS`  | 正文 |
-| 章首显示小说描述　   | ✅ 开启 | `SHOW_NOVEL_CAPTIONS`       | 正文 |
-| 章尾显示小说评论　   | ✅ 开启 | `SHOW_NOVEL_COMMENTS`       | 正文 |
-| 调试模式　　　　　   | ⭕ 关闭 | `DEBUG`                     | 全局 |
+| 书源设置           | 默认状态 | 对应常量名称             | 作用 |
+| ---------------- | ------ | --------------------- | --- |
+| 繁简通搜　　　　　　 | ✅ 开启 | `CONVERT_CHINESE`      | 搜索 |
+| 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NEW`     | 发现 |
+| 排行榜单显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_RANK`    | 发现 |
+| 热门分类显示R18小说 | ⭕ 关闭 | `SHOW_R18_GENRE`       | 发现 |
+| 热门分类显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_GENRE`   | 发现 |
+| 简介显示更多信息　   | ⭕ 关闭 | `MORE_INFORMATION`    | 详情 |
+| 显示小说原始链接　   | ✅ 开启 | `SHOW_ORIGINAL_LINK`  | 目录 |
+| 恢复被替换的书名号   | ✅ 开启 | `REPLACE_TITLE_MARKS` | 正文 |
+| 章首显示小说描述　   | ✅ 开启 | `SHOW_CAPTIONS`       | 正文 |
+| 章尾显示小说评论　   | ✅ 开启 | `SHOW_COMMENTS`       | 正文 |
+| 快速模式　　　　　   | ⭕ 关闭 | `FAST`                | 全局 |
+| 调试模式　　　　　   | ⭕ 关闭 | `DEBUG`               | 全局 |
 - 自定义设置：编辑书源 - 基本 - 变量说明 - 修改并保存
 - 修改时，请修改`true` 为 `false`，或相反
 - 每次更新书源后，需要重新设置，默认配置如下：
@@ -191,17 +192,22 @@
 
 ```
 {
-  "CONVERT_CHINESE_CHARACTERS": true,
-  "SHOW_GENERAL_NOVELS_NEW": false,
-  "SHOW_GENERAL_NOVELS_RANK": false,
-  "SHOW_R18_NOVELS_GENRE": false,
-  "SHOW_GENERAL_NOVELS_GENRE": false,
-  "MORE_INFO_IN_DESCRIPTION": false,
-  "SHOW_ORIGINAL_NOVEL_LINK": true,
-  "REPLACE_BOOK_TITLE_MARKS": true,
-  "SHOW_NOVEL_CAPTIONS": true,
-  "SHOW_NOVEL_COMMENTS": true,
-  "DEBUG": false
+  "CONVERT_CHINESE": true,
+  "SHOW_UPDATE_TIME": true,
+  "MORE_INFORMATION": false,
+  "SHOW_ORIGINAL_LINK": true,
+  
+  "REPLACE_TITLE_MARKS": true,
+  "SHOW_CAPTIONS": true,
+  "SHOW_COMMENTS": true,
+  
+  "FAST": true,
+  "DEBUG": false,
+  
+  "SHOW_GENERAL_NEW": false,
+  "SHOW_GENERAL_RANK": false,
+  "SHOW_R18_GENRE": false,
+  "SHOW_GENERAL_GENRE": false
 }
 ```
 </details>
