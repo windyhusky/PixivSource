@@ -11,7 +11,7 @@ function objParse(obj) {
 }
 
 function novelHandler(novel){
-    novel = util.formatNovels(util.handNovels([novel]))[0]
+    novel = util.formatNovels(util.handNovels([novel], true))[0]
     if (novel.seriesId === undefined || novel.seriesId === null) {
         novel.detailedUrl = urlNovelUrl(novel.id)
         novel.catalogUrl = urlNovelDetailed(novel.id)

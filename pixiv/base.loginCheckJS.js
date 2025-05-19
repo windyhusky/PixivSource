@@ -71,7 +71,7 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function (novels) {
+    u.handNovels = function (novels, detailed=false) {
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
@@ -145,6 +145,17 @@ function publicFunc() {
                 // novel.seriesNavData = {}
                 // novel.seriesNavData.seriesId = novel.seriesId
                 // novel.seriesNavData.title = novel.seriesTitle
+            }
+            if (novel.seriesId && detailed) {
+                let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
+                novel.id = series.firstNovelId
+                novel.title = series.title
+                // novel.userName = novel.userName
+                novel.tags = novel.tags.concat(series.tags)
+                novel.tags.unshift("长篇")
+                novel.textCount = series.publishedTotalCharacterCount
+                novel.description = series.caption
+                novel.coverUrl = series.cover.urls["480mw"]
             }
             // delete novel.titleCaptionTranslation
             // delete novel.genre
