@@ -17,30 +17,32 @@ function publicFunc() {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
-        settings.CONVERT_CHINESE_CHARACTERS = true
-        settings.SHOW_UPDATE_TIME = true
-        settings.SHOW_ORIGINAL_NOVEL_LINK = true
-        settings.REPLACE_BOOK_TITLE_MARKS = true
-        settings.MORE_INFO_IN_DESCRIPTION = false
-        settings.SHOW_NOVEL_CAPTIONS = true
-        settings.SHOW_NOVEL_COMMENTS = true
-        settings.FAST = false
-        settings.DEBUG = false
+        settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+        settings.MORE_INFORMATION = false    // 详情：书籍简介显示更多信息
+        settings.SHOW_UPDATE_TIME = true    // 目录：显示小说更新时间，但会增加少许请求
+        settings.SHOW_ORIGINAL_LINK = true  // 目录：显示小说源链接，但会增加大量请求
+        settings.SHOW_TITLE_MARKS = true    // 正文：注音内容为汉字时，替换为书名号
+        settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
+        settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
+        settings.FAST  = false   // 全局：快速模式
+        settings.DEBUG = false   // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-    u.CONVERT_CHINESE_CHARACTERS = settings.CONVERT_CHINESE_CHARACTERS  // 搜索：搜索时进行繁简转换
-    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
+    u.CONVERT_CHINESE = settings.CONVERT_CHINESE
+    u.MORE_INFORMATION = settings.MORE_INFORMATION
     u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME
-    u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
-    u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
-    u.SHOW_NOVEL_CAPTIONS = settings.SHOW_NOVEL_CAPTIONS  // 章首显示描述
-    u.SHOW_NOVEL_COMMENTS = settings.SHOW_NOVEL_COMMENTS  // 章尾显示评论
-    u.DEBUG = settings.DEBUG // 调试模式
+    u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK
+    u.REPLACE_TITLE_MARKS = settings.REPLACE_TITLE_MARKS
+    u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS
+    u.SHOW_COMMENTS = settings.SHOW_COMMENTS
+    u.FAST = settings.FAST
+    u.DEBUG = settings.DEBUG
 
     if (u.FAST === true) {
-        u.CONVERT_CHINESE_CHARACTERS = false
-        u.SHOW_UPDATE_TIME = true
-        u.SHOW_ORIGINAL_NOVEL_LINK = false
+        u.CONVERT_CHINESE = false    // 搜索：繁简通搜
+        u.SHOW_UPDATE_TIME = true    // 目录：显示章节更新时间
+        u.SHOW_ORIGINAL_LINK = false // 目录：显示章节源链接
+        u.SHOW_COMMENTS = true       // 正文：
     }
     if (u.DEBUG === true) {
         java.log(JSON.stringify(settings, null, 4))
@@ -139,6 +141,22 @@ function publicFunc() {
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
             }
+            // delete novel.titleCaptionTranslation
+            // delete novel.genre
+            // delete novel.profileImageUrl
+            // delete novel.bookmarkCount
+            // delete novel.isConcluded
+            // delete novel.isWatched
+            // delete novel.isNotifying
+            // delete novel.wordCount
+            // delete novel.publishedTextLength
+            // delete novel.publishedWordCount
+            // delete novel.publishedReadingTime
+            // delete novel.useWordCount
+            // delete novel.aiType
+            // delete novel.isOriginal
+            // delete novel.cover
+            // delete novel.titleCaptionTranslation
         })
         util.debugFunc(() => {
             java.log(`处理小说完成`)
@@ -168,7 +186,7 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
 
-            if (util.MORE_INFO_IN_DESCRIPTION) {
+            if (util.MORE_INFORMATION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
             } else {
                 novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`

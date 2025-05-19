@@ -200,7 +200,7 @@ function novelFilter(novels) {
         novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
         novels = novels.concat(getUserNovels())
-        if (util.CONVERT_CHINESE_CHARACTERS) novels = novels.concat(getConvertNovels())
+        if (util.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程
