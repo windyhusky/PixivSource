@@ -1,16 +1,16 @@
 @js:
-let SHOW_R18_NOVELS_GENRE, SHOW_GENERAL_NOVELS_NEW, SHOW_GENERAL_NOVELS_RANK, SHOW_GENERAL_NOVELS_GENRE
+let SHOW_R18_GENRE, SHOW_GENERAL_NEW, SHOW_GENERAL_RANK, SHOW_GENERAL_GENRE
 try {
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
-    SHOW_R18_NOVELS_GENRE = settings.SHOW_R18_NOVELS_GENRE         // 发现：热门分类显示R18小说
-    SHOW_GENERAL_NOVELS_NEW = settings.SHOW_GENERAL_NOVELS_NEW     // 发现：最新、企划、约稿显示一般小说
-    SHOW_GENERAL_NOVELS_RANK = settings.SHOW_GENERAL_NOVELS_RANK   // 发现：排行榜显示一般小说
-    SHOW_GENERAL_NOVELS_GENRE = settings.SHOW_GENERAL_NOVELS_GENRE // 发现：热门分类显示一般小说
+    SHOW_R18_GENRE = settings.SHOW_R18_GENRE         // 发现：热门分类显示R18小说
+    SHOW_GENERAL_NEW = settings.SHOW_GENERAL_NEW     // 发现：最新、企划、约稿显示一般小说
+    SHOW_GENERAL_RANK = settings.SHOW_GENERAL_RANK   // 发现：排行榜显示一般小说
+    SHOW_GENERAL_GENRE = settings.SHOW_GENERAL_GENRE // 发现：热门分类显示一般小说
 } catch (e) {
-    SHOW_R18_NOVELS_GENRE = false
-    SHOW_GENERAL_NOVELS_NEW = false
-    SHOW_GENERAL_NOVELS_RANK = false
-    SHOW_GENERAL_NOVELS_GENRE = false
+    SHOW_R18_GENRE = false
+    SHOW_GENERAL_NEW = false
+    SHOW_GENERAL_RANK = false
+    SHOW_GENERAL_GENRE = false
 }
 
 li = [
@@ -116,17 +116,17 @@ bookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
 li = li.concat(normal)
 li = li.concat(r18New)
-if (SHOW_GENERAL_NOVELS_NEW === true) {
+if (SHOW_GENERAL_NEW === true) {
     li = li.concat(generalNew)
 }
 li = li.concat(r18Rank)
-if (SHOW_GENERAL_NOVELS_RANK === true) {
+if (SHOW_GENERAL_RANK === true) {
     li = li.concat(generalRank)
 }
-if (SHOW_R18_NOVELS_GENRE === true) {
+if (SHOW_R18_GENRE === true) {
     li = li.concat(r18Genre)
 }
-if (SHOW_GENERAL_NOVELS_GENRE === true) {
+if (SHOW_GENERAL_GENRE === true) {
     li = li.concat(generalgGenre)
 }
 
