@@ -47,10 +47,18 @@ function getAjaxAllJson(urls) {
 }
 function getWebviewJson(url, parseFunc) {
     const {java, cache} = this
-    return cacheGetAndSet(cache, url, () => {
+    let time1 = new Date().getTime()
+    let a = cacheGetAndSet(cache, url, () => {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })
+    let time2 = new Date().getTime()
+    let time = Number(java.get("time"))
+    time += (time2 - time1)
+    java.log(`请求时间：${time2 - time1}ms\n请求内容：${urls}`)
+    java.log(`累计请求时间：${time}ms`)
+    java.put("time", time)
+    return a
 }
 
 function isLogin() {
