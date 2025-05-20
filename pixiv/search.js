@@ -51,7 +51,7 @@ function getUserNovels() {
         return []
     }
 
-    let uidList = [] ,novels = []
+    let uidList = [], novels = []
     let username = String(java.get("keyword"))
     let page = Number(java.get("page"))
 
@@ -59,13 +59,8 @@ function getUserNovels() {
     if (userid !== undefined && userid !== null) {
         uidList = [userid]
         java.log(`缓存作者ID：${userid}`)
-    }
-    else {
-        let html = java.get(username)
-        if (html === undefined || html === null) {
-            html = java.ajax(urlSearchUser(username))
-            cache.put(username, html)
-        }
+    } else {
+        html = java.ajax(urlSearchUser(username))
         // java.log(html)
         // 仅匹配有投稿作品的用户
         let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
