@@ -86,9 +86,13 @@ function urlSearchNovel(novelName, page) {
 function urlSearchSeries(seriesName, page) {
     return`https://www.pixiv.net/ajax/search/novels/${seriesName}?word=${seriesName}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
 }
-// 完全匹配用户名
-function urlSearchUser(userName) {
-    return `https://www.pixiv.net/search/users?nick=${userName}&s_mode=s_usr&nick_mf=1`
+// 不完全匹配用户名
+function urlSearchUser(userName, full) {
+    if (full === undefined || full === false) {
+        return `https://www.pixiv.net/search/users?nick=${userName}&s_mode=s_usr&nick_mf=1`
+    } else {
+        return `https://www.pixiv.net/search/users?nick=${userName}&s_mode=s_usr_full&i=1`
+    }
 }
 
 function urlCoverUrl(url) {
