@@ -12,11 +12,6 @@ function objParse(obj) {
 }
 
 function handlerFactory() {
-    cache.put(baseUrl, result) // 发现加入缓存
-    // resp = cache.get(baseUrl)
-    // if (resp !== undefined && resp !== null) {
-    //     result = resp
-    // }
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return updateSource()
     }
@@ -158,11 +153,10 @@ function handlerRanking() {
             if (novelIds.indexOf(novelId) === -1) {
                 novelIds.push(novelId)
                 novelUrls.push(urlNovelDetailed(novelId))
-                java.log(urlNovelDetailed(novelId))
+                // java.log(urlNovelDetailed(novelId))
             }
         }
-        novels = java.ajaxAll(novelUrls).map(resp => JSON.parse(resp.body()).body)
-        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
+        return util.formatNovels(util.handNovels(util.combineNovels(getAjaxAllJson(novelUrls))))
     }
 }
 
