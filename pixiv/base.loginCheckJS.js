@@ -322,7 +322,18 @@ function checkMessageThread(checkTimes) {
     // java.log(checkTimes + 1)
 }
 
-publicFunc()
+// 获取 Csrf Token，以便进行收藏等请求
+// https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
+function getCsrfToken() {
+    let csfrToken = getWebviewJson(source.bookSourceUrl, html => {
+        return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
+    })
+    java.log(csfrToken)
+    cache.put("csfr-token", csfrToken)
+    return csfrToken
+}
+
+publicFunc(); getCsrfToken()
 if (!util.FAST) checkMessageThread()
 // 获取请求的user id方便其他ajax请求构造
 let uid = java.getResponse().headers().get("x-userid")
