@@ -3,6 +3,14 @@ function getPostResultBody(url, body, headers) {
     return JSON.parse(java.post(url, body, headers).body())
 }
 
+function getNovelBookmarkId(novelId) {
+    let bookmarkId = cache.get(`collect${novelId}`)
+    if (bookmarkId === null) {
+        bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId)).body.bookmarkData.id
+    }
+    return bookmarkId
+}
+
 function novelBookmarkAdd(novelId, restrict=0) {
     let resp = getPostResultBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
