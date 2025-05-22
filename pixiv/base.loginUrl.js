@@ -71,3 +71,14 @@ function seriesUnWatch(seriesID) {
     if (resp.error === true) sleepToast("取消追更失败")
     else sleepToast("已取消追更")
 }
+
+(() => {
+    // novelBookmarkAdd(123, 0)
+    // sleep(3)
+    novelBookmarkDelete(123)
+    // novelsBookmarkDelete([123])
+    // seriesWatch(123)
+    // sleep(3)
+    // seriesUnWatch(123)
+    // return novelHandler(util.getNovelRes(result))
+})()
