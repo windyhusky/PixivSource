@@ -22,4 +22,13 @@ function novelBookmarkAdd(novelId, restrict=0) {
 }
 
 
-novelBookmarkAdd(23314322, 0)
+function novelsBookmarkDelete(novelIds) {
+    let bookmarkIds = []
+    novelIds.forEach(novelId => {bookmarkIds.push(getNovelBookmarkId(novelId))})
+    let resp = getPostResultBody(
+        "https://www.pixiv.net/ajax/novels/bookmarks/remove",
+        JSON.stringify({"bookmarkIds": bookmarkIds})
+    )
+    if (resp.error === true) sleepToast("取消收藏失败")
+    else sleepToast("已取消收藏")
+}
