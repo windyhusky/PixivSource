@@ -335,11 +335,15 @@ function getCsrfToken() {
 
 // 获取 Cookie
 function getCookie() {
-    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (cookie.includes("first_visit_datetime")) {
-        // java.log(cookie)
-        cache.put("cookie", cookie, 60*60)
-        return cookie
+    let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
+    if (pixivCookie.includes("first_visit_datetime")) {
+        // java.log(pixivCookie)
+        cache.put("pixivCookie", pixivCookie, 60*60)
+        return pixivCookie
+    } else {
+        cache.delete("pixivCookie")
+        cookie.removeCookie('https://accounts.pixiv.net');
+        cookie.removeCookie('https://accounts.google.com');
     }
 }
 
