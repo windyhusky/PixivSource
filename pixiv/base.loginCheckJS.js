@@ -333,11 +333,14 @@ function getCsrfToken() {
     return csfrToken
 }
 
-publicFunc(); getCsrfToken()
-if (!util.FAST) checkMessageThread()
 // 获取请求的user id方便其他ajax请求构造
-let uid = java.getResponse().headers().get("x-userid")
-if (uid != null) {
-    cache.put("pixiv:uid", uid)
+function getPixivUid() {
+    let uid = java.getResponse().headers().get("x-userid")
+    if (uid != null) {
+        cache.put("pixiv:uid", uid)
+    }
 }
+
+publicFunc(); getCsrfToken(); getPixivUid()
+if (!util.FAST) checkMessageThread()
 java.getStrResponse(null, null)
