@@ -51,6 +51,9 @@ function urlNovelDetailed(novelId) {
 function urlNovelsDetailed(userId, nidList) {
     return `https://www.pixiv.net/ajax/user/${userId}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
 }
+function urlNovelBookmarkData(novelId) {
+    return `https://www.pixiv.net/ajax/novel/${novelId}/bookmarkData`
+}
 function urlNovelComments(novelId, offset, limit) {
     return `https://www.pixiv.net/ajax/novels/comments/roots?novel_id=${novelId}&offset=${offset}&limit=${limit}&lang=zh`
 }
