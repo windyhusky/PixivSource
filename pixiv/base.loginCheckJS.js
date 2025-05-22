@@ -355,15 +355,30 @@ function getCookie() {
     }
 }
 
-// 获取请求的user id方便其他ajax请求构造
-function getPixivUid() {
-    let uid = java.getResponse().headers().get("x-userid")
-    if (uid != null) {
-        cache.put("pixiv:uid", uid)
+// 获取 headers
+function getHeaders() {
+    let headers = {
+        "accept": "application/json",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "zh-CN",
+        "content-type": "application/json; charset=utf-8",
+        "origin": "https//www.pixiv.net",
+        "referer": "https://www.pixiv.net/",
+        // "sec-ch-ua": `"Not/A)Brand";v="8", "Chromium";v="132", "Google Chrome";v="132"`,
+        // "sec-ch-ua-mobile": "?0",
+        // "sec-ch-ua-platform": "Windows",
+        // "sec-fetch-dest": "empty",
+        // "sec-fetch-mode": "cors",
+        // "sec-fetch-site": "same-origin",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "x-csrf-token": cache.get("csfrToken"),
+        "Cookie": cache.get("pixivCookie")
     }
+    cache.put("headers", JSON.stringify(headers))
+    return headers
 }
 
 publicFunc(); getPixivUid();
-//getCsrfToken(); getCookie(); //getHeaders()
+getCsrfToken(); getCookie(); //getHeaders()
 if (!util.FAST) checkMessageThread()
 java.getStrResponse(null, null)
