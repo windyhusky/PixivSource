@@ -328,9 +328,19 @@ function getCsrfToken() {
     let csfrToken = getWebviewJson(source.bookSourceUrl, html => {
         return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
     })
-    java.log(csfrToken)
-    cache.put("csfr-token", csfrToken)
+    // java.log(csfrToken)
+    cache.put("csfr-token", csfrToken)  // 与登录设备有关
     return csfrToken
+}
+
+// 获取 Cookie
+function getCookie() {
+    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+    if (cookie.includes("first_visit_datetime")) {
+        // java.log(cookie)
+        cache.put("cookie", cookie, 60*60)
+        return cookie
+    }
 }
 
 // 获取请求的user id方便其他ajax请求构造
@@ -341,6 +351,6 @@ function getPixivUid() {
     }
 }
 
-publicFunc(); getCsrfToken(); getPixivUid()
+publicFunc(); getCsrfToken(); getCookie(); getPixivUid()
 if (!util.FAST) checkMessageThread()
 java.getStrResponse(null, null)
