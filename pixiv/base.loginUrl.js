@@ -54,3 +54,20 @@ function novelsBookmarkDelete(novelIds) {
     if (resp.error === true) sleepToast("取消收藏失败")
     else sleepToast("已取消收藏")
 }
+
+function seriesWatch(seriesID) {
+    let resp = getPostResultBody(
+        `https://www.pixiv.net/ajax/novel/series/${seriesID}/watch`,
+        JSON.stringify({})
+    )
+    if (resp.error === true) sleepToast("追更失败")
+    else sleepToast("已成功追更")
+}
+function seriesUnWatch(seriesID) {
+    let resp = getPostResultBody(
+        `https://www.pixiv.net/ajax/novel/series/${seriesID}/unwatch`,
+        JSON.stringify({})
+    )
+    if (resp.error === true) sleepToast("取消追更失败")
+    else sleepToast("已取消追更")
+}
