@@ -355,6 +355,14 @@ function getCookie() {
     }
 }
 
+// 获取 userAgent
+function getUserAgent() {
+    let userAgent = String(source.getHeaderMap(true)).slice(12,-1)
+    cache.put("userAgent", userAgent)
+    // java.log(userAgent)
+    return userAgent
+}
+
 // 获取 headers
 function getHeaders() {
     let headers = {
@@ -370,7 +378,7 @@ function getHeaders() {
         // "sec-fetch-dest": "empty",
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
-        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+        "user-agent": cache.get("userAgent"),
         "x-csrf-token": cache.get("csfrToken"),
         "Cookie": cache.get("pixivCookie")
     }
@@ -379,6 +387,6 @@ function getHeaders() {
 }
 
 publicFunc(); getPixivUid();
-getCsrfToken(); getCookie(); //getHeaders()
+getCsrfToken(); getCookie(); getUserAgent(); getHeaders()
 if (!util.FAST) checkMessageThread()
 java.getStrResponse(null, null)
