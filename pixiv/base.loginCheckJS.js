@@ -322,6 +322,14 @@ function checkMessageThread(checkTimes) {
     // java.log(checkTimes + 1)
 }
 
+// 获取请求的user id方便其他ajax请求构造
+function getPixivUid() {
+    let uid = java.getResponse().headers().get("x-userid")
+    if (uid != null) {
+        cache.put("pixiv:uid", uid)
+    }
+}
+
 // 获取 Csrf Token，以便进行收藏等请求
 // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
 function getCsrfToken() {
@@ -329,7 +337,7 @@ function getCsrfToken() {
         return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
     })
     // java.log(csfrToken)
-    cache.put("csfr-token", csfrToken)  // 与登录设备有关
+    cache.put("csfrToken", csfrToken)  // 与登录设备有关
     return csfrToken
 }
 
@@ -355,6 +363,7 @@ function getPixivUid() {
     }
 }
 
-publicFunc(); getCsrfToken(); getCookie(); getPixivUid()
+publicFunc(); getPixivUid();
+//getCsrfToken(); getCookie(); //getHeaders()
 if (!util.FAST) checkMessageThread()
 java.getStrResponse(null, null)
