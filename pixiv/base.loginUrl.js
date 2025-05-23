@@ -30,9 +30,9 @@ function startGithubReadme() {
 function getPostBody(url, body, headers) {
     if (headers === undefined) headers = JSON.parse(cache.get("headers"))
     if (isJsonString(body)) {
-        headers["content-type"]="application/json; charset=utf-8"
+        headers["content-type"] = "application/json; charset=utf-8"
     } else if (typeof(body) == "string") {
-        headers["content-type"]="application/x-www-form-urlencoded; charset=utf-8"
+        headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
     }
     return JSON.parse(java.post(url, body, headers).body())
 }
@@ -105,6 +105,34 @@ function userUnFollow(userId) {
     )
     if (resp.error === true) sleepToast("取消关注失败")
     else sleepToast("已取消关注")
+}
+function userBlock(userId) {
+    let action = "block"
+    let resp = getPostBody(
+        `https://www.pixiv.net/ajax/block/save`,
+        JSON.stringify({"user_id":userId, "action": action})
+    )
+    if (resp.error === true) sleepToast("操作失败")
+    else sleepToast("操作成功")
+}
+function userBlock2(userId) {
+    let action = "block"
+    let lastBlock = cache.get(`block${userId}`)
+    if (lastBlock === true) action = "unblock"
+
+    let resp = getPostBody(
+        `https://www.pixiv.net/ajax/block/save`,
+        JSON.stringify({"user_id":userId, "action": action})
+    )
+    java.log(JSON.stringify({"user_id":userId, "action": action}))
+    if (resp.error === true) sleepToast("操作失败")
+    else if (lastBlock === true) {
+        cache.put(`block${userId}`, false)
+        sleepToast("已取消拉黑该作者")
+    } else {
+        cache.put(`block${userId}`, true)
+        sleepToast("已拉黑该作者")
+    }
 }
 
 function novelCommentAdd(novelId, comment) {
