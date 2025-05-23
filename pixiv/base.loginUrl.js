@@ -1,13 +1,12 @@
-function logInBrowser() {
+function login() {
     cookie.removeCookie('https://www.pixiv.net')
-    cookie.removeCookie('https://accounts.pixiv.net');
-    cookie.removeCookie('https://accounts.google.com');
-    cookie.removeCookie('https://api.weibo.com');
-    ua = cache.get("userAgent")
-    java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${ua}"}}`, '登录账号', false).body()
+    cookie.removeCookie('https://accounts.pixiv.net')
+    cookie.removeCookie('https://accounts.google.com')
+    cookie.removeCookie('https://api.weibo.com')
+    resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false).body()
 }
 
-function logOut() {
+function logout() {
     cookie.removeCookie('https://www.pixiv.net')
     cookie.removeCookie('https://accounts.pixiv.net')
     cookie.removeCookie('https://accounts.google.com')
@@ -15,6 +14,7 @@ function logOut() {
     java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
     cache.delete("pixivCookie")
     cache.delete("csfrToken")  // 与登录设备有关
+    cache.delete("headers")
     sleepToast("已退出当前账号")
 }
 

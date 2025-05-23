@@ -2,7 +2,7 @@
     {
         "name": "\uD83C\uDD7F️ 登录账号",
         "type": "button",
-        "action": "logInBrowser()",
+        "action": "login()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -20,7 +20,7 @@
     {
         "name": "\uD83D\uDD19 退出账号",
         "type": "button",
-        "action": "logOut()",
+        "action": "logout()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
