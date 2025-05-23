@@ -78,6 +78,18 @@ function userUnFollow(userId) {
     else sleepToast("已取消关注")
 }
 
+function novelCommentAdd(novelId, comment) {
+    let userId = cache.get("pixiv:uid")
+    let resp = getPostBody(
+        "https://www.pixiv.net/novel/rpc/post_comment.php",
+        `type=comment&novel_id=${novelId}&author_user_id=${userId}&comment=${encodeURI(comment)}`
+    )
+    let commentID = resp.body.comment_id
+    cahche.put(`comment${novelId}${comment}`, commentID) // 待修改
+    if (resp.error === true) sleepToast("评论失败")
+    else sleepToast(`已发布评论：\n${comment}`)
+}
+
 (() => {
     // novelBookmarkAdd(123, 0)
     // sleep(3)
@@ -89,5 +101,6 @@ function userUnFollow(userId) {
     // userFollow(123)
     // sleep(3)
     // userUnFollow(123)
+    novelCommentAdd(123, "写得太好了，非常喜欢")
     // return novelHandler(util.getNovelRes(result))
 })()
