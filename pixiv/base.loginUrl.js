@@ -61,13 +61,33 @@ function seriesUnWatch(seriesID) {
     else sleepToast("已取消追更")
 }
 
+function userFollow(userId, restrict=0) {
+    let resp = getPostBody(
+        "https://www.pixiv.net/bookmark_add.php",
+        `mode=add&type=user&user_id=${userId}&tag=""&restrict=${restrict}&format=json`
+    )
+    if (resp.error === true) sleepToast("关注失败")
+    else sleepToast("已成功关注")
+}
+function userUnFollow(userId) {
+    let resp = getPostBody(
+        "https://www.pixiv.net/rpc_group_setting.php",
+        `mode=del&type=bookuser&id=${userId}`
+    )
+    if (resp.error === true) sleepToast("取消关注失败")
+    else sleepToast("已取消关注")
+}
+
 (() => {
     // novelBookmarkAdd(123, 0)
     // sleep(3)
-    novelBookmarkDelete(123)
+    // novelBookmarkDelete(123)
     // novelsBookmarkDelete([123])
     // seriesWatch(123)
     // sleep(3)
     // seriesUnWatch(123)
+    // userFollow(123)
+    // sleep(3)
+    // userUnFollow(123)
     // return novelHandler(util.getNovelRes(result))
 })()
