@@ -1,7 +1,7 @@
 // 获取 Csrf Token，以便进行收藏等请求
 // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
 function getCsrfToken() {
-    let csfrToken = getWebviewJson(source.bookSourceUrl, html => {
+    let csfrToken = getWebviewJson("https://www.pixiv.net/", html => {
         return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
     })
     // java.log(csfrToken)
