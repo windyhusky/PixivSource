@@ -157,14 +157,13 @@ function sleepToast(text, second) {
     sleep(1000*second)
 }
 
-function updateSource(){
-    return () => {
-        const {java, source} = this;
-        let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"
-        let onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
-        let comment = onlineSource.bookSourceComment.split("\n")
+function updateSource() {
+    const {java, source} = this;
+    let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"
+    let onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
+    let comment = onlineSource.bookSourceComment.split("\n")
 
-        let htm = `data:text/html; charset=utf-8,
+    let htm = `data:text/html; charset=utf-8,
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -217,7 +216,6 @@ function updateSource(){
     </table>
 </body>
 </html>`;
-    java.startBrowser(htm,'更新');
+    java.startBrowser(htm,'更新书源');
     return []
-    }
 }
