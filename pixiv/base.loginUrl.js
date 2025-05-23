@@ -18,6 +18,9 @@ function logOut() {
     sleepToast("已退出当前账号")
 }
 
+function urlPixivSettings() {
+    java.startBrowser("https://www.pixiv.net/settings/viewing", "Pixiv 浏览设置")
+}
 function getPostBody(url, body, headers) {
     if (headers === undefined) headers = JSON.parse(cache.get("headers"))
     if (isJsonString(body)) {
