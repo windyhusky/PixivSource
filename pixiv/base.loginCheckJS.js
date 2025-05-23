@@ -378,15 +378,14 @@ function getHeaders() {
         // "sec-fetch-dest": "empty",
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
-        "user-agent": cache.get("userAgent"),
-        "x-csrf-token": cache.get("csfrToken"),
-        "Cookie": cache.get("pixivCookie")
+        "user-agent": getUserAgent(),
+        "x-csrf-token": getCsrfToken(),
+        "Cookie": getCookie()
     }
     cache.put("headers", JSON.stringify(headers))
     return headers
 }
 
-publicFunc(); getPixivUid();
-getCsrfToken(); getCookie(); getUserAgent(); getHeaders()
+publicFunc(); getPixivUid(); getHeaders()
 if (!util.FAST) checkMessageThread()
 java.getStrResponse(null, null)
