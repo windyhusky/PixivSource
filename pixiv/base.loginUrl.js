@@ -91,14 +91,17 @@ function novelCommentAdd(novelId, comment) {
 }
 
 function getNovelCommentID(novelId, comment) {
-    let resp = getAjaxJson(urlNovelComments(novelId, 0, 50))
-    let list = resp.body.comments.filter(item =>
-        (item.userId === String(cache.get("pixiv:uid")) && item.comment === comment)
-    )
-    // java.log(JSON.stringify(list))
-    // let commentIDs = list.map(item => item.id)
-    // java.log(JSON.stringify(commentIDs))
-    return list.map(item => item.id)
+    let commentID = [cache.get(`comment${novelId}${comment}`)]
+    if (commentID[0] === null) {
+        let resp = getAjaxJson(urlNovelComments(novelId, 0, 50))
+        let list = resp.body.comments.filter(item =>
+            (item.userId === String(cache.get("pixiv:uid")) && item.comment === comment)
+        )
+        // java.log(JSON.stringify(list))
+        commentID = list.map(item => item.id)  // array
+        // java.log(JSON.stringify(commentIDs))
+    }
+    return commentID
 }
 
 (() => {
@@ -112,6 +115,9 @@ function getNovelCommentID(novelId, comment) {
     // userFollow(123)
     // sleep(3)
     // userUnFollow(123)
-    novelCommentAdd(123, "写得太好了，非常喜欢")
+    // novelCommentAdd(123, "写得太好了，非常喜欢2333")
+    // getNovelCommentID(20063566, "写得太好了，非常喜欢")
+    getNovelCommentID(20063566, "写得太好了，非常喜欢2333")
+    // novelCommentDelete(20063566, "写得太好了，非常喜欢")
     // return novelHandler(util.getNovelRes(result))
-})()
+})()}
