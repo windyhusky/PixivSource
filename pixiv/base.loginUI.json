@@ -58,7 +58,7 @@
         "type": "text"
     },
     {
-        "name": "⬆️ 追更该书",
+        "name": "\uD83D\uDCC3 追更该书",
         "type": "button",
         "action": "",
         "style": {
@@ -67,7 +67,16 @@
         }
     },
     {
-        "name": "⬆️ 取消追更",
+        "name": "⤴️ 分享该书",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDEAE 取消追更",
         "type": "button",
         "action": "",
         "style": {
@@ -80,7 +89,7 @@
         "type": "text"
     },
     {
-        "name": "⬆️ 收藏该章",
+        "name": "❤️ 公开收藏",
         "type": "button",
         "action": "",
         "style": {
@@ -89,7 +98,16 @@
         }
     },
     {
-        "name": "⬆️ 取消收藏",
+        "name": "㊙️ 私密收藏",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83E\uDE76 取消收藏",
         "type": "button",
         "action": "",
         "style": {
@@ -102,7 +120,7 @@
         "type": "text"
     },
     {
-        "name": "⬆️ 发送评论",
+        "name": "\uD83D\uDDE3️ 发送评论",
         "type": "button",
         "action": "",
         "style": {
@@ -111,7 +129,16 @@
         }
     },
     {
-        "name": "⬆️ 删除评论",
+        "name": "⤴️ 分享该章",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDD1️ 删除评论",
         "type": "button",
         "action": "",
         "style": {
@@ -124,7 +151,7 @@
         "type": "text"
     },
     {
-        "name": "⬆️ 关注作者",
+        "name": "⭐️ 关注作者",
         "type": "button",
         "action": "",
         "style": {
@@ -133,7 +160,16 @@
         }
     },
     {
-        "name": "⬆️ 取消关注",
+        "name": "☆ 取消关注",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDEAB 拉黑作者",
         "type": "button",
         "action": "",
         "style": {
