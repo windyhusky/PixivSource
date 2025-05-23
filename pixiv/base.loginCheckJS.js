@@ -329,17 +329,6 @@ function getPixivUid() {
         cache.put("pixiv:uid", uid)
     }
 }
-
-// 获取 Csrf Token，以便进行收藏等请求
-// https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
-function getCsrfToken() {
-    let csfrToken = getWebviewJson(source.bookSourceUrl, html => {
-        return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
-    })
-    // java.log(csfrToken)
-    cache.put("csfrToken", csfrToken)  // 与登录设备有关
-    return csfrToken
-}
 function getCookie() {
     let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
     if (pixivCookie.includes("first_visit_datetime")) {
@@ -377,7 +366,6 @@ function getHeaders() {
     return headers
 }
 
-publicFunc(); getPixivUid(); getUserAgent()
-getCsrfToken(); getCookie(); getHeaders()
+publicFunc(); getPixivUid(); getCookie(); getUserAgent(); getHeaders()
 if (!util.FAST) checkMessageThread()
 java.getStrResponse(null, null)

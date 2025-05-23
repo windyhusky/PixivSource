@@ -1,5 +1,26 @@
+// 获取 Csrf Token，以便进行收藏等请求
+// https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
+function getCsrfToken() {
+    let csfrToken = getWebviewJson(source.bookSourceUrl, html => {
+        return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
+    })
+    // java.log(csfrToken)
+    cache.put("csfrToken", csfrToken)  // 与登录设备有关
+    return csfrToken
+}
+
+function getCookie() {
+    let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
+    if (pixivCookie.includes("first_visit_datetime")) {
+        // java.log(pixivCookie)
+        cache.put("pixivCookie", pixivCookie, 60*60)
+        return pixivCookie
+    }
+}
+
 function login() {
     resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false).body()
+    getCsrfToken(); getCookie()
 }
 
 function logout() {
