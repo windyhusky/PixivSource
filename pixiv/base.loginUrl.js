@@ -1,5 +1,10 @@
-function getPostResultBody(url, body, headers) {
-    headers = JSON.parse(cache.get("headers"))
+function getPostBody(url, body, headers) {
+    if (headers === undefined) headers = JSON.parse(cache.get("headers"))
+    if (isJsonString(body)) {
+        headers["content-type"]="application/json; charset=utf-8"
+    } else if (typeof(body) == "string") {
+        headers["content-type"]="application/x-www-form-urlencoded; charset=utf-8"
+    }
     return JSON.parse(java.post(url, body, headers).body())
 }
 
@@ -12,7 +17,7 @@ function getNovelBookmarkId(novelId) {
 }
 
 function novelBookmarkAdd(novelId, restrict=0) {
-    let resp = getPostResultBody(
+    let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novelId, "restrict": restrict, "comment":"", "tags":[]})
     )
@@ -47,7 +52,7 @@ function novelBookmarkDelete(novelId) {
 function novelsBookmarkDelete(novelIds) {
     let bookmarkIds = []
     novelIds.forEach(novelId => {bookmarkIds.push(getNovelBookmarkId(novelId))})
-    let resp = getPostResultBody(
+    let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/remove",
         JSON.stringify({"bookmarkIds": bookmarkIds})
     )
@@ -56,7 +61,7 @@ function novelsBookmarkDelete(novelIds) {
 }
 
 function seriesWatch(seriesID) {
-    let resp = getPostResultBody(
+    let resp = getPostBody(
         `https://www.pixiv.net/ajax/novel/series/${seriesID}/watch`,
         JSON.stringify({})
     )
@@ -64,7 +69,7 @@ function seriesWatch(seriesID) {
     else sleepToast("已成功追更")
 }
 function seriesUnWatch(seriesID) {
-    let resp = getPostResultBody(
+    let resp = getPostBody(
         `https://www.pixiv.net/ajax/novel/series/${seriesID}/unwatch`,
         JSON.stringify({})
     )
