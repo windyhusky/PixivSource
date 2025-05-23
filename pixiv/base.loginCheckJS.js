@@ -340,8 +340,6 @@ function getCsrfToken() {
     cache.put("csfrToken", csfrToken)  // 与登录设备有关
     return csfrToken
 }
-
-// 获取 Cookie
 function getCookie() {
     let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
     if (pixivCookie.includes("first_visit_datetime")) {
@@ -350,16 +348,12 @@ function getCookie() {
         return pixivCookie
     }
 }
-
-// 获取 userAgent
 function getUserAgent() {
     let userAgent = String(source.getHeaderMap(true)).slice(12,-1)
     cache.put("userAgent", userAgent)
     // java.log(userAgent)
     return userAgent
 }
-
-// 获取 headers
 function getHeaders() {
     let headers = {
         "accept": "application/json",
@@ -375,14 +369,15 @@ function getHeaders() {
         // "sec-fetch-dest": "empty",
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
-        "user-agent": getUserAgent(),
-        "x-csrf-token": getCsrfToken(),
-        "Cookie": getCookie()
+        "user-agent": cache.get("userAgent"),
+        "x-csrf-token": cache.get("csfrToken"),
+        "Cookie": cache.get("pixivCookie")
     }
     cache.put("headers", JSON.stringify(headers))
     return headers
 }
 
-publicFunc(); getPixivUid(); getHeaders()
+publicFunc(); getPixivUid(); getUserAgent()
+getCsrfToken(); getCookie(); getHeaders()
 if (!util.FAST) checkMessageThread()
 java.getStrResponse(null, null)
