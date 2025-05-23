@@ -4,7 +4,7 @@ function logInBrowser() {
     cookie.removeCookie('https://accounts.google.com');
     cookie.removeCookie('https://api.weibo.com');
     ua = cache.get("userAgent")
-    java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${ua}"}}`, '登录', false).body()
+    java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${ua}"}}`, '登录账号', false).body()
 }
 
 function logOut() {
@@ -12,20 +12,20 @@ function logOut() {
     cookie.removeCookie('https://accounts.pixiv.net')
     cookie.removeCookie('https://accounts.google.com')
     cookie.removeCookie('https://api.weibo.com')
-    java.startBrowser("https://www.pixiv.net/logout.php", "退出登录")
+    java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
     cache.delete("pixivCookie")
     cache.delete("csfrToken")  // 与登录设备有关
     sleepToast("已退出当前账号")
 }
 
 function urlPixivSettings() {
-    java.startBrowser("https://www.pixiv.net/settings/viewing", "Pixiv 浏览设置")
+    java.startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
 function urlGithub() {
     java.startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
 }
 function urlGithubIssue() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource/issues", "书源反馈")
+    java.startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
 }
 function urlGithubReadme() {
     java.startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
