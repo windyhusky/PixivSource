@@ -52,5 +52,93 @@
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
+    },
+    {
+        "name": "系列名称",
+        "type": "text"
+    },
+    {
+        "name": "⬆️ 追更该书",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⬆️ 取消追更",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "章节名称",
+        "type": "text"
+    },
+    {
+        "name": "⬆️ 收藏该章",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⬆️ 取消收藏",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "发送评论",
+        "type": "text"
+    },
+    {
+        "name": "⬆️ 发送评论",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⬆️ 删除评论",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "作者名称",
+        "type": "text"
+    },
+    {
+        "name": "⬆️ 关注作者",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⬆️ 取消关注",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
     }
 ]
