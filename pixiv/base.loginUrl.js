@@ -7,6 +7,17 @@ function logInBrowser() {
     java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${ua}"}}`, '登录', false).body()
 }
 
+function logOut() {
+    cookie.removeCookie('https://www.pixiv.net')
+    cookie.removeCookie('https://accounts.pixiv.net')
+    cookie.removeCookie('https://accounts.google.com')
+    cookie.removeCookie('https://api.weibo.com')
+    java.startBrowser("https://www.pixiv.net/logout.php", "退出登录")
+    cache.delete("pixivCookie")
+    cache.delete("csfrToken")  // 与登录设备有关
+    sleepToast("已退出当前账号")
+}
+
 function getPostBody(url, body, headers) {
     if (headers === undefined) headers = JSON.parse(cache.get("headers"))
     if (isJsonString(body)) {
