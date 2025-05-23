@@ -1,8 +1,4 @@
 function login() {
-    cookie.removeCookie('https://www.pixiv.net')
-    cookie.removeCookie('https://accounts.pixiv.net')
-    cookie.removeCookie('https://accounts.google.com')
-    cookie.removeCookie('https://api.weibo.com')
     resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false).body()
 }
 
