@@ -21,6 +21,16 @@ function logOut() {
 function urlPixivSettings() {
     java.startBrowser("https://www.pixiv.net/settings/viewing", "Pixiv 浏览设置")
 }
+function urlGithub() {
+    java.startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
+}
+function urlGithubIssue() {
+    java.startBrowser("https://github.com/windyhusky/PixivSource/issues", "书源反馈")
+}
+function urlGithubReadme() {
+    java.startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
+}
+
 function getPostBody(url, body, headers) {
     if (headers === undefined) headers = JSON.parse(cache.get("headers"))
     if (isJsonString(body)) {
