@@ -84,24 +84,19 @@ function novelCommentAdd(novelId, comment) {
         "https://www.pixiv.net/novel/rpc/post_comment.php",
         `type=comment&novel_id=${novelId}&author_user_id=${userId}&comment=${encodeURI(comment)}`
     )
-    let commentID = resp.body.comment_id
-    cache.put(`comment${novelId}${comment}`, commentID) // todo 待修改
     if (resp.error === true) sleepToast("评论失败")
     else sleepToast(`已发布评论：\n${comment}`)
 }
 
 function getNovelCommentID(novelId, comment) {
-    let commentID = [cache.get(`comment${novelId}${comment}`)]
-    if (commentID[0] === null) {
-        let resp = getAjaxJson(urlNovelComments(novelId, 0, 50))
-        let list = resp.body.comments.filter(item =>
-            (item.userId === String(cache.get("pixiv:uid")) && item.comment === comment)
-        )
-        // java.log(JSON.stringify(list))
-        commentID = list.map(item => item.id)  // array
-        // java.log(JSON.stringify(commentIDs))
-    }
-    return commentID
+    let resp = getAjaxJson(urlNovelComments(novelId, 0, 50))
+    let list = resp.body.comments.filter(item =>
+        (item.userId === String(cache.get("pixiv:uid")) && item.comment === comment)
+    )
+    // java.log(JSON.stringify(list))
+    // let commentID = list.map(item => item.id)
+    // java.log(JSON.stringify(commentIDs))
+    return list.map(item => item.id)
 }
 
 (() => {
