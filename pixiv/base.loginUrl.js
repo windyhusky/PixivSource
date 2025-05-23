@@ -115,18 +115,15 @@ function novelCommentDelete(novelId, comment) {
 
 (() => {
     // novelBookmarkAdd(123, 0)
-    // sleep(3)
     // novelBookmarkDelete(123)
     // novelsBookmarkDelete([123])
     // seriesWatch(123)
-    // sleep(3)
     // seriesUnWatch(123)
     // userFollow(123)
-    // sleep(3)
     // userUnFollow(123)
+    // novelCommentAdd(123, "写得太好了，非常喜欢")
     // novelCommentAdd(123, "写得太好了，非常喜欢2333")
-    // getNovelCommentID(20063566, "写得太好了，非常喜欢")
-    getNovelCommentID(20063566, "写得太好了，非常喜欢2333")
-    // novelCommentDelete(20063566, "写得太好了，非常喜欢")
+    // novelCommentDelete(123, "写得太好了，非常喜欢")
+    // novelCommentDelete(123, "写得太好了，非常喜欢2333")
     // return novelHandler(util.getNovelRes(result))
-})()}
+})()
