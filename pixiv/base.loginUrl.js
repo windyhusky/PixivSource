@@ -99,6 +99,20 @@ function getNovelCommentID(novelId, comment) {
     return list.map(item => item.id)
 }
 
+function novelCommentDelete(novelId, comment) {
+    let commentIDs = getNovelCommentID(novelId, comment)
+    // java.log(JSON.stringify(commentIDs))
+    commentIDs.forEach(commentID =>{
+        let resp = getPostBody(
+            "https://www.pixiv.net/novel/rpc_delete_comment.php",
+            `i_id=${novelId}&del_id=${commentID}`
+        )
+        java.log(JSON.stringify(resp))
+        if (resp.error === true) sleepToast("评论删除失败")
+        else sleepToast(`已删除评论：\n${comment}`)
+    })
+}
+
 (() => {
     // novelBookmarkAdd(123, 0)
     // sleep(3)
