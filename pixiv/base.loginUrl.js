@@ -25,30 +25,14 @@ function novelBookmarkAdd(novelId, restrict=0) {
     else if (resp.body === null) sleepToast("已经收藏")
     else cache.put(`collect${novelId}`, resp.body); sleepToast("收藏成功")
 }
-
-// todo
 function novelBookmarkDelete(novelId) {
-    let bookmarkId = getNovelBookmarkId(novelId)
-    java.log(bookmarkId)
-    // let resp = getPostResultBody(
-    //     "https://www.pixiv.net/ajax/novels/bookmarks/delete",
-    //     `del=1&book_id=${bookmarkId}`
-    // )
-
-    let url  = "https://www.pixiv.net/ajax/novels/bookmarks/delete"
-    let body = `del=1&book_id=${bookmarkId}`
-    let headers = JSON.parse(cache.get("headers"))
-
-    let result = java.post(url, String(body), headers)
-    let resp = result.body()
-    java.log(result.code())
-    java.log(result)
-    java.log(JSON.stringify(result))
-    java.log(resp)
-    java.log(JSON.stringify(resp))
+    let resp = getPostBody(
+        "https://www.pixiv.net/ajax/novels/bookmarks/delete",
+        `del=1&book_id=${getNovelBookmarkId(novelId)}`
+    )
     if (resp.error === true) sleepToast("取消收藏失败")
+    else sleepToast("已取消收藏")
 }
-
 function novelsBookmarkDelete(novelIds) {
     let bookmarkIds = []
     novelIds.forEach(novelId => {bookmarkIds.push(getNovelBookmarkId(novelId))})
