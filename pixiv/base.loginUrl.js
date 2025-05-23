@@ -112,18 +112,3 @@ function novelCommentDelete(novelId, comment) {
         else sleepToast(`已删除评论：\n${comment}`)
     })
 }
-
-(() => {
-    // novelBookmarkAdd(123, 0)
-    // novelBookmarkDelete(123)
-    // novelsBookmarkDelete([123])
-    // seriesWatch(123)
-    // seriesUnWatch(123)
-    // userFollow(123)
-    // userUnFollow(123)
-    // novelCommentAdd(123, "写得太好了，非常喜欢")
-    // novelCommentAdd(123, "写得太好了，非常喜欢2333")
-    // novelCommentDelete(123, "写得太好了，非常喜欢")
-    // novelCommentDelete(123, "写得太好了，非常喜欢2333")
-    // return novelHandler(util.getNovelRes(result))
-})()
