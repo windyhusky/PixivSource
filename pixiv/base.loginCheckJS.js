@@ -348,10 +348,6 @@ function getCookie() {
         // java.log(pixivCookie)
         cache.put("pixivCookie", pixivCookie, 60*60)
         return pixivCookie
-    } else {
-        cache.delete("pixivCookie")
-        cookie.removeCookie('https://accounts.pixiv.net');
-        cookie.removeCookie('https://accounts.google.com');
     }
 }
 
