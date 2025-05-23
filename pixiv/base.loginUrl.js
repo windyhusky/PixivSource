@@ -18,16 +18,16 @@ function logout() {
     sleepToast("已退出当前账号")
 }
 
-function urlPixivSettings() {
+function startPixivSettings() {
     java.startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
-function urlGithub() {
+function startGithub() {
     java.startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
 }
-function urlGithubIssue() {
+function startGithubIssue() {
     java.startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
 }
-function urlGithubReadme() {
+function startGithubReadme() {
     java.startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 

@@ -11,7 +11,7 @@
     {
         "name": "⚙️ 账号设置",
         "type": "button",
-        "action": "urlPixivSettings()",
+        "action": "startPixivSettings()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -38,7 +38,7 @@
     {
         "name": "\uD83D\uDD30 使用指南",
         "type": "button",
-        "action": "urlGithubReadme()",
+        "action": "startGithubReadme()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -47,7 +47,7 @@
     {
         "name": "\uD83D\uDC1E 反馈问题",
         "type": "button",
-        "action": "urlGithubIssue()",
+        "action": "startGithubIssue()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
