@@ -24,15 +24,17 @@ function login() {
 }
 
 function logout() {
+    java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
+    removeCookie(); sleepToast(`已退出当前账号\n若无法登录，请再次点击"退出账号"`)
+}
+function removeCookie() {
     cookie.removeCookie('https://www.pixiv.net')
     cookie.removeCookie('https://accounts.pixiv.net')
     cookie.removeCookie('https://accounts.google.com')
     cookie.removeCookie('https://api.weibo.com')
-    java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
     cache.delete("pixivCookie")
     cache.delete("csfrToken")  // 与登录设备有关
     cache.delete("headers")
-    sleepToast("已退出当前账号")
 }
 
 function startPixivSettings() {
