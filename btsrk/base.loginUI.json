@@ -27,9 +27,9 @@
         }
     },
     {
-        "name": "⭐️ 收藏项目",
+        "name": "🆙 更新书源",
         "type": "button",
-        "action": "startGithub()",
+        "action": "updateSource()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
