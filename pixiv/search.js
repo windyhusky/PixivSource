@@ -76,6 +76,7 @@ function getUserNovels() {
             return v.match(regNumber)[0]
         })
 
+        // todo 筛选有小说的作者，选择前3个
         // 仅限3个作者
         java.log(JSON.stringify(uidList))
         if (uidList.length >= 3) {
