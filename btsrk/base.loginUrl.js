@@ -19,6 +19,19 @@ function removeCookie() {
 function startPixivSettings() {
     java.startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
+function startPixivMessages() {
+    java.startBrowser("https://www.pixiv.net/messages.php", "查看私信")
+}
+function startPixivNotification() {
+    java.startBrowser("https://www.pixiv.net/notify_all.php", "查看通知")
+}
+function startPixivMuteUser() {
+    java.startBrowser("https://www.pixiv.net/settings/viewing/mute?type=user", "屏蔽用户")
+}
+function startPixivBlockUsers() {
+    java.startBrowser("https://www.pixiv.net/settings/privacy/block-users", "查黑名单")
+}
+
 function startGithub() {
     java.startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
 }

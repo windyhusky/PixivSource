@@ -27,6 +27,33 @@
         }
     },
     {
+        "name": "✉️ 查看私信",
+        "type": "button",
+        "action": "startPixivMessages()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD14 查看通知",
+        "type": "button",
+        "action": "startPixivNotification()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⭐️ 收藏项目",
+        "type": "button",
+        "action": "startGithub()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
         "name": "🆙 更新书源",
         "type": "button",
         "action": "updateSource()",
