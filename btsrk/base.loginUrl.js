@@ -42,7 +42,7 @@ function updateSource() {
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>更新 ${source.bookSourceName} 书源</title>
+    <title>更新 Pixiv 书源</title>
     <style> 
     table { text-align: center; margin: 0 auto; } .ann { display: flex; justify-content: center; align-items: center; height: 5vh; } 
     button { background-color: rgb(76, 175, 80); color: white; border: none; border-radius: 4px; height: 5vh; width: 30vw; overflow: hidden; } 
@@ -55,7 +55,7 @@ function updateSource() {
 
 <body>
     <table border="1" cellspacing="0">
-        <th colspan="2"> ${source.bookSourceName} 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md">🔰 使用教程</a></th>
+        <th colspan="2"> Pixiv 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md">🔰 使用教程</a></th>
         <tr><td>☁️ 远程仓库版本：${java.timeFormat(onlineSource.lastUpdateTime)}</td></tr>
         <tr><td>📥 阅读本地版本：${java.timeFormat(source.lastUpdateTime)}</td></tr>
         <tr><td style="text-align: left;">${comment.slice(2, 9).join("<br>")}</td></tr>
@@ -65,7 +65,7 @@ function updateSource() {
     <div class="ann"></div>
     
     <table border="0" cellspacing="30">
-        <th colspan="2"> 更新 ${source.bookSourceName} 书源 </th>
+        <th colspan="2"> 更新 Pixiv 书源 </th>
         <tr><td><div class="ann">
             <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json">
             <button><span>更新书源</span></button>
