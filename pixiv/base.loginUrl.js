@@ -132,16 +132,7 @@ function userUnFollow(userId) {
 }
 function userBlock(userId) {
     let action = "block"
-    let resp = getPostBody(
-        `https://www.pixiv.net/ajax/block/save`,
-        JSON.stringify({"user_id":userId, "action": action})
-    )
-    if (resp.error === true) sleepToast("操作失败")
-    else sleepToast("操作成功")
-}
-function userBlock2(userId) {
-    let action = "block"
-    let lastBlock = cache.get(`block${userId}`)
+    let lastBlock = JSON.parse(cache.get(`block${userId}`))
     if (lastBlock === true) action = "unblock"
 
     let resp = getPostBody(
