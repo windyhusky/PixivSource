@@ -1,5 +1,4 @@
-@js:
-li = [
+[
     {
         "name":"Pixiv",
         "link":"https://www.pixiv.net/novel",
