@@ -57,9 +57,9 @@ function getPostBody(url, body, headers) {
     } else if (typeof(body) == "string") {
         headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
     }
-    headers["user-agent"] = cache.get("userAgent")
-    headers["x-csrf-token"] = cache.get("csfrToken")
-    headers["Cookie"] = cache.get("pixivCookie")
+    // headers["user-agent"] = cache.get("userAgent")
+    // headers["x-csrf-token"] = cache.get("csfrToken")
+    // headers["Cookie"] = cache.get("pixivCookie")
     return JSON.parse(java.post(url, body, headers).body())
 }
 
