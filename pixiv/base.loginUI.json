@@ -76,7 +76,7 @@
         }
     },
     {
-        "name": "\uD83D\uDEAE 取消追更",
+        "name": "\uD83E\uDE76  取消追更",
         "type": "button",
         "action": "",
         "style": {
@@ -120,7 +120,7 @@
         "type": "text"
     },
     {
-        "name": "\uD83D\uDDE3️ 发送评论",
+        "name": "✅ 发送评论",
         "type": "button",
         "action": "",
         "style": {
@@ -138,7 +138,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDD1️ 删除评论",
+        "name": "\uD83D\uDDD1 删除评论",
         "type": "button",
         "action": "",
         "style": {
@@ -160,7 +160,7 @@
         }
     },
     {
-        "name": "☆ 取消关注",
+        "name": "⤴️ 分享作者",
         "type": "button",
         "action": "",
         "style": {
@@ -169,7 +169,7 @@
         }
     },
     {
-        "name": "\uD83D\uDEAB 拉黑作者",
+        "name": "☆ 取消关注",
         "type": "button",
         "action": "",
         "style": {
