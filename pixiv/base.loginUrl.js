@@ -1,4 +1,6 @@
 // 获取 Csrf Token，以便进行收藏等请求
+// 获取方法来自脚本 Pixiv Previewer
+// https://github.com/Ocrosoft/PixivPreviewer
 // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
 function getCsrfToken() {
     let csfrToken = getWebviewJson("https://www.pixiv.net/", html => {
