@@ -153,7 +153,7 @@ function sleepToast(text, second) {
     const {java} = this
     java.log(text)
     java.longToast(text)
-    if (second === undefined || second <= 2) {second = 2}
+    if (second === undefined || second <= 3) {second = 3}
     sleep(1000*second)
 }
 
