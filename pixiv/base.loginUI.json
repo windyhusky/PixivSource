@@ -60,7 +60,7 @@
     {
         "name": "\uD83D\uDCC3 追更该书",
         "type": "button",
-        "action": "",
+        "action": "likeFactory('series' , 1)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -78,7 +78,7 @@
     {
         "name": "\uD83E\uDE76  取消追更",
         "type": "button",
-        "action": "",
+        "action": "likeFactory('series' , 0)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -91,7 +91,7 @@
     {
         "name": "❤️ 公开收藏",
         "type": "button",
-        "action": "",
+        "action": "likeFactory('novel' , 1)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -100,7 +100,7 @@
     {
         "name": "㊙️ 私密收藏",
         "type": "button",
-        "action": "",
+        "action": "likeFactory('novel' , 2)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -109,7 +109,7 @@
     {
         "name": "\uD83E\uDE76 取消收藏",
         "type": "button",
-        "action": "",
+        "action": "likeFactory('novel' , 1)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -153,7 +153,7 @@
     {
         "name": "⭐️ 关注作者",
         "type": "button",
-        "action": "",
+        "action": "likeFactory('author' , 1)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -171,7 +171,7 @@
     {
         "name": "☆ 取消关注",
         "type": "button",
-        "action": "",
+        "action": "likeFactory('author' , 0)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1

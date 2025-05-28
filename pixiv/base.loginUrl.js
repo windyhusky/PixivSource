@@ -53,6 +53,25 @@ function startGithubReadme() {
     java.startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 
+// todo 显示系列 章节 作者 名称
+function likeFactory(type, code) {
+    let novel = source.getLoginInfoMap()
+    sleepToast(`${novel.title} ${novel.id} \n ${novel.seriesId} \n `)
+    if (type.includes("series") && novel.seriesId) {
+        if (code === 1 ) return seriesWatch(novel.seriesId)
+        else return seriesUnWatch(novel.seriesId)
+    }
+    if (type.includes("novel")) {
+        if (code === 1 ) return novelBookmarkAdd(novel.id,0)
+        else if (code === 2 ) return novelBookmarkAdd(novel.id,1)
+        else return novelBookmarkDelete(novel.id)
+    }
+    if (type.includes("author")) {
+        if (code === 1 ) return userFollow(novel.userId)
+        else return userUnFollow(novel.userId)
+    }
+}
+
 function getPostBody(url, body, headers) {
     if (headers === undefined) headers = JSON.parse(cache.get("headers"))
     if (isJsonString(body)) {
@@ -60,9 +79,9 @@ function getPostBody(url, body, headers) {
     } else if (typeof(body) == "string") {
         headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
     }
-    // headers["user-agent"] = cache.get("userAgent")
-    // headers["x-csrf-token"] = cache.get("csfrToken")
-    // headers["Cookie"] = cache.get("pixivCookie")
+    headers["user-agent"] = cache.get("userAgent")
+    headers["x-csrf-token"] = cache.get("csfrToken")
+    headers["Cookie"] = cache.get("pixivCookie")
     return JSON.parse(java.post(url, body, headers).body())
 }
 
