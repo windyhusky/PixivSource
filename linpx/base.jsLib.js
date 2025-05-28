@@ -2,8 +2,7 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
     if (v === undefined || v === null) {
         v = JSON.stringify(supplyFunc())
-        // 缓存10分钟
-        cache.put(key, v, 600)
+        cache.put(key, v, 7*24*60*60)  // 延长缓存时间至7天
     }
     return JSON.parse(v)
 }
