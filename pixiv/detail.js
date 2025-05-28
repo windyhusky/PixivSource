@@ -19,6 +19,8 @@ function novelHandler(novel){
         novel.detailedUrl = urlSeriesUrl(novel.seriesId)
         novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
     }
+    cache.put("novel", JSON.stringify(novel))
+    source.putLoginInfo(JSON.stringify(novel))
     return novel
 }
 
