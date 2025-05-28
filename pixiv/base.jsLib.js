@@ -180,7 +180,7 @@ function updateSource() {
 
 <body>
     <table border="1" cellspacing="0">
-        <th colspan="2"> ${source.bookSourceName} 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md">🔰 使用教程</a></th>
+        <th colspan="2"> ${source.bookSourceName} 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md">🔰 使用指南</a></th>
         <tr><td>☁️ 远程仓库版本：${java.timeFormat(onlineSource.lastUpdateTime)}</td></tr>
         <tr><td>📥 阅读本地版本：${java.timeFormat(source.lastUpdateTime)}</td></tr>
         <tr><td style="text-align: left;">${comment.slice(2,9).join("<br>")}</td></tr>
