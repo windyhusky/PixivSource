@@ -130,7 +130,7 @@ if (SHOW_GENERAL_GENRE === true) {
     li = li.concat(generalgGenre)
 }
 
-sleepToast('使用说明🔖\n\n发现 - 更新 - 点击"🔰 使用教程" - 查看')
+sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
 try {
     authors = String(source.getVariable()).split("\n")
