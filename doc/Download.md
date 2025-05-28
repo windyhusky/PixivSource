@@ -2,10 +2,11 @@
 阅读的各个版本，参见[阅读版本](./Version.md)（不重要）
 
 ###  3.0 书源兼容性
-| 阅读版本          | 书源版本  | 更新时间     | Github 链接  |
-| --------------- | -------- | ---------- | ----------- |
-|　3.23.0503 及之后 | 最新版　　 | 见 [Release](https://github.com/windyhusky/PixivSource/releases) | [Pixiv 书源 导入链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) </br> [Linpx 书源 导入链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
-|　3.23.0503 之前　 | 1.7.4版本 | 2025.02.20 | [Pixiv 书源 导入链接](https://raw.githubusercontent.com/windyhusky/PixivSource/2d6ced432578f7ff870bdd17292c85a321e3437a/pixiv.json) </br> [Linpx 书源 导入链接](https://raw.githubusercontent.com/windyhusky/PixivSource/b9041cf4061198e606c749c174aaa7f351e7a569/linpx.json) |
+| 阅读版本               | 书源版本   | 更新时间    | Github 导入链接  |
+| --------------------- | -------- | ---------- | --------------- |
+|　3.25.0528 - 最新版本 | 最新版　　 | 见 [Release](https://github.com/windyhusky/PixivSource/releases) | [Pixiv 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)　 [Linpx 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
+|　3.23.0503 - 3.25.0528 | 1.9.4版本 | 2025.05.22 | [Pixiv 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/7ee2dcd66a7285f6f5cbd0f155713d7b1b6b71a8/pixiv.json)　 [Linpx 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/739b29c6070caffce696976b4d7a466c2b0c6e4f/linpx.json) |
+|　3.22.0103 - 3.23.0503 | 1.7.4版本 | 2025.02.20 | [Pixiv 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/2d6ced432578f7ff870bdd17292c85a321e3437a/pixiv.json)　 [Linpx 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/b9041cf4061198e606c749c174aaa7f351e7a569/linpx.json) |
 
 
 ###  3.1 Android 版
