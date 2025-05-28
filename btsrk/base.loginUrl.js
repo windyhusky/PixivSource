@@ -1,3 +1,19 @@
+function sleep(time) {
+    let endTime = new Date().getTime() + time
+    while(true){
+        if (new Date().getTime() > endTime){
+            return;
+        }
+    }
+}
+function sleepToast(text, second) {
+    const {java} = this
+    java.log(text)
+    java.longToast(text)
+    if (second === undefined || second <= 3) {second = 3}
+    sleep(1000*second)
+}
+
 function login() {
     resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false).body()
 }
