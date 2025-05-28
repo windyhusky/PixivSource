@@ -322,11 +322,50 @@ function checkMessageThread(checkTimes) {
     // java.log(checkTimes + 1)
 }
 
-publicFunc()
-if (!util.FAST) checkMessageThread()
 // 获取请求的user id方便其他ajax请求构造
-let uid = java.getResponse().headers().get("x-userid")
-if (uid != null) {
-    cache.put("pixiv:uid", uid)
+function getPixivUid() {
+    let uid = java.getResponse().headers().get("x-userid")
+    if (uid != null) {
+        cache.put("pixiv:uid", uid)
+    }
 }
+function getCookie() {
+    let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
+    if (pixivCookie.includes("first_visit_datetime")) {
+        // java.log(pixivCookie)
+        cache.put("pixivCookie", pixivCookie, 60*60)
+        return pixivCookie
+    }
+}
+function getUserAgent() {
+    let userAgent = String(source.getHeaderMap(true)).slice(12,-1)
+    cache.put("userAgent", userAgent)
+    // java.log(userAgent)
+    return userAgent
+}
+function getHeaders() {
+    let headers = {
+        "accept": "application/json",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "zh-CN",
+        // "content-type": "application/json; charset=utf-8",
+        // "content-type": "application/x-www-form-urlencoded; charset=utf-8",
+        "origin": "https//www.pixiv.net",
+        "referer": "https://www.pixiv.net/",
+        // "sec-ch-ua": `"Not/A)Brand";v="8", "Chromium";v="132", "Google Chrome";v="132"`,
+        // "sec-ch-ua-mobile": "?0",
+        // "sec-ch-ua-platform": "Windows",
+        // "sec-fetch-dest": "empty",
+        // "sec-fetch-mode": "cors",
+        // "sec-fetch-site": "same-origin",
+        "user-agent": cache.get("userAgent"),
+        "x-csrf-token": cache.get("csfrToken"),
+        "Cookie": cache.get("pixivCookie")
+    }
+    cache.put("headers", JSON.stringify(headers))
+    return headers
+}
+
+publicFunc(); getPixivUid(); getCookie(); getUserAgent(); getHeaders()
+if (!util.FAST) checkMessageThread()
 java.getStrResponse(null, null)

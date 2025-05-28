@@ -13,7 +13,7 @@ function objParse(obj) {
 
 function handlerFactory() {
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
-        return updateSource()
+        return () => {updateSource(); return []}
     }
     if (!isLogin()) {
         return handlerNoLogin()
