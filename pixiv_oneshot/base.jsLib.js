@@ -1,10 +1,11 @@
 var checkTimes = 0
+var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
 
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
     if (v === undefined || v === null) {
         v = JSON.stringify(supplyFunc())
-        cache.put(key, v, 7*24*60*60) // 缓存 7天
+        cache.put(key, v, cacheSaveSeconds)
     }
     return JSON.parse(v)
 }
@@ -16,14 +17,24 @@ function isJsonString(str) {
     } catch(e) {}
     return false
 }
-function getAjaxJson(url) {
+function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
+    if (forceUpdate === true) {
+        let result = JSON.parse(java.ajax(url))
+        cache.put(url, JSON.stringify(result), cacheSaveSeconds)
+        return result
+    }
     return cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     })
 }
-function getAjaxAllJson(urls) {
+function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
+    if (forceUpdate === true) {
+        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()).body)
+        cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
+        return result
+    }
     return cacheGetAndSet(cache, urls, () => {
         return java.ajaxAll(urls).map(resp => JSON.parse(resp.body()).body)
     })
@@ -76,6 +87,9 @@ function urlSeriesNovels(seriesId, limit, offset) {
     return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
 }
 
+function urlUserUrl(userID) {
+    return `https://www.pixiv.net/users/${userID}/novels`
+}
 function urlUserWorkLatest(userID) {
     return `https://www.pixiv.net/ajax/user/${userID}/works/latest`
 }
@@ -160,7 +174,7 @@ function sleepToast(text, second) {
 function updateSource() {
     const {java, source} = this;
     let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"
-    let onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[1]  // 第2个书源
+    let onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
     let comment = onlineSource.bookSourceComment.split("\n")
 
     let htm = `data:text/html; charset=utf-8,

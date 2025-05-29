@@ -126,19 +126,19 @@ function getContent(res) {
 
 function getComment(res) {
     let comments = ""
-    let resp = getAjaxJson(urlNovelComments(res.id, 0, 50))
+    let resp = getAjaxJson(urlNovelComments(res.id, 0, 50), true)
     if (resp.error === true){
         return ""
     }
     resp.body.comments.forEach(comment =>{
-        comments += `${comment.userName}：${comment.comment}\n`
+        comments += `${comment.userName}：${comment.comment}(${comment.id})\n`
         if (comment.hasReplies === true) {
-            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1))
+            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1), true)
             if (resp.error === true) {
                 return ""
             }
             resp.body.comments.reverse().forEach(reply =>{
-                comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}\n`
+                comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}(${reply.id})\n`
             })
         }
     })
