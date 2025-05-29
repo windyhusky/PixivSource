@@ -65,24 +65,20 @@
     {
         "name": "⤴️ 分享系列",
         "type": "button",
-        "action": "",
+        "action": "shareFactory('series')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "\uD83E\uDE76  取消追更",
+        "name": "\uD83E\uDE76 取消追更",
         "type": "button",
         "action": "likeFactory('series' , 0)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
-    },
-    {
-        "name": "章节名称",
-        "type": "text"
     },
     {
         "name": "❤️ 公开收藏",
@@ -123,7 +119,7 @@
     {
         "name": "⤴️ 分享作者",
         "type": "button",
-        "action": "",
+        "action": "shareFactory('author')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -154,7 +150,7 @@
     {
         "name": "⤴️ 分享该章",
         "type": "button",
-        "action": "",
+        "action": "shareFactory('novel')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1

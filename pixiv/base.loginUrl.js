@@ -207,7 +207,6 @@ function novelCommentDelete() {
 // todo 显示系列 章节 作者 名称
 function likeFactory(type, code) {
     let novel = source.getLoginInfoMap()
-    sleepToast(`${novel.title} ${novel.id} \n ${novel.seriesId} \n `)
     if (type.includes("series") && novel.seriesId) {
         if (code === 1 ) return seriesWatch(novel.seriesId)
         else return seriesUnWatch(novel.seriesId)
@@ -220,5 +219,19 @@ function likeFactory(type, code) {
     if (type.includes("author")) {
         if (code === 1 ) return userFollow(novel.userId)
         else return userUnFollow(novel.userId)
+    }
+}
+
+function shareFactory(type) {
+    let novel = source.getLoginInfoMap()
+    let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36 Reader"}}`
+    if (type.includes("series") && novel.seriesId) {
+        java.startBrowserAwait(`${urlSeriesUrl(novel.seriesId)},${headers}`, novel.title, false).body()
+    }
+    if (type.includes("novel")) {
+        java.startBrowserAwait(`${urlNovelUrl(novel.novelId)},${headers}`, novel.title, false).body()
+    }
+    if (type.includes("author")) {
+        java.startBrowserAwait(`${urlUserUrl(novel.userId)},${headers}`, novel.userName, false).body()
     }
 }
