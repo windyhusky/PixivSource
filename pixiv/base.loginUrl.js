@@ -116,6 +116,8 @@ function seriesWatch() {
         )
         if (resp.error === true) sleepToast(`追更【${novel.title}】失败`)
         else sleepToast(`已追更【${novel.title}】`)
+    } else {
+        sleepToast(`【${novel.title}】非系列小说，无法加入追更列表`)
     }
 }
 function seriesUnWatch() {
@@ -127,6 +129,8 @@ function seriesUnWatch() {
         )
         if (resp.error === true) sleepToast(`取消追更【${novel.title}】失败`)
         else sleepToast(`已取消追更【${novel.title}】`)
+    } else {
+        sleepToast(`【${novel.title}】非系列小说，无法加入追更列表`)
     }
 }
 
