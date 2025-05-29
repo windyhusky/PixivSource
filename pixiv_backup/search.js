@@ -217,5 +217,5 @@ function novelFilter(novels) {
     if (novels.length === 0) {
         return []
     }
-    return novelFilter(util.formatNovels(util.handNovels(novels)))
+    return novelFilter(util.formatNovels(util.handNovels(util.combineNovels(novels))))
 })()
