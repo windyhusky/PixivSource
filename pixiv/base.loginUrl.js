@@ -155,14 +155,17 @@ function userBlock(userId) {
     }
 }
 
-function novelCommentAdd(novelId, comment) {
+function novelCommentAdd() {
     let userId = cache.get("pixiv:uid")
+    let novel = source.getLoginInfoMap()
+    let novelId = novel.id
+    let comment = String(result.get("发送评论"))
     let resp = getPostBody(
         "https://www.pixiv.net/novel/rpc/post_comment.php",
         `type=comment&novel_id=${novelId}&author_user_id=${userId}&comment=${encodeURI(comment)}`
     )
     if (resp.error === true) sleepToast("评论失败")
-    else sleepToast(`已发布评论：\n${comment}`)
+    else sleepToast(`已在【${novel.title}】发布评论：\n${comment}`)
 }
 
 function getNovelCommentID(novelId, comment) {
@@ -176,7 +179,10 @@ function getNovelCommentID(novelId, comment) {
     return list.map(item => item.id)
 }
 
-function novelCommentDelete(novelId, comment) {
+function novelCommentDelete() {
+    let novel = source.getLoginInfoMap()
+    let novelId = novel.id
+    let comment = result.get("发送评论")
     let commentIDs = getNovelCommentID(novelId, comment)
     // java.log(JSON.stringify(commentIDs))
     commentIDs.forEach(commentID =>{

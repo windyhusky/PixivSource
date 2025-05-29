@@ -122,7 +122,7 @@
     {
         "name": "✅ 发送评论",
         "type": "button",
-        "action": "",
+        "action": "novelCommentAdd()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -140,7 +140,7 @@
     {
         "name": "\uD83D\uDDD1 删除评论",
         "type": "button",
-        "action": "",
+        "action": "novelCommentDelete()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
