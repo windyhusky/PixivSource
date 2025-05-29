@@ -125,21 +125,23 @@ function seriesUnWatch() {
     }
 }
 
-function userFollow(userId, restrict=0) {
+function userFollow(restrict=0) {
+    let novel = source.getLoginInfoMap()
     let resp = getPostBody(
         "https://www.pixiv.net/bookmark_add.php",
-        `mode=add&type=user&user_id=${userId}&tag=""&restrict=${restrict}&format=json`
+        `mode=add&type=user&user_id=${novel.userId}&tag=""&restrict=${restrict}&format=json`
     )
-    if (resp.error === true) sleepToast("关注失败")
-    else sleepToast("已成功关注")
+    if (resp.error === true) sleepToast(`关注【${novel.userName}】失败`)
+    else sleepToast(`已关注【${novel.userName}】`)
 }
-function userUnFollow(userId) {
+function userUnFollow() {
+    let novel = source.getLoginInfoMap()
     let resp = getPostBody(
         "https://www.pixiv.net/rpc_group_setting.php",
-        `mode=del&type=bookuser&id=${userId}`
+        `mode=del&type=bookuser&id=${novel.userId}`
     )
-    if (resp.error === true) sleepToast("取消关注失败")
-    else sleepToast("已取消关注")
+    if (resp.error === true) sleepToast(`取消关注【${novel.userName}】失败`)
+    else sleepToast(`已取消关注【${novel.userName}】`)
 }
 function userBlock(userId) {
     let action = "block"

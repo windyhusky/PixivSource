@@ -110,7 +110,7 @@
         {
         "name": "⭐️ 关注作者",
         "type": "button",
-        "action": "likeFactory('author' , 1)",
+        "action": "userFollow()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -128,7 +128,7 @@
     {
         "name": "☆ 取消关注",
         "type": "button",
-        "action": "likeFactory('author' , 0)",
+        "action": "userUnFollow()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
