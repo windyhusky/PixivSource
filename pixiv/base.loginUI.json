@@ -54,11 +54,7 @@
         }
     },
     {
-        "name": "系列名称",
-        "type": "text"
-    },
-    {
-        "name": "\uD83D\uDCC3 追更该书",
+        "name": "\uD83D\uDCC3 追更系列",
         "type": "button",
         "action": "likeFactory('series' , 1)",
         "style": {
@@ -67,7 +63,7 @@
         }
     },
     {
-        "name": "⤴️ 分享该书",
+        "name": "⤴️ 分享系列",
         "type": "button",
         "action": "",
         "style": {
@@ -115,6 +111,33 @@
             "layout_flexBasisPercent": -1
         }
     },
+        {
+        "name": "⭐️ 关注作者",
+        "type": "button",
+        "action": "likeFactory('author' , 1)",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⤴️ 分享作者",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "☆ 取消关注",
+        "type": "button",
+        "action": "likeFactory('author' , 0)",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
     {
         "name": "发送评论",
         "type": "text"
@@ -141,37 +164,6 @@
         "name": "\uD83D\uDDD1 删除评论",
         "type": "button",
         "action": "novelCommentDelete()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "作者名称",
-        "type": "text"
-    },
-    {
-        "name": "⭐️ 关注作者",
-        "type": "button",
-        "action": "likeFactory('author' , 1)",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⤴️ 分享作者",
-        "type": "button",
-        "action": "",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "☆ 取消关注",
-        "type": "button",
-        "action": "likeFactory('author' , 0)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
