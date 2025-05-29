@@ -83,7 +83,7 @@
     {
         "name": "❤️ 公开收藏",
         "type": "button",
-        "action": "likeFactory('novel' , 1)",
+        "action": "novelBookmarkAdd(0)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -92,7 +92,7 @@
     {
         "name": "㊙️ 私密收藏",
         "type": "button",
-        "action": "likeFactory('novel' , 2)",
+        "action": "novelBookmarkAdd(1)",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -101,7 +101,7 @@
     {
         "name": "\uD83E\uDE76 取消收藏",
         "type": "button",
-        "action": "likeFactory('novel' , 1)",
+        "action": "novelBookmarkDelete()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
