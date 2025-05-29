@@ -226,16 +226,22 @@ function novelCommentDelete() {
 // todo 获取正确的章节 id
 // todo 显示系列 章节 作者 名称
 
+function startBrowser(url, title) {
+    let platfrom = "mobile"
+    let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36 Reader"}}`
+    if (platfrom === "mobile") java.startBrowserAwait(`${url},${headers}`, title, false)
+    else java.startBrowser(url, title)
+}
+
 function shareFactory(type) {
     let novel = source.getLoginInfoMap()
-    let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36 Reader"}}`
     if (type.includes("author")) {
-        java.startBrowserAwait(`${urlUserUrl(novel.userId)},${headers}`, novel.userName, false).body()
+        startBrowser(urlUserUrl(novel.userId), novel.userName)
     }
     else if (type.includes("novel") || novel.seriesId === undefined) {
-        java.startBrowserAwait(`${urlNovelUrl(novel.novelId)},${headers}`, novel.title, false).body()
+        startBrowser(urlNovelUrl(novel.novelId), novel.title)
     }
     else if (type.includes("series") && novel.seriesId) {
-        java.startBrowserAwait(`${urlSeriesUrl(novel.seriesId)},${headers}`, novel.title, false).body()
+        startBrowser(urlSeriesUrl(novel.seriesId), novel.title)
     }
 }
