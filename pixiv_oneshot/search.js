@@ -75,44 +75,58 @@ function getUserNovels() {
         uidList = match.map(v => {
             return v.match(regNumber)[0]
         })
-
-        // 仅限3个作者
         java.log(JSON.stringify(uidList))
-        if (uidList.length >= 3) {
-            uidList.length = 3
-        }
     }
 
-    uidList.forEach(id => {
-        // 获取系列小说
+    let tempUids = []
+    for (let i in uidList) {
+        let id = uidList[i]
         let resp = getAjaxJson(urlUserAllWorks(id))
         // java.log(urlUserAllWorks(id))
         if (resp.error === true) {
             return []
         }
 
+        // 仅获取前3个有小说的作者
+        let novelsId = Object.keys(resp.body.novels)
+        // java.log(`${id}-${novelsId.length}`)
+        if (novelsId.length >= 1) tempUids.push(id)
+        if (tempUids.length === 3) {
+            java.log(JSON.stringify(tempUids))
+            break
+        }
+
         // 获取系列小说，与 util.handnovels 系列详情兼容
-        resp.body.novelSeries.forEach(novel =>{
-            novel.textCount = novel.publishedTotalCharacterCount
-            novel.description = novel.caption
-        })
-        novels = novels.concat(resp.body.novelSeries)
+        let seriesIds = []
+        if (resp.body.novelSeries.length >= 1) {
+            resp.body.novelSeries.forEach(novel =>{
+                seriesIds.push(novel.id)
+                novel.textCount = novel.publishedTotalCharacterCount
+                novel.description = novel.caption
+            })
+            novels = novels.concat(resp.body.novelSeries)
+        }
 
         // 获取单篇小说
-        let novelsId = Object.keys(resp.body.novels).reverse().slice((page - 1) * 20, page * 20)
-        let url = urlNovelsDetailed(id, novelsId)
-        util.debugFunc(() => {
-            java.log(`发送获取作者小说的Ajax请求:${url}`)
-        })
-        let userNovels = getWebviewJson(url, html => {
-            return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
-        }).body
-        // let userNovels = getAjaxJson(url).body
-        // 获取对应的小说 该序列是按照id排序
-        // 反转以按照更新时间排序
-        novels = novels.concat(Object.values(userNovels).reverse())
-    })
-
+        if (novelsId.length >= 1) {
+            let novelsId = Object.keys(resp.body.novels).reverse().slice((page - 1) * 20, page * 20)
+            let url = urlNovelsDetailed(id, novelsId)
+            util.debugFunc(() => {
+                java.log(`发送获取作者小说的Ajax请求:${url}`)
+            })
+            let userNovels = getWebviewJson(url, html => {
+                return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
+            }).body
+            // let userNovels = getAjaxJson(url).body
+            // 获取对应的小说 该序列是按照id排序
+            // 反转以按照更新时间排序
+            let single = Object.values(userNovels).reverse()
+            // 筛选真正的单篇小说
+            let realSingleNovels = single.filter(novel => (!seriesIds.includes(novel.seriesId)))
+            // java.log(JSON.stringify(realSingleNovel))
+            novels = novels.concat(realSingleNovels)
+        }
+    }
     util.debugFunc(() => {
         java.log(`获取用户搜索小说结束`)
     })
