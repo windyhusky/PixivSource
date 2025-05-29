@@ -221,22 +221,6 @@ function novelCommentDelete() {
 
 // todo 获取正确的章节 id
 // todo 显示系列 章节 作者 名称
-function likeFactory(type, code) {
-    let novel = source.getLoginInfoMap()
-    if (type.includes("series") && novel.seriesId) {
-        if (code === 1 ) return seriesWatch(novel.seriesId)
-        else return seriesUnWatch(novel.seriesId)
-    }
-    if (type.includes("novel")) {
-        if (code === 1 ) return novelBookmarkAdd(novel.id,0)
-        else if (code === 2 ) return novelBookmarkAdd(novel.id,1)
-        else return novelBookmarkDelete(novel.id)
-    }
-    if (type.includes("author")) {
-        if (code === 1 ) return userFollow(novel.userId)
-        else return userUnFollow(novel.userId)
-    }
-}
 
 function shareFactory(type) {
     let novel = source.getLoginInfoMap()
