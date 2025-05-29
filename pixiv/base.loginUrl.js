@@ -182,7 +182,7 @@ function getNovelCommentID(novelId, comment) {
 function novelCommentDelete() {
     let novel = source.getLoginInfoMap()
     let novelId = novel.id
-    let comment = result.get("发送评论")
+    let comment = String(result.get("发送评论"))
     let commentIDs = getNovelCommentID(novelId, comment)
     // java.log(JSON.stringify(commentIDs))
     commentIDs.forEach(commentID =>{
@@ -192,7 +192,7 @@ function novelCommentDelete() {
         )
         java.log(JSON.stringify(resp))
         if (resp.error === true) sleepToast("评论删除失败")
-        else sleepToast(`已删除评论：\n${comment}`)
+        else sleepToast(`已在【${novel.title}】删除评论：\n${comment}`)
     })
 }
 
