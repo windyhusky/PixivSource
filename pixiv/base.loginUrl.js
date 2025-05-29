@@ -143,23 +143,25 @@ function userUnFollow() {
     if (resp.error === true) sleepToast(`取消关注【${novel.userName}】失败`)
     else sleepToast(`已取消关注【${novel.userName}】`)
 }
-function userBlock(userId) {
+
+function userBlock() {
     let action = "block"
-    let lastBlock = JSON.parse(cache.get(`block${userId}`))
+    let novel = source.getLoginInfoMap()
+    let lastBlock = JSON.parse(cache.get(`block${novel.userId}`))
     if (lastBlock === true) action = "unblock"
 
     let resp = getPostBody(
         `https://www.pixiv.net/ajax/block/save`,
-        JSON.stringify({"user_id":userId, "action": action})
+        JSON.stringify({"user_id": novel.userId, "action": action})
     )
-    java.log(JSON.stringify({"user_id":userId, "action": action}))
+    // java.log(JSON.stringify({"user_id": novel.userId, "action": action}))
     if (resp.error === true) sleepToast("操作失败")
     else if (lastBlock === true) {
-        cache.put(`block${userId}`, false)
-        sleepToast("已取消拉黑该作者")
+        cache.put(`block${novel.userId}`, false)
+        sleepToast(`已取消拉黑${novel.userName}`)
     } else {
-        cache.put(`block${userId}`, true)
-        sleepToast("已拉黑该作者")
+        cache.put(`block${novel.userId}`, true)
+        sleepToast(`已拉黑${novel.userName}`)
     }
 }
 
