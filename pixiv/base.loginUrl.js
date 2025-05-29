@@ -73,7 +73,7 @@ function getNovelBookmarkId(novelId) {
     }
     return bookmarkId
 }
-
+// todo 获取正确的章节 id，目前是首篇
 function novelBookmarkAdd(restrict=0) {
     let novel = source.getLoginInfoMap()
     let resp = getPostBody(
@@ -87,6 +87,7 @@ function novelBookmarkAdd(restrict=0) {
         sleepToast(`已收藏【${novel.title}】`)
     }
 }
+
 function novelBookmarkDelete() {
     let novel = source.getLoginInfoMap()
     let resp = getPostBody(
@@ -96,6 +97,7 @@ function novelBookmarkDelete() {
     if (resp.error === true) sleepToast(`取消收藏【${novel.title}】失败`)
     else sleepToast(`已取消收藏【${novel.title}】`)
 }
+
 function novelsBookmarkDelete(novelIds) {
     let bookmarkIds = []
     novelIds.forEach(novelId => {bookmarkIds.push(getNovelBookmarkId(novelId))})
@@ -120,6 +122,7 @@ function seriesWatch() {
         sleepToast(`【${novel.title}】非系列小说，无法加入追更列表`)
     }
 }
+
 function seriesUnWatch() {
     let novel = source.getLoginInfoMap()
     if (novel.seriesId) {
@@ -143,6 +146,7 @@ function userFollow(restrict=0) {
     if (resp.error === true) sleepToast(`关注【${novel.userName}】失败`)
     else sleepToast(`已关注【${novel.userName}】`)
 }
+
 function userUnFollow() {
     let novel = source.getLoginInfoMap()
     let resp = getPostBody(
@@ -222,9 +226,6 @@ function novelCommentDelete() {
         else sleepToast(`已在【${novel.title}】删除评论：\n${comment}`)
     })
 }
-
-// todo 获取正确的章节 id
-// todo 显示系列 章节 作者 名称
 
 function startBrowser(url, title) {
     let platfrom = "mobile"
