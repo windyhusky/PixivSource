@@ -150,23 +150,23 @@ function search(name, type, page) {
 }
 
 function getSeries() {
-    let MAXPAGES = 1, novels = []
-    let novelName = String(java.get("keyword"))
-    let resp = search(novelName, "series", 1)
-    novels = novels.concat(resp.data)
-    for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
-        novels = novels.concat(search(novelName,"series", page).data)
-    }
-    return novels
-}
-
-function getNovels() {
     if (JSON.parse(result).error !== true) {
-        cache.put(urlSearchNovel(java.get("keyword"), java.get("page")), result, 30*60)  // 加入缓存
+        cache.put(urlSearchSeries(java.get("keyword"), java.get("page")), result, 30*60)  // 加入缓存
         return JSON.parse(result).body.novel.data
     } else {
         return []
     }
+}
+
+function getNovels() {
+    let MAXPAGES = 1, novels = []
+    let novelName = String(java.get("keyword"))
+    let resp = search(novelName, "novel", 1)
+    novels = novels.concat(resp.data)
+    for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
+        novels = novels.concat(search(novelName,"novel", page).data)
+    }
+    return novels
 }
 
 function getConvertNovels() {
