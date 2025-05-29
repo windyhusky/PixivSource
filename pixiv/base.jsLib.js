@@ -87,6 +87,9 @@ function urlSeriesNovels(seriesId, limit, offset) {
     return `https://www.pixiv.net/ajax/novel/series_content/${seriesId}?limit=${limit}&last_order=${offset}&order_by=asc&lang=zh`
 }
 
+function urlUserUrl(userID) {
+    return `https://www.pixiv.net/user/${userID}`
+}
 function urlUserWorkLatest(userID) {
     return `https://www.pixiv.net/ajax/user/${userID}/works/latest`
 }
