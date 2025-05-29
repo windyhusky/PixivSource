@@ -164,6 +164,14 @@ function novelCommentAdd() {
         "https://www.pixiv.net/novel/rpc/post_comment.php",
         `type=comment&novel_id=${novelId}&author_user_id=${userId}&comment=${encodeURI(comment)}`
     )
+
+    // let body = `type=comment&novel_id=${novelId}&author_user_id=${userId}`
+    // if (comment.includes("；")) {
+    //     let comment = comment.split("；")
+    //     body += `&comment=${encodeURI(comment[0])}&parent_id=${comment[1]}`
+    // } else body += `&comment=${encodeURI(comment)}`
+    // let resp = getPostBody("https://www.pixiv.net/novel/rpc/post_comment.php", body)
+
     if (resp.error === true) sleepToast("评论失败")
     else sleepToast(`已在【${novel.title}】发布评论：\n${comment}`)
 }
