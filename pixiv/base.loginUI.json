@@ -56,7 +56,7 @@
     {
         "name": "\uD83D\uDCC3 追更系列",
         "type": "button",
-        "action": "likeFactory('series' , 1)",
+        "action": "seriesWatch()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -74,7 +74,7 @@
     {
         "name": "\uD83E\uDE76 取消追更",
         "type": "button",
-        "action": "likeFactory('series' , 0)",
+        "action": "seriesUnWatch()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1

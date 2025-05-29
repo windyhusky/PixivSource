@@ -102,21 +102,27 @@ function novelsBookmarkDelete(novelIds) {
     else sleepToast("已取消收藏")
 }
 
-function seriesWatch(seriesID) {
-    let resp = getPostBody(
-        `https://www.pixiv.net/ajax/novel/series/${seriesID}/watch`,
-        JSON.stringify({})
-    )
-    if (resp.error === true) sleepToast("追更失败")
-    else sleepToast("已成功追更")
+function seriesWatch() {
+    let novel = source.getLoginInfoMap()
+    if (novel.seriesId) {
+        let resp = getPostBody(
+            `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
+            JSON.stringify({})
+        )
+        if (resp.error === true) sleepToast(`追更【${novel.title}】失败`)
+        else sleepToast(`已追更【${novel.title}】`)
+    }
 }
-function seriesUnWatch(seriesID) {
-    let resp = getPostBody(
-        `https://www.pixiv.net/ajax/novel/series/${seriesID}/unwatch`,
-        JSON.stringify({})
-    )
-    if (resp.error === true) sleepToast("取消追更失败")
-    else sleepToast("已取消追更")
+function seriesUnWatch() {
+    let novel = source.getLoginInfoMap()
+    if (novel.seriesId) {
+        let resp = getPostBody(
+            `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
+            JSON.stringify({})
+        )
+        if (resp.error === true) sleepToast(`取消追更【${novel.title}】失败`)
+        else sleepToast(`已取消追更【${novel.title}】`)
+    }
 }
 
 function userFollow(userId, restrict=0) {
