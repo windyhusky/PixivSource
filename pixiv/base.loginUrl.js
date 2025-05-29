@@ -69,7 +69,7 @@ function getPostBody(url, body, headers) {
 function getNovelBookmarkId(novelId) {
     let bookmarkId = cache.get(`collect${novelId}`)
     if (bookmarkId === null) {
-        bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId)).body.bookmarkData.id
+        bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
     }
     return bookmarkId
 }
@@ -169,7 +169,7 @@ function novelCommentAdd() {
 }
 
 function getNovelCommentID(novelId, comment) {
-    let resp = getAjaxJson(urlNovelComments(novelId, 0, 50))
+    let resp = getAjaxJson(urlNovelComments(novelId, 0, 50), true)
     let list = resp.body.comments.filter(item =>
         (item.userId === String(cache.get("pixiv:uid")) && item.comment === comment)
     )
