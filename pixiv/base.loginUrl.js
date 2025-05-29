@@ -204,6 +204,7 @@ function novelCommentDelete() {
     })
 }
 
+// todo 获取正确的章节 id
 // todo 显示系列 章节 作者 名称
 function likeFactory(type, code) {
     let novel = source.getLoginInfoMap()
