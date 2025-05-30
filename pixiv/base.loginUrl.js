@@ -1,3 +1,23 @@
+function login() {
+    resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false).body()
+    getCsrfToken(); getCookie()
+}
+function logout() {
+    removeCookie()
+    java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
+    removeCookie()
+    sleepToast(`已退出当前账号\n退出后请点击右上角的✔️退出\n登录请点击“登录账号”进行登录`)
+}
+function removeCookie() {
+    cookie.removeCookie('https://www.pixiv.net')
+    cookie.removeCookie('https://accounts.pixiv.net')
+    cookie.removeCookie('https://accounts.google.com')
+    cookie.removeCookie('https://api.weibo.com')
+    cache.delete("pixivCookie")
+    cache.delete("csfrToken")  // 与登录设备有关
+    cache.delete("headers")
+}
+
 // 获取 Csrf Token，以便进行收藏等请求
 // 获取方法来自脚本 Pixiv Previewer
 // https://github.com/Ocrosoft/PixivPreviewer
@@ -18,26 +38,6 @@ function getCookie() {
         cache.put("pixivCookie", pixivCookie, 60*60)
         return pixivCookie
     }
-}
-
-function login() {
-    resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false).body()
-    getCsrfToken(); getCookie()
-}
-function logout() {
-    removeCookie()
-    java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
-    removeCookie()
-    sleepToast(`已退出当前账号\n退出后请点击右上角的✔️退出\n登录请点击“登录账号”进行登录`)
-}
-function removeCookie() {
-    cookie.removeCookie('https://www.pixiv.net')
-    cookie.removeCookie('https://accounts.pixiv.net')
-    cookie.removeCookie('https://accounts.google.com')
-    cookie.removeCookie('https://api.weibo.com')
-    cache.delete("pixivCookie")
-    cache.delete("csfrToken")  // 与登录设备有关
-    cache.delete("headers")
 }
 
 function getPostBody(url, body, headers) {
