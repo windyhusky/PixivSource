@@ -60,10 +60,13 @@ function getPostBody(url, body, headers) {
     } else if (typeof(body) == "string") {
         headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
     }
-    headers["user-agent"] = cache.get("userAgent")
-    headers["x-csrf-token"] = cache.get("csfrToken")
-    headers["Cookie"] = cache.get("pixivCookie")
-    return JSON.parse(java.post(url, body, headers).body())
+    try {
+        return JSON.parse(java.post(url, body, headers).body())
+    } catch (e) {
+        java.log(e)
+        sleepToast("Cookies 失效，请求失败，请重新登陆后再尝试")
+        return undefined
+    }
 }
 
 function getNovelBookmarkId(novelId) {
