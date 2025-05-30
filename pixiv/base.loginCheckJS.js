@@ -367,5 +367,11 @@ function getHeaders() {
 }
 
 publicFunc(); getPixivUid(); getCookie(); getUserAgent(); getHeaders()
-if (!util.FAST) checkMessageThread()
+if (result.code() === 200) {
+    if (!util.FAST) checkMessageThread()
+}
+else if (result.code() === 400) {
+    sleepToast("请重新登录")
+    source.login()
+}
 java.getStrResponse(null, null)
