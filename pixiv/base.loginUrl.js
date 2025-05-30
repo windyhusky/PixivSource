@@ -228,12 +228,9 @@ function novelCommentDelete() {
     })
 }
 
-
 function startBrowser(url, title) {
-    let platfrom = "mobile"
     let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36 Reader"}}`
-    if (platfrom === "mobile") java.startBrowserAwait(`${url},${headers}`, title, false)
-    else java.startBrowser(url, title)
+    java.startBrowser(`${url},${headers}`, title)
 }
 
 function shareFactory(type) {
