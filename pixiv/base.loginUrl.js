@@ -247,14 +247,14 @@ function shareFactory(type) {
 }
 
 function startPixivSettings() {
-    java.startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
+    startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
 function startGithub() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
+    startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
 }
 function startGithubIssue() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
+    startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
 }
 function startGithubReadme() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
+    startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
