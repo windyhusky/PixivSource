@@ -40,19 +40,6 @@ function removeCookie() {
     cache.delete("headers")
 }
 
-function startPixivSettings() {
-    java.startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
-}
-function startGithub() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
-}
-function startGithubIssue() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
-}
-function startGithubReadme() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
-}
-
 function getPostBody(url, body, headers) {
     if (headers === undefined) headers = JSON.parse(cache.get("headers"))
     if (isJsonString(body)) {
@@ -69,13 +56,6 @@ function getPostBody(url, body, headers) {
     }
 }
 
-function getNovelBookmarkId(novelId) {
-    let bookmarkId = cache.get(`collect${novelId}`)
-    if (bookmarkId === null) {
-        bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
-    }
-    return bookmarkId
-}
 // todo 获取正确的章节 id，目前是首篇
 function novelBookmarkAdd(restrict=0) {
     let novel = source.getLoginInfoMap()
@@ -89,6 +69,14 @@ function novelBookmarkAdd(restrict=0) {
         cache.put(`collect${novel.id}`, resp.body);
         sleepToast(`已收藏【${novel.title}】`)
     }
+}
+
+function getNovelBookmarkId(novelId) {
+    let bookmarkId = cache.get(`collect${novelId}`)
+    if (bookmarkId === null) {
+        bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
+    }
+    return bookmarkId
 }
 
 function novelBookmarkDelete() {
@@ -248,4 +236,17 @@ function shareFactory(type) {
     else if (type.includes("series") && novel.seriesId) {
         startBrowser(urlSeriesUrl(novel.seriesId), novel.title)
     }
+}
+
+function startPixivSettings() {
+    java.startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
+}
+function startGithub() {
+    java.startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
+}
+function startGithubIssue() {
+    java.startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
+}
+function startGithubReadme() {
+    java.startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
