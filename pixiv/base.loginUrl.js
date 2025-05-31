@@ -72,10 +72,10 @@ function novelBookmarkAdd(restrict=0) {
     )
     if (resp === undefined) {}
     if (resp.error === true) sleepToast(`⚠️ 收藏【${novel.title}】失败`)
-    else if (resp.body === null) sleepToast(`已经收藏【${novel.title}】了`)
+    else if (resp.body === null) sleepToast(`✅ 已经收藏【${novel.title}】了`)
     else {
         cache.put(`collect${novel.id}`, resp.body);
-        sleepToast(`已收藏【${novel.title}】`)
+        sleepToast(`✅ 已收藏【${novel.title}】`)
     }
 }
 
@@ -95,7 +95,7 @@ function novelBookmarkDelete() {
     )
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast(`⚠️ 取消收藏【${novel.title}】失败`)
-    else sleepToast(`已取消收藏【${novel.title}】`)
+    else sleepToast(`✅ 已取消收藏【${novel.title}】`)
 }
 
 function novelsBookmarkDelete(novelIds) {
@@ -107,7 +107,7 @@ function novelsBookmarkDelete(novelIds) {
     )
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast("⚠️ 取消收藏失败")
-    else sleepToast("已取消收藏")
+    else sleepToast("✅ 已取消收藏")
 }
 
 function seriesWatch() {
@@ -119,7 +119,7 @@ function seriesWatch() {
         )
         if (resp === undefined) {}
         else if (resp.error === true) sleepToast(`⚠️ 追更【${novel.title}】失败`)
-        else sleepToast(`已追更【${novel.title}】`)
+        else sleepToast(`✅ 已追更【${novel.title}】`)
     } else {
         sleepToast(`⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
     }
@@ -134,7 +134,7 @@ function seriesUnWatch() {
         )
         if (resp === undefined) {}
         else if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.title}】失败`)
-        else sleepToast(`已取消追更【${novel.title}】`)
+        else sleepToast(`✅ 已取消追更【${novel.title}】`)
     } else {
         sleepToast(`⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
     }
@@ -148,7 +148,7 @@ function userFollow(restrict=0) {
     )
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast(`⚠️ 关注【${novel.userName}】失败`)
-    else sleepToast(`已关注【${novel.userName}】`)
+    else sleepToast(`✅ 已关注【${novel.userName}】`)
 }
 
 
@@ -160,7 +160,7 @@ function userUnFollow() {
     )
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast(`⚠️ 取消关注【${novel.userName}】失败`)
-    else sleepToast(`已取消关注【${novel.userName}】`)
+    else sleepToast(`✅ 已取消关注【${novel.userName}】`)
 }
 
 function userBlock() {
@@ -178,10 +178,10 @@ function userBlock() {
     else if (resp.error === true) sleepToast("⚠️ 操作失败")
     else if (lastBlock === true) {
         cache.put(`block${novel.userId}`, false)
-        sleepToast(`已取消拉黑${novel.userName}`)
+        sleepToast(`✅ 已取消拉黑${novel.userName}`)
     } else {
         cache.put(`block${novel.userId}`, true)
-        sleepToast(`已拉黑${novel.userName}`)
+        sleepToast(`✅ 已拉黑${novel.userName}`)
     }
 }
 
@@ -207,7 +207,7 @@ function novelCommentAdd() {
 
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast("⚠️ 评论失败")
-    else sleepToast(`已在【${novel.title}】发布评论：\n${comment}`)
+    else sleepToast(`✅ 已在【${novel.title}】发布评论：\n${comment}`)
 }
 
 function getNovelCommentID(novelId, comment) {
@@ -238,7 +238,7 @@ function novelCommentDelete() {
         // java.log(JSON.stringify(resp))
         if (resp === undefined) {}
         else if (resp.error === true) sleepToast("⚠️ 评论删除失败")
-        else sleepToast(`已在【${novel.title}】删除评论：\n${comment}`)
+        else sleepToast(`✅ 已在【${novel.title}】删除评论：\n${comment}`)
     })
 }
 
