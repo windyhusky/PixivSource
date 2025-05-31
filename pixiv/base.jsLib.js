@@ -9,6 +9,9 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     }
     return JSON.parse(v)
 }
+function isHtmlString(str) {
+    return str.startsWith("<!DOCTYPE html>")
+}
 function isJsonString(str) {
     try {
         if (typeof JSON.parse(str) === "object") {

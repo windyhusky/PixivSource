@@ -221,7 +221,7 @@ function publicFunc() {
     u.getNovelRes = function (result) {
         let novelId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
-        let isHtml = result.startsWith("<!DOCTYPE html>")
+        let isHtml = isHtmlString(result)
 
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
@@ -261,7 +261,7 @@ function publicFunc() {
     u.getNovelResSeries = function (result) {
         let seriesId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
-        let isHtml = result.startsWith("<!DOCTYPE html>")
+        let isHtml = isHtmlString(result)
 
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
