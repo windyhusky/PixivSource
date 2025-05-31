@@ -228,8 +228,13 @@ function novelCommentDelete() {
     if (comment === "") {
         return sleepToast("⚠️ 请输入需要删除的评论")
     }
+
     let commentIDs = getNovelCommentID(novelId, comment)
-    // java.log(JSON.stringify(commentIDs))
+    java.log(JSON.stringify(commentIDs))
+    if (commentIDs.length === 0) {
+        return sleepToast(`⚠️ 未能找到这条评论\n请检查是否有错别字或标点符号是否一致`)
+    }
+
     commentIDs.forEach(commentID =>{
         let resp = getPostBody(
             "https://www.pixiv.net/novel/rpc_delete_comment.php",
