@@ -188,7 +188,10 @@ function novelCommentAdd() {
     let userId = cache.get("pixiv:uid")
     let novel = source.getLoginInfoMap()
     let novelId = novel.id
-    let comment = String(result.get("发送评论"))
+    let comment = String(result.get("发送评论")).trim()
+    if (comment === "") {
+        return sleepToast("⚠️ 请输入需要发送的评论")
+    }
     let resp = getPostBody(
         "https://www.pixiv.net/novel/rpc/post_comment.php",
         `type=comment&novel_id=${novelId}&author_user_id=${userId}&comment=${encodeURI(comment)}`
@@ -220,7 +223,10 @@ function getNovelCommentID(novelId, comment) {
 function novelCommentDelete() {
     let novel = source.getLoginInfoMap()
     let novelId = novel.id
-    let comment = String(result.get("发送评论"))
+    let comment = String(result.get("发送评论")).trim()
+    if (comment === "") {
+        return sleepToast("⚠️ 请输入需要删除的评论")
+    }
     let commentIDs = getNovelCommentID(novelId, comment)
     // java.log(JSON.stringify(commentIDs))
     commentIDs.forEach(commentID =>{
@@ -228,7 +234,7 @@ function novelCommentDelete() {
             "https://www.pixiv.net/novel/rpc_delete_comment.php",
             `i_id=${novelId}&del_id=${commentID}`
         )
-        java.log(JSON.stringify(resp))
+        // java.log(JSON.stringify(resp))
         if (resp === undefined) {}
         else if (resp.error === true) sleepToast("⚠️ 评论删除失败")
         else sleepToast(`已在【${novel.title}】删除评论：\n${comment}`)
