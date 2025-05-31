@@ -221,7 +221,7 @@ function publicFunc() {
     u.getNovelRes = function (result) {
         let novelId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
-        let isHtml = result.startsWith("<!DOCTYPE html>")
+        let isHtml = isHtmlString(result)
 
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
@@ -261,7 +261,7 @@ function publicFunc() {
     u.getNovelResSeries = function (result) {
         let seriesId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
-        let isHtml = result.startsWith("<!DOCTYPE html>")
+        let isHtml = isHtmlString(result)
 
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
@@ -366,6 +366,18 @@ function getHeaders() {
     return headers
 }
 
-publicFunc(); getPixivUid(); getCookie(); getUserAgent(); getHeaders()
-if (!util.FAST) checkMessageThread()
+publicFunc(); getUserAgent()
+if (result.code() === 200) {
+    getPixivUid(); getCookie(); getHeaders()
+    if (!util.FAST) checkMessageThread()  // 检测过度访问
+//     if (isHtmlString(result.body())) {  // 检测登录
+//         let loginStatus = getWebviewJson(baseUrl, html => {
+//             return JSON.stringify(html.match(/login:\s*'([^']+)'/)[1])
+//         })
+//         if (loginStatus !== "yes") sleepToast("请登录")
+//     }
+// } else if (result.code() === 400) {
+//     sleepToast("请重新登录")
+//     source.login()
+}
 java.getStrResponse(null, null)
