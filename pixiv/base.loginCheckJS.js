@@ -368,7 +368,10 @@ function getHeaders() {
 
 publicFunc(); getPixivUid(); getCookie(); getUserAgent(); getHeaders()
 if (result.code() === 200) {
-    if (!util.FAST) checkMessageThread()
+    let loginStatus = result.body().match(/login:\s*'([^']+)'/)[1]
+    if (loginStatus === "yes") {
+        if (!util.FAST) checkMessageThread()
+    } else sleepToast("请登录")
 }
 else if (result.code() === 400) {
     sleepToast("请重新登录")
