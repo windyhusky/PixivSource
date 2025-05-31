@@ -366,14 +366,17 @@ function getHeaders() {
     return headers
 }
 
-publicFunc(); getPixivUid(); getCookie(); getUserAgent(); getHeaders()
+publicFunc(); getUserAgent()
 if (result.code() === 200) {
-    let loginStatus = result.body().match(/login:\s*'([^']+)'/)[1]
-    if (loginStatus === "yes") {
-        if (!util.FAST) checkMessageThread()
-    } else sleepToast("请登录")
-}
-else if (result.code() === 400) {
+    getPixivUid(); getCookie(); getHeaders()
+    if (!util.FAST) checkMessageThread()  // 检测过度访问
+    if (isHtmlString(result.body())) {  // 检测登录
+        let loginStatus = getWebviewJson(baseUrl, html => {
+            return JSON.stringify(html.match(/login:\s*'([^']+)'/)[1])
+        })
+        if (loginStatus !== "yes") sleepToast("请登录")
+    }
+} else if (result.code() === 400) {
     sleepToast("请重新登录")
     source.login()
 }
