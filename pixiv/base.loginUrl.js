@@ -12,7 +12,7 @@ function logout() {
     removeCookie()
     java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
     removeCookie()
-    sleepToast(`已退出当前账号\n退出后请点击右上角的✔️退出\n登录请点击“登录账号”进行登录`)
+    sleepToast(`✅已退出当前账号\n\n退出后请点击右上角的 ✔️ 退出\n\n登录请点击【登录账号】进行登录`)
 }
 
 function removeCookie() {
@@ -58,7 +58,7 @@ function getPostBody(url, body, headers) {
         return JSON.parse(java.post(url, body, headers).body())
     } catch (e) {
         java.log(e)
-        sleepToast("Cookies 失效，请求失败，请重新登陆后再尝试")
+        sleepToast(`⚠️ Cookies 失效\n请清除 Cookie 后再次登陆刷新 Cookie\n\n发现 - 长按"Pixiv" - 编辑 - 菜单 - 清除 Cookie`)
         return undefined
     }
 }
