@@ -70,6 +70,7 @@ function novelBookmarkAdd(restrict=0) {
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
     )
+    if (resp === undefined) {}
     if (resp.error === true) sleepToast(`⚠️ 收藏【${novel.title}】失败`)
     else if (resp.body === null) sleepToast(`已经收藏【${novel.title}】了`)
     else {
