@@ -1,7 +1,7 @@
 function login() {
     let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false)
     if (resp.code() === 200) {
-        getPixivUid(); getCookie(); getCsrfToken()
+        getCookie(); getCsrfToken()
     } else {
         java.log(resp.code()); sleepToast("⚠️ 登录失败")
     }
