@@ -206,6 +206,11 @@ function novelFilter(novels) {
         java.log(`搜索作者：${keyword}`)
         java.put("keyword", keyword)
         novels = novels.concat(getUserNovels())
+    } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
+        keyword = keyword.slice(1)
+        java.put("keyword", keyword)
+        novels = novels.concat(getNovels())
+        novels = novels.concat(getSeries())
     } else {
         novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
