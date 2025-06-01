@@ -33,30 +33,41 @@ function removeCookie() {
     cache.delete("headers")
 }
 
+function getUserAgent() {
+    let userAgent = String(source.getHeaderMap(true)).slice(12,-1)
+    cache.put("userAgent", userAgent)
+    // java.log(userAgent)
+    return userAgent
+}
+function startBrowser(url, title) {
+    let userAgent = cache.get("userAgent")
+    if (userAgent === null) userAgent = getUserAgent()
+    java.startBrowser(`${url},{"headers": {${userAgent}}}`, title)
+}
 function startPixivSettings() {
-    java.startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
+    startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
 function startPixivMessages() {
-    java.startBrowser("https://www.pixiv.net/messages.php", "查看私信")
+    startBrowser("https://www.pixiv.net/messages.php", "查看私信")
 }
 function startPixivNotification() {
-    java.startBrowser("https://www.pixiv.net/notify_all.php", "查看通知")
+    startBrowser("https://www.pixiv.net/notify_all.php", "查看通知")
 }
 function startPixivMuteUser() {
-    java.startBrowser("https://www.pixiv.net/settings/viewing/mute?type=user", "屏蔽用户")
+    startBrowser("https://www.pixiv.net/settings/viewing/mute?type=user", "屏蔽用户")
 }
 function startPixivBlockUsers() {
-    java.startBrowser("https://www.pixiv.net/settings/privacy/block-users", "查黑名单")
+    startBrowser("https://www.pixiv.net/settings/privacy/block-users", "查黑名单")
 }
 
 function startGithub() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
+    startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
 }
 function startGithubIssue() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
+    startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
 }
 function startGithubReadme() {
-    java.startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
+    startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 
 function updateSource() {
