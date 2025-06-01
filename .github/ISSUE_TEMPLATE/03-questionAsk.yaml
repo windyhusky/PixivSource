@@ -8,12 +8,12 @@ body:
       label: 确认 / Assignments
       description: 提交 issue 请确保完成以下前提，否则该 issue 可能被忽略 / Make sure you read checkbox below
       options:
-        - label: 搜索现有 issues，不存在相似或相关的 issue；阅读相关 ReadeMe 文档，文档中不存在相关内容或内容已失效 / No related issue & ReadMe
+        - label: 搜索现有 issues，不存在相似或相关的 issue；阅读相关 ReadeMe 文档，文档中不存在相关内容（除非内容已失效） / No related issue & ReadMe (Unless the content is expired)
           required: true
 
   - type: textarea
     attributes:
-      label: 你的问题 / Question
+      label: 你的问题 / your Question
       placeholder: 请清晰的、详细的描述你所遇到的问题（如何连接、配置代理不在回答的范围内）
     validations:
       required: true
