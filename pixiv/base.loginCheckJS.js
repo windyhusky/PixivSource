@@ -374,7 +374,28 @@ function getHeaders() {
     return headers
 }
 
-publicFunc(); getUserAgent()
+function getBlockAuthorsFromSource() {
+    let authors
+    try {
+        authors = JSON.parse(`[${source.getVariable()}]`)
+        // sleepToast(JSON.stringify(authors))
+    } catch (e) {
+        authors = []
+        sleepToast("⚠️源变量设置有误\n\n输入作者ID，以英文逗号间隔，保存")
+    }
+    return authors
+}
+
+function syncBlockAuthorList() {
+    let authors1 = getFromCache("blockAuthorList")
+    let authors2 = getBlockAuthorsFromSource()
+    if (authors1 !== null && (authors1.length > authors2.length)) {
+        cache.put("blockAuthorList", JSON.stringify(authors2))
+        java.log("屏蔽作者：已将源变量同步至内存")
+    }
+}
+
+publicFunc(); getUserAgent(); syncBlockAuthorList()
 if (result.code() === 200) {
     getPixivUid(); getCookie(); getHeaders()
     if (!util.FAST) checkMessageThread()  // 检测过度访问
