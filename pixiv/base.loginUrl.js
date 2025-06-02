@@ -244,18 +244,16 @@ function userBlackList() {
 }
 
 function userBlock() {
-    // cache.delete("blockAuthorList")
     let authors = getFromCache("blockAuthorList")
+    // sleepToast(JSON.stringify(authors))
     if (authors === null) {
         try {
             authors = JSON.parse(`[${source.getVariable()}]`)
-            sleepToast(`[${authors.toString()}]`)
+            // sleepToast(JSON.stringify(authors))
         } catch (e) {
             authors = []
-            sleepToast("⚠️源变量设置有误\n\n输入作者ID，一行一个，可添加作者名，保存")
+            sleepToast("⚠️源变量设置有误\n\n输入作者ID，以英文逗号间隔，保存")
         }
-    } else {
-        sleepToast(`[${authors.toString()}]`)
     }
 
     let novel = source.getLoginInfoMap()
@@ -263,12 +261,12 @@ function userBlock() {
         authors = authors.filter(author => author !== Number(novel.userId))
         sleepToast(`✅ 已将【${novel.userName}】移出屏蔽名单，搜索发现均可以显示其小说`)
     } else if (novel.userId !== undefined && novel.userId !== null) {
-        authors.push(novel.userId)
+        authors.push(Number(novel.userId))
         sleepToast(`✅ 已将【${novel.userName}】加入屏蔽名单，搜索发现均不会显示其小说`)
     }
-    // cache.put("blockAuthorList", JSON.stringify(authors))
+    cache.put("blockAuthorList", JSON.stringify(authors))
     source.setVariable(authors.toString())
-    sleepToast(`[${authors.toString()}]`)
+    // sleepToast(JSON.stringify(authors))
 }
 
 function novelCommentAdd() {
