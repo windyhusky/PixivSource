@@ -244,12 +244,18 @@ function userBlackList() {
 }
 
 function userBlock() {
-    try {
-        authors = JSON.parse(`[${source.getVariable()}]`)
+    // cache.delete("blockAuthorList")
+    let authors = getFromCache("blockAuthorList")
+    if (authors === null) {
+        try {
+            authors = JSON.parse(`[${source.getVariable()}]`)
+            sleepToast(`[${authors.toString()}]`)
+        } catch (e) {
+            authors = []
+            sleepToast("⚠️源变量设置有误\n\n输入作者ID，一行一个，可添加作者名，保存")
+        }
+    } else {
         sleepToast(`[${authors.toString()}]`)
-    } catch (e) {
-        authors = []
-        sleepToast("⚠️源变量设置有误\n\n输入作者ID，一行一个，可添加作者名，保存")
     }
 
     let novel = source.getLoginInfoMap()
