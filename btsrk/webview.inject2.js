@@ -10,7 +10,7 @@ if (!/^https:\/\/(so\.toutiao\.com\/search\/?|quark\.sm\.cn\/s|wap\.sogou\.com\/
     btn2.innerHTML = `<button type="button" id='impotr-booksource' style="z-index: 9999999999;
     position: fixed;bottom: 13%;left: 10%;background-color: rgb(255, 153, 0);border-radius: 2px;border: 1px solid rgb(255, 153, 0);color: #fff;
     font-size:${window.innerWidth/80}vw;font-weight: 400;padding: ${window.innerWidth/400}vw ${window.innerWidth/150}vw;
-    "onclick="window.open('legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json','_blank');">导入书源</button>`;
+    "onclick="window.open('legado://import/importonline?src=https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json','_blank');">导入书源</button>`;
     document.body.appendChild(btn2);
 
 }
