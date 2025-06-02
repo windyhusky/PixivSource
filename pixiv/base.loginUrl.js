@@ -221,8 +221,8 @@ function userFollowFactory(code=1) {
     else if (code === 1) userFollow()
 }
 
-function userBlock() {
-    let action = "block"
+function userBlackList() {
+    let action = "block"  // 拉黑作者，非屏蔽作恶者作品
     let novel = source.getLoginInfoMap()
     let lastStatus = getFromCache(`block${novel.userId}`)
     if (lastStatus === true) action = "unblock"
@@ -241,6 +241,28 @@ function userBlock() {
         cache.put(`block${novel.userId}`, true)
         sleepToast(`✅ 已拉黑${novel.userName}`)
     }
+}
+
+function userBlock() {
+    try {
+        authors = JSON.parse(`[${source.getVariable()}]`)
+        sleepToast(`[${authors.toString()}]`)
+    } catch (e) {
+        authors = []
+        sleepToast("⚠️源变量设置有误\n\n输入作者ID，一行一个，可添加作者名，保存")
+    }
+
+    let novel = source.getLoginInfoMap()
+    if (authors.includes(Number(novel.userId))) {
+        authors = authors.filter(author => author !== Number(novel.userId))
+        sleepToast(`✅ 已将【${novel.userName}】移出屏蔽名单，搜索发现均可以显示其小说`)
+    } else if (novel.userId !== undefined && novel.userId !== null) {
+        authors.push(novel.userId)
+        sleepToast(`✅ 已将【${novel.userName}】加入屏蔽名单，搜索发现均不会显示其小说`)
+    }
+    // cache.put("blockAuthorList", JSON.stringify(authors))
+    source.setVariable(authors.toString())
+    sleepToast(`[${authors.toString()}]`)
 }
 
 function novelCommentAdd() {
