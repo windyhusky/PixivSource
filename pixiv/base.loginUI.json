@@ -27,118 +27,6 @@
         }
     },
     {
-        "name": "\uD83D\uDCC3 追更系列",
-        "type": "button",
-        "action": "seriesWatch()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⤴️ 分享系列",
-        "type": "button",
-        "action": "shareFactory('series')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83E\uDE76 取消追更",
-        "type": "button",
-        "action": "seriesUnWatch()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "❤️ 公开收藏",
-        "type": "button",
-        "action": "novelBookmarkAdd(0)",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "㊙️ 私密收藏",
-        "type": "button",
-        "action": "novelBookmarkAdd(1)",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83E\uDE76 取消收藏",
-        "type": "button",
-        "action": "novelBookmarkDelete()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-        {
-        "name": "⭐️ 关注作者",
-        "type": "button",
-        "action": "userFollow()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⤴️ 分享作者",
-        "type": "button",
-        "action": "shareFactory('author')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "☆ 取消关注",
-        "type": "button",
-        "action": "userUnFollow()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "发送评论",
-        "type": "text"
-    },
-    {
-        "name": "✅ 发送评论",
-        "type": "button",
-        "action": "novelCommentAdd()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⤴️ 分享该章",
-        "type": "button",
-        "action": "shareFactory('novel')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDDD1 删除评论",
-        "type": "button",
-        "action": "novelCommentDelete()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "🆙 更新书源",
         "type": "button",
         "action": "updateSource()",
@@ -163,6 +51,82 @@
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "❤️ 公开收藏",
+        "type": "button",
+        "action": "novelBookmarkFactory(1)",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "㊙️ 私密收藏",
+        "type": "button",
+        "action": "novelBookmarkFactory(2)",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+        {
+        "name": "\uD83D\uDCC3 追更系列",
+        "type": "button",
+        "action": "seriesWatchFactory()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⤴️ 分享系列",
+        "type": "button",
+        "action": "shareFactory('series')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⭐️ 关注作者",
+        "type": "button",
+        "action": "userFollowFactory()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDEAB 屏蔽作者",
+        "type": "button",
+        "action": "userBlock()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "发送评论",
+        "type": "text"
+    },
+    {
+        "name": "✅ 发送评论",
+        "type": "button",
+        "action": "novelCommentAdd()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": 0.45
+        }
+    },
+    {
+        "name": "\uD83D\uDDD1 删除评论",
+        "type": "button",
+        "action": "novelCommentDelete()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": 0.45
         }
     }
 ]
