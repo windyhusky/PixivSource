@@ -95,7 +95,10 @@ function novelBookmarkDelete() {
     )
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast(`⚠️ 取消收藏【${novel.title}】失败`)
-    else sleepToast(`✅ 已取消收藏【${novel.title}】`)
+    else {
+        sleepToast(`✅ 已取消收藏【${novel.title}】`)
+        cache.delete(`collect${novel.id}`)
+    }
 }
 
 function novelsBookmarkDelete(novelIds) {
@@ -108,6 +111,16 @@ function novelsBookmarkDelete(novelIds) {
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast("⚠️ 取消收藏失败")
     else sleepToast("✅ 已取消收藏")
+}
+
+function novelBookmarkFactory(code) {
+    let novel = source.getLoginInfoMap()
+    let collectId = JSON.parse(cache.get(`collect${novel.id}`))
+    if (collectId >= 1) code = 0
+
+    if (code === 0) novelBookmarkDelete()
+    else if (code === 1) novelBookmarkAdd(0)
+    else if (code === 2) novelBookmarkAdd(1)
 }
 
 function novelMarker(page=1) {
