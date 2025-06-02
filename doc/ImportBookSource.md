@@ -166,13 +166,13 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 ### 1.找到需要登录的书源
 **点击右上角的三点菜单，选择【登录】,登录你的账号**
 
-![img](./pic/PixivLoginIn1.jpg)
+![img](./pic/PixivLogin1.jpg)
 
 
 ### 2.登录你的账号
 登录成功后，点击右上角的对勾，关闭登录页面
 
-![img](./pic/PixivLoginIn2.jpg)
+![img](./pic/PixivLogin2.jpg)
 
 对于Pixiv而言，**如果需要验证码，请更换代理，或过段时间再次尝试**
 </details>

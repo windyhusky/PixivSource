@@ -95,17 +95,18 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
 Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 ### 1. 登录 Pixiv 账号
 
-<details>
-<summary> 🅿️ 登录 Pixiv 账号 </summary>
+<details><summary> 🅿️ 登录 Pixiv 账号 </summary>
 
 #### 1.1 开启代理工具
 此处略过，请自行学习，**最好开启【全局代理】**
 
 
 #### 1.2 登录 Pixiv 账号
-**我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录**
+**我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录-登录账号**
 
-![img](./pic/PixivLoginIn1.jpg)
+![img](./pic/PixivLogin1.jpg)
+
+![img](./pic/PixivLoginUI.jpg)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 

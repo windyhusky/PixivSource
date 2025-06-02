@@ -126,11 +126,11 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 #### 2. 登录 Pixiv 账号
 **我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录**
 
-![img](./pic/PixivLoginIn1.jpg)
+![img](./pic/PixivLogin1.jpg)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 
-![img](./pic/PixivLoginIn2.jpg)
+![img](./pic/PixivLogin2.jpg)
 
 **如果需要验证码，请更换代理，或过段时间再次尝试**
 </details>
