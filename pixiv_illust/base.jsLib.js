@@ -141,23 +141,23 @@ function updateSource(){
     <table border="0" cellspacing="30">
         <th colspan="2"> 更新 ${source.bookSourceName} 书源 </th>
         <tr><td><div class="ann">
-            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json">
+            <a href="legado://import/importonline?src=https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json">
             <button><span>更新书源</span></button>
             </a></div></td>
     
             <td><div class="ann">
-            <a href="legado://import/importonline?src=https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json">
+            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json">
                 <button><span>备用书源链接</span></button>
             </a></div></td>
         </tr>
         
         <tr><td><div class="ann">
-            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json">
+            <a href="legado://import/importonline?src=https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json">
                 <button><span>更新订阅</span></button>
             </a></div></td>
     
             <td><div class="ann">
-            <a href="legado://import/importonline?src=https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json">
+            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json">
                 <button><span>备用订阅链接</span></button>
             </a>
             </div></td>
