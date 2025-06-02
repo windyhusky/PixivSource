@@ -389,7 +389,9 @@ function getBlockAuthorsFromSource() {
 function syncBlockAuthorList() {
     let authors1 = getFromCache("blockAuthorList")
     let authors2 = getBlockAuthorsFromSource()
-    if (authors1 !== null && (authors1.length > authors2.length)) {
+    if (authors1 === null) {
+        cache.put("blockAuthorList", JSON.stringify(authors2))
+    } else if (authors1.length > authors2.length) {
         cache.put("blockAuthorList", JSON.stringify(authors2))
         java.log("屏蔽作者：已将源变量同步至内存")
     }
