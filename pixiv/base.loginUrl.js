@@ -110,6 +110,27 @@ function novelsBookmarkDelete(novelIds) {
     else sleepToast("✅ 已取消收藏")
 }
 
+function novelMarker(page=1) {
+    let novel = source.getLoginInfoMap()
+    let lastMarker = JSON.parse(cache.get(`marker${novel.id}`))
+    if (lastMarker === true) page = 0
+
+    let resp = getPostBody(
+        "https://www.pixiv.net/novel/rpc_marker.php",
+        `mode=save&i_id=${novel.id}&u_id=${cache.get("pixiv:uid")}&page=${page}`
+    )
+    java.log(`mode=save&i_id=${novel.id}&u_id=${cache.get("pixiv:uid")}&page=${page}`)
+    if (resp === undefined) {}
+    else if (resp.error === true) sleepToast("⚠️ 操作失败")
+    else if (lastMarker === true) {
+        cache.put(`marker${novel.id}`, false)
+        sleepToast(`✅ 已删除书签`)
+    } else {
+        cache.put(`marker${novel.id}`, true)
+        sleepToast(`✅ 已加入书签`)
+    }
+}
+
 function seriesWatch() {
     let novel = source.getLoginInfoMap()
     if (novel.seriesId) {
