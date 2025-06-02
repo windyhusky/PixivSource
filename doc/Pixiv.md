@@ -201,7 +201,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 ### 2.发现更多小说
 <details><summary> ⭐️ 常规功能 </summary>
 
-![img](./pic/DiscoverPixiv.png)
+![img](./pic/DiscoverPixiv.jpg)
 </details>
 
 
@@ -214,9 +214,10 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 </details>
 
 
-<details><summary> 🆙  更新书源 </summary>
+<details><summary> 🆙 更新书源 </summary>
 
-点击按钮更新书源/更新订阅
+点击按钮【🆙 更新】以更新书源/更新订阅
+![img](./pic/UpdateSource.jpg)
 </details>
 
 
@@ -239,7 +240,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 ![img](./pic/SetSourceVariable0.png)
 
-![img](./pic/DiscoverPixivLikes.png)
+![img](./pic/DiscoverPixivLikes.jpg)
 </details>
 
 
@@ -275,6 +276,8 @@ https://www.pixiv.net/users/16721009
 <details><summary> 🆙 更新书源 </summary>
 
 #### 4.0 更新书源
+点击按钮【🆙 更新书源】以更新书源/更新订阅
+![img](./pic/UpdateSource.jpg)
 </details>
 
 
