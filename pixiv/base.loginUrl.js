@@ -1,5 +1,5 @@
 function login() {
-    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false)
+    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${getFromCache("userAgent")}"}}`, '登录账号', false)
     if (resp.code() === 200) {
         getCookie(); getCsrfToken()
     } else {
@@ -48,7 +48,7 @@ function getCookie() {
 }
 
 function getPostBody(url, body, headers) {
-    if (headers === undefined) headers = JSON.parse(cache.get("headers"))
+    if (headers === undefined) headers = getFromCache("headers")
     if (isJsonString(body)) {
         headers["content-type"] = "application/json; charset=utf-8"
     } else if (typeof(body) == "string") {
@@ -80,7 +80,7 @@ function novelBookmarkAdd(restrict=0) {
 }
 
 function getNovelBookmarkId(novelId) {
-    let bookmarkId = cache.get(`collect${novelId}`)
+    let bookmarkId = getFromCache(`collect${novelId}`)
     if (bookmarkId === null) {
         bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
     }
@@ -115,7 +115,7 @@ function novelsBookmarkDelete(novelIds) {
 
 function novelBookmarkFactory(code) {
     let novel = source.getLoginInfoMap()
-    let collectId = JSON.parse(cache.get(`collect${novel.id}`))
+    let collectId = getFromCache(`collect${novel.id}`)
     if (collectId >= 1) code = 0
 
     if (code === 0) novelBookmarkDelete()
@@ -125,14 +125,14 @@ function novelBookmarkFactory(code) {
 
 function novelMarker(page=1) {
     let novel = source.getLoginInfoMap()
-    let lastMarker = JSON.parse(cache.get(`marker${novel.id}`))
+    let lastMarker = getFromCache(`marker${novel.id}`)
     if (lastMarker === true) page = 0
 
     let resp = getPostBody(
         "https://www.pixiv.net/novel/rpc_marker.php",
-        `mode=save&i_id=${novel.id}&u_id=${cache.get("pixiv:uid")}&page=${page}`
+        `mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`
     )
-    java.log(`mode=save&i_id=${novel.id}&u_id=${cache.get("pixiv:uid")}&page=${page}`)
+    java.log(`mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`)
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast("⚠️ 操作失败")
     else if (lastMarker === true) {
@@ -200,7 +200,7 @@ function userUnFollow() {
 function userBlock() {
     let action = "block"
     let novel = source.getLoginInfoMap()
-    let lastBlock = JSON.parse(cache.get(`block${novel.userId}`))
+    let lastBlock = getFromCache(`block${novel.userId}`)
     if (lastBlock === true) action = "unblock"
 
     let resp = getPostBody(
@@ -220,7 +220,7 @@ function userBlock() {
 }
 
 function novelCommentAdd() {
-    let userId = cache.get("pixiv:uid")
+    let userId = getFromCache("pixiv:uid")
     let novel = source.getLoginInfoMap()
     let novelId = novel.id
     let comment = String(result.get("发送评论")).trim()
@@ -247,7 +247,7 @@ function novelCommentAdd() {
 function getNovelCommentID(novelId, comment) {
     let resp = getAjaxJson(urlNovelComments(novelId, 0, 50), true)
     let list = resp.body.comments.filter(item =>
-        (item.userId === String(cache.get("pixiv:uid")) && item.comment === comment)
+        (item.userId === String(getFromCache("pixiv:uid")) && item.comment === comment)
     )
     // java.log(JSON.stringify(list))
     // let commentID = list.map(item => item.id)
