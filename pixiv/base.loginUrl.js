@@ -58,7 +58,7 @@ function getPostBody(url, body, headers) {
         return JSON.parse(java.post(url, body, headers).body())
     } catch (e) {
         java.log(e)
-        sleepToast(`⚠️ Cookies 失效\n请清除 Cookie 后再次登陆刷新 Cookie\n\n发现 - 长按"Pixiv" - 编辑 - 菜单 - 清除 Cookie`)
+        sleepToast(`⚠️ Cookie 失效\n请搜索任意关键词以刷新 Cookie`)
         return undefined
     }
 }
