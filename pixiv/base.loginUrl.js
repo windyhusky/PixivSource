@@ -192,9 +192,11 @@ function userFollow(restrict=0) {
     )
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast(`⚠️ 关注【${novel.userName}】失败`)
-    else sleepToast(`✅ 已关注【${novel.userName}】`)
+    else {
+        sleepToast(`✅ 已关注【${novel.userName}】`)
+        cache.put(`follow${novel.userId}`, true)
+    }
 }
-
 
 function userUnFollow() {
     let novel = source.getLoginInfoMap()
@@ -204,14 +206,26 @@ function userUnFollow() {
     )
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast(`⚠️ 取消关注【${novel.userName}】失败`)
-    else sleepToast(`✅ 已取消关注【${novel.userName}】`)
+    else {
+        sleepToast(`✅ 已取消关注【${novel.userName}】`)
+        cache.delete(`follow${novel.userId}`)
+    }
+}
+
+function userFollowFactory(code=1) {
+    let novel = source.getLoginInfoMap()
+    let lastStatus = getFromCache(`follow${novel.userId}`)
+    if (lastStatus === true) code = 0
+
+    if (code === 0) userUnFollow()
+    else if (code === 1) userFollow()
 }
 
 function userBlock() {
     let action = "block"
     let novel = source.getLoginInfoMap()
-    let lastBlock = getFromCache(`block${novel.userId}`)
-    if (lastBlock === true) action = "unblock"
+    let lastStatus = getFromCache(`block${novel.userId}`)
+    if (lastStatus === true) action = "unblock"
 
     let resp = getPostBody(
         `https://www.pixiv.net/ajax/block/save`,
@@ -220,7 +234,7 @@ function userBlock() {
     // java.log(JSON.stringify({"user_id": novel.userId, "action": action}))
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast("⚠️ 操作失败")
-    else if (lastBlock === true) {
+    else if (lastStatus === true) {
         cache.put(`block${novel.userId}`, false)
         sleepToast(`✅ 已取消拉黑${novel.userName}`)
     } else {
