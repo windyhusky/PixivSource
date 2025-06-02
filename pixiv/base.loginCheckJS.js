@@ -72,6 +72,14 @@ function publicFunc() {
 
     // 处理 novels 列表
     u.handNovels = function (novels, detailed=false) {
+        let authors = getFromCache("blockAuthorList")  // 屏蔽作者
+        if (authors !== null) {
+            java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
+            authors.forEach(author => {
+                novels = novels.filter(novel => novel.userId !== String(author))
+            })
+        }
+
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
