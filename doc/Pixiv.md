@@ -118,20 +118,25 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 ### 2. 开启 Pixiv 的 R18 设置
 #### 如果你已经开启了，则可以跳过这一步
-<details><summary> 🔞 修改 Pixiv 浏览范围 </summary>
-
-**再次点击登录，滑动屏幕，点击头像，再次点击头像，编辑个人资料**
-
+<details><summary> 📆 编辑出生年份 </summary>
 
 #### 2.1 编辑出生年份
+**再次点击登录，滑动屏幕，点击头像，再次点击头像，编辑个人资料**
+
 [Pixiv 个人资料](https://www.pixiv.net/settings/profile) - 编辑个人资料 - 出生年份
 
 出生年份改到：**2000年或2000年之前**，确保你的年龄在20岁及以上
 
 ![img](./pic/PixivSettingsBirth.png)
 
+</details>
+
+<details><summary> 🔞 修改 Pixiv 浏览范围 </summary>
 
 #### 2.2 修改作品浏览范围
+**我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录-账号设置**
+![img](./pic/PixivLoginUI.jpg)
+
 [Pixiv 设置](https://www.pixiv.net/settings/viewing) - 浏览与显示 - 年龄限制作品
 
 根据自己情况选择显示：R18 作品 与 R18G 作品
