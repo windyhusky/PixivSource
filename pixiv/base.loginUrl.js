@@ -110,7 +110,10 @@ function novelsBookmarkDelete(novelIds) {
     )
     if (resp === undefined) {}
     else if (resp.error === true) sleepToast("⚠️ 取消收藏失败")
-    else sleepToast("✅ 已取消收藏")
+    else {
+        sleepToast("✅ 已取消收藏")
+        novelIds.forEach(novelId => {cache.delete(`collect${novelId}`)})
+    }
 }
 
 function novelBookmarkFactory(code) {
