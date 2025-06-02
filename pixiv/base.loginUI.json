@@ -27,33 +27,6 @@
         }
     },
     {
-        "name": "🆙 更新书源",
-        "type": "button",
-        "action": "updateSource()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDD30 使用指南",
-        "type": "button",
-        "action": "startGithubReadme()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDC1E 反馈问题",
-        "type": "button",
-        "action": "startGithubIssue()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "\uD83D\uDCC3 追更系列",
         "type": "button",
         "action": "seriesWatch()",
@@ -160,6 +133,33 @@
         "name": "\uD83D\uDDD1 删除评论",
         "type": "button",
         "action": "novelCommentDelete()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🆙 更新书源",
+        "type": "button",
+        "action": "updateSource()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD30 使用指南",
+        "type": "button",
+        "action": "startGithubReadme()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC1E 反馈问题",
+        "type": "button",
+        "action": "startGithubIssue()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
