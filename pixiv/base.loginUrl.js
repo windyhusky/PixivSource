@@ -248,17 +248,6 @@ function userBlackList() {
 
 function userBlock() {
     let authors = getFromCache("blockAuthorList")
-    // sleepToast(JSON.stringify(authors))
-    if (authors === null) {
-        try {
-            authors = JSON.parse(`[${source.getVariable()}]`)
-            // sleepToast(JSON.stringify(authors))
-        } catch (e) {
-            authors = []
-            sleepToast("⚠️源变量设置有误\n\n输入作者ID，以英文逗号间隔，保存")
-        }
-    }
-
     let novel = source.getLoginInfoMap()
     if (authors.includes(Number(novel.userId))) {
         authors = authors.filter(author => author !== Number(novel.userId))
