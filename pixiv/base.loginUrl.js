@@ -1,5 +1,5 @@
 function login() {
-    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${getFromCache("userAgent")}"}}`, '登录账号', false)
+    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false)
     if (resp.code() === 200) {
         getCookie(); getCsrfToken()
     } else {
