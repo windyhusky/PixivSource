@@ -326,7 +326,7 @@ function checkMessageThread(checkTimes) {
 function getPixivUid() {
     let uid = java.getResponse().headers().get("x-userid")
     if (uid != null) {
-        cache.put("pixiv:uid", uid)
+        cache.put("pixiv:uid", String(uid))
     }
 }
 function getCookie() {
