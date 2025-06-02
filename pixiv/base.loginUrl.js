@@ -146,32 +146,42 @@ function novelMarker(page=1) {
 
 function seriesWatch() {
     let novel = source.getLoginInfoMap()
-    if (novel.seriesId) {
-        let resp = getPostBody(
-            `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
-            JSON.stringify({})
-        )
-        if (resp === undefined) {}
-        else if (resp.error === true) sleepToast(`⚠️ 追更【${novel.title}】失败`)
-        else sleepToast(`✅ 已追更【${novel.title}】`)
-    } else {
-        sleepToast(`⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
+    let resp = getPostBody(
+        `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
+        "{}"
+    )
+    if (resp === undefined) {}
+    else if (resp.error === true) sleepToast(`⚠️ 追更【${novel.title}】失败`)
+    else {
+        sleepToast(`✅ 已追更【${novel.title}】`)
+        cache.put(`watch${novel.seriesId}`, true)
     }
 }
 
 function seriesUnWatch() {
     let novel = source.getLoginInfoMap()
-    if (novel.seriesId) {
-        let resp = getPostBody(
-            `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
-            JSON.stringify({})
-        )
-        if (resp === undefined) {}
-        else if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.title}】失败`)
-        else sleepToast(`✅ 已取消追更【${novel.title}】`)
-    } else {
-        sleepToast(`⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
+    let resp = getPostBody(
+        `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
+        "{}"
+    )
+    if (resp === undefined) {}
+    else if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.title}】失败`)
+    else {
+        sleepToast(`✅ 已取消追更【${novel.title}】`)
+        cache.delete(`watch${novel.seriesId}`)
     }
+}
+
+function seriesWatchFactory(code=1) {
+    let novel = source.getLoginInfoMap()
+    if (!novel.seriesId) {
+        return sleepToast(`⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
+    }
+
+    let lastStatus = getFromCache(`watch${novel.seriesId}`)
+    if (lastStatus === true) code = 0
+    if (code === 0) seriesUnWatch()
+    else if (code === 1) seriesWatch()
 }
 
 function userFollow(restrict=0) {
