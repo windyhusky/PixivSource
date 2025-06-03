@@ -251,10 +251,10 @@ function userBlock() {
     let novel = source.getLoginInfoMap()
     if (authors.includes(Number(novel.userId))) {
         authors = authors.filter(author => author !== Number(novel.userId))
-        sleepToast(`✅ 已将【${novel.userName}】移出屏蔽名单，搜索发现均可以显示其小说`)
+        sleepToast(`✅ 已将【${novel.userName}】移出本地屏蔽名单`)
     } else if (novel.userId !== undefined && novel.userId !== null) {
         authors.push(Number(novel.userId))
-        sleepToast(`✅ 已将【${novel.userName}】加入屏蔽名单，搜索发现均不会显示其小说`)
+        sleepToast(`✅ 已将【${novel.userName}】加入本地屏蔽名单`)
     }
     cache.put("blockAuthorList", JSON.stringify(authors))
     source.setVariable(authors.toString())
@@ -354,4 +354,26 @@ function startGithubIssue() {
 }
 function startGithubReadme() {
     startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
+}
+
+function charpterRead() {
+    let novel = source.getLoginInfoMap()
+    sleepToast(`内部章节\n【${novel.title}】\n如非当前章节名称，请刷新正文`)
+}
+
+function readMeLogin() {
+    let novel = source.getLoginInfoMap()
+    sleepToast(`登录界面功能说明
+    使用收藏、追更、关注作者、评论等功能时，请先刷新正文，获取当前章节信息
+    点击【📌 当前章节】查看书源内部章节信息`, 5)
+}
+
+function readMeSearch() {
+    let novel = source.getLoginInfoMap()
+    sleepToast(`搜索说明
+    关键词间需要以空格间隔
+    作者专搜：@作者名称
+    标签专搜：#标签1 标签2
+    字数筛选1：标签1 标签2 字数3k5
+    字数筛选2：@作者名称 字数3w5`, 5)
 }
