@@ -29,11 +29,11 @@
 <details>
 <summary> Codeberg 镜像地址 </summary>
 
-| 名称           | [Codeberg 镜像网址](https://codeberg.org/DowneyRem/PixivSource)　        |
+| 名称           | [Codeberg 镜像网址](https://codeberg.org/DowneyRem/PixivSource)　       |
 | ------------- | ---------------------------------------------------------------------- |
 | Pixiv 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json  |
 | Linpx 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
-| 兽人小说站书源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
+| 兽人小说站书源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
 | BTSRK 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json  |
 | Books 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/books.json  |
 | Import 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/import.json |
@@ -44,11 +44,11 @@
 <details>
 <summary> Github 导入地址 </summary>
 
-| 名称           | Github 导入网址                                                            |
-| ------------- | ------------------------------------------------------------------------ |
+| 名称           | [Github 项目网址](https://github.com/windyhusky/PixivSource)               |
+| ------------- | ------------------------------------------------------------------------- |
 | Pixiv 书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
 | Linpx 书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
-| 兽人小说站书源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
+| 兽人小说站书源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
 | BTSRK 订阅源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
 | Books 订阅源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
 | Import 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
@@ -85,7 +85,7 @@
     - 登录界面：✅ 加入收藏 ✅ 取消收藏
   - ✅ 小说书签
     - 发现：✅ 查看书签（第1页）
-    - 登录界面：❌ 加入收藏 ❌ 取消收藏
+    - 登录界面：✅ 加入书签 ✅ 删除书签
   - ✅ 章节评论
     - 章节正文：✅ 查看评论
     - 登录界面：✅ 发送评论 ✅ 删除评论
@@ -183,10 +183,9 @@
   - 账号：✅ 登录账号 ✅ 退出账号 ✅ 账号设置
   - 书源：✅ 更新书源 ✅ 使用指南 ✅ 反馈问题
   - 系列：✅ 追更系列 ✅ 取消追更 ✅ 分享系列
-  - 单篇：✅ 收藏小说 ✅ 关注收藏 ✅ 分享单篇
-  - 作者：✅ 关注作者 ✅ 关注关注
-  - 评论：✅ 发送评论 ✅ 删除评论
-  - **🐞 已知bug：收藏、评论仅能评论系列首篇**
+  - 单篇：✅ 收藏小说 ✅ 取消收藏 ✅ 分享单篇
+  - 作者：✅ 关注作者 ✅ 取关作者 ✅ 屏蔽作者（本地）
+  - 评论：✅ 发送评论 ✅ 删除评论 ✅ 获取评论（正文）
 </details>
 
 
@@ -200,19 +199,19 @@
 
 <details><summary> ⚙️ 默认配置详情 </summary>
 
-| 书源设置           | 默认状态 | 对应常量名称             | 作用 |
-| ---------------- | ------ | --------------------- | --- |
-| 繁简通搜           | ✅ 开启 | `CONVERT_CHINESE`     | 搜索 |
+| 书源设置            | 默认状态 | 对应常量名称           | 作用 |
+| ------------------ | ------ | --------------------- | --- |
+| 繁简通搜            | ✅ 开启 | `CONVERT_CHINESE`     | 搜索 |
 | 简介显示更多信息     | ⭕ 关闭 | `MORE_INFORMATION`    | 详情 |
 | 显示小说原始链接     | ✅ 开启 | `SHOW_ORIGINAL_LINK`  | 目录 |
-| 　　              |        |                       |     |
+| 　　               |        |                       |     |
 | 恢复被替换的书名号   | ✅ 开启 | `REPLACE_TITLE_MARKS` | 正文 |
 | 章首显示小说描述     | ✅ 开启 | `SHOW_CAPTIONS`       | 正文 |
 | 章尾显示小说评论     | ✅ 开启 | `SHOW_COMMENTS`       | 正文 |
-| 　　              |        |                       |     |
+| 　　               |        |                       |     |
 | 快速模式           | ⭕ 关闭 | `FAST`                | 全局 |
 | 调试模式           | ⭕ 关闭 | `DEBUG`               | 全局 |
-| 　　              |        |                       |     |
+| 　　               |        |                       |     |
 | 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NEW`     | 发现 |
 | 排行榜单显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_RANK`    | 发现 |
 | 热门分类显示R18小说 | ⭕ 关闭 | `SHOW_R18_GENRE`       | 发现 |
@@ -274,9 +273,9 @@
 <details><summary> 最大缓存时间：7天 </summary>
 
 - 书源内部使用 `getAjaxJson() getAjaxAllJson() getWebviewJson() urlIllustOriginal() ` 等，访问网络资源时，会默认写入缓存，最多存放7天
-- 后续如果重复请求同一内容，在缓存时间内则不会发送请求，而是直接读取缓存数据，以加快请求速度
-- 使用 `getPostBody()` 的登录请求中的功能，以及获取评论，不受此限制
-
+- 后续如果重复请求同一内容，在缓存时间内则不会发送请求，而是直接读取缓存数据，加快请求速度的同时，减少实际请求次数
+- 登录界面中的功能使用了 `getPostBody()`，不受此限制
+- 获取/刷新评论不受此限制
 
 - 自定义：编辑书源 - 基本 - JSLib - 修改并保存
 ```
