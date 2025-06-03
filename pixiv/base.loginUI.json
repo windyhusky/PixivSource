@@ -71,19 +71,19 @@
             "layout_flexBasisPercent": -1
         }
     },
-        {
-        "name": "\uD83D\uDCC3 追更系列",
+    {
+        "name": "\uD83D\uDCCC 当前章节",
         "type": "button",
-        "action": "seriesWatchFactory()",
+        "action": "charpterRead()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "⤴️ 分享系列",
+        "name": "\uD83D\uDCC3 追更系列",
         "type": "button",
-        "action": "shareFactory('series')",
+        "action": "seriesWatchFactory()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -117,7 +117,7 @@
         "action": "novelCommentAdd()",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent": 0.45
+            "layout_flexBasisPercent": -1
         }
     },
     {
@@ -126,7 +126,43 @@
         "action": "novelCommentDelete()",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent": 0.45
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⤴️ 分享章节",
+        "type": "button",
+        "action": "shareFactory('novel')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⤴️ 分享系列",
+        "type": "button",
+        "action": "shareFactory('series')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD0D 搜索说明",
+        "type": "button",
+        "action": "readMeSearch()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCC4 功能说明",
+        "type": "button",
+        "action": "readMeLogin()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
         }
     },
     {
