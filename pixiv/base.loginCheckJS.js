@@ -106,7 +106,7 @@ function publicFunc() {
                     novel.seriesTitle = undefined
                 } else {
                     novel.seriesId = novel.id
-                    novel.id = novel.novelId= novel.latestEpisodeId  // 获取真正的 novelId
+                    novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
                     novel.seriesTitle = novel.title
                 }
                 novel.textCount = novel.textLength

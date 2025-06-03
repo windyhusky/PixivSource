@@ -19,7 +19,7 @@ function novelHandler(novel){
         novel.detailedUrl = urlSeriesUrl(novel.seriesId)
         novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
     }
-    source.putLoginInfo(JSON.stringify(novel)) // 加入缓存以便登陆界面使用
+    source.putLoginInfo(JSON.stringify(novel))  // 放入信息以便登陆界面使用
     return novel
 }
 

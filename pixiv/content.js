@@ -11,6 +11,12 @@ function objParse(obj) {
 }
 
 function getContent(res) {
+    // 放入信息以便登陆界面使用
+    let novel = source.getLoginInfoMap()
+    novel.id = novel.novelId = res.id
+    novel.title = res.title
+    source.putLoginInfo(JSON.stringify(novel))
+
     let content = String(res.content)
     // let content = "undefined"
     if (content.includes("undefined")) {
