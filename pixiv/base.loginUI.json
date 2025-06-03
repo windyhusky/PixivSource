@@ -117,7 +117,7 @@
         "action": "novelCommentAdd()",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
+            "layout_flexBasisPercent": 0.45
         }
     },
     {
@@ -126,25 +126,7 @@
         "action": "novelCommentDelete()",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDCAC 显示评论",
-        "type": "button",
-        "action": "",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDDBC️ 显示描述",
-        "type": "button",
-        "action": "",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
+            "layout_flexBasisPercent": 0.45
         }
     },
     {
@@ -184,7 +166,16 @@
         }
     },
     {
-        "name": "⏩ 快速模式",
+        "name": "\uD83D\uDDBC️ 显示描述",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCAC 显示评论",
         "type": "button",
         "action": "",
         "style": {
