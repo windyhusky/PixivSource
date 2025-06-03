@@ -117,7 +117,7 @@
         "action": "novelCommentAdd()",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent": 0.45
+            "layout_flexBasisPercent": -1
         }
     },
     {
@@ -126,7 +126,70 @@
         "action": "novelCommentDelete()",
         "style": {
             "layout_flexGrow": 1,
-            "layout_flexBasisPercent": 0.45
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCAC 显示评论",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDBC️ 显示描述",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83C\uDC04 繁简通搜",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCD6 更多简介",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD17 原始链接",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCDA 恢复《》",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⏩ 快速模式",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
         }
     }
 ]
