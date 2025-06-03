@@ -346,7 +346,7 @@ function getCookie() {
     }
 }
 function getUserAgent() {
-    let userAgent = String(source.getHeaderMap(true)).slice(12,-1)
+    let userAgent = String(java.getUserAgent())
     cache.put("userAgent", userAgent)
     // java.log(userAgent)
     return userAgent
