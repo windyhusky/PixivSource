@@ -203,7 +203,6 @@ function novelFilter(novels) {
     let keyword = String(java.get("keyword"))
     if (keyword.startsWith("@") || keyword.startsWith("＠")) {
         keyword = keyword.slice(1)
-        java.log(`搜索作者：${keyword}`)
         java.put("keyword", keyword)
         novels = novels.concat(getUserNovels())
     } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {

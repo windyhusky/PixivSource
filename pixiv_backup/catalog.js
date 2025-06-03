@@ -30,7 +30,7 @@ function oneShotHandler(res) {
 
 function seriesHandler(res) {
     const limit = 30
-    let returnList = []
+    let returnList = [], novelIds = []
     let seriesID = res.id, allChaptersCount = res.total
     util.debugFunc(() => {
         java.log(`本系列 ${seriesID} 一共有${allChaptersCount}章`);
@@ -44,6 +44,7 @@ function seriesHandler(res) {
         res.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
             v.chapterUrl = urlNovel(v.id)
+            novelIds.push(v.id)
             if (v.updateDate !== undefined) {
                 v.updateDate = timeTextFormat(v.createDate)
                 v.chapterInfo = `${v.updateDate}　　${v.textCount}字`
@@ -63,6 +64,7 @@ function seriesHandler(res) {
         returnList.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
             v.chapterUrl = urlNovel(v.id)
+            novelIds.push(v.id)
         })
     } else {
         //逻辑控制者 也就是使用上面定义的两个函数来做对应功能
@@ -75,6 +77,8 @@ function seriesHandler(res) {
             returnList = returnList.concat(list)
         }
     }
+    // 放入信息以便登陆界面使用
+    cache.put(`novelIds${seriesID}`, JSON.stringify(novelIds))
     // java.log(JSON.stringify(returnList))
     return returnList
 }

@@ -106,7 +106,7 @@ function publicFunc() {
                     novel.seriesTitle = undefined
                 } else {
                     novel.seriesId = novel.id
-                    novel.id = novel.novelId= novel.latestEpisodeId  // 获取真正的 novelId
+                    novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
                     novel.seriesTitle = novel.title
                 }
                 novel.textCount = novel.textLength
@@ -346,7 +346,7 @@ function getCookie() {
     }
 }
 function getUserAgent() {
-    let userAgent = String(source.getHeaderMap(true)).slice(12,-1)
+    let userAgent = String(java.getUserAgent())
     cache.put("userAgent", userAgent)
     // java.log(userAgent)
     return userAgent
@@ -389,14 +389,15 @@ function getBlockAuthorsFromSource() {
 function syncBlockAuthorList() {
     let authors1 = getFromCache("blockAuthorList")
     let authors2 = getBlockAuthorsFromSource()
-    if (authors1 !== null && (authors1.length > authors2.length)) {
+    if (authors1 === null) {
+        cache.put("blockAuthorList", JSON.stringify(authors2))
+    } else if (authors1.length > authors2.length) {
         cache.put("blockAuthorList", JSON.stringify(authors2))
         java.log("屏蔽作者：已将源变量同步至内存")
     }
 }
 
-publicFunc(); getUserAgent();
-// syncBlockAuthorList()
+publicFunc(); getUserAgent(); syncBlockAuthorList()
 if (result.code() === 200) {
     getPixivUid(); getCookie(); getHeaders()
     if (!util.FAST) checkMessageThread()  // 检测过度访问
