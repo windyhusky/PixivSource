@@ -324,7 +324,8 @@ function novelCommentDelete() {
 }
 
 function startBrowser(url, title) {
-    let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36 Reader"}}`
+    // let headers = `{"headers": {"User-Agent":"${java.getWebViewUA()}"}}`
+    let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"}}`
     java.startBrowser(`${url},${headers}`, title)
 }
 
