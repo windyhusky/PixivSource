@@ -12,7 +12,13 @@ function publicFunc() {
     let u = {}, settings
     java.log(String(source.bookSourceComment).split("\n")[0])       // 输出书源信息
     java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
-    settings = getFromCache("pixivSettings")
+
+    // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
+    if (source.bookSourceName.includes("备用")) {
+        settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+    } else {
+        settings = getFromCache("pixivSettings")
+    }
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
     } else {
