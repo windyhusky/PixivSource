@@ -337,10 +337,10 @@ function getPixivUid() {
         cache.put("pixiv:uid", String(uid))
     }
 }
+
 function getCookie() {
     let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
     if (pixivCookie.includes("first_visit_datetime")) {
-        // java.log(pixivCookie)
         cache.put("pixivCookie", pixivCookie, 60*60)
         return pixivCookie
     }
@@ -357,6 +357,7 @@ function getCsrfToken() {
     cache.put("csfrToken", csfrToken)  // 与登录设备有关
     return csfrToken
 }
+
 function getHeaders() {
     let headers = {
         "accept": "application/json",
@@ -372,7 +373,7 @@ function getHeaders() {
         // "sec-fetch-dest": "empty",
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
-        "user-agent": cache.get("userAgent"),
+        "user-agent": String(java.getUserAgent()),
         "x-csrf-token": cache.get("csfrToken"),
         "Cookie": cache.get("pixivCookie")
     }
