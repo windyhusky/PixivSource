@@ -367,3 +367,26 @@ function readMeSearch() {
     字数筛选1：标签1 标签2 字数3k5
     字数筛选2：@作者名称 字数3w5`, 5)
 }
+
+function editSettings(object) {
+    let settingsName = {
+        "CONVERT_CHINESE": "繁简通搜",
+        "MORE_INFORMATION": "显示更多简介",
+        "SHOW_UPDATE_TIME": "显示更新时间",
+        "SHOW_ORIGINAL_LINK": "显示原始链接",
+        "REPLACE_TITLE_MARKS": "恢复书名号《》",
+        "SHOW_CAPTIONS": "显示描述",
+        "SHOW_COMMENTS": "显示评论",
+        "FAST": "快速模式",
+        "DEBUG": "调试模式"
+    }
+
+    let settings = getFromCache("pixivSettings")
+    settings[object] = (!settings[object])
+    if (settings[object] === true) {
+        java.toast(`✅ 已开启 ${settingsName[object]}`)
+    } else {
+        java.toast(`❎ 已关闭 ${settingsName[object]}`)
+    }
+    cache.put("pixivSettings", JSON.stringify(settings))
+}

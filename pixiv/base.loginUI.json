@@ -168,7 +168,7 @@
     {
         "name": "\uD83C\uDC04 繁简通搜",
         "type": "button",
-        "action": "",
+        "action": "editSettings('CONVERT_CHINESE')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -177,7 +177,7 @@
     {
         "name": "\uD83D\uDCD6 更多简介",
         "type": "button",
-        "action": "",
+        "action": "editSettings('MORE_INFORMATION')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -186,7 +186,7 @@
     {
         "name": "\uD83D\uDD17 原始链接",
         "type": "button",
-        "action": "",
+        "action": "editSettings('SHOW_ORIGINAL_LINK')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -195,7 +195,7 @@
     {
         "name": "\uD83D\uDCDA 恢复《》",
         "type": "button",
-        "action": "",
+        "action": "editSettings('REPLACE_TITLE_MARKS')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -204,7 +204,7 @@
     {
         "name": "\uD83D\uDDBC️ 显示描述",
         "type": "button",
-        "action": "",
+        "action": "editSettings('SHOW_CAPTIONS')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -213,7 +213,7 @@
     {
         "name": "\uD83D\uDCAC 显示评论",
         "type": "button",
-        "action": "",
+        "action": "editSettings('SHOW_COMMENTS')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
