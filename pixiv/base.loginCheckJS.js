@@ -418,4 +418,9 @@ if (result.code() === 200) {
 //     sleepToast("请重新登录")
 //     source.login()
 }
+util.debugFunc(() => {
+    java.log(`${java.getUserAgent()}\n`)
+    java.log(`${cache.get("csfrToken")}\n`)
+    java.log(`${cache.get("pixivCookie")}\n`)
+})
 java.getStrResponse(null, null)
