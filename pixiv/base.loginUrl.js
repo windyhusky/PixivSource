@@ -58,8 +58,10 @@ function getPostBody(url, body, headers) {
         return JSON.parse(java.post(url, body, headers).body())
     } catch (e) {
         java.log(e)
-        sleepToast(`⚠️ Cookie 失效\n请搜索任意关键词以刷新 Cookie`)
-        return undefined
+        if (String(e).includes(400)) sleepToast(`⚠️ 缺少 headers`)
+        else if (String(e).includes(403)) sleepToast(`⚠️ 缺少 cookie 或 cookie 过期`)
+        else if (String(e).includes(422)) sleepToast(`⚠️ 请求信息有误`)
+        return {error: true}
     }
 }
 
