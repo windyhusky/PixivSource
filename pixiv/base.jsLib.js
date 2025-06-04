@@ -181,10 +181,22 @@ function sleepToast(text, second) {
 }
 
 function updateSource() {
-    const {java, source} = this;
-    let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"
-    let onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
-    let comment = onlineSource.bookSourceComment.split("\n")
+    const {java, source} = this
+    let onlineSource, comment
+    try {
+        let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"
+        onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
+        comment = onlineSource.bookSourceComment.split("\n")
+    } catch (e) {
+        try {
+            let updateUrl = "https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json"
+            onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
+            comment = onlineSource.bookSourceComment.split("\n")
+        } catch (e) {
+            onlineSource = {lastUpdateTime: new Date().getTime()}
+            comment = source.bookSourceComment.split("\n")
+        }
+    }
 
     let htm = `data:text/html; charset=utf-8,
 <html>
