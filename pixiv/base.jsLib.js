@@ -182,14 +182,19 @@ function sleepToast(text, second) {
 
 function updateSource() {
     const {java, source} = this
-    let onlineSource, comment
+    let onlineSource, comment, sourceName, souceNameCapitalize
+    if (source.bookSourceUrl.includes("pixiv")) sourceName = "pixiv"
+    else if (source.bookSourceUrl.includes("furrynovel")) sourceName = "linpx"
+    souceNameCapitalize = sourceName[0].toUpperCase() + sourceName.substring(1)
+    if (source.bookSourceUrl.includes("furrynovel.com")) souceNameCapitalize = "FurryNovel"
+
     try {
-        let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"
+        let updateUrl = `https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/${sourceName}.json`
         onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
         comment = onlineSource.bookSourceComment.split("\n")
     } catch (e) {
         try {
-            let updateUrl = "https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json"
+            let updateUrl = `https://raw.githubusercontent.com/windyhusky/PixivSource/main/${sourceName}.json`
             onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
             comment = onlineSource.bookSourceComment.split("\n")
         } catch (e) {
@@ -215,7 +220,7 @@ function updateSource() {
 
 <body>
     <table border="1" cellspacing="0">
-        <th colspan="2"> ${source.bookSourceName} 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md">🔰 使用指南</a></th>
+        <th colspan="2"> ${source.bookSourceName} 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/${souceNameCapitalize}.md">🔰 使用指南</a></th>
         <tr><td>☁️ 远程仓库版本：${java.timeFormat(onlineSource.lastUpdateTime)}</td></tr>
         <tr><td>📥 阅读本地版本：${java.timeFormat(source.lastUpdateTime)}</td></tr>
         <tr><td style="text-align: left;">${comment.slice(2,9).join("<br>")}</td></tr>
@@ -225,7 +230,7 @@ function updateSource() {
     <table border="0" cellspacing="20">
         <th colspan="2"> 更新 ${source.bookSourceName} 书源 </th>
         <tr><td><div class="ann">
-            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json">
+            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/${sourceName}.json">
             <button><span>更新书源<br>(Jsdelivr CDN)</span></button>
             </a></div></td>
             
@@ -236,7 +241,7 @@ function updateSource() {
         </tr>
         
         <tr><td><div class="ann">
-            <a href="legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json">
+            <a href="legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/${sourceName}.json">
             <button><span>书源链接<br>(GitHub)</span></button>
             </a></div></td>
             
@@ -247,7 +252,7 @@ function updateSource() {
         </tr>
         
         <tr><td><div class="ann">
-            <a href="legado://import/importonline?src=https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json">
+            <a href="legado://import/importonline?src=https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/${sourceName}.json">
             <button><span>备用书源链接<br>(Codeberg)</span></button>
             </a></div></td>
             
