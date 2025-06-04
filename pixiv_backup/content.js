@@ -13,11 +13,13 @@ function objParse(obj) {
 function getContent(res) {
     // 放入信息以便登陆界面使用，第一次加载，刷新时准确
     let novel = source.getLoginInfoMap()
-    let seriesId = res.seriesNavData.seriesId
-    if (seriesId !== undefined && seriesId !== null) {
-        let novelIds = getFromCache(`novelIds${seriesId}`)
-        novel.id = novelIds[book.durChapterIndex]
-        novel.title = book.durChapterTitle
+    if (res.seriesNavData !== null) {
+        let seriesId = res.seriesNavData.seriesId
+        if (seriesId !== undefined && seriesId !== null) {
+            let novelIds = getFromCache(`novelIds${seriesId}`)
+            novel.id = novelIds[book.durChapterIndex]
+            novel.title = book.durChapterTitle
+        }
     }
     source.putLoginInfo(JSON.stringify(novel))
     // sleepToast(`当前章节：${novel.id}${novel.title}`)
