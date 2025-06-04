@@ -182,20 +182,26 @@ function sleepToast(text, second) {
 
 function updateSource() {
     const {java, source} = this
-    let onlineSource, comment, sourceName, souceNameCapitalize
+    let onlineSource, comment, sourceName, sourceNameCapitalize, index = 0
     if (source.bookSourceUrl.includes("pixiv")) sourceName = "pixiv"
     else if (source.bookSourceUrl.includes("furrynovel")) sourceName = "linpx"
-    souceNameCapitalize = sourceName[0].toUpperCase() + sourceName.substring(1)
-    if (source.bookSourceUrl.includes("furrynovel.com")) souceNameCapitalize = "FurryNovel"
+    sourceNameCapitalize = sourceName[0].toUpperCase() + sourceName.substring(1)
+
+    if (source.bookSourceName.includes("备用")) index = 1
+    else if (source.bookSourceName.includes("漫画")) index = 2
+    if (source.bookSourceUrl.includes("furrynovel.com")) {
+        sourceNameCapitalize = "FurryNovel"
+        index = 1
+    }
 
     try {
         let updateUrl = `https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/${sourceName}.json`
-        onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
+        onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[index]
         comment = onlineSource.bookSourceComment.split("\n")
     } catch (e) {
         try {
             let updateUrl = `https://raw.githubusercontent.com/windyhusky/PixivSource/main/${sourceName}.json`
-            onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
+            onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[index]
             comment = onlineSource.bookSourceComment.split("\n")
         } catch (e) {
             onlineSource = {lastUpdateTime: new Date().getTime()}
@@ -220,10 +226,10 @@ function updateSource() {
 
 <body>
     <table border="1" cellspacing="0">
-        <th colspan="2"> ${source.bookSourceName} 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/${souceNameCapitalize}.md">🔰 使用指南</a></th>
+        <th colspan="2"> ${source.bookSourceName} 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/${sourceNameCapitalize}.md">🔰 使用指南</a></th>
         <tr><td>☁️ 远程仓库版本：${java.timeFormat(onlineSource.lastUpdateTime)}</td></tr>
         <tr><td>📥 阅读本地版本：${java.timeFormat(source.lastUpdateTime)}</td></tr>
-        <tr><td style="text-align: left;">${comment.slice(2,9).join("<br>")}</td></tr>
+        <tr><td style="text-align: left;">${comment.slice(2, 9).join("<br>")}</td></tr>
         <tr><td style="text-align: left;">${comment.slice(comment.length-7, comment.length).join("<br>")}</td></tr>
     </table>
     
