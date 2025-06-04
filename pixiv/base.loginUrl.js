@@ -150,9 +150,9 @@ function seriesWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
         "{}"
     )
-    if (resp.error === true) sleepToast(`⚠️ 追更【${novel.title}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 追更【${novel.seriesTitle}】失败`)
     else {
-        sleepToast(`✅ 已追更【${novel.title}】`)
+        sleepToast(`✅ 已追更【${novel.seriesTitle}】`)
         cache.put(`watch${novel.seriesId}`, true)
     }
 }
@@ -163,9 +163,9 @@ function seriesUnWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
         "{}"
     )
-    if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.title}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.seriesTitle}】失败`)
     else {
-        sleepToast(`✅ 已取消追更【${novel.title}】`)
+        sleepToast(`✅ 已取消追更【${novel.seriesTitle}】`)
         cache.delete(`watch${novel.seriesId}`)
     }
 }
@@ -329,7 +329,7 @@ function shareFactory(type) {
         startBrowser(urlNovelUrl(novel.novelId), novel.title)
     }
     else if (type.includes("series") && novel.seriesId) {
-        startBrowser(urlSeriesUrl(novel.seriesId), novel.title)
+        startBrowser(urlSeriesUrl(novel.seriesId), novel.seriesTitle)
     }
 }
 
