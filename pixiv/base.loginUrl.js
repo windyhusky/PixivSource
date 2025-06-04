@@ -65,14 +65,12 @@ function getPostBody(url, body, headers) {
     }
 }
 
-// todo 获取正确的章节 id，目前是首篇
 function novelBookmarkAdd(restrict=0) {
     let novel = source.getLoginInfoMap()
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
     )
-    if (resp === undefined) {}
     if (resp.error === true) sleepToast(`⚠️ 收藏【${novel.title}】失败`)
     else if (resp.body === null) sleepToast(`✅ 已经收藏【${novel.title}】了`)
     else {
@@ -95,8 +93,7 @@ function novelBookmarkDelete() {
         "https://www.pixiv.net/ajax/novels/bookmarks/delete",
         `del=1&book_id=${getNovelBookmarkId(novel.id)}`
     )
-    if (resp === undefined) {}
-    else if (resp.error === true) sleepToast(`⚠️ 取消收藏【${novel.title}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 取消收藏【${novel.title}】失败`)
     else {
         sleepToast(`✅ 已取消收藏【${novel.title}】`)
         cache.delete(`collect${novel.id}`)
@@ -110,8 +107,7 @@ function novelsBookmarkDelete(novelIds) {
         "https://www.pixiv.net/ajax/novels/bookmarks/remove",
         JSON.stringify({"bookmarkIds": bookmarkIds})
     )
-    if (resp === undefined) {}
-    else if (resp.error === true) sleepToast("⚠️ 取消收藏失败")
+    if (resp.error === true) sleepToast("⚠️ 取消收藏失败")
     else {
         sleepToast("✅ 已取消收藏")
         novelIds.forEach(novelId => {cache.delete(`collect${novelId}`)})
@@ -138,8 +134,7 @@ function novelMarker(page=1) {
         `mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`
     )
     java.log(`mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`)
-    if (resp === undefined) {}
-    else if (resp.error === true) sleepToast("⚠️ 操作失败")
+    if (resp.error === true) sleepToast("⚠️ 操作失败")
     else if (lastMarker === true) {
         cache.put(`marker${novel.id}`, false)
         sleepToast(`✅ 已删除书签`)
@@ -155,8 +150,7 @@ function seriesWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
         "{}"
     )
-    if (resp === undefined) {}
-    else if (resp.error === true) sleepToast(`⚠️ 追更【${novel.title}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 追更【${novel.title}】失败`)
     else {
         sleepToast(`✅ 已追更【${novel.title}】`)
         cache.put(`watch${novel.seriesId}`, true)
@@ -169,8 +163,7 @@ function seriesUnWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
         "{}"
     )
-    if (resp === undefined) {}
-    else if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.title}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.title}】失败`)
     else {
         sleepToast(`✅ 已取消追更【${novel.title}】`)
         cache.delete(`watch${novel.seriesId}`)
@@ -195,8 +188,7 @@ function userFollow(restrict=0) {
         "https://www.pixiv.net/bookmark_add.php",
         `mode=add&type=user&user_id=${novel.userId}&tag=""&restrict=${restrict}&format=json`
     )
-    if (resp === undefined) {}
-    else if (resp.error === true) sleepToast(`⚠️ 关注【${novel.userName}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 关注【${novel.userName}】失败`)
     else {
         sleepToast(`✅ 已关注【${novel.userName}】`)
         cache.put(`follow${novel.userId}`, true)
@@ -209,8 +201,7 @@ function userUnFollow() {
         "https://www.pixiv.net/rpc_group_setting.php",
         `mode=del&type=bookuser&id=${novel.userId}`
     )
-    if (resp === undefined) {}
-    else if (resp.error === true) sleepToast(`⚠️ 取消关注【${novel.userName}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 取消关注【${novel.userName}】失败`)
     else {
         sleepToast(`✅ 已取消关注【${novel.userName}】`)
         cache.delete(`follow${novel.userId}`)
@@ -237,8 +228,7 @@ function userBlackList() {
         JSON.stringify({"user_id": novel.userId, "action": action})
     )
     // java.log(JSON.stringify({"user_id": novel.userId, "action": action}))
-    if (resp === undefined) {}
-    else if (resp.error === true) sleepToast("⚠️ 操作失败")
+    if (resp.error === true) sleepToast("⚠️ 操作失败")
     else if (lastStatus === true) {
         cache.put(`block${novel.userId}`, false)
         sleepToast(`✅ 已取消拉黑${novel.userName}`)
@@ -283,8 +273,7 @@ function novelCommentAdd() {
     // } else body += `&comment=${encodeURI(comment)}`
     // let resp = getPostBody("https://www.pixiv.net/novel/rpc/post_comment.php", body)
 
-    if (resp === undefined) {}
-    else if (resp.error === true) sleepToast("⚠️ 评论失败")
+    if (resp.error === true) sleepToast("⚠️ 评论失败")
     else sleepToast(`✅ 已在【${novel.title}】发布评论：\n${comment}`)
 }
 
@@ -319,8 +308,7 @@ function novelCommentDelete() {
             `i_id=${novelId}&del_id=${commentID}`
         )
         // java.log(JSON.stringify(resp))
-        if (resp === undefined) {}
-        else if (resp.error === true) sleepToast("⚠️ 评论删除失败")
+        if (resp.error === true) sleepToast("⚠️ 评论删除失败")
         else sleepToast(`✅ 已在【${novel.title}】删除评论：\n${comment}`)
     })
 }
