@@ -130,18 +130,9 @@
         }
     },
     {
-        "name": "⤴️ 分享章节",
+        "name": "\uD83D\uDCC4 功能说明",
         "type": "button",
-        "action": "shareFactory('novel')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⤴️ 分享系列",
-        "type": "button",
-        "action": "shareFactory('series')",
+        "action": "readMeLogin()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -151,15 +142,6 @@
         "name": "\uD83D\uDD0D 搜索说明",
         "type": "button",
         "action": "readMeSearch()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDCC4 功能说明",
-        "type": "button",
-        "action": "readMeLogin()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -178,6 +160,15 @@
         "name": "\uD83D\uDCD6 更多简介",
         "type": "button",
         "action": "editSettings('MORE_INFORMATION')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCC5 更新时间",
+        "type": "button",
+        "action": "editSettings('SHOW_UPDATE_TIME')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -214,6 +205,15 @@
         "name": "\uD83D\uDCAC 显示评论",
         "type": "button",
         "action": "editSettings('SHOW_COMMENTS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⏩ 快速模式",
+        "type": "button",
+        "action": "editSettings('FAST')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
