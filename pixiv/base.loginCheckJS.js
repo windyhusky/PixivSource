@@ -9,10 +9,10 @@ function objStringify(obj) {
 }
 
 function publicFunc() {
-    let u = {}
-    java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
+    let u = {}, settings
+    java.log(String(source.bookSourceComment).split("\n")[0])       // 输出书源信息
     java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
-    settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+    settings = getFromCache("pixivSettings")
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
     } else {
@@ -24,10 +24,11 @@ function publicFunc() {
         settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
         settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
         settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
-        settings.FAST  = false   // 全局：快速模式
-        settings.DEBUG = false   // 全局：调试模式
+        settings.FAST  = false              // 全局：快速模式
+        settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
+
     u.CONVERT_CHINESE = settings.CONVERT_CHINESE
     u.MORE_INFORMATION = settings.MORE_INFORMATION
     u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME
@@ -35,15 +36,17 @@ function publicFunc() {
     u.REPLACE_TITLE_MARKS = settings.REPLACE_TITLE_MARKS
     u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS
     u.SHOW_COMMENTS = settings.SHOW_COMMENTS
-    u.FAST = settings.FAST
+    u.FAST  = settings.FAST
     u.DEBUG = settings.DEBUG
 
     if (u.FAST === true) {
-        u.CONVERT_CHINESE = false    // 搜索：繁简通搜
-        u.SHOW_UPDATE_TIME = true    // 目录：显示章节更新时间
-        u.SHOW_ORIGINAL_LINK = false // 目录：显示章节源链接
-        u.SHOW_COMMENTS = true       // 正文：
+        u.CONVERT_CHINESE = settings.CONVERT_CHINESE = false        // 搜索：繁简通搜
+        u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME = true       // 目录：显示章节更新时间
+        u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK = false  // 目录：显示章节源链接
+        u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS = true             // 正文：显示评论
     }
+    cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
+
     if (u.DEBUG === true) {
         java.log(JSON.stringify(settings, null, 4))
         java.log(`DEBUG = ${u.DEBUG}`)
