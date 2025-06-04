@@ -345,11 +345,17 @@ function getCookie() {
         return pixivCookie
     }
 }
-function getUserAgent() {
-    let userAgent = String(java.getUserAgent())
-    cache.put("userAgent", userAgent)
-    // java.log(userAgent)
-    return userAgent
+
+// 获取 Csrf Token，以便进行收藏等请求
+// 获取方法来自脚本 Pixiv Previewer
+// https://github.com/Ocrosoft/PixivPreviewer
+// https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
+function getCsrfToken() {
+    let csfrToken = getWebviewJson("https://www.pixiv.net/", html => {
+        return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
+    })
+    cache.put("csfrToken", csfrToken)  // 与登录设备有关
+    return csfrToken
 }
 function getHeaders() {
     let headers = {
