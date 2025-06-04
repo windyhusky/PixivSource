@@ -404,9 +404,9 @@ function syncBlockAuthorList() {
     }
 }
 
-publicFunc(); getUserAgent(); syncBlockAuthorList()
+publicFunc(); syncBlockAuthorList()
 if (result.code() === 200) {
-    getPixivUid(); getCookie(); getHeaders()
+    getPixivUid(); getCsrfToken(); getCookie(); getHeaders()
     if (!util.FAST) checkMessageThread()  // 检测过度访问
 //     if (isHtmlString(result.body())) {  // 检测登录
 //         let loginStatus = getWebviewJson(baseUrl, html => {
