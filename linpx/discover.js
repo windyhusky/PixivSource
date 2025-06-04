@@ -80,7 +80,7 @@ function handlerRegexNovels() {
 
 function handlerFactory() {
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
-        return updateSource()
+        return () => {updateSource(); return []}
     }
     if (baseUrl.includes("/fav/user")) {
         return handlerRecommendUsers()
