@@ -233,7 +233,7 @@ function updateSource() {
         <tr><td>☁️ 远程仓库版本：${java.timeFormat(onlineSource.lastUpdateTime)}</td></tr>
         <tr><td>📥 阅读本地版本：${java.timeFormat(source.lastUpdateTime)}</td></tr>
         <tr><td style="text-align: left;">${comment.slice(2, 9).join("<br>")}</td></tr>
-        <tr><td style="text-align: left;">${comment.slice(comment.length-7, comment.length).join("<br>")}</td></tr>
+        <tr><td style="text-align: left;">${comment.slice(comment.length-9, comment.length).join("<br>")}</td></tr>
     </table>
     
     <table border="0" cellspacing="20">
