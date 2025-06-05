@@ -46,10 +46,10 @@ function publicFunc() {
     u.DEBUG = settings.DEBUG
 
     if (u.FAST === true) {
-        u.CONVERT_CHINESE = settings.CONVERT_CHINESE = false        // 搜索：繁简通搜
-        u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME = true       // 目录：显示章节更新时间
-        u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK = false  // 目录：显示章节源链接
-        u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS = true             // 正文：显示评论
+        u.CONVERT_CHINESE = settings.CONVERT_CHINESE = false         // 搜索：繁简通搜
+        u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME = false       // 目录：显示章节更新时间
+        u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
+        u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS = false             // 正文：显示评论
     } else {
         u.CONVERT_CHINESE = settings.CONVERT_CHINESE = true         // 搜索：繁简通搜
         u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME = true       // 目录：显示章节更新时间
