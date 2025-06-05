@@ -60,9 +60,9 @@ function getCookie() {
 }
 
 function startBrowser(url, title) {
-    let userAgent = cache.get("userAgent")
-    if (userAgent === null) userAgent = getUserAgent()
-    java.startBrowser(`${url},{"headers": {${userAgent}}}`, title)
+    let headers = `{"headers": {"User-Agent":"${java.getWebViewUA()}"}}`
+    // let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"}}`
+    java.startBrowser(`${url}, ${headers}`, title)
 }
 function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
