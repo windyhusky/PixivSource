@@ -132,26 +132,19 @@ if (SHOW_GENERAL_GENRE === true) {
 
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
-try {
-    authors = String(source.getVariable()).split("\n")
-    if (authors[0].trim() !== "" && authors.length >= 1) {
-        for (let i in authors) {
-            if (authors[i] !== "") {
-                let authorId = authors[i].match(RegExp(/\d+/))[0]
-                let resp = JSON.parse(java.ajax(`https://www.pixiv.net/ajax/user/${authorId}`))
-                if (resp.error !== true) {
-                    let bookmark = {}
-                    bookmark[resp.body.name] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
-                    bookmarks.push(bookmark)
-                }
-            }
+let authors = getFromCache("pixivLikeAuthors")
+if (authors !== null) {
+    authors.forEach(authorId => {
+        let resp = getAjaxJson(urlUserDetailed(authorId))
+        if (resp.error !== true) {
+            let bookmark = {}
+            bookmark[resp.body.name] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
+            bookmarks.push(bookmark)
         }
-        li = li.concat(bookmarks)
-    } else {
-        sleepToast('查看他人收藏❤️\n\n发现 - 长按"Pixiv" - 编辑 - 菜单 - 设置源变量')
-    }
-} catch (e) {
-    sleepToast("⚠️源变量设置有误\n\n输入作者ID，一行一个，可添加作者名，保存")
+    })
+    li = li.concat(bookmarks)
+} else {
+    sleepToast("❤️ 他人收藏\n 刷新发现前，请在【订阅源】设置源变量，并在【订阅源】的登录界面点击 ❤️ 他人收藏", 5)
 }
 
 li.forEach(item => {
