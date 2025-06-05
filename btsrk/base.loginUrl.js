@@ -54,13 +54,14 @@ function getLikeAuthors() {
                     authorIds.push(authorId)
                 }
             }
-            sleepToast("❤️ 他人收藏：已导入作者数据")
+            sleepToast("❤️ 他人收藏：已导入作者数据\n\n更新发现：发现 - 长按\"Pixiv\" - 刷新 - 查看收藏")
+            // sleepToast(JSON.stringify(authorIds))
             cache.put("pixivLikeAuthors", JSON.stringify(authorIds))
         } else {
-            sleepToast("❤️ 他人收藏\n⚠️未在【订阅源】设置源变量\n输入作者ID，一行一个，可添加作者名，保存")
+            sleepToast("❤️ 他人收藏\n⚠️ 未在【订阅源】设置源变量\n输入作者ID，一行一个，可添加作者名，保存")
         }
     } catch (e) {
-        sleepToast("❤️ 他人收藏\n⚠️【订阅源】源变量设置有误\n输入作者ID，一行一个，可添加作者名，保存")
+        sleepToast("❤️ 他人收藏\n⚠️ 【订阅源】源变量设置有误\n输入作者ID，一行一个，可添加作者名，保存")
     }
 }
 
