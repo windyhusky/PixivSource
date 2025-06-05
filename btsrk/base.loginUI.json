@@ -27,18 +27,18 @@
         }
     },
     {
-        "name": "✉️ 查看私信",
+        "name": "❤️ 他人收藏",
         "type": "button",
-        "action": "startPixivMessages()",
+        "action": "getLikeAuthors()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "\uD83D\uDD14 查看通知",
+        "name": "✉️ 查看私信",
         "type": "button",
-        "action": "startPixivNotification()",
+        "action": "startPixivMessages()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1

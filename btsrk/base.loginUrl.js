@@ -59,6 +59,27 @@ function getCookie() {
     }
 }
 
+function getLikeAuthors() {
+    let authorIds = []
+    try {
+        let authors = String(source.getVariable()).split("\n")
+        if (authors[0].trim() !== "" && authors.length >= 1) {
+            for (let i in authors) {
+                if (authors[i] !== "") {
+                    let authorId = authors[i].match(RegExp(/\d+/))[0]
+                    authorIds.push(authorId)
+                }
+            }
+            sleepToast("❤️ 他人收藏：已导入作者数据")
+            cache.put("pixivLikeAuthors", JSON.stringify(authorIds))
+        } else {
+            sleepToast("❤️ 他人收藏\n⚠️未在【订阅源】设置源变量\n输入作者ID，一行一个，可添加作者名，保存")
+        }
+    } catch (e) {
+        sleepToast("❤️ 他人收藏\n⚠️【订阅源】源变量设置有误\n输入作者ID，一行一个，可添加作者名，保存")
+    }
+}
+
 function startBrowser(url, title) {
     let headers = `{"headers": {"User-Agent":"${java.getWebViewUA()}"}}`
     // let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"}}`
