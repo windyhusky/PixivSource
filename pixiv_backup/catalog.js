@@ -38,7 +38,7 @@ function seriesHandler(res) {
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        resp = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex))
+        resp = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex), true)
         res = resp.body.thumbnails.novel
         // res = resp.body.page.seriesContents
         res.forEach(v => {
@@ -60,7 +60,7 @@ function seriesHandler(res) {
     }
 
     if (!util.SHOW_UPDATE_TIME) {
-        returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID)).body
+        returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID), true).body
         returnList.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
             v.chapterUrl = urlNovel(v.id)
