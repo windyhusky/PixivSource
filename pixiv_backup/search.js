@@ -88,11 +88,11 @@ function getUserNovels() {
         }
 
         // 仅获取前3个有小说的作者
-        let novelsId = Object.keys(resp.body.novels)
-        // java.log(`${id}-${novelsId.length}`)
-        if (novelsId.length >= 1) tempUids.push(id)
+        let novelIds = Object.keys(resp.body.novels)
+        // java.log(`${id}-${novelIds.length}`)
+        if (novelIds.length >= 1) tempUids.push(id)
         if (tempUids.length === 3) {
-            java.log(JSON.stringify(tempUids))
+            java.log(`作者ID：${JSON.stringify(tempUids)}`)
             break
         }
 
@@ -107,24 +107,23 @@ function getUserNovels() {
             novels = novels.concat(resp.body.novelSeries)
         }
 
+        // 获取所有系列内部的小说 ID
+        let seriesNovelIds = []
+        seriesIds.forEach(seriesId => {
+            let returnList = getAjaxJson(urlSeriesNovelsTitles(seriesId)).body
+            returnList.map(novel => {return seriesNovelIds.push(novel.id)})
+        })
+        // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
+        // java.log(seriesNovelIds.length)
+
         // 获取单篇小说
-        if (novelsId.length >= 1) {
-            let novelsId = Object.keys(resp.body.novels).reverse().slice((page - 1) * 20, page * 20)
-            let url = urlNovelsDetailed(id, novelsId)
-            util.debugFunc(() => {
-                java.log(`发送获取作者小说的Ajax请求:${url}`)
-            })
-            let userNovels = getWebviewJson(url, html => {
-                return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
-            }).body
-            // let userNovels = getAjaxJson(url).body
-            // 获取对应的小说 该序列是按照id排序
-            // 反转以按照更新时间排序
-            let single = Object.values(userNovels).reverse()
-            // 筛选真正的单篇小说
-            let realSingleNovels = single.filter(novel => (!seriesIds.includes(novel.seriesId)))
-            // java.log(JSON.stringify(realSingleNovel))
-            novels = novels.concat(realSingleNovels)
+        if (novelIds.length >= 1) {
+            novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
+            novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
+            // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
+            // java.log(JSON.stringify(novelIds.length))
+            let novelUrls = novelIds.map(novelId => {return urlNovelDetailed(novelId)})
+            novels = novels.concat(getAjaxAllJson(novelUrls))
         }
     }
     util.debugFunc(() => {
