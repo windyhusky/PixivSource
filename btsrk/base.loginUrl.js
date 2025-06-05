@@ -6,8 +6,8 @@ function sleep(time) {
         }
     }
 }
+
 function sleepToast(text, second) {
-    const {java} = this
     java.log(text)
     java.longToast(text)
     if (second === undefined || second <= 3) {second = 3}
@@ -15,14 +15,18 @@ function sleepToast(text, second) {
 }
 
 function login() {
-    resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false).body()
+    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false)
+    if (resp.code() === 200) getCookie(); getCsrfToken()
+    return resp.body()
 }
+
 function logout() {
     removeCookie()
     java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
     removeCookie()
     sleepToast(`已退出当前账号\n退出后请点击右上角的✔️退出\n登录请点击“登录账号”进行登录`)
 }
+
 function removeCookie() {
     cookie.removeCookie('https://www.pixiv.net')
     cookie.removeCookie('https://accounts.pixiv.net')
@@ -33,12 +37,28 @@ function removeCookie() {
     cache.delete("headers")
 }
 
-function getUserAgent() {
-    let userAgent = String(source.getHeaderMap(true)).slice(12,-1)
-    cache.put("userAgent", userAgent)
-    // java.log(userAgent)
-    return userAgent
+// 获取 Csrf Token，以便进行收藏等请求
+// 获取方法来自脚本 Pixiv Previewer
+// https://github.com/Ocrosoft/PixivPreviewer
+// https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
+function getCsrfToken() {
+    let csfrToken = getWebviewJson("https://www.pixiv.net/", html => {
+        return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
+    })
+    // java.log(csfrToken)
+    cache.put("csfrToken", csfrToken)  // 与登录设备有关
+    return csfrToken
 }
+
+function getCookie() {
+    let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
+    if (pixivCookie.includes("first_visit_datetime")) {
+        // java.log(pixivCookie)
+        cache.put("pixivCookie", pixivCookie, 60*60)
+        return pixivCookie
+    }
+}
+
 function startBrowser(url, title) {
     let userAgent = cache.get("userAgent")
     if (userAgent === null) userAgent = getUserAgent()
