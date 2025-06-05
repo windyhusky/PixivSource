@@ -99,6 +99,9 @@ function urlSeriesNovels(seriesId, limit, offset) {
 function urlUserUrl(userID) {
     return `https://www.pixiv.net/users/${userID}/novels`
 }
+function urlUserDetailed(userID) {
+    return `https://www.pixiv.net/ajax/user/${userID}`
+}
 function urlUserWorkLatest(userID) {
     return `https://www.pixiv.net/ajax/user/${userID}/works/latest`
 }
