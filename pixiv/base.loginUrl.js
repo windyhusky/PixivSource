@@ -380,13 +380,17 @@ function editSettings(object) {
         "FAST": "快速模式",
         "DEBUG": "调试模式"
     }
+    let fastMsg1 = "🀄️ 繁简通搜、📅 更新时间", fastMsg2 = "🔗 原始链接、💬 显示评论"
 
     let settings = getFromCache("pixivSettings")
     settings[object] = (!settings[object])
     if (settings[object] === true) {
-        java.toast(`✅ 已开启 ${settingsName[object]}`)
+        msg = `✅ 已开启 ${settingsName[object]}`
+        if (object === "FAST") msg += `\n\n❎ 已关闭${fastMsg1}\n❎ 已关闭${fastMsg2}`
     } else {
-        java.toast(`❎ 已关闭 ${settingsName[object]}`)
+        msg = `❎ 已关闭 ${settingsName[object]}`
+        if (object === "FAST") msg += `\n\n✅ 已开启${fastMsg1}\n✅ 已开启${fastMsg2}`
     }
+    sleepToast(msg)
     cache.put("pixivSettings", JSON.stringify(settings))
 }
