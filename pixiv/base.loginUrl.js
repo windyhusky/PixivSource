@@ -324,7 +324,7 @@ function shareFactory(type) {
     if (type.includes("author")) {
         startBrowser(urlUserUrl(novel.userId), novel.userName)
     }
-    else if (type.includes("novel") || novel.seriesId === undefined) {
+    else if (type.includes("novel") || (!novel.seriesId)) {
         startBrowser(urlNovelUrl(novel.novelId), novel.title)
     }
     else if (type.includes("series") && novel.seriesId) {
