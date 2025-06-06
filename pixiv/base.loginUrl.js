@@ -1,11 +1,18 @@
 function login() {
+    sleepToast("🔄 正在检测登陆状态，请稍候")
+    if (getCookie() && getCsrfToken()) {
+        sleepToast("✅ 已经登录过账号了\n可以点击【🔙 退出账号】来切换账号")
+        return false
+    }
+
     let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false)
     if (resp.code() === 200) {
         getCookie(); getCsrfToken()
+        return true
     } else {
         java.log(resp.code()); sleepToast("⚠️ 登录失败")
+        return false
     }
-    return resp.body()
 }
 
 function logout() {
@@ -382,7 +389,7 @@ function editSettings(object) {
         "SHOW_COMMENTS": "💬 显示评论",
         "FAST": "⏩ 快速模式",
         "DEBUG": "🐞 调试模式"
-}
+    }
     let fastMsg1 = "🀄️ 繁简通搜、📅 更新时间", fastMsg2 = "🔗 原始链接、💬 显示评论", fastMsg3 = "默认搜索的搜索作者"
 
     let settings = getFromCache("pixivSettings")
@@ -400,5 +407,6 @@ function editSettings(object) {
 
 function sleepToast(text, second) {
     java.log(text)
-    java.toast(text)
+    // java.toast(text)
+    java.longToast(text)
 }
