@@ -27,21 +27,6 @@
 
 
 <details>
-<summary> Codeberg 镜像地址 </summary>
-
-| 名称           | [Codeberg 镜像网址](https://codeberg.org/DowneyRem/PixivSource)　       |
-| ------------- | ---------------------------------------------------------------------- |
-| Pixiv 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json  |
-| Linpx 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
-| 兽人小说站书源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
-| BTSRK 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json  |
-| Books 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/books.json  |
-| Import 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/import.json |
-- [Codeberg](https://codeberg.org/DowneyRem/PixivSource) 免代理，更新无延迟（网站服务不是很稳定）
-</details>
-
-
-<details>
 <summary> Github 导入地址 </summary>
 
 | 名称           | [Github 项目网址](https://github.com/windyhusky/PixivSource)               |
@@ -57,6 +42,22 @@
 > **[导入书源](./doc/ImportBookSource.md)** &
 > **[导入订阅源](./doc/ImportRssSource.md)**
 </details>
+
+
+<details>
+<summary> Codeberg 镜像地址 </summary>
+
+| 名称           | [Codeberg 镜像网址](https://codeberg.org/DowneyRem/PixivSource)　       |
+| ------------- | ---------------------------------------------------------------------- |
+| Pixiv 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json  |
+| Linpx 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
+| 兽人小说站书源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
+| BTSRK 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json  |
+| Books 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/books.json  |
+| Import 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/import.json |
+- [Codeberg](https://codeberg.org/DowneyRem/PixivSource) 免代理，更新无延迟（网站服务不是很稳定）
+</details>
+
 
 
 ## 书源状态 & 功能
