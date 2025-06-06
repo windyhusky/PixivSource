@@ -352,43 +352,43 @@ function charpterRead() {
 
 function readMeLogin() {
     let novel = source.getLoginInfoMap()
-    sleepToast(`登录界面功能说明
+    sleepToast(`🅿️ 登录界面功能说明
     使用收藏、追更、关注作者、评论等功能时，请先刷新正文，获取当前章节信息
     点击【📌 当前章节】查看书源内部章节信息`, 5)
 }
 
 function readMeSearch() {
     let novel = source.getLoginInfoMap()
-    sleepToast(`搜索说明
-    关键词间需要以空格间隔
-    作者专搜：@作者名称
-    标签专搜：#标签1 标签2
-    字数筛选1：标签1 标签2 字数3k5
-    字数筛选2：@作者名称 字数3w5`, 5)
+    sleepToast(`🔍 搜索说明
+    标签之间需要以【空格】间隔
+    👤 作者专搜：@搜索作者名称
+    #️ 标签专搜：#标签1 标签2　
+    ⏬ 字数筛选1：#标签1 标签2 字数3k5
+    ⏬ 字数筛选2：@作者的名称 字数3w5`, 5)
 }
 
 function editSettings(object) {
     let settingsName = {
-        "CONVERT_CHINESE": "繁简通搜",
-        "MORE_INFORMATION": "显示更多简介",
-        "SHOW_UPDATE_TIME": "显示更新时间",
-        "SHOW_ORIGINAL_LINK": "显示原始链接",
-        "REPLACE_TITLE_MARKS": "恢复书名号《》",
-        "SHOW_CAPTIONS": "显示描述",
-        "SHOW_COMMENTS": "显示评论",
-        "FAST": "快速模式",
-        "DEBUG": "调试模式"
-    }
-    let fastMsg1 = "🀄️ 繁简通搜、📅 更新时间", fastMsg2 = "🔗 原始链接、💬 显示评论"
+        "CONVERT_CHINESE": "🀄️ 繁简通搜",
+        "MORE_INFORMATION": "📖 显示更多简介",
+        "SHOW_UPDATE_TIME": "📅 显示更新时间",
+        "SHOW_ORIGINAL_LINK": "🔗 显示原始链接",
+        "REPLACE_TITLE_MARKS": "📚 恢复书名号《》",
+        "SHOW_CAPTIONS": "🖼️ 显示描述",
+        "SHOW_COMMENTS": "💬 显示评论",
+        "FAST": "⏩ 快速模式",
+        "DEBUG": "🐞 调试模式"
+}
+    let fastMsg1 = "🀄️ 繁简通搜、📅 更新时间", fastMsg2 = "🔗 原始链接、💬 显示评论", fastMsg3 = "默认搜索的搜索作者"
 
     let settings = getFromCache("pixivSettings")
     settings[object] = (!settings[object])
     if (settings[object] === true) {
         msg = `✅ 已开启 ${settingsName[object]}`
-        if (object === "FAST") msg += `\n\n❎ 已关闭${fastMsg1}\n❎ 已关闭${fastMsg2}`
+        if (object === "FAST") msg += `\n\n❎ 已关闭${fastMsg1}\n❎ 已关闭${fastMsg2}\n❎ 已关闭${fastMsg3}`
     } else {
         msg = `❎ 已关闭 ${settingsName[object]}`
-        if (object === "FAST") msg += `\n\n✅ 已开启${fastMsg1}\n✅ 已开启${fastMsg2}`
+        if (object === "FAST") msg += `\n\n✅ 已开启${fastMsg1}\n✅ 已开启${fastMsg2}\n✅ 已开启${fastMsg3}`
     }
     sleepToast(msg)
     cache.put("pixivSettings", JSON.stringify(settings))
