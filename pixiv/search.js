@@ -113,21 +113,21 @@ function getUserNovels() {
             let returnList = getAjaxJson(urlSeriesNovelsTitles(seriesId)).body
             returnList.map(novel => {return seriesNovelIds.push(novel.id)})
         })
-        // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
-        // java.log(seriesNovelIds.length)
 
         // 获取单篇小说
         if (novelIds.length >= 1) {
             novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
             novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
-            // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
-            // java.log(JSON.stringify(novelIds.length))
             let novelUrls = novelIds.map(novelId => {return urlNovelDetailed(novelId)})
             novels = novels.concat(getAjaxAllJson(novelUrls))
         }
     }
     util.debugFunc(() => {
         java.log(`获取用户搜索小说结束`)
+        java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
+        java.log(seriesNovelIds.length)
+        java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
+        java.log(JSON.stringify(novelIds.length))
     })
     return novels
 }
