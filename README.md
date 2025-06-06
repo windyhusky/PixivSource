@@ -194,54 +194,67 @@
 
 #### 书源功能设置
 ##### 1.书源默认配置
-- 自定义设置：编辑书源 - 基本 - 变量说明 - 修改并保存
-- 修改时，请修改`true` 为 `false`，或相反
-- 每次更新书源后，需要重新设置，默认配置如下：
-
-<details><summary> ⚙️ 默认配置详情 </summary>
-
-| 书源设置            | 默认状态 | 对应常量名称           | 作用 |
-| ------------------ | ------ | --------------------- | --- |
-| 繁简通搜            | ✅ 开启 | `CONVERT_CHINESE`     | 搜索 |
-| 简介显示更多信息     | ⭕ 关闭 | `MORE_INFORMATION`    | 详情 |
-| 显示小说原始链接     | ✅ 开启 | `SHOW_ORIGINAL_LINK`  | 目录 |
-| 　　               |        |                       |     |
-| 恢复被替换的书名号   | ✅ 开启 | `REPLACE_TITLE_MARKS` | 正文 |
-| 章首显示小说描述     | ✅ 开启 | `SHOW_CAPTIONS`       | 正文 |
-| 章尾显示小说评论     | ✅ 开启 | `SHOW_COMMENTS`       | 正文 |
-| 　　               |        |                       |     |
-| 快速模式           | ⭕ 关闭 | `FAST`                | 全局 |
-| 调试模式           | ⭕ 关闭 | `DEBUG`               | 全局 |
-| 　　               |        |                       |     |
-| 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NEW`     | 发现 |
-| 排行榜单显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_RANK`    | 发现 |
-| 热门分类显示R18小说 | ⭕ 关闭 | `SHOW_R18_GENRE`       | 发现 |
-| 热门分类显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_GENRE`   | 发现 |
-</details>
-
-<details><summary> ⚙️ 默认配置代码 </summary>
-
-```
-{
-  "CONVERT_CHINESE": true,
-  "SHOW_UPDATE_TIME": true,
-  "MORE_INFORMATION": false,
-  "SHOW_ORIGINAL_LINK": true,
+⚙️ 书源设置：
+- <details><summary> 1️⃣ 常规设置 </summary>
+  ⚙️ 常规设置：打开小说 - 菜单 - 登录 - 点击下方按钮
   
-  "REPLACE_TITLE_MARKS": true,
-  "SHOW_CAPTIONS": true,
-  "SHOW_COMMENTS": true,
+  | 书源常规设置         | 默认状态 | 对应常量名称           | 作用 |
+  | ------------------ | ------ | --------------------- | --- |
+  | 繁简通搜            | ✅ 开启 | `CONVERT_CHINESE`     | 搜索 |
+  | 简介显示更多信息     | ⭕ 关闭 | `MORE_INFORMATION`    | 详情 |
+  | 显示小说更新时间     | ✅ 开启 | `SHOW_UPDATE_TIME`    | 目录 |
+  | 显示小说原始链接     | ✅ 开启 | `SHOW_ORIGINAL_LINK`  | 目录 |
+  | 恢复被替换的书名号   | ✅ 开启 | `REPLACE_TITLE_MARKS` | 正文 |
+  | 章首显示小说描述     | ✅ 开启 | `SHOW_CAPTIONS`       | 正文 |
+  | 章尾显示小说评论     | ✅ 开启 | `SHOW_COMMENTS`       | 正文 |
+  | 快速模式　          | ⭕ 关闭 | `FAST`                | 全局 |
+  | 调试模式　　        | ⭕ 关闭 | `DEBUG`               | 全局 |
+
+  - 快速模式：
+    - 繁简通搜、更新时间、原始链接、显示评论，对搜索速度稍有影响
+    - 搜索默认搜索作者，这对搜索速度有很大影响
+    - 开启时，默认关闭上述功能；关闭时，默认开启上述设置
+  </details>
+
+- <details><summary> 2️⃣ 发现设置 </summary>
   
-  "FAST": true,
-  "DEBUG": false,
+  ⚙️ 发现设置：编辑书源 - 基本 - 变量说明 - 修改并保存
+  - ⚠️ 修改时，请修改`true` 为 `false`，或相反
+  - ⚠️ 每次更新书源后，需要重新修改发现设置
   
-  "SHOW_GENERAL_NEW": false,
-  "SHOW_GENERAL_RANK": false,
-  "SHOW_R18_GENRE": false,
-  "SHOW_GENERAL_GENRE": false
-}
-```
-</details>
+  | 书源发现设置         | 默认状态 | 对应常量名称           | 作用 |
+  | ------------------ | ------ | --------------------- | --- |
+  | 最新小说显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_NEW`     | 发现 |
+  | 排行榜单显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_RANK`    | 发现 |
+  | 热门分类显示R18小说 | ⭕ 关闭 | `SHOW_R18_GENRE`       | 发现 |
+  | 热门分类显示一般小说 | ⭕ 关闭 | `SHOW_GENERAL_GENRE`   | 发现 |
+
+  </details>
+
+- <details><summary> 3️⃣ 默认配置代码 </summary>
+  
+  ```
+  {
+    "CONVERT_CHINESE": true,
+    "SHOW_UPDATE_TIME": true,
+    "MORE_INFORMATION": false,
+    "SHOW_ORIGINAL_LINK": true,
+    
+    "REPLACE_TITLE_MARKS": true,
+    "SHOW_CAPTIONS": true,
+    "SHOW_COMMENTS": true,
+    
+    "FAST": true,
+    "DEBUG": false,
+    
+    "SHOW_GENERAL_NEW": false,
+    "SHOW_GENERAL_RANK": false,
+    "SHOW_R18_GENRE": false,
+    "SHOW_GENERAL_GENRE": false
+  }
+  ```
+  </details>
+
 
 ##### 2.设置源变量
 - <details><summary> ❤️ 他人收藏（Pixiv 小说 书源）</summary>
@@ -273,18 +286,18 @@
 ##### 1.最大缓存时间
 <details><summary> 最大缓存时间：7天 </summary>
 
-- 书源内部使用 `getAjaxJson() getAjaxAllJson() getWebviewJson() urlIllustOriginal() ` 等，访问网络资源时，会默认写入缓存，最多存放7天
+- 书源内部 JsLib 使用 `getAjaxJson() getAjaxAllJson() getWebviewJson() urlIllustOriginal() ` 等，访问网络资源时，会默认写入缓存，最多存放7天
 - 后续如果重复请求同一内容，在缓存时间内则不会发送请求，而是直接读取缓存数据，加快请求速度的同时，减少实际请求次数
 - 登录界面中的功能使用了 `getPostBody()`，不受此限制
-- 获取/刷新评论不受此限制
+- 获取/刷新目录、获取/刷新评论，会强制更新，不受此限制
+
 
 - 自定义：编辑书源 - 基本 - JSLib - 修改并保存
 ```
-var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建议缩短
+var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建议缩至过短
 ```
 - **每次更新书源后，需要重新设置**
 </details>
-
 
 
 ##### 2.请求速率限制
