@@ -212,8 +212,8 @@ function novelFilter(novels) {
     } else {
         novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
-        if (util.FAST) novels = novels.concat(getUserNovels())
-        if (util.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
+        if (util.settings.FAST) novels = novels.concat(getUserNovels())
+        if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程

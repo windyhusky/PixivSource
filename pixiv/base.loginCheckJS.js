@@ -34,33 +34,23 @@ function publicFunc() {
         settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-
-    u.CONVERT_CHINESE = settings.CONVERT_CHINESE
-    u.MORE_INFORMATION = settings.MORE_INFORMATION
-    u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME
-    u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK
-    u.REPLACE_TITLE_MARKS = settings.REPLACE_TITLE_MARKS
-    u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS
-    u.SHOW_COMMENTS = settings.SHOW_COMMENTS
-    u.FAST  = settings.FAST
-    u.DEBUG = settings.DEBUG
-
+    
     if (u.FAST === true) {
-        u.CONVERT_CHINESE = settings.CONVERT_CHINESE = false         // 搜索：繁简通搜
-        u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME = false       // 目录：显示章节更新时间
-        u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
-        u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS = false             // 正文：显示评论
+        settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
+        settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
+        settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
+        settings.SHOW_CAPTIONS = false        // 正文：显示评论
     } else {
-        u.CONVERT_CHINESE = settings.CONVERT_CHINESE = true         // 搜索：繁简通搜
-        u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME = true       // 目录：显示章节更新时间
-        u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK = true   // 目录：显示章节源链接
-        u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS = true             // 正文：显示评论
+        settings.CONVERT_CHINESE = true       // 搜索：繁简通搜
+        settings.SHOW_UPDATE_TIME = true      // 目录：显示章节更新时间
+        settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
+        settings.SHOW_CAPTIONS = true         // 正文：显示评论
     }
     u.settings = settings
     cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
 
     u.debugFunc = (func) => {
-        if (util.DEBUG) {
+        if (util.settings.DEBUG) {
             func()
         }
     }
@@ -226,7 +216,7 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
 
-            if (util.MORE_INFORMATION) {
+            if (util.settings.MORE_INFORMATION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
             } else {
                 novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
@@ -417,7 +407,7 @@ function syncBlockAuthorList() {
 publicFunc(); syncBlockAuthorList()
 if (result.code() === 200) {
     getPixivUid(); getCsrfToken(); getCookie(); getHeaders()
-    if (!util.FAST) checkMessageThread()  // 检测过度访问
+    if (!util.settings.FAST) checkMessageThread()  // 检测过度访问
 //     if (isHtmlString(result.body())) {  // 检测登录
 //         let loginStatus = getWebviewJson(baseUrl, html => {
 //             return JSON.stringify(html.match(/login:\s*'([^']+)'/)[1])
@@ -430,7 +420,7 @@ if (result.code() === 200) {
 }
 
 util.debugFunc(() => {
-    java.log(`DEBUG = ${util.DEBUG}\n`)
+    java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
     java.log(`${java.getUserAgent()}\n`)
     java.log(`${cache.get("csfrToken")}\n`)
