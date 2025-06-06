@@ -221,29 +221,6 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 </details>
 
 
-<details><summary> ❤️ 他人收藏 </summary>
-
-发现 - 长按"Pixiv" - 编辑 - 右上角菜单 - 设置源变量
-
-![img](./pic/SetSourceVariable0.png)
-
-![img](./pic/SetSourceVariable1.png)
-
-![img](./pic/SetSourceVariable2.png)
-
-设置源变量：输入作者ID，一行一个，可添加作者名，保存
-```
-12345 // 作者A
-67890 # 作者B
-```
-发现：长按"Pixiv"，刷新，查看他人收藏
-
-![img](./pic/SetSourceVariable0.png)
-
-![img](./pic/DiscoverPixivLikes.jpg)
-</details>
-
-
 ### 3.添加网址
 <details>
 <summary> 🔗 添加网址 </summary>
@@ -305,6 +282,57 @@ https://www.pixiv.net/users/16721009
 
 - 添加系列小说到书架
 ![img](./pic/AddBookViaPixiv2.png)
+</details>
+
+
+<details><summary> ❤️ 他人收藏（订阅源 源变量）</summary>
+
+#### 4.4 查看他人收藏（Pixiv 首页 订阅源）
+1️⃣ 订阅 - 长按订阅源 - 编辑 - 菜单 - 设置源变量
+
+![img](./pic/SetSourceVariable2.png)
+
+2️⃣ 设置源变量：输入作者ID，一行一个，可添加作者名，保存
+```
+12345 // 作者A
+67890 # 作者B
+```
+3️⃣ 导入：打开订阅源 - 菜单 - 登录 - 点击 ❤️ 他人收藏，同步数据
+
+4️⃣ 更新：发现 - 长按"Pixiv" - 刷新 - 查看他人收藏
+
+![img](./pic/SetSourceVariable0.png)
+![img](./pic/DiscoverPixivLikes.jpg)
+</details>
+
+
+### 5.登录界面
+<details><summary> 🅿️ 账号功能 </summary>
+
+#### 5.0 账号功能
+</details>
+
+
+<details><summary> 🅿️ 书源功能 </summary>
+
+#### 5.1 书源功能
+</details>
+
+
+<details><summary> 📃 小说功能 </summary>
+
+#### 5.2 小说功能
+</details>
+
+
+<details><summary> ⚙️ 书源设置 </summary>
+
+#### 5.3 书源设置
+</details>
+
+
+### 6.设置源变量
+<details><summary> 🚫 屏蔽作者 </summary>
 </details>
 
 
