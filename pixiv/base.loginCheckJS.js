@@ -56,12 +56,9 @@ function publicFunc() {
         u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK = true   // 目录：显示章节源链接
         u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS = true             // 正文：显示评论
     }
+    u.settings = settings
     cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
 
-    if (u.DEBUG === true) {
-        java.log(JSON.stringify(settings, null, 4))
-        java.log(`DEBUG = ${u.DEBUG}`)
-    }
     u.debugFunc = (func) => {
         if (util.DEBUG) {
             func()
@@ -431,7 +428,10 @@ if (result.code() === 200) {
 //     sleepToast("请重新登录")
 //     source.login()
 }
+
 util.debugFunc(() => {
+    java.log(`DEBUG = ${util.DEBUG}\n`)
+    java.log(JSON.stringify(util.settings, null, 4))
     java.log(`${java.getUserAgent()}\n`)
     java.log(`${cache.get("csfrToken")}\n`)
     java.log(`${cache.get("pixivCookie")}\n`)
