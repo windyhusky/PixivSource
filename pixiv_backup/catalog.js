@@ -11,7 +11,7 @@ function objParse(obj) {
 }
 
 function urlNovel(novelId){
-    if (util.SHOW_ORIGINAL_LINK) {
+    if (util.settings.SHOW_ORIGINAL_LINK) {
         return urlNovelUrl(novelId)
     } else {
         return urlNovelDetailed(novelId)
@@ -59,7 +59,7 @@ function seriesHandler(res) {
         return res;
     }
 
-    if (!util.SHOW_UPDATE_TIME) {
+    if (!util.settings.SHOW_UPDATE_TIME) {
         returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID), true).body
         returnList.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")

@@ -18,9 +18,17 @@ function getContent(res) {
         if (seriesId !== undefined && seriesId !== null) {
             let novelIds = getFromCache(`novelIds${seriesId}`)
             novel.id = novelIds[book.durChapterIndex]
-            novel.title = book.durChapterTitle
+            novel.seriesId = res.seriesNavData.seriesId
+            novel.seriesTitle = res.seriesNavData.seriesTitle
         }
+    } else {
+        novel.id = res.id
+        novel.seriesId = null
+        novel.seriesTitle = null
     }
+    novel.title = book.durChapterTitle
+    novel.userId = res.userId
+    novel.userName = res.userName
     source.putLoginInfo(JSON.stringify(novel))
     // sleepToast(`当前章节：${novel.id}${novel.title}`)
 
@@ -31,7 +39,7 @@ function getContent(res) {
     }
 
     // 在正文内部添加小说描述
-    if (util.SHOW_CAPTIONS === true && res.description !== "") {
+    if (util.settings.SHOW_CAPTIONS && res.description !== "") {
         content = res.description + "\n" + "——————————\n".repeat(2) + content
     }
 
@@ -113,7 +121,7 @@ function getContent(res) {
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
 
-            if (!util.REPLACE_TITLE_MARKS) {
+            if (!util.settings.REPLACE_TITLE_MARKS) {
                 // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             } else {
@@ -130,7 +138,7 @@ function getContent(res) {
         }
     }
 
-    if (util.SHOW_COMMENTS === true) {
+    if (util.settings.SHOW_COMMENTS) {
         return content + getComment(res)
     } else {
         return content
