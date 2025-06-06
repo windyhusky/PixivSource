@@ -393,3 +393,8 @@ function editSettings(object) {
     sleepToast(msg)
     cache.put("pixivSettings", JSON.stringify(settings))
 }
+
+function sleepToast(text, second) {
+    java.log(text)
+    java.toast(text)
+}
