@@ -347,7 +347,11 @@ function startGithubReadme() {
 
 function charpterRead() {
     let novel = source.getLoginInfoMap()
-    sleepToast(`内部章节\n【${novel.title}】\n如非当前章节名称，请刷新正文`)
+    sleepToast(`📌 当前章节\n
+    系列名称：${novel.seriesTitle}
+    章节名称：${novel.title}
+    作者名称：${novel.userName}\n
+    如非当前章节名称，请刷新正文`)
 }
 
 function readMeLogin() {
