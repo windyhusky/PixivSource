@@ -130,7 +130,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDD1 分享章节",
+        "name": "⤴️ 分享章节",
         "type": "button",
         "action": "shareFactory('novel')",
         "style": {
@@ -139,7 +139,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDD1 分享系列",
+        "name": "⤴️ 分享系列",
         "type": "button",
         "action": "shareFactory('series')",
         "style": {
@@ -148,7 +148,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCC4 功能说明",
+        "name": "\uD83C\uDD7F️ 功能说明",
         "type": "button",
         "action": "readMeLogin()",
         "style": {
