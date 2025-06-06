@@ -130,6 +130,24 @@
         }
     },
     {
+        "name": "\uD83D\uDDD1 分享章节",
+        "type": "button",
+        "action": "shareFactory('novel')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDD1 分享系列",
+        "type": "button",
+        "action": "shareFactory('series')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
         "name": "\uD83D\uDCC4 功能说明",
         "type": "button",
         "action": "readMeLogin()",
@@ -214,6 +232,15 @@
         "name": "⏩ 快速模式",
         "type": "button",
         "action": "editSettings('FAST')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC1E 调试模式",
+        "type": "button",
+        "action": "editSettings('DEBUG')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
