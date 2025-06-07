@@ -124,18 +124,15 @@ function handlerWatchList() {
 // 排行榜，书签，首页，编辑部推荐，顺序相同
 function handlerRanking() {
     return () => {
-        let novels = [], novelIds = [], novelUrls = []
+        let novelUrls = []
         // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
         let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
         for (let i in matched) {
             let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            if (novelIds.indexOf(novelId) === -1) {
-                novelIds.push(novelId)
-                novelUrls.push(urlNovelDetailed(novelId))
-                // java.log(urlNovelDetailed(novelId))
-            }
+            novelUrls.push(urlNovelDetailed(novelId))
         }
-        return util.formatNovels(util.handNovels(util.combineNovels(getAjaxAllJson(novelUrls))))
+        let novels = getAjaxAllJson(novelUrls).map(resp => resp.body)
+        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
     }
 }
 
