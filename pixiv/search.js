@@ -81,7 +81,7 @@ function getUserNovels() {
     let tempUids = []
     for (let i in uidList) {
         let id = uidList[i]
-        let resp = getAjaxJson(urlUserAllWorks(id))
+        let resp = getAjaxJson(urlUserAllWorks(id), true)
         // java.log(urlUserAllWorks(id))
         if (resp.error === true) {
             return []
@@ -212,7 +212,7 @@ function novelFilter(novels) {
     } else {
         novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
-        if (util.settings.FAST) novels = novels.concat(getUserNovels())
+        if (!util.settings.FAST) novels = novels.concat(getUserNovels())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
