@@ -224,7 +224,7 @@ function userFollowFactory(code=1) {
 }
 
 function userBlackList() {
-    let action = "block"  // 拉黑作者，非屏蔽作恶者作品
+    let action = "block"  // 拉黑作者，非屏蔽作者作品
     let novel = source.getLoginInfoMap()
     let lastStatus = getFromCache(`block${novel.userId}`)
     if (lastStatus === true) action = "unblock"
@@ -237,10 +237,10 @@ function userBlackList() {
     if (resp.error === true) sleepToast("⚠️ 操作失败")
     else if (lastStatus === true) {
         cache.put(`block${novel.userId}`, false)
-        sleepToast(`✅ 已取消拉黑${novel.userName}`)
+        sleepToast(`✅ 已取消拉黑【${novel.userName}】\n\n已允许其点赞、评论、收藏、关注、私信等`)
     } else {
         cache.put(`block${novel.userId}`, true)
-        sleepToast(`✅ 已拉黑${novel.userName}`)
+        sleepToast(`✅ 已拉黑【${novel.userName}】(Pixiv)\n\n已禁止其点赞、评论、收藏、关注、私信等`)
     }
 }
 
