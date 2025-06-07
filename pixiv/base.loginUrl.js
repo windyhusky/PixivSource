@@ -249,10 +249,10 @@ function userBlock() {
     let novel = source.getLoginInfoMap()
     if (authors.includes(Number(novel.userId))) {
         authors = authors.filter(author => author !== Number(novel.userId))
-        sleepToast(`✅ 已将【${novel.userName}】移出本地屏蔽名单`)
+        sleepToast(`✅ 已取消屏蔽【${novel.userName}】\n\n现已恢复显示其小说`)
     } else if (novel.userId !== undefined && novel.userId !== null) {
         authors.push(Number(novel.userId))
-        sleepToast(`✅ 已将【${novel.userName}】加入本地屏蔽名单`)
+        sleepToast(`✅ 已屏蔽【${novel.userName}】(本地)\n\n今后不再显示其小说`)
     }
     cache.put("blockAuthorList", JSON.stringify(authors))
     source.setVariable(authors.toString())
