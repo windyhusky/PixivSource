@@ -80,9 +80,10 @@ function getUserNovels() {
 
     let tempUids = []
     for (let i in uidList) {
-        let id = uidList[i]
-        let resp = getAjaxJson(urlUserAllWorks(id), true)
+        let uid = uidList[i]
+        let resp = getAjaxJson(urlUserAllWorks(uid), true)
         // java.log(urlUserAllWorks(id))
+        // java.log(JSON.stringify(resp))
         if (resp.error === true) {
             return []
         }
@@ -90,7 +91,7 @@ function getUserNovels() {
         // 仅获取前3个有小说的作者
         let novelIds = Object.keys(resp.body.novels)
         // java.log(`${id}-${novelIds.length}`)
-        if (novelIds.length >= 1) tempUids.push(id)
+        if (novelIds.length >= 1) tempUids.push(uid)
         if (tempUids.length === 3) {
             java.log(`作者ID：${JSON.stringify(tempUids)}`)
             break
@@ -119,7 +120,7 @@ function getUserNovels() {
             novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
             novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
             let novelUrls = novelIds.map(novelId => {return urlNovelDetailed(novelId)})
-            novels = novels.concat(getAjaxAllJson(novelUrls))
+            novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
         }
     }
     util.debugFunc(() => {

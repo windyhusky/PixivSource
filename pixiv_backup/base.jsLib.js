@@ -40,12 +40,12 @@ function getAjaxJson(url, forceUpdate) {
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
     if (forceUpdate === true) {
-        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()).body)
+        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
         return result
     }
     return cacheGetAndSet(cache, urls, () => {
-        return java.ajaxAll(urls).map(resp => JSON.parse(resp.body()).body)
+        return java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
     })
 }
 function getWebviewJson(url, parseFunc) {
