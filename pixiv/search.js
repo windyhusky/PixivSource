@@ -47,7 +47,11 @@ var seriesSet = {
 };
 
 function getUserNovels() {
-    if (!isLogin()) {
+    // cache.delete("csfrToken")
+    if (!util.isLogin()) {
+        sleepToast("⚠️ 当前未登录账号\n\n请登录 Pixiv 账号", 1.5)
+        util.removeCookie(); util.login()
+        sleepToast("登录成功后，请重新搜索", 2)
         return []
     }
 
