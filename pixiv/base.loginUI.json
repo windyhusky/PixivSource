@@ -27,27 +27,27 @@
         }
     },
     {
-        "name": "\uD83D\uDCCC 当前章节",
+        "name": "🆙 更新书源",
         "type": "button",
-        "action": "charpterRead()",
+        "action": "updateSource()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "⤴️ 分享章节",
+        "name": "\uD83D\uDD30 使用指南",
         "type": "button",
-        "action": "shareFactory('novel')",
+        "action": "startGithubReadme()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "⤴️ 分享系列",
+        "name": "\uD83D\uDC1E 反馈问题",
         "type": "button",
-        "action": "shareFactory('series')",
+        "action": "startGithubIssue()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -72,6 +72,15 @@
         }
     },
     {
+        "name": "\uD83D\uDCCC 当前章节",
+        "type": "button",
+        "action": "charpterReading()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
         "name": "\uD83D\uDCC3 追更系列",
         "type": "button",
         "action": "seriesWatchFactory()",
@@ -84,15 +93,6 @@
         "name": "⭐️ 关注作者",
         "type": "button",
         "action": "userFollowFactory()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDD12 拉黑作者",
-        "type": "button",
-        "action": "userBlackList()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -130,6 +130,15 @@
         }
     },
     {
+        "name": "\uD83E\uDDF9 清除缓存",
+        "type": "button",
+        "action": "cleanCache()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
         "name": "\uD83D\uDD0D 搜索说明",
         "type": "button",
         "action": "readMeSearch()",
@@ -139,27 +148,18 @@
         }
     },
     {
-        "name": "🆙 更新书源",
+        "name": "⤴️ 分享章节",
         "type": "button",
-        "action": "updateSource()",
+        "action": "shareFactory('novel')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "\uD83D\uDD30 使用指南",
+        "name": "⤴️ 分享系列",
         "type": "button",
-        "action": "startGithubReadme()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDC1E 反馈问题",
-        "type": "button",
-        "action": "startGithubIssue()",
+        "action": "shareFactory('series')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
