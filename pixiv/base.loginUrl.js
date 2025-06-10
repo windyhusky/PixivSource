@@ -405,6 +405,13 @@ function editSettings(object) {
     cache.put("pixivSettings", JSON.stringify(settings))
 }
 
+function cleanCache() {
+    let novel = source.getLoginInfoMap()
+    cache.delete(`${urlNovelUrl(novel.id)}`)
+    cache.delete(`${urlNovelDetailed(novel.id)}`)
+    sleepToast(`🧹 清除缓存\n\n已清除本章正文缓存，刷新正文以更新`, 5)
+}
+
 function sleepToast(text, second) {
     java.log(text)
     // java.toast(text)
