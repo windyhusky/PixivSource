@@ -34,7 +34,7 @@ function publicFunc() {
         settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-    
+
     if (u.FAST === true) {
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
@@ -55,8 +55,65 @@ function publicFunc() {
         }
     }
 
+    u.isLogin = function() {
+        return cache.get("csfrToken") !== null
+    }
+
+    u.login = function() {
+        let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
+    {"headers": {"User-Agent": "${java.getWebViewUA()}"}}`, '登录账号', false)
+        if (resp.code() === 200) {
+            this.getCookie(); this.getCsrfToken()
+        } else {
+            java.log(resp.code()); sleepToast("⚠️ 登录失败")
+        }
+    }
+
+    u.logout = function() {
+        this.removeCookie()
+        java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
+        this.removeCookie()
+        sleepToast(`✅ 已退出当前账号\n\n退出后请点击右上角的 ✔️ 退出\n\n登录请点击【登录账号】进行登录`)
+    }
+
+    u.getCookie = function() {
+        let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
+        if (pixivCookie.includes("first_visit_datetime")) {
+            // java.log(pixivCookie)
+            cache.put("pixivCookie", pixivCookie, 60*60)
+            return pixivCookie
+        }
+    }
+
+    u.removeCookie = function() {
+        cookie.removeCookie('https://www.pixiv.net')
+        cookie.removeCookie('https://accounts.pixiv.net')
+        cookie.removeCookie('https://accounts.google.com')
+        cookie.removeCookie('https://api.weibo.com')
+        cache.delete("pixivCookie")
+        cache.delete("csfrToken")  // 与登录设备有关
+        cache.delete("headers")
+    }
+
+    // 获取 Csrf Token，以便进行收藏等请求
+    // 获取方法来自脚本 Pixiv Previewer
+    // https://github.com/Ocrosoft/PixivPreviewer
+    // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
+    u.getCsrfToken = function() {
+        let csfrToken
+        let html = java.webView(null, "https://www.pixiv.net/", null)
+        try {
+            csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+        } catch (e) {
+            csfrToken = null
+        }
+        // java.log(csfrToken)
+        cache.put("csfrToken", JSON.stringify(csfrToken))  // 与登录设备有关
+        return csfrToken
+    }
+
     // 将多个长篇小说解析为一本书
-    u.combineNovels = function (novels) {
+    u.combineNovels = function(novels) {
         return novels.filter(novel => {
             // 单本直接解析为一本书
             if (novel.seriesId === undefined || novel.seriesId === null) {
@@ -72,7 +129,7 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function (novels, detailed=false) {
+    u.handNovels = function(novels, detailed=false) {
         let authors = getFromCache("blockAuthorList")  // 屏蔽作者
         if (authors !== null) {
             java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
@@ -144,6 +201,7 @@ function publicFunc() {
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
                 novel.detailedUrl = urlNovelDetailed(novel.id)
+                novel.total = 1
             }
             if (novel.seriesId !== undefined && detailed === false) {
                 novel.id = novel.seriesId
@@ -159,13 +217,16 @@ function publicFunc() {
             if (novel.seriesId !== undefined && detailed === true) {
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
                 novel.id = series.firstNovelId
-                novel.title = series.title
-                // novel.userName = novel.userName
+                book.name = novel.title = series.title
+                book.author = novel.userName
                 novel.tags = novel.tags.concat(series.tags)
                 novel.tags.unshift("长篇")
-                novel.textCount = series.publishedTotalCharacterCount
+                book.wordCount = novel.textCount = series.publishedTotalCharacterCount
                 novel.description = series.caption
-                novel.coverUrl = series.cover.urls["480mw"]
+                book.coverUrl = novel.coverUrl = series.cover.urls["480mw"]
+                novel.createDate = series.createDate
+                novel.updateDate = series.updateDate
+                book.totalChapterNum = novel.total = series.publishedContentCount
 
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}
@@ -195,7 +256,7 @@ function publicFunc() {
     }
 
     // 小说信息格式化
-    u.formatNovels = function (novels) {
+    u.formatNovels = function(novels) {
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
@@ -227,7 +288,7 @@ function publicFunc() {
 
     // 正文，详情，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     // pixiv 默认分享信息中有#号，不会被识别成链接，无法使用添加网址
-    u.getNovelRes = function (result) {
+    u.getNovelRes = function(result) {
         let novelId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
@@ -267,7 +328,7 @@ function publicFunc() {
     }
 
     // 目录：从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
-    u.getNovelResSeries = function (result) {
+    u.getNovelResSeries = function(result) {
         let seriesId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
@@ -313,7 +374,7 @@ function checkMessageThread(checkTimes) {
     if (checkTimes === undefined) {
         checkTimes = Number(cache.get("checkTimes"))
     }
-    if (checkTimes === 0 && isLogin()) {
+    if (checkTimes === 0 && util.isLogin()) {
         let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
         if (latestMsg.error === true) {
             java.log(JSON.stringify(latestMsg))
@@ -339,26 +400,6 @@ function getPixivUid() {
     }
 }
 
-function getCookie() {
-    let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (pixivCookie.includes("first_visit_datetime")) {
-        cache.put("pixivCookie", pixivCookie, 60*60)
-        return pixivCookie
-    }
-}
-
-// 获取 Csrf Token，以便进行收藏等请求
-// 获取方法来自脚本 Pixiv Previewer
-// https://github.com/Ocrosoft/PixivPreviewer
-// https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
-function getCsrfToken() {
-    let csfrToken = getWebviewJson("https://www.pixiv.net/", html => {
-        return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
-    })
-    cache.put("csfrToken", csfrToken)  // 与登录设备有关
-    return csfrToken
-}
-
 function getHeaders() {
     let headers = {
         "accept": "application/json",
@@ -375,7 +416,7 @@ function getHeaders() {
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
         "user-agent": String(java.getUserAgent()),
-        "x-csrf-token": cache.get("csfrToken"),
+        "x-csrf-token": getFromCache("csfrToken"),
         "Cookie": cache.get("pixivCookie")
     }
     cache.put("headers", JSON.stringify(headers))
@@ -406,19 +447,9 @@ function syncBlockAuthorList() {
 
 publicFunc(); syncBlockAuthorList()
 if (result.code() === 200) {
-    getPixivUid(); getCsrfToken(); getCookie(); getHeaders()
-    if (!util.settings.FAST) checkMessageThread()  // 检测过度访问
-//     if (isHtmlString(result.body())) {  // 检测登录
-//         let loginStatus = getWebviewJson(baseUrl, html => {
-//             return JSON.stringify(html.match(/login:\s*'([^']+)'/)[1])
-//         })
-//         if (loginStatus !== "yes") sleepToast("请登录")
-//     }
-// } else if (result.code() === 400) {
-//     sleepToast("请重新登录")
-//     source.login()
+    getPixivUid(); util.getCookie(); getHeaders()
+    if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
-
 util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
