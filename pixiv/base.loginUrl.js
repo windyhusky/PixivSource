@@ -1,6 +1,10 @@
+function isLogin() {
+    return getFromCache("csfrToken") !== null
+}
+
 function login() {
     sleepToast("🔄 正在检测登陆状态，请稍候")
-    if (getCookie() && getCsrfToken()) {
+    if (isLogin()) {
         sleepToast("✅ 已经登录过账号了\n\n可以点击【🔙 退出账号】来切换账号")
         return false
     }
