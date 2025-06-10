@@ -40,7 +40,7 @@ function getCsrfToken() {
     let csfrToken
     let html = java.webView(null, "https://www.pixiv.net/", null)
     try {
-        csfrToken = JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
+        csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
     } catch (e) {
         csfrToken = null
     }

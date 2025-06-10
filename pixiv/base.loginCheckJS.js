@@ -416,7 +416,7 @@ function getHeaders() {
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
         "user-agent": String(java.getUserAgent()),
-        "x-csrf-token": cache.get("csfrToken"),
+        "x-csrf-token": getFromCache("csfrToken"),
         "Cookie": cache.get("pixivCookie")
     }
     cache.put("headers", JSON.stringify(headers))
