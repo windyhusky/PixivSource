@@ -400,26 +400,6 @@ function getPixivUid() {
     }
 }
 
-function getCookie() {
-    let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (pixivCookie.includes("first_visit_datetime")) {
-        cache.put("pixivCookie", pixivCookie, 60*60)
-        return pixivCookie
-    }
-}
-
-// 获取 Csrf Token，以便进行收藏等请求
-// 获取方法来自脚本 Pixiv Previewer
-// https://github.com/Ocrosoft/PixivPreviewer
-// https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
-function getCsrfToken() {
-    let csfrToken = getWebviewJson("https://www.pixiv.net/", html => {
-        return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
-    })
-    cache.put("csfrToken", csfrToken)  // 与登录设备有关
-    return csfrToken
-}
-
 function getHeaders() {
     let headers = {
         "accept": "application/json",
@@ -467,19 +447,9 @@ function syncBlockAuthorList() {
 
 publicFunc(); syncBlockAuthorList()
 if (result.code() === 200) {
-    getPixivUid(); getCsrfToken(); getCookie(); getHeaders()
-    if (!util.settings.FAST) checkMessageThread()  // 检测过度访问
-//     if (isHtmlString(result.body())) {  // 检测登录
-//         let loginStatus = getWebviewJson(baseUrl, html => {
-//             return JSON.stringify(html.match(/login:\s*'([^']+)'/)[1])
-//         })
-//         if (loginStatus !== "yes") sleepToast("请登录")
-//     }
-// } else if (result.code() === 400) {
-//     sleepToast("请重新登录")
-//     source.login()
+    getPixivUid(); util.getCookie(); getHeaders()
+    if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
-
 util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
