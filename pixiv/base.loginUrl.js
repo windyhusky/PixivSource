@@ -5,7 +5,8 @@ function login() {
         return false
     }
 
-    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false)
+    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
+    {"headers": {"User-Agent": "${java.getWebViewUA()}"}}`, '登录账号', false)
     if (resp.code() === 200) {
         getCookie(); getCsrfToken()
         return true
@@ -326,8 +327,7 @@ function novelCommentDelete() {
 }
 
 function startBrowser(url, title) {
-    // let headers = `{"headers": {"User-Agent":"${java.getWebViewUA()}"}}`
-    let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"}}`
+    let headers = `{"headers": {"User-Agent":"${java.getWebViewUA()}"}}`
     java.startBrowser(`${url},${headers}`, title)
 }
 
@@ -338,7 +338,7 @@ function shareFactory(type) {
         startBrowser(urlUserUrl(novel.userId), novel.userName)
     }
     else if (type.includes("novel") || (!novel.seriesId)) {
-        startBrowser(urlNovelUrl(novel.novelId), novel.title)
+        startBrowser(urlNovelUrl(novel.id), novel.title)
     }
     else if (type.includes("series") && novel.seriesId) {
         startBrowser(urlSeriesUrl(novel.seriesId), novel.seriesTitle)
