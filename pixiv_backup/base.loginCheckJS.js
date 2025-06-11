@@ -14,10 +14,10 @@ function publicFunc() {
     java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
-    if (source.bookSourceName.includes("备用")) {
+    if (isBackupSource()) {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
-        settings = getFromCache("pixivSettings")
+        settings = this.getFromCache("pixivSettings")
     }
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
@@ -55,8 +55,18 @@ function publicFunc() {
         }
     }
 
+    u.getFromCache = function(object) {
+        return JSON.parse(cache.get(object))
+    }
     u.isLogin = function() {
         return cache.get("csfrToken") !== null
+    }
+    u.isLoginToken = function() {
+        return cache.get("csfrToken") !== null
+    }
+    u.isLoginCookie = function() {
+        let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+        return cookie.includes("first_visit_datetime")
     }
 
     u.login = function() {
@@ -82,6 +92,10 @@ function publicFunc() {
             // java.log(pixivCookie)
             cache.put("pixivCookie", pixivCookie, 60*60)
             return pixivCookie
+        } else {
+            cache.delete("pixivCookie")
+            java.log("未登录账号")
+            return null
         }
     }
 
@@ -130,7 +144,7 @@ function publicFunc() {
 
     // 处理 novels 列表
     u.handNovels = function(novels, detailed=false) {
-        let authors = getFromCache("blockAuthorList")  // 屏蔽作者
+        let authors = this.getFromCache("blockAuthorList")  // 屏蔽作者
         if (authors !== null) {
             java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
@@ -372,7 +386,7 @@ function publicFunc() {
 
 function checkMessageThread(checkTimes) {
     if (checkTimes === undefined) {
-        checkTimes = Number(cache.get("checkTimes"))
+        checkTimes = util.getFromCache("checkTimes")
     }
     if (checkTimes === 0 && util.isLogin()) {
         let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
@@ -397,7 +411,20 @@ function getPixivUid() {
     let uid = java.getResponse().headers().get("x-userid")
     if (uid != null) {
         cache.put("pixiv:uid", String(uid))
+    } else {
+        cache.delete("pixiv:uid")
     }
+}
+
+function getUserAgent() {
+    let userAgent = util.getFromCache("userAgent")
+    if (userAgent === null) {
+        if (isSourceRead()) userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+        else userAgent = java.getUserAgent()
+        java.log(typeof userAgent)
+        cache.put("userAgent", userAgent)
+    }
+    return userAgent
 }
 
 function getHeaders() {
@@ -416,7 +443,7 @@ function getHeaders() {
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
         "user-agent": String(java.getUserAgent()),
-        "x-csrf-token": getFromCache("csfrToken"),
+        "x-csrf-token": util.getFromCache("csfrToken"),
         "Cookie": cache.get("pixivCookie")
     }
     cache.put("headers", JSON.stringify(headers))
@@ -435,7 +462,7 @@ function getBlockAuthorsFromSource() {
 }
 
 function syncBlockAuthorList() {
-    let authors1 = getFromCache("blockAuthorList")
+    let authors1 = util.getFromCache("blockAuthorList")
     let authors2 = getBlockAuthorsFromSource()
     if (authors1 === null) {
         cache.put("blockAuthorList", JSON.stringify(authors2))
@@ -447,7 +474,10 @@ function syncBlockAuthorList() {
 
 publicFunc(); syncBlockAuthorList()
 if (result.code() === 200) {
-    getPixivUid(); util.getCookie(); getHeaders()
+    if (isBackupSource()) {
+        util.getCookie(); util.getCsrfToken()
+    }
+    getPixivUid(); getUserAgent(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 util.debugFunc(() => {

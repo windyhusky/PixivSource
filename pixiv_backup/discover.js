@@ -138,6 +138,50 @@ function handlerRanking() {
     }
 }
 
+// 排行榜，书签，顺序相同
+function handlerRankingOld() {
+    return () => {
+        let novels = [], novelIds = []
+        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
+        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
+        for (let i in matched) {
+            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
+            if (novelIds.indexOf(novelId) === -1) {
+                novelIds.push(novelId)
+            }
+        }
+        novelIds.forEach(novelId => {
+            java.log(urlNovelDetailed(novelId))
+            let res = getAjaxJson(urlNovelDetailed(novelId))
+            if (res.error !== true) {
+                novels.push(res.body)
+            } else {
+                java.log(JSON.stringify(res))
+            }
+        })
+        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
+    }
+}
+
+//首页，编辑部推荐，顺序随机
+function handlerRegexNovels() {
+    return () => {
+        let novelIds = []  // 正则获取网址中的 novelId
+        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
+        for (let i in matched) {
+            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
+            if (novelIds.indexOf(novelId) === -1) {
+                novelIds.push(novelId)
+            }
+        }
+        let userNovels = getWebviewJson(
+            urlNovelsDetailed(`${cache.get("pixiv:uid")}`, novelIds), html => {
+                return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
+            }).body
+        return util.formatNovels(util.handNovels(util.combineNovels(Object.values(userNovels))))
+    }
+}
+
 (() => {
     return handlerFactory()()
 })()
