@@ -1,5 +1,15 @@
 var checkTimes = 0
 var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
+var isBackuSource = true
+
+// 检测 源阅
+// 可用 java.ajax() java.webview() 不支持 java.ajaxAll()
+// 可用 java.getCookie() cache.put() cache.get()
+// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+function isSourceRead() {
+    const {java} = this
+    return java.getUserAgent() === java.getWebViewUA()
+}
 
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
@@ -56,7 +66,14 @@ function getWebviewJson(url, parseFunc) {
     })
 }
 
-
+// 检测 源阅
+// 可用 java.ajax() java.webview() 不支持
+// 可用 java.getCookie() cache.put() cache.get()
+// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+function isSourceRead() {
+    const {java} = this
+    return java.getUserAgent() === java.getWebViewUA()
+}
 
 function urlNovelUrl(novelId) {
     return `https://www.pixiv.net/novel/show.php?id=${novelId}`
