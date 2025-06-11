@@ -1,3 +1,7 @@
+function getFromCache(object) {
+    return JSON.parse(cache.get(object))
+}
+
 function isLogin() {
     return getFromCache("csfrToken") !== null
 }
