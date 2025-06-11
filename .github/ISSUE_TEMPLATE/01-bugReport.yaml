@@ -56,3 +56,14 @@ body:
       placeholder: "3.22.110823"
     validations:
       required: true
+      
+  - type: input
+    attributes:
+      label: 书源版本或更新时间 / Source Version or Update Time
+      description: |
+        书源版本：见 GitHub Release
+        更新时间：发现 - 更新 - 阅读本地版本
+      placeholder: "2.0.0 或 2025/06/01 00:00"
+    validations:
+      required: true
+      
