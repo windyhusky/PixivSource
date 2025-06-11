@@ -29,6 +29,13 @@ body:
       placeholder: |
         https://www.pixiv.net/novel/show.php?id=123
         https://www.pixiv.net/novel/series/123
+
+  - type: textarea
+    attributes:
+      label: 阅读调试信息（我的-编辑书源-🐞调试源，输入书名或链接） / Legado 🐞 Debug Message
+      placeholder: |
+        下述情况是 Pixiv 限制，并非书源问题
+        {"error":true, "message":"出现错误。请稍后再试。", "body":[]}
   
   - type: checkboxes
     attributes:
