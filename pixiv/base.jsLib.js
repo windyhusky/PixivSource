@@ -1,10 +1,17 @@
 var checkTimes = 0
 var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
-var isBackuSource = true
+
+
+// 检测备用书源
+function isBackupSource() {
+    const {source} = this
+    return source.bookSourceName.includes("备用")
+}
 
 // 检测 源阅
 // 可用 java.ajax() java.webview() 不支持 java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get()
+// 可用 source.bookSourceName source.getVariable() 等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 function isSourceRead() {
     const {java} = this
@@ -64,15 +71,6 @@ function getWebviewJson(url, parseFunc) {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })
-}
-
-// 检测 源阅
-// 可用 java.ajax() java.webview() 不支持
-// 可用 java.getCookie() cache.put() cache.get()
-// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
-function isSourceRead() {
-    const {java} = this
-    return java.getUserAgent() === java.getWebViewUA()
 }
 
 function urlNovelUrl(novelId) {
