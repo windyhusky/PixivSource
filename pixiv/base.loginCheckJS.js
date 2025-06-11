@@ -17,7 +17,7 @@ function publicFunc() {
     if (source.bookSourceName.includes("备用")) {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
-        settings = getFromCache("pixivSettings")
+        settings = this.getFromCache("pixivSettings")
     }
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
@@ -55,7 +55,13 @@ function publicFunc() {
         }
     }
 
+    u.getFromCache = function(object) {
+        return JSON.parse(cache.get(object))
+    }
     u.isLogin = function() {
+        return cache.get("csfrToken") !== null
+    }
+    u.isLoginToken = function() {
         return cache.get("csfrToken") !== null
     }
     u.isLoginCookie = function() {
@@ -138,7 +144,7 @@ function publicFunc() {
 
     // 处理 novels 列表
     u.handNovels = function(novels, detailed=false) {
-        let authors = getFromCache("blockAuthorList")  // 屏蔽作者
+        let authors = this.getFromCache("blockAuthorList")  // 屏蔽作者
         if (authors !== null) {
             java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
@@ -380,7 +386,7 @@ function publicFunc() {
 
 function checkMessageThread(checkTimes) {
     if (checkTimes === undefined) {
-        checkTimes = Number(cache.get("checkTimes"))
+        checkTimes = util.getFromCache("checkTimes")
     }
     if (checkTimes === 0 && util.isLogin()) {
         let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
@@ -426,7 +432,7 @@ function getHeaders() {
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
         "user-agent": String(java.getUserAgent()),
-        "x-csrf-token": getFromCache("csfrToken"),
+        "x-csrf-token": util.getFromCache("csfrToken"),
         "Cookie": cache.get("pixivCookie")
     }
     cache.put("headers", JSON.stringify(headers))
@@ -445,7 +451,7 @@ function getBlockAuthorsFromSource() {
 }
 
 function syncBlockAuthorList() {
-    let authors1 = getFromCache("blockAuthorList")
+    let authors1 = util.getFromCache("blockAuthorList")
     let authors2 = getBlockAuthorsFromSource()
     if (authors1 === null) {
         cache.put("blockAuthorList", JSON.stringify(authors2))
