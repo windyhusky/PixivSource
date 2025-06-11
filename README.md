@@ -415,6 +415,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 - 感谢 [Pixiv-utils](https://github.com/AgMonk/pixiv-utils) 、 [Pixiv go 客户端](https://github.com/NateScarlet/pixiv) 、 [Pixiv-web-api](https://github.com/YieldRay/pixiv-web-api) 整理的 Pixiv Web API
 - 感谢 [一片痴心俱成灰](https://akaito.xyz/post/Legado) 提供的 Pixiv (标记符号) 目录规则
 - 感谢 [Pixiv Previewer](https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer) 脚本提供的从 Pixiv 网页获取 csfr token 的方法 
+- 感谢 [@SuCan127](https://github.com/SuCan127) 测试 源阅 的兼容性
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
 </details>
 
