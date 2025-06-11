@@ -14,7 +14,7 @@ function publicFunc() {
     java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
-    if (source.bookSourceName.includes("备用")) {
+    if (isBackupSource()) {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
         settings = this.getFromCache("pixivSettings")
@@ -474,7 +474,10 @@ function syncBlockAuthorList() {
 
 publicFunc(); syncBlockAuthorList()
 if (result.code() === 200) {
-    getPixivUid(); util.getCookie(); util.getCsrfToken(); getUserAgent(); getHeaders()
+    if (isBackupSource()) {
+        util.getCookie(); util.getCsrfToken()
+    }
+    getPixivUid(); getUserAgent(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 util.debugFunc(() => {
