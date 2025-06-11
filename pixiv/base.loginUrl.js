@@ -417,6 +417,7 @@ function cleanCache() {
     let novel = source.getLoginInfoMap()
     cache.delete(`${urlNovelUrl(novel.id)}`)
     cache.delete(`${urlNovelDetailed(novel.id)}`)
+    cache.delete(`${urlSearchNovel(novel.title, 1)}`)
     sleepToast(`🧹 清除缓存\n\n已清除本章正文缓存，刷新正文以更新`, 5)
 }
 
