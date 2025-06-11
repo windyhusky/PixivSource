@@ -196,10 +196,20 @@ function novelFilter(novels) {
         let num = limitedTextCount.split("w")
         textCount = 10000 * num[0] + 1000 * num[1]
     }
+    else if (limitedTextCount.includes("W")) {
+        let num = limitedTextCount.split("w")
+        textCount = 10000 * num[0] + 1000 * num[1]
+    }
+
     if (limitedTextCount.includes("k")) {
         let num = limitedTextCount.split("k")
         textCount = 1000 * num[0] + 100 * num[1]
     }
+    else if (limitedTextCount.includes("K")) {
+        let num = limitedTextCount.split("k")
+        textCount = 1000 * num[0] + 100 * num[1]
+    }
+
     java.log(`字数限制：${limitedTextCount}`)
     java.log(`字数限制：${textCount}`)
     return novels.filter(novel => novel.textCount >= textCount)
