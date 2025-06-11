@@ -20,8 +20,6 @@ function getContent(res) {
             novel.id = novelIds[book.durChapterIndex]
             novel.seriesId = res.seriesNavData.seriesId
             novel.seriesTitle = res.seriesNavData.title
-            java.log(res.seriesNavData.seriesId)
-            java.log(res.seriesNavData.title)
         }
     } else {
         novel.id = res.id

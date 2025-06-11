@@ -78,7 +78,7 @@ function seriesHandler(res) {
         }
     }
     // 放入信息以便登陆界面使用
-    cache.put(`novelIds${seriesID}`, JSON.stringify(novelIds))
+    cache.put(`novelIds${seriesID}`, JSON.stringify(novelIds), cacheSaveSeconds)
     // java.log(JSON.stringify(returnList))
     return returnList
 }

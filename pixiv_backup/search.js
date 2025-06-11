@@ -157,7 +157,7 @@ function search(name, type, page) {
 
 function getSeries() {
     if (JSON.parse(result).error !== true) {
-        cache.put(urlSearchSeries(java.get("keyword"), java.get("page")), result, 30*60)  // 加入缓存
+        cache.put(urlSearchSeries(java.get("keyword"), java.get("page")), result, cacheSaveSeconds)  // 加入缓存
         return JSON.parse(result).body.novel.data
     } else {
         return []
@@ -172,7 +172,7 @@ function getNovels() {
     for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
         novels = novels.concat(search(novelName,"novel", page).data)
     }
-    return novels
+    return util.combineNovels(novels)
 }
 
 function getConvertNovels() {
@@ -180,10 +180,11 @@ function getConvertNovels() {
     let novelName = String(java.get("keyword"))
     let name1 = String(java.s2t(novelName))
     let name2 = String(java.t2s(novelName))
-    if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
-    if (name2 !== novelName) novels = novels.concat(search(name2, "series", 1).data)
     if (name1 !== novelName) novels = novels.concat(search(name1, "novel", 1).data)
     if (name2 !== novelName) novels = novels.concat(search(name2, "novel", 1).data)
+    novels = util.combineNovels(novels)
+    if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
+    if (name2 !== novelName) novels = novels.concat(search(name2, "series", 1).data)
     return novels
 }
 
@@ -195,10 +196,20 @@ function novelFilter(novels) {
         let num = limitedTextCount.split("w")
         textCount = 10000 * num[0] + 1000 * num[1]
     }
+    else if (limitedTextCount.includes("W")) {
+        let num = limitedTextCount.split("w")
+        textCount = 10000 * num[0] + 1000 * num[1]
+    }
+
     if (limitedTextCount.includes("k")) {
         let num = limitedTextCount.split("k")
         textCount = 1000 * num[0] + 100 * num[1]
     }
+    else if (limitedTextCount.includes("K")) {
+        let num = limitedTextCount.split("k")
+        textCount = 1000 * num[0] + 100 * num[1]
+    }
+
     java.log(`字数限制：${limitedTextCount}`)
     java.log(`字数限制：${textCount}`)
     return novels.filter(novel => novel.textCount >= textCount)
@@ -227,5 +238,5 @@ function novelFilter(novels) {
     if (novels.length === 0) {
         return []
     }
-    return novelFilter(util.formatNovels(util.handNovels(util.combineNovels(novels))))
+    return novelFilter(util.formatNovels(util.handNovels(novels)))
 })()
