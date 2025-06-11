@@ -8,7 +8,9 @@ body:
       label: 确认 / Assignments
       description: 提交issue请确保完成以下前提，否则该issue可能被忽略 / Make sure you read checkboxs below
       options:
-        - label: 最新[测试版](https://github.com/gedoor/legado/actions/workflows/test.yml)依然存在此问题 / Latest beta app does not work
+        - label: 阅读[最新测试版](https://github.com/gedoor/legado/actions/workflows/test.yml)依然存在此问题 / Latest beta app does not work
+          required: true
+        - label: 书源[最新版本](https://github.com/windyhusky/PixivSource/releases/latest)依然存在此问题 / Latest source does not work
           required: true
         - label: 此问题和Xposed、Lsposed、Magisk、手机主题、浏览器插件、无障碍服务等无关 / Make sure your machine is not touched by hook frameworks, plugins, accessibility etc
           required: true
