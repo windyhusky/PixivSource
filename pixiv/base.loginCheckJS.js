@@ -416,6 +416,17 @@ function getPixivUid() {
     }
 }
 
+function getUserAgent() {
+    let userAgent = util.getFromCache("userAgent")
+    if (userAgent === null) {
+        if (isSourceRead()) userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+        else userAgent = java.getUserAgent()
+        java.log(typeof userAgent)
+        cache.put("userAgent", userAgent)
+    }
+    return userAgent
+}
+
 function getHeaders() {
     let headers = {
         "accept": "application/json",
@@ -463,7 +474,7 @@ function syncBlockAuthorList() {
 
 publicFunc(); syncBlockAuthorList()
 if (result.code() === 200) {
-    getPixivUid(); util.getCookie(); getHeaders()
+    getPixivUid(); util.getCookie(); util.getCsrfToken(); getUserAgent(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 util.debugFunc(() => {
