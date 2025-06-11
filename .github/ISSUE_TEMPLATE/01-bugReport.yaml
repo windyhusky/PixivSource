@@ -36,9 +36,9 @@ body:
 
   - type: textarea
     attributes:
-      label: 阅读调试信息（我的-编辑书源-🐞调试源，输入书名或链接） / Legado 🐞 Debug Message
+      label: 调试信息（我的-编辑书源-🐞调试源，输入书名或链接） / 🐞Debug Message in Legado 
       placeholder: |
-        下述情况是 Pixiv 限制，并非书源问题
+        下述情况大概率是 Pixiv 限制，并非书源错误。请 过段时间/重新登陆 后再尝试
         {"error":true, "message":"出现错误。请稍后再试。", "body":[]}
   
   - type: checkboxes
