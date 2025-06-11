@@ -172,7 +172,7 @@ function getNovels() {
     for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
         novels = novels.concat(search(novelName,"novel", page).data)
     }
-    return novels
+    return util.combineNovels(novels)
 }
 
 function getConvertNovels() {
@@ -180,10 +180,11 @@ function getConvertNovels() {
     let novelName = String(java.get("keyword"))
     let name1 = String(java.s2t(novelName))
     let name2 = String(java.t2s(novelName))
-    if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
-    if (name2 !== novelName) novels = novels.concat(search(name2, "series", 1).data)
     if (name1 !== novelName) novels = novels.concat(search(name1, "novel", 1).data)
     if (name2 !== novelName) novels = novels.concat(search(name2, "novel", 1).data)
+    novels = util.combineNovels(novels)
+    if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
+    if (name2 !== novelName) novels = novels.concat(search(name2, "series", 1).data)
     return novels
 }
 
@@ -227,5 +228,5 @@ function novelFilter(novels) {
     if (novels.length === 0) {
         return []
     }
-    return novelFilter(util.formatNovels(util.handNovels(util.combineNovels(novels))))
+    return novelFilter(util.formatNovels(util.handNovels(novels)))
 })()
