@@ -133,7 +133,7 @@ if (SHOW_GENERAL_GENRE === true) {
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 sleepToast('查看他人收藏❤️\n\n请在【订阅源】设置源变量，并在【订阅源】的登录界面点击 ❤️ 他人收藏 导入数据后，再进行刷新')
 
-let authors = getFromCache("pixivLikeAuthors")
+let authors = JSON.parse(cache.get("pixivLikeAuthors"))
 if (authors !== null) {
     authors.forEach(authorId => {
         let resp = getAjaxJson(urlUserDetailed(authorId))
