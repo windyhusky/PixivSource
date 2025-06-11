@@ -86,6 +86,10 @@ function publicFunc() {
             // java.log(pixivCookie)
             cache.put("pixivCookie", pixivCookie, 60*60)
             return pixivCookie
+        } else {
+            cache.delete("pixivCookie")
+            java.log("未登录账号")
+            return null
         }
     }
 
