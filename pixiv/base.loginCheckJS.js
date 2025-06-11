@@ -58,6 +58,10 @@ function publicFunc() {
     u.isLogin = function() {
         return cache.get("csfrToken") !== null
     }
+    u.isLoginCookie = function() {
+        let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+        return cookie.includes("first_visit_datetime")
+    }
 
     u.login = function() {
         let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
