@@ -16,7 +16,7 @@ function getContent(res) {
     if (res.seriesNavData !== undefined && res.seriesNavData !== null) {
         let seriesId = res.seriesNavData.seriesId
         if (seriesId !== undefined && seriesId !== null) {
-            let novelIds = util.getFromCache(`novelIds${seriesId}`)
+            let novelIds = JSON.parse(cache.get(`novelIds${seriesId}`))
             novel.id = novelIds[book.durChapterIndex]
             novel.seriesId = res.seriesNavData.seriesId
             novel.seriesTitle = res.seriesNavData.title

@@ -26,10 +26,6 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     }
     return JSON.parse(v)
 }
-function getFromCache(object) {
-    let {cache} = this
-    return JSON.parse(cache.get(object))
-}
 
 function isHtmlString(str) {
     return str.startsWith("<!DOCTYPE html>")
