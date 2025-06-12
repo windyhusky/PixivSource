@@ -60,9 +60,6 @@ function publicFunc() {
     u.isLogin = function() {
         return cache.get("csfrToken") !== null
     }
-    u.isLoginToken = function() {
-        return cache.get("csfrToken") !== null
-    }
     u.isLoginCookie = function() {
         let cookie = String(java.getCookie("https://www.pixiv.net/", null))
         return cookie.includes("first_visit_datetime")
@@ -473,10 +470,10 @@ function syncBlockAuthorList() {
 
 publicFunc(); syncBlockAuthorList()
 if (result.code() === 200) {
-    if (isBackupSource()) {
-        util.getCookie(); util.getCsrfToken()
+    if (isBackupSource() && (!util.isLogin)) {
+         util.getCsrfToken()
     }
-    getPixivUid(); getUserAgent(); getHeaders()
+    getPixivUid(); getUserAgent(); util.getCookie(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 util.debugFunc(() => {
