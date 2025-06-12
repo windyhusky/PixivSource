@@ -126,6 +126,20 @@ function handlerWatchList() {
 // 排行榜，书签，首页，编辑部推荐，顺序相同
 function handlerRanking() {
     return () => {
+        if (isSourceRead()) {
+            java.log("📱 软件平台：🍎 源阅 SourceRead")
+            return handlerRankingRegex()
+        }
+        else {
+            java.log("📱 软件平台：🤖 开源阅读 Leagdo")
+            return handlerRankingAjaxAll()
+        }
+    }
+}
+
+// 排行榜，书签，首页，编辑部推荐，顺序相同
+function handlerRankingAjaxAll() {
+    return () => {
         let novelUrls = []
         // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
         let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
@@ -138,33 +152,8 @@ function handlerRanking() {
     }
 }
 
-// 排行榜，书签，顺序相同
-function handlerRankingOld() {
-    return () => {
-        let novels = [], novelIds = []
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
-        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
-        for (let i in matched) {
-            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            if (novelIds.indexOf(novelId) === -1) {
-                novelIds.push(novelId)
-            }
-        }
-        novelIds.forEach(novelId => {
-            java.log(urlNovelDetailed(novelId))
-            let res = getAjaxJson(urlNovelDetailed(novelId))
-            if (res.error !== true) {
-                novels.push(res.body)
-            } else {
-                java.log(JSON.stringify(res))
-            }
-        })
-        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
-    }
-}
-
-//首页，编辑部推荐，顺序随机
-function handlerRegexNovels() {
+// 排行榜，书签，首页，
+function handlerRankingRegex() {
     return () => {
         let novelIds = []  // 正则获取网址中的 novelId
         let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
