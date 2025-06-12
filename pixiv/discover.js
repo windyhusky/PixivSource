@@ -140,13 +140,17 @@ function handlerRanking() {
 // 排行榜，书签，首页，编辑部推荐，顺序相同
 function handlerRankingAjaxAll() {
     return () => {
-        let novelUrls = []
+        let  novelIds = [], novelUrls = []
         // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
         let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
         for (let i in matched) {
             let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            novelUrls.push(urlNovelDetailed(novelId))
+            if (novelIds.indexOf(novelId) === -1) {
+                novelIds.push(novelId)
+                novelUrls.push(urlNovelDetailed(novelId))
+            }
         }
+        // java.log(JSON.stringify(novelIds))
         let novels = getAjaxAllJson(novelUrls).map(resp => resp.body)
         return util.formatNovels(util.handNovels(util.combineNovels(novels)))
     }
