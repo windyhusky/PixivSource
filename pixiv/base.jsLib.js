@@ -175,6 +175,19 @@ function dateFormat(str) {
     let D = addZero(time.getDate()) + "日";
     return Y + M + D;
 }
+function timeFormat(str) {
+    let addZero = function (num) {
+        return num < 10 ? '0' + num : num;
+    }
+    let time = new Date(str);
+    let YY = time.getFullYear()
+    let MM = addZero(time.getMonth() + 1)
+    let DD = addZero(time.getDate())
+    let hh = addZero(time.getHours())
+    let mm = addZero(time.getMinutes())
+    let ss = addZero(time.getSeconds())
+    return `${YY}-${MM}-${DD} ${hh}:${mm}:${ss}`
+}
 function timeTextFormat(text) {
     return `${text.slice(0, 10)} ${text.slice(11, 19)}`
 }
