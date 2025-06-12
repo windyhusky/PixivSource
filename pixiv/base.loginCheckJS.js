@@ -418,8 +418,11 @@ function getPixivUid() {
 function getUserAgent() {
     let userAgent = cache.get("userAgent")
     if (userAgent === null) {
-        if (isSourceRead()) userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-        else userAgent = java.getUserAgent()
+        if (isSourceRead()) {
+            userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+        } else {
+            userAgent = String(source.getHeaderMap(true)).slice(12,-1)
+        }
         java.log(userAgent)
         cache.put("userAgent", userAgent)
     }
