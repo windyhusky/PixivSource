@@ -125,16 +125,8 @@ function handlerWatchList() {
 
 // 排行榜，书签，首页，编辑部推荐，顺序相同
 function handlerRanking() {
-    return () => {
-        if (isSourceRead()) {
-            java.log("📱 软件平台：🍎 源阅 SourceRead")
-            return handlerRankingRegex()
-        }
-        else {
-            java.log("📱 软件平台：🤖 开源阅读 Leagdo")
-            return handlerRankingAjaxAll()
-        }
-    }
+    if (isSourceRead()) return handlerRankingWebview()
+    else return handlerRankingAjaxAll()
 }
 
 // 排行榜，书签，首页，编辑部推荐，顺序相同
@@ -156,10 +148,11 @@ function handlerRankingAjaxAll() {
     }
 }
 
-// 排行榜，书签，首页，
-function handlerRankingRegex() {
+// 排行榜，书签，首页
+function handlerRankingWebview() {
     return () => {
         let novelIds = []  // 正则获取网址中的 novelId
+        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
         let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
         for (let i in matched) {
             let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
@@ -167,6 +160,7 @@ function handlerRankingRegex() {
                 novelIds.push(novelId)
             }
         }
+        // java.log(JSON.stringify(novelIds))
         let userNovels = getWebviewJson(
             urlNovelsDetailed(`${cache.get("pixiv:uid")}`, novelIds), html => {
                 return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
