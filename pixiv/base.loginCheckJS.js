@@ -14,6 +14,8 @@ function publicFunc() {
     java.log(`${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
     java.log(`📆 更新时间：${timeFormat(source.lastUpdateTime)}`)
+    if (isSourceRead()) java.log("📱 软件平台：🍎 源阅 SourceRead")
+    else java.log("📱 软件平台：🤖 开源阅读 Leagdo")
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
     if (isBackupSource()) {
@@ -90,7 +92,7 @@ function publicFunc() {
             return pixivCookie
         } else {
             cache.delete("pixivCookie")
-            java.log("未登录账号")
+            sleepToast("未登录账号(pixivCookie)")
             return null
         }
     }
@@ -116,6 +118,7 @@ function publicFunc() {
             csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
         } catch (e) {
             csfrToken = null
+            sleepToast("未登录账号(csfrToken)")
         }
         // java.log(csfrToken)
         cache.put("csfrToken", JSON.stringify(csfrToken))  // 与登录设备有关
@@ -468,10 +471,14 @@ function syncBlockAuthorList() {
     }
 }
 
-publicFunc(); syncBlockAuthorList()
+publicFunc()
+if (!isSourceRead()) {
+    syncBlockAuthorList()
+}
+
 if (result.code() === 200) {
     if (isBackupSource() && (!util.isLogin)) {
-         util.getCsrfToken()
+        util.getCsrfToken()
     }
     getPixivUid(); getUserAgent(); util.getCookie(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
