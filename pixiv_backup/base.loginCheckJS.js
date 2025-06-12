@@ -14,12 +14,14 @@ function publicFunc() {
     java.log(`${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
     java.log(`📆 更新时间：${timeFormat(source.lastUpdateTime)}`)
+    if (isSourceRead()) java.log("📱 软件平台：🍎 源阅 SourceRead")
+    else java.log("📱 软件平台：🤖 开源阅读 Leagdo")
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
     if (isBackupSource()) {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
-        settings = this.getFromCache("pixivSettings")
+        settings = JSON.parse(cache.get("pixivSettings"))
     }
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
@@ -57,13 +59,7 @@ function publicFunc() {
         }
     }
 
-    u.getFromCache = function(object) {
-        return JSON.parse(cache.get(object))
-    }
     u.isLogin = function() {
-        return cache.get("csfrToken") !== null
-    }
-    u.isLoginToken = function() {
         return cache.get("csfrToken") !== null
     }
     u.isLoginCookie = function() {
@@ -96,7 +92,7 @@ function publicFunc() {
             return pixivCookie
         } else {
             cache.delete("pixivCookie")
-            java.log("未登录账号")
+            sleepToast("未登录账号(pixivCookie)")
             return null
         }
     }
@@ -122,6 +118,7 @@ function publicFunc() {
             csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
         } catch (e) {
             csfrToken = null
+            sleepToast("未登录账号(csfrToken)")
         }
         // java.log(csfrToken)
         cache.put("csfrToken", JSON.stringify(csfrToken))  // 与登录设备有关
@@ -146,7 +143,7 @@ function publicFunc() {
 
     // 处理 novels 列表
     u.handNovels = function(novels, detailed=false) {
-        let authors = this.getFromCache("blockAuthorList")  // 屏蔽作者
+        let authors = JSON.parse(cache.get("blockAuthorList"))  // 屏蔽作者
         if (authors !== null) {
             java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
@@ -388,7 +385,7 @@ function publicFunc() {
 
 function checkMessageThread(checkTimes) {
     if (checkTimes === undefined) {
-        checkTimes = util.getFromCache("checkTimes")
+        checkTimes = cache.get("checkTimes")
     }
     if (checkTimes === 0 && util.isLogin()) {
         let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
@@ -419,11 +416,11 @@ function getPixivUid() {
 }
 
 function getUserAgent() {
-    let userAgent = util.getFromCache("userAgent")
+    let userAgent = cache.get("userAgent")
     if (userAgent === null) {
         if (isSourceRead()) userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
         else userAgent = java.getUserAgent()
-        java.log(typeof userAgent)
+        java.log(userAgent)
         cache.put("userAgent", userAgent)
     }
     return userAgent
@@ -444,8 +441,8 @@ function getHeaders() {
         // "sec-fetch-dest": "empty",
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
-        "user-agent": String(java.getUserAgent()),
-        "x-csrf-token": util.getFromCache("csfrToken"),
+        "user-agent": getUserAgent(),
+        "x-csrf-token": JSON.parse(cache.get("csfrToken")),
         "Cookie": cache.get("pixivCookie")
     }
     cache.put("headers", JSON.stringify(headers))
@@ -464,7 +461,7 @@ function getBlockAuthorsFromSource() {
 }
 
 function syncBlockAuthorList() {
-    let authors1 = util.getFromCache("blockAuthorList")
+    let authors1 = JSON.parse(cache.get("blockAuthorList"))
     let authors2 = getBlockAuthorsFromSource()
     if (authors1 === null) {
         cache.put("blockAuthorList", JSON.stringify(authors2))
@@ -474,18 +471,22 @@ function syncBlockAuthorList() {
     }
 }
 
-publicFunc(); syncBlockAuthorList()
+publicFunc()
+if (!isSourceRead()) {
+    syncBlockAuthorList()
+}
+
 if (result.code() === 200) {
-    if (isBackupSource()) {
-        util.getCookie(); util.getCsrfToken()
+    if (isBackupSource() && (!util.isLogin)) {
+        util.getCsrfToken()
     }
-    getPixivUid(); getUserAgent(); getHeaders()
+    getPixivUid(); getUserAgent(); util.getCookie(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
-    java.log(`${java.getUserAgent()}\n`)
+    java.log(`${getUserAgent()}\n`)
     java.log(`${cache.get("csfrToken")}\n`)
     java.log(`${cache.get("pixivCookie")}\n`)
 })

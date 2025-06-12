@@ -14,8 +14,13 @@ function isBackupSource() {
 // 可用 source.bookSourceName source.getVariable() 等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 function isSourceRead() {
-    const {java} = this
-    return java.getUserAgent() === java.getWebViewUA()
+    const {java, cache} = this
+    let isSourceRead = JSON.parse(cache.get("isSourceRead"))
+    if (isSourceRead === null) {
+        isSourceRead = (java.getUserAgent() === java.getWebViewUA())
+        cache.put("isSourceRead", JSON.stringify(isSourceRead))
+    }
+    return isSourceRead
 }
 
 function cacheGetAndSet(cache, key, supplyFunc) {
@@ -25,10 +30,6 @@ function cacheGetAndSet(cache, key, supplyFunc) {
         cache.put(key, v, cacheSaveSeconds)
     }
     return JSON.parse(v)
-}
-function getFromCache(object) {
-    let {cache} = this
-    return JSON.parse(cache.get(object))
 }
 
 function isHtmlString(str) {
