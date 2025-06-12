@@ -10,8 +10,10 @@ function objStringify(obj) {
 
 function publicFunc() {
     let u = {}, settings
-    java.log(String(source.bookSourceComment).split("\n")[0])       // 输出书源信息
-    java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
+    // 输出书源信息
+    java.log(`${source.bookSourceComment.split("\n")[0]}`)
+    java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
+    java.log(`📆 更新时间：${timeFormat(source.lastUpdateTime)}`)
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
     if (isBackupSource()) {
@@ -395,7 +397,7 @@ function checkMessageThread(checkTimes) {
         } else if (latestMsg.body.total >= 1) {
             let msg = latestMsg.body.message_threads.filter(item => item.thread_name === "pixiv事務局")[0]
             if (msg !== undefined && new Date().getTime()- 1000*msg.modified_at <= 3*24*60*60*1000) { // 3天内进行提示
-                sleepToast(`您于 ${java.timeFormat(1000*msg.modified_at)} 触发 Pixiv 【过度访问】，请修改密码并重新登录。\n如已修改请忽略`, 3)
+                sleepToast(`您于 ${timeFormat(1000*msg.modified_at)} 触发 Pixiv 【过度访问】，请修改密码并重新登录。\n如已修改请忽略`, 3)
                 sleepToast(`${msg.latest_content}`, 5)
                 java.startBrowser("https://accounts.pixiv.net/password/change",'修改密码')
             }
