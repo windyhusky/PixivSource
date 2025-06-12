@@ -416,17 +416,18 @@ function getPixivUid() {
 }
 
 function getUserAgent() {
+    // cache.delete("userAgent")
     let userAgent = cache.get("userAgent")
     if (userAgent === null) {
         if (isSourceRead()) {
             userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
         } else {
-            userAgent = String(source.getHeaderMap(true)).slice(12,-1)
+            userAgent = String(java.getUserAgent())
         }
         java.log(userAgent)
         cache.put("userAgent", userAgent)
     }
-    return userAgent
+    return String(userAgent)
 }
 
 function getHeaders() {
@@ -444,8 +445,8 @@ function getHeaders() {
         // "sec-fetch-dest": "empty",
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
-        "user-agent": getUserAgent(),
-        "x-csrf-token": JSON.parse(cache.get("csfrToken")),
+        "user-agent": cache.get("userAgent"),
+        "x-csrf-token": cache.get("csfrToken"),
         "Cookie": cache.get("pixivCookie")
     }
     cache.put("headers", JSON.stringify(headers))
