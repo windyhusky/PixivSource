@@ -83,6 +83,19 @@ function dateFormat(str) {
     let D = addZero(time.getDate()) + "日";
     return Y + M + D;
 }
+function timeFormat(str) {
+    let addZero = function (num) {
+        return num < 10 ? '0' + num : num;
+    }
+    let time = new Date(str);
+    let YY = time.getFullYear()
+    let MM = addZero(time.getMonth() + 1)
+    let DD = addZero(time.getDate())
+    let hh = addZero(time.getHours())
+    let mm = addZero(time.getMinutes())
+    let ss = addZero(time.getSeconds())
+    return `${YY}-${MM}-${DD} ${hh}:${mm}:${ss}`
+}
 function timeTextFormat(text) {
     if (text === undefined) {
         return ""
@@ -118,7 +131,7 @@ function updateSource() {
             comment = source.bookSourceComment.split("\n")
         }
     }
-
+    // comment = source.bookSourceComment.split("\n")
     let htm = `data:text/html; charset=utf-8,
 <html>
 <head>
@@ -137,10 +150,16 @@ function updateSource() {
 <body>
     <table border="1" cellspacing="0">
         <th colspan="2"> ${source.bookSourceName} 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/${source.bookSourceName}.md">🔰 使用指南</a></th>
-        <tr><td>☁️ 远程仓库版本：${java.timeFormat(onlineSource.lastUpdateTime)}</td></tr>
-        <tr><td>📥 阅读本地版本：${java.timeFormat(source.lastUpdateTime)}</td></tr>
-        <tr><td style="text-align: left;">${comment.slice(2, 9).join("<br>")}</td></tr>
-        <tr><td style="text-align: left;">${comment.slice(comment.length-2, comment.length).join("<br>")}</td></tr>
+        <tr>
+            <td>☁️ 远程版本：${onlineSource.bookSourceComment.split("\n")[2].replace("书源版本：", "")}</td>
+            <td>📆 更新：${timeFormat(onlineSource.lastUpdateTime)}</td>
+        </tr>
+        <tr>
+            <td>📥 本地版本：${source.bookSourceComment.split("\n")[2].replace("书源版本：", "")}</td>
+            <td>📆 更新：${timeFormat(source.lastUpdateTime)}</td>
+        </tr> 
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 10).join("<br>")}</td></tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-2, comment.length).join("<br>")}</td></tr>
     </table>
     
     <table border="0" cellspacing="20">
