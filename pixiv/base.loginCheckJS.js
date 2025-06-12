@@ -121,7 +121,7 @@ function publicFunc() {
             sleepToast("未登录账号(csfrToken)")
         }
         // java.log(csfrToken)
-        cache.put("csfrToken", JSON.stringify(csfrToken))  // 与登录设备有关
+        cache.put("csfrToken", csfrToken)  // 与登录设备有关
         return csfrToken
     }
 
