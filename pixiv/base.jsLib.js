@@ -14,7 +14,7 @@ function isBackupSource() {
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 function isSourceRead() {
     const {java, cache} = this
-    let isSourceRead = JSON.parse(cache.get("isSourceRead"))
+    let isSourceRead = cache.get("isSourceRead")
     if (isSourceRead === null) {
         isSourceRead = (java.getUserAgent() === java.getWebViewUA())
         cache.put("isSourceRead", JSON.stringify(isSourceRead))
