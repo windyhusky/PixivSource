@@ -8,7 +8,6 @@ function objStringify(obj) {
     });
 }
 function isBackupSource() {
-    const {source} = this
     return source.bookSourceName.includes("备用")
 }
 // 检测 源阅
@@ -63,6 +62,7 @@ function publicFunc() {
         settings.SHOW_CAPTIONS = true         // 正文：显示评论
     }
     u.settings = settings
+    u.settings.IS_LEGADO = !isSourceRead()
     u.settings.IS_SOURCE_READ = isSourceRead()
     u.settings.IS_BACKUP_SOURCE = isBackupSource()
     cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
@@ -155,16 +155,23 @@ function publicFunc() {
         })
     }
 
+    // 屏蔽作者
+    u.authorFilter = function(novels) {
+        if (util.settings.IS_SOURCE_READ) {
+            let authors = JSON.parse(cache.get("blockAuthorList"))  // 屏蔽作者
+            if (authors !== null) {
+                java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
+                authors.forEach(author => {
+                    novels = novels.filter(novel => novel.userId !== String(author))
+                })
+            }
+        }
+        return novels
+    }
+
     // 处理 novels 列表
     u.handNovels = function(novels, detailed=false) {
-        let authors = JSON.parse(cache.get("blockAuthorList"))  // 屏蔽作者
-        if (authors !== null) {
-            java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
-            authors.forEach(author => {
-                novels = novels.filter(novel => novel.userId !== String(author))
-            })
-        }
-
+        novels = this.authorFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
