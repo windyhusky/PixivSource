@@ -1,6 +1,12 @@
 var checkTimes = 0
 var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
 
+// 检测备用书源
+function isBackupSource() {
+    const {source} = this
+    return source.bookSourceName.includes("备用")
+}
+
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
     if (v === undefined || v === null) {
