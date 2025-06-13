@@ -9,9 +9,14 @@ function objStringify(obj) {
 }
 
 function publicFunc() {
-    let u = {}
-    java.log(String(source.bookSourceComment).split("\n")[0]) // 输出书源信息
-    java.log(`本地书源更新时间：${java.timeFormat(source.lastUpdateTime)}`) // 输出书源信息
+    let u = {}, settings
+    // 输出书源信息
+    java.log(`🅿️ ${source.bookSourceComment.split("\n")[0]}`)
+    java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
+    java.log(`📆 更新时间：${timeFormat(source.lastUpdateTime)}`)
+    if (isSourceRead()) java.log("📱 软件平台：🍎 源阅 SourceRead")
+    else java.log("📱 软件平台：🤖 开源阅读 Leagdo")
+
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
