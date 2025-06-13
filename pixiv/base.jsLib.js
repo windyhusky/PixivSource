@@ -8,7 +8,7 @@ function isBackupSource() {
 }
 
 // 检测 源阅
-// 可用 java.ajax() java.webview() 不支持 java.ajaxAll()
+// 可用 java.ajax() java.webview() java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get()
 // 可用 source.bookSourceName source.getVariable() 等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
@@ -239,10 +239,12 @@ function updateSource() {
         }
     }
     // comment = source.bookSourceComment.split("\n")
-    let htm = `data:text/html; charset=utf-8,
-<html>
+    let html = `
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <title>更新 ${source.bookSourceName} 书源</title>
     <style> 
     table { text-align: center; margin: 0 auto; } .ann { display: flex; justify-content: center; align-items: center; height: 5vh; } 
@@ -306,6 +308,6 @@ function updateSource() {
     </table>
 </body>
 </html>`;
-    java.startBrowser(htm,'更新书源');
+    java.startBrowser(`data:text/html;base64, ${java.base64Encode(html)}`, '书源更新');
     return []
 }
