@@ -29,7 +29,7 @@ function publicFunc() {
     else java.log("📱 软件平台：🤖 开源阅读 Leagdo")
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
-    if (isBackupSource()) {
+    if (isBackupSource() || isSourceRead()) {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
         settings = JSON.parse(cache.get("pixivSettings"))
