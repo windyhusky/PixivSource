@@ -157,21 +157,37 @@ function publicFunc() {
 
     // 屏蔽作者
     u.authorFilter = function(novels) {
-        if (util.settings.IS_SOURCE_READ) {
-            let authors = JSON.parse(cache.get("blockAuthorList"))  // 屏蔽作者
-            if (authors !== null) {
-                java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
-                authors.forEach(author => {
-                    novels = novels.filter(novel => novel.userId !== String(author))
-                })
+        let authors = []
+        if (util.settings.IS_LEGADO) {
+            authors = JSON.parse(cache.get("blockAuthorList"))
+
+        } else if (util.settings.IS_SOURCE_READ) {
+            authors = cache.get("blockAuthorList")  // 源阅无数据返回 undefined
+            try {
+                if (typeof authors !== "undefined") {
+                    authors = JSON.parse(authors)
+                    java.log(authors)
+                    java.log(typeof authors)
+                } else authors = null
+            } catch (e) {
+                authors = []
+                java.log("屏蔽作者 JSON Parse Error")
+                java.log(e)
             }
+        }
+
+        if (authors !== undefined && authors !== null && authors.length >= 0) {
+            java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
+            authors.forEach(author => {
+                novels = novels.filter(novel => novel.userId !== String(author))
+            })
         }
         return novels
     }
 
     // 处理 novels 列表
     u.handNovels = function(novels, detailed=false) {
-        novels = this.authorFilter(novels)
+        novels = util.authorFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
