@@ -29,32 +29,31 @@ function publicFunc() {
         settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
         settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
         settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
-        settings.FAST  = false   // 全局：快速模式
-        settings.DEBUG = false   // 全局：调试模式
+        settings.FAST  = false              // 全局：快速模式
+        settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-    u.CONVERT_CHINESE = settings.CONVERT_CHINESE
-    u.MORE_INFORMATION = settings.MORE_INFORMATION
-    u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME
-    u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK
-    u.REPLACE_TITLE_MARKS = settings.REPLACE_TITLE_MARKS
-    u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS
-    u.SHOW_COMMENTS = settings.SHOW_COMMENTS
-    u.FAST = settings.FAST
-    u.DEBUG = settings.DEBUG
 
     if (u.FAST === true) {
-        u.CONVERT_CHINESE = false    // 搜索：繁简通搜
-        u.SHOW_UPDATE_TIME = true    // 目录：显示章节更新时间
-        u.SHOW_ORIGINAL_LINK = false // 目录：显示章节源链接
-        u.SHOW_COMMENTS = true       // 正文：
+        settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
+        settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
+        settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
+        settings.SHOW_CAPTIONS = false        // 正文：显示评论
+    } else {
+        settings.CONVERT_CHINESE = true       // 搜索：繁简通搜
+        settings.SHOW_UPDATE_TIME = true      // 目录：显示章节更新时间
+        settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
+        settings.SHOW_CAPTIONS = true         // 正文：显示评论
     }
+    u.settings = settings
+    cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
+    
     if (u.DEBUG === true) {
-        java.log(JSON.stringify(settings, null, 4))
         java.log(`DEBUG = ${u.DEBUG}`)
+        java.log(JSON.stringify(settings, null, 4))
     }
     u.debugFunc = (func) => {
-        if (util.DEBUG) {
+        if (util.settings.DEBUG) {
             func()
         }
     }
@@ -212,7 +211,7 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
 
-            if (util.MORE_INFORMATION) {
+            if (util.settings.MORE_INFORMATION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
             } else {
                 novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
@@ -374,7 +373,7 @@ function getHeaders() {
 publicFunc(); getUserAgent()
 if (result.code() === 200) {
     getPixivUid(); getCookie(); getHeaders()
-    if (!util.FAST) checkMessageThread()  // 检测过度访问
+    if (!util.settings.FAST) checkMessageThread()  // 检测过度访问
 //     if (isHtmlString(result.body())) {  // 检测登录
 //         let loginStatus = getWebviewJson(baseUrl, html => {
 //             return JSON.stringify(html.match(/login:\s*'([^']+)'/)[1])
