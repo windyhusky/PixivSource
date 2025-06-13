@@ -23,7 +23,7 @@ function isSourceRead() {
 function publicFunc() {
     let u = {}, settings
     // 输出书源信息
-    java.log(`${source.bookSourceComment.split("\n")[0]}`)
+    java.log(`🅿️ ${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
     java.log(`📆 更新时间：${timeFormat(source.lastUpdateTime)}`)
     if (isSourceRead()) java.log("📱 软件平台：🍎 源阅 SourceRead")
@@ -63,6 +63,8 @@ function publicFunc() {
         settings.SHOW_CAPTIONS = true         // 正文：显示评论
     }
     u.settings = settings
+    u.settings.IS_SOURCE_READ = isSourceRead()
+    u.settings.IS_BACKUP_SOURCE = isBackupSource()
     cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
 
     u.debugFunc = (func) => {
@@ -499,6 +501,7 @@ if (result.code() === 200) {
     getPixivUid(); getUserAgent(); util.getCookie(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
+
 util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
@@ -506,4 +509,5 @@ util.debugFunc(() => {
     java.log(`${cache.get("csfrToken")}\n`)
     java.log(`${cache.get("pixivCookie")}\n`)
 })
+
 java.getStrResponse(null, null)
