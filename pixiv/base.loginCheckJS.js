@@ -8,7 +8,6 @@ function objStringify(obj) {
     });
 }
 function isBackupSource() {
-    const {source} = this
     return source.bookSourceName.includes("备用")
 }
 // 检测 源阅
