@@ -7,6 +7,18 @@ function objStringify(obj) {
         return v;
     });
 }
+function isBackupSource() {
+    const {source} = this
+    return source.bookSourceName.includes("备用")
+}
+// 检测 源阅
+// 可用 java.ajax() java.webview() java.ajaxAll()
+// 可用 java.getCookie() cache.put() cache.get()
+// 可用 source.bookSourceName source.getVariable() 等
+// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+function isSourceRead() {
+    return java.getUserAgent() === java.getWebViewUA()
+}
 
 function publicFunc() {
     let u = {}, settings
