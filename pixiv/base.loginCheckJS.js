@@ -74,7 +74,9 @@ function publicFunc() {
     }
 
     u.isLogin = function() {
-        return cache.get("csfrToken") !== null
+        if (util.settings.IS_LEGADO) return cache.get("csfrToken") !== null
+        else if (util.settings.IS_SOURCE_READ) return eval(cache.get("csfrToken")) !== null
+        else return false
     }
     u.isLoginCookie = function() {
         let cookie = String(java.getCookie("https://www.pixiv.net/", null))
