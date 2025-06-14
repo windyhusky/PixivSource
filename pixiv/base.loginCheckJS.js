@@ -162,18 +162,18 @@ function publicFunc() {
             authors = JSON.parse(cache.get("blockAuthorList"))
 
         } else if (util.settings.IS_SOURCE_READ) {
-            authors = cache.get("blockAuthorList")  // 源阅无数据返回 undefined
-            try {
-                if (typeof authors !== "undefined") {
-                    authors = JSON.parse(authors)
-                    java.log(authors)
-                    java.log(typeof authors)
-                } else authors = null
-            } catch (e) {
-                authors = []
-                java.log("屏蔽作者 JSON Parse Error")
-                java.log(e)
-            }
+            // authors = cache.get("blockAuthorList")  // 源阅无数据返回 undefined
+            // try {
+            //     if (typeof authors !== "undefined") {
+            //         authors = JSON.parse(authors)
+            //         java.log(authors)
+            //         java.log(typeof authors)
+            //     } else authors = null
+            // } catch (e) {
+            //     authors = []
+            //     java.log("屏蔽作者 JSON Parse Error")
+            //     java.log(e)
+            // }
         }
 
         if (authors !== undefined && authors !== null && authors.length >= 0) {
