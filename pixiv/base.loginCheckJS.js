@@ -63,10 +63,10 @@ function publicFunc() {
         settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
         settings.SHOW_CAPTIONS = true         // 正文：显示评论
     }
+    settings.IS_LEGADO = !isSourceRead()
+    settings.IS_SOURCE_READ = isSourceRead()
+    settings.IS_BACKUP_SOURCE = isBackupSource()
     u.settings = settings
-    u.settings.IS_LEGADO = !isSourceRead()
-    u.settings.IS_SOURCE_READ = isSourceRead()
-    u.settings.IS_BACKUP_SOURCE = isBackupSource()
     cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
 
     u.debugFunc = (func) => {

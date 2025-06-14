@@ -4,7 +4,6 @@ function getFromCache(object) {
 
 function getNovel() {
     let novel = source.getLoginInfoMap()
-    // if (novel === undefined) novel = JSON.parse(cache.get("novel"))
     if (novel === undefined) novel = getFromCache("novel")
     return novel
 }
