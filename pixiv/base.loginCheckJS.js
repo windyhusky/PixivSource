@@ -75,8 +75,33 @@ function publicFunc() {
     }
 
     u.isLogin = function() {
-        return cache.get("csfrToken") !== null
+        // return cache.get("csfrToken") !== null
+        return cache.get("pixivCookie") !== null
     }
+
+    u.checkLogin = function() {
+        let csfrToken = cache.get("csfrToken")
+        try {
+            if (typeof csfrToken === "string") {
+                csfrToken = JSON.parse(csfrToken)
+                java.log(typeof csfrToken)
+                java.log(JSON.parse(csfrToken))
+            }
+        } catch (e) {
+            java.log("JSON.parse ERR")
+            try {
+                if (typeof csfrToken === "string") csfrToken = eval(csfrToken)
+                java.log(typeof csfrToken)
+                java.log(JSON.parse(csfrToken))
+            } catch (e) {
+                csfrToken = ""
+                java.log("eval ERR")
+            }
+        }
+        java.log(csfrToken !== null)
+        return csfrToken !== null
+    }
+
     u.isLoginCookie = function() {
         let cookie = String(java.getCookie("https://www.pixiv.net/", null))
         return cookie.includes("first_visit_datetime")
@@ -102,7 +127,8 @@ function publicFunc() {
     u.getCookie = function() {
         let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
         if (pixivCookie.includes("first_visit_datetime")) {
-            // java.log(pixivCookie)
+            java.log(typeof pixivCookie)
+            java.log(pixivCookie)
             cache.put("pixivCookie", pixivCookie, 60*60)
             return pixivCookie
         } else {
@@ -135,7 +161,8 @@ function publicFunc() {
             csfrToken = null
             sleepToast("未登录账号(csfrToken)")
         }
-        // java.log(csfrToken)
+        java.log(typeof csfrToken)
+        java.log(csfrToken)
         cache.put("csfrToken", csfrToken)  // 与登录设备有关
         return csfrToken
     }
@@ -514,6 +541,7 @@ function syncBlockAuthorList() {
 }
 
 publicFunc()
+util.checkLogin()
 if (util.settings.IS_LEGADO) {
     syncBlockAuthorList()
 }
