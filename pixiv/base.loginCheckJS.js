@@ -513,7 +513,7 @@ function syncBlockAuthorList() {
 }
 
 publicFunc()
-if (!isSourceRead()) {
+if (util.settings.IS_LEGADO) {
     syncBlockAuthorList()
 }
 
