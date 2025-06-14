@@ -76,34 +76,6 @@ function publicFunc() {
     }
 
     u.isLogin = function() {
-        // return cache.get("csfrToken") !== null
-        return cache.get("pixivCookie") !== null
-    }
-
-    u.checkLogin = function() {
-        let csfrToken = cache.get("csfrToken")
-        try {
-            if (typeof csfrToken === "string") {
-                csfrToken = JSON.parse(csfrToken)
-                java.log(typeof csfrToken)
-                java.log(JSON.parse(csfrToken))
-            }
-        } catch (e) {
-            java.log("JSON.parse ERR")
-            try {
-                if (typeof csfrToken === "string") csfrToken = eval(csfrToken)
-                java.log(typeof csfrToken)
-                java.log(JSON.parse(csfrToken))
-            } catch (e) {
-                csfrToken = ""
-                java.log("eval ERR")
-            }
-        }
-        java.log(csfrToken !== null)
-        return csfrToken !== null
-    }
-
-    u.isLoginCookie = function() {
         let cookie = String(java.getCookie("https://www.pixiv.net/", null))
         return cookie.includes("first_visit_datetime")
     }
@@ -542,7 +514,6 @@ function syncBlockAuthorList() {
 }
 
 publicFunc()
-util.checkLogin()
 if (util.settings.IS_LEGADO) {
     syncBlockAuthorList()
 }

@@ -10,7 +10,8 @@ function getNovel() {
 }
 
 function isLogin() {
-    return cache.get("csfrToken") !== null
+    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+    return cookie.includes("first_visit_datetime")
 }
 
 function login() {
