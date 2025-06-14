@@ -515,7 +515,8 @@ function syncBlockAuthorList() {
 }
 
 publicFunc()
-if (!isSourceRead()) {
+util.checkLogin()
+if (util.settings.IS_LEGADO) {
     syncBlockAuthorList()
 }
 
