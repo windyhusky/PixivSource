@@ -11,10 +11,11 @@ function isBackupSource() {
     return source.bookSourceName.includes("备用")
 }
 // 检测 源阅
-// 可用 java.ajax() java.webview() java.ajaxAll()
+// 可用 java.ajax() java.webview() 不可用 java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get()
 // 可用 source.bookSourceName source.getVariable() 等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+// 不能读写源变量
 function isSourceRead() {
     return java.getUserAgent() === java.getWebViewUA()
 }
