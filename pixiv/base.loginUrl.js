@@ -2,8 +2,15 @@ function getFromCache(object) {
     return JSON.parse(cache.get(object))
 }
 
+function getNovel() {
+    let novel = source.getLoginInfoMap()
+    // if (novel === undefined) novel = JSON.parse(cache.get("novel"))
+    if (novel === undefined) novel = getFromCache("novel")
+    return novel
+}
+
 function isLogin() {
-    return getFromCache("csfrToken") !== null
+    return cache.get("csfrToken") !== null
 }
 
 function login() {
@@ -87,7 +94,7 @@ function getPostBody(url, body, headers) {
 }
 
 function novelBookmarkAdd(restrict=0) {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
@@ -109,7 +116,7 @@ function getNovelBookmarkId(novelId) {
 }
 
 function novelBookmarkDelete() {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/delete",
         `del=1&book_id=${getNovelBookmarkId(novel.id)}`
@@ -136,7 +143,7 @@ function novelsBookmarkDelete(novelIds) {
 }
 
 function novelBookmarkFactory(code) {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let collectId = getFromCache(`collect${novel.id}`)
     if (collectId >= 1) code = 0
 
@@ -146,7 +153,7 @@ function novelBookmarkFactory(code) {
 }
 
 function novelMarker(page=1) {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let lastMarker = getFromCache(`marker${novel.id}`)
     if (lastMarker === true) page = 0
 
@@ -166,7 +173,7 @@ function novelMarker(page=1) {
 }
 
 function seriesWatch() {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let resp = getPostBody(
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
         "{}"
@@ -179,7 +186,7 @@ function seriesWatch() {
 }
 
 function seriesUnWatch() {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let resp = getPostBody(
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
         "{}"
@@ -192,7 +199,7 @@ function seriesUnWatch() {
 }
 
 function seriesWatchFactory(code=1) {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     if (!novel.seriesId) {
         return sleepToast(`⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
     }
@@ -204,7 +211,7 @@ function seriesWatchFactory(code=1) {
 }
 
 function userFollow(restrict=0) {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let resp = getPostBody(
         "https://www.pixiv.net/bookmark_add.php",
         `mode=add&type=user&user_id=${novel.userId}&tag=""&restrict=${restrict}&format=json`
@@ -217,7 +224,7 @@ function userFollow(restrict=0) {
 }
 
 function userUnFollow() {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let resp = getPostBody(
         "https://www.pixiv.net/rpc_group_setting.php",
         `mode=del&type=bookuser&id=${novel.userId}`
@@ -230,7 +237,7 @@ function userUnFollow() {
 }
 
 function userFollowFactory(code=1) {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let lastStatus = getFromCache(`follow${novel.userId}`)
     if (lastStatus === true) code = 0
 
@@ -240,7 +247,7 @@ function userFollowFactory(code=1) {
 
 function userBlackList() {
     let action = "block"  // 拉黑作者，非屏蔽作者作品
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let lastStatus = getFromCache(`block${novel.userId}`)
     if (lastStatus === true) action = "unblock"
 
@@ -261,7 +268,7 @@ function userBlackList() {
 
 function userBlock() {
     let authors = getFromCache("blockAuthorList")
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     if (authors.includes(Number(novel.userId))) {
         authors = authors.filter(author => author !== Number(novel.userId))
         sleepToast(`✅ 已取消屏蔽【${novel.userName}】\n\n现已恢复显示其小说`)
@@ -276,7 +283,7 @@ function userBlock() {
 
 function novelCommentAdd() {
     let userId = getFromCache("pixiv:uid")
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let novelId = novel.id
     let comment = String(result.get("发送评论")).trim()
     if (comment === "") {
@@ -310,7 +317,7 @@ function getNovelCommentID(novelId, comment) {
 }
 
 function novelCommentDelete() {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     let novelId = novel.id
     let comment = String(result.get("发送评论")).trim()
     if (comment === "") {
@@ -340,7 +347,7 @@ function startBrowser(url, title) {
 }
 
 function shareFactory(type) {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     if (novel === undefined) return sleepToast("⚠️ 请在小说阅读页面，使用本功能")
     if (type.includes("author")) {
         startBrowser(urlUserUrl(novel.userId), novel.userName)
@@ -367,7 +374,7 @@ function startGithubReadme() {
 }
 
 function charpterReading() {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     sleepToast(`📌 当前章节\n
     系列：${novel.seriesTitle}
     章节：${novel.title}
@@ -418,7 +425,7 @@ function editSettings(object) {
 }
 
 function cleanCache() {
-    let novel = source.getLoginInfoMap()
+    let novel = getNovel()
     cache.delete(`${urlNovelUrl(novel.id)}`)
     cache.delete(`${urlNovelDetailed(novel.id)}`)
     cache.delete(`${urlSearchNovel(novel.title, 1)}`)
