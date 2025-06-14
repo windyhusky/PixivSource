@@ -47,7 +47,6 @@ var seriesSet = {
 };
 
 function getUserNovels() {
-    // cache.delete("csfrToken")
     if (!util.isLogin()) {
         sleepToast("⚠️ 当前未登录账号\n\n请登录 Pixiv 账号", 1.5)
         util.removeCookie(); util.login()
@@ -122,7 +121,7 @@ function getUserNovels() {
         // java.log(JSON.stringify(seriesNovelIds.length))
 
         // 获取单篇小说
-        if (novelIds.length >= 1 && !isSourceRead()) {
+        if (novelIds.length >= 1 && util.settings.IS_LEGADO) {
             novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
             novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
             // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
@@ -133,22 +132,24 @@ function getUserNovels() {
             novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
         }
 
-        // 获取单篇小说
-        if (novelIds.length >= 1 && isSourceRead()) {
+        // // 获取单篇小说
+        if (novelIds.length >= 1 && util.settings.IS_SOURCE_READ) {
             novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
+            // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
+            // java.log(JSON.stringify(novelIds.length))
             novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
-            let url = urlNovelsDetailed(uid, novelIds)
-            util.debugFunc(() => {
-                java.log(`发送获取作者小说的Ajax请求:${url}`)
+            novelIds.forEach(novelId => {
+                // java.log(urlNovelDetailed(novelId))
+                let res = getAjaxJson(urlNovelDetailed(novelId))
+                if (res.error !== true) {
+                    novels.push(res.body)
+                } else {
+                    java.log(JSON.stringify(res))
+                }
             })
-            let userNovels = getWebviewJson(url, html => {
-                return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
-            }).body
-            // 获取对应的小说 该序列是按照id排序
-            // 反转以按照更新时间排序
-            novels = novels.concat(Object.values(userNovels).reverse())
         }
     }
+    
     util.debugFunc(() => {
         java.log(`获取用户搜索小说结束`)
     })
@@ -213,7 +214,7 @@ function novelFilter(novels) {
         textCount = 10000 * num[0] + 1000 * num[1]
     }
     else if (limitedTextCount.includes("W")) {
-        let num = limitedTextCount.split("w")
+        let num = limitedTextCount.split("W")
         textCount = 10000 * num[0] + 1000 * num[1]
     }
 
@@ -222,7 +223,7 @@ function novelFilter(novels) {
         textCount = 1000 * num[0] + 100 * num[1]
     }
     else if (limitedTextCount.includes("K")) {
-        let num = limitedTextCount.split("k")
+        let num = limitedTextCount.split("K")
         textCount = 1000 * num[0] + 100 * num[1]
     }
 

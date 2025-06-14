@@ -15,7 +15,6 @@ function handlerFactory() {
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return () => {updateSource(); return []}
     }
-    // cache.delete("csfrToken")
     if (!util.isLogin()) {
         return handlerNoLogin()
     }
@@ -125,9 +124,10 @@ function handlerWatchList() {
 
 // 排行榜，书签，首页，编辑部推荐，顺序相同
 function handlerRanking() {
-    if (isSourceRead()) return handlerRankingWebview()
-    // if (isSourceRead()) return handlerRankingAjax()
-    else return handlerRankingAjaxAll()
+    if (util.settings.IS_LEGADO) return handlerRankingAjaxAll()
+    // else if (util.settings.IS_SOURCE_READ) return handlerRankingWebview()
+    else if (util.settings.IS_SOURCE_READ) return handlerRankingAjax()
+    else return []
 }
 
 // 排行榜，书签，首页，编辑部推荐，顺序相同

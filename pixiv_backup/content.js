@@ -13,23 +13,31 @@ function objParse(obj) {
 function getContent(res) {
     // 放入信息以便登陆界面使用，第一次加载，刷新时准确
     let novel = source.getLoginInfoMap()
+    if (novel === undefined) novel = JSON.parse(cache.get("novel"))
     if (res.seriesNavData !== undefined && res.seriesNavData !== null) {
         let seriesId = res.seriesNavData.seriesId
         if (seriesId !== undefined && seriesId !== null) {
-            let novelIds = JSON.parse(cache.get(`novelIds${seriesId}`))
-            novel.id = novelIds[book.durChapterIndex]
+            if (util.settings.IS_LEGADO) {
+                let novelIds = JSON.parse(cache.get(`novelIds${seriesId}`))
+                novel.id = novelIds[book.durChapterIndex]
+                novel.title = book.durChapterTitle
+            } else {
+                novel.id = res.id
+                novel.title = res.title
+            }
             novel.seriesId = res.seriesNavData.seriesId
             novel.seriesTitle = res.seriesNavData.title
         }
     } else {
         novel.id = res.id
+        novel.title = res.title
         novel.seriesId = null
         novel.seriesTitle = null
     }
-    novel.title = book.durChapterTitle
     novel.userId = res.userId
     novel.userName = res.userName
     source.putLoginInfo(JSON.stringify(novel))
+    cache.put("novel", JSON.stringify(novel))
     // sleepToast(`当前章节：${novel.id}${novel.title}`)
 
     let content = String(res.content)

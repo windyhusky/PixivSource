@@ -2,27 +2,6 @@ var checkTimes = 0
 var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
 
 
-// 检测备用书源
-function isBackupSource() {
-    const {source} = this
-    return source.bookSourceName.includes("备用")
-}
-
-// 检测 源阅
-// 可用 java.ajax() java.webview() 不支持 java.ajaxAll()
-// 可用 java.getCookie() cache.put() cache.get()
-// 可用 source.bookSourceName source.getVariable() 等
-// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
-function isSourceRead() {
-    const {java, cache} = this
-    let isSourceRead = JSON.parse(cache.get("isSourceRead"))
-    if (isSourceRead === null) {
-        isSourceRead = (java.getUserAgent() === java.getWebViewUA())
-        cache.put("isSourceRead", JSON.stringify(isSourceRead))
-    }
-    return isSourceRead
-}
-
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
     if (v === undefined || v === null) {

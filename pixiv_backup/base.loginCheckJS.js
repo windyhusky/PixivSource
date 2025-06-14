@@ -7,18 +7,39 @@ function objStringify(obj) {
         return v;
     });
 }
+function isBackupSource() {
+    let isBackupSource = source.bookSourceName.includes("备用")
+    cache.put("isBackupSource", isBackupSource)
+    return isBackupSource
+}
+// 检测 源阅
+// 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
+// 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
+// 可用 java.startBrowser() 不可用 java.startBrowserAwaitAwait
+// 可用 source.bookSourceName source.getVariable() 等
+// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+// 不能读写源变量
+function isSourceRead() {
+    let isSourceReadStatus = java.getUserAgent() === java.getWebViewUA()
+    cache.put("isSourceRead", isSourceReadStatus)
+    return isSourceReadStatus
+}
 
 function publicFunc() {
     let u = {}, settings
     // 输出书源信息
-    java.log(`${source.bookSourceComment.split("\n")[0]}`)
+    java.log(`🅿️ ${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
-    java.log(`📆 更新时间：${timeFormat(source.lastUpdateTime)}`)
-    if (isSourceRead()) java.log("📱 软件平台：🍎 源阅 SourceRead")
-    else java.log("📱 软件平台：🤖 开源阅读 Leagdo")
+    if (isSourceRead()) {
+        java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+        java.log("📱 软件平台：🍎 源阅 SourceRead")
+    } else {
+        java.log(`📆 更新时间：${timeFormat(source.lastUpdateTime)}`)
+        java.log("📱 软件平台：🤖 开源阅读 Leagdo")
+    }
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
-    if (isBackupSource()) {
+    if (isBackupSource() || isSourceRead()) {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
         settings = JSON.parse(cache.get("pixivSettings"))
@@ -50,6 +71,9 @@ function publicFunc() {
         settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
         settings.SHOW_CAPTIONS = true         // 正文：显示评论
     }
+    settings.IS_LEGADO = !isSourceRead()
+    settings.IS_SOURCE_READ = isSourceRead()
+    settings.IS_BACKUP_SOURCE = isBackupSource()
     u.settings = settings
     cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
 
@@ -60,9 +84,6 @@ function publicFunc() {
     }
 
     u.isLogin = function() {
-        return cache.get("csfrToken") !== null
-    }
-    u.isLoginCookie = function() {
         let cookie = String(java.getCookie("https://www.pixiv.net/", null))
         return cookie.includes("first_visit_datetime")
     }
@@ -87,6 +108,7 @@ function publicFunc() {
     u.getCookie = function() {
         let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
         if (pixivCookie.includes("first_visit_datetime")) {
+            // java.log(typeof pixivCookie)
             // java.log(pixivCookie)
             cache.put("pixivCookie", pixivCookie, 60*60)
             return pixivCookie
@@ -120,7 +142,8 @@ function publicFunc() {
             csfrToken = null
             sleepToast("未登录账号(csfrToken)")
         }
-        // java.log(csfrToken)
+        java.log(typeof csfrToken)
+        java.log(csfrToken)
         cache.put("csfrToken", csfrToken)  // 与登录设备有关
         return csfrToken
     }
@@ -141,16 +164,39 @@ function publicFunc() {
         })
     }
 
-    // 处理 novels 列表
-    u.handNovels = function(novels, detailed=false) {
-        let authors = JSON.parse(cache.get("blockAuthorList"))  // 屏蔽作者
-        if (authors !== null) {
+    // 屏蔽作者
+    u.authorFilter = function(novels) {
+        let authors = []
+        if (util.settings.IS_LEGADO) {
+            authors = JSON.parse(cache.get("blockAuthorList"))
+
+        } else if (util.settings.IS_SOURCE_READ) {
+            // authors = cache.get("blockAuthorList")  // 源阅无数据返回 undefined
+            // try {
+            //     if (typeof authors !== "undefined") {
+            //         authors = JSON.parse(authors)
+            //         java.log(authors)
+            //         java.log(typeof authors)
+            //     } else authors = null
+            // } catch (e) {
+            //     authors = []
+            //     java.log("屏蔽作者 JSON Parse Error")
+            //     java.log(e)
+            // }
+        }
+
+        if (authors !== undefined && authors !== null && authors.length >= 0) {
             java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
                 novels = novels.filter(novel => novel.userId !== String(author))
             })
         }
+        return novels
+    }
 
+    // 处理 novels 列表
+    u.handNovels = function(novels, detailed=false) {
+        novels = util.authorFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
@@ -476,7 +522,7 @@ function syncBlockAuthorList() {
 }
 
 publicFunc()
-if (!isSourceRead()) {
+if (util.settings.IS_LEGADO) {
     syncBlockAuthorList()
 }
 
@@ -487,6 +533,7 @@ if (result.code() === 200) {
     getPixivUid(); getUserAgent(); util.getCookie(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
+
 util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
@@ -494,4 +541,5 @@ util.debugFunc(() => {
     java.log(`${cache.get("csfrToken")}\n`)
     java.log(`${cache.get("pixivCookie")}\n`)
 })
+
 java.getStrResponse(null, null)
