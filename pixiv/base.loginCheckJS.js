@@ -8,7 +8,9 @@ function objStringify(obj) {
     });
 }
 function isBackupSource() {
-    return source.bookSourceName.includes("备用")
+    let isBackupSource = source.bookSourceName.includes("备用")
+    cache.put("isBackupSource", isBackupSource)
+    return isBackupSource
 }
 // 检测 源阅
 // 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
@@ -18,7 +20,9 @@ function isBackupSource() {
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 // 不能读写源变量
 function isSourceRead() {
-    return java.getUserAgent() === java.getWebViewUA()
+    let isSourceReadStatus = java.getUserAgent() === java.getWebViewUA()
+    cache.put("isSourceRead", isSourceReadStatus)
+    return isSourceReadStatus
 }
 
 function publicFunc() {
@@ -100,8 +104,8 @@ function publicFunc() {
     u.getCookie = function() {
         let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
         if (pixivCookie.includes("first_visit_datetime")) {
-            java.log(typeof pixivCookie)
-            java.log(pixivCookie)
+            // java.log(typeof pixivCookie)
+            // java.log(pixivCookie)
             cache.put("pixivCookie", pixivCookie, 60*60)
             return pixivCookie
         } else {
