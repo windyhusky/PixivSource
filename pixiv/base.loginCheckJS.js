@@ -11,10 +11,11 @@ function isBackupSource() {
     return source.bookSourceName.includes("备用")
 }
 // 检测 源阅
-// 可用 java.ajax() java.webview() java.ajaxAll()
+// 可用 java.ajax() java.webview() 不可用 java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get()
 // 可用 source.bookSourceName source.getVariable() 等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+// 不能读写源变量
 function isSourceRead() {
     return java.getUserAgent() === java.getWebViewUA()
 }
@@ -74,10 +75,33 @@ function publicFunc() {
     }
 
     u.isLogin = function() {
-        if (util.settings.IS_LEGADO) return cache.get("csfrToken") !== null
-        else if (util.settings.IS_SOURCE_READ) return eval(cache.get("csfrToken")) !== null
-        else return false
+        // return cache.get("csfrToken") !== null
+        return cache.get("pixivCookie") !== null
     }
+
+    u.checkLogin = function() {
+        let csfrToken = cache.get("csfrToken")
+        try {
+            if (typeof csfrToken === "string") {
+                csfrToken = JSON.parse(csfrToken)
+                java.log(typeof csfrToken)
+                java.log(JSON.parse(csfrToken))
+            }
+        } catch (e) {
+            java.log("JSON.parse ERR")
+            try {
+                if (typeof csfrToken === "string") csfrToken = eval(csfrToken)
+                java.log(typeof csfrToken)
+                java.log(JSON.parse(csfrToken))
+            } catch (e) {
+                csfrToken = ""
+                java.log("eval ERR")
+            }
+        }
+        java.log(csfrToken !== null)
+        return csfrToken !== null
+    }
+
     u.isLoginCookie = function() {
         let cookie = String(java.getCookie("https://www.pixiv.net/", null))
         return cookie.includes("first_visit_datetime")
@@ -103,7 +127,8 @@ function publicFunc() {
     u.getCookie = function() {
         let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
         if (pixivCookie.includes("first_visit_datetime")) {
-            // java.log(pixivCookie)
+            java.log(typeof pixivCookie)
+            java.log(pixivCookie)
             cache.put("pixivCookie", pixivCookie, 60*60)
             return pixivCookie
         } else {
@@ -136,7 +161,8 @@ function publicFunc() {
             csfrToken = null
             sleepToast("未登录账号(csfrToken)")
         }
-        // java.log(csfrToken)
+        java.log(typeof csfrToken)
+        java.log(csfrToken)
         cache.put("csfrToken", csfrToken)  // 与登录设备有关
         return csfrToken
     }
@@ -164,18 +190,18 @@ function publicFunc() {
             authors = JSON.parse(cache.get("blockAuthorList"))
 
         } else if (util.settings.IS_SOURCE_READ) {
-            authors = cache.get("blockAuthorList")  // 源阅无数据返回 undefined
-            try {
-                if (typeof authors !== "undefined") {
-                    authors = JSON.parse(authors)
-                    java.log(authors)
-                    java.log(typeof authors)
-                } else authors = null
-            } catch (e) {
-                authors = []
-                java.log("屏蔽作者 JSON Parse Error")
-                java.log(e)
-            }
+            // authors = cache.get("blockAuthorList")  // 源阅无数据返回 undefined
+            // try {
+            //     if (typeof authors !== "undefined") {
+            //         authors = JSON.parse(authors)
+            //         java.log(authors)
+            //         java.log(typeof authors)
+            //     } else authors = null
+            // } catch (e) {
+            //     authors = []
+            //     java.log("屏蔽作者 JSON Parse Error")
+            //     java.log(e)
+            // }
         }
 
         if (authors !== undefined && authors !== null && authors.length >= 0) {
