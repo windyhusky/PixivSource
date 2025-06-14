@@ -47,7 +47,6 @@ var seriesSet = {
 };
 
 function getUserNovels() {
-    // cache.delete("csfrToken")
     if (!util.isLogin()) {
         sleepToast("⚠️ 当前未登录账号\n\n请登录 Pixiv 账号", 1.5)
         util.removeCookie(); util.login()
@@ -215,7 +214,7 @@ function novelFilter(novels) {
         textCount = 10000 * num[0] + 1000 * num[1]
     }
     else if (limitedTextCount.includes("W")) {
-        let num = limitedTextCount.split("w")
+        let num = limitedTextCount.split("W")
         textCount = 10000 * num[0] + 1000 * num[1]
     }
 
@@ -224,7 +223,7 @@ function novelFilter(novels) {
         textCount = 1000 * num[0] + 100 * num[1]
     }
     else if (limitedTextCount.includes("K")) {
-        let num = limitedTextCount.split("k")
+        let num = limitedTextCount.split("K")
         textCount = 1000 * num[0] + 100 * num[1]
     }
 
