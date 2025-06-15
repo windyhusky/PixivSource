@@ -364,12 +364,15 @@ function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
 function startGithub() {
+    sleepToast("即将打开 Github\n请确认已开启代理", 0.01)
     startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
 }
 function startGithubIssue() {
+    sleepToast("即将打开 Github\n请确认已开启代理", 0.01)
     startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
 }
 function startGithubReadme() {
+    sleepToast("即将打开 Github\n请确认已开启代理", 0.01)
     startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 
@@ -383,8 +386,9 @@ function charpterReading() {
 }
 
 function readMeLogin() {
-    return sleepToast(`🅿️ 登录界面功能说明\n
-    使用收藏、追更、关注作者、评论等功能时，请先刷新正文，获取当前章节信息
+    return sleepToast(`🅿️ 登录界面功能\n
+    使用收藏、追更、关注作者、评论等功能时，需要登录
+    使用前请先刷新正文，获取当前章节信息\n
     点击【📌 当前章节】查看书源内部章节信息`, 5)
 }
 
@@ -471,9 +475,9 @@ function cleanCache() {
     sleepToast(`🧹 清除缓存\n\n已清除本章正文缓存，刷新正文以更新`, 5)
 }
 
-function sleepToast(text, second) {
+function sleepToast(text, second=0) {
     java.log(text)
     // java.toast(text)
     java.longToast(text)
-    // sleep(second)
+    sleep(1000*second)
 }
