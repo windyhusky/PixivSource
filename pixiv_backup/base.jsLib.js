@@ -183,12 +183,13 @@ function sleepToast(text, second) {
     const {java} = this
     java.log(text)
     java.longToast(text)
-    if (second === undefined || second <= 3) {second = 3}
+    if (second === undefined || second <= 3) second = 3
     sleep(1000*second)
 }
 
 function updateSource() {
     const {java, source} = this
+    java.longToast("🆙 更新书源\n\nJsdelivr CDN 更新有延迟\nGithub 更新需代理")
     let onlineSource, comment, sourceName, sourceNameCapitalize, index = 0
     if (source.bookSourceUrl.includes("pixiv")) sourceName = "pixiv"
     else if (source.bookSourceUrl.includes("furrynovel")) sourceName = "linpx"

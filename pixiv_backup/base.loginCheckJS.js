@@ -59,17 +59,11 @@ function publicFunc() {
         settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-
-    if (u.FAST === true) {
+    if (settings.FAST === true) {
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
-        settings.SHOW_CAPTIONS = false        // 正文：显示评论
-    } else {
-        settings.CONVERT_CHINESE = true       // 搜索：繁简通搜
-        settings.SHOW_UPDATE_TIME = true      // 目录：显示章节更新时间
-        settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
-        settings.SHOW_CAPTIONS = true         // 正文：显示评论
+        settings.SHOW_COMMENTS = false        // 正文：显示评论
     }
     settings.IS_LEGADO = !isSourceRead()
     settings.IS_SOURCE_READ = isSourceRead()
