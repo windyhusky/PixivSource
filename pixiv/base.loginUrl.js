@@ -398,40 +398,54 @@ function readMeSearch() {
 }
 
 function editSettings(object) {
+    function statusMsg(status) {
+        if (status === true) return "✅ 已开启"
+        else return "❎ 已关闭"
+    }
+
+    // 检测快速模式修改的4个设置
+    function getMessage() {
+        let msgList = []
+        let keys = Object.keys(settingsName).slice(0, 4)
+        for (let i in keys) {
+            msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
+        }
+        return msgList.join("\n").trim()
+    }
+
     let settingsName = {
         "CONVERT_CHINESE": "🀄️ 繁简通搜",
-        "MORE_INFORMATION": "📖 显示更多简介",
-        "SHOW_UPDATE_TIME": "📅 显示更新时间",
-        "SHOW_ORIGINAL_LINK": "🔗 显示原始链接",
+        "SHOW_UPDATE_TIME": "📅 更新时间",
+        "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+        "SHOW_COMMENTS": "💬 显示评论",
+        "MORE_INFORMATION": "📖 更多简介",
         "REPLACE_TITLE_MARKS": "📚 恢复书名号《》",
         "SHOW_CAPTIONS": "🖼️ 显示描述",
-        "SHOW_COMMENTS": "💬 显示评论",
         "FAST": "⏩ 快速模式",
         "DEBUG": "🐞 调试模式"
     }
-    let fastMsg1 = "🀄️ 繁简通搜、📅 更新时间", fastMsg2 = "🔗 原始链接、💬 显示评论", fastMsg3 = "默认搜索的搜索作者"
-
+    let msg =""
     let settings = getFromCache("pixivSettings")
-    settings[object] = (!settings[object])
-    if (settings[object] === true) {
-        msg = `✅ 已开启 ${settingsName[object]}`
-    } else {
-        msg = `❎ 已关闭 ${settingsName[object]}`
+    let status = settings[object] = (!settings[object])
+    if (object !== "FAST" && settings[object] === true) {
+        msg = `${statusMsg(status)}　${settingsName[object]}`
     }
 
     if (object === "FAST") {
         if (settings[object] === true) {
-            cache.delete("pixivLastSettings")
             cache.put("pixivLastSettings", JSON.stringify(settings))
             settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
             settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
             settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
             settings.SHOW_COMMENTS = false        // 正文：显示评论
-            msg += `\n\n❎ 已关闭${fastMsg1}\n❎ 已关闭${fastMsg2}\n❎ 已关闭${fastMsg3}`
+
+            let message = getMessage()
+            msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
         } else {
             settings = getFromCache("pixivLastSettings")
             settings.FAST = false
-            msg += `\n\n已恢复原有设置：\n${fastMsg1}\n${fastMsg2}\n${fastMsg3}`
+            let message = getMessage()
+            msg = `已恢复原有设置\n\n${statusMsg(status)}　${settingsName[object]}\n${message}`
         }
     }
     sleepToast(msg)
