@@ -415,10 +415,24 @@ function editSettings(object) {
     settings[object] = (!settings[object])
     if (settings[object] === true) {
         msg = `✅ 已开启 ${settingsName[object]}`
-        if (object === "FAST") msg += `\n\n❎ 已关闭${fastMsg1}\n❎ 已关闭${fastMsg2}\n❎ 已关闭${fastMsg3}`
     } else {
         msg = `❎ 已关闭 ${settingsName[object]}`
-        if (object === "FAST") msg += `\n\n✅ 已开启${fastMsg1}\n✅ 已开启${fastMsg2}\n✅ 已开启${fastMsg3}`
+    }
+
+    if (object === "FAST") {
+        if (settings[object] === true) {
+            cache.delete("pixivLastSettings")
+            cache.put("pixivLastSettings", JSON.stringify(settings))
+            settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
+            settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
+            settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
+            settings.SHOW_COMMENTS = false        // 正文：显示评论
+            msg += `\n\n❎ 已关闭${fastMsg1}\n❎ 已关闭${fastMsg2}\n❎ 已关闭${fastMsg3}`
+        } else {
+            settings = getFromCache("pixivLastSettings")
+            settings.FAST = false
+            msg += `\n\n已恢复原有设置：\n${fastMsg1}\n${fastMsg2}\n${fastMsg3}`
+        }
     }
     sleepToast(msg)
     cache.put("pixivSettings", JSON.stringify(settings))
