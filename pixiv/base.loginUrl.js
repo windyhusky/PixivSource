@@ -402,6 +402,7 @@ let settingsName = {
     "SHOW_UPDATE_TIME": "📅 更新时间",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "SHOW_COMMENTS": "💬 显示评论",
+    "SEARCH_AUTHOR": "🔍 搜索作者",
     "MORE_INFORMATION": "📖 更多简介",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
     "SHOW_CAPTIONS": "🖼️ 显示描述",
@@ -411,7 +412,7 @@ let settingsName = {
 
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
-    else return "❎ 已关闭"
+    else return "🚫 已关闭"
 }
 
 // 检测快速模式修改的4个设置
@@ -419,7 +420,7 @@ function getSettingStatus(mode="") {
     let keys = [], msgList = []
     let settings = getFromCache("pixivSettings")
     if (mode !== "FAST") keys = Object.keys(settingsName)
-    else keys = Object.keys(settingsName).slice(0, 4)
+    else keys = Object.keys(settingsName).slice(0, 5)
     for (let i in keys) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
     }
@@ -427,7 +428,7 @@ function getSettingStatus(mode="") {
 }
 
 function showSettings() {
-    sleepToast(`当前设置\n\n${getSettingStatus()}`)
+    sleepToast(`⚙️ 当前设置\n\n${getSettingStatus()}`)
 }
 
 function editSettings(object) {
@@ -442,6 +443,7 @@ function editSettings(object) {
         if (settings[object] === true) {
             cache.put("pixivLastSettings", JSON.stringify(settings))
             settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
+            settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者
             settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
             settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
             settings.SHOW_COMMENTS = false        // 正文：显示评论
@@ -450,6 +452,7 @@ function editSettings(object) {
             msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
         } else {
             settings = getFromCache("pixivLastSettings")
+            settings.SEARCH_AUTHOR = true
             settings.FAST = false
             cache.put("pixivSettings", JSON.stringify(settings))
             let message = getSettingStatus("FAST")
@@ -472,4 +475,5 @@ function sleepToast(text, second) {
     java.log(text)
     // java.toast(text)
     java.longToast(text)
+    // sleep(second)
 }
