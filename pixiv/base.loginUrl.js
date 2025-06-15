@@ -397,37 +397,44 @@ function readMeSearch() {
     ⏬ 字数筛选2：@作者的名称 字数3w5`, 5)
 }
 
+let settingsName = {
+    "CONVERT_CHINESE": "🀄️ 繁简通搜",
+    "SHOW_UPDATE_TIME": "📅 更新时间",
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+    "SHOW_COMMENTS": "💬 显示评论",
+    "MORE_INFORMATION": "📖 更多简介",
+    "REPLACE_TITLE_MARKS": "📚 恢复《》",
+    "SHOW_CAPTIONS": "🖼️ 显示描述",
+    "FAST": "⏩ 快速模式",
+    "DEBUG": "🐞 调试模式"
+}
+
+function statusMsg(status) {
+    if (status === true) return "✅ 已开启"
+    else return "❎ 已关闭"
+}
+
+// 检测快速模式修改的4个设置
+function getSettingStatus(mode="") {
+    let keys = [], msgList = []
+    let settings = getFromCache("pixivSettings")
+    if (mode !== "FAST") keys = Object.keys(settingsName)
+    else keys = Object.keys(settingsName).slice(0, 4)
+    for (let i in keys) {
+        msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
+    }
+    return msgList.join("\n").trim()
+}
+
+function showSettings() {
+    sleepToast(`当前设置\n\n${getSettingStatus()}`)
+}
+
 function editSettings(object) {
-    function statusMsg(status) {
-        if (status === true) return "✅ 已开启"
-        else return "❎ 已关闭"
-    }
-
-    // 检测快速模式修改的4个设置
-    function getMessage() {
-        let msgList = []
-        let keys = Object.keys(settingsName).slice(0, 4)
-        for (let i in keys) {
-            msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
-        }
-        return msgList.join("\n").trim()
-    }
-
-    let settingsName = {
-        "CONVERT_CHINESE": "🀄️ 繁简通搜",
-        "SHOW_UPDATE_TIME": "📅 更新时间",
-        "SHOW_ORIGINAL_LINK": "🔗 原始链接",
-        "SHOW_COMMENTS": "💬 显示评论",
-        "MORE_INFORMATION": "📖 更多简介",
-        "REPLACE_TITLE_MARKS": "📚 恢复书名号《》",
-        "SHOW_CAPTIONS": "🖼️ 显示描述",
-        "FAST": "⏩ 快速模式",
-        "DEBUG": "🐞 调试模式"
-    }
     let msg =""
     let settings = getFromCache("pixivSettings")
     let status = settings[object] = (!settings[object])
-    if (object !== "FAST" && settings[object] === true) {
+    if (object !== "FAST") {
         msg = `${statusMsg(status)}　${settingsName[object]}`
     }
 
@@ -438,13 +445,14 @@ function editSettings(object) {
             settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
             settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
             settings.SHOW_COMMENTS = false        // 正文：显示评论
-
-            let message = getMessage()
+            cache.put("pixivSettings", JSON.stringify(settings))
+            let message = getSettingStatus("FAST")
             msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
         } else {
             settings = getFromCache("pixivLastSettings")
             settings.FAST = false
-            let message = getMessage()
+            cache.put("pixivSettings", JSON.stringify(settings))
+            let message = getSettingStatus("FAST")
             msg = `已恢复原有设置\n\n${statusMsg(status)}　${settingsName[object]}\n${message}`
         }
     }
