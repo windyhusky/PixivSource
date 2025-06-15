@@ -6,7 +6,7 @@
 
 
 ### 源起：为了更好的阅读体验
-- Pixiv 官方 APP 阅读功能不够完善，阅读体验不佳
+- Pixiv 小说功能不够完善，阅读体验不佳
 - 多数第三方 APP 没有优化过小说阅读功能
 - [阅读 3.0 ](https://github.com/gedoor/legado) 可以自定义书源，阅读体验较好
 
@@ -24,7 +24,7 @@
 | ------------ | ------------------------------------------------------------------- |
 | Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
 | BTSRK 订阅源  | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
-- 免代理导入有一定延迟（使用 Github Action 自动刷新缓存）
+- 免代理导入有延迟
 
 
 <details>
@@ -143,12 +143,14 @@
 #### 已实现书源功能
 - ✅ 搜索：书架页面，搜索小说，添加小说到书架
   - ✅ 默认搜索：同时搜索小说名称、标签、作者
-    - ✅ 作者专搜（格式：`@作者名称`）
-    - ✅ 标签专搜（格式：`#标签` `#小说名称`）
+  - ✅ 作者专搜（格式：`@作者名称`）
+  - ✅ 标签专搜（格式：`#标签` `#小说名称`）
   - ✅ 繁简通搜（支持：小说名称、标签）
   - ✅ 字数过滤（格式：`关键词 + 空格 + 字数3k`）
     - 字数限制规则：`3k 3k5 3w 3w5`
     - 例如：`校园 字数3k` `校园 纯爱 字数3k`
+
+
 - ✅ 发现：发现页面，查看小说，添加小说到书架
   - ✅ 常规发现
   - ✅ 更新书源、订阅源
@@ -173,14 +175,19 @@
         ```
       - 发现 - 长按 **"兽人小说站"** - 刷新 - 查看筛选后的小说
       </details>
-
-
+  
+  
 - ✅ 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
-  -  ✅ 支持同时添加多条网址链接（✅ 单篇 ✅ 系列）
+  - ✅ 单篇链接 ✅ 系列链接
+  - ✅ 支持同时添加多条网址链接
+
+
 - ✅ 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
   - ✅ 添加小说到书架
   - ✅ 导入/更新书源
   - ✅ 登录界面（部分功能同下）
+
+
 - ✅ 登录界面：登录等功能
   - 账号：✅ 登录账号 ✅ 退出账号 ✅ 账号设置
   - 书源：✅ 更新书源 ✅ 使用指南 ✅ 反馈问题
@@ -351,19 +358,45 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 
 ### 订阅源功能
-| 订阅源 | 包含网站 | 订阅源 | 包含网站 |
-| ----- | ------ | ----- | ------- |
-| btsrk | 1️⃣ [Pixiv 小说](https://www.pixiv.net/novel) <br /> 2️⃣ [Linpx 林匹克斯](https://www.furrynovel.ink) <br /> 3️⃣ [兽人控小说站](https://www.furrynovel.com) <br /> 4️⃣ [兽人控游戏索引](https://furrygames.top/zh-cn/list.html) <br /> 5️⃣ [兽人控游戏库](https://kemono.games/zh-Hans) <br /> 6️⃣ [兽展日历](https://www.furryeventchina.com) <br /> 7️⃣ [兽聚汇总](https://www.furryfusion.net/) | books | 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com) <br/> 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html) <br/> 3️⃣ [阅读 APP 源](https://legado.aoaostar.com) <br/> 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b) <br/> 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html) <br/> 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html) <br/> 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki) |
+
+<table>
+<th> btsrk 订阅源 </th> <th> 订阅源功能 </th>
+<tr>
+  <td><a href="https://www.pixiv.net/novel"> 1️⃣ Pixiv 小说</a></td>
+  <td  rowspan="3"> ✅ 添加小说<br>✅ 导入书源<br>✅ 登录界面 <br></td>
+</tr>
+<tr><td><a href="https://www.furrynovel.ink"> 2️⃣ Linpx 林匹克斯</a></td></tr>
+<tr><td><a href="https://www.furrynovel.com"> 3️⃣ 兽人控小说站</a></td></tr>
+
+<tr>
+  <td><a href="https://furrygames.top/zh-cn/list.html"> 4️⃣ 兽人控游戏索引</a></td>
+  <td  rowspan="4">🉑 快速访问<br>🐺 兽人网站</td>
+</tr>
+<tr><td><a href="https://kemono.games/zh-Hans"> 5️⃣ 兽人控游戏库</a></td></tr>
+<tr><td><a href="https://www.furryeventchina.com"> 6️⃣ 兽展日历</a></td></tr>
+<tr><td><a href="https://www.furryfusion.net"> 7️⃣ 兽聚汇总</a></td></tr>
+</table>
 
 
-- btsrk 订阅源：Pixiv 、Linpx、兽人控小说站
-  - ✅ 添加小说到书架 ✅ 导入相应书源 ✅ 登录界面
-- books 订阅源：快速导入阅读相关资源（书源等）
-- import 订阅源：便捷导入本项目整理的书源、订阅源
+<details><summary> books 订阅源 </summary>
+
+| books 订阅源 | 
+| ----------- |
+| 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com)
+| 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
+| 3️⃣ [阅读 APP 源](https://legado.aoaostar.com)
+| 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b)
+| 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html)
+| 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html)
+| 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki)
+</details>
+- books 订阅源：导入阅读书源、订阅源等
 
 
 ### 非本项目的其他资源
 <details><summary> 📄 其他资源 </summary>
+
+- import 订阅源：导入本项目整理的书源、订阅源等
 
 | 名称           | Github 导入网址                                                              |
 | ------------- | --------------------------------------------------------------------------- |
