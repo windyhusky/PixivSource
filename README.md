@@ -11,10 +11,11 @@
 - [阅读 3.0 ](https://github.com/gedoor/legado) 可以自定义书源，阅读体验较好
 
 
-### 支持网站：
-- [Pixiv](https://www.pixiv.net)，一个以插画、漫画、小说为中心的艺术网站
-- [Linpx](https://www.furrynovel.ink)，收录了 Pixiv 的大部分兽人小说与部分非兽人小说
-- [兽人控小说站](https://www.furrynovel.com)，收录了 Pixiv, Bilibili 的大部分兽人小说
+### 兼容软件：
+| 书源　　 | 阅读 Beta 版 | 源阅 Test Flight |
+| ------ | ----------- | --------------- |
+| 小说书源 | 3.25.0527   | 1.0 (112)       |
+| 小说备用 | 3.23.0503?  | 1.0 (112)       |
 
 
 ## 快速导入：[下载阅读](./doc/Download.md) =>  [导入书源](./doc/Import.md)
