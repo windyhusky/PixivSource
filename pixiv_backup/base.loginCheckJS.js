@@ -82,6 +82,11 @@ function publicFunc() {
         return cookie.includes("first_visit_datetime")
     }
 
+    u.checkStatus = function (status) {
+        if (status === true) return "✅ 已"
+        else return "❌ 未"
+    }
+
     u.login = function() {
         let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
     {"headers": {"User-Agent": "${java.getWebViewUA()}"}}`, '登录账号', false)
@@ -142,6 +147,14 @@ function publicFunc() {
         return csfrToken
     }
 
+    u.getNovelBookmarkId = function (novelId) {
+        let bookmarkId = getFromCache(`collect${novelId}`)
+        if (bookmarkId === null) {
+            bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
+            cache.put(`collect${novelId}`, bookmarkId)
+        }
+        return bookmarkId
+    }
     // 将多个长篇小说解析为一本书
     u.combineNovels = function(novels) {
         return novels.filter(novel => {
@@ -210,15 +223,22 @@ function publicFunc() {
                 novel.coverUrl = novel.url
                 // novel.createDate = novel.createDate
                 // novel.updateDate = novel.updateDate
+                novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
+                if (novel.isBookmark === true) {
+                    cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                }
             } else {  // 搜索系列
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelId
                     novel.seriesTitle = undefined
+                    novel.bookmarkId = util.getNovelBookmarkId(novel.id)
+                    novel.isBookmark = bookmarkId !== null
                 } else {
                     novel.seriesId = novel.id
                     novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
                     novel.seriesTitle = novel.title
+                    // novel.isWatched = novel.isWatched  // 搜索系列可获取
                 }
                 novel.textCount = novel.textLength
                 novel.description = novel.caption
@@ -237,6 +257,10 @@ function publicFunc() {
                 novel.coverUrl = novel.userNovels[`${novel.id}`].url
                 // novel.createDate = novel.createDate
                 novel.updateDate = novel.uploadDate
+                novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
+                if (novel.isBookmark === true) {
+                    cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                }
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
                     novel.seriesId = novel.seriesNavData.seriesId
                     novel.seriesTitle = novel.seriesNavData.title
@@ -330,10 +354,17 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
 
+            if (novel.seriesId !== undefined) collectMsg = `📃 追更：${util.checkStatus(novel.isWatch)}追更系列`
+            else collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
             if (util.settings.MORE_INFORMATION) {
-                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
+                novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
+                ${collectMsg}\n📖 书名：${novel.title}\n👤 作者：${novel.userName}
+                #️ 标签：${novel.tags}\n⬆️ 上传：${novel.createDate}
+                🔄 更新：${novel.updateDate}\n📄 简介：${novel.description}`
             } else {
-                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
+                novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
+                ${collectMsg}\n⬆️ 上传：${novel.createDate}\n🔄 更新：${novel.updateDate}
+                📄 简介：${novel.description}`
             }
         })
         return novels
