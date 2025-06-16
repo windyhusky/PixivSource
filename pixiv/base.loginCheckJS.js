@@ -350,9 +350,9 @@ function publicFunc() {
             novel.tags = novel.tags.join(",")
 
             if (util.settings.MORE_INFORMATION) {
-                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
+                novel.description = `\n📖 书名：${novel.title}\n👤 作者：${novel.userName}\n#️ 标签：${novel.tags}\n⬆️ 上传：${novel.createDate}\n🔄 更新：${novel.updateDate}\n📄 简介：${novel.description}`
             } else {
-                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
+                novel.description = `\n${novel.description}\n⬆️ 上传时间：${novel.createDate}\n🔄 更新时间：${novel.updateDate}`
             }
         })
         return novels
