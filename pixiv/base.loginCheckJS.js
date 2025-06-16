@@ -232,8 +232,6 @@ function publicFunc() {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelId
                     novel.seriesTitle = undefined
-                    novel.bookmarkId = util.getNovelBookmarkId(novel.id)
-                    novel.isBookmark = bookmarkId !== null
                 } else {
                     novel.seriesId = novel.id
                     novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
