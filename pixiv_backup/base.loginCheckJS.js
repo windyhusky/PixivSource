@@ -148,7 +148,7 @@ function publicFunc() {
     }
 
     u.getNovelBookmarkId = function (novelId) {
-        let bookmarkId = getFromCache(`collect${novelId}`)
+        let bookmarkId = JSON.parse(cache.get( `collect${novelId}`))
         if (bookmarkId === null) {
             bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
             cache.put(`collect${novelId}`, bookmarkId)
