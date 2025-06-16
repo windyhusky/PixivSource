@@ -82,6 +82,11 @@ function publicFunc() {
         return cookie.includes("first_visit_datetime")
     }
 
+    u.checkStatus = function (status) {
+        if (status === true) return "✅ 已"
+        else return "❌ 未"
+    }
+
     u.login = function() {
         let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
     {"headers": {"User-Agent": "${java.getWebViewUA()}"}}`, '登录账号', false)
@@ -349,10 +354,17 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
 
+            if (novel.seriesId !== undefined) collectMsg = `📃 追更：${util.checkStatus(novel.isWatch)}追更系列`
+            else collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
             if (util.settings.MORE_INFORMATION) {
-                novel.description = `\n📖 书名：${novel.title}\n👤 作者：${novel.userName}\n#️ 标签：${novel.tags}\n⬆️ 上传：${novel.createDate}\n🔄 更新：${novel.updateDate}\n📄 简介：${novel.description}`
+                novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
+                ${collectMsg}\n📖 书名：${novel.title}\n👤 作者：${novel.userName}
+                #️ 标签：${novel.tags}\n⬆️ 上传：${novel.createDate}
+                🔄 更新：${novel.updateDate}\n📄 简介：${novel.description}`
             } else {
-                novel.description = `\n${novel.description}\n⬆️ 上传时间：${novel.createDate}\n🔄 更新时间：${novel.updateDate}`
+                novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
+                ${collectMsg}\n⬆️ 上传：${novel.createDate}\n🔄 更新：${novel.updateDate}
+                📄 简介：${novel.description}`
             }
         })
         return novels
