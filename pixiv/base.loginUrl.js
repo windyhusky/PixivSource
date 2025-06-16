@@ -102,7 +102,7 @@ function novelBookmarkAdd(restrict=0) {
     if (resp.error === true) sleepToast(`⚠️ 收藏【${novel.title}】失败`)
     else if (resp.body === null) sleepToast(`✅ 已经收藏【${novel.title}】了`)
     else {
-        cache.put(`collect${novel.id}`, resp.body);
+        cache.put(`collect${novel.id}`, resp.body)
         sleepToast(`✅ 已收藏【${novel.title}】`)
     }
 }
@@ -111,6 +111,7 @@ function getNovelBookmarkId(novelId) {
     let bookmarkId = getFromCache(`collect${novelId}`)
     if (bookmarkId === null) {
         bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
+        cache.put(`collect${novel.id}`, bookmarkId)
     }
     return bookmarkId
 }

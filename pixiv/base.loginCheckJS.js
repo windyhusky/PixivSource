@@ -142,6 +142,14 @@ function publicFunc() {
         return csfrToken
     }
 
+    u.getNovelBookmarkId = function (novelId) {
+        let bookmarkId = getFromCache(`collect${novelId}`)
+        if (bookmarkId === null) {
+            bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
+            cache.put(`collect${novelId}`, bookmarkId)
+        }
+        return bookmarkId
+    }
     // 将多个长篇小说解析为一本书
     u.combineNovels = function(novels) {
         return novels.filter(novel => {
@@ -210,15 +218,22 @@ function publicFunc() {
                 novel.coverUrl = novel.url
                 // novel.createDate = novel.createDate
                 // novel.updateDate = novel.updateDate
+                novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
+                if (novel.isBookmark === true) {
+                    cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                }
             } else {  // 搜索系列
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelId
                     novel.seriesTitle = undefined
+                    novel.bookmarkId = util.getNovelBookmarkId(novel.id)
+                    novel.isBookmark = bookmarkId !== null
                 } else {
                     novel.seriesId = novel.id
                     novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
                     novel.seriesTitle = novel.title
+                    // novel.isWatched = novel.isWatched  // 搜索系列可获取
                 }
                 novel.textCount = novel.textLength
                 novel.description = novel.caption
@@ -237,6 +252,10 @@ function publicFunc() {
                 novel.coverUrl = novel.userNovels[`${novel.id}`].url
                 // novel.createDate = novel.createDate
                 novel.updateDate = novel.uploadDate
+                novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
+                if (novel.isBookmark === true) {
+                    cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                }
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
                     novel.seriesId = novel.seriesNavData.seriesId
                     novel.seriesTitle = novel.seriesNavData.title
