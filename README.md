@@ -371,7 +371,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 <tr>
   <td><a href="https://furrygames.top/zh-cn/list.html"> 4️⃣ 兽人控游戏索引</a></td>
-  <td  rowspan="4">🉑 快速访问<br>🐺 兽人网站</td>
+  <td  rowspan="4">✅ 快速访问<br>🐺 兽人网站</td>
 </tr>
 <tr><td><a href="https://kemono.games/zh-Hans"> 5️⃣ 兽人控游戏库</a></td></tr>
 <tr><td><a href="https://www.furryeventchina.com"> 6️⃣ 兽展日历</a></td></tr>
@@ -391,6 +391,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 | 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html)
 | 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki)
 </details>
+
 - books 订阅源：导入阅读书源、订阅源等
 
 
