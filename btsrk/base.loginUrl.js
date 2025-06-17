@@ -1,7 +1,21 @@
+function getWebViewUA() {
+    let userAgent = String(java.getWebViewUA())
+    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
+        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+    }
+    return String(userAgent)
+}
+
 function login() {
-    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,{"headers": {"User-Agent": "${cache.get("userAgent")}"}}`, '登录账号', false)
-    if (resp.code() === 200) getCookie(); getCsrfToken()
-    return resp.body()
+    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
+    {"headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
+    if (resp.code() === 200) {
+        getCookie(); getCsrfToken()
+        return true
+    } else {
+        java.log(resp.code()); sleepToast("⚠️ 登录失败")
+        return false
+    }
 }
 
 function logout() {
@@ -71,8 +85,7 @@ function getLikeAuthors() {
 }
 
 function startBrowser(url, title) {
-    let headers = `{"headers": {"User-Agent":"${java.getWebViewUA()}"}}`
-    // let headers = `{"headers": {"User-Agent":"Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"}}`
+    let headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
     java.startBrowser(`${url}, ${headers}`, title)
 }
 function startPixivSettings() {
