@@ -94,16 +94,6 @@ function startPixivSettings() {
 function startPixivMessages() {
     startBrowser("https://www.pixiv.net/messages.php", "查看私信")
 }
-function startPixivNotification() {
-    startBrowser("https://www.pixiv.net/notify_all.php", "查看通知")
-}
-function startPixivMuteUser() {
-    startBrowser("https://www.pixiv.net/settings/viewing/mute?type=user", "屏蔽用户")
-}
-function startPixivBlockUsers() {
-    startBrowser("https://www.pixiv.net/settings/privacy/block-users", "查黑名单")
-}
-
 function startGithub() {
     startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
 }
