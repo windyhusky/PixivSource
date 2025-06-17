@@ -232,8 +232,6 @@ function publicFunc() {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelId
                     novel.seriesTitle = undefined
-                    novel.bookmarkId = util.getNovelBookmarkId(novel.id)
-                    novel.isBookmark = bookmarkId !== null
                 } else {
                     novel.seriesId = novel.id
                     novel.id = novel.novelId = novel.latestEpisodeId  // 获取真正的 novelId
@@ -486,8 +484,7 @@ function getPixivUid() {
     }
 }
 
-function getUserAgent() {
-    // cache.delete("userAgent")
+function getWebViewUA() {
     let userAgent = cache.get("userAgent")
     if (userAgent === null) {
         if (isSourceRead()) {
@@ -555,7 +552,7 @@ if (result.code() === 200) {
     if (isBackupSource() && (!util.isLogin)) {
         util.getCsrfToken()
     }
-    getPixivUid(); getUserAgent(); util.getCookie(); getHeaders()
+    getPixivUid(); getWebViewUA(); util.getCookie(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 
