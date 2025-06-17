@@ -23,9 +23,45 @@ function sleepToast(text, second) {
     sleep(1000*second)
 }
 
+let bookSourceCommentText = `Pixiv 小说
+
+书源版本：无法获取
+使用说明：📌阅读版本 3.25.0527 及之后版本可用
+可用功能：✅搜索✅发现✅添加网址✅订阅源
+搜索小说：✅单篇✅系列✅标签✅作者
+发现小说：✅关注✅追更✅推荐✅发现
+发现小说：✅收藏✅书签✅首页✅排行
+添加网址：✅Pixiv小说链接✅Pixiv系列链接
+订阅用法：点击订阅源打开小说/系列小说，【刷新】，点击【加入书架】按钮，添加到书架
+
+书源发布：兽人阅读频道 https://t.me/FurryReading
+项目地址：https://github.com/windyhusky/PixivSource
+使用教程：https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md
+
+规则订阅：import 订阅源
+https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
+https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json
+
+⚙️ 书源设置：
+设置1️⃣：打开小说 - 菜单 - 登录 - 点击下方按钮
+设置2️⃣：编辑书源 - 基本 - 变量说明 - 修改并保存
+
+🚫 屏蔽作者(本地)：
+设置方法1️⃣：打开小说 - 菜单 - 登录 - 🚫 屏蔽作者
+设置方法2️⃣：编辑书源 - 菜单 - 设置源变量 - 修改并保存
+设置源变量：输入作者ID，【英文逗号】间隔
+▶️ 搜索任意小说，同步屏蔽作者数据
+
+❤️ 查看他人收藏：
+1️⃣订阅 - 长按订阅源" - 编辑 - 菜单 - 设置源变量
+2️⃣源变量：输入作者ID，一行一个，保存
+3️⃣导入：打开订阅源 - 菜单 - 登录 - ❤️ 他人收藏
+4️⃣更新：发现 - 长按"Pixiv" - 刷新 - 查看他人收藏`
+
 function updateSource() {
     const {java, source} = this
     let onlineSource, comment
+    java.longToast("🆙 更新书源\n\nJsdelivr CDN 更新有延迟\nGithub 更新需代理")
     try {
         let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"
         onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
@@ -36,8 +72,8 @@ function updateSource() {
             onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
             comment = onlineSource.bookSourceComment.split("\n")
         } catch (e) {
-            onlineSource = {lastUpdateTime: new Date().getTime()}
-            comment = source.bookSourceComment.split("\n")
+            onlineSource = {lastUpdateTime: new Date().getTime(), bookSourceComment: bookSourceCommentText}
+            comment = onlineSource.bookSourceComment.split("\n")
         }
     }
 
@@ -59,10 +95,12 @@ function updateSource() {
 <body>
     <table border="1" cellspacing="0">
         <th colspan="2"> Pixiv 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md">🔰 使用指南</a></th>
-        <tr><td>☁️ 远程仓库版本：${java.timeFormat(onlineSource.lastUpdateTime)}</td></tr>
-        <tr><td>📥 阅读本地版本：${java.timeFormat(source.lastUpdateTime)}</td></tr>
-        <tr><td style="text-align: left;">${comment.slice(2,9).join("<br>")}</td></tr>
-        <tr><td style="text-align: left;">${comment.slice(comment.length-7, comment.length).join("<br>")}</td></tr>
+        <tr>
+            <td>☁️ 远程版本：${onlineSource.bookSourceComment.split("\n")[2].replace("书源版本：", "")}</td>
+            <td>📆 更新：${java.timeFormat(onlineSource.lastUpdateTime)}</td>
+        </tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 10).join("<br>")}</td></tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-15, comment.length).join("<br>")}</td></tr>
     </table>
     
     <table border="0" cellspacing="20">
