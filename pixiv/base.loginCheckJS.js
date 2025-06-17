@@ -484,8 +484,7 @@ function getPixivUid() {
     }
 }
 
-function getUserAgent() {
-    // cache.delete("userAgent")
+function getWebViewUA() {
     let userAgent = cache.get("userAgent")
     if (userAgent === null) {
         if (isSourceRead()) {
@@ -553,7 +552,7 @@ if (result.code() === 200) {
     if (isBackupSource() && (!util.isLogin)) {
         util.getCsrfToken()
     }
-    getPixivUid(); getUserAgent(); util.getCookie(); getHeaders()
+    getPixivUid(); getWebViewUA(); util.getCookie(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 
