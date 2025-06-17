@@ -270,6 +270,7 @@ function publicFunc() {
                 novel.id = novel.novelId = novel.firstNovelId
                 novel.seriesTitle = novel.title
                 novel.coverUrl = novel.cover.urls["480mw"]
+                // novel.isWatched = novel.isWatched  // 搜索系列可获取
             }
 
             if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
@@ -302,6 +303,7 @@ function publicFunc() {
                 novel.createDate = series.createDate
                 novel.updateDate = series.updateDate
                 book.totalChapterNum = novel.total = series.publishedContentCount
+                novel.isWatched = series.isWatched
 
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}
@@ -352,7 +354,7 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
 
-            if (novel.seriesId !== undefined) collectMsg = `📃 追更：${util.checkStatus(novel.isWatch)}追更系列`
+            if (novel.seriesId !== undefined) collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
             else collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
             if (util.settings.MORE_INFORMATION) {
                 novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
