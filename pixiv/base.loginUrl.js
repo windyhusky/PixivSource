@@ -2,6 +2,14 @@ function getFromCache(object) {
     return JSON.parse(cache.get(object))
 }
 
+function getWebViewUA() {
+    let userAgent = String(java.getWebViewUA())
+    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
+        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+    }
+    return String(userAgent)
+}
+
 function getNovel() {
     let novel = source.getLoginInfoMap()
     if (novel === undefined) novel = getFromCache("novel")
@@ -21,7 +29,7 @@ function login() {
     }
 
     let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
-    {"headers": {"User-Agent": "${java.getWebViewUA()}"}}`, '登录账号', false)
+    {"headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
     if (resp.code() === 200) {
         getCookie(); getCsrfToken()
         return true
@@ -343,8 +351,8 @@ function novelCommentDelete() {
 }
 
 function startBrowser(url, title) {
-    let headers = `{"headers": {"User-Agent":"${java.getWebViewUA()}"}}`
-    java.startBrowser(`${url},${headers}`, title)
+    let headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
+    java.startBrowser(`${url}, ${headers}`, title)
 }
 
 function shareFactory(type) {
