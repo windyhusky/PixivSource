@@ -114,17 +114,15 @@ function updateSource() {
     try {
         let updateUrl = `https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/${sourceName}.json`
         onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[index]
-        comment = onlineSource.bookSourceComment.split("\n")
     } catch (e) {
         try {
             let updateUrl = `https://raw.githubusercontent.com/windyhusky/PixivSource/main/${sourceName}.json`
             onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[index]
-            comment = onlineSource.bookSourceComment.split("\n")
         } catch (e) {
-            onlineSource = {lastUpdateTime: new Date().getTime()}
-            comment = source.bookSourceComment.split("\n")
+            onlineSource = {lastUpdateTime: new Date().getTime(), bookSourceComment: source.bookSourceComment}
         }
     }
+    comment = source.bookSourceComment.split("\n")
     // comment = source.bookSourceComment.split("\n")
     let htm = `data:text/html; charset=utf-8,
 <html>
