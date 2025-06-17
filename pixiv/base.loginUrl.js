@@ -79,6 +79,10 @@ function getCookie() {
         // java.log(pixivCookie)
         cache.put("pixivCookie", pixivCookie, 60*60)
         return pixivCookie
+    } else {
+        cache.delete("pixivCookie")
+        sleepToast("未登录账号(pixivCookie)")
+        return null
     }
 }
 
