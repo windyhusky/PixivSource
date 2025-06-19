@@ -526,7 +526,7 @@ function getHeaders() {
 function getBlockAuthorsFromSource() {
     let authors = []
     try {
-        authors = JSON.parse(`[${source.getVariable()}]`)
+        authors = JSON.parse(`[${source.getVariable().replace("，", ",")}]`)
         // sleepToast(JSON.stringify(authors))
     } catch (e) {
         sleepToast("🚫 屏蔽作者\n⚠️ 【书源】源变量设置有误\n输入作者ID，以英文逗号间隔，保存")
@@ -537,11 +537,15 @@ function getBlockAuthorsFromSource() {
 function syncBlockAuthorList() {
     let authors1 = JSON.parse(cache.get("blockAuthorList"))
     let authors2 = getBlockAuthorsFromSource()
-    if (authors1 === null) {
-        cache.put("blockAuthorList", JSON.stringify(authors2))
-    } else if (authors1.length > authors2.length) {
-        cache.put("blockAuthorList", JSON.stringify(authors2))
-        java.log("屏蔽作者：已将源变量同步至内存")
+    util.debugFunc(() => {
+        java.log(`屏蔽作者：缓存　：${JSON.stringify(authors1)}`)
+        java.log(`屏蔽作者：源变量：${JSON.stringify(authors2)}`)
+    })
+    cache.put("blockAuthorList", JSON.stringify(authors2))
+    if (authors1 === null || authors1.length !== authors2.length) {
+        java.log("屏蔽作者：已将源变量同步至缓存")
+    } else if (authors2.length === 0) {
+        java.log("屏蔽作者：已清空屏蔽作者")
     }
 }
 
