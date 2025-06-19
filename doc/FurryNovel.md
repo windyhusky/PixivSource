@@ -129,7 +129,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 ![img](./pic/SetSourceVariable1.png)
 
-![img](./pic/SetSourceVariable2.png)
+![img](./pic/SetSourceVariable.png)
 
 设置源变量：输入标签，保存
 ```

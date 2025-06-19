@@ -285,27 +285,6 @@ https://www.pixiv.net/users/16721009
 </details>
 
 
-<details><summary> ❤️ 他人收藏（订阅源 源变量）</summary>
-
-#### 4.4 查看他人收藏（Pixiv 首页 订阅源）
-1️⃣ 订阅 - 长按订阅源 - 编辑 - 菜单 - 设置源变量
-
-![img](./pic/SetSourceVariable2.png)
-
-2️⃣ 设置源变量：输入作者ID，一行一个，可添加作者名，保存
-```
-12345 // 作者A
-67890 # 作者B
-```
-3️⃣ 导入：打开订阅源 - 菜单 - 登录 - 点击 ❤️ 他人收藏，同步数据
-
-4️⃣ 更新：发现 - 长按"Pixiv" - 刷新 - 查看他人收藏
-
-![img](./pic/SetSourceVariable0.png)
-![img](./pic/DiscoverPixivLikes.jpg)
-</details>
-
-
 ### 5.登录界面
 <details><summary> 🅿️ 账号功能 </summary>
 
@@ -382,6 +361,29 @@ https://www.pixiv.net/users/16721009
 ```
 3️⃣ 搜索任意小说，同步屏蔽作者数据
 ![img](./pic/PixivBlockAuthors.jpg)
+</details>
+
+<details><summary> ❤️ 他人收藏（订阅源 源变量）</summary>
+
+#### 6.2 查看他人收藏（Pixiv 首页 订阅源）
+1️⃣ 订阅 - 长按订阅源 - 编辑 - 菜单 - 设置源变量
+
+![img](./pic/SetSourceVariable.png)
+
+2️⃣ 设置源变量：输入作者ID，一行一个，可添加作者名，保存
+```
+12345 // 作者A
+67890 # 作者B
+```
+3️⃣ 导入：打开订阅源 - 菜单 - 登录 - 点击 ❤️ 他人收藏，同步数据
+
+![img](./pic/SetLikeAuthors.jpg)
+
+4️⃣ 更新：发现 - 长按"Pixiv" - 刷新 - 查看他人收藏
+
+![img](./pic/SetSourceVariable0.png)
+
+![img](./pic/DiscoverPixivLikes.jpg)
 </details>
 
 
