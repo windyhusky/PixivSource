@@ -39,10 +39,14 @@ function getAjaxAllJson(urls, forceUpdate) {
     if (forceUpdate === true) {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
+        for (let i in urls) cache.put(urls[i], JSON.stringify(result[i]), cacheSaveSeconds)
         return result
     }
     return cacheGetAndSet(cache, urls, () => {
-        return java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
+        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
+        cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
+        for (let i in urls) cache.put(urls[i], JSON.stringify(result[i]), cacheSaveSeconds)
+        return result
     })
 }
 function getWebviewJson(url, parseFunc) {
