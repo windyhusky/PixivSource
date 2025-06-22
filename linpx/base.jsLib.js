@@ -1,8 +1,11 @@
+var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
+
+
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
     if (v === undefined || v === null) {
         v = JSON.stringify(supplyFunc())
-        cache.put(key, v, 7*24*60*60)  // 延长缓存时间至7天
+        cache.put(key, v, cacheSaveSeconds)  // 延长缓存时间至7天
     }
     return JSON.parse(v)
 }
@@ -18,6 +21,21 @@ function getAjaxJson(url) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
+    })
+}
+function getAjaxAllJson(urls, forceUpdate) {
+    const {java, cache} = this
+    if (forceUpdate === true) {
+        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
+        cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
+        for (let i in urls) cache.put(urls[i], JSON.stringify(result[i]), cacheSaveSeconds)
+        return result
+    }
+    return cacheGetAndSet(cache, urls, () => {
+        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
+        cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
+        for (let i in urls) cache.put(urls[i], JSON.stringify(result[i]), cacheSaveSeconds)
+        return result
     })
 }
 function getWebviewJson(url) {
