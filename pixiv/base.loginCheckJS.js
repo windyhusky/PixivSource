@@ -193,10 +193,20 @@ function publicFunc() {
         return novels
     }
 
+    // 喜欢小说/追更系列 写入缓存
+    u.saveNovels = function(listInCacheName, list) {
+        let listInCache = JSON.parse(cache.get(listInCacheName))
+        if (listInCache === null) listInCache = []
 
-    u.includes = function(list, item) {
-        return list.includes(String(item)) || list.includes(Number(item))
+        listInCache = listInCache.concat(list)
+        listInCache = Array.from(new Set(listInCache))
+        cache.put(listInCacheName , JSON.stringify(listInCache))
+
+        if (listInCacheName === "likeNovels") listInCacheName = "喜欢小说ID"
+        else if (listInCacheName === "watchedSeries") listInCacheName = "追更系列ID"
+        java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
     }
+
     // 处理 novels 列表
     u.handNovels = function(novels, detailed=false) {
         let likeNovels = [], watchedSeries = []
@@ -339,8 +349,9 @@ function publicFunc() {
                 }
             }
         })
-        cache.put("likeNovels", JSON.stringify(likeNovels))
-        cache.put("watchedSeries", JSON.stringify(watchedSeries))
+        // 喜欢小说/追更系列 写入缓存
+        util.saveNovels("likeNovels", likeNovels)
+        util.saveNovels("watchedSeries", watchedSeries)
         util.debugFunc(() => {
             java.log(`处理小说完成`)
         })
