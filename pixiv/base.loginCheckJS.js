@@ -305,16 +305,15 @@ function publicFunc() {
             if (novel.seriesId !== undefined && detailed === true) {
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
                 novel.id = series.firstNovelId
-                book.name = novel.title = series.title
-                book.author = novel.userName
+                novel.title = series.title
                 novel.tags = novel.tags.concat(series.tags)
                 novel.tags.unshift("长篇")
-                book.wordCount = novel.textCount = series.publishedTotalCharacterCount
+                novel.textCount = series.publishedTotalCharacterCount
                 novel.description = series.caption
-                book.coverUrl = novel.coverUrl = series.cover.urls["480mw"]
+                novel.coverUrl = series.cover.urls["480mw"]
                 novel.createDate = series.createDate
                 novel.updateDate = series.updateDate
-                book.totalChapterNum = novel.total = series.publishedContentCount
+                novel.total = series.publishedContentCount
                 novel.isWatched = series.isWatched
                 if (novel.isWatched === true) {
                     watchedSeries.push(Number(novel.seriesId))
@@ -376,9 +375,12 @@ function publicFunc() {
             }
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
+            if (novel.seriesId !== undefined) {
+                collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
+            } else {
+                collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
+            }
 
-            if (novel.seriesId !== undefined) collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
-            else collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
             if (util.settings.MORE_INFORMATION) {
                 novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
                 ${collectMsg}\n📖 书名：${novel.title}\n👤 作者：${novel.userName}
