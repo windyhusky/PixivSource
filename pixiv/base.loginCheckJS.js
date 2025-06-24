@@ -51,7 +51,7 @@ function publicFunc() {
         settings = {}
         settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
         settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
-        settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示喜欢小说
+        settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示收藏小说
         settings.SHOW_WATCHED_SERIES = true // 搜索：搜索结果显示追整系列小说
         settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
         settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
@@ -198,7 +198,26 @@ function publicFunc() {
         return novels
     }
 
-    // 喜欢小说/追更系列 写入缓存
+    u.novelFilter = function(novels) {
+        let likeNovels = [], watchedSeries = []
+        if (util.settings.IS_LEGADO) {
+            likeNovels = JSON.parse(cache.get("likeNovels"))
+            watchedSeries = JSON.parse(cache.get("watchedSeries"))
+        }
+
+        java.log(`${util.checkStatus(util.settings.SHOW_LIKE_NOVELS)}显示收藏小说`)
+        if (!util.settings.SHOW_LIKE_NOVELS) {
+            novels = novels.filter(novel => !likeNovels.includes(Number(novel.id)))
+        }
+
+        java.log(`${util.checkStatus(util.settings.SHOW_LIKE_NOVELS)}显示追更系列`)
+        if (!util.settings.SHOW_WATCHED_SERIES) {
+            novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
+        }
+        return novels
+    }
+
+    // 收藏小说/追更系列 写入缓存
     u.saveNovels = function(listInCacheName, list) {
         let listInCache = JSON.parse(cache.get(listInCacheName))
         if (listInCache === undefined || listInCache === null) listInCache = []
@@ -207,7 +226,7 @@ function publicFunc() {
         listInCache = Array.from(new Set(listInCache))
         cache.put(listInCacheName , JSON.stringify(listInCache))
 
-        if (listInCacheName === "likeNovels") listInCacheName = "喜欢小说ID"
+        if (listInCacheName === "likeNovels") listInCacheName = "收藏小说ID"
         else if (listInCacheName === "watchedSeries") listInCacheName = "追更系列ID"
         java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
     }
@@ -216,6 +235,7 @@ function publicFunc() {
     u.handNovels = function(novels, detailed=false) {
         let likeNovels = [], watchedSeries = []
         novels = util.authorFilter(novels)
+        novels = util.novelFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
@@ -350,7 +370,7 @@ function publicFunc() {
                 }
             }
         })
-        // 喜欢小说/追更系列 写入缓存
+        // 收藏小说/追更系列 写入缓存
         util.saveNovels("likeNovels", likeNovels)
         util.saveNovels("watchedSeries", watchedSeries)
         util.debugFunc(() => {
