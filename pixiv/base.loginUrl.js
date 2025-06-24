@@ -451,7 +451,12 @@ function showSettings() {
 function editSettings(object) {
     let msg =""
     let settings = getFromCache("pixivSettings")
-    let status = settings[object] = (!settings[object])
+    try {
+        status = settings[object] = (!settings[object])
+    } catch (e) {
+        status = settings[object] = true
+    }
+
     if (object !== "FAST") {
         msg = `${statusMsg(status)}　${settingsName[object]}`
     }
