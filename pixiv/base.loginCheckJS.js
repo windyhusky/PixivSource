@@ -200,20 +200,36 @@ function publicFunc() {
 
     u.novelFilter = function(novels) {
         let likeNovels = [], watchedSeries = []
+        let novels0 = [], novels1 = [], novels2 = []
         if (util.settings.IS_LEGADO) {
             likeNovels = JSON.parse(cache.get("likeNovels"))
             watchedSeries = JSON.parse(cache.get("watchedSeries"))
         }
+        novels0 = novels.map(novel => novel.id)
 
-        java.log(`${util.checkStatus(util.settings.SHOW_LIKE_NOVELS)}显示收藏小说`)
+        msg = util.checkStatus(util.settings.SHOW_LIKE_NOVELS).replace("未","不")
+        java.log(`${msg}显示收藏小说`)
         if (!util.settings.SHOW_LIKE_NOVELS) {
             novels = novels.filter(novel => !likeNovels.includes(Number(novel.id)))
+            novels1 = novels.map(novel => novel.id)
         }
 
-        java.log(`${util.checkStatus(util.settings.SHOW_LIKE_NOVELS)}显示追更系列`)
+        msg = util.checkStatus(util.settings.SHOW_WATCHED_SERIES).replace("未","不")
+        java.log(`${msg}显示追更系列`)
         if (!util.settings.SHOW_WATCHED_SERIES) {
             novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
+            novels2 = novels.map(novel => novel.id)
         }
+
+        java.log(`⏬ 过滤收藏/追更：过滤前${novels0.length}；过滤后${novels2.length}`)
+        util.debugFunc(() => {
+            // java.log(JSON.stringify(novels0))
+            java.log(JSON.stringify(novels0.length))
+            // java.log(JSON.stringify(novels1))
+            java.log(JSON.stringify(novels1.length))
+            // java.log(JSON.stringify(novels2))
+            java.log(JSON.stringify(novels2.length))
+        })
         return novels
     }
 
@@ -235,7 +251,6 @@ function publicFunc() {
     u.handNovels = function(novels, detailed=false) {
         let likeNovels = [], watchedSeries = []
         novels = util.authorFilter(novels)
-        novels = util.novelFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
@@ -381,6 +396,7 @@ function publicFunc() {
 
     // 小说信息格式化
     u.formatNovels = function(novels) {
+        novels = util.novelFilter(novels)
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
