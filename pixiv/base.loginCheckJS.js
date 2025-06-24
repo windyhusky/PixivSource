@@ -203,6 +203,7 @@ function publicFunc() {
 
     // 处理 novels 列表
     u.handNovels = function(novels, detailed=false) {
+        let likeNovels = [], watchedSeries = []
         novels = util.authorFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
@@ -226,6 +227,7 @@ function publicFunc() {
                 novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
                 if (novel.isBookmark === true) {
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                    likeNovels.push(novel.id)
                 }
             } else {  // 搜索系列
                 if (novel.isOneshot === true) {
@@ -258,6 +260,7 @@ function publicFunc() {
                 novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
                 if (novel.isBookmark === true) {
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                    likeNovels.push(novel.id)
                 }
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
                     novel.seriesId = novel.seriesNavData.seriesId
@@ -304,6 +307,9 @@ function publicFunc() {
                 novel.updateDate = series.updateDate
                 book.totalChapterNum = novel.total = series.publishedContentCount
                 novel.isWatched = series.isWatched
+                if (novel.isWatched === true) {
+                    watchedSeries.push(novel.seriesId)
+                }
 
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}
@@ -326,6 +332,8 @@ function publicFunc() {
                 }
             }
         })
+        cache.put("likeNovels", JSON.stringify(likeNovels))
+        cache.put("watchedSeries", JSON.stringify(watchedSeries))
         util.debugFunc(() => {
             java.log(`处理小说完成`)
         })
