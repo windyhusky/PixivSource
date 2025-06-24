@@ -201,8 +201,12 @@ function seriesWatch() {
     )
     if (resp.error === true) sleepToast(`⚠️ 追更【${novel.seriesTitle}】失败`)
     else {
-        sleepToast(`✅ 已追更【${novel.seriesTitle}】`)
         cache.put(`watch${novel.seriesId}`, true)
+        sleepToast(`✅ 已追更【${novel.seriesTitle}】`)
+
+        let watchedSeries = getFromCache("watchedSeries")
+        watchedSeries.push(novel.seriesId)
+        cache.put("watchedSeries", JSON.stringify(watchedSeries))
     }
 }
 
@@ -214,8 +218,12 @@ function seriesUnWatch() {
     )
     if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.seriesTitle}】失败`)
     else {
-        sleepToast(`✅ 已取消追更【${novel.seriesTitle}】`)
         cache.delete(`watch${novel.seriesId}`)
+        sleepToast(`✅ 已取消追更【${novel.seriesTitle}】`)
+
+        let watchedSeries = getFromCache("watchedSeries")
+        watchedSeries = watchedSeries.filter(item => item !== Number(novel.seriesId))
+        cache.put("watchedSeries", JSON.stringify(watchedSeries))
     }
 }
 
