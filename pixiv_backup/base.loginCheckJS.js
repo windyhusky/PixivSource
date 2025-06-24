@@ -42,13 +42,17 @@ function publicFunc() {
     if (isBackupSource() || isSourceRead()) {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
+        // cache.delete("pixivSettings")
         settings = JSON.parse(cache.get("pixivSettings"))
     }
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
+        settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
         settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+        settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示收藏小说
+        settings.SHOW_WATCHED_SERIES = true // 搜索：搜索结果显示追整系列小说
         settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
         settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
         settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
@@ -60,6 +64,7 @@ function publicFunc() {
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
     if (settings.FAST === true) {
+        settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
@@ -147,14 +152,6 @@ function publicFunc() {
         return csfrToken
     }
 
-    u.getNovelBookmarkId = function (novelId) {
-        let bookmarkId = JSON.parse(cache.get( `collect${novelId}`))
-        if (bookmarkId === null) {
-            bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
-            cache.put(`collect${novelId}`, bookmarkId)
-        }
-        return bookmarkId
-    }
     // 将多个长篇小说解析为一本书
     u.combineNovels = function(novels) {
         return novels.filter(novel => {
@@ -193,7 +190,7 @@ function publicFunc() {
         }
 
         if (authors !== undefined && authors !== null && authors.length >= 0) {
-            java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
+            java.log(`🚫 屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
                 novels = novels.filter(novel => novel.userId !== String(author))
             })
@@ -201,8 +198,60 @@ function publicFunc() {
         return novels
     }
 
+    u.novelFilter = function(novels) {
+        let likeNovels = [], watchedSeries = []
+        let novels0 = [], novels1 = [], novels2 = []
+        if (util.settings.IS_LEGADO) {
+            likeNovels = JSON.parse(cache.get("likeNovels"))
+            watchedSeries = JSON.parse(cache.get("watchedSeries"))
+        }
+        novels0 = novels.map(novel => novel.id)
+
+        msg = util.checkStatus(util.settings.SHOW_LIKE_NOVELS).replace("未","不")
+        java.log(`${msg}显示收藏小说`)
+        if (!util.settings.SHOW_LIKE_NOVELS) {
+            novels = novels.filter(novel => !likeNovels.includes(Number(novel.id)))
+            novels1 = novels.map(novel => novel.id)
+        }
+
+        msg = util.checkStatus(util.settings.SHOW_WATCHED_SERIES).replace("未","不")
+        java.log(`${msg}显示追更系列`)
+        if (!util.settings.SHOW_WATCHED_SERIES) {
+            novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
+            novels2 = novels.map(novel => novel.id)
+        }
+
+        if (!(util.settings.SHOW_LIKE_NOVELS && util.settings.SHOW_WATCHED_SERIES === true)) {
+            java.log(`⏬ 过滤收藏/追更：过滤前${novels0.length}；过滤后${novels2.length}`)
+        }
+        util.debugFunc(() => {
+            // java.log(JSON.stringify(novels0))
+            java.log(JSON.stringify(novels0.length))
+            // java.log(JSON.stringify(novels1))
+            java.log(JSON.stringify(novels1.length))
+            // java.log(JSON.stringify(novels2))
+            java.log(JSON.stringify(novels2.length))
+        })
+        return novels
+    }
+
+    // 收藏小说/追更系列 写入缓存
+    u.saveNovels = function(listInCacheName, list) {
+        let listInCache = JSON.parse(cache.get(listInCacheName))
+        if (listInCache === undefined || listInCache === null) listInCache = []
+
+        listInCache = listInCache.concat(list)
+        listInCache = Array.from(new Set(listInCache))
+        cache.put(listInCacheName , JSON.stringify(listInCache))
+
+        if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
+        else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
+        java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
+    }
+
     // 处理 novels 列表
     u.handNovels = function(novels, detailed=false) {
+        let likeNovels = [], watchedSeries = []
         novels = util.authorFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
@@ -226,6 +275,7 @@ function publicFunc() {
                 novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
                 if (novel.isBookmark === true) {
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                    likeNovels.push(Number(novel.id))
                 }
             } else {  // 搜索系列
                 if (novel.isOneshot === true) {
@@ -258,6 +308,7 @@ function publicFunc() {
                 novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
                 if (novel.isBookmark === true) {
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                    likeNovels.push(Number(novel.id))
                 }
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
                     novel.seriesId = novel.seriesNavData.seriesId
@@ -288,28 +339,38 @@ function publicFunc() {
                 // novel.seriesNavData = {}
                 // novel.seriesNavData.seriesId = novel.seriesId
                 // novel.seriesNavData.title = novel.seriesTitle
+                if (novel.isWatched === true) {
+                    watchedSeries.push(Number(novel.seriesId))
+                }
             }
 
             if (novel.seriesId !== undefined && detailed === true) {
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
                 novel.id = series.firstNovelId
-                book.name = novel.title = series.title
-                book.author = novel.userName
+                novel.title = series.title
                 novel.tags = novel.tags.concat(series.tags)
                 novel.tags.unshift("长篇")
-                book.wordCount = novel.textCount = series.publishedTotalCharacterCount
+                novel.textCount = series.publishedTotalCharacterCount
                 novel.description = series.caption
-                book.coverUrl = novel.coverUrl = series.cover.urls["480mw"]
+                novel.coverUrl = series.cover.urls["480mw"]
                 novel.createDate = series.createDate
                 novel.updateDate = series.updateDate
-                book.totalChapterNum = novel.total = series.publishedContentCount
+                novel.total = series.publishedContentCount
                 novel.isWatched = series.isWatched
+                if (novel.isWatched === true) {
+                    watchedSeries.push(Number(novel.seriesId))
+                }
 
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}
                 try {
                     firstNovel = getAjaxJson(urlNovelDetailed(series.firstNovelId)).body
                     novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
+                    firstNovel.isBookmark = (firstNovel.bookmarkData !== undefined && firstNovel.bookmarkData !== null)
+                    if (firstNovel.isBookmark === true) {
+                        cache.put(`collect${firstNovel.id}`, firstNovel.bookmarkData.id)
+                        likeNovels.push(Number(firstNovel.id))
+                    }
                 } catch (e) {  // 防止系列首篇无权限获取
                     try {
                         firstNovel = getAjaxJson(urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
@@ -326,6 +387,9 @@ function publicFunc() {
                 }
             }
         })
+        // 收藏小说/追更系列 写入缓存
+        util.saveNovels("likeNovels", likeNovels)
+        util.saveNovels("watchedSeries", watchedSeries)
         util.debugFunc(() => {
             java.log(`处理小说完成`)
         })
@@ -334,6 +398,7 @@ function publicFunc() {
 
     // 小说信息格式化
     u.formatNovels = function(novels) {
+        novels = util.novelFilter(novels)
         novels.forEach(novel => {
             novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
@@ -353,9 +418,12 @@ function publicFunc() {
             }
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
+            if (novel.seriesId !== undefined) {
+                collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
+            } else {
+                collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
+            }
 
-            if (novel.seriesId !== undefined) collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
-            else collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
             if (util.settings.MORE_INFORMATION) {
                 novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
                 ${collectMsg}\n📖 书名：${novel.title}\n👤 作者：${novel.userName}
@@ -488,7 +556,7 @@ function getPixivUid() {
 
 function getWebViewUA() {
     let userAgent = cache.get("userAgent")
-    if (userAgent === null) {
+    if (userAgent === undefined || userAgent === null) {
         if (isSourceRead()) {
             userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
         } else {
@@ -526,7 +594,7 @@ function getHeaders() {
 function getBlockAuthorsFromSource() {
     let authors = []
     try {
-        authors = JSON.parse(`[${source.getVariable()}]`)
+        authors = JSON.parse(`[${source.getVariable().replace("，", ",")}]`)
         // sleepToast(JSON.stringify(authors))
     } catch (e) {
         sleepToast("🚫 屏蔽作者\n⚠️ 【书源】源变量设置有误\n输入作者ID，以英文逗号间隔，保存")
@@ -537,11 +605,15 @@ function getBlockAuthorsFromSource() {
 function syncBlockAuthorList() {
     let authors1 = JSON.parse(cache.get("blockAuthorList"))
     let authors2 = getBlockAuthorsFromSource()
-    if (authors1 === null) {
-        cache.put("blockAuthorList", JSON.stringify(authors2))
-    } else if (authors1.length > authors2.length) {
-        cache.put("blockAuthorList", JSON.stringify(authors2))
-        java.log("屏蔽作者：已将源变量同步至内存")
+    util.debugFunc(() => {
+        java.log(`屏蔽作者：缓存　：${JSON.stringify(authors1)}`)
+        java.log(`屏蔽作者：源变量：${JSON.stringify(authors2)}`)
+    })
+    cache.put("blockAuthorList", JSON.stringify(authors2))
+    if (authors1 === undefined || authors1 === null || authors1.length !== authors2.length) {
+        java.log("屏蔽作者：已将源变量同步至缓存")
+    } else if (authors2.length === 0) {
+        java.log("屏蔽作者：已清空屏蔽作者")
     }
 }
 
@@ -561,7 +633,7 @@ if (result.code() === 200) {
 util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
-    java.log(`${getUserAgent()}\n`)
+    java.log(`${getWebViewUA()}\n`)
     java.log(`${cache.get("csfrToken")}\n`)
     java.log(`${cache.get("pixivCookie")}\n`)
 })

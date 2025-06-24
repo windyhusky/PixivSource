@@ -105,10 +105,10 @@ function urlUserAllWorks(userId) {
 }
 
 function urlSearchNovel(novelName, page) {
-    return `https://www.pixiv.net/ajax/search/novels/${novelName}?word=${novelName}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
+    return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
 }
 function urlSearchSeries(seriesName, page) {
-    return`https://www.pixiv.net/ajax/search/novels/${seriesName}?word=${seriesName}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
+    return`https://www.pixiv.net/ajax/search/novels/${encodeURI(seriesName)}?word=${encodeURI(seriesName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
 }
 // 不完全匹配用户名
 function urlSearchUser(userName, full) {
@@ -246,7 +246,7 @@ function updateSource() {
             <td>📆 更新：${timeFormat(source.lastUpdateTime)}</td>
         </tr> 
         <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 10).join("<br>")}</td></tr>
-        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-15, comment.length).join("<br>")}</td></tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-13, comment.length).join("<br>")}</td></tr>
     </table>
     
     <table border="0" cellspacing="20">

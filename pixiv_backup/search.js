@@ -227,9 +227,14 @@ function novelFilter(novels) {
         textCount = 1000 * num[0] + 100 * num[1]
     }
 
-    java.log(`字数限制：${limitedTextCount}`)
-    java.log(`字数限制：${textCount}`)
-    return novels.filter(novel => novel.textCount >= textCount)
+    let novels0 = novels.map(novel => novel.id)
+    novels = novels.filter(novel => novel.textCount >= textCount)
+    let novels1 = novels.map(novel => novel.id)
+    if (textCount >= 1) {
+        java.log(`🔢 字数限制：${limitedTextCount}`)
+        java.log(`⏬ 字数限制：过滤前${novels0.length}；过滤后${novels1.length}`)
+    }
+    return novels
 }
 
 (() => {
