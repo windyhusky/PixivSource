@@ -147,14 +147,6 @@ function publicFunc() {
         return csfrToken
     }
 
-    u.getNovelBookmarkId = function (novelId) {
-        let bookmarkId = JSON.parse(cache.get( `collect${novelId}`))
-        if (bookmarkId === null) {
-            bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
-            cache.put(`collect${novelId}`, bookmarkId)
-        }
-        return bookmarkId
-    }
     // 将多个长篇小说解析为一本书
     u.combineNovels = function(novels) {
         return novels.filter(novel => {
@@ -201,6 +193,10 @@ function publicFunc() {
         return novels
     }
 
+
+    u.includes = function(list, item) {
+        return list.includes(String(item)) || list.includes(Number(item))
+    }
     // 处理 novels 列表
     u.handNovels = function(novels, detailed=false) {
         let likeNovels = [], watchedSeries = []
@@ -227,7 +223,9 @@ function publicFunc() {
                 novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
                 if (novel.isBookmark === true) {
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
-                    likeNovels.push(novel.id)
+                    if (util.includes(likeNovels, novel.id)) {
+                        likeNovels.push(Number(novel.id))
+                    }
                 }
             } else {  // 搜索系列
                 if (novel.isOneshot === true) {
@@ -260,7 +258,9 @@ function publicFunc() {
                 novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
                 if (novel.isBookmark === true) {
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
-                    likeNovels.push(novel.id)
+                    if (util.includes(likeNovels, novel.id)) {
+                        likeNovels.push(Number(novel.id))
+                    }
                 }
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
                     novel.seriesId = novel.seriesNavData.seriesId
@@ -291,6 +291,11 @@ function publicFunc() {
                 // novel.seriesNavData = {}
                 // novel.seriesNavData.seriesId = novel.seriesId
                 // novel.seriesNavData.title = novel.seriesTitle
+                if (novel.isWatched === true) {
+                    if (!util.includes(watchedSeries, novel.seriesId)) {
+                        watchedSeries.push(Number(novel.seriesId))
+                    }
+                }
             }
 
             if (novel.seriesId !== undefined && detailed === true) {
@@ -308,7 +313,9 @@ function publicFunc() {
                 book.totalChapterNum = novel.total = series.publishedContentCount
                 novel.isWatched = series.isWatched
                 if (novel.isWatched === true) {
-                    watchedSeries.push(novel.seriesId)
+                    if (!util.includes(watchedSeries, novel.seriesId)) {
+                        watchedSeries.push(Number(novel.seriesId))
+                    }
                 }
 
                 // 发送请求获取第一章 获取标签与简介
