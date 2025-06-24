@@ -233,9 +233,7 @@ function publicFunc() {
                 novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
                 if (novel.isBookmark === true) {
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
-                    if (util.includes(likeNovels, novel.id)) {
-                        likeNovels.push(Number(novel.id))
-                    }
+                    likeNovels.push(Number(novel.id))
                 }
             } else {  // 搜索系列
                 if (novel.isOneshot === true) {
@@ -268,9 +266,7 @@ function publicFunc() {
                 novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
                 if (novel.isBookmark === true) {
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
-                    if (util.includes(likeNovels, novel.id)) {
-                        likeNovels.push(Number(novel.id))
-                    }
+                    likeNovels.push(Number(novel.id))
                 }
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
                     novel.seriesId = novel.seriesNavData.seriesId
@@ -302,9 +298,7 @@ function publicFunc() {
                 // novel.seriesNavData.seriesId = novel.seriesId
                 // novel.seriesNavData.title = novel.seriesTitle
                 if (novel.isWatched === true) {
-                    if (!util.includes(watchedSeries, novel.seriesId)) {
-                        watchedSeries.push(Number(novel.seriesId))
-                    }
+                    watchedSeries.push(Number(novel.seriesId))
                 }
             }
 
@@ -323,9 +317,7 @@ function publicFunc() {
                 book.totalChapterNum = novel.total = series.publishedContentCount
                 novel.isWatched = series.isWatched
                 if (novel.isWatched === true) {
-                    if (!util.includes(watchedSeries, novel.seriesId)) {
-                        watchedSeries.push(Number(novel.seriesId))
-                    }
+                    watchedSeries.push(Number(novel.seriesId))
                 }
 
                 // 发送请求获取第一章 获取标签与简介
@@ -333,6 +325,11 @@ function publicFunc() {
                 try {
                     firstNovel = getAjaxJson(urlNovelDetailed(series.firstNovelId)).body
                     novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
+                    firstNovel.isBookmark = (firstNovel.bookmarkData !== undefined && firstNovel.bookmarkData !== null)
+                    if (firstNovel.isBookmark === true) {
+                        cache.put(`collect${firstNovel.id}`, firstNovel.bookmarkData.id)
+                        likeNovels.push(Number(firstNovel.id))
+                    }
                 } catch (e) {  // 防止系列首篇无权限获取
                     try {
                         firstNovel = getAjaxJson(urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
