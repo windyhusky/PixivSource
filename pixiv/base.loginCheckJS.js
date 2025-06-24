@@ -190,7 +190,7 @@ function publicFunc() {
         }
 
         if (authors !== undefined && authors !== null && authors.length >= 0) {
-            java.log(`屏蔽作者ID：${JSON.stringify(authors)}`)
+            java.log(`🚫 屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
                 novels = novels.filter(novel => novel.userId !== String(author))
             })
@@ -221,7 +221,9 @@ function publicFunc() {
             novels2 = novels.map(novel => novel.id)
         }
 
-        java.log(`⏬ 过滤收藏/追更：过滤前${novels0.length}；过滤后${novels2.length}`)
+        if (!(util.settings.SHOW_LIKE_NOVELS && util.settings.SHOW_WATCHED_SERIES === true)) {
+            java.log(`⏬ 过滤收藏/追更：过滤前${novels0.length}；过滤后${novels2.length}`)
+        }
         util.debugFunc(() => {
             // java.log(JSON.stringify(novels0))
             java.log(JSON.stringify(novels0.length))
@@ -242,8 +244,8 @@ function publicFunc() {
         listInCache = Array.from(new Set(listInCache))
         cache.put(listInCacheName , JSON.stringify(listInCache))
 
-        if (listInCacheName === "likeNovels") listInCacheName = "收藏小说ID"
-        else if (listInCacheName === "watchedSeries") listInCacheName = "追更系列ID"
+        if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
+        else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
         java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
     }
 
