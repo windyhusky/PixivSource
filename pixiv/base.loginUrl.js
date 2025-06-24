@@ -116,6 +116,10 @@ function novelBookmarkAdd(restrict=0) {
     else {
         cache.put(`collect${novel.id}`, resp.body)
         sleepToast(`✅ 已收藏【${novel.title}】`)
+
+        let likeNovels = getFromCache("likeNovels")
+        likeNovels.push(novel.id)
+        cache.put("likeNovels", JSON.stringify(likeNovels))
     }
 }
 
@@ -136,8 +140,12 @@ function novelBookmarkDelete() {
     )
     if (resp.error === true) sleepToast(`⚠️ 取消收藏【${novel.title}】失败`)
     else {
-        sleepToast(`✅ 已取消收藏【${novel.title}】`)
         cache.delete(`collect${novel.id}`)
+        sleepToast(`✅ 已取消收藏【${novel.title}】`)
+
+        let likeNovels = getFromCache("likeNovels")
+        likeNovels = likeNovels.filter(item => item !== Number(novel.id))
+        cache.put("likeNovels", JSON.stringify(likeNovels))
     }
 }
 
