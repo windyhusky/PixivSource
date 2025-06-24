@@ -139,6 +139,15 @@
         }
     },
     {
+        "name": "\uD83D\uDD0D 搜索说明",
+        "type": "button",
+        "action": "readMeSearch()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
         "name": "⤴️ 分享章节",
         "type": "button",
         "action": "shareFactory('novel')",
@@ -157,36 +166,18 @@
         }
     },
     {
-        "name": "⤴️ 分享作者",
-        "type": "button",
-        "action": "shareFactory('author')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDD30 登录说明",
-        "type": "button",
-        "action": "readMeLogin()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDD0D 搜索说明",
-        "type": "button",
-        "action": "readMeSearch()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "⚙️ 当前设置",
         "type": "button",
         "action": "showSettings()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD0D 搜索作者",
+        "type": "button",
+        "action": "editSettings('SEARCH_AUTHOR')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -205,15 +196,6 @@
         "name": "\uD83D\uDCD6 更多简介",
         "type": "button",
         "action": "editSettings('MORE_INFORMATION')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDCC5 更新时间",
-        "type": "button",
-        "action": "editSettings('SHOW_UPDATE_TIME')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -250,6 +232,24 @@
         "name": "\uD83D\uDCAC 显示评论",
         "type": "button",
         "action": "editSettings('SHOW_COMMENTS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "❤️ 显示收藏",
+        "type": "button",
+        "action": "editSettings('SHOW_LIKE_NOVELS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCC3 显示追更",
+        "type": "button",
+        "action": "editSettings('SHOW_WATCHED_SERIES')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
