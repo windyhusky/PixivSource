@@ -42,13 +42,17 @@ function publicFunc() {
     if (isBackupSource() || isSourceRead()) {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
+        // cache.delete("pixivSettings")
         settings = JSON.parse(cache.get("pixivSettings"))
     }
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
+        settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
         settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+        settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示喜欢小说
+        settings.SHOW_WATCHED_SERIES = true // 搜索：搜索结果显示追整系列小说
         settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
         settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
         settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
@@ -60,6 +64,7 @@ function publicFunc() {
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
     if (settings.FAST === true) {
+        settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
@@ -590,7 +595,7 @@ if (result.code() === 200) {
 util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
-    java.log(`${getUserAgent()}\n`)
+    java.log(`${getWebViewUA()}\n`)
     java.log(`${cache.get("csfrToken")}\n`)
     java.log(`${cache.get("pixivCookie")}\n`)
 })
