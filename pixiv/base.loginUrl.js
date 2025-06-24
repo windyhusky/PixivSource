@@ -97,10 +97,11 @@ function getPostBody(url, body, headers) {
         return JSON.parse(java.post(url, body, headers).body())
     } catch (e) {
         // sleepToast(e)
-        if (String(e).includes(400)) sleepToast(`⚠️ 缺少 headers`)
-        else if (String(e).includes(403)) sleepToast(`⚠️ 缺少 cookie 或 cookie 过期`)
-        else if (String(e).includes(404)) sleepToast(`⚠️ 404`)
-        else if (String(e).includes(422)) sleepToast(`⚠️ 请求信息有误`)
+        // sleepToast(JSON.stringify(headers))
+        if (String(e).includes(400)) sleepToast(`⚠️ 缺少 headers`, 1)
+        else if (String(e).includes(403)) sleepToast(`⚠️ 缺少 cookie 或 cookie 过期`, 1)
+        else if (String(e).includes(404)) sleepToast(`⚠️ 404`, 1)
+        else if (String(e).includes(422)) sleepToast(`⚠️ 请求信息有误`, 1)
         return {error: true}
     }
 }
@@ -156,7 +157,7 @@ function novelsBookmarkDelete(novelIds) {
         "https://www.pixiv.net/ajax/novels/bookmarks/remove",
         JSON.stringify({"bookmarkIds": bookmarkIds})
     )
-    if (resp.error === true) sleepToast("⚠️ 取消收藏失败")
+    if (resp.error === true) sleepToast("⚠️ 取消收藏失败", 1)
     else {
         sleepToast("✅ 已取消收藏")
         novelIds.forEach(novelId => {cache.delete(`collect${novelId}`)})
@@ -183,7 +184,7 @@ function novelMarker(page=1) {
         `mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`
     )
     java.log(`mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`)
-    if (resp.error === true) sleepToast("⚠️ 操作失败")
+    if (resp.error === true) sleepToast("⚠️ 操作失败", 1)
     else if (lastMarker === true) {
         cache.put(`marker${novel.id}`, false)
         sleepToast(`✅ 已删除书签`)
@@ -199,7 +200,7 @@ function seriesWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
         "{}"
     )
-    if (resp.error === true) sleepToast(`⚠️ 追更【${novel.seriesTitle}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 追更【${novel.seriesTitle}】失败`, 1)
     else {
         cache.put(`watch${novel.seriesId}`, true)
         sleepToast(`✅ 已追更【${novel.seriesTitle}】`)
@@ -216,7 +217,7 @@ function seriesUnWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
         "{}"
     )
-    if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.seriesTitle}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.seriesTitle}】失败`, 1)
     else {
         cache.delete(`watch${novel.seriesId}`)
         sleepToast(`✅ 已取消追更【${novel.seriesTitle}】`)
@@ -245,7 +246,7 @@ function userFollow(restrict=0) {
         "https://www.pixiv.net/bookmark_add.php",
         `mode=add&type=user&user_id=${novel.userId}&tag=""&restrict=${restrict}&format=json`
     )
-    if (resp.error === true) sleepToast(`⚠️ 关注【${novel.userName}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 关注【${novel.userName}】失败`, 1)
     else {
         sleepToast(`✅ 已关注【${novel.userName}】`)
         cache.put(`follow${novel.userId}`, true)
@@ -258,7 +259,7 @@ function userUnFollow() {
         "https://www.pixiv.net/rpc_group_setting.php",
         `mode=del&type=bookuser&id=${novel.userId}`
     )
-    if (resp.error === true) sleepToast(`⚠️ 取消关注【${novel.userName}】失败`)
+    if (resp.error === true) sleepToast(`⚠️ 取消关注【${novel.userName}】失败`, 1)
     else {
         sleepToast(`✅ 已取消关注【${novel.userName}】`)
         cache.delete(`follow${novel.userId}`)
@@ -285,7 +286,7 @@ function userBlackList() {
         JSON.stringify({"user_id": novel.userId, "action": action})
     )
     // java.log(JSON.stringify({"user_id": novel.userId, "action": action}))
-    if (resp.error === true) sleepToast("⚠️ 操作失败")
+    if (resp.error === true) sleepToast("⚠️ 操作失败", 1)
     else if (lastStatus === true) {
         cache.put(`block${novel.userId}`, false)
         sleepToast(`✅ 已取消拉黑【${novel.userName}】\n\n已允许其点赞、评论、收藏、关注、私信等`)
@@ -330,7 +331,7 @@ function novelCommentAdd() {
     // } else body += `&comment=${encodeURI(comment)}`
     // let resp = getPostBody("https://www.pixiv.net/novel/rpc/post_comment.php", body)
 
-    if (resp.error === true) sleepToast("⚠️ 评论失败")
+    if (resp.error === true) sleepToast("⚠️ 评论失败", 1)
     else sleepToast(`✅ 已在【${novel.title}】发布评论：\n${comment}`)
 }
 
@@ -365,7 +366,7 @@ function novelCommentDelete() {
             `i_id=${novelId}&del_id=${commentID}`
         )
         // java.log(JSON.stringify(resp))
-        if (resp.error === true) sleepToast("⚠️ 评论删除失败")
+        if (resp.error === true) sleepToast("⚠️ 评论删除失败", 1)
         else sleepToast(`✅ 已在【${novel.title}】删除评论：\n${comment}`)
     })
 }
