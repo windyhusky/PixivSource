@@ -201,7 +201,7 @@ function publicFunc() {
     // 喜欢小说/追更系列 写入缓存
     u.saveNovels = function(listInCacheName, list) {
         let listInCache = JSON.parse(cache.get(listInCacheName))
-        if (listInCache === null) listInCache = []
+        if (listInCache === undefined || listInCache === null) listInCache = []
 
         listInCache = listInCache.concat(list)
         listInCache = Array.from(new Set(listInCache))
@@ -518,7 +518,7 @@ function getPixivUid() {
 
 function getWebViewUA() {
     let userAgent = cache.get("userAgent")
-    if (userAgent === null) {
+    if (userAgent === undefined || userAgent === null) {
         if (isSourceRead()) {
             userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
         } else {
@@ -572,7 +572,7 @@ function syncBlockAuthorList() {
         java.log(`屏蔽作者：源变量：${JSON.stringify(authors2)}`)
     })
     cache.put("blockAuthorList", JSON.stringify(authors2))
-    if (authors1 === null || authors1.length !== authors2.length) {
+    if (authors1 === undefined || authors1 === null || authors1.length !== authors2.length) {
         java.log("屏蔽作者：已将源变量同步至缓存")
     } else if (authors2.length === 0) {
         java.log("屏蔽作者：已清空屏蔽作者")
