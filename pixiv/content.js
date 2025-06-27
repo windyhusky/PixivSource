@@ -10,36 +10,50 @@ function objParse(obj) {
     })
 }
 
-function getContent(res) {
-    // 放入信息以便登陆界面使用，第一次加载，刷新时准确
+function getNovelInfo(res) {
+    // 放入小说信息以便登陆界面使用
     let novel = source.getLoginInfoMap()
     if (novel === undefined) novel = JSON.parse(cache.get("novel"))
-    if (res.seriesNavData !== undefined && res.seriesNavData !== null) {
-        let seriesId = res.seriesNavData.seriesId
-        if (seriesId !== undefined && seriesId !== null) {
-            if (util.settings.IS_LEGADO) {
-                let novelIds = JSON.parse(cache.get(`novelIds${seriesId}`))
-                novel.id = novelIds[book.durChapterIndex]
-                novel.title = book.durChapterTitle
-            } else {
-                novel.id = res.id
-                novel.title = res.title
-            }
-            novel.seriesId = res.seriesNavData.seriesId
-            novel.seriesTitle = res.seriesNavData.title
-        }
-    } else {
-        novel.id = res.id
-        novel.title = res.title
-        novel.seriesId = null
-        novel.seriesTitle = null
-    }
+    novel.id = Number(res.id)
+    novel.title = res.title
     novel.userId = res.userId
     novel.userName = res.userName
+
+    if (!!res.bookmarkData) {
+        novel.isBookmark = true
+        cache.put(`collect${novel.id}`, res.bookmarkData.id)
+        util.saveNovels("likeNovels", [novel.id])
+    } else {
+        novel.isBookmark = false
+    }
+
+    if (!!res.seriesNavData) {
+        novel.seriesId = Number(res.seriesNavData.seriesId)
+        novel.seriesTitle = res.seriesNavData.title
+        novel.isWatched = res.seriesNavData.isWatched
+        util.saveNovels("watchedSeries", [novel.seriesId])
+    } else {
+        novel.seriesId = null
+        novel.seriesTitle = "🈚️"
+        novel.isWatched = false
+    }
+
+    // 系列 + 阅读，使用当前章节名称
+    if (novel.seriesId && util.settings.IS_LEGADO) {
+        let novelIds = JSON.parse(cache.get(`novelIds${novel.seriesId}`))
+        novel.id = novelIds[book.durChapterIndex]
+        novel.title = book.durChapterTitle
+
+        let bookmarkId = JSON.parse(cache.get(`collect${novel.id}`))
+        novel.isBookmark = !!bookmarkId
+    }
+
     source.putLoginInfo(JSON.stringify(novel))
     cache.put("novel", JSON.stringify(novel))
-    // sleepToast(`当前章节：${novel.id}${novel.title}`)
+}
 
+function getContent(res) {
+    getNovelInfo(res)  // 放入信息以便登陆界面使用
     let content = String(res.content)
     // let content = "undefined"
     if (content.includes("undefined")) {
