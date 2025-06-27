@@ -426,7 +426,7 @@ function readMeLogin() {
     return sleepToast(`🅿️ 登录界面功能\n
     使用收藏、追更、关注作者、评论等功能时，需要登录
     使用前请先刷新正文，获取当前章节信息\n
-    点击【📌 当前章节】查看书源内部章节信息`, 5)
+    点击【📌 当前章节】查看书源内部章节信息`.replace("    ",""), 5)
 }
 
 function readMeSearch() {
@@ -435,7 +435,7 @@ function readMeSearch() {
     👤 作者专搜：@搜索作者名称
     #️ 标签专搜：#标签1 标签2　
     ⏬ 字数筛选1：#标签1 标签2 字数3k5
-    ⏬ 字数筛选2：@作者的名称 字数3w5`, 5)
+    ⏬ 字数筛选2：@作者的名称 字数3w5`.replace("    ",""), 5)
 }
 
 let settingsName = {
