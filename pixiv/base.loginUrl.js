@@ -376,6 +376,7 @@ function novelCommentDelete() {
 
 function startBrowser(url, title) {
     let headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
+    if (url.includes("https://github.com")) sleepToast("即将打开 Github\n请确认已开启代理", 0.01)
     java.startBrowser(`${url}, ${headers}`, title)
 }
 
@@ -397,15 +398,12 @@ function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
 function startGithub() {
-    sleepToast("即将打开 Github\n请确认已开启代理", 0.01)
     startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
 }
 function startGithubIssue() {
-    sleepToast("即将打开 Github\n请确认已开启代理", 0.01)
     startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
 }
 function startGithubReadme() {
-    sleepToast("即将打开 Github\n请确认已开启代理", 0.01)
     startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 
