@@ -382,7 +382,7 @@ function startBrowser(url, title) {
 
 function shareFactory(type) {
     let novel = getNovel()
-    if (novel === undefined) return sleepToast("⚠️ 请在小说阅读页面，使用本功能")
+    if (novel === undefined || novel === null) return sleepToast("⚠️ 请在小说阅读页面，使用本功能")
     if (type.includes("author")) {
         startBrowser(urlUserUrl(novel.userId), novel.userName)
     }
