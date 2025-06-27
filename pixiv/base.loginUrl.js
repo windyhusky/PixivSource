@@ -128,7 +128,6 @@ function getNovelBookmarkId(novelId) {
     let bookmarkId = getFromCache(`collect${novelId}`)
     if (bookmarkId === null) {
         bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
-        cache.put(`collect${novel.id}`, bookmarkId)
     }
     return bookmarkId
 }
