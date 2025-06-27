@@ -160,6 +160,10 @@ function novelsBookmarkDelete(novelIds) {
     else {
         sleepToast("✅ 已取消收藏")
         novelIds.forEach(novelId => {cache.delete(`collect${novelId}`)})
+
+        let likeNovels = getFromCache("likeNovels")
+        likeNovels = likeNovels.filter(item => !novelIds.includes(Number(item)))
+        cache.put("likeNovels", JSON.stringify(likeNovels))
     }
 }
 
@@ -467,7 +471,7 @@ function showSettings() {
 }
 
 function editSettings(object) {
-    let msg =""
+    let msg = "", status
     let settings = getFromCache("pixivSettings")
     try {
         status = settings[object] = (!settings[object])
