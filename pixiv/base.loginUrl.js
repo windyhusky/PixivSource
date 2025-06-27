@@ -407,13 +407,19 @@ function startGithubReadme() {
     startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 
+function checkStatus(status) {
+    if (eval(String(status)) === true) return "❤️"
+    else return "🖤"
+}
+
 function charpterReading() {
-    let novel = getNovel()
-    sleepToast(`📌 当前章节\n
-    系列：${novel.seriesTitle}
-    章节：${novel.title}
-    作者：${novel.userName}\n
-    如非当前章节，请刷新正文`)
+    let novel = source.getLoginInfoMap()
+    let msg = `📌 当前章节\n
+    ${checkStatus(novel.isWatched)} 系列：${novel.seriesTitle}
+    ${checkStatus(novel.isBookmark)} 章节：${novel.title}
+    👤 作者：${novel.userName}\n\n如非当前章节，请刷新正文`
+    msg = msg.replace("🖤 系列：🈚️\n", "")
+    sleepToast(msg.replace("    ",""))
 }
 
 function readMeLogin() {
