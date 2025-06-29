@@ -119,7 +119,7 @@ function novelBookmarkAdd(restrict=0) {
         sleepToast(`✅ 已收藏【${novel.title}】`)
 
         let likeNovels = getFromCache("likeNovels")
-        likeNovels.push(novel.id)
+        likeNovels.push(Number(novel.id))
         cache.put("likeNovels", JSON.stringify(likeNovels))
     }
 }
@@ -209,7 +209,7 @@ function seriesWatch() {
         sleepToast(`✅ 已追更【${novel.seriesTitle}】`)
 
         let watchedSeries = getFromCache("watchedSeries")
-        watchedSeries.push(novel.seriesId)
+        watchedSeries.push(Number(novel.seriesId))
         cache.put("watchedSeries", JSON.stringify(watchedSeries))
     }
 }
@@ -413,13 +413,11 @@ function checkStatus(status) {
 }
 
 function charpterReading() {
-    let novel = source.getLoginInfoMap()
-    let msg = `📌 当前章节\n
-    ${checkStatus(novel.isWatched)} 系列：${novel.seriesTitle}
-    ${checkStatus(novel.isBookmark)} 章节：${novel.title}
-    👤 作者：${novel.userName}\n\n如非当前章节，请刷新正文`
+    let novel = getNovel()
+    // let novel = source.getLoginInfoMap()
+    let msg = `📌 当前章节\n\n${checkStatus(novel.isWatched)} 系列：${novel.seriesTitle}\n${checkStatus(novel.isBookmark)} 章节：${novel.title}\n👤 作者：${novel.userName}\n\n如非当前章节，请刷新正文`
     msg = msg.replace("🖤 系列：🈚️\n", "")
-    sleepToast(msg.replace("    ",""))
+    sleepToast(msg, 2)
 }
 
 function readMeLogin() {
