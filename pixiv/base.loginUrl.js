@@ -24,7 +24,7 @@ function isLogin() {
 function login() {
     sleepToast("🔄 正在检测登陆状态，请稍候")
     if (isLogin()) {
-        sleepToast("✅ 已经登录过账号了\n\n可以点击【🔙 退出账号】来切换账号")
+        sleepToast("️🅿️ 登录账号\n✅ 已经登录过账号了\n\n可以点击【🔙 退出账号】来切换账号")
         return false
     }
 
@@ -34,7 +34,7 @@ function login() {
         getCookie(); getCsrfToken()
         return true
     } else {
-        java.log(resp.code()); sleepToast("⚠️ 登录失败")
+        java.log(resp.code()); sleepToast("🅿️ 登录账号\n\n⚠️ 登录失败")
         return false
     }
 }
@@ -112,11 +112,12 @@ function novelBookmarkAdd(restrict=0) {
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
     )
-    if (resp.error === true) sleepToast(`⚠️ 收藏【${novel.title}】失败`)
-    else if (resp.body === null) sleepToast(`✅ 已经收藏【${novel.title}】了`)
+    if (resp.error === true) sleepToast(`❤️ 收藏小说
+    \n\n⚠️ 收藏【${novel.title}】失败`)
+    else if (resp.body === null) sleepToast(`❤️ 收藏小说\n\n✅ 已经收藏【${novel.title}】了`)
     else {
         cache.put(`collect${novel.id}`, resp.body)
-        sleepToast(`✅ 已收藏【${novel.title}】`)
+        sleepToast(`❤️ 收藏小说\n\n✅ 已收藏【${novel.title}】`)
 
         let likeNovels = getFromCache("likeNovels")
         likeNovels.push(Number(novel.id))
@@ -138,10 +139,10 @@ function novelBookmarkDelete() {
         "https://www.pixiv.net/ajax/novels/bookmarks/delete",
         `del=1&book_id=${getNovelBookmarkId(novel.id)}`
     )
-    if (resp.error === true) sleepToast(`⚠️ 取消收藏【${novel.title}】失败`)
+    if (resp.error === true) sleepToast(`❤️ 收藏小说\n\n⚠️ 取消收藏【${novel.title}】失败`)
     else {
         cache.delete(`collect${novel.id}`)
-        sleepToast(`✅ 已取消收藏【${novel.title}】`)
+        sleepToast(`❤️ 收藏小说\n\n✅ 已取消收藏【${novel.title}】`)
 
         let likeNovels = getFromCache("likeNovels")
         likeNovels = likeNovels.filter(item => item !== Number(novel.id))
@@ -156,9 +157,9 @@ function novelsBookmarkDelete(novelIds) {
         "https://www.pixiv.net/ajax/novels/bookmarks/remove",
         JSON.stringify({"bookmarkIds": bookmarkIds})
     )
-    if (resp.error === true) sleepToast("⚠️ 取消收藏失败", 1)
+    if (resp.error === true) sleepToast("❤️ 收藏小说\n\n⚠️ 取消收藏失败", 1)
     else {
-        sleepToast("✅ 已取消收藏")
+        sleepToast("❤️ 收藏小说\n\n✅ 已取消收藏")
         novelIds.forEach(novelId => {cache.delete(`collect${novelId}`)})
 
         let likeNovels = getFromCache("likeNovels")
@@ -187,13 +188,13 @@ function novelMarker(page=1) {
         `mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`
     )
     java.log(`mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`)
-    if (resp.error === true) sleepToast("⚠️ 操作失败", 1)
+    if (resp.error === true) sleepToast("🏷️ 添加书签\n\n⚠️ 操作失败", 1)
     else if (lastMarker === true) {
         cache.put(`marker${novel.id}`, false)
-        sleepToast(`✅ 已删除书签`)
+        sleepToast(`🏷️ 添加书签\n\n✅ 已删除书签`)
     } else {
         cache.put(`marker${novel.id}`, true)
-        sleepToast(`✅ 已加入书签`)
+        sleepToast(`🏷️ 添加书签\n\n✅ 已加入书签`)
     }
 }
 
@@ -203,10 +204,10 @@ function seriesWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
         "{}"
     )
-    if (resp.error === true) sleepToast(`⚠️ 追更【${novel.seriesTitle}】失败`, 1)
+    if (resp.error === true) sleepToast(`📃 追更系列\n\n⚠️ 追更【${novel.seriesTitle}】失败`, 1)
     else {
         cache.put(`watch${novel.seriesId}`, true)
-        sleepToast(`✅ 已追更【${novel.seriesTitle}】`)
+        sleepToast(`📃 追更系列\n\n✅ 已追更【${novel.seriesTitle}】`)
 
         let watchedSeries = getFromCache("watchedSeries")
         watchedSeries.push(Number(novel.seriesId))
@@ -220,10 +221,10 @@ function seriesUnWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
         "{}"
     )
-    if (resp.error === true) sleepToast(`⚠️ 取消追更【${novel.seriesTitle}】失败`, 1)
+    if (resp.error === true) sleepToast(`📃 追更系列\n\n⚠️ 取消追更【${novel.seriesTitle}】失败`, 1)
     else {
         cache.delete(`watch${novel.seriesId}`)
-        sleepToast(`✅ 已取消追更【${novel.seriesTitle}】`)
+        sleepToast(`📃 追更系列\n\n✅ 已取消追更【${novel.seriesTitle}】`)
 
         let watchedSeries = getFromCache("watchedSeries")
         watchedSeries = watchedSeries.filter(item => item !== Number(novel.seriesId))
@@ -234,7 +235,7 @@ function seriesUnWatch() {
 function seriesWatchFactory(code=1) {
     let novel = getNovel()
     if (!novel.seriesId) {
-        return sleepToast(`⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
+        return sleepToast(`📃 追更系列\n\n⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
     }
 
     let lastStatus = getFromCache(`watch${novel.seriesId}`)
@@ -249,9 +250,9 @@ function userFollow(restrict=0) {
         "https://www.pixiv.net/bookmark_add.php",
         `mode=add&type=user&user_id=${novel.userId}&tag=""&restrict=${restrict}&format=json`
     )
-    if (resp.error === true) sleepToast(`⚠️ 关注【${novel.userName}】失败`, 1)
+    if (resp.error === true) sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败`, 1)
     else {
-        sleepToast(`✅ 已关注【${novel.userName}】`)
+        sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
         cache.put(`follow${novel.userId}`, true)
     }
 }
@@ -262,9 +263,9 @@ function userUnFollow() {
         "https://www.pixiv.net/rpc_group_setting.php",
         `mode=del&type=bookuser&id=${novel.userId}`
     )
-    if (resp.error === true) sleepToast(`⚠️ 取消关注【${novel.userName}】失败`, 1)
+    if (resp.error === true) sleepToast(`⭐️ 关注作者\n\n⚠️ 取消关注【${novel.userName}】失败`, 1)
     else {
-        sleepToast(`✅ 已取消关注【${novel.userName}】`)
+        sleepToast(`⭐️ 关注作者\n\n✅ 已取消关注【${novel.userName}】`)
         cache.delete(`follow${novel.userId}`)
     }
 }
@@ -304,10 +305,10 @@ function userBlock() {
     let novel = getNovel()
     if (authors.includes(Number(novel.userId))) {
         authors = authors.filter(author => author !== Number(novel.userId))
-        sleepToast(`✅ 已取消屏蔽【${novel.userName}】\n\n现已恢复显示其小说`)
+        sleepToast(`🚫 屏蔽作者\n\n✅ 已取消屏蔽【${novel.userName}】\n现已恢复显示其小说`)
     } else if (novel.userId !== undefined && novel.userId !== null) {
         authors.push(Number(novel.userId))
-        sleepToast(`✅ 已屏蔽【${novel.userName}】(本地)\n\n今后不再显示其小说`)
+        sleepToast(`🚫 屏蔽作者\n\n✅ 本地已屏蔽【${novel.userName}】\n今后不再显示其小说`)
     }
     cache.put("blockAuthorList", JSON.stringify(authors))
     source.setVariable(authors.toString())
