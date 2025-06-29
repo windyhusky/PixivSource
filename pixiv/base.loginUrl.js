@@ -317,22 +317,25 @@ function userBlock() {
 function novelCommentAdd() {
     let userId = getFromCache("pixiv:uid")
     let novel = getNovel()
-    let novelId = novel.id
     let comment = String(result.get("发送评论")).trim()
     if (comment === "") {
-        return sleepToast("⚠️ 请输入需要发送的评论")
+        charpterReading()
+        return sleepToast("⚠️ 请输入需要发送的评论\n\n输入：【评论内容；评论ID】可回复该ID的评论\n如【非常喜欢；12345678】")
     }
-    let resp = getPostBody(
-        "https://www.pixiv.net/novel/rpc/post_comment.php",
-        `type=comment&novel_id=${novelId}&author_user_id=${userId}&comment=${encodeURI(comment)}`
-    )
 
-    // let body = `type=comment&novel_id=${novelId}&author_user_id=${userId}`
-    // if (comment.includes("；")) {
-    //     let comment = comment.split("；")
-    //     body += `&comment=${encodeURI(comment[0])}&parent_id=${comment[1]}`
-    // } else body += `&comment=${encodeURI(comment)}`
-    // let resp = getPostBody("https://www.pixiv.net/novel/rpc/post_comment.php", body)
+    if (comment.includes("；")) {
+        let comment = comment.replace(";", "；")
+        comment = comment.split("；")
+        var resp = getPostBody(
+            "https://www.pixiv.net/novel/rpc/post_comment.php",
+            `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(comment[0].trim())}&parent_id=${comment[1].trim()}`
+        )
+    } else {
+        var resp = getPostBody(
+            "https://www.pixiv.net/novel/rpc/post_comment.php",
+            `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(comment)}`
+        )
+    }
 
     if (resp.error === true) sleepToast("⚠️ 评论失败", 1)
     else sleepToast(`✅ 已在【${novel.title}】发布评论：\n${comment}`)
