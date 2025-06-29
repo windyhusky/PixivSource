@@ -19,19 +19,19 @@ function getNovelInfo(res) {
     novel.userId = res.userId
     novel.userName = res.userName
 
-    if (!!res.bookmarkData) {
+    if (res.bookmarkData) {
         novel.isBookmark = true
         cache.put(`collect${novel.id}`, res.bookmarkData.id)
-        util.saveNovels("likeNovels", [novel.id])
+        util.saveNovels("likeNovels", [Number(novel.id)])
     } else {
         novel.isBookmark = false
     }
 
-    if (!!res.seriesNavData) {
+    if (res.seriesNavData) {
         novel.seriesId = Number(res.seriesNavData.seriesId)
         novel.seriesTitle = res.seriesNavData.title
         novel.isWatched = res.seriesNavData.isWatched
-        util.saveNovels("watchedSeries", [novel.seriesId])
+        util.saveNovels("watchedSeries", [Number(novel.seriesId)])
     } else {
         novel.seriesId = null
         novel.seriesTitle = "🈚️"
@@ -54,6 +54,7 @@ function getNovelInfo(res) {
 
 function getContent(res) {
     getNovelInfo(res)  // 放入信息以便登陆界面使用
+    // charpterReading()  // 输出章节信息
     let content = String(res.content)
     // let content = "undefined"
     if (content.includes("undefined")) {
