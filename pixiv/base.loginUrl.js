@@ -315,23 +315,30 @@ function userBlock() {
 }
 
 function novelCommentAdd() {
+    let resp, novel = getNovel()
     let userId = getFromCache("pixiv:uid")
-    let novel = getNovel()
     let comment = String(result.get("发送评论")).trim()
     if (comment === "") {
-        charpterReading()
-        return sleepToast("⚠️ 请输入需要发送的评论\n\n输入：【评论内容；评论ID】可回复该ID的评论\n如【非常喜欢；12345678】")
+        return sleepToast(`✅ 发送评论\n⚠️ 请输入需要发送的评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n\n如非当前章节，请刷新正文`)
     }
 
-    if (comment.includes("；")) {
+    if (comment.includes("；") || comment.includes(";") ) {
         let comment = comment.replace(";", "；")
-        comment = comment.split("；")
-        var resp = getPostBody(
-            "https://www.pixiv.net/novel/rpc/post_comment.php",
-            `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(comment[0].trim())}&parent_id=${comment[1].trim()}`
-        )
+        let commentText = comment.split("；")[0].trim()
+        let commentId = comment.split("；")[1].trim()
+        if (Number.isInteger(commentId)) {
+            resp = getPostBody(
+                "https://www.pixiv.net/novel/rpc/post_comment.php",
+                `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(commentText)}&parent_id=${commentId}`)
+        } else {
+            resp = getPostBody(
+                "https://www.pixiv.net/novel/rpc/post_comment.php",
+                `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(commentText)}`
+            )
+        }
+
     } else {
-        var resp = getPostBody(
+        resp = getPostBody(
             "https://www.pixiv.net/novel/rpc/post_comment.php",
             `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(comment)}`
         )
@@ -357,7 +364,7 @@ function novelCommentDelete() {
     let novelId = novel.id
     let comment = String(result.get("发送评论")).trim()
     if (comment === "") {
-        return sleepToast("⚠️ 请输入需要删除的评论")
+        return sleepToast(`🗑 删除评论\n⚠️ 请输入需要删除的评论\n\n📌 当前章节：${novel.title}\n\n如非当前章节，请刷新正文`)
     }
 
     let commentIDs = getNovelCommentID(novelId, comment)
