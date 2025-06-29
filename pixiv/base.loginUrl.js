@@ -534,7 +534,12 @@ function cleanCache() {
     cache.delete(`${urlNovelUrl(novel.id)}`)
     cache.delete(`${urlNovelDetailed(novel.id)}`)
     cache.delete(`${urlSearchNovel(novel.title, 1)}`)
-    sleepToast(`🧹 清除缓存\n\n已清除本章正文缓存，刷新正文以更新`, 5)
+    // if (novel.seriesId) {
+    //     cache.delete(`${urlSeriesUrl(novel.seriesId)}`)
+    //     cache.delete(`${urlSeriesDetailed(novel.seriesId)}`)
+    //     cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
+    // }
+    sleepToast(`🧹 清除缓存\n\n📌 当前章节：${novel.title}\n\n已清除本章正文缓存，刷新正文以更新`, 5)
 }
 
 function sleepToast(text, second=0) {
