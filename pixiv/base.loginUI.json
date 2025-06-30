@@ -139,9 +139,9 @@
         }
     },
     {
-        "name": "\uD83D\uDD0D 搜索说明",
+        "name": "⤴️ 分享作者",
         "type": "button",
-        "action": "readMeSearch()",
+        "action": "shareFactory('author')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -165,6 +165,7 @@
             "layout_flexBasisPercent": -1
         }
     },
+
     {
         "name": "⚙️ 当前设置",
         "type": "button",
@@ -175,7 +176,16 @@
         }
     },
     {
-        "name": "\uD83D\uDD0D 搜索作者",
+        "name": "\uD83D\uDD27 默认设置",
+        "type": "button",
+        "action": "editSettings('')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC64 搜索作者",
         "type": "button",
         "action": "editSettings('SEARCH_AUTHOR')",
         "style": {
@@ -196,6 +206,15 @@
         "name": "\uD83D\uDCD6 更多简介",
         "type": "button",
         "action": "editSettings('MORE_INFORMATION')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCC5 更新时间",
+        "type": "button",
+        "action": "editSettings('SHOW_UPDATE_TIME')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -268,6 +287,15 @@
         "name": "\uD83D\uDC1E 调试模式",
         "type": "button",
         "action": "editSettings('DEBUG')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD0D 搜索说明",
+        "type": "button",
+        "action": "readMeSearch()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
