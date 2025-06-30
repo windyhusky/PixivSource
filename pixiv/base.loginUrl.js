@@ -347,23 +347,13 @@ function novelCommentAdd() {
         return sleepToast(`✅ 发送评论\n⚠️ 请输入需要发送的评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n\n如非当前章节，请刷新正文`)
     }
 
-    if (comment.includes("；") || comment.includes(";") ) {
-        let comment = comment.replace(";", "；")
-        let commentText = comment.split("；")[0].trim()
-        let commentId = comment.split("；")[1].trim()
-
-        sleepToast(Number.isInteger(commentId))
-        if (Number.isInteger(commentId)) {
-            resp = getPostBody(
-                "https://www.pixiv.net/novel/rpc/post_comment.php",
-                `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(commentText)}&parent_id=${commentId}`)
-        } else {
-            resp = getPostBody(
-                "https://www.pixiv.net/novel/rpc/post_comment.php",
-                `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(commentText)}`
-            )
-        }
-
+    let matched = comment.match(RegExp(/(；|;\s*)\d{8,}/))
+    if (matched) {
+        let commentId = comment.match(new RegExp(/；(\d{8,})/))[1]
+        comment = comment.replace(new RegExp(`(；|;\s*)${commentId}`), "")
+        resp = getPostBody(
+            "https://www.pixiv.net/novel/rpc/post_comment.php",
+            `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(comment)}&parent_id=${commentId}`)
     } else {
         resp = getPostBody(
             "https://www.pixiv.net/novel/rpc/post_comment.php",
@@ -371,8 +361,8 @@ function novelCommentAdd() {
         )
     }
 
-    if (resp.error === true) sleepToast("⚠️ 评论失败", 1)
-    else sleepToast(`✅ 已在【${novel.title}】发布评论：\n${comment}`)
+    if (resp.error === true) sleepToast("✅ 发送评论\n\n⚠️ 评论失败", 1)
+    else sleepToast(`✅ 发送评论\n\n✅ 已在【${novel.title}】发布评论：\n${comment}`)
 }
 
 function getNovelCommentID(novelId, comment) {
