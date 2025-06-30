@@ -514,16 +514,15 @@ function showSettings() {
 function editSettings(object) {
     let msg = "", status
     let settings = getFromCache("pixivSettings")
-    if (settings[object] === undefined) {
-        if (object === "FAST") settings.FAST = false
-        else  settings[object] = true
+    if (settings[object] !== undefined) {
+        status = settings[object] = (!settings[object])
+    } else {
+        status = settings[object] = true  // 无设置则默认开启
     }
 
-    status = settings[object] = (!settings[object])
     if (object !== "FAST") {
         msg = `${statusMsg(status)}　${settingsName[object]}`
     }
-
     if (object === "FAST") {
         if (settings[object] === true) {
             cache.put("pixivLastSettings", JSON.stringify(settings))
