@@ -491,7 +491,8 @@ let settingsName = {
 
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
-    else return "🚫 已关闭"
+    else if (status === false) return "🚫 已关闭"
+    else return "🈚️ 未设置"
 }
 
 // 检测快速模式修改的4个设置
@@ -540,7 +541,7 @@ function editSettings(object) {
             settings.FAST = false
             cache.put("pixivSettings", JSON.stringify(settings))
             let message = getSettingStatus("FAST")
-            msg = `已恢复原有设置\n\n${statusMsg(status)}　${settingsName[object]}\n${message}`
+            msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
         }
     }
     sleepToast(msg)
