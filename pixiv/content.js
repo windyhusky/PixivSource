@@ -172,14 +172,22 @@ function getComment(res) {
     let comments = ""
     let resp = getAjaxJson(urlNovelComments(res.id, 0, 50), true)
     if (resp.error === true) return comments
+
     resp.body.comments.forEach(comment => {
+        if (comment.comment === "") {
+            comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
+        }
         comments += `${comment.userName}：${comment.comment}(${comment.id})\n`
 
+        // 获取评论回复
         if (comment.hasReplies === true) {
             let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1), true)
             if (resp.error === true) return comments
 
             resp.body.comments.reverse().forEach(reply => {
+                if (reply.comment === "") {
+                    reply.comment = `<img src="${urlStampUrl(reply.stampId)}">`
+                }
                 comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}(${reply.id})\n`
             })
             comments += "——————————\n"
