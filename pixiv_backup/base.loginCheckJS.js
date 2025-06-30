@@ -69,6 +69,8 @@ function publicFunc() {
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
         settings.SHOW_COMMENTS = false        // 正文：显示评论
+    } else {
+        settings.SEARCH_AUTHOR = true        // 搜索：默认搜索作者名称
     }
     settings.IS_LEGADO = !isSourceRead()
     settings.IS_SOURCE_READ = isSourceRead()
@@ -77,7 +79,7 @@ function publicFunc() {
     cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
 
     u.debugFunc = (func) => {
-        if (util.settings.DEBUG) {
+        if (util.settings.DEBUG === true) {
             func()
         }
     }
@@ -89,7 +91,8 @@ function publicFunc() {
 
     u.checkStatus = function (status) {
         if (status === true) return "✅ 已"
-        else return "❌ 未"
+        else if (status === false) return "❌ 未"
+        else return "✅ 已"
     }
 
     u.login = function() {
@@ -209,21 +212,20 @@ function publicFunc() {
 
         msg = util.checkStatus(util.settings.SHOW_LIKE_NOVELS).replace("未","不")
         java.log(`${msg}显示收藏小说`)
-        if (!util.settings.SHOW_LIKE_NOVELS) {
+        if (util.settings.SHOW_LIKE_NOVELS === false) {
             novels = novels.filter(novel => !likeNovels.includes(Number(novel.id)))
             novels1 = novels.map(novel => novel.id)
+            java.log(`⏬ 过滤收藏：过滤前${novels0.length}；过滤后${novels1.length}`)
         }
 
         msg = util.checkStatus(util.settings.SHOW_WATCHED_SERIES).replace("未","不")
         java.log(`${msg}显示追更系列`)
-        if (!util.settings.SHOW_WATCHED_SERIES) {
+        if (util.settings.SHOW_WATCHED_SERIES === false) {
             novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
             novels2 = novels.map(novel => novel.id)
+            java.log(`⏬ 过滤收藏：过滤前${novels0.length}；过滤后${novels2.length}`)
         }
 
-        if (!(util.settings.SHOW_LIKE_NOVELS && util.settings.SHOW_WATCHED_SERIES === true)) {
-            java.log(`⏬ 过滤收藏/追更：过滤前${novels0.length}；过滤后${novels2.length}`)
-        }
         util.debugFunc(() => {
             // java.log(JSON.stringify(novels0))
             java.log(JSON.stringify(novels0.length))
@@ -612,9 +614,9 @@ function syncBlockAuthorList() {
     })
     cache.put("blockAuthorList", JSON.stringify(authors2))
     if (authors1 === undefined || authors1 === null || authors1.length !== authors2.length) {
-        java.log("屏蔽作者：已将源变量同步至缓存")
+        java.log("🚫 屏蔽作者：已将源变量同步至缓存")
     } else if (authors2.length === 0) {
-        java.log("屏蔽作者：已清空屏蔽作者")
+        java.log("🚫 屏蔽作者：已清空屏蔽作者")
     }
 }
 

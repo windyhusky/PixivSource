@@ -1,5 +1,15 @@
 @js:
 var util = objParse(String(java.get("util")))
+let emoji = {
+    "normal": 101, "surprise": 102, "series": 103, "heaven": 104, "happy": 105,
+    "excited": 106, "sing": 107, "cry": 108, "normal2": 201, "shame2": 202,
+    "love2": 203, "interesting2": 204, "blush2": 205, "fire2": 206, "angry2": 207,
+    "shine2": 208, "panic2": 209, "normal3": 301, "satisfaction3": 302, "surprise3": 303,
+    "smile3": 304, "shock3": 305, "gaze3": 306, "wink3": 307, "happy3": 308,
+    "excited3": 309, "love3": 310, "normal4": 401, "surprise4": 402, "series4": 403,
+    "love4": 404, "shine4": 405, "sweet4": 406, "shame4": 407, "sleep4": 408,
+    "heart": 501, "teardrop": 502, "star": 503
+}
 
 function objParse(obj) {
     return JSON.parse(obj, (n, v) => {
@@ -172,14 +182,30 @@ function getComment(res) {
     let comments = ""
     let resp = getAjaxJson(urlNovelComments(res.id, 0, 50), true)
     if (resp.error === true) return comments
+
     resp.body.comments.forEach(comment => {
+        if (comment.comment === "") {
+            comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
+        }
+        if (Object.keys(emoji).includes(comment.comment.slice(1, -1))) {
+            comment.emojiId = emoji[comment.comment.slice(1, -1)]
+            comment.comment = `<img src="${urlEmojiUrl(comment.emojiId)}">`
+        }
         comments += `${comment.userName}：${comment.comment}(${comment.id})\n`
 
+        // 获取评论回复
         if (comment.hasReplies === true) {
             let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1), true)
             if (resp.error === true) return comments
 
             resp.body.comments.reverse().forEach(reply => {
+                if (reply.comment === "") {
+                    reply.comment = `<img src="${urlStampUrl(reply.stampId)}">`
+                }
+                if (Object.keys(emoji).includes(reply.comment.slice(1, -1))) {
+                    reply.emojiId = emoji[reply.comment.slice(1, -1)]
+                    reply.comment = `<img src="${urlEmojiUrl(reply.emojiId)}">`
+                }
                 comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}(${reply.id})\n`
             })
             comments += "——————————\n"

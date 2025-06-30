@@ -48,9 +48,9 @@ var seriesSet = {
 
 function getUserNovels() {
     if (!util.isLogin()) {
-        sleepToast("⚠️ 当前未登录账号\n\n请登录 Pixiv 账号", 1.5)
+        sleepToast("👤 搜索作者\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
         util.removeCookie(); util.login()
-        sleepToast("登录成功后，请重新搜索", 2)
+        sleepToast("👤 搜索作者\n\n登录成功后，请重新搜索", 2)
         return []
     }
 
@@ -58,10 +58,11 @@ function getUserNovels() {
     let username = String(java.get("keyword"))
     let page = Number(java.get("page"))
 
+    // cache.delete(username)
     let userid = cache.get(username)
     if (userid !== undefined && userid !== null) {
         uidList = [userid]
-        java.log(`缓存作者ID：${userid}`)
+        java.log(`👤 缓存作者ID：${userid}`)
     } else {
         html = java.ajax(urlSearchUser(username))
         // java.log(html)
@@ -78,7 +79,7 @@ function getUserNovels() {
         uidList = match.map(v => {
             return v.match(regNumber)[0]
         })
-        java.log(JSON.stringify(uidList))
+        java.log(`👤 获取作者ID：${JSON.stringify(uidList)}`)
     }
 
     let tempUids = []
@@ -96,7 +97,7 @@ function getUserNovels() {
         // java.log(`${uid}-${novelIds.length}`)
         if (novelIds.length >= 1) tempUids.push(uid)
         if (tempUids.length === 3) {
-            java.log(`作者ID：${JSON.stringify(tempUids)}`)
+            java.log(`👤 显示作者ID：${JSON.stringify(tempUids)}`)
             break
         }
 
@@ -252,7 +253,7 @@ function novelFilter(novels) {
     } else {
         novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
-        if (!util.settings.FAST) novels = novels.concat(getUserNovels())
+        if (util.settings.SEARCH_AUTHOR) novels = novels.concat(getUserNovels())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))

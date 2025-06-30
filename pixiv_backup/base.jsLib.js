@@ -134,6 +134,12 @@ function urlIllustOriginal(illustId, order) {
     }).body.urls.original
     return urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
+function urlEmojiUrl(emojiId) {
+    return urlCoverUrl(`https://s.pximg.net/common/images/emoji/${emojiId}.png`)
+}
+function urlStampUrl(stampId) {
+    return urlCoverUrl(`https://s.pximg.net/common/images/stamp/generated-stamps/${stampId}_s.jpg`)
+}
 
 function urlMessageThreadLatest(max) {
     if (max === undefined || max <= 5) max = 5
