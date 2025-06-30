@@ -1,3 +1,5 @@
+let cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
+
 function getFromCache(object) {
     return JSON.parse(cache.get(object))
 }
@@ -122,6 +124,10 @@ function novelBookmarkAdd(restrict=0) {
         let likeNovels = getFromCache("likeNovels")
         likeNovels.push(Number(novel.id))
         cache.put("likeNovels", JSON.stringify(likeNovels))
+
+        let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
+        novelObj.body.isBookmark = true
+        cache.put(urlNovelDetailed(novel.id), JSON.stringify(novelObj), cacheSaveSeconds)
     }
 }
 
@@ -147,6 +153,10 @@ function novelBookmarkDelete() {
         let likeNovels = getFromCache("likeNovels")
         likeNovels = likeNovels.filter(item => item !== Number(novel.id))
         cache.put("likeNovels", JSON.stringify(likeNovels))
+
+        let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
+        novelObj.body.isBookmark = false
+        cache.put(urlNovelDetailed(novel.id), JSON.stringify(novelObj), cacheSaveSeconds)
     }
 }
 
@@ -165,6 +175,12 @@ function novelsBookmarkDelete(novelIds) {
         let likeNovels = getFromCache("likeNovels")
         likeNovels = likeNovels.filter(item => !novelIds.includes(Number(item)))
         cache.put("likeNovels", JSON.stringify(likeNovels))
+
+        novelIds.forEach(novelId => {
+            let novelObj = getAjaxJson(urlNovelDetailed(novelId))
+            novelObj.body.isBookmark = false
+            cache.put(urlNovelDetailed(novelId), JSON.stringify(novelObj), cacheSaveSeconds)
+        })
     }
 }
 
