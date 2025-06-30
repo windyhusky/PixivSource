@@ -272,11 +272,12 @@ function publicFunc() {
                 novel.coverUrl = novel.url
                 // novel.createDate = novel.createDate
                 // novel.updateDate = novel.updateDate
-                novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
-                if (novel.isBookmark === true) {
+                if (novel.bookmarkData) {
+                    novel.isBookmark = true
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
                     likeNovels.push(Number(novel.id))
                 }
+
             } else {  // 搜索系列
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
@@ -305,8 +306,8 @@ function publicFunc() {
                 novel.coverUrl = novel.userNovels[`${novel.id}`].url
                 // novel.createDate = novel.createDate
                 novel.updateDate = novel.uploadDate
-                novel.isBookmark = (novel.bookmarkData !== undefined && novel.bookmarkData !== null)
-                if (novel.isBookmark === true) {
+                if (novel.bookmarkData) {
+                    novel.isBookmark = true
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
                     likeNovels.push(Number(novel.id))
                 }
@@ -366,8 +367,8 @@ function publicFunc() {
                 try {
                     firstNovel = getAjaxJson(urlNovelDetailed(series.firstNovelId)).body
                     novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
-                    firstNovel.isBookmark = (firstNovel.bookmarkData !== undefined && firstNovel.bookmarkData !== null)
-                    if (firstNovel.isBookmark === true) {
+                    if (firstNovel.bookmarkData) {
+                        firstNovel.isBookmark = true
                         cache.put(`collect${firstNovel.id}`, firstNovel.bookmarkData.id)
                         likeNovels.push(Number(firstNovel.id))
                     }

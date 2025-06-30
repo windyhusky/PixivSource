@@ -19,22 +19,22 @@ function getNovelInfo(res) {
     novel.userId = res.userId
     novel.userName = res.userName
 
-    if (!!res.bookmarkData) {
+    if (res.bookmarkData) {
         novel.isBookmark = true
         cache.put(`collect${novel.id}`, res.bookmarkData.id)
-        util.saveNovels("likeNovels", [novel.id])
+        util.saveNovels("likeNovels", [Number(novel.id)])
     } else {
         novel.isBookmark = false
     }
 
-    if (!!res.seriesNavData) {
+    if (res.seriesNavData) {
         novel.seriesId = Number(res.seriesNavData.seriesId)
         novel.seriesTitle = res.seriesNavData.title
         novel.isWatched = res.seriesNavData.isWatched
-        util.saveNovels("watchedSeries", [novel.seriesId])
+        util.saveNovels("watchedSeries", [Number(novel.seriesId)])
     } else {
         novel.seriesId = null
-        novel.seriesTitle = "🈚️"
+        novel.seriesTitle = ""
         novel.isWatched = false
     }
 
@@ -54,6 +54,7 @@ function getNovelInfo(res) {
 
 function getContent(res) {
     getNovelInfo(res)  // 放入信息以便登陆界面使用
+    // charpterReading()  // 输出章节信息
     let content = String(res.content)
     // let content = "undefined"
     if (content.includes("undefined")) {
@@ -170,19 +171,18 @@ function getContent(res) {
 function getComment(res) {
     let comments = ""
     let resp = getAjaxJson(urlNovelComments(res.id, 0, 50), true)
-    if (resp.error === true){
-        return ""
-    }
-    resp.body.comments.forEach(comment =>{
+    if (resp.error === true) return comments
+    resp.body.comments.forEach(comment => {
         comments += `${comment.userName}：${comment.comment}(${comment.id})\n`
+
         if (comment.hasReplies === true) {
             let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1), true)
-            if (resp.error === true) {
-                return ""
-            }
-            resp.body.comments.reverse().forEach(reply =>{
+            if (resp.error === true) return comments
+
+            resp.body.comments.reverse().forEach(reply => {
                 comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}(${reply.id})\n`
             })
+            comments += "——————————\n"
         }
     })
     if (comments) {
@@ -195,6 +195,7 @@ function checkContent() {
     let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
     if (latestMsg.error === true) {
         java.log(JSON.stringify(latestMsg))
+
     } else if (latestMsg.body.total >= 1) {
         let msg = latestMsg.body.message_threads.filter(item => item.thread_name === "pixiv事務局")[0]
         if (msg === undefined) {
