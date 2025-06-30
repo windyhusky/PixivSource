@@ -228,6 +228,10 @@ function seriesWatch() {
         let watchedSeries = getFromCache("watchedSeries")
         watchedSeries.push(Number(novel.seriesId))
         cache.put("watchedSeries", JSON.stringify(watchedSeries))
+
+        let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+        novelObj.body.isWatched = true
+        cache.put(urlSeriesDetailed(novel.seriesId), JSON.stringify(novelObj), cacheSaveSeconds)
     }
 }
 
@@ -245,6 +249,10 @@ function seriesUnWatch() {
         let watchedSeries = getFromCache("watchedSeries")
         watchedSeries = watchedSeries.filter(item => item !== Number(novel.seriesId))
         cache.put("watchedSeries", JSON.stringify(watchedSeries))
+
+        let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+        novelObj.body.isWatched = false
+        cache.put(urlSeriesDetailed(novel.seriesId), JSON.stringify(novelObj), cacheSaveSeconds)
     }
 }
 
@@ -343,6 +351,8 @@ function novelCommentAdd() {
         let comment = comment.replace(";", "；")
         let commentText = comment.split("；")[0].trim()
         let commentId = comment.split("；")[1].trim()
+
+        sleepToast(Number.isInteger(commentId))
         if (Number.isInteger(commentId)) {
             resp = getPostBody(
                 "https://www.pixiv.net/novel/rpc/post_comment.php",
