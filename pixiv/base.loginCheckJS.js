@@ -79,7 +79,7 @@ function publicFunc() {
     cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
 
     u.debugFunc = (func) => {
-        if (util.settings.DEBUG) {
+        if (util.settings.DEBUG === true) {
             func()
         }
     }
