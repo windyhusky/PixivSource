@@ -365,15 +365,21 @@ function novelCommentAdd() {
     else sleepToast(`✅ 发送评论\n\n✅ 已在【${novel.title}】发布评论：\n${comment}`)
 }
 
-function getNovelCommentID(novelId, comment) {
+function getNovelCommentID(novelId, commentText) {
+    let list = [], uid = String(getFromCache("pixiv:uid"))
     let resp = getAjaxJson(urlNovelComments(novelId, 0, 50), true)
-    let list = resp.body.comments.filter(item =>
-        (item.userId === String(getFromCache("pixiv:uid")) && item.comment === comment)
-    )
+    resp.body.comments.forEach(comment => {
+        if (comment.userId === uid && comment.comment === commentText) list.push(comment.id)
+
+        if (comment.hasReplies === true) {
+            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1), true)
+            resp.body.comments.forEach(comment => {
+                if (comment.userId === uid && comment.comment === commentText) list.push(comment.id)
+            })
+        }
+    })
     // java.log(JSON.stringify(list))
-    // let commentID = list.map(item => item.id)
-    // java.log(JSON.stringify(commentIDs))
-    return list.map(item => item.id)
+    return list
 }
 
 function novelCommentDelete() {
