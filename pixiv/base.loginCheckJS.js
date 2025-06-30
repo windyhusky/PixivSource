@@ -69,6 +69,8 @@ function publicFunc() {
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
         settings.SHOW_COMMENTS = false        // 正文：显示评论
+    } else {
+        settings.SEARCH_AUTHOR = true        // 搜索：默认搜索作者名称
     }
     settings.IS_LEGADO = !isSourceRead()
     settings.IS_SOURCE_READ = isSourceRead()

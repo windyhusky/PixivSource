@@ -252,7 +252,7 @@ function novelFilter(novels) {
     } else {
         novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
-        if (!util.settings.FAST) novels = novels.concat(getUserNovels())
+        if (util.settings.SEARCH_AUTHOR) novels = novels.concat(getUserNovels())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
