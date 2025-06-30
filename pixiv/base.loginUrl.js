@@ -381,13 +381,15 @@ function novelCommentDelete() {
     let novelId = novel.id
     let comment = String(result.get("发送评论")).trim()
     if (comment === "") {
-        return sleepToast(`🗑 删除评论\n⚠️ 请输入需要删除的评论\n\n📌 当前章节：${novel.title}\n\n如非当前章节，请刷新正文`)
+        return sleepToast("🗑 删除评论\n⚠️ 请输入需要删除的评论\n\n" +
+            `📌 当前章节：${novel.title}\n\n如非当前章节，请刷新正文`)
     }
+
 
     let commentIDs = getNovelCommentID(novelId, comment)
     java.log(JSON.stringify(commentIDs))
     if (commentIDs.length === 0) {
-        return sleepToast(`⚠️ 未能找到这条评论\n请检查是否有错别字或标点符号是否一致`)
+        return sleepToast(`🗑 删除评论\n\n⚠️ 未能找到这条评论\n请检查是否有错别字或标点符号是否一致`)
     }
 
     commentIDs.forEach(commentID =>{
@@ -396,8 +398,8 @@ function novelCommentDelete() {
             `i_id=${novelId}&del_id=${commentID}`
         )
         // java.log(JSON.stringify(resp))
-        if (resp.error === true) sleepToast("⚠️ 评论删除失败", 1)
-        else sleepToast(`✅ 已在【${novel.title}】删除评论：\n${comment}`)
+        if (resp.error === true) sleepToast("🗑 删除评论\n\n⚠️ 评论删除失败", 1)
+        else sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${comment}`)
     })
 }
 
