@@ -377,25 +377,27 @@ function getNovelCommentID(novelId, comment) {
 }
 
 function novelCommentDelete() {
-    let novel = getNovel()
-    let novelId = novel.id
+    let commentIDs, novel = getNovel()
     let comment = String(result.get("发送评论")).trim()
     if (comment === "") {
-        return sleepToast("🗑 删除评论\n⚠️ 请输入需要删除的评论\n\n" +
-            `📌 当前章节：${novel.title}\n\n如非当前章节，请刷新正文`)
+        return sleepToast(`🗑 删除评论\n⚠️ 请输入需要删除的【评论ID】\n或输入需要删除的【评论内容】\n\n📌 当前章节：${novel.title}\n\n如非当前章节，请刷新正文`)
     }
 
-
-    let commentIDs = getNovelCommentID(novelId, comment)
-    java.log(JSON.stringify(commentIDs))
-    if (commentIDs.length === 0) {
-        return sleepToast(`🗑 删除评论\n\n⚠️ 未能找到这条评论\n请检查是否有错别字或标点符号是否一致`)
+    let matched = comment.match(RegExp(/\d{8,}/))
+    if (matched) {
+        commentIDs = [matched[0]]
+    } else {
+        commentIDs = getNovelCommentID(novel.id, comment)
+        java.log(JSON.stringify(commentIDs))
+        if (commentIDs.length === 0) {
+            return sleepToast(`🗑 删除评论\n\n⚠️ 未能找到这条评论\n请检查是否有错别字或标点符号是否一致`)
+        }
     }
 
     commentIDs.forEach(commentID =>{
         let resp = getPostBody(
             "https://www.pixiv.net/novel/rpc_delete_comment.php",
-            `i_id=${novelId}&del_id=${commentID}`
+            `i_id=${novel.id}&del_id=${commentID}`
         )
         // java.log(JSON.stringify(resp))
         if (resp.error === true) sleepToast("🗑 删除评论\n\n⚠️ 评论删除失败", 1)
