@@ -612,9 +612,9 @@ function syncBlockAuthorList() {
     })
     cache.put("blockAuthorList", JSON.stringify(authors2))
     if (authors1 === undefined || authors1 === null || authors1.length !== authors2.length) {
-        java.log("屏蔽作者：已将源变量同步至缓存")
+        java.log("🚫 屏蔽作者：已将源变量同步至缓存")
     } else if (authors2.length === 0) {
-        java.log("屏蔽作者：已清空屏蔽作者")
+        java.log("🚫 屏蔽作者：已清空屏蔽作者")
     }
 }
 
