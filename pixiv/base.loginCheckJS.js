@@ -91,7 +91,8 @@ function publicFunc() {
 
     u.checkStatus = function (status) {
         if (status === true) return "✅ 已"
-        else return "❌ 未"
+        else if (status === false) return "❌ 未"
+        else if (status === undefined) return "🈚️ 无设置："
     }
 
     u.login = function() {
