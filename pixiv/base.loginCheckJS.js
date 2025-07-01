@@ -238,16 +238,18 @@ function publicFunc() {
 
     // 收藏小说/追更系列 写入缓存
     u.saveNovels = function(listInCacheName, list) {
-        let listInCache = JSON.parse(cache.get(listInCacheName))
-        if (listInCache === undefined || listInCache === null) listInCache = []
+        if (util.settings.IS_LEGADO) {
+            let listInCache = JSON.parse(cache.get(listInCacheName))
+            if (listInCache === undefined || listInCache === null) listInCache = []
 
-        listInCache = listInCache.concat(list)
-        listInCache = Array.from(new Set(listInCache))
-        cache.put(listInCacheName , JSON.stringify(listInCache))
+            listInCache = listInCache.concat(list)
+            listInCache = Array.from(new Set(listInCache))
+            cache.put(listInCacheName , JSON.stringify(listInCache))
 
-        if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
-        else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
-        java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
+            if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
+            else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
+            java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
+        }
     }
 
     // 处理 novels 列表
