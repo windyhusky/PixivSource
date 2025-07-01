@@ -89,7 +89,7 @@ function publicFunc() {
         return cookie.includes("first_visit_datetime")
     }
 
-    u.checkStatus = function (status) {
+    u.checkStatus = function(status) {
         if (status === true) return "✅ 已"
         else if (status === false) return "❌ 未"
         else if (status === undefined) return "🈚️ 无设置："
@@ -203,7 +203,7 @@ function publicFunc() {
 
     u.novelFilter = function(novels) {
         let likeNovels = [], watchedSeries = []
-        let novels0 = [], novels1 = [], novels2 = []
+        let novels0 = [], novels1 = [], novels2 = [], novels3 = []
         if (util.settings.IS_LEGADO) {
             likeNovels = JSON.parse(cache.get("likeNovels"))
             watchedSeries = JSON.parse(cache.get("watchedSeries"))
@@ -223,7 +223,16 @@ function publicFunc() {
         if (util.settings.SHOW_WATCHED_SERIES === false) {
             novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
             novels2 = novels.map(novel => novel.id)
-            java.log(`⏬ 过滤收藏：过滤前${novels0.length}；过滤后${novels2.length}`)
+            if (novels1.length >= 1) novels0 = novels1
+            java.log(`⏬ 过滤追更：过滤前${novels0.length}；过滤后${novels2.length}`)
+        }
+
+        novels3 = novels.map(novel => novel.id)
+        if (novels0.length >= 1 && novels3.length === 0) {
+            let msg = `⏬ 过滤小说\n⚠️ 过滤后无结果\n\n请根据需要\n`
+            if (util.settings.SHOW_LIKE_NOVELS === false) msg += "开启显示收藏小说\n"
+            if (util.settings.SHOW_WATCHED_SERIES === false) msg += "开启显示追更系列"
+            sleepToast(msg, 1)
         }
 
         util.debugFunc(() => {
