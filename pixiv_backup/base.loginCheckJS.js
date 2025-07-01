@@ -91,8 +91,7 @@ function publicFunc() {
 
     u.checkStatus = function (status) {
         if (status === true) return "✅ 已"
-        else if (status === false) return "❌ 未"
-        else return "✅ 已"
+        else return "❌ 未"
     }
 
     u.login = function() {
@@ -278,7 +277,7 @@ function publicFunc() {
                     novel.isBookmark = true
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
                     likeNovels.push(Number(novel.id))
-                }
+                } else novel.isBookmark = false
 
             } else {  // 搜索系列
                 if (novel.isOneshot === true) {
@@ -312,7 +311,8 @@ function publicFunc() {
                     novel.isBookmark = true
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
                     likeNovels.push(Number(novel.id))
-                }
+                } else novel.isBookmark = false
+
                 if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
                     novel.seriesId = novel.seriesNavData.seriesId
                     novel.seriesTitle = novel.seriesNavData.title
