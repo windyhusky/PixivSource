@@ -40,9 +40,13 @@ function removeCookie() {
 // https://github.com/Ocrosoft/PixivPreviewer
 // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
 function getCsrfToken() {
-    let csfrToken = getWebviewJson("https://www.pixiv.net/", html => {
-        return JSON.stringify(html.match(/token\\":\\"([a-z0-9]{32})/)[1])
-    })
+    let csfrToken
+    let html = java.webView(null, "https://www.pixiv.net/", null)
+    try {
+        csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+    } catch (e) {
+        csfrToken = null
+    }
     // java.log(csfrToken)
     cache.put("csfrToken", csfrToken)  // 与登录设备有关
     return csfrToken
