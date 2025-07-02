@@ -76,7 +76,7 @@ function publicFunc() {
     settings.IS_SOURCE_READ = isSourceRead()
     settings.IS_BACKUP_SOURCE = isBackupSource()
     u.settings = settings
-    cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
+    putInCache("pixivSettings", settings)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
@@ -579,7 +579,7 @@ function getHeaders() {
         "x-csrf-token": cache.get("csfrToken"),
         "Cookie": cache.get("pixivCookie")
     }
-    cache.put("headers", JSON.stringify(headers))
+    putInCache("headers", headers)
     return headers
 }
 
@@ -601,7 +601,7 @@ function syncBlockAuthorList() {
         java.log(`屏蔽作者：缓存　：${JSON.stringify(authors1)}`)
         java.log(`屏蔽作者：源变量：${JSON.stringify(authors2)}`)
     })
-    cache.put("blockAuthorList", JSON.stringify(authors2))
+    putInCache("blockAuthorList", authors2)
     if (authors1 === null || authors1.length !== authors2.length) {
         java.log("🚫 屏蔽作者：已将源变量同步至缓存")
     } else if (authors2.length === 0) {
