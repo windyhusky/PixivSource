@@ -546,20 +546,6 @@ function getPixivUid() {
     }
 }
 
-function getWebViewUA() {
-    let userAgent = cache.get("userAgent")
-    if (userAgent === undefined || userAgent === null) {
-        if (isSourceRead()) {
-            userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-        } else {
-            userAgent = String(java.getUserAgent())
-        }
-        java.log(userAgent)
-        cache.put("userAgent", userAgent)
-    }
-    return String(userAgent)
-}
-
 function getHeaders() {
     let headers = {
         "accept": "application/json",

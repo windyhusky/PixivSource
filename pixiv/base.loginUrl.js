@@ -1,11 +1,3 @@
-function getWebViewUA() {
-    let userAgent = String(java.getWebViewUA())
-    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
-        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-    }
-    return String(userAgent)
-}
-
 function isLogin() {
     let cookie = String(java.getCookie("https://www.pixiv.net/", null))
     return cookie.includes("first_visit_datetime")
