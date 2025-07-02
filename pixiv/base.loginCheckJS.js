@@ -248,18 +248,16 @@ function publicFunc() {
 
     // 收藏小说/追更系列 写入缓存
     u.saveNovels = function(listInCacheName, list) {
-        if (util.settings.IS_LEGADO) {
-            let listInCache = JSON.parse(cache.get(listInCacheName))
-            if (listInCache === undefined || listInCache === null) listInCache = []
+        let listInCache = getFromCache(listInCacheName)
+        if (listInCache === null) listInCache = []
 
-            listInCache = listInCache.concat(list)
-            listInCache = Array.from(new Set(listInCache))
-            cache.put(listInCacheName , JSON.stringify(listInCache))
+        listInCache = listInCache.concat(list)
+        listInCache = Array.from(new Set(listInCache))
+        cache.put(listInCacheName, JSON.stringify(listInCache))
 
-            if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
-            else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
-            java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
-        }
+        if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
+        else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
+        java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
     }
 
     // 处理 novels 列表
@@ -625,7 +623,7 @@ function syncBlockAuthorList() {
         java.log(`屏蔽作者：源变量：${JSON.stringify(authors2)}`)
     })
     cache.put("blockAuthorList", JSON.stringify(authors2))
-    if (authors1 === undefined || authors1 === null || authors1.length !== authors2.length) {
+    if (authors1 === null || authors1.length !== authors2.length) {
         java.log("🚫 屏蔽作者：已将源变量同步至缓存")
     } else if (authors2.length === 0) {
         java.log("🚫 屏蔽作者：已清空屏蔽作者")
