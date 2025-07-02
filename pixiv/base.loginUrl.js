@@ -1,9 +1,3 @@
-let cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
-
-function getFromCache(object) {
-    return JSON.parse(cache.get(object))
-}
-
 function getWebViewUA() {
     let userAgent = String(java.getWebViewUA())
     if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
