@@ -121,7 +121,7 @@ function novelBookmarkAdd(restrict=0) {
 
         let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
         novelObj.body.isBookmark = true
-        cache.put(urlNovelDetailed(novel.id), JSON.stringify(novelObj), cacheSaveSeconds)
+        putInCache(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
     }
 }
 
@@ -150,7 +150,7 @@ function novelBookmarkDelete() {
 
         let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
         novelObj.body.isBookmark = false
-        cache.put(urlNovelDetailed(novel.id), JSON.stringify(novelObj), cacheSaveSeconds)
+        putInCache(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
     }
 }
 
@@ -173,7 +173,7 @@ function novelsBookmarkDelete(novelIds) {
         novelIds.forEach(novelId => {
             let novelObj = getAjaxJson(urlNovelDetailed(novelId))
             novelObj.body.isBookmark = false
-            cache.put(urlNovelDetailed(novelId), JSON.stringify(novelObj), cacheSaveSeconds)
+            putInCache(urlNovelDetailed(novelId), novelObj, cacheSaveSeconds)
         })
     }
 }
@@ -225,7 +225,7 @@ function seriesWatch() {
 
         let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
         novelObj.body.isWatched = true
-        cache.put(urlSeriesDetailed(novel.seriesId), JSON.stringify(novelObj), cacheSaveSeconds)
+        putInCache(urlSeriesDetailed(novel.seriesId), novelObj, cacheSaveSeconds)
     }
 }
 
@@ -246,7 +246,7 @@ function seriesUnWatch() {
 
         let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
         novelObj.body.isWatched = false
-        cache.put(urlSeriesDetailed(novel.seriesId), JSON.stringify(novelObj), cacheSaveSeconds)
+        putInCache(urlSeriesDetailed(novel.seriesId), novelObj, cacheSaveSeconds)
     }
 }
 
