@@ -6,12 +6,6 @@ function getWebViewUA() {
     return String(userAgent)
 }
 
-function getNovel() {
-    let novel = source.getLoginInfoMap()
-    if (novel === undefined) novel = getFromCache("novel")
-    return novel
-}
-
 function isLogin() {
     let cookie = String(java.getCookie("https://www.pixiv.net/", null))
     return cookie.includes("first_visit_datetime")
@@ -80,6 +74,12 @@ function getCookie() {
         sleepToast("未登录账号(pixivCookie)")
         return null
     }
+}
+
+function getNovel() {
+    let novel = source.getLoginInfoMap()
+    if (novel === undefined) novel = getFromCache("novel")
+    return novel
 }
 
 function getPostBody(url, body, headers) {
