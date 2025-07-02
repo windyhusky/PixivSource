@@ -16,7 +16,7 @@ function isBackupSource() {
 // 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
 // 可用 java.startBrowser() 不可用 java.startBrowserAwaitAwait
-// 可用 source.bookSourceName source.getVariable() 等
+// 可用 source.bookSourceName source.getVariable() source.setVariable()等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 // 不能读写源变量
 function isSourceRead() {
@@ -43,7 +43,7 @@ function publicFunc() {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
         // cache.delete("pixivSettings")
-        settings = JSON.parse(cache.get("pixivSettings"))
+        settings = getFromCache("pixivSettings")
     }
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
@@ -76,7 +76,7 @@ function publicFunc() {
     settings.IS_SOURCE_READ = isSourceRead()
     settings.IS_BACKUP_SOURCE = isBackupSource()
     u.settings = settings
-    cache.put("pixivSettings", JSON.stringify(settings))  // 设置写入缓存
+    putInCache("pixivSettings", settings)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
@@ -84,14 +84,10 @@ function publicFunc() {
         }
     }
 
-    u.isLogin = function() {
-        let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-        return cookie.includes("first_visit_datetime")
-    }
-
-    u.checkStatus = function (status) {
+    u.checkStatus = function(status) {
         if (status === true) return "✅ 已"
-        else return "❌ 未"
+        else if (status === false) return "❌ 未"
+        else if (status === undefined) return "🈚️ 无设置："
     }
 
     u.login = function() {
@@ -172,26 +168,8 @@ function publicFunc() {
 
     // 屏蔽作者
     u.authorFilter = function(novels) {
-        let authors = []
-        if (util.settings.IS_LEGADO) {
-            authors = JSON.parse(cache.get("blockAuthorList"))
-
-        } else if (util.settings.IS_SOURCE_READ) {
-            // authors = cache.get("blockAuthorList")  // 源阅无数据返回 undefined
-            // try {
-            //     if (typeof authors !== "undefined") {
-            //         authors = JSON.parse(authors)
-            //         java.log(authors)
-            //         java.log(typeof authors)
-            //     } else authors = null
-            // } catch (e) {
-            //     authors = []
-            //     java.log("屏蔽作者 JSON Parse Error")
-            //     java.log(e)
-            // }
-        }
-
-        if (authors !== undefined && authors !== null && authors.length >= 0) {
+        let authors = getFromCache("blockAuthorList")
+        if (authors !== null && authors.length >= 0) {
             java.log(`🚫 屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
                 novels = novels.filter(novel => novel.userId !== String(author))
@@ -201,13 +179,10 @@ function publicFunc() {
     }
 
     u.novelFilter = function(novels) {
-        let likeNovels = [], watchedSeries = []
-        let novels0 = [], novels1 = [], novels2 = []
-        if (util.settings.IS_LEGADO) {
-            likeNovels = JSON.parse(cache.get("likeNovels"))
-            watchedSeries = JSON.parse(cache.get("watchedSeries"))
-        }
-        novels0 = novels.map(novel => novel.id)
+        let novels1 = [], novels2 = [], msg
+        let likeNovels = getFromCache("likeNovels")
+        let watchedSeries = getFromCache("watchedSeries")
+        let novels0 = novels.map(novel => novel.id)
 
         msg = util.checkStatus(util.settings.SHOW_LIKE_NOVELS).replace("未","不")
         java.log(`${msg}显示收藏小说`)
@@ -222,7 +197,16 @@ function publicFunc() {
         if (util.settings.SHOW_WATCHED_SERIES === false) {
             novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
             novels2 = novels.map(novel => novel.id)
-            java.log(`⏬ 过滤收藏：过滤前${novels0.length}；过滤后${novels2.length}`)
+            if (novels1.length >= 1) novels0 = novels1
+            java.log(`⏬ 过滤追更：过滤前${novels0.length}；过滤后${novels2.length}`)
+        }
+
+        let novels3 = novels.map(novel => novel.id)
+        if (novels0.length >= 1 && novels3.length === 0) {
+            let msg = `⏬ 过滤小说\n⚠️ 过滤后无结果\n\n请根据需要\n`
+            if (util.settings.SHOW_LIKE_NOVELS === false) msg += "开启显示收藏小说\n"
+            if (util.settings.SHOW_WATCHED_SERIES === false) msg += "开启显示追更系列"
+            sleepToast(msg, 1)
         }
 
         util.debugFunc(() => {
@@ -238,12 +222,12 @@ function publicFunc() {
 
     // 收藏小说/追更系列 写入缓存
     u.saveNovels = function(listInCacheName, list) {
-        let listInCache = JSON.parse(cache.get(listInCacheName))
-        if (listInCache === undefined || listInCache === null) listInCache = []
+        let listInCache = getFromCache(listInCacheName)
+        if (listInCache === null) listInCache = []
 
         listInCache = listInCache.concat(list)
         listInCache = Array.from(new Set(listInCache))
-        cache.put(listInCacheName , JSON.stringify(listInCache))
+        cache.put(listInCacheName, JSON.stringify(listInCache))
 
         if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
         else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
@@ -428,12 +412,12 @@ function publicFunc() {
             }
 
             if (util.settings.MORE_INFORMATION) {
-                novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
+                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
                 ${collectMsg}\n📖 书名：${novel.title}\n👤 作者：${novel.userName}
                 #️ 标签：${novel.tags}\n⬆️ 上传：${novel.createDate}
                 🔄 更新：${novel.updateDate}\n📄 简介：${novel.description}`
             } else {
-                novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
+                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
                 ${collectMsg}\n⬆️ 上传：${novel.createDate}\n🔄 更新：${novel.updateDate}
                 📄 简介：${novel.description}`
             }
@@ -529,7 +513,7 @@ function checkMessageThread(checkTimes) {
     if (checkTimes === undefined) {
         checkTimes = cache.get("checkTimes")
     }
-    if (checkTimes === 0 && util.isLogin()) {
+    if (checkTimes === 0 && isLogin()) {
         let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
         if (latestMsg.error === true) {
             java.log(JSON.stringify(latestMsg))
@@ -557,20 +541,6 @@ function getPixivUid() {
     }
 }
 
-function getWebViewUA() {
-    let userAgent = cache.get("userAgent")
-    if (userAgent === undefined || userAgent === null) {
-        if (isSourceRead()) {
-            userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-        } else {
-            userAgent = String(java.getUserAgent())
-        }
-        java.log(userAgent)
-        cache.put("userAgent", userAgent)
-    }
-    return String(userAgent)
-}
-
 function getHeaders() {
     let headers = {
         "accept": "application/json",
@@ -590,7 +560,7 @@ function getHeaders() {
         "x-csrf-token": cache.get("csfrToken"),
         "Cookie": cache.get("pixivCookie")
     }
-    cache.put("headers", JSON.stringify(headers))
+    putInCache("headers", headers)
     return headers
 }
 
@@ -606,14 +576,14 @@ function getBlockAuthorsFromSource() {
 }
 
 function syncBlockAuthorList() {
-    let authors1 = JSON.parse(cache.get("blockAuthorList"))
+    let authors1 = getFromCache("blockAuthorList")
     let authors2 = getBlockAuthorsFromSource()
     util.debugFunc(() => {
         java.log(`屏蔽作者：缓存　：${JSON.stringify(authors1)}`)
         java.log(`屏蔽作者：源变量：${JSON.stringify(authors2)}`)
     })
-    cache.put("blockAuthorList", JSON.stringify(authors2))
-    if (authors1 === undefined || authors1 === null || authors1.length !== authors2.length) {
+    putInCache("blockAuthorList", authors2)
+    if (authors1 === null || authors1.length !== authors2.length) {
         java.log("🚫 屏蔽作者：已将源变量同步至缓存")
     } else if (authors2.length === 0) {
         java.log("🚫 屏蔽作者：已清空屏蔽作者")
@@ -621,12 +591,9 @@ function syncBlockAuthorList() {
 }
 
 publicFunc()
-if (util.settings.IS_LEGADO) {
-    syncBlockAuthorList()
-}
-
+syncBlockAuthorList()
 if (result.code() === 200) {
-    if (isBackupSource() && (!util.isLogin)) {
+    if (isBackupSource() && !isLogin()) {
         util.getCsrfToken()
     }
     getPixivUid(); getWebViewUA(); util.getCookie(); getHeaders()

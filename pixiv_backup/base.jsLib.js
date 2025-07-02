@@ -10,6 +10,18 @@ function cacheGetAndSet(cache, key, supplyFunc) {
     }
     return JSON.parse(v)
 }
+function putInCache(objectName, object, saveSeconds) {
+    const {java, cache} = this
+    if (object === undefined) object = null
+    if (saveSeconds === undefined) saveSeconds = 0
+    cache.put(objectName, JSON.stringify(object), saveSeconds)
+}
+function getFromCache(objectName) {
+    const {java, cache} = this
+    let object = cache.get(objectName)
+    if (object === undefined) return null  // 兼容源阅
+    return JSON.parse(object)
+}
 
 function isHtmlString(str) {
     return str.startsWith("<!DOCTYPE html>")
@@ -21,6 +33,22 @@ function isJsonString(str) {
         }
     } catch(e) {}
     return false
+}
+
+function getWebViewUA() {
+    const {java, cache} = this
+    let userAgent = String(java.getWebViewUA())
+    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
+        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+    }
+    // java.log(`userAgent=${userAgent}`)
+    cache.put("userAgent", userAgent)
+    return String(userAgent)
+}
+function isLogin() {
+    const {java, cache} = this
+    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+    return cookie.includes("first_visit_datetime")
 }
 
 function getAjaxJson(url, forceUpdate) {
