@@ -86,6 +86,18 @@ function getLikeAuthors() {
     }
 }
 
+function readMe() {
+    sleepToast(`📌 简要教程\n
+1️⃣ 导入书源：点击按钮，导入书源
+导入书源后，需要【在书源内登录账号】
+登录后，可在阅读内部搜索小说
+搜索时，需要开启代理/梯子等\n
+2️⃣ 加入书架：系列目录/小说正文页面
+点击按钮，刷新页面后后可添加至书架
+需要【导入书源】并【在书源内登录账号】\n
+3️⃣ 详细教程：见 🔰 使用指南`)
+}
+
 function startBrowser(url, title) {
     let msg = "", headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
     if (url.includes("https://www.pixiv.net")) {
@@ -103,9 +115,6 @@ function startBrowser(url, title) {
 }
 function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
-}
-function startPixivMessages() {
-    startBrowser("https://www.pixiv.net/messages.php", "查看私信")
 }
 function startGithub() {
     startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
