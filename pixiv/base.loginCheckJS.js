@@ -43,7 +43,7 @@ function publicFunc() {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
         // cache.delete("pixivSettings")
-        settings = JSON.parse(cache.get("pixivSettings"))
+        settings = getFromCache("pixivSettings")
     }
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
@@ -175,7 +175,7 @@ function publicFunc() {
     u.authorFilter = function(novels) {
         let authors = []
         if (util.settings.IS_LEGADO) {
-            authors = JSON.parse(cache.get("blockAuthorList"))
+            authors = getFromCache("blockAuthorList")
 
         } else if (util.settings.IS_SOURCE_READ) {
             // authors = cache.get("blockAuthorList")  // 源阅无数据返回 undefined
@@ -205,8 +205,8 @@ function publicFunc() {
         let likeNovels = [], watchedSeries = []
         let novels0 = [], novels1 = [], novels2 = [], novels3 = []
         if (util.settings.IS_LEGADO) {
-            likeNovels = JSON.parse(cache.get("likeNovels"))
-            watchedSeries = JSON.parse(cache.get("watchedSeries"))
+            likeNovels = getFromCache("likeNovels")
+            watchedSeries = getFromCache("watchedSeries")
         }
         novels0 = novels.map(novel => novel.id)
 
@@ -618,7 +618,7 @@ function getBlockAuthorsFromSource() {
 }
 
 function syncBlockAuthorList() {
-    let authors1 = JSON.parse(cache.get("blockAuthorList"))
+    let authors1 = getFromCache("blockAuthorList")
     let authors2 = getBlockAuthorsFromSource()
     util.debugFunc(() => {
         java.log(`屏蔽作者：缓存　：${JSON.stringify(authors1)}`)
