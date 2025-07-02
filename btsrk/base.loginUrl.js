@@ -77,11 +77,10 @@ function getLikeAuthors() {
                 }
             }
             sleepToast(`❤️ 他人收藏\n✅ 已导入作者数据\n\n${JSON.stringify(authorIds)}\n\n更新发现：发现 - 长按\"Pixiv\" - 刷新 - 查看收藏`, 2)
-            cache.put("pixivLikeAuthors", JSON.stringify(authorIds))
         } else {
-            cache.put("pixivLikeAuthors", JSON.stringify(authorIds))
             sleepToast("❤️ 他人收藏\n\n❎ 已经清空作者数据")
         }
+        putInCache("pixivLikeAuthors", authorIds)
     } catch (e) {
         sleepToast("❤️ 他人收藏\n⚠️ 【订阅源】源变量设置有误\n输入作者ID，一行一个，可添加作者名，保存")
     }
