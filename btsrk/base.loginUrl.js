@@ -13,7 +13,7 @@ function login() {
         getCookie(); getCsrfToken()
         return true
     } else {
-        java.log(resp.code()); sleepToast("⚠️ 登录失败")
+        java.log(resp.code()); sleepToast("🅿️ 登录账号\n\n⚠️ 登录失败")
         return false
     }
 }
@@ -22,7 +22,7 @@ function logout() {
     removeCookie()
     java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
     removeCookie()
-    sleepToast(`已退出当前账号\n退出后请点击右上角的✔️退出\n登录请点击“登录账号”进行登录`)
+    sleepToast(`✅ 已退出当前账号\n\n退出后请点击右上角的 ✔️ 退出\n\n登录请点击【登录账号】进行登录`)
 }
 
 function removeCookie() {
