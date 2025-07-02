@@ -47,7 +47,7 @@ var seriesSet = {
 };
 
 function getUserNovels() {
-    if (!util.isLogin()) {
+    if (!isLogin()) {
         sleepToast("👤 搜索作者\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
         util.removeCookie(); util.login()
         sleepToast("👤 搜索作者\n\n登录成功后，请重新搜索", 2)

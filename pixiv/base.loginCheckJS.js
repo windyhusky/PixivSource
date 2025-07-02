@@ -84,11 +84,6 @@ function publicFunc() {
         }
     }
 
-    u.isLogin = function() {
-        let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-        return cookie.includes("first_visit_datetime")
-    }
-
     u.checkStatus = function(status) {
         if (status === true) return "✅ 已"
         else if (status === false) return "❌ 未"
@@ -417,12 +412,12 @@ function publicFunc() {
             }
 
             if (util.settings.MORE_INFORMATION) {
-                novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
+                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
                 ${collectMsg}\n📖 书名：${novel.title}\n👤 作者：${novel.userName}
                 #️ 标签：${novel.tags}\n⬆️ 上传：${novel.createDate}
                 🔄 更新：${novel.updateDate}\n📄 简介：${novel.description}`
             } else {
-                novel.description = `\n🅿️ 登录：${util.checkStatus(util.isLogin())}登录账号
+                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
                 ${collectMsg}\n⬆️ 上传：${novel.createDate}\n🔄 更新：${novel.updateDate}
                 📄 简介：${novel.description}`
             }
@@ -518,7 +513,7 @@ function checkMessageThread(checkTimes) {
     if (checkTimes === undefined) {
         checkTimes = cache.get("checkTimes")
     }
-    if (checkTimes === 0 && util.isLogin()) {
+    if (checkTimes === 0 && isLogin()) {
         let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
         if (latestMsg.error === true) {
             java.log(JSON.stringify(latestMsg))
@@ -598,7 +593,7 @@ function syncBlockAuthorList() {
 publicFunc()
 syncBlockAuthorList()
 if (result.code() === 200) {
-    if (isBackupSource() && (!util.isLogin)) {
+    if (isBackupSource() && !isLogin()) {
         util.getCsrfToken()
     }
     getPixivUid(); getWebViewUA(); util.getCookie(); getHeaders()

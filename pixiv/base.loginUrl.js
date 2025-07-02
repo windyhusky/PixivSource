@@ -1,8 +1,3 @@
-function isLogin() {
-    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    return cookie.includes("first_visit_datetime")
-}
-
 function login() {
     sleepToast("🔄 正在检测登陆状态，请稍候")
     if (isLogin()) {
