@@ -16,7 +16,7 @@ function isBackupSource() {
 // 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
 // 可用 java.startBrowser() 不可用 java.startBrowserAwaitAwait
-// 可用 source.bookSourceName source.getVariable() 等
+// 可用 source.bookSourceName source.getVariable() source.setVariable()等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 // 不能读写源变量
 function isSourceRead() {
@@ -173,26 +173,8 @@ function publicFunc() {
 
     // 屏蔽作者
     u.authorFilter = function(novels) {
-        let authors = []
-        if (util.settings.IS_LEGADO) {
-            authors = getFromCache("blockAuthorList")
-
-        } else if (util.settings.IS_SOURCE_READ) {
-            // authors = cache.get("blockAuthorList")  // 源阅无数据返回 undefined
-            // try {
-            //     if (typeof authors !== "undefined") {
-            //         authors = JSON.parse(authors)
-            //         java.log(authors)
-            //         java.log(typeof authors)
-            //     } else authors = null
-            // } catch (e) {
-            //     authors = []
-            //     java.log("屏蔽作者 JSON Parse Error")
-            //     java.log(e)
-            // }
-        }
-
-        if (authors !== undefined && authors !== null && authors.length >= 0) {
+        let authors = getFromCache("blockAuthorList")
+        if (authors !== null && authors.length >= 0) {
             java.log(`🚫 屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
                 novels = novels.filter(novel => novel.userId !== String(author))
@@ -628,10 +610,7 @@ function syncBlockAuthorList() {
 }
 
 publicFunc()
-if (util.settings.IS_LEGADO) {
-    syncBlockAuthorList()
-}
-
+syncBlockAuthorList()
 if (result.code() === 200) {
     if (isBackupSource() && (!util.isLogin)) {
         util.getCsrfToken()
