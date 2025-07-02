@@ -117,7 +117,7 @@ function novelBookmarkAdd(restrict=0) {
 
         let likeNovels = getFromCache("likeNovels")
         likeNovels.push(Number(novel.id))
-        cache.put("likeNovels", JSON.stringify(likeNovels))
+        putInCache("likeNovels", likeNovels)
 
         let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
         novelObj.body.isBookmark = true
@@ -146,7 +146,7 @@ function novelBookmarkDelete() {
 
         let likeNovels = getFromCache("likeNovels")
         likeNovels = likeNovels.filter(item => item !== Number(novel.id))
-        cache.put("likeNovels", JSON.stringify(likeNovels))
+        putInCache("likeNovels", likeNovels)
 
         let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
         novelObj.body.isBookmark = false
@@ -168,7 +168,7 @@ function novelsBookmarkDelete(novelIds) {
 
         let likeNovels = getFromCache("likeNovels")
         likeNovels = likeNovels.filter(item => !novelIds.includes(Number(item)))
-        cache.put("likeNovels", JSON.stringify(likeNovels))
+        putInCache("likeNovels", likeNovels)
 
         novelIds.forEach(novelId => {
             let novelObj = getAjaxJson(urlNovelDetailed(novelId))
@@ -221,7 +221,7 @@ function seriesWatch() {
 
         let watchedSeries = getFromCache("watchedSeries")
         watchedSeries.push(Number(novel.seriesId))
-        cache.put("watchedSeries", JSON.stringify(watchedSeries))
+        putInCache("watchedSeries", watchedSeries)
 
         let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
         novelObj.body.isWatched = true
@@ -242,7 +242,7 @@ function seriesUnWatch() {
 
         let watchedSeries = getFromCache("watchedSeries")
         watchedSeries = watchedSeries.filter(item => item !== Number(novel.seriesId))
-        cache.put("watchedSeries", JSON.stringify(watchedSeries))
+        putInCache("watchedSeries", watchedSeries)
 
         let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
         novelObj.body.isWatched = false
@@ -328,7 +328,7 @@ function userBlock() {
         authors.push(Number(novel.userId))
         sleepToast(`🚫 屏蔽作者\n\n✅ 本地已屏蔽【${novel.userName}】\n今后不再显示其小说`)
     }
-    cache.put("blockAuthorList", JSON.stringify(authors))
+    putInCache("blockAuthorList", authors)
     source.setVariable(authors.toString())
     // sleepToast(JSON.stringify(authors))
 }
@@ -541,26 +541,26 @@ function editSettings(object) {
         msg = `${statusMsg(status)}　${settingsName[object]}`
     } else if (object === "FAST") {
         if (settings[object] === true) {
-            cache.put("pixivLastSettings", JSON.stringify(settings))
+            putInCache("pixivLastSettings", settings)
             settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
             settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者
             settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
             settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
             settings.SHOW_COMMENTS = false        // 正文：显示评论
-            cache.put("pixivSettings", JSON.stringify(settings))
+            putInCache("pixivSettings", settings)
             let message = getSettingStatus("FAST")
             msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
         } else {
             settings = getFromCache("pixivLastSettings")
             settings.SEARCH_AUTHOR = true
             settings.FAST = false
-            cache.put("pixivSettings", JSON.stringify(settings))
+            putInCache("pixivSettings", settings)
             let message = getSettingStatus("FAST")
             msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
         }
     }
     sleepToast(msg)
-    cache.put("pixivSettings", JSON.stringify(settings))
+    putInCache("pixivSettings", settings)
 }
 
 function cleanCache() {
