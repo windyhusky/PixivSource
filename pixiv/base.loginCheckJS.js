@@ -202,13 +202,10 @@ function publicFunc() {
     }
 
     u.novelFilter = function(novels) {
-        let likeNovels = [], watchedSeries = []
-        let novels0 = [], novels1 = [], novels2 = [], novels3 = []
-        if (util.settings.IS_LEGADO) {
-            likeNovels = getFromCache("likeNovels")
-            watchedSeries = getFromCache("watchedSeries")
-        }
-        novels0 = novels.map(novel => novel.id)
+        let novels1 = [], novels2 = [], msg
+        let likeNovels = getFromCache("likeNovels")
+        let watchedSeries = getFromCache("watchedSeries")
+        let novels0 = novels.map(novel => novel.id)
 
         msg = util.checkStatus(util.settings.SHOW_LIKE_NOVELS).replace("未","不")
         java.log(`${msg}显示收藏小说`)
@@ -227,7 +224,7 @@ function publicFunc() {
             java.log(`⏬ 过滤追更：过滤前${novels0.length}；过滤后${novels2.length}`)
         }
 
-        novels3 = novels.map(novel => novel.id)
+        let novels3 = novels.map(novel => novel.id)
         if (novels0.length >= 1 && novels3.length === 0) {
             let msg = `⏬ 过滤小说\n⚠️ 过滤后无结果\n\n请根据需要\n`
             if (util.settings.SHOW_LIKE_NOVELS === false) msg += "开启显示收藏小说\n"
