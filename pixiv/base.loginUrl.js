@@ -425,9 +425,6 @@ function shareFactory(type) {
 function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
-function startGithub() {
-    startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
-}
 function startGithubIssue() {
     startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
 }
@@ -444,7 +441,7 @@ function charpterReading() {
     let novel = getNovel()
     // let novel = source.getLoginInfoMap()
     let msg = `📌 当前章节\n\n${checkStatus(novel.isWatched)} 系列：${novel.seriesTitle}\n${checkStatus(novel.isBookmark)} 章节：${novel.title}\n👤 作者：${novel.userName}\n\n如非当前章节，请刷新正文`
-    msg = msg.replace("🖤 系列：🈚️\n", "")
+    msg = msg.replace("🖤 系列：\n", "")
     sleepToast(msg, 2)
 }
 
@@ -458,8 +455,9 @@ function readMeLogin() {
 function readMeSearch() {
     return sleepToast(`🔍 搜索说明\n
     标签之间需要以【空格】间隔
+    ➖ 排除标签：#标签1 -标签2
     👤 作者专搜：@搜索作者名称
-    #️ 标签专搜：#标签1 标签2　
+    #️ 标签专搜：#标签1 标签2 
     ⏬ 字数筛选1：#标签1 标签2 字数3k5
     ⏬ 字数筛选2：@作者的名称 字数3w5`.replace("    ",""), 5)
 }
