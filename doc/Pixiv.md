@@ -384,10 +384,11 @@ https://www.pixiv.net/users/16721009
 </details>
 
 
-### 5.登录界面
-<details><summary> 🅿️ 账号功能 </summary>
+### 5.书源 登录界面
+<details><summary> 🅿️ 账号功能（同上） </summary>
 
 #### 5.0 账号功能
+⚠️ 登录账号/退出账号都要使用这里的按钮
 ![img](./pic/PixivLoginUIAccount.jpg)
 - 🅿️ 登录账号：登录 Pixiv 账号，并获取 cookie 和 csfrToken
 - ⚙️ 账号设置：Pixiv 的浏览范围设置
@@ -395,7 +396,7 @@ https://www.pixiv.net/users/16721009
 </details>
 
 
-<details><summary> 📢 书源功能 </summary>
+<details><summary> 📢 书源功能（同上） </summary>
 
 #### 5.1 书源功能
 ![img](./pic/PixivLoginUIAccount.jpg)
@@ -428,9 +429,9 @@ https://www.pixiv.net/users/16721009
 
 #### 5.3 书源设置
 ![img](./pic/PixivLoginUISettings.jpg)
-- 🔰 登录说明：显示登录界面的功能说明
-- 🔍 搜索说明：显示搜索说明
 - ⚙️ 当前设置：显示当前设置
+- ⚙️ 默认设置：恢复默认设置
+- 👤 搜索作者：默认搜索作者
 - 🀄 繁简通搜：搜索进行繁简转换（搜索作者不转换）
 - 📖 更多简介：详情显示更多简介
 - 📅 更新时间：目录显示更新时间
@@ -440,6 +441,7 @@ https://www.pixiv.net/users/16721009
 - 💬 显示评论：章尾显示评论
 - ⏩ 快速模式：开启快速模式（关闭**默认搜索作者等**影响搜索速度的功能）
 - 🐞 调试模式：开启调试模式
+- 🔍 搜索说明：显示搜索说明
 </details>
 
 
