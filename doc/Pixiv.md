@@ -149,28 +149,41 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 ## 三、添加小说，尽情使用
 ### 1.阅读内部搜索
-<details><summary> 🔎 搜索小说 </summary>
+<details><summary> 🔍 搜索小说 </summary>
 
+#### 1.0 搜索小说
 ✅ 默认搜索：同时搜索小说名称、系列小说名称、标签、作者
 ![img](./pic/SearchViaLegado.png)
 </details>
 
 
-<details><summary> 🔄 繁简通搜 </summary>
+<details><summary> 🀄️ 繁简通搜 </summary>
 
-- 搜索【名称】和【标签】时，【默认】进行繁简转换，同时返回繁体简体小说内容，返回小说内容不做转换处理
-- 【搜索作者】不做转换处理
+#### 1.1 繁简通搜
+- 搜索【名称】和【标签】时，【默认】进行繁简转换，同时返回繁体简体小说内容（可在书源设置中修改）
+- 【搜索作者】不做转换，返回小说不做转换
 
 ![img](./pic/SearchViaLegadoConvert.jpg)
 </details>
 
 
+<details><summary> ➖ 排除标签 </summary>
+
+#### 1.2 排除标签（格式：`标签1 -标签2` `标签1 -标签2 -标签3`）
+- 使用减号 `-` 在搜索结果中，排除不想看的的标签
+- **每个排除的标签前都需要添加减号** `-`
+- 由 Pixiv 官方提供支持
+
+![img](./pic/SearchViaLegadoExclude.jpg)
+</details>
+
+
 <details><summary> 👤 作者专搜 </summary>
- 
-作者专搜（格式：`@作者名称`）
-- 仅搜索作者；不做繁简转换
+
+#### 1.3 作者专搜（格式：`@作者名称`）
+- 仅搜索作者；不进行繁简转换
 - `@` 为标记符，打出1个即可，例如：`@pixiv事務局` 
-- 暂时不支持与 `#` 同时使用，可与字数过滤同时使用
+- 暂时不支持与 `#` 同时使用，可与【字数过滤】同时使用
 
 ![img](./pic/SearchViaLegadoAuthor.jpg)
 </details>
@@ -178,10 +191,10 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 <details><summary> #️⃣ 标签专搜 </summary>
 
-标签专搜（格式：`#标签1` `#标签1 标签2 `）
+#### 1.4 标签专搜（格式：`#标签1` `#标签1 标签2 `）
 - 仅搜索标签、小说名称；多个标签空格间隔，【默认】进行繁简转换
 - `#` 为标记符，打出1个即可，例如：`#校园` `#校园 纯爱` `#校园 纯爱 BG`
-- 暂时不支持与 `@` 同时使用，可与字数过滤同时使用
+- 暂时不支持与 `@` 同时使用，可与【排除标签】【字数过滤】同时使用
 
 ![img](./pic/SearchViaLegadoHashtag.jpg)
 </details>
@@ -189,10 +202,10 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 <details><summary> ⏬ 字数过滤 </summary>
 
-字数过滤（格式：`关键词 字数3k`）
+#### 1.5 字数过滤（格式：`关键词 字数3k`）
 - 字数限制规则：`3k 3k5 3w 3w5`【注意`k`与`w`均为小写】
 - 例如：`校园 字数3k` `校园 纯爱 字数3k`
-
+- 可与【标签专搜】或【搜索作者】同时使用
 ![img](./pic/SearchViaLegadoWordCountFilter1.jpg)
 ![img](./pic/SearchViaLegadoWordCountFilter2.jpg)
 </details>
