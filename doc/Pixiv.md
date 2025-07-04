@@ -52,7 +52,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 
 ![img](./pic/InportBookSourcePixiv.jpg)
 
-**【系列书源】与【单篇书源】功能完全一致，导入/启用其中一个即可**
+**【主用书源】与【备用书源】功能基本一致，启用其中一个即可**
 
 **导入之后，再次点击则会检查更新**
 
@@ -161,7 +161,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 #### 1.1 繁简通搜
 - 搜索【名称】和【标签】时，【默认】进行繁简转换，同时返回繁体简体小说内容（可在书源设置中修改）
-- 【搜索作者】不做转换，返回小说不做转换
+- 【搜索作者】不转换，返回小说不转换
 
 ![img](./pic/SearchViaLegadoConvert.jpg)
 </details>
@@ -205,8 +205,11 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 #### 1.5 字数过滤（格式：`关键词 字数3k`）
 - 字数限制规则：`3k 3k5 3w 3w5`【注意`k`与`w`均为小写】
 - 例如：`校园 字数3k` `校园 纯爱 字数3k`
-- 可与【标签专搜】或【搜索作者】同时使用
+- 可与【标签专搜】【排除标签】同时使用
+
 ![img](./pic/SearchViaLegadoWordCountFilter1.jpg)
+- 可与【搜索作者】同时使用
+
 ![img](./pic/SearchViaLegadoWordCountFilter2.jpg)
 </details>
 
@@ -235,7 +238,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 ![img](./pic/DiscoverPixivRanking.png)
   - ✅ R18 小说 (👑 排行榜单 👑，默认显示)
   - ☑️ 一般小说 (🏆 排行榜单 🏆，默认隐藏)
-    > 可在书源设置中修改`SHOW_GENERAL_RANK`)，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+    > 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
 </details>
 
 
@@ -294,19 +297,23 @@ https://www.pixiv.net/users/16721009
 
 #### 4.0 导入书源
 ![img](./pic/InportBookSource.png)
-- 点击按钮，导入书源（再次点击，则可更新书源）
+
+- 点击按钮，导入书源；再次点击，则可更新书源
+- 此处使用的是 Jsdelivr CDN ，更新有延迟
+
+![img](./pic/InportBookSourcePixiv.jpg)
 </details>
 
 
 <details><summary> 🔍 站内搜索 </summary>
 
 #### 4.1 替代阅读搜索
-受阅读所限，阅读内部搜索不可能完全支持 Pixiv 的全部搜索功能。网站的搜索功能更加全面
+Pixiv 网站的搜索功能更加全面
 
 ![img](./pic/SearchViaPixiv.png)
 
 #### 4.1 替代阅读发现
-阅读内部浏览器打开 Pixiv，即可使用 Pixiv 书源未完成/隐藏的功能
+使用 Pixiv 书源未完成/隐藏功能
 ![img](./pic/PixivNovelRanking.png)
 </details>
 
@@ -316,10 +323,10 @@ https://www.pixiv.net/users/16721009
 #### 4.3 添加小说至书架
 在阅读内部浏览器内打开 Pixiv 小说/系列小说页面，【刷新】，点击【加入书架】按钮添加小说到书架
 
-- 添加小说到书架
+- 小说正文页，添加小说到书架
 ![img](./pic/AddBookViaPixiv1.png)
 
-- 添加系列小说到书架
+- 系列目录页，添加系列到书架
 ![img](./pic/AddBookViaPixiv2.png)
 </details>
 
@@ -328,8 +335,8 @@ https://www.pixiv.net/users/16721009
 <details><summary> 🅿️ 账号功能（同下） </summary>
 
 #### 4.4 账号功能
-- ⚠️ 登录账号/退出账号都要使用这里的按钮
-- ⚠️ 订阅源内登录后，书源内部最好也登录一次
+- ⚠️ 登录/退出账号都要使用按钮
+- ⚠️ 订阅源登账号录后，书源最好也登录一次
 
 ![img](./pic/PixivLoginUIAccount.jpg)
 
@@ -388,7 +395,8 @@ https://www.pixiv.net/users/16721009
 <details><summary> 🅿️ 账号功能（同上） </summary>
 
 #### 5.0 账号功能
-⚠️ 登录账号/退出账号都要使用这里的按钮
+- ⚠️ 登录/退出账号都要使用按钮
+
 ![img](./pic/PixivLoginUIAccount.jpg)
 - 🅿️ 登录账号：登录 Pixiv 账号，并获取 cookie 和 csfrToken
 - ⚙️ 账号设置：Pixiv 的浏览范围设置
@@ -399,7 +407,7 @@ https://www.pixiv.net/users/16721009
 <details><summary> 📢 书源功能（同上） </summary>
 
 #### 5.1 书源功能
-![img](./pic/PixivLoginUIAccount.jpg)
+![img](./pic/PixivLoginUISource.jpg)
 - 🆙 更新书源：更新书源/更新订阅(同上)
 - 🔰 使用指南：打开 Github 文档(本页)
 - 🐞 反馈问题：打开 Github Issue
@@ -417,11 +425,11 @@ https://www.pixiv.net/users/16721009
 - ⭐️ 关注作者：关注作者、取消关注
 - 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
 - ✅ 发送评论：当前章节下发送评论
-- 🗑 删除评论：当前章节下删除评论（随后可以手动刷新正文，更新正文内的评论）
-- 🧹 清除缓存：清除当前章节的正文缓存（随后可以手动刷新正文，更新正文内容）
-- ⤴️ 分享章节：打开当前章节的网址链接
-- ⤴️ 分享系列：打开当前系列的网址链接（如无系列则同上）
-- ⤴️ 分享系列：打开当前作者的网址链接
+- 🗑 删除评论：当前章节下删除评论（随后可以手动刷新正文，更新评论）
+- 🧹 清除缓存：清除当前章节的正文缓存（随后可以手动刷新正文，更新正文）
+- ⤴️ 分享章节：打开当前章节的网址
+- ⤴️ 分享系列：打开当前系列的网址（如无系列则打开章节网址）
+- ⤴️ 分享作者：打开当前作者的网址
 </details>
 
 
