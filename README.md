@@ -12,18 +12,20 @@
 
 
 ### 兼容软件：
-| 书源　　 | 阅读 Beta 版 | 源阅 Test Flight |
-| ------ | ----------- | --------------- |
+
+| 书源　　 | 阅读 Beta    | 源阅 Test Flight |
+| ------- | ----------- | --------------- |
 | 小说书源 | 3.25.0527   | 1.0 (112)       |
 | 小说备用 | 3.23.0503?  | 1.0 (112)       |
 
 
 ## 快速导入：[下载阅读](./doc/Download.md) =>  [导入书源](./doc/Import.md)
 
-| 名称          | 免代理导入网址                                                         |
+| 名称          | 免代理导入网址                                                        |
 | ------------ | ------------------------------------------------------------------- |
-| Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
+| Pixiv 书源    | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json  |
 | BTSRK 订阅源  | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
+| Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
 - 免代理导入有延迟
 
 
@@ -446,12 +448,14 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)
 - 感谢 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend) 提供的 [Pixiv 图片代理功能](https://pixiv.cat)
+- 感谢 [Jsdelivr](https://www.jsdelivr.com/) 提供的 CDN 加速服务(免代理)
 - 感谢 [通用书源](https://github.com/bushixuanqi/book-source) 及 [聚合搜索](https://legado.cn/thread-3723-1-1.html) 提供的添加书架的方法
 - 感谢 [书源订阅(非官方仓库)](https://gitee.com/feiniao6/yd) 提供的导入书源、订阅源的方法
 - 感谢 [Pixiv-utils](https://github.com/AgMonk/pixiv-utils) 、 [Pixiv go 客户端](https://github.com/NateScarlet/pixiv) 、 [Pixiv-web-api](https://github.com/YieldRay/pixiv-web-api) 整理的 Pixiv Web API
-- 感谢 [一片痴心俱成灰](https://akaito.xyz/post/Legado) 提供的 Pixiv (标记符号) 目录规则
+- 感谢 [@Luoyacheng](https://github.com/Luoyacheng) ，从他的 [书源仓库](https://github.com/Luoyacheng/yuedu) 学到了很多方法
+- 感谢 [@一片痴心俱成灰](https://akaito.xyz/post/Legado) 提供的 Pixiv (标记符号) 目录规则
 - 感谢 [Pixiv Previewer](https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer) 脚本提供的从 Pixiv 网页获取 csfr token 的方法 
-- 感谢 [@SuCan127](https://github.com/SuCan127) 测试 源阅 的兼容性
+- 感谢 [@SuCan127](https://github.com/SuCan127) 测试【源阅】的兼容性
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
 </details>
 
