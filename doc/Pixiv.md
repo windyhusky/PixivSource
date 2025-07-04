@@ -250,7 +250,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 </details>
 
 
-<details><summary> 🆙 更新书源 </summary>
+<details><summary> 🆙 更新书源（同下） </summary>
 
 #### 2.4 更新书源
 ![img](./pic/UpdateSource.png)
@@ -290,25 +290,23 @@ https://www.pixiv.net/users/16721009
 
 
 ### 4.订阅源
-<details><summary> 🆙 更新书源 </summary>
+<details><summary> ⬇️ 导入书源 </summary>
 
-#### 4.0 更新书源
-点击按钮【🆙 更新书源】以更新书源/更新订阅
-- 
-![img](./pic/UpdateSource.png)
+#### 4.0 导入书源
+![img](./pic/InportBookSource.png)
+- 点击按钮，导入书源（再次点击，则可更新书源）
 </details>
 
 
-<details><summary> 💬 替代阅读 </summary>
+<details><summary> 🔍 站内搜索 </summary>
 
 #### 4.1 替代阅读搜索
 受阅读所限，阅读内部搜索不可能完全支持 Pixiv 的全部搜索功能。网站的搜索功能更加全面
 
 ![img](./pic/SearchViaPixiv.png)
 
-
-#### 4.2 替代阅读发现
-阅读内部浏览器打开 Pixiv，即可使用 Pixiv 书源未完成的功能，如排行榜等功能
+#### 4.1 替代阅读发现
+阅读内部浏览器打开 Pixiv，即可使用 Pixiv 书源未完成/隐藏的功能
 ![img](./pic/PixivNovelRanking.png)
 </details>
 
@@ -326,9 +324,44 @@ https://www.pixiv.net/users/16721009
 </details>
 
 
-<details><summary> ❤️ 他人收藏（订阅源 源变量）</summary>
+### 4.订阅源 登录界面
+<details><summary> 🅿️ 账号功能（同下） </summary>
 
-#### 4.4 查看他人收藏（Pixiv 首页 订阅源）
+#### 4.4 账号功能
+- ⚠️ 登录账号/退出账号都要使用这里的按钮
+- ⚠️ 订阅源内登录后，书源内部最好也登录一次
+
+![img](./pic/PixivLoginUIAccount.jpg)
+
+- 🅿️ 登录账号：登录 Pixiv 账号，并获取 cookie 和 csfrToken
+- ⚙️ 账号设置：Pixiv 的浏览范围设置
+- 🔙 退出账号：退出 Pixiv 账号，并清理 cookie 和 csfrToken
+</details>
+
+
+<details><summary> 📢 书源帮助（同下） </summary>
+
+#### 4.5 书源帮助
+![img](./pic/PixivLoginUISource2.jpg)
+- ⭐️ 收藏项目：打开 Github 项目首页
+- 🔰 使用指南：打开 Github 文档(本页)
+- 🐞 反馈问题：打开 Github Issue
+</details>
+
+
+<details><summary> 🆙 更新书源（同上） </summary>
+
+![img](./pic/UpdateSource.png)
+点击按钮【🆙 更新】以更新书源/更新订阅
+- Jsdelivr CDN 更新有延迟
+- Github 更新需代理
+- Godeberg 更新免代理
+</details>
+
+
+<details><summary> ❤️ 他人收藏（订阅源 源变量，同下）</summary>
+
+#### 4.7 他人收藏（Pixiv 首页 订阅源）
 详见 
 1️⃣ 订阅 - 长按订阅源 - 编辑 - 菜单 - 设置源变量
 
