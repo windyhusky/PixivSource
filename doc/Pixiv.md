@@ -212,25 +212,52 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 
 ### 2.发现更多小说
-<details><summary> ⭐️ 常规功能 </summary>
+<details><summary> ⭐️ 常规发现 </summary>
 
+#### 2.0 常规发现
 ![img](./pic/DiscoverPixiv.jpg)
+</details>
+
+
+<details><summary> 🆕 最新企划约稿 </summary>
+
+#### 2.1 最新 企划 约稿
+![img](./pic/DiscoverPixivNew.png)
+- ✅ R18 小说 (🆕 最新 企划 约稿 💰，默认显示)
+- ☑️ 一般小说 (✅ 最新 企划 约稿 ✅，默认隐藏)
+  > 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
 </details>
 
 
 <details><summary> 👑 小说排行 </summary>
 
+#### 2.2 小说排行
 ![img](./pic/DiscoverPixivRanking.png)
-  - ✅ R18小说排行榜(🔞 排行榜)
-  - ✅ 一般小说排行榜(🆗 排行榜)
-    >（默认隐藏，可在书源设置中修改`SHOW_GENERAL_RANK`)，更改后需要在发现页面刷新分类（发现：长按"Pixiv"，刷新
+  - ✅ R18 小说 (👑 排行榜单 👑，默认显示)
+  - ☑️ 一般小说 (🏆 排行榜单 🏆，默认隐藏)
+    > 可在书源设置中修改`SHOW_GENERAL_RANK`)，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+</details>
+
+
+<details><summary> 🔥 原创热门（默认隐藏） </summary>
+
+#### 2.3 原创热门（默认隐藏）
+![img](./pic/DiscoverPixivHot.png)
+- ☑️ R18 小说 (🔥 原创热门 🔥，默认隐藏)
+  > 可在书源设置中修改`SHOW_R18_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+- ☑️ 一般小说 (❤️‍🔥 原创热门 ❤️‍🔥，默认隐藏)
+  > 可在书源设置中修改`SHOW_GENERAL_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
 </details>
 
 
 <details><summary> 🆙 更新书源 </summary>
 
+#### 2.4 更新书源
+![img](./pic/UpdateSource.png)
 点击按钮【🆙 更新】以更新书源/更新订阅
-![img](./pic/UpdateSource.jpg)
+- Jsdelivr CDN 更新有延迟
+- Github 更新需代理
+- Godeberg 更新免代理
 </details>
 
 
@@ -267,7 +294,8 @@ https://www.pixiv.net/users/16721009
 
 #### 4.0 更新书源
 点击按钮【🆙 更新书源】以更新书源/更新订阅
-![img](./pic/UpdateSource.jpg)
+- 
+![img](./pic/UpdateSource.png)
 </details>
 
 
@@ -295,6 +323,31 @@ https://www.pixiv.net/users/16721009
 
 - 添加系列小说到书架
 ![img](./pic/AddBookViaPixiv2.png)
+</details>
+
+
+<details><summary> ❤️ 他人收藏（订阅源 源变量）</summary>
+
+#### 4.4 查看他人收藏（Pixiv 首页 订阅源）
+详见 
+1️⃣ 订阅 - 长按订阅源 - 编辑 - 菜单 - 设置源变量
+
+![img](./pic/SetSourceVariable.png)
+
+2️⃣ 设置源变量：输入作者ID，一行一个，可添加作者名，保存
+```
+12345 // 作者A
+67890 # 作者B
+```
+3️⃣ 导入：打开订阅源 - 菜单 - 登录 - 点击 ❤️ 他人收藏，同步数据
+
+![img](./pic/SetLikeAuthors.jpg)
+
+4️⃣ 更新：发现 - 长按"Pixiv" - 刷新 - 查看他人收藏
+
+![img](./pic/SetSourceVariable0.png)
+
+![img](./pic/DiscoverPixivLikes.jpg)
 </details>
 
 
@@ -360,7 +413,7 @@ https://www.pixiv.net/users/16721009
 ### 6.设置源变量
 <details><summary> 🚫 屏蔽作者（书源 源变量）</summary>
 
-#### 6.1屏蔽作者(本地)
+#### 6.1 屏蔽作者(本地)
 1️⃣ 编辑源变量：
 - 我的 - 书源管理 - 编辑 - 菜单 - 设置源变量
 - 发现 - 长按书源 - 编辑 - 菜单 - 设置源变量
