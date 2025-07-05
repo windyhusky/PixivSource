@@ -49,7 +49,7 @@ function getIllust() {
         java.log(`正在搜索第${page}页`)
         let resp = getAjaxJson(urlSearchIllust(name, page))
         if (resp.error === true) {
-            return []
+            break
         }
         illusts = illusts.concat(resp.body.illustManga.data)
     }
