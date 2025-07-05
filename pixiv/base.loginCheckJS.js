@@ -248,7 +248,7 @@ function publicFunc() {
             if (novel.tags === undefined || novel.tags === null) {
                 novel.tags = []
             }
-            // 默认搜索
+            // 搜索单篇
             if (novel.isOneshot === undefined) {
                 // novel.seriesId = novel.seriesId
                 // novel.seriesTitle = novel.seriesTitle
@@ -262,8 +262,10 @@ function publicFunc() {
                     cache.put(`collect${novel.id}`, novel.bookmarkData.id)
                     likeNovels.push(Number(novel.id))
                 } else novel.isBookmark = false
+            }
 
-            } else {  // 搜索系列
+            // 搜索系列
+            if (novel.isOneshot) {
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelId
@@ -281,8 +283,8 @@ function publicFunc() {
                 novel.updateDate = novel.updateDateTime
             }
 
-            // 正文详情页
-            if (novel.content !== undefined) {
+            // 单篇正文详情页
+            if (novel.content) {
                 novel.novelId = novel.id
                 novel.tags = novel.tags.tags.map(item => item.tag)
                 novel.textCount = novel.userNovels[`${novel.id}`].textCount
@@ -297,13 +299,14 @@ function publicFunc() {
                     likeNovels.push(Number(novel.id))
                 } else novel.isBookmark = false
 
-                if (novel.seriesNavData !== undefined && novel.seriesNavData !== null) {
+                if (novel.seriesNavData) {
                     novel.seriesId = novel.seriesNavData.seriesId
                     novel.seriesTitle = novel.seriesNavData.title
                 }
             }
+
             // 系列详情
-            if (novel.firstNovelId !== undefined) {
+            if (novel.firstNovelId) {
                 novel.seriesId = novel.id
                 novel.id = novel.novelId = novel.firstNovelId
                 novel.seriesTitle = novel.title
@@ -311,14 +314,15 @@ function publicFunc() {
                 // novel.isWatched = novel.isWatched  // 搜索系列可获取
             }
 
-            if (novel.seriesId === undefined || novel.seriesId === null) {  // 单篇
+            // 单篇加更多信息
+            if (!novel.seriesId) {
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
                 novel.detailedUrl = urlNovelDetailed(novel.id)
                 novel.total = 1
             }
-
-            if (novel.seriesId !== undefined) {
+            // 系列添加更多信息
+            if (novel.seriesId) {
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
@@ -393,7 +397,7 @@ function publicFunc() {
             }
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
-            if (novel.seriesId !== undefined) {
+            if (novel.seriesId) {
                 collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
             } else {
                 collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
@@ -479,7 +483,7 @@ function publicFunc() {
             res = JSON.parse(result)
         }
 
-        if (res.body !== undefined && res.body.seriesNavData !== undefined && res.body.seriesNavData !== null) {
+        if (res.body && res.body.seriesNavData) {
             seriesId = res.body.seriesNavData.seriesId
         }
         if (seriesId) {
@@ -507,7 +511,7 @@ function checkMessageThread(checkTimes) {
             java.log(JSON.stringify(latestMsg))
         } else if (latestMsg.body.total >= 1) {
             let msg = latestMsg.body.message_threads.filter(item => item.thread_name === "pixiv事務局")[0]
-            if (msg !== undefined && new Date().getTime()- 1000*msg.modified_at <= 3*24*60*60*1000) { // 3天内进行提示
+            if (msg && new Date().getTime()- 1000*msg.modified_at <= 3*24*60*60*1000) { // 3天内进行提示
                 sleepToast(`您于 ${timeFormat(1000*msg.modified_at)} 触发 Pixiv 【过度访问】，请修改密码并重新登录。\n如已修改请忽略`, 3)
                 sleepToast(`${msg.latest_content}`, 5)
                 java.startBrowser("https://accounts.pixiv.net/password/change",'修改密码')
