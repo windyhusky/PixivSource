@@ -21,17 +21,22 @@ function getManga() {
     }
 }
 
+function search(name, type, page) {
+    let resp = getAjaxJson(urlSearchManga(name, page))
+    java.log(urlSearchManga(name, page))
+    if (resp.error === true || resp.total === 0) {
+        return {"data": [], "total":0, "lastPage": 0}
+    }
+    return resp.body.illustManga.data
+}
+
 function getConvertManga() {
-    let MAXPAGES = 2, illusts = []
-    let novelName = String(java.get("key"))
-    let name = java.s2t(java.t2s(java.s2t(novelName)))
-    let resp = getAjaxJson(urlSearchManga(name, 1)).body
-    java.log(urlSearchManga(name, 1))
-    illusts = illusts.concat(resp.illustManga.data)
-    // for (let page = 2; page < resp.lastPage, page < MAXPAGES; page++) {
-    //     illusts = illusts.concat(getAjaxJson(urlSearchManga(name, page)).body.illustManga.data)
-    //     java.log(urlSearchManga(name, page))
-    // }
+    let illusts = []
+    let name = String(java.get("key"))
+    let name1 = String(java.s2t(name))
+    let name2 = String(java.t2s(name))
+    if (name1 !== name) illusts = illusts.concat(search(name1, "series", 1).data)
+    if (name2 !== name) illusts = illusts.concat(search(name2, "series", 1).data)
     illusts.forEach(illust => {illust.tags.unshift("漫画")})
     return illusts
 }
