@@ -31,12 +31,8 @@ function publicFunc() {
     u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK
     u.DEBUG = settings.DEBUG
 
-    if (u.DEBUG === true) {
-        java.log(JSON.stringify(settings, null, 4))
-        java.log(`DEBUG = ${u.DEBUG}`)
-    }
     u.debugFunc = (func) => {
-        if (util.DEBUG) {
+        if (util.DEBUG === true) {
             func()
         }
     }
