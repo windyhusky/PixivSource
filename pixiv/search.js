@@ -168,7 +168,7 @@ function search(name, type, page) {
         java.log(urlSearchSeries(name, page))
     }
     if (resp.error === true || resp.total === 0) {
-        return {"data": [], "lastPage": 0}
+        return {"data": [], "total":0, "lastPage": 0}
     }
     return resp.body.novel
 }
