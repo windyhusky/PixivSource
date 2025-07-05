@@ -210,21 +210,11 @@ function novelFilter(novels) {
     let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "").replace("字數", "")
     // limitedTextCount = `3w 3k 3w5 3k5`.[0]
     let textCount = 0
-    if (limitedTextCount.includes("w")) {
-        let num = limitedTextCount.split("w")
+    if (limitedTextCount.includes("w") || limitedTextCount.includes("W")) {
+        let num = limitedTextCount.toLowerCase().split("w")
         textCount = 10000 * num[0] + 1000 * num[1]
-    }
-    else if (limitedTextCount.includes("W")) {
-        let num = limitedTextCount.split("W")
-        textCount = 10000 * num[0] + 1000 * num[1]
-    }
-
-    if (limitedTextCount.includes("k")) {
-        let num = limitedTextCount.split("k")
-        textCount = 1000 * num[0] + 100 * num[1]
-    }
-    else if (limitedTextCount.includes("K")) {
-        let num = limitedTextCount.split("K")
+    } else if (limitedTextCount.includes("k") || limitedTextCount.includes("K")) {
+        let num = limitedTextCount.toLowerCase().split("k")
         textCount = 1000 * num[0] + 100 * num[1]
     }
 
