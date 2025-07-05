@@ -231,10 +231,20 @@ function novelFilter(novels) {
     for (let i in tags) {
         let tag = tags[i].trim()
         if (tag !== "") {
-            tags2.push(`#${tag}`)
+            tags2.push(`${tag}`)
         }
     }
-    java.log(JSON.stringify(tags2))
+
+    function checkAisSubsetOfB(listA, listB) {
+        // java.log(listA.every(item => listB.includes(item)))
+        return listA.every(item => listB.includes(item))
+    }
+    if (tags2.length >= 1) {
+        novels = novels.filter(novel => checkAisSubsetOfB(tags2, novel.tags))
+        let novels2 = novels.map(novel => novel.id)
+        java.log(`⏬ 过滤标签：${tags2.toString()}`)
+        java.log(`⏬ 过滤标签：过滤前${novels1.length}；过滤后${novels2.length}`)
+    }
     return novels
 }
 
