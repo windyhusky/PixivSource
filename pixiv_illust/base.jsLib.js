@@ -21,6 +21,12 @@ function isJsonString(str) {
     return false
 }
 
+function isLogin() {
+    const {java} = this
+    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
+    return cookie.includes("first_visit_datetime")
+}
+
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
     if (forceUpdate === true) {
@@ -53,12 +59,6 @@ function getWebviewJson(url, parseFunc) {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })
-}
-
-function isLogin() {
-    const {java} = this
-    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    return cookie.includes("first_visit_datetime")
 }
 
 function urlIllustUrl(illustId) {
