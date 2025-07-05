@@ -207,12 +207,6 @@ function getConvertNovels() {
 }
 
 function novelFilter(novels) {
-    // function checkAisSubsetOfB(listA, listB) {
-    //     // java.log(`${JSON.stringify(listA)}\n${JSON.stringify(listB)}`)
-    //     // java.log(listA.every(item => listB.includes(item)))
-    //     return listA.every(item => listB.includes(item))
-    // }
-
     let textCount = 0, tags = []
     let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "").replace("字數", "")
     // limitedTextCount = `3w 3k 3w5 3k5`.[0]
@@ -239,7 +233,10 @@ function novelFilter(novels) {
     }
 
     if (tags.length >= 1) {
-        // novels = novels.filter(novel => checkAisSubsetOfB(tags, novel.tags))
+        // novels = novels.filter(novel => {
+        //     // java.log(`${JSON.stringify(novel.tags)}\n${tags.every(item => novel.tags.includes(item))}`)
+        //     return tags.every(item => novel.tags.includes(item))
+        // })
         novels = novels.filter(novel => tags.every(item => novel.tags.includes(item)))
         let novels2 = novels.map(novel => novel.id)
         java.log(`#️⃣ 过滤标签：${tags.join("、")}`)
@@ -253,7 +250,6 @@ function novelFilter(novels) {
     let keyword = String(java.get("keyword"))
     if (keyword.startsWith("@") || keyword.startsWith("＠")) {
         keyword = keyword.slice(1)
-        java.log(keyword.includes("#") || keyword.includes("＃"))
         if (keyword.includes("#") || keyword.includes("＃")) {
             let author = keyword.split(" ")[0]
             let tags = keyword.replace(author, "").trim().slice(1)
