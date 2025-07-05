@@ -12,8 +12,8 @@ function objParse(obj) {
 
 function illustHandler(illust){
     illust = util.formatIllusts(util.handIllusts([illust]))[0]
-    illust.detailedUrl = urlIllustUrl(illust.id)
-    illust.catalogUrl = urlIllustDetailed(illust.id)
+    book.bookUrl = illust.detailedUrl = urlIllustUrl(illust.id)
+    book.tocUrl = illust.catalogUrl = urlIllustDetailed(illust.id)
     return illust
 }
 
