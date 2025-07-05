@@ -11,12 +11,14 @@ function objParse(obj) {
 }
 
 function getManga() {
-    if (JSON.parse(result).error === true) {
+    if (JSON.parse(result).error !== true) {
+        cache.put(urlSearchManga(java.get("key"), java.get("page")), result, cacheSaveSeconds)  // 加入缓存
+        let illusts = JSON.parse(result).body.illustManga.data
+        illusts.forEach(illust => {illust.tags.unshift("漫画")})
+        return illusts
+    } else {
         return []
     }
-    let illusts = JSON.parse(result).body.illustManga.data
-    illusts.forEach(illust => {illust.tags.unshift("漫画")})
-    return illusts
 }
 
 function getConvertManga() {
