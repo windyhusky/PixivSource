@@ -207,9 +207,15 @@ function getConvertNovels() {
 }
 
 function novelFilter(novels) {
+    // function checkAisSubsetOfB(listA, listB) {
+    //     // java.log(`${JSON.stringify(listA)}\n${JSON.stringify(listB)}`)
+    //     // java.log(listA.every(item => listB.includes(item)))
+    //     return listA.every(item => listB.includes(item))
+    // }
+
+    let textCount = 0, tags = []
     let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "").replace("字數", "")
     // limitedTextCount = `3w 3k 3w5 3k5`.[0]
-    let textCount = 0
     if (limitedTextCount.includes("w") || limitedTextCount.includes("W")) {
         let num = limitedTextCount.toLowerCase().split("w")
         textCount = 10000 * num[0] + 1000 * num[1]
@@ -226,23 +232,17 @@ function novelFilter(novels) {
         java.log(`⏬ 字数限制：过滤前${novels0.length}；过滤后${novels1.length}`)
     }
 
-    let tags2 = []
-    let tags = String(java.get("authorTags")).split(" ")
-    for (let i in tags) {
-        let tag = tags[i].trim()
-        if (tag !== "") {
-            tags2.push(`${tag}`)
-        }
+    let inputTags = String(java.get("inputTags")).split(" ")
+    for (let i in inputTags) {
+        let tag = inputTags[i].trim()
+        if (tag !== "") tags.push(`${tag}`)
     }
 
-    function checkAisSubsetOfB(listA, listB) {
-        // java.log(listA.every(item => listB.includes(item)))
-        return listA.every(item => listB.includes(item))
-    }
-    if (tags2.length >= 1) {
-        novels = novels.filter(novel => checkAisSubsetOfB(tags2, novel.tags))
+    if (tags.length >= 1) {
+        // novels = novels.filter(novel => checkAisSubsetOfB(tags, novel.tags))
+        novels = novels.filter(novel => tags.every(item => novel.tags.includes(item)))
         let novels2 = novels.map(novel => novel.id)
-        java.log(`⏬ 过滤标签：${tags2.toString()}`)
+        java.log(`#️⃣ 过滤标签：${tags.join("、")}`)
         java.log(`⏬ 过滤标签：过滤前${novels1.length}；过滤后${novels2.length}`)
     }
     return novels
@@ -258,7 +258,7 @@ function novelFilter(novels) {
             let author = keyword.split(" ")[0]
             let tags = keyword.replace(author, "").trim().slice(1)
             java.put("keyword", author)
-            java.put("authorTags", tags)
+            java.put("inputTags", tags)
         } else {
             java.put("keyword", keyword)
         }
