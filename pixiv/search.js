@@ -235,6 +235,16 @@ function novelFilter(novels) {
         java.log(`🔢 字数限制：${limitedTextCount}`)
         java.log(`⏬ 字数限制：过滤前${novels0.length}；过滤后${novels1.length}`)
     }
+
+    let tags2 = []
+    let tags = String(java.get("authorTags")).split(" ")
+    for (let i in tags) {
+        let tag = tags[i].trim()
+        if (tag !== "") {
+            tags2.push(`#${tag}`)
+        }
+    }
+    java.log(JSON.stringify(tags2))
     return novels
 }
 
