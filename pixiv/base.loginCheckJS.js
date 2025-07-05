@@ -317,21 +317,8 @@ function publicFunc() {
                 novel.detailedUrl = urlNovelDetailed(novel.id)
                 novel.total = 1
             }
-            if (novel.seriesId !== undefined && detailed === false) {
-                novel.id = novel.seriesId
-                novel.firstNovelId = novel.novelId
-                novel.title = novel.seriesTitle
-                novel.tags.unshift("长篇")
-                novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
-                // novel.seriesNavData = {}
-                // novel.seriesNavData.seriesId = novel.seriesId
-                // novel.seriesNavData.title = novel.seriesTitle
-                if (novel.isWatched === true) {
-                    watchedSeries.push(Number(novel.seriesId))
-                }
-            }
 
-            if (novel.seriesId !== undefined && detailed === true) {
+            if (novel.seriesId !== undefined) {
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
@@ -340,6 +327,7 @@ function publicFunc() {
                 novel.textCount = series.publishedTotalCharacterCount
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
+                novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
                 novel.createDate = series.createDate
                 novel.updateDate = series.updateDate
                 novel.total = series.publishedContentCount
