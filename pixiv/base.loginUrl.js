@@ -562,6 +562,24 @@ function cleanCache() {
     sleepToast(`🧹 清除缓存\n\n📌 当前章节：${novel.title}\n\n已清除本章正文缓存，刷新正文以更新`, 5)
 }
 
+let maxPagesName = {
+    "seriesMaxPages": "系列最大页码",
+    "novelsMaxPages": "单篇最大页码"
+}
+
+function showMaxPages() {
+    let keys = Object.keys(maxPagesName)
+    let key = getFromCache("maxPagesKey")
+    if (!key) key = keys[0]
+    if (key === keys[0]) key = keys[1]
+    if (key === keys[1]) key = keys[0]
+    putInCache("maxPagesKey", key)
+    return sleepToast(`📄 搜索页码\n设置 #️⃣ 搜索标签的最大页码数\n
+    当前${maxPagesName[keys[0]]}：${getFromCache(keys[0])}\n当前${maxPagesName[keys[1]]}：${getFromCache(keys[1])}\n
+    点击 ⏫ 增加页码/ ⏬ 减少页码\n调整【${maxPagesName[key]}】\n
+    📌 页码越多，小说越多，速度越慢`.replace("    ", ""))
+}
+
 function editMaxPages(method) {
     let msg = ""
     let maxPages = getFromCache("maxPages")
