@@ -219,9 +219,9 @@ function novelFilter(novels) {
     }
 
     let novels0 = novels.map(novel => novel.id)
-    novels = novels.filter(novel => novel.textCount >= textCount)
-    let novels1 = novels.map(novel => novel.id)
     if (textCount >= 1) {
+        novels = novels.filter(novel => novel.textCount >= textCount)
+        let novels1 = novels.map(novel => novel.id)
         java.log(`🔢 字数限制：${limitedTextCount}`)
         java.log(`⏬ 字数限制：过滤前${novels0.length}；过滤后${novels1.length}`)
     }
