@@ -21,9 +21,12 @@ if (keyword.startsWith("@") || keyword.startsWith("＠")) {
         let author = keyword.match(new RegExp(/[@＠](.*)/))
         keyword = keyword.replace(author[0], "").trim()
         java.put("inputAuthor", author[1])
+        java.log(`#️⃣ 搜索标签：${keyword} 👤 过滤作者：${author[1]}`)
+    } else {
+        java.log(`#️⃣ 搜索标签：${keyword}`)
     }
     java.put("keyword", `#${keyword}`)
-    java.log(`#️⃣ 搜索标签：${keyword}`)
+
 } else {
     java.log(`🔍 搜索内容：${keyword}`)
 }
