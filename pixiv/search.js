@@ -174,7 +174,11 @@ function search(name, type, page) {
 }
 
 function getSeries() {
-    let MAXPAGES = 5, novels = []
+    let novels = []
+    let MAX_PAGES = getFromCache("MAX_PAGES")
+    java.log(`MAX_PAGES=${MAX_PAGES}`)
+    if (!MAX_PAGES) MAX_PAGES = 1
+    java.log(`MAX_PAGES=${MAX_PAGES}`)
     let name = String(java.get("keyword"))
     if (JSON.parse(result).error === true) {
         return []
@@ -182,19 +186,22 @@ function getSeries() {
     let lastPage = JSON.parse(result).body.novel.lastPage
     novels = novels.concat(JSON.parse(result).body.novel.data)
     cache.put(urlSearchSeries(name, 1), result, cacheSaveSeconds)  // 加入缓存
-    for (let page = Number(java.get("page")) + 1; page < lastPage, page <= MAXPAGES; page++) {
+    for (let page = Number(java.get("page")) + 1; page <= lastPage, page <= MAXPAGES; page++) {
         novels = novels.concat(search(name,"series", page).data)
-        java.log(novels.length)
     }
     return novels
 }
 
 function getNovels() {
-    let MAXPAGES = 3, novels = []
+    let novels = []
+    let MAX_PAGES = getFromCache("MAX_PAGES")
+    java.log(`MAX_PAGES=${MAX_PAGES}`)
+    if (!MAX_PAGES) MAX_PAGES = 1
+    java.log(`MAX_PAGES=${MAX_PAGES}`)
     let name = String(java.get("keyword"))
     let resp = search(name, "novel", 1)
     novels = novels.concat(resp.data)
-    for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
+    for (let page = Number(java.get("page")) + 1; page <= resp.lastPage, page <= MAXPAGES; page++) {
         novels = novels.concat(search(name,"novel", page).data)
     }
     return util.combineNovels(novels)
@@ -271,12 +278,14 @@ function novelFilter(novels) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getUserNovels())
     } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
+        putInCache("MAX_PAGES", 3)
         java.put("keyword", keyword.slice(1))
-        novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
+        novels = novels.concat(getNovels())
     } else {
-        novels = novels.concat(getNovels())
+        putInCache("MAX_PAGES", 1)
         novels = novels.concat(getSeries())
+        novels = novels.concat(getNovels())
         if (util.settings.SEARCH_AUTHOR) novels = novels.concat(getUserNovels())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
