@@ -190,12 +190,12 @@ function getSeries() {
 }
 
 function getNovels() {
-    let MAXPAGES = 1, novels = []
-    let novelName = String(java.get("keyword"))
-    let resp = search(novelName, "novel", 1)
+    let MAXPAGES = 3, novels = []
+    let name = String(java.get("keyword"))
+    let resp = search(name, "novel", 1)
     novels = novels.concat(resp.data)
     for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
-        novels = novels.concat(search(novelName,"novel", page).data)
+        novels = novels.concat(search(name,"novel", page).data)
     }
     return util.combineNovels(novels)
 }
