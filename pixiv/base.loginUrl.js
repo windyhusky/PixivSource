@@ -581,26 +581,26 @@ function showMaxPages() {
 }
 
 function editMaxPages(method) {
-    let msg = ""
-    let maxPages = getFromCache("maxPages")
-    if (!maxPages) maxPages = 3
+    let msg = "", key = getFromCache("maxPagesKey")
+    if (!key) key = Object.keys(maxPagesName)[0]
+    let maxPages = getFromCache(key)
+    if (!maxPages) maxPages = 2
     if (method.includes("add")) maxPages += 1
-    else if (method.includes("min")) maxPages -= 1
-    else return sleepToast(`#️⃣ 搜索标签\n\n当前最大页码：${maxPages}\n\n📌 页码越多，小说越多，速度越慢`)
+    if (method.includes("min")) maxPages -= 1
 
     if (maxPages <= 1) {
         maxPages = 1
-        msg += "⚠️ 页码不能再减小了\n"
+        msg += "⚠️ 搜索页码不能再减小了\n"
     }
-    if (maxPages >= 5) {
+    if (maxPages >= 3) {
         msg += "⚠️ 搜索页码越多，搜索速度越慢\n"
     }
     if (maxPages >= 10) {
         maxPages = 10
-        msg += "⚠️ 页码不能再增大了\n"
+        msg += "⚠️ 搜索页码不能再增大了\n"
     }
-    putInCache("maxPages", maxPages)
-    sleepToast(`#️⃣ 搜索标签\n\n当前最大页码：${maxPages}\n\n${(msg)}`.trim())
+    putInCache(`${key}`, maxPages)
+    sleepToast(`📄 搜索页码\n\n当前搜索【${maxPagesName[key]}】：${maxPages}\n\n${(msg)}`.trim())
     return maxPages
 }
 
