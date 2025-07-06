@@ -176,8 +176,12 @@ function search(name, type, page) {
 function getSeries() {
     let novels = []
     let name = String(java.get("keyword"))
-    let maxPages = getFromCache("maxPages")
-    if (!maxPages) putInCache("maxPages", 3)
+    let maxPages = getFromCache("maxPages")  // 仅默认搜索使用
+    if (!maxPages) {
+        maxPages = getFromCache("seriesMaxPages")  // 搜索标签使用
+        if (!maxPages) maxPages = 2
+        putInCache("seriesMaxPages", maxPages)
+    }
     java.log(`📄 搜索系列最大页码：${maxPages}`)
 
     if (JSON.parse(result).error === true) {
@@ -196,8 +200,12 @@ function getSeries() {
 function getNovels() {
     let novels = []
     let name = String(java.get("keyword"))
-    let maxPages = getFromCache("maxPages")
-    if (!maxPages) putInCache("maxPages", 3)
+    let maxPages = getFromCache("maxPages")  // 仅默认搜索使用
+    if (!maxPages) {
+        maxPages = getFromCache("novelsMaxPages")  // 搜索标签使用
+        if (!maxPages) maxPages = 2
+        putInCache("novelsMaxPages", maxPages)
+    }
     java.log(`📄 搜索单篇最大页码：${maxPages}`)
 
     let resp = search(name, "novel", 1)
@@ -280,9 +288,12 @@ function novelFilter(novels) {
         novels = novels.concat(getUserNovels())
     } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
         java.put("keyword", keyword.slice(1))
+        // 删除默认搜索最大页码，使用内部设定的最大页码
+        cache.delete("maxPages")
         novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
     } else {
+        // 设置默认搜索最大页码
         putInCache("maxPages", 1)
         novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
