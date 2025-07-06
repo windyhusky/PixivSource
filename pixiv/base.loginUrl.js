@@ -584,7 +584,7 @@ function editMaxPages(method) {
     let msg = "", key = getFromCache("maxPagesKey")
     if (!key) key = Object.keys(maxPagesName)[0]
     let maxPages = getFromCache(key)
-    if (!maxPages) maxPages = 2
+    if (!maxPages) maxPages = 1
     if (method.includes("add")) maxPages += 1
     if (method.includes("min")) maxPages -= 1
 

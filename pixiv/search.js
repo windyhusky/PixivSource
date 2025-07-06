@@ -179,7 +179,7 @@ function getSeries() {
     let maxPages = getFromCache("maxPages")  // 仅默认搜索使用
     if (!maxPages) {
         maxPages = getFromCache("seriesMaxPages")  // 搜索标签使用
-        if (!maxPages) maxPages = 2
+        if (!maxPages) maxPages = 1
         putInCache("seriesMaxPages", maxPages)
     }
     java.log(`📄 搜索系列最大页码：${maxPages}`)
@@ -203,7 +203,7 @@ function getNovels() {
     let maxPages = getFromCache("maxPages")  // 仅默认搜索使用
     if (!maxPages) {
         maxPages = getFromCache("novelsMaxPages")  // 搜索标签使用
-        if (!maxPages) maxPages = 2
+        if (!maxPages) maxPages = 1
         putInCache("novelsMaxPages", maxPages)
     }
     java.log(`📄 搜索单篇最大页码：${maxPages}`)
