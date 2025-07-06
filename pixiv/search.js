@@ -174,12 +174,19 @@ function search(name, type, page) {
 }
 
 function getSeries() {
-    if (JSON.parse(result).error !== true) {
-        cache.put(urlSearchSeries(java.get("keyword"), java.get("page")), result, cacheSaveSeconds)  // 加入缓存
-        return JSON.parse(result).body.novel.data
-    } else {
+    let MAXPAGES = 5, novels = []
+    let name = String(java.get("keyword"))
+    if (JSON.parse(result).error === true) {
         return []
     }
+    let lastPage = JSON.parse(result).body.novel.lastPage
+    novels = novels.concat(JSON.parse(result).body.novel.data)
+    cache.put(urlSearchSeries(name, 1), result, cacheSaveSeconds)  // 加入缓存
+    for (let page = Number(java.get("page")) + 1; page < lastPage, page <= MAXPAGES; page++) {
+        novels = novels.concat(search(name,"series", page).data)
+        java.log(novels.length)
+    }
+    return novels
 }
 
 function getNovels() {
@@ -240,7 +247,7 @@ function novelFilter(novels) {
         novels = novels.filter(novel => tags.every(item => novel.tags.includes(item)))
         let novels2 = novels.map(novel => novel.id)
         java.log(`#️⃣ 过滤标签：${tags.join("、")}`)
-        java.log(`#️⃣ 过滤标签：过滤前${novels1.length}；过滤后${novels2.length}`)
+        java.log(`#️⃣ 过滤标签：过滤前${novels0.length}；过滤后${novels2.length}`)
     }
 
     let inputAuthor = String(java.get("inputAuthor")).trim()
@@ -252,7 +259,7 @@ function novelFilter(novels) {
         novels = novels.filter(novel => novel.userName.includes(inputAuthor))
         let novels2 = novels.map(novel => novel.id)
         java.log(`👤 过滤作者：${tags.join("、")}`)
-        java.log(`👤 过滤作者：过滤前${novels1.length}；过滤后${novels2.length}`)
+        java.log(`👤 过滤作者：过滤前${novels0.length}；过滤后${novels2.length}`)
     }
     return novels
 }
