@@ -300,5 +300,32 @@
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
+    },
+    {
+        "name": "\uD83D\uDCC4 搜索页码",
+        "type": "button",
+        "action": "showMaxPages()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⏫ 增加页码",
+        "type": "button",
+        "action": "editMaxPages('add')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⏬ 减少页码",
+        "type": "button",
+        "action": "editMaxPages('minus')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
     }
 ]
