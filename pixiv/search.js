@@ -261,19 +261,10 @@ function novelFilter(novels) {
     let novels = []
     let keyword = String(java.get("keyword"))
     if (keyword.startsWith("@") || keyword.startsWith("＠")) {
-        keyword = keyword.slice(1)
-        if (keyword.includes("#") || keyword.includes("＃")) {
-            let author = keyword.split(" ")[0]
-            let tags = keyword.replace(author, "").trim().slice(1)
-            java.put("keyword", author)
-            java.put("inputTags", tags)
-        } else {
-            java.put("keyword", keyword)
-        }
+        java.put("keyword", keyword.slice(1))
         novels = novels.concat(getUserNovels())
     } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
-        keyword = keyword.slice(1)
-        java.put("keyword", keyword)
+        java.put("keyword", keyword.slice(1))
         novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
     } else {
