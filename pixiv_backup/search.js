@@ -174,21 +174,44 @@ function search(name, type, page) {
 }
 
 function getSeries() {
-    if (JSON.parse(result).error !== true) {
-        cache.put(urlSearchSeries(java.get("keyword"), java.get("page")), result, cacheSaveSeconds)  // 加入缓存
-        return JSON.parse(result).body.novel.data
-    } else {
+    let novels = []
+    let name = String(java.get("keyword"))
+    let maxPages = getFromCache("maxPages")  // 仅默认搜索使用
+    if (!maxPages) {
+        maxPages = getFromCache("seriesMaxPages")  // 搜索标签使用
+        if (!maxPages) maxPages = 2
+        putInCache("seriesMaxPages", maxPages)
+    }
+    java.log(`📄 搜索系列最大页码：${maxPages}`)
+
+    if (JSON.parse(result).error === true) {
         return []
     }
+    let lastPage = JSON.parse(result).body.novel.lastPage
+    novels = novels.concat(JSON.parse(result).body.novel.data)
+    java.log(urlSearchSeries(name, 1))
+    cache.put(urlSearchSeries(name, 1), result, cacheSaveSeconds)  // 加入缓存
+    for (let page = Number(java.get("page")) + 1; page <= lastPage, page <= maxPages; page++) {
+        novels = novels.concat(search(name,"series", page).data)
+    }
+    return novels
 }
 
 function getNovels() {
-    let MAXPAGES = 1, novels = []
-    let novelName = String(java.get("keyword"))
-    let resp = search(novelName, "novel", 1)
+    let novels = []
+    let name = String(java.get("keyword"))
+    let maxPages = getFromCache("maxPages")  // 仅默认搜索使用
+    if (!maxPages) {
+        maxPages = getFromCache("novelsMaxPages")  // 搜索标签使用
+        if (!maxPages) maxPages = 2
+        putInCache("novelsMaxPages", maxPages)
+    }
+    java.log(`📄 搜索单篇最大页码：${maxPages}`)
+
+    let resp = search(name, "novel", 1)
     novels = novels.concat(resp.data)
-    for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
-        novels = novels.concat(search(novelName,"novel", page).data)
+    for (let page = Number(java.get("page")) + 1; page <= resp.lastPage, page <= maxPages; page++) {
+        novels = novels.concat(search(name,"novel", page).data)
     }
     return util.combineNovels(novels)
 }
@@ -207,33 +230,52 @@ function getConvertNovels() {
 }
 
 function novelFilter(novels) {
+    let textCount = 0, tags = []
     let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "").replace("字數", "")
     // limitedTextCount = `3w 3k 3w5 3k5`.[0]
-    let textCount = 0
-    if (limitedTextCount.includes("w")) {
-        let num = limitedTextCount.split("w")
+    if (limitedTextCount.includes("w") || limitedTextCount.includes("W")) {
+        let num = limitedTextCount.toLowerCase().split("w")
         textCount = 10000 * num[0] + 1000 * num[1]
-    }
-    else if (limitedTextCount.includes("W")) {
-        let num = limitedTextCount.split("W")
-        textCount = 10000 * num[0] + 1000 * num[1]
-    }
-
-    if (limitedTextCount.includes("k")) {
-        let num = limitedTextCount.split("k")
-        textCount = 1000 * num[0] + 100 * num[1]
-    }
-    else if (limitedTextCount.includes("K")) {
-        let num = limitedTextCount.split("K")
+    } else if (limitedTextCount.includes("k") || limitedTextCount.includes("K")) {
+        let num = limitedTextCount.toLowerCase().split("k")
         textCount = 1000 * num[0] + 100 * num[1]
     }
 
     let novels0 = novels.map(novel => novel.id)
-    novels = novels.filter(novel => novel.textCount >= textCount)
-    let novels1 = novels.map(novel => novel.id)
     if (textCount >= 1) {
+        novels = novels.filter(novel => novel.textCount >= textCount)
+        let novels1 = novels.map(novel => novel.id)
         java.log(`🔢 字数限制：${limitedTextCount}`)
         java.log(`⏬ 字数限制：过滤前${novels0.length}；过滤后${novels1.length}`)
+    }
+
+    let inputTags = String(java.get("inputTags")).split(" ")
+    for (let i in inputTags) {
+        let tag = inputTags[i].trim()
+        if (tag !== "") tags.push(`${tag}`)
+    }
+
+    if (tags.length >= 1) {
+        // novels = novels.filter(novel => {
+        //     // java.log(`${JSON.stringify(novel.tags)}\n${tags.every(item => novel.tags.includes(item))}`)
+        //     return tags.every(item => novel.tags.includes(item))
+        // })
+        novels = novels.filter(novel => tags.every(item => novel.tags.includes(item)))
+        let novels2 = novels.map(novel => novel.id)
+        java.log(`#️⃣ 过滤标签：${tags.join("、")}`)
+        java.log(`#️⃣ 过滤标签：过滤前${novels0.length}；过滤后${novels2.length}`)
+    }
+
+    let inputAuthor = String(java.get("inputAuthor")).trim()
+    if (inputAuthor) {
+        // novels = novels.filter(novel => {
+        //     java.log(`${novel.userName}-${novel.userName.includes(inputAuthor)}`)
+        //     return novel.userName.includes(inputAuthor)
+        // })
+        novels = novels.filter(novel => novel.userName.includes(inputAuthor))
+        let novels2 = novels.map(novel => novel.id)
+        java.log(`👤 过滤作者：${tags.join("、")}`)
+        java.log(`👤 过滤作者：过滤前${novels0.length}；过滤后${novels2.length}`)
     }
     return novels
 }
@@ -242,17 +284,19 @@ function novelFilter(novels) {
     let novels = []
     let keyword = String(java.get("keyword"))
     if (keyword.startsWith("@") || keyword.startsWith("＠")) {
-        keyword = keyword.slice(1)
-        java.put("keyword", keyword)
+        java.put("keyword", keyword.slice(1))
         novels = novels.concat(getUserNovels())
     } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
-        keyword = keyword.slice(1)
-        java.put("keyword", keyword)
-        novels = novels.concat(getNovels())
+        java.put("keyword", keyword.slice(1))
+        // 删除默认搜索最大页码，使用内部设定的最大页码
+        cache.delete("maxPages")
         novels = novels.concat(getSeries())
+        novels = novels.concat(getNovels())
     } else {
-        novels = novels.concat(getNovels())
+        // 设置默认搜索最大页码
+        putInCache("maxPages", 1)
         novels = novels.concat(getSeries())
+        novels = novels.concat(getNovels())
         if (util.settings.SEARCH_AUTHOR) novels = novels.concat(getUserNovels())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
