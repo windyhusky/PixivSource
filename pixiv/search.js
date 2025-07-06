@@ -261,6 +261,11 @@ function novelFilter(novels) {
         novels = novels.concat(getUserNovels())
     } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
         keyword = keyword.slice(1)
+        if (keyword.includes("@") || keyword.includes("＠")) {
+            let author = keyword.match(new RegExp(/[@＠](.*)/))
+            keyword = keyword.replace(author[0], "")
+            java.put("inputAuthor", author[1])
+        }
         java.put("keyword", keyword)
         novels = novels.concat(getNovels())
         novels = novels.concat(getSeries())
