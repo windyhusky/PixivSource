@@ -553,13 +553,37 @@ function cleanCache() {
     let novel = getNovel()
     cache.delete(`${urlNovelUrl(novel.id)}`)
     cache.delete(`${urlNovelDetailed(novel.id)}`)
-    cache.delete(`${urlSearchNovel(novel.title, 1)}`)
+    // cache.delete(`${urlSearchNovel(novel.title, 1)}`)
     // if (novel.seriesId) {
     //     cache.delete(`${urlSeriesUrl(novel.seriesId)}`)
     //     cache.delete(`${urlSeriesDetailed(novel.seriesId)}`)
     //     cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
     // }
     sleepToast(`🧹 清除缓存\n\n📌 当前章节：${novel.title}\n\n已清除本章正文缓存，刷新正文以更新`, 5)
+}
+
+function editMaxPages(method) {
+    let msg = ""
+    let maxPages = getFromCache("maxPages")
+    if (!maxPages) maxPages = 3
+    if (method.includes("add")) maxPages += 1
+    else if (method.includes("min")) maxPages -= 1
+    else return sleepToast(`#️⃣ 搜索标签\n\n当前最大页码：${maxPages}\n\n📌 页码越多，小说越多，速度越慢`)
+
+    if (maxPages <= 1) {
+        maxPages = 1
+        msg += "⚠️ 页码不能再减小了\n"
+    }
+    if (maxPages >= 5) {
+        msg += "⚠️ 搜索页码越多，搜索速度越慢\n"
+    }
+    if (maxPages >= 10) {
+        maxPages = 10
+        msg += "⚠️ 页码不能再增大了\n"
+    }
+    putInCache("maxPages", maxPages)
+    sleepToast(`#️⃣ 搜索标签\n\n当前最大页码：${maxPages}\n\n${(msg)}`.trim())
+    return maxPages
 }
 
 function sleepToast(text, second=0) {
