@@ -257,11 +257,6 @@ function publicFunc() {
                 novel.coverUrl = novel.url
                 // novel.createDate = novel.createDate
                 // novel.updateDate = novel.updateDate
-                if (novel.bookmarkData) {
-                    novel.isBookmark = true
-                    cache.put(`collect${novel.id}`, novel.bookmarkData.id)
-                    likeNovels.push(Number(novel.id))
-                } else novel.isBookmark = false
             }
 
             // 搜索系列
@@ -293,11 +288,6 @@ function publicFunc() {
                 novel.coverUrl = novel.userNovels[`${novel.id}`].url
                 // novel.createDate = novel.createDate
                 novel.updateDate = novel.uploadDate
-                if (novel.bookmarkData) {
-                    novel.isBookmark = true
-                    cache.put(`collect${novel.id}`, novel.bookmarkData.id)
-                    likeNovels.push(Number(novel.id))
-                } else novel.isBookmark = false
 
                 if (novel.seriesNavData) {
                     novel.seriesId = novel.seriesNavData.seriesId
@@ -320,6 +310,13 @@ function publicFunc() {
                 novel.latestChapter = novel.title
                 novel.detailedUrl = urlNovelDetailed(novel.id)
                 novel.total = 1
+                if (novel.bookmarkData) {
+                    novel.isBookmark = true
+                    cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                    likeNovels.push(Number(novel.id))
+                } else {
+                    novel.isBookmark = false
+                }
             }
             // 系列添加更多信息
             if (novel.seriesId) {
@@ -379,11 +376,11 @@ function publicFunc() {
     u.formatNovels = function(novels) {
         novels = util.novelFilter(novels)
         novels.forEach(novel => {
-            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
+            if (novel.title) novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
             novel.readingTime = `${novel.readingTime / 60} 分钟`
-            novel.createDate = dateFormat(novel.createDate);
-            novel.updateDate = dateFormat(novel.updateDate);
+            novel.createDate = dateFormat(novel.createDate)
+            novel.updateDate = dateFormat(novel.updateDate)
 
             novel.tags2 = []
             for (let i in novel.tags) {
