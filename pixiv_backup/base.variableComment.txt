@@ -30,7 +30,7 @@
 "SHOW_CAPTIONS": true,
 "SHOW_COMMENTS": true,
 
-"FAST": true,
+"FAST": false,
 "DEBUG": false,
 
 "SHOW_GENERAL_NEW": false,
