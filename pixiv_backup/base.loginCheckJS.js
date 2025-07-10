@@ -260,7 +260,7 @@ function publicFunc() {
             }
 
             // 搜索系列
-            if (novel.isOneshot) {
+            if (novel.isOneshot !== undefined) {
                 if (novel.isOneshot === true) {
                     novel.seriesId = undefined
                     novel.id = novel.novelId  // 获取真正的 novelId
