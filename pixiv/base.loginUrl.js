@@ -500,14 +500,8 @@ function showSettings() {
 }
 
 function editSettings(object) {
-    let msg = "", status
+    let msg, status
     let settings = getFromCache("pixivSettings")
-    if (settings[object] !== undefined) {
-        status = settings[object] = (!settings[object])
-    } else {
-        status = settings[object] = true  // 无设置则默认开启
-    }
-
     if (object === "") {
         settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
         settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
@@ -521,10 +515,9 @@ function editSettings(object) {
         settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
         settings.FAST  = false              // 全局：快速模式
         settings.DEBUG = false              // 全局：调试模式
+        putInCache("pixivSettings", settings)
         msg = `\n✅ 已恢复　🔧 默认设置\n\n${getSettingStatus()}`
 
-    } else if (object !== "FAST") {
-        msg = `${statusMsg(status)}　${settingsName[object]}`
     } else if (object === "FAST") {
         if (settings[object] === true) {
             putInCache("pixivLastSettings", settings)
@@ -533,17 +526,23 @@ function editSettings(object) {
             settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
             settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
             settings.SHOW_COMMENTS = false        // 正文：显示评论
-            putInCache("pixivSettings", settings)
-            let message = getSettingStatus("FAST")
-            msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
         } else {
             settings = getFromCache("pixivLastSettings")
             settings.SEARCH_AUTHOR = true
             settings.FAST = false
-            putInCache("pixivSettings", settings)
-            let message = getSettingStatus("FAST")
-            msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
         }
+        putInCache("pixivSettings", settings)
+        let status = settings[object]
+        let message = getSettingStatus("FAST")
+        msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
+
+    } else {
+        if (settings[object] !== undefined) {
+            status = settings[object] = (!settings[object])
+        } else {
+            status = settings[object] = true  // 无设置则默认开启
+        }
+        msg = `${statusMsg(status)}　${settingsName[object]}`
     }
     sleepToast(msg)
     putInCache("pixivSettings", settings)
