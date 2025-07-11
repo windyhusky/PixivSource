@@ -18,7 +18,6 @@ function isBackupSource() {
 // 可用 java.startBrowser() 不可用 java.startBrowserAwaitAwait
 // 可用 source.bookSourceName source.getVariable() source.setVariable()等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
-// 不能读写源变量
 function isSourceRead() {
     let isSourceReadStatus = java.getUserAgent() === java.getWebViewUA()
     cache.put("isSourceRead", isSourceReadStatus)
@@ -39,7 +38,7 @@ function publicFunc() {
     }
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
-    if (isBackupSource() || isSourceRead()) {
+    if (isBackupSource()) {
         settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     } else {
         // cache.delete("pixivSettings")
@@ -235,7 +234,7 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function(novels, detailed=false) {
+    u.handNovels = function(novels) {
         let likeNovels = [], watchedSeries = []
         novels = util.authorFilter(novels)
         novels.forEach(novel => {
