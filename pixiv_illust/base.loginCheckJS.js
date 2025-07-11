@@ -139,11 +139,18 @@ function publicFunc() {
     java.put("util", objStringify(u))
 }
 
-publicFunc()
-
 // 获取请求的user id方便其他ajax请求构造
-let uid = java.getResponse().headers().get("x-userid")
-if (uid != null) {
-    cache.put("pixiv:uid", uid)
+function getPixivUid() {
+    let uid = java.getResponse().headers().get("x-userid")
+    if (uid != null) {
+        cache.put("pixiv:uid", String(uid))
+    } else {
+        cache.delete("pixiv:uid")
+    }
+}
+
+publicFunc()
+if (result.code() === 200) {
+    getPixivUid()
 }
 java.getStrResponse(null, null)
