@@ -234,7 +234,7 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function(novels, detailed=false) {
+    u.handNovels = function(novels) {
         let likeNovels = [], watchedSeries = []
         novels = util.authorFilter(novels)
         novels.forEach(novel => {
