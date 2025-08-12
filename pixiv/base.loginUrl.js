@@ -483,16 +483,22 @@ let settingsName = {
 }
 
 function getPixivSettings() {
+    let settings = getFromCache("pixivSettings")
     let resp = getAjaxJson("https://www.pixiv.net/ajax/settings/self")
     if (resp.error !== true) {
-        let settings = getFromCache("pixivSettings")
         let siteSettings = resp.body.user_status
         settings.HIDE_AI_WORKS = siteSettings.hide_ai_works
         settings.SENSITIVE_VIEW = siteSettings.sensitive_view_setting
         settings.USER_X_RESTRICT = siteSettings.user_x_restrict
         settings.READING_STATUS = siteSettings.reading_status_enabled
-        putInCache("pixivSettings", settings)
+    } else {
+        settings.HIDE_AI_WORKS = false
+        settings.SENSITIVE_VIEW = 0
+        settings.USER_X_RESTRICT = 0
+        settings.READING_STATUS = false
     }
+    putInCache("pixivSettings", settings)
+    return settings
 }
 
 
