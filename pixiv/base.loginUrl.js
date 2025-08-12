@@ -501,6 +501,21 @@ function getPixivSettings() {
     return settings
 }
 
+function editPixivSettingsHideAI() {
+    let settings = getPixivSettings()
+    // let settings = getFromCache("pixivSettings")
+    let hideAiWorks = Number(!settings.HIDE_AI_WORKS)
+    let resp = getPostBody(
+        "https://www.pixiv.net/ajax/settings/self?lang=zh",
+        {"hideAiWorks": hideAiWorks}
+    )
+
+    if (resp.error === true) sleepToast(`⚠️ 隐藏AI作品 失败`, 1)
+    else if (hideAiWorks === 1) sleepToast(`⚠️ 隐藏AI作品\n\n✅ 已 隐藏AI作品`)
+    else sleepToast(`⚠️ 隐藏AI作品\n\n✅ 已取消 隐藏AI作品`)
+    settings.HIDE_AI_WORKS = Boolean(hideAiWorks)
+    putInCache("pixivSettings", settings)
+}
 
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
