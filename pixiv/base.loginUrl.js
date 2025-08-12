@@ -517,6 +517,24 @@ function editPixivSettingsHideAI() {
     putInCache("pixivSettings", settings)
 }
 
+function editPixivSettingsXRestrict() {
+    let settings = getPixivSettings()
+    // let settings = getFromCache("pixivSettings")
+    let userXRestrict = settings.USER_X_RESTRICT + 1
+    if (userXRestrict === 3) userXRestrict = 0
+    let resp = getPostBody(
+        "https://www.pixiv.net/ajax/settings/user_x_restrict",
+        {"userXRestrict": userXRestrict}
+    )
+
+    if (resp.error === true) sleepToast(`⚠️ 成人作品 失败`, 1)
+    else if (hideAiWorks === 0) sleepToast(`⚠️ 成人作品\n\n✅ 已关闭 成人作品`)
+    else if (hideAiWorks === 1) sleepToast(`⚠️ 成人作品\n\n✅ 已开启 R-18作品`)
+    else sleepToast(`⚠️ 成人作品\n\n✅ 已开启 R-18G作品`)
+    settings.HIDE_AI_WORKS = userXRestrict
+    putInCache("pixivSettings", settings)
+}
+
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
