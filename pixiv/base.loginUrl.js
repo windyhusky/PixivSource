@@ -474,7 +474,12 @@ let settingsName = {
     "SHOW_LIKE_NOVELS" :"❤️ 显示收藏",
     "SHOW_WATCHED_SERIES" :"📃 显示追更",
     "FAST": "⏩ 快速模式",
-    "DEBUG": "🐞 调试模式"
+    "DEBUG": "🐞 调试模式",
+    "":"Pixiv 设置",
+    "HIDE_AI_WORKS":"隐藏AI作品",
+    "SENSITIVE_VIEW":"敏感作品",
+    "USER_X_RESTRICT":"成人设置",
+    "READING_STATUS":"阅读进度",
 }
 
 function getPixivSettings() {
