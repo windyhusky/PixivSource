@@ -535,6 +535,22 @@ function editPixivSettingsXRestrict() {
     putInCache("pixivSettings", settings)
 }
 
+function editPixivSettingsSensitiveView() {
+    let settings = getPixivSettings()
+    // let settings = getFromCache("pixivSettings")
+    let sensitiveView = Number(!settings.SENSITIVE_VIEW)
+    let resp = getPostBody(
+        "https://www.pixiv.net/ajax/settings/sensitive_view_setting",
+        {"sensitiveViewSetting": sensitiveView}
+    )
+
+    if (resp.error === true) sleepToast(`⚠️ 敏感作品 失败`, 1)
+    else if (sensitiveView === 0) {sleepToast(`⚠️ 敏感作品\n\n✅ 已隐藏 敏感作品`)}
+    else sleepToast(`⚠️ 敏感作品\n\n✅ 已显示 敏感作品`)
+    settings.SENSITIVE_VIEW = sensitiveView
+    putInCache("pixivSettings", settings)
+}
+
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
