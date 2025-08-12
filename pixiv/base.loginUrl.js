@@ -477,6 +477,20 @@ let settingsName = {
     "DEBUG": "🐞 调试模式"
 }
 
+function getPixivSettings() {
+    let resp = getAjaxJson("https://www.pixiv.net/ajax/settings/self")
+    if (resp.error !== true) {
+        let settings = getFromCache("pixivSettings")
+        let siteSettings = resp.body.user_status
+        settings.HIDE_AI_WORKS = siteSettings.hide_ai_works
+        settings.SENSITIVE_VIEW = siteSettings.sensitive_view_setting
+        settings.USER_X_RESTRICT = siteSettings.user_x_restrict
+        settings.READING_STATUS = siteSettings.reading_status_enabled
+        putInCache("pixivSettings", settings)
+    }
+}
+
+
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
