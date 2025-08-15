@@ -392,6 +392,25 @@ function novelCommentDelete() {
     })
 }
 
+function blockWordShow(method) {
+    if (method === undefined) method = "caption"
+    let words = getFromCache(method)
+    sleepToast(`${words.toString()}`, 5)
+}
+
+function blockWordAdd(method) {
+    if (method === undefined) method = "caption"
+    let blockWord = String(result.get("屏蔽简介")).trim()
+    let blockWords = getFromCache(`${method}BlockWords`)
+    blockWords.push(blockWord)
+    putInCache(`${method}BlockWords`, blockWords)
+    sleepToast(`${method}BlockWords\n${blockWords}`)
+}
+
+function blockWordDelete() {
+
+}
+
 function startBrowser(url, title) {
     let msg = "", headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
     if (url.includes("https://www.pixiv.net")) {
