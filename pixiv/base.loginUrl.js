@@ -645,7 +645,7 @@ function showMaxPages() {
     let key = getFromCache("maxPagesKey")
     if (!key) key = keys[0]
     if (key === keys[0]) key = keys[1]
-    if (key === keys[1]) key = keys[0]
+    else if (key === keys[1]) key = keys[0]
     putInCache("maxPagesKey", key)
     return sleepToast(`📄 搜索页码\n设置 #️⃣ 搜索标签的最大页码数\n
     当前${maxPagesName[keys[0]]}：${getFromCache(keys[0])}\n当前${maxPagesName[keys[1]]}：${getFromCache(keys[1])}\n
