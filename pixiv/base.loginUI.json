@@ -167,6 +167,38 @@
     },
 
     {
+        "name": "屏蔽简介",
+        "type": "text"
+    },
+    {
+        "name": "➕ 添加屏蔽",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDD1  删除屏蔽",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC40 查看屏蔽",
+        "type": "button",
+        "action": "",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
         "name": "⚙️ 当前设置",
         "type": "button",
         "action": "showSettings()",
