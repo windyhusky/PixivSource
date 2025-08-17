@@ -44,7 +44,9 @@ function removeLikeDataCache() {
     // 删除 likeNovels 与 watchedSeries
     removeCacheList("likeNovels")
     removeCacheList("watchedSeries")
+}
 
+function removeSettingsCache() {
     // 删除 自动翻页的最大页码
     cache.delete("maxPagesKey")
     cache.delete("novelsMaxPages")
