@@ -19,7 +19,7 @@ function login() {
 function logout() {
     removeCookie()
     java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
-    removeCookie()
+    removeCookie(); removeCache()
     sleepToast(`✅ 已退出当前账号\n\n退出后请点击右上角的 ✔️ 退出\n\n登录请点击【登录账号】进行登录`)
 }
 
@@ -29,8 +29,32 @@ function removeCookie() {
     cookie.removeCookie('https://accounts.google.com')
     cookie.removeCookie('https://api.weibo.com')
     cache.delete("pixivCookie")
+    cache.delete("pixiv:uid")
     cache.delete("csfrToken")  // 与登录设备有关
     cache.delete("headers")
+}
+
+function removeCache() {
+    function removeCacheList(listName) {
+        let list = getFromCache(listName)
+        list.forEach(item => cache.delete(`collect${item}`))
+        if (listName !== "blockAuthorList") cache.delete(listName)
+    }
+
+    // 删除 likeNovels 与 watchedSeries
+    removeCacheList("likeNovels")
+    removeCacheList("watchedSeries")
+
+    // 删除 自动翻页的最大页码
+    cache.delete("maxPagesKey")
+    cache.delete("novelsMaxPages")
+    cache.delete("seriesMaxPages")
+
+    // 删除 屏蔽作者名单
+    // removeCacheList("blockAuthorList")
+    // 删除  屏蔽关键词
+    // cache.delete("tagsBlockWords")
+    // cache.delete("captionBlockWords")
 }
 
 // 获取 Csrf Token，以便进行收藏等请求
