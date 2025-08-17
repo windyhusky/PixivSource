@@ -19,7 +19,7 @@ function login() {
 function logout() {
     removeCookie()
     java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
-    removeCookie(); removeCache()
+    removeCookie(); removeLikeDataCache(); removeSettingsCache()
     sleepToast(`✅ 已退出当前账号\n\n退出后请点击右上角的 ✔️ 退出\n\n登录请点击【登录账号】进行登录`)
 }
 
@@ -34,13 +34,13 @@ function removeCookie() {
     cache.delete("headers")
 }
 
-function removeCache() {
-    function removeCacheList(listName) {
-        let list = getFromCache(listName)
-        list.forEach(item => cache.delete(`collect${item}`))
-        if (listName !== "blockAuthorList") cache.delete(listName)
-    }
+function removeCacheList(listName) {
+    let list = getFromCache(listName)
+    list.forEach(item => cache.delete(`collect${item}`))
+    if (listName !== "blockAuthorList") cache.delete(listName)
+}
 
+function removeLikeDataCache() {
     // 删除 likeNovels 与 watchedSeries
     removeCacheList("likeNovels")
     removeCacheList("watchedSeries")
