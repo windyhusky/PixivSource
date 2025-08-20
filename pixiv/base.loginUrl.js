@@ -423,16 +423,22 @@ let blockWordsType = {
     "tags":"#️ 标签"
 }
 
-function blockWordShow(method) {
-    if (method === undefined) method = "caption"
-    let words = getFromCache(`${method}BlockWords`)
+function blockWordShow() {
+    let keys = Object.keys(blockWordsType)
+    let key = getFromCache("blockWordsType")
+    if (!key) key = keys[0]
+    if (key === keys[0]) key = keys[1]
+    else if (key === keys[1]) key = keys[0]
+    putInCache("blockWordsType", key)
+
+    let words = getFromCache(`${key}BlockWords`)
     if (words === undefined) words = []
-    sleepToast(`👀 查看屏蔽\n${blockWordsType[method]}屏蔽列表\n\n${words.join("\n")}`, 5)
+    sleepToast(`👀 查看屏蔽\n${blockWordsType[key]}屏蔽列表\n\n${words.join("\n")}`, 5)
 }
 
-function blockWordAdd(method) {
-    if (method === undefined) method = "caption"
-    let blockWord = String(result.get("屏蔽简介")).trim()
+function blockWordAdd() {
+    let method = getFromCache("blockWordsType")
+    let blockWord = String(result.get("屏蔽内容")).trim()
     if (blockWord === "") return sleepToast(`➕ 添加屏蔽\n${blockWordsType[method]}屏蔽列表\n\n⚠️ 屏蔽内容不能为空`)
 
     let blockWords = getFromCache(`${method}BlockWords`)
@@ -446,9 +452,9 @@ function blockWordAdd(method) {
     }
 }
 
-function blockWordDelete(method) {
-    if (method === undefined) method = "caption"
-    let blockWord = String(result.get("屏蔽简介")).trim()
+function blockWordDelete() {
+    let method = getFromCache("blockWordsType")
+    let blockWord = String(result.get("屏蔽内容")).trim()
     if (blockWord === "") return sleepToast(`🗑 删除屏蔽\n${blockWordsType[method]}屏蔽列表\n\n⚠️ 屏蔽内容不能为空`)
 
     let blockWords = getFromCache(`${method}BlockWords`)
