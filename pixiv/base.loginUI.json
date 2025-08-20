@@ -173,7 +173,7 @@
     {
         "name": "➕ 添加屏蔽",
         "type": "button",
-        "action": "",
+        "action": "blockWordAdd('caption')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -182,7 +182,7 @@
     {
         "name": "\uD83D\uDDD1  删除屏蔽",
         "type": "button",
-        "action": "",
+        "action": "blockWordDelete('caption')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -191,7 +191,7 @@
     {
         "name": "\uD83D\uDC40 查看屏蔽",
         "type": "button",
-        "action": "",
+        "action": "blockWordShow('caption')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
