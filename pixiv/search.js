@@ -282,7 +282,7 @@ function novelFilter(novels) {
     let captionBlockWords = getFromCache("captionBlockWords")
     if (captionBlockWords === null) captionBlockWords = []
     if (captionBlockWords) {
-        // 仅保留没有关键词的小说
+        // 仅保留没有任何屏蔽词的小说
         // novels = novels.filter(novel => {
         //     return !captionBlockWords.some(item => {
         //         if (novel.description !== undefined) return novel.description.includes(item)
@@ -294,6 +294,20 @@ function novelFilter(novels) {
         java.log(`🚫 屏蔽描述：过滤前${novels0.length}；过滤后${novels2.length}`)
     }
 
+    let tagsBlockWords = getFromCache("tagsBlockWords")
+    if (tagsBlockWords === null) tagsBlockWords = []
+    if (tagsBlockWords) {
+        // 仅保留没有任何屏蔽词的小说
+        // novels = novels.filter(novel => {
+        //     return !tagsBlockWords.some(item => {
+        //         if (novel.tags !== undefined) return novel.tags.includes(item)
+        //     })
+        // })
+        novels = novels.filter(novel => !tagsBlockWords.some(item => novel.tags.includes(item)))
+        let novels2 = novels.map(novel => novel.id)
+        java.log(`🚫 屏蔽标签：${tagsBlockWords.join("、")}`)
+        java.log(`🚫 屏蔽标签：过滤前${novels0.length}；过滤后${novels2.length}`)
+    }
     return novels
 }
 
