@@ -446,8 +446,20 @@ function blockWordAdd(method) {
     }
 }
 
-function blockWordDelete() {
+function blockWordDelete(method) {
+    if (method === undefined) method = "caption"
+    let blockWord = String(result.get("屏蔽简介")).trim()
+    if (blockWord === "") return sleepToast(`🗑 删除屏蔽\n${blockWordsType[method]}屏蔽列表\n\n⚠️ 屏蔽内容不能为空`)
 
+    let blockWords = getFromCache(`${method}BlockWords`)
+    if (blockWords === null) blockWords = []
+    if (!blockWords.includes(blockWord)) {
+        sleepToast(`🗑 删除屏蔽\n${blockWordsType[method]}屏蔽列表\n\n⚠️ 【${blockWord}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
+    } else {
+        blockWords = blockWords.filter(item => item !== blockWord)
+        putInCache(`${method}BlockWords`, blockWords)
+        sleepToast(`🗑 删除屏蔽\n${blockWordsType[method]}屏蔽列表\n\n✅ 已删除屏蔽词【${blockWord}】`)
+    }
 }
 
 function startBrowser(url, title) {
