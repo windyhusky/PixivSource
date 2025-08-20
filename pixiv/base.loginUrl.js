@@ -418,19 +418,32 @@ function novelCommentDelete() {
     })
 }
 
+let blockWordsType = {
+    "caption":"📃 简介",
+    "tags":"#️ 标签"
+}
+
 function blockWordShow(method) {
     if (method === undefined) method = "caption"
-    let words = getFromCache(method)
-    sleepToast(`${words.toString()}`, 5)
+    let words = getFromCache(`${method}BlockWords`)
+    if (words === undefined) words = []
+    sleepToast(`👀 查看屏蔽\n${blockWordsType[method]}屏蔽列表\n\n${words.join("\n")}`, 5)
 }
 
 function blockWordAdd(method) {
     if (method === undefined) method = "caption"
     let blockWord = String(result.get("屏蔽简介")).trim()
+    if (blockWord === "") return sleepToast(`➕ 添加屏蔽\n${blockWordsType[method]}屏蔽列表\n\n⚠️ 屏蔽内容不能为空`)
+
     let blockWords = getFromCache(`${method}BlockWords`)
-    blockWords.push(blockWord)
-    putInCache(`${method}BlockWords`, blockWords)
-    sleepToast(`${method}BlockWords\n${blockWords}`)
+    if (blockWords === null) blockWords = []
+    if (blockWords.includes(blockWord)) {
+        sleepToast(`➕ 添加屏蔽\n${blockWordsType[method]}屏蔽列表\n\n✅ 【${blockWord}】已经加入屏蔽列表了`)
+    } else {
+        blockWords.push(blockWord)
+        putInCache(`${method}BlockWords`, blockWords)
+        sleepToast(`➕ 添加屏蔽\n${blockWordsType[method]}屏蔽列表\n\n✅ 已将【${blockWord}】加入屏蔽列表中`)
+    }
 }
 
 function blockWordDelete() {
