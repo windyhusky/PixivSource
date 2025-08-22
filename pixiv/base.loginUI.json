@@ -180,7 +180,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDD1  删除屏蔽",
+        "name": "\uD83D\uDDD1 删除屏蔽",
         "type": "button",
         "action": "blockWordDelete()",
         "style": {
@@ -192,6 +192,38 @@
         "name": "\uD83D\uDC40 查看屏蔽",
         "type": "button",
         "action": "blockWordShow()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
+        "name": "收藏标签",
+        "type": "text"
+    },
+    {
+        "name": "➕ 添加标签",
+        "type": "button",
+        "action": "likeTagsAdd()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDD1 删除标签",
+        "type": "button",
+        "action": "likeTagsDelete()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC40 查看标签",
+        "type": "button",
+        "action": "likeTagsShow()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
