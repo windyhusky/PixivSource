@@ -468,6 +468,43 @@ function blockWordDelete() {
     }
 }
 
+function likeTagsShow() {
+    let likeTags = getFromCache(`likeTags`)
+    if (likeTags === null) likeTags = []
+    sleepToast(`👀 查看收藏标签列表\n\n${likeTags.join("\n")}`, 5)
+}
+
+function likeTagsAdd() {
+    let word = String(result.get("收藏标签")).trim()
+    if (word === "") return sleepToast(`➕ 添加标签\n\n⚠️ 标签不能为空`)
+
+    let likeTags = getFromCache(`likeTags`)
+    if (likeTags === null) likeTags = []
+    if (likeTags.includes(word)) {
+        sleepToast(`➕ 添加标签\n\n✅ 【${word}】已经加入发现页面的收藏标签了\n请于发现页刷新后查看`)
+    } else {
+        likeTags.push(word)
+        putInCache(`likeTags`, likeTags)
+        sleepToast(`➕ 添加标签\n\n✅ 已将【${word}】加入发现页面的收藏标签了\n请于发现页刷新后查看`)
+    }
+}
+
+function likeTagsDelete() {
+    let word = String(result.get("收藏标签")).trim()
+    if (word === "") return sleepToast(`🗑 删除标签\n\n⚠️ 标签不能为空`)
+
+    let likeTags = getFromCache(`likeTags`)
+    if (likeTags === null) likeTags = []
+    if (!likeTags.includes(word)) {
+        sleepToast(`🗑 删除标签\n\n⚠️ 【${word}】不在收藏标签\n请检查是否有错别字`)
+    } else {
+        likeTags = likeTags.filter(item => item !== word)
+        putInCache(`${method}likeTags`, likeTags)
+        sleepToast(`🗑 删除标签\n\n✅ 已删除该标签【${word}】`)
+    }
+}
+
+
 function startBrowser(url, title) {
     let msg = "", headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
     if (url.includes("https://www.pixiv.net")) {
