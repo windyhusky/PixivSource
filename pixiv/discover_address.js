@@ -114,7 +114,6 @@ generalgGenre = [
 
 let likeTagLinks = [{"❤️ 收藏标签":""}]
 let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
-bookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
 li = li.concat(normal)
 li = li.concat(r18New)
@@ -158,10 +157,10 @@ if (!isBackupSource && !isSourceRead) {
             if (resp.error !== true) {
                 let bookmark = {}
                 bookmark[resp.body.name] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
-                bookmarks.push(bookmark)
+                othersBookmarks.push(bookmark)
             }
         })
-        li = li.concat(bookmarks)
+        li = li.concat(othersBookmarks)
     } else {
         sleepToast("❤️ 他人收藏\n 刷新发现前，请在【订阅源】设置源变量，并在【订阅源】的登录界面点击 ❤️ 他人收藏 导入数据")
     }
