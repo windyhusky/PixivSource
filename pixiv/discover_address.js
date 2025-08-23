@@ -130,20 +130,17 @@ if (SHOW_R18_GENRE === true) {
 if (SHOW_GENERAL_GENRE === true) {
     li = li.concat(generalgGenre)
 }
-
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
 // 收藏标签
-let likeTags = JSON.parse(cache.get("pixivLikeAuthors"))
+let likeTags = JSON.parse(cache.get("likeTags"))
 if (likeTags !== null && likeTags.length >= 1) {
     likeTags.forEach(tag => {
-        let resp = getAjaxJson(urlSearchNovel(tag, Number(java.get("page"))))
-        if (resp.error !== true) {
-            let tagLink = {}
-            tagLink[tag] = `${urlSearchNovel(tag, "{{page}}")}`
-            likeTagLinks.push(tagsLink)
-        }
+        let tagLink = {}
+        tagLink[tag] = `${urlSearchNovel(tag, "{{page}}")}`
+        likeTagLinks.push(tagLink)
     })
+    li = li.concat(likeTagLinks)
 }
 
 // 他人收藏
