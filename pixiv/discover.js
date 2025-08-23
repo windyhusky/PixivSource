@@ -55,7 +55,10 @@ function handlerFactory() {
     if (baseUrl.includes("/editors_picks")) {
         return handlerRanking()
     }
-    if (baseUrl.includes("https://www.pixiv.net")) {
+    if (baseUrl.includes("/ajax/search/novels")) {
+        return handlerSearch()
+    }
+    if (baseUrl.startsWith("https://www.pixiv.net")) {
         return handlerRanking()
     }
     else {
@@ -111,6 +114,14 @@ function handlerDiscovery() {
     return () => {
         let res = JSON.parse(result)
         return util.formatNovels(util.handNovels(util.combineNovels(res.body.novels)))
+    }
+}
+
+// 搜索标签
+function handlerSearch() {
+    return () => {
+        let res = JSON.parse(result)
+        return util.formatNovels(util.handNovels(util.combineNovels(res.body.novel.data)))
     }
 }
 
