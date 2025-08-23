@@ -112,7 +112,7 @@ generalgGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
-let likeTagLinks = [{"❤️ 收藏标签":""}]
+let likeTagLinks = [{"📌 喜欢标签 📌":""}]
 let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
 li = li.concat(normal)
