@@ -476,11 +476,15 @@ function likeTagsShow() {
 
 function likeTagsAdd() {
     let word = String(result.get("喜欢标签")).trim()
-    if (word === "") return sleepToast(`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 标签不能为空`)
+    if (word === "") return sleepToast(`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 标签不能为空\n请直接输入标签内容`)
 
     let likeTags = getFromCache(`likeTags`)
     if (likeTags === null) likeTags = []
-    if (likeTags.includes(word)) {
+    if (word.startsWith("@") || word.startsWith("＠")) {
+        sleepToast("`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 @作者名称")
+    } else if (word.startsWith("#") || word.startsWith("＃")) {
+        sleepToast("`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 #标签名称")
+    } else if (likeTags.includes(word)) {
         sleepToast(`➕ 添加标签\n📌 喜欢标签\n\n✅ 【${word}】已经加入喜欢标签了\n请于发现页刷新后查看`)
     } else {
         likeTags.push(word)
