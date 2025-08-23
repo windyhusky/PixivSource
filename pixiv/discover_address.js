@@ -112,6 +112,8 @@ generalgGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
+let likeTagLinks = [{"❤️ 收藏标签":""}]
+let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 bookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
 li = li.concat(normal)
@@ -132,6 +134,20 @@ if (SHOW_GENERAL_GENRE === true) {
 
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
+// 收藏标签
+let likeTags = JSON.parse(cache.get("pixivLikeAuthors"))
+if (likeTags !== null && likeTags.length >= 1) {
+    likeTags.forEach(tag => {
+        let resp = getAjaxJson(urlSearchNovel(tag, Number(java.get("page"))))
+        if (resp.error !== true) {
+            let tagLink = {}
+            tagLink[tag] = `${urlSearchNovel(tag, "{{page}}")}`
+            likeTagLinks.push(tagsLink)
+        }
+    })
+}
+
+// 他人收藏
 let isSourceRead = eval(String(cache.get("isSourceRead")))
 let isBackupSource = eval(String(cache.get("isBackupSource")))
 if (!isBackupSource && !isSourceRead) {
