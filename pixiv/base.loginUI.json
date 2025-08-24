@@ -199,6 +199,38 @@
     },
 
     {
+        "name": "他人收藏",
+        "type": "text"
+    },
+    {
+        "name": "➕ 添加关注",
+        "type": "button",
+        "action": "likeAuthorsAdd()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDD1 取消关注",
+        "type": "button",
+        "action": "likeAuthorsDelete()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC40 查看关注",
+        "type": "button",
+        "action": "likeAuthorsShow()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
         "name": "喜欢标签",
         "type": "text"
     },
