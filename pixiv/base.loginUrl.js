@@ -469,6 +469,7 @@ function blockWordDelete() {
     }
 }
 
+
 function likeTagsShow() {
     let likeTags = getFromCache(`likeTags`)
     if (likeTags === null) likeTags = []
@@ -511,26 +512,42 @@ function likeTagsDelete() {
     }
 }
 
+
 function likeAuthorsShow() {
     let likeAuthors = getFromCache(`likeAuthors`)
     if (likeAuthors === null) likeAuthors = []
-    sleepToast(`👀 查看关注\n📌 喜欢关注\n\n${likeAuthors.join("、")}`, 5)
+    sleepToast(`👀 查看关注\n📌 喜欢关注\n\n${likeAuthors.join("\n")}`, 5)
 }
 
 function likeAuthorsAdd() {
-    let word = String(result.get("他人收藏")).trim()
-    if (word === "") return sleepToast(`➕ 添加关注\n📌 喜欢关注\n\n⚠️ 关注不能为空\n请直接输入关注内容`)
-
     let likeAuthors = getFromCache(`likeAuthors`)
     if (likeAuthors === null) likeAuthors = []
+
+    let word = String(result.get("他人收藏")).trim()
+    // 无输入内容，添加当前小说的作者
+    if (word === "") {
+        let novel = getNovel()
+        word = `${novel.userId}@${novel.userName}`
+        sleepToast(`➕ 添加关注\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`,2)
+    // 输入纯数字，添加对应ID的作者
+    } else if (!isNaN(word)) {
+        let user = getAjaxJson(urlUserDetailed(word)).body
+        word = `${user.userId}@${user.name}`
+    }
+
     if (word.startsWith("@") || word.startsWith("＠")) {
-        sleepToast("`➕ 添加关注\n📌 喜欢关注\n\n⚠️ 仅支持添加【关注】\n不支持添加 @作者名称")
+        sleepToast(`➕ 添加关注\n❤️ 他人收藏\n\n⚠️ 仅支持添加【作者ID@作者名称】\n不支持添加 @作者名称`)
+    } else if (word.startsWith("#") || word.startsWith("＃")) {
+        sleepToast(`➕ 添加关注\n❤️ 他人收藏\n\n⚠️ 仅支持添加【作者ID@作者名称】\n不支持添加 #标签名称`)
+        sleepToast("`➕ 添加关注\n📌 喜欢关注\n\n⚠️ 仅支持添加【用户ID】\n不支持添加 @作者名称")
+    } else if (word.startsWith("#") || word.startsWith("＃")) {
+        sleepToast("`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【用户ID】\n不支持添加 #标签名称")
     } else if (likeAuthors.includes(word)) {
-        sleepToast(`➕ 添加关注\n📌 喜欢关注\n\n✅ 【${word}】已经加入喜欢关注了\n请于发现页刷新后查看`)
+        sleepToast(`➕ 添加关注\n❤️ 他人收藏\n\n✅ 【${word}】已经加入他人收藏了\n请于发现页刷新后查看`)
     } else {
         likeAuthors.push(word)
         putInCache(`likeAuthors`, likeAuthors)
-        sleepToast(`➕ 添加关注\n📌 喜欢关注\n\n✅ 已将【${word}】加入喜欢关注了\n请于发现页刷新后查看`)
+        sleepToast(`➕ 添加关注\n❤️ 他人收藏\n\n✅ 已将【${word}】加入他人收藏了\n请于发现页刷新后查看`)
     }
 }
 
