@@ -537,7 +537,7 @@ function likeAuthorsAdd() {
     if (word === "") {  // 无输入内容，添加当前小说的作者
         let novel = getNovel()
         likeAuthors[novel.userId] = novel.userName
-        word = ` @${novel.userName} ${novel.userId}`
+        word = `@${novel.userName} ${novel.userId}`
         sleepToast(`➕ 添加关注\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`,2)
     } else if (!isNaN(word)) {  // 输入纯数字，添加对应ID的作者
         let user = getAjaxJson(urlUserDetailed(word)).body
@@ -579,14 +579,8 @@ function likeAuthorsDelete() {
         let user = getAjaxJson(urlUserDetailed(word)).body
         word = `@${user.name} ${user.userId}`
     }
-
-    if (!Object.keys(likeAuthors).includes(word)) {
-        sleepToast(`🗑 取消关注\n❤️ 他人收藏\n\n⚠️ 【${word}】不在他人喜欢的列表中\n请检查用户ID是否有误`)
-    } else {
-        likeAuthors = likeAuthors.filter(item => item !== word)
-        putInCache(`likeAuthors`, likeAuthors)
-        sleepToast(`🗑 取消关注\n❤️ 他人收藏\n\n✅ 已取关【${word}】`)
-    }
+    putInCache(`likeAuthors`, likeAuthors)
+    sleepToast(`🗑 取消关注\n❤️ 他人收藏\n\n✅ 已取关【${word}】`)
 }
 
 
