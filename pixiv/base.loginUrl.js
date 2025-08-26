@@ -438,17 +438,18 @@ function blockWordShow() {
 
 function blockWordAdd() {
     let method = getFromCache("wordsType")
-    let word = String(result.get("屏蔽内容")).trim()
-    if (word === "") return sleepToast(`➕ 添加屏蔽\n${wordsType[method]}\n\n⚠️ 屏蔽内容不能为空`)
-
     let blockWords = getFromCache(`${method}BlockWords`)
     if (blockWords === null) blockWords = []
-    if (blockWords.includes(word)) {
-        sleepToast(`➕ 添加屏蔽\n${wordsType[method]}\n\n✅ 【${word}】已经加入屏蔽列表了`)
+
+    let word = String(result.get("输入内容")).trim()
+    if (word === "") {
+        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 输入内容不能为空`)
+    } else if (blockWords.includes(word)) {
+        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 【${word}】已经加入屏蔽列表了`)
     } else {
         blockWords.push(word)
         putInCache(`${method}BlockWords`, blockWords)
-        sleepToast(`➕ 添加屏蔽\n${wordsType[method]}\n\n✅ 已将【${word}】加入屏蔽列表中`)
+        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 已将【${word}】加入屏蔽列表中`)
     }
 }
 
@@ -457,15 +458,15 @@ function blockWordDelete() {
     let blockWords = getFromCache(`${method}BlockWords`)
     if (blockWords === null) blockWords = []
 
-    let word = String(result.get("屏蔽内容")).trim()
+    let word = String(result.get("输入内容")).trim()
     if (word === "") {
-        sleepToast(`🗑 删除屏蔽\n${wordsType[method]}\n\n⚠️ 屏蔽内容不能为空`)
+        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 输入内容不能为空`)
     } else if (!blockWords.includes(word)) {
-        sleepToast(`🗑 删除屏蔽\n${wordsType[method]}\n\n⚠️ 【${word}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
+        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 【${word}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
     } else {
         blockWords = blockWords.filter(item => item !== word)
         putInCache(`${method}BlockWords`, blockWords)
-        sleepToast(`🗑 删除屏蔽\n${wordsType[method]}\n\n✅ 已删除屏蔽词【${word}】`)
+        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n✅ 已删除屏蔽词【${word}】`)
     }
 }
 
@@ -480,19 +481,19 @@ function likeTagsAdd() {
     let likeTags = getFromCache(`likeTags`)
     if (likeTags === null) likeTags = []
 
-    let word = String(result.get("喜欢标签")).trim()
+    let word = String(result.get("输入内容")).trim()
     if (word === "") {
-        sleepToast(`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 标签不能为空\n请直接输入标签内容`)
+        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n⚠️ 输入内容不能为空\n请直接输入标签内容`)
     } else if (word.startsWith("@") || word.startsWith("＠")) {
-        sleepToast("`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 @作者名称")
+        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 @作者名称`)
     } else if (word.startsWith("#") || word.startsWith("＃")) {
-        sleepToast("`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 #标签名称")
+        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 #标签名称`)
     } else if (likeTags.includes(word)) {
-        sleepToast(`➕ 添加标签\n📌 喜欢标签\n\n✅ 【${word}】已经加入喜欢标签了\n请于发现页刷新后查看`)
+        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 【${word}】已经加入喜欢标签了\n请于发现页刷新后查看`)
     } else {
         likeTags.push(word)
         putInCache(`likeTags`, likeTags)
-        sleepToast(`➕ 添加标签\n📌 喜欢标签\n\n✅ 已将【${word}】加入喜欢标签了\n请于发现页刷新后查看`)
+        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 已将【${word}】加入喜欢标签了\n请于发现页刷新后查看`)
     }
 }
 
@@ -500,9 +501,9 @@ function likeTagsDelete() {
     let likeTags = getFromCache(`likeTags`)
     if (likeTags === null) likeTags = []
 
-    let word = String(result.get("喜欢标签")).trim()
+    let word = String(result.get("输入内容")).trim()
     if (word === "") {
-        sleepToast(`🗑 删除标签\n\n⚠️ 标签不能为空`)
+        sleepToast(`🗑 删除标签\n\n⚠️ 输入内容不能为空`)
     } else if (!likeTags.includes(word)) {
         sleepToast(`🗑 删除标签\n\n⚠️ 【${word}】不在喜欢标签\n请检查是否有错别字`)
     } else {
