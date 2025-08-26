@@ -475,12 +475,13 @@ function likeTagsShow() {
 }
 
 function likeTagsAdd() {
-    let word = String(result.get("喜欢标签")).trim()
-    if (word === "") return sleepToast(`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 标签不能为空\n请直接输入标签内容`)
-
     let likeTags = getFromCache(`likeTags`)
     if (likeTags === null) likeTags = []
-    if (word.startsWith("@") || word.startsWith("＠")) {
+
+    let word = String(result.get("喜欢标签")).trim()
+    if (word === "") {
+        sleepToast(`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 标签不能为空\n请直接输入标签内容`)
+    } else if (word.startsWith("@") || word.startsWith("＠")) {
         sleepToast("`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 @作者名称")
     } else if (word.startsWith("#") || word.startsWith("＃")) {
         sleepToast("`➕ 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 #标签名称")
@@ -494,12 +495,13 @@ function likeTagsAdd() {
 }
 
 function likeTagsDelete() {
-    let word = String(result.get("喜欢标签")).trim()
-    if (word === "") return sleepToast(`🗑 删除标签\n\n⚠️ 标签不能为空`)
-
     let likeTags = getFromCache(`likeTags`)
     if (likeTags === null) likeTags = []
-    if (!likeTags.includes(word)) {
+
+    let word = String(result.get("喜欢标签")).trim()
+    if (word === "") {
+        sleepToast(`🗑 删除标签\n\n⚠️ 标签不能为空`)
+    } else if (!likeTags.includes(word)) {
         sleepToast(`🗑 删除标签\n\n⚠️ 【${word}】不在喜欢标签\n请检查是否有错别字`)
     } else {
         likeTags = likeTags.filter(item => item !== word)
