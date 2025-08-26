@@ -144,25 +144,18 @@ if (likeTags !== null && likeTags.length >= 1) {
 }
 
 // 他人收藏
-let isSourceRead = eval(String(cache.get("isSourceRead")))
-let isBackupSource = eval(String(cache.get("isBackupSource")))
-if (!isBackupSource && !isSourceRead) {
-    let authors = JSON.parse(cache.get("pixivLikeAuthors"))
-    if (authors !== null && authors.length >= 1) {
-        authors.forEach(authorId => {
-            let resp = getAjaxJson(urlUserDetailed(authorId))
-            if (resp.error !== true) {
-                let bookmark = {}
-                bookmark[resp.body.name] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
-                othersBookmarks.push(bookmark)
-            }
-        })
-        li = li.concat(othersBookmarks)
-    } else {
-        sleepToast("❤️ 他人收藏\n 刷新发现前，请在【订阅源】设置源变量，并在【订阅源】的登录界面点击 ❤️ 他人收藏 导入数据")
-    }
+let authors = JSON.parse(cache.get("likeAuthors"))
+if (authors !== null && Object.keys(authors).length >= 1) {
+    for (let authorId in authors) {
+        let authorName = authors[authorId]
+        let bookmark = {}
+        bookmark[authorName] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
+        othersBookmarks.push(bookmark)
+        }
+    li = li.concat(othersBookmarks)
 }
 
+// 添加格式
 li.forEach(item => {
     item.title = Object.keys(item)[0]
     item.url = Object.values(item)[0]
