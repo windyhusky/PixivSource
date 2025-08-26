@@ -167,11 +167,11 @@
     },
 
     {
-        "name": "屏蔽内容",
+        "name": "输入内容",
         "type": "text"
     },
     {
-        "name": "➕ 添加屏蔽",
+        "name": "\uD83D\uDEAB 添加屏蔽",
         "type": "button",
         "action": "blockWordAdd()",
         "style": {
@@ -180,7 +180,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDD1 删除屏蔽",
+        "name": "⭕️ 删除屏蔽",
         "type": "button",
         "action": "blockWordDelete()",
         "style": {
@@ -199,11 +199,7 @@
     },
 
     {
-        "name": "喜欢标签",
-        "type": "text"
-    },
-    {
-        "name": "➕ 添加标签",
+        "name": "\uD83D\uDCCC 喜欢标签",
         "type": "button",
         "action": "likeTagsAdd()",
         "style": {
@@ -231,11 +227,7 @@
     },
 
     {
-        "name": "他人收藏",
-        "type": "text"
-    },
-    {
-        "name": "➕ 添加关注",
+        "name": "❤️ 他人收藏",
         "type": "button",
         "action": "likeAuthorsAdd()",
         "style": {
@@ -244,7 +236,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDD1 取消关注",
+        "name": "\uD83D\uDDA4 取消收藏",
         "type": "button",
         "action": "likeAuthorsDelete()",
         "style": {
@@ -253,7 +245,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC40 查看关注",
+        "name": "\uD83D\uDC40 查看收藏",
         "type": "button",
         "action": "likeAuthorsShow()",
         "style": {
