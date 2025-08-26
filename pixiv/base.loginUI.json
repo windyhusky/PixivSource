@@ -199,6 +199,38 @@
     },
 
     {
+        "name": "喜欢标签",
+        "type": "text"
+    },
+    {
+        "name": "➕ 添加标签",
+        "type": "button",
+        "action": "likeTagsAdd()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDD1 删除标签",
+        "type": "button",
+        "action": "likeTagsDelete()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC40 查看标签",
+        "type": "button",
+        "action": "likeTagsShow()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
         "name": "他人收藏",
         "type": "text"
     },
@@ -231,37 +263,9 @@
     },
 
     {
-        "name": "喜欢标签",
+        "name": "书源设置",
         "type": "text"
     },
-    {
-        "name": "➕ 添加标签",
-        "type": "button",
-        "action": "likeTagsAdd()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDDD1 删除标签",
-        "type": "button",
-        "action": "likeTagsDelete()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDC40 查看标签",
-        "type": "button",
-        "action": "likeTagsShow()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-
     {
         "name": "⚙️ 当前设置",
         "type": "button",
