@@ -418,53 +418,54 @@ function novelCommentDelete() {
     })
 }
 
-let blockWordsType = {
-    "caption":"📃 简介",
-    "tags":"#️ 标签"
+let wordsType = {
+    "caption":"📃 简介屏蔽列表",
+    "tags":"#️ 标签屏蔽列表"
 }
 
 function blockWordShow() {
-    let keys = Object.keys(blockWordsType)
-    let key = getFromCache("blockWordsType")
+    let keys = Object.keys(wordsType)
+    let key = getFromCache("wordsType")
     if (!key) key = keys[0]
     if (key === keys[0]) key = keys[1]
     else if (key === keys[1]) key = keys[0]
-    putInCache("blockWordsType", key)
+    putInCache("wordsType", key)
 
     let words = getFromCache(`${key}BlockWords`)
     if (words === undefined) words = []
-    sleepToast(`👀 查看屏蔽\n${blockWordsType[key]}屏蔽列表\n\n${words.join("\n")}`, 5)
+    sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words.join("\n")}`, 5)
 }
 
 function blockWordAdd() {
-    let method = getFromCache("blockWordsType")
-    let blockWord = String(result.get("屏蔽内容")).trim()
-    if (blockWord === "") return sleepToast(`➕ 添加屏蔽\n${blockWordsType[method]}屏蔽列表\n\n⚠️ 屏蔽内容不能为空`)
+    let method = getFromCache("wordsType")
+    let word = String(result.get("屏蔽内容")).trim()
+    if (word === "") return sleepToast(`➕ 添加屏蔽\n${wordsType[method]}\n\n⚠️ 屏蔽内容不能为空`)
 
     let blockWords = getFromCache(`${method}BlockWords`)
     if (blockWords === null) blockWords = []
-    if (blockWords.includes(blockWord)) {
-        sleepToast(`➕ 添加屏蔽\n${blockWordsType[method]}屏蔽列表\n\n✅ 【${blockWord}】已经加入屏蔽列表了`)
+    if (blockWords.includes(word)) {
+        sleepToast(`➕ 添加屏蔽\n${wordsType[method]}\n\n✅ 【${word}】已经加入屏蔽列表了`)
     } else {
-        blockWords.push(blockWord)
+        blockWords.push(word)
         putInCache(`${method}BlockWords`, blockWords)
-        sleepToast(`➕ 添加屏蔽\n${blockWordsType[method]}屏蔽列表\n\n✅ 已将【${blockWord}】加入屏蔽列表中`)
+        sleepToast(`➕ 添加屏蔽\n${wordsType[method]}\n\n✅ 已将【${word}】加入屏蔽列表中`)
     }
 }
 
 function blockWordDelete() {
-    let method = getFromCache("blockWordsType")
-    let blockWord = String(result.get("屏蔽内容")).trim()
-    if (blockWord === "") return sleepToast(`🗑 删除屏蔽\n${blockWordsType[method]}屏蔽列表\n\n⚠️ 屏蔽内容不能为空`)
-
+    let method = getFromCache("wordsType")
     let blockWords = getFromCache(`${method}BlockWords`)
     if (blockWords === null) blockWords = []
-    if (!blockWords.includes(blockWord)) {
-        sleepToast(`🗑 删除屏蔽\n${blockWordsType[method]}屏蔽列表\n\n⚠️ 【${blockWord}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
+
+    let word = String(result.get("屏蔽内容")).trim()
+    if (word === "") {
+        sleepToast(`🗑 删除屏蔽\n${wordsType[method]}\n\n⚠️ 屏蔽内容不能为空`)
+    } else if (!blockWords.includes(word)) {
+        sleepToast(`🗑 删除屏蔽\n${wordsType[method]}\n\n⚠️ 【${word}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
     } else {
-        blockWords = blockWords.filter(item => item !== blockWord)
+        blockWords = blockWords.filter(item => item !== word)
         putInCache(`${method}BlockWords`, blockWords)
-        sleepToast(`🗑 删除屏蔽\n${blockWordsType[method]}屏蔽列表\n\n✅ 已删除屏蔽词【${blockWord}】`)
+        sleepToast(`🗑 删除屏蔽\n${wordsType[method]}\n\n✅ 已删除屏蔽词【${word}】`)
     }
 }
 
