@@ -508,6 +508,44 @@ function likeTagsDelete() {
     }
 }
 
+function likeAuthorsShow() {
+    let likeAuthors = getFromCache(`likeAuthors`)
+    if (likeAuthors === null) likeAuthors = []
+    sleepToast(`👀 查看关注\n📌 喜欢关注\n\n${likeAuthors.join("、")}`, 5)
+}
+
+function likeAuthorsAdd() {
+    let word = String(result.get("他人收藏")).trim()
+    if (word === "") return sleepToast(`➕ 添加关注\n📌 喜欢关注\n\n⚠️ 关注不能为空\n请直接输入关注内容`)
+
+    let likeAuthors = getFromCache(`likeAuthors`)
+    if (likeAuthors === null) likeAuthors = []
+    if (word.startsWith("@") || word.startsWith("＠")) {
+        sleepToast("`➕ 添加关注\n📌 喜欢关注\n\n⚠️ 仅支持添加【关注】\n不支持添加 @作者名称")
+    } else if (likeAuthors.includes(word)) {
+        sleepToast(`➕ 添加关注\n📌 喜欢关注\n\n✅ 【${word}】已经加入喜欢关注了\n请于发现页刷新后查看`)
+    } else {
+        likeAuthors.push(word)
+        putInCache(`likeAuthors`, likeAuthors)
+        sleepToast(`➕ 添加关注\n📌 喜欢关注\n\n✅ 已将【${word}】加入喜欢关注了\n请于发现页刷新后查看`)
+    }
+}
+
+function likeAuthorDelete() {
+    let word = String(result.get("喜欢关注")).trim()
+    if (word === "") return sleepToast(`🗑 删除关注\n\n⚠️ 关注不能为空`)
+
+    let likeAuthors = getFromCache(`likeAuthors`)
+    if (likeAuthors === null) likeAuthors = []
+    if (!likeAuthors.includes(word)) {
+        sleepToast(`🗑 删除关注\n\n⚠️ 【${word}】不在喜欢关注\n请检查是否有错别字`)
+    } else {
+        likeAuthors = likeAuthors.filter(item => item !== word)
+        putInCache(`likeAuthors`, likeAuthors)
+        sleepToast(`🗑 删除关注\n\n✅ 已删除该关注【${word}】`)
+    }
+}
+
 
 function startBrowser(url, title) {
     let msg = "", headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
