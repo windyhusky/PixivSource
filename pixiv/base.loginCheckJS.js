@@ -135,16 +135,18 @@ function publicFunc() {
     // https://github.com/Ocrosoft/PixivPreviewer
     // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
     u.getCsrfToken = function() {
-        let csfrToken
-        let html = java.webView(null, "https://www.pixiv.net/", null)
-        try {
-            csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
-        } catch (e) {
-            csfrToken = null
-            sleepToast("未登录账号(csfrToken)")
+        let csfrToken = cache.get("csfrToken")
+        if (!csfrToken || csfrToken === "null") {
+            let html = java.webView(null, "https://www.pixiv.net/", null)
+            try {
+                csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+            } catch (e) {
+                csfrToken = null
+                sleepToast("未登录账号(csfrToken)")
+            }
+            java.log(typeof csfrToken)
+            java.log(csfrToken)
         }
-        java.log(typeof csfrToken)
-        java.log(csfrToken)
         cache.put("csfrToken", csfrToken)  // 与登录设备有关
         return csfrToken
     }
@@ -622,7 +624,7 @@ if (result.code() === 200) {
     if (isBackupSource() && !isLogin()) {
         util.getCsrfToken()
     }
-    getPixivUid(); getWebViewUA(); util.getCookie(); getHeaders()
+    getPixivUid(); getWebViewUA(); util.getCookie(); util.getCsrfToken(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 
