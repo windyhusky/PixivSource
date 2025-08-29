@@ -195,12 +195,14 @@ function novelsBookmarkAdd() {
     if (!novel.seriesId) {
         sleepToast(`❤️ 收藏系列\n\n⚠️ 【${novel.title}】非系列小说，现已收藏本篇小说`)
         return novelBookmarkAdd(0)
+    } else {
+        sleepToast(`❤️ 收藏系列\n\n🔄 正在收藏系列【${novel.seriesTitle}】，请稍后……`, 2)
     }
 
     let novelIds = getFromCache(`novelIds${novel.seriesId}`)
     let likeNovels = getFromCache("likeNovels")
     novelIds.forEach(novelId => {
-        if (!likeNovels.includes(novelId)) {
+        if (!likeNovels.includes(Number(novelId))) {
             sleep(0.5 * 1000 * Math.random())
             let resp = getPostBody(
                 "https://www.pixiv.net/ajax/novels/bookmarks/add",
