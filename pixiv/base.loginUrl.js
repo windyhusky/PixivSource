@@ -121,8 +121,7 @@ function novelBookmarkAdd(restrict=0) {
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
     )
-    if (resp.error === true) sleepToast(`❤️ 收藏小说
-    \n\n⚠️ 收藏【${novel.title}】失败`)
+    if (resp.error === true) sleepToast(`❤️ 收藏小说\n\n⚠️ 收藏【${novel.title}】失败`)
     else if (resp.body === null) sleepToast(`❤️ 收藏小说\n\n✅ 已经收藏【${novel.title}】了`)
     else {
         cache.put(`collect${novel.id}`, resp.body)
@@ -189,6 +188,34 @@ function novelsBookmarkDelete(novelIds) {
             putInCache(urlNovelDetailed(novelId), novelObj, cacheSaveSeconds)
         })
     }
+}
+
+function novelsBookmarkAdd() {
+    let novel = getNovel()
+    if (!novel.seriesId) {
+        sleepToast(`❤️ 收藏系列 \n\n⚠️ 【${novel.title}】非系列小说，现已收藏本篇小说`)
+        return novelBookmarkAdd(0)
+    }
+
+    let novelIds = getFromCache(`novelIds${novel.seriesId}`)
+    novelIds.forEach(novelId => {
+        let resp = getPostBody(
+            "https://www.pixiv.net/ajax/novels/bookmarks/add",
+            JSON.stringify({"novel_id": novelId, "restrict": 0, "comment":"", "tags":[]})
+        )
+
+        if (resp.error !== true && resp.body !== null) {
+            cache.put(`collect${novelId}`, resp.body)
+            let likeNovels = getFromCache("likeNovels")
+            likeNovels.push(Number(novelId))
+            putInCache("likeNovels", likeNovels)
+
+            let novelObj = getAjaxJson(urlNovelDetailed(novelId))
+            novelObj.body.isBookmark = true
+            putInCache(urlNovelDetailed(novelId), novelObj, cacheSaveSeconds)
+        }
+    })
+    sleepToast(`❤️ 收藏系列 \n\n✅ 已经收藏【${novel.seriesTitle}】全部章节`)
 }
 
 function novelBookmarkFactory(code) {
