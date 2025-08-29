@@ -63,9 +63,9 @@
         }
     },
     {
-        "name": "㊙️ 私密收藏",
+        "name": "❤️ 收藏系列",
         "type": "button",
-        "action": "novelBookmarkFactory(2)",
+        "action": "novelsBookmarkAdd()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
