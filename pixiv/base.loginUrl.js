@@ -193,29 +193,34 @@ function novelsBookmarkDelete(novelIds) {
 function novelsBookmarkAdd() {
     let novel = getNovel()
     if (!novel.seriesId) {
-        sleepToast(`❤️ 收藏系列 \n\n⚠️ 【${novel.title}】非系列小说，现已收藏本篇小说`)
+        sleepToast(`❤️ 收藏系列\n\n⚠️ 【${novel.title}】非系列小说，现已收藏本篇小说`)
         return novelBookmarkAdd(0)
     }
 
     let novelIds = getFromCache(`novelIds${novel.seriesId}`)
+    let likeNovels = getFromCache("likeNovels")
     novelIds.forEach(novelId => {
-        let resp = getPostBody(
-            "https://www.pixiv.net/ajax/novels/bookmarks/add",
-            JSON.stringify({"novel_id": novelId, "restrict": 0, "comment":"", "tags":[]})
-        )
+        if (!likeNovels.includes(novelId)) {
+            sleep(0.5 * 1000 * Math.random())
+            let resp = getPostBody(
+                "https://www.pixiv.net/ajax/novels/bookmarks/add",
+                JSON.stringify({"novel_id": novelId, "restrict": 0, "comment": "", "tags": []})
+            )
 
-        if (resp.error !== true && resp.body !== null) {
-            cache.put(`collect${novelId}`, resp.body)
-            let likeNovels = getFromCache("likeNovels")
-            likeNovels.push(Number(novelId))
-            putInCache("likeNovels", likeNovels)
+            if (resp.error === true) sleepToast(`❤️ 收藏系列\n\n⚠️ 收藏【${novelId}】失败`)
+            else if (resp.body === null) {}
+            else {
+                cache.put(`collect${novelId}`, resp.body)
+                likeNovels.push(Number(novelId))
 
-            let novelObj = getAjaxJson(urlNovelDetailed(novelId))
-            novelObj.body.isBookmark = true
-            putInCache(urlNovelDetailed(novelId), novelObj, cacheSaveSeconds)
+                let novelObj = getAjaxJson(urlNovelDetailed(novelId))
+                novelObj.body.isBookmark = true
+                putInCache(urlNovelDetailed(novelId), novelObj, cacheSaveSeconds)
+            }
         }
     })
-    sleepToast(`❤️ 收藏系列 \n\n✅ 已经收藏【${novel.seriesTitle}】全部章节`)
+    putInCache("likeNovels", likeNovels)
+    sleepToast(`❤️ 收藏系列\n\n✅ 已经收藏【${novel.seriesTitle}】全部章节`)
 }
 
 function novelBookmarkFactory(code) {
