@@ -597,7 +597,7 @@ function likeAuthorsAdd() {
 
 function likeAuthorsDelete() {
     let likeAuthors = getFromCache(`likeAuthors`)
-    if (likeAuthors === null) likeAuthors = []
+    if (likeAuthors === null) likeAuthors = {}
 
     let word = String(result.get("输入内容")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
