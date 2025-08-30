@@ -107,10 +107,10 @@ function getPostBody(url, body, headers) {
     } catch (e) {
         // sleepToast(e)
         // sleepToast(JSON.stringify(headers))
-        if (String(e).includes(400)) sleepToast(`⚠️ 缺少 headers`, 1)
-        else if (String(e).includes(403)) sleepToast(`⚠️ 缺少 cookie 或 cookie 过期`, 1)
-        else if (String(e).includes(404)) sleepToast(`⚠️ 404`, 1)
-        else if (String(e).includes(422)) sleepToast(`⚠️ 请求信息有误`, 1)
+        if (String(e).includes(400)) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 headers`, 1)
+        else if (String(e).includes(403)) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
+        else if (String(e).includes(404)) sleepToast(`📤 getPostBody\n\n⚠️ 404`, 1)
+        else if (String(e).includes(422)) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
         return {error: true}
     }
 }
