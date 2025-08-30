@@ -166,16 +166,26 @@ function novelBookmarkDelete() {
     }
 }
 
-function novelsBookmarkDelete(novelIds) {
+function novelsBookmarkDelete() {
+    let novel = getNovel()
+    if (!novel.seriesId) {
+        sleepToast(`🖤 取消收藏系列\n\n⚠️ 【${novel.title}】非系列小说，现已取消收藏本篇小说`)
+        return novelBookmarkDelete(0)
+    } else {
+        sleepToast(`🖤 取消收藏系列\n\n🔄 正在取消收藏系列【${novel.seriesTitle}】，请稍后……`, 2)
+    }
+
     let bookmarkIds = []
+    let novelIds = getFromCache(`novelIds${novel.seriesId}`)
     novelIds.forEach(novelId => {bookmarkIds.push(getNovelBookmarkId(novelId))})
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/remove",
         JSON.stringify({"bookmarkIds": bookmarkIds})
     )
-    if (resp.error === true) sleepToast("❤️ 收藏小说\n\n⚠️ 全部取消收藏失败", 1)
-    else {
-        sleepToast("❤️ 收藏小说\n\n✅ 已取消全部收藏")
+    if (resp.error === true) {
+        sleepToast(`🖤 取消收藏系列\n\n⚠️ 取消收藏【${novel.seriesTitle}】的篇目失败`, 2)
+    } else {
+        sleepToast(`🖤 取消收藏系列\n\n✅ 已取消收藏【${novel.seriesTitle}】的全部篇目`)
         novelIds.forEach(novelId => {cache.delete(`collect${novelId}`)})
 
         let likeNovels = getFromCache("likeNovels")
