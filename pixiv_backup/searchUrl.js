@@ -41,3 +41,13 @@ if (keyword.startsWith("@") || keyword.startsWith("＠")) {
     java.log(`🔍 搜索内容：${keyword}`)
 }
 urlSearchSeries(keyword, page)
+
+// 同时搜索多个链接的搜索结果
+// let li = [
+//     urlSearchSeries(keyword, page),
+//     urlSearchNovel(keyword, page)
+// ]
+// // resp = getAjaxAllJson(li)
+// // resp = resp.map(res => JSON.stringify(res)).join(",")
+// resp = java.ajaxAll(li).map(resp => resp.body()).join(",")
+// resp = `[${resp}]`

@@ -112,7 +112,8 @@ generalgGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
-bookmarks = [{"❤️ 他人收藏 ❤️": ""}]
+let likeTagLinks = [{"📌 喜欢标签 📌":""}]
+let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
 li = li.concat(normal)
 li = li.concat(r18New)
@@ -129,29 +130,32 @@ if (SHOW_R18_GENRE === true) {
 if (SHOW_GENERAL_GENRE === true) {
     li = li.concat(generalgGenre)
 }
-
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
-let isSourceRead = eval(String(cache.get("isSourceRead")))
-let isBackupSource = eval(String(cache.get("isBackupSource")))
-if (!isBackupSource && !isSourceRead) {
-    sleepToast('查看他人收藏❤️\n\n请在【订阅源】设置源变量，并在【订阅源】的登录界面点击 ❤️ 他人收藏 导入数据后，再进行刷新')
-    let authors = JSON.parse(cache.get("pixivLikeAuthors"))
-    if (authors !== null) {
-        authors.forEach(authorId => {
-            let resp = getAjaxJson(urlUserDetailed(authorId))
-            if (resp.error !== true) {
-                let bookmark = {}
-                bookmark[resp.body.name] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
-                bookmarks.push(bookmark)
-            }
-        })
-        li = li.concat(bookmarks)
-    } else {
-        sleepToast("❤️ 他人收藏\n 刷新发现前，请在【订阅源】设置源变量，并在【订阅源】的登录界面点击 ❤️ 他人收藏 导入数据")
-    }
+// 收藏标签
+let likeTags = JSON.parse(cache.get("likeTags"))
+if (likeTags !== null && likeTags.length >= 1) {
+    likeTags.forEach(tag => {
+        let tagLink = {}
+        tagLink[tag] = `${urlSearchNovel(tag, "{{page}}")}`
+        likeTagLinks.push(tagLink)
+    })
+    li = li.concat(likeTagLinks)
 }
 
+// 他人收藏
+let authors = JSON.parse(cache.get("likeAuthors"))
+if (authors !== null && Object.keys(authors).length >= 1) {
+    for (let authorId in authors) {
+        let authorName = authors[authorId]
+        let bookmark = {}
+        bookmark[authorName] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
+        othersBookmarks.push(bookmark)
+        }
+    li = li.concat(othersBookmarks)
+}
+
+// 添加格式
 li.forEach(item => {
     item.title = Object.keys(item)[0]
     item.url = Object.values(item)[0]

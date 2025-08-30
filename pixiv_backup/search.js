@@ -256,6 +256,7 @@ function novelFilter(novels) {
     }
 
     if (tags.length >= 1) {
+        // 仅保留含有所有标签的小说
         // novels = novels.filter(novel => {
         //     // java.log(`${JSON.stringify(novel.tags)}\n${tags.every(item => novel.tags.includes(item))}`)
         //     return tags.every(item => novel.tags.includes(item))
