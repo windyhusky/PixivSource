@@ -245,15 +245,6 @@ function novelBookmarkFactory(code) {
     else if (code === 2) novelBookmarkAdd(1)
 }
 
-// function novelsBookmarkFactory(code) {
-//     let novel = getNovel()
-//     let collectId = getFromCache(`collect${novel.id}`)
-//     if (collectId >= 1) code = 0
-//
-//     if (code === 0) novelsBookmarkDelete()
-//     else novelsBookmarkAdd()
-// }
-
 function novelMarker(page=1) {
     let novel = getNovel()
     let lastMarker = getFromCache(`marker${novel.id}`)
