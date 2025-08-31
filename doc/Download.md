@@ -15,7 +15,7 @@
 |　3.22.0103 - 3.23.0404 | 1.7.4版本 | 2025.02.20 | [Linpx 书源](https://github.com/windyhusky/PixivSource/releases/download/ver1.7.4/linpx.json) |
 
 
-###  3.1 Android 版
+###  3.1 【官方】Android 版
 <details><summary> 阅读 Android 版 </summary>
 
 #### 3.1.1 Android Beta 版
@@ -52,7 +52,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 <details><summary> 阅读 iOS 版 </summary>
 <details><summary> 阅读官方 iOS 版 </summary>
 
-#### ~~3.2.1 官方 iOS 版~~【已停止开发】
+#### ~~3.2.1 【官方】 iOS 版~~【已停止开发】
 官方 iOS 版已经停止开发
 ~~官方正在进行 [iOS版](https://github.com/gedoor/YueDuFlutter) 的测试，[近期在TF测试](https://gedoor.github.io/download) ，最新消息请见：[Telegram 频道(iOS版)](https://t.me/legado_ios)~~
 
@@ -101,7 +101,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 </details>
 
 
-### 3.3 服务器版/桌面版
+### 3.3 【非官方】服务器版/桌面版
 项目地址：https://github.com/hectorqin/reader
 <details><summary> 阅读 服务器版/桌面版 </summary>
 
@@ -113,7 +113,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 </details>
 
 
-### 3.4 鸿蒙版【开发中，暂不可用】
+### 3.4 【官方】鸿蒙版【开发中】
 项目地址：https://github.com/mgz0227/legado-Harmony
 <details><summary> 阅读 鸿蒙版 </summary>
 
