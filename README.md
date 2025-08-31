@@ -191,27 +191,35 @@
 
 <details><summary> ⚙️ 书源设置 </summary>
 
-#### 书源功能设置
-##### 1.书源默认配置
-⚙️ 书源设置：
+### 4. 书源功能设置
+#### 1.书源设置
 - <details><summary> 1️⃣ 常规设置 </summary>
   ⚙️ 常规设置：打开小说 - 菜单 - 登录 - 点击下方按钮
   
   | 书源设置　　 | 默认状态 | 常量名称　　           | 作用 |
-  | --------- | ------ | --------------------- | --- |
+  | ---------- | ------ | --------------------- | --- |
   | 繁简通搜　　 | ✅ 开启 | `CONVERT_CHINESE`     | 搜索 |
-  | 显示更多信息 | ⭕ 关闭 | `MORE_INFORMATION`    | 详情 |
-  | 显示更新时间 | ✅ 开启 | `SHOW_UPDATE_TIME`    | 目录 |
-  | 显示原始链接 | ✅ 开启 | `SHOW_ORIGINAL_LINK`  | 目录 |
+  | 搜索作者　　 | ✅ 开启 | `SEARCH_AUTHOR`       | 搜索 |
+  | 显示收藏小说 | ✅ 开启 | `SHOW_LIKE_NOVELS`    | 搜索 |
+  | 显示追更系列 | ✅ 开启 | `SHOW_WATCHED_SERIES` | 搜索 |
+  | 　　　　　　 |  |  |  |
+  | 更多简介　　 | ⭕ 关闭 | `MORE_INFORMATION`    | 详情 |
+  | 更新时间　　 | ✅ 开启 | `SHOW_UPDATE_TIME`    | 目录 |
+  | 原始链接　　 | ✅ 开启 | `SHOW_ORIGINAL_LINK`  | 目录 |
   | 恢复书名号　 | ✅ 开启 | `REPLACE_TITLE_MARKS` | 正文 |
-  | 显示小说描述 | ✅ 开启 | `SHOW_CAPTIONS`       | 正文 |
-  | 显示小说评论 | ✅ 开启 | `SHOW_COMMENTS`       | 正文 |
+  | 显示描述　　 | ✅ 开启 | `SHOW_CAPTIONS`       | 正文 |
+  | 显示评论　　 | ✅ 开启 | `SHOW_COMMENTS`       | 正文 | 
+  | 　　　　　　 |  |  |  |
   | 快速模式　　 | ⭕ 关闭 | `FAST`                | 全局 |
   | 调试模式　　 | ⭕ 关闭 | `DEBUG`               | 全局 |
-
+  
+  - 显示收藏、显示追更：
+    - 显示收藏小说：搜索结果显示已收藏单篇小说
+    - 显示追更小说：搜索结果显示已追更系列小说
+  
   - 快速模式：
     - 繁简通搜、更新时间、原始链接、显示评论，对搜索速度稍有影响
-    - 搜索默认搜索作者，这对搜索速度有很大影响
+    - 搜索默认搜索作者，对搜索速度有很大影响
     - 开启时，上述功能默认关闭
     - 关闭时，上述功能默认还原到开启前的状态
   </details>
@@ -231,7 +239,19 @@
 
   </details>
 
-- <details><summary> 3️⃣ 默认配置代码 </summary>
+- <details><summary> 3️⃣ 发现配置代码 </summary>
+
+  ```
+  {
+    "SHOW_GENERAL_NEW": false,
+    "SHOW_GENERAL_RANK": false,
+    "SHOW_R18_GENRE": false,
+    "SHOW_GENERAL_GENRE": false
+  }
+  ```
+  </details>
+
+- <details><summary> 4️⃣ 默认配置代码（备用书源） </summary>
   
   ```
   {
