@@ -337,8 +337,10 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-### 订阅源功能
+## 订阅源
+<details><summary> 🐲 btsrk 订阅源 </summary>
 
+### 🐲 btsrk 订阅源：快速导入小说网站等订阅
 <table>
 <th> btsrk 订阅源 </th> <th> 订阅源功能 </th>
 <tr>
@@ -356,30 +358,30 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 <tr><td><a href="https://www.furryeventchina.com"> 6️⃣ 兽展日历</a></td></tr>
 <tr><td><a href="https://www.furryfusion.net"> 7️⃣ 兽聚汇总</a></td></tr>
 </table>
-
-
-<details><summary> books 订阅源 </summary>
-
-| books 订阅源 | 
-| ----------- |
-| 1️⃣ [Yiove 书源仓库](https://shuyuan.yiove.com)
-| 2️⃣ [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
-| 3️⃣ [阅读 APP 源](https://legado.aoaostar.com)
-| 4️⃣ [阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b)
-| 5️⃣ [源仓库](https://www.yckceo.com/yuedu/index/index.html)
-| 6️⃣ [聚合搜索](https://legado.cn/thread-3723-1-1.html)
-| 7️⃣ [阅读使用手册](https://www.yuque.com/legado/wiki)
 </details>
 
-- books 订阅源：导入阅读书源、订阅源等
+
+<details><summary> 📚 books 订阅源 </summary>
+
+### 📚 books 订阅源：快速导入阅读书源、订阅源等资源
+| 名称           | Github 导入网址                                               |
+| ------------- | ------------------------------------------------------------ |
+| 源仓库　　　　  | https://www.yckceo.com/yuedu/index/index.html                |
+| Yiove 书源仓库　| https://shuyuan.yiove.com                                    |
+| 喵公子书源管理　 | https://yuedu.miaogongzi.net/gx.html                         |
+| 阅读 APP 源　　 | https://legado.aoaostar.com                                  |
+| 阅读合集　 　　 | https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b  |
+| 聚合搜索  |  |
+| 阅读使用手册  | https://www.yuque.com/legado/wiki |
+</details>
 
 
-### 非本项目的其他资源
-<details><summary> 📄 其他资源 </summary>
+<details><summary> 📄 import 订阅源 </summary>
 
+### 📄 import 订阅源 （非本项目的其他资源）
 - import 订阅源：导入本项目整理的书源、订阅源等
 
-| 名称           | Github 导入网址                                                              |
+| 名称           | 相关网址                                                              |
 | ------------- | --------------------------------------------------------------------------- |
 | 通用书源　　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json   |
 | 聚合搜索　　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json    |
