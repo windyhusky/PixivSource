@@ -66,9 +66,9 @@
 ## 书源状态 & 功能
 | 书源     | 状态 | 支持 Ｐ站 特性 | 实现 阅读 功能 |
 | ------- | ---- | --------- | ------- |
-| Pixiv   |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说 ✅ 添加网址 |
-| Linpx   |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说 ✅ 添加网址 |
-| 兽人小说 |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说 ✅ 添加网址 |
+| Pixiv   |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
+| Linpx   |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
+| 兽人小说  |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
 
 ### 书源功能
 <details><summary> 🅿️ Ｐ站特性 </summary>
@@ -87,6 +87,7 @@
   - ✅ 收藏小说
     - 发现：✅ 查看收藏（公开 & 私密）✅ 查看他人收藏（设置源变量）
     - 登录界面：✅ 加入收藏 ✅ 取消收藏
+    - 登录界面：✅ 收藏系列 ✅ 取消收藏系列（特色功能）
   - ✅ 小说书签
     - 发现：✅ 查看书签（第1页）
     - 登录界面：✅ 加入书签 ✅ 删除书签
@@ -455,6 +456,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 - 感谢 [@Luoyacheng](https://github.com/Luoyacheng) ，从他的 [书源仓库](https://github.com/Luoyacheng/yuedu) 学到了很多方法
 - 感谢 [@一片痴心俱成灰](https://akaito.xyz/post/Legado) 提供的 Pixiv (标记符号) 目录规则
 - 感谢 [Pixiv Previewer](https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer) 脚本提供的从 Pixiv 网页获取 csfr token 的方法 
+- 感谢 [@Eigeen](https://github.com/eigeen) 使用 TS 重构了本项目，并修复了部分 Bug
 - 感谢 [@SuCan127](https://github.com/SuCan127) 测试【源阅】的兼容性
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
 </details>
