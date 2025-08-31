@@ -70,10 +70,10 @@
 | Linpx   |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
 | 兽人小说  |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
 
-### 书源功能
+
 <details><summary> 🅿️ Ｐ站特性 </summary>
 
-#### 已支持 Pixiv 特性
+### 1. 已支持 Pixiv 特性
 - ✅ 单篇小说：Pixiv 小说投稿时的【单篇完结作品】，即短篇小说
 - ✅ 系列小说：Pixiv 小说投稿时的【连载系列作品】，即长篇小说
 - <details><summary> ✅ ⭐️ 小说功能 </summary>
@@ -143,7 +143,7 @@
 
 <details><summary> 📖 阅读功能 </summary>
 
-#### 已实现阅读功能
+### 2. 已实现阅读功能
 - <details><summary> ✅ 🔍 搜索小说 </summary>
 
     - ✅ 🔍 常规搜索（默认同时搜索小说名称、标签、作者）
@@ -185,7 +185,15 @@
   - 系列：✅ 追更 ✅ 收藏 ✅ 分享
   - 评论：✅ 发送 ✅ 删除 ✅ 获取（正文）
   - 作者：✅ 关注 ✅ 拉黑 ✅ 屏蔽（本地）
-  - 评论：✅ 发送 ✅ 删除 ✅ 获取（正文）
+  </details>
+</details>
+
+
+<details><summary> 📌 特色功能 </summary>
+
+### 3. 书源特色功能
+
+
 </details>
 
 
@@ -276,7 +284,7 @@
   </details>
 
 
-##### 2.设置源变量
+#### 2.设置源变量
 - <details><summary> 🚫 屏蔽作者(本地)（Pixiv 书源）</summary>
 
   - 方法1️⃣：打开小说 - 菜单 - 登录 - 🚫 屏蔽作者
@@ -303,8 +311,8 @@
 
 <details><summary> ⏩ 速率限制 </summary>
 
-#### 书源请求限制
-##### 1.最大缓存时间
+### 5. 书源请求限制
+#### 1.最大缓存时间
 <details><summary> 最大缓存时间：7天 </summary>
 
 - 书源内部 JsLib 使用 `getAjaxJson() getAjaxAllJson() getWebviewJson() urlIllustOriginal() ` 等，访问网络资源时，会默认写入缓存，最多存放7天
@@ -321,7 +329,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-##### 2.请求速率限制
+#### 2.请求速率限制
 <details><summary> 速率限制：每2s访问3次 </summary>
 
 - 因为上面设置了最大缓存时间，会减少实际的（重复的）网络请求
@@ -336,7 +344,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-##### 3.【正文为空】提示
+#### 3.【正文为空】提示
 <details><summary> 无法获取正文时，弹出提示 </summary>
 
 短时间内请求过多会无法获取正文。 此时弹出窗口，提示：
@@ -346,7 +354,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-##### 4.【过度访问】提示
+#### 4.【过度访问】提示
 <details><summary> 过度访问后，提示修改密码 </summary>
 
 - 触发 Pixiv 的过度访问后的【3天内】，每4个小时检测1次弹出提示，并推荐修改密码
