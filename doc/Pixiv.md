@@ -319,7 +319,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 <details><summary> 📌 喜欢标签 </summary>
 
 #### 2.5 喜欢标签
-- 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至喜欢标签列表
+- 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
 
 ![img](./pic/PixivLoginUILikeTags.png)
 - 2️⃣ 更新发明：发现 - 长按"Pixiv" - 刷新
@@ -334,7 +334,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 <details><summary> ❤️ 他人收藏 </summary>
 
 #### 2.6 他人收藏
-- 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至他人收藏列表、
+- 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
 
 ![img](pic/PixivLoginUILikeAuthors.png)
 - 输入作者/用户ID，则会添加【指定作者/用户】
@@ -505,7 +505,7 @@ Pixiv 网站的搜索功能更加全面
 
 <details><summary> ⚙️ 书源设置 </summary>
 
-#### 5.3 书源设置
+#### 5.4 书源设置
 ![img](./pic/PixivLoginUISettings.jpg)
 - ⚙️ 当前设置：显示当前设置
 - ⚙️ 默认设置：恢复默认设置
@@ -527,8 +527,10 @@ Pixiv 网站的搜索功能更加全面
 </details>
 
 
-### 6.设置源变量
-<details><summary> 🚫 屏蔽作者（书源 源变量）</summary>
+### 6.书源 自定义功能
+#### 6.0 屏蔽功能为全局屏蔽
+- 搜索、发现、添加链接、订阅源添加链接 全部屏蔽
+<details><summary> 🚫 屏蔽作者 </summary>
 
 #### 6.1 屏蔽作者(本地)
 1️⃣ 编辑源变量：
@@ -546,7 +548,40 @@ Pixiv 网站的搜索功能更加全面
 ![img](./pic/PixivBlockAuthors.jpg)
 </details>
 
-<details><summary> ❤️ 他人收藏（订阅源 源变量）</summary>
+<details><summary> 📌 喜欢标签 </summary>
+
+#### 6.3 喜欢标签
+- 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
+
+![img](./pic/PixivLoginUILikeTags.png)
+- 2️⃣ 更新发明：发现 - 长按"Pixiv" - 刷新
+
+![img](./pic/DiscoverRefresh.png)
+- 3️⃣ 点击按钮，查看内容
+
+![img](./pic/DiscoverPixivLikeTags.png)
+</details>
+
+
+<details><summary> ❤️ 他人收藏 </summary>
+
+#### 6.3 他人收藏
+- 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
+
+![img](pic/PixivLoginUILikeAuthors.png)
+- 输入作者/用户ID，则会添加【指定作者/用户】
+
+![img](pic/DiscoverPixivLikeAuthors1.png)
+- 若未输入作者/用户ID，则会添加【当前小说的作者】
+
+![img](pic/DiscoverPixivLikeAuthors2.png)
+- 2️⃣ 更新发明：发现 - 长按"Pixiv" - 刷新
+
+![img](./pic/DiscoverRefresh.png)
+- 3️⃣ 点击按钮，查看内容
+
+![img](./pic/DiscoverPixivLikeAuthors.jpg)
+</details>
 
 
 ## 五、故障排查
