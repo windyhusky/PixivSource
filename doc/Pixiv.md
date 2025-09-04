@@ -535,20 +535,10 @@ Pixiv 网站的搜索功能更加全面
 - 
 <details><summary> 🚫 屏蔽作者 </summary>
 
-#### 6.1 屏蔽作者(本地)
-1️⃣ 编辑源变量：
-- 我的 - 书源管理 - 编辑 - 菜单 - 设置源变量
-- 发现 - 长按书源 - 编辑 - 菜单 - 设置源变量
-- 正文 - 点击书源 - 编辑 - 菜单 - 设置源变量
+#### 6.1 屏蔽作者
+![img](./pic/PixivLoginUINovels.jpg)
+- 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
 
-![img](./pic/SetSourceVariable.png)
-
-2️⃣ 设置源变量：输入作者ID，【英文逗号】间隔
-```
-12345, 67890
-```
-3️⃣ 搜索任意小说，同步屏蔽作者数据
-![img](./pic/PixivBlockAuthors.jpg)
 </details>
 
 
