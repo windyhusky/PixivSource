@@ -321,13 +321,34 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 #### 2.5 喜欢标签
 - 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至喜欢标签列表
 
-![img](pic/PixivLoginUILikeTags.png)
+![img](./pic/PixivLoginUILikeTags.png)
 - 2️⃣ 更新发明：发现 - 长按"Pixiv" - 刷新
 
 ![img](./pic/DiscoverRefresh.png)
-- 3️⃣ 点击标签，查看内容
+- 3️⃣ 点击按钮，查看内容
 
 ![img](./pic/DiscoverPixivLikeTags.png)
+</details>
+
+
+<details><summary> ❤️ 他人收藏 </summary>
+
+#### 2.6 他人收藏
+- 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至他人收藏列表、
+
+![img](pic/PixivLoginUILikeAuthors.png)
+- 输入作者/用户ID，则会添加【指定作者/用户】
+
+![img](pic/DiscoverPixivLikeAuthors1.png)
+- 若未输入作者/用户ID，则会添加【当前小说的作者】
+
+![img](pic/DiscoverPixivLikeAuthors2.png)
+- 2️⃣ 更新发明：发现 - 长按"Pixiv" - 刷新
+
+![img](./pic/DiscoverRefresh.png)
+- 3️⃣ 点击按钮，查看内容
+
+![img](./pic/DiscoverPixivLikeAuthors.jpg)
 </details>
 
 
@@ -515,27 +536,6 @@ Pixiv 网站的搜索功能更加全面
 </details>
 
 <details><summary> ❤️ 他人收藏（订阅源 源变量）</summary>
-
-#### 6.2 查看他人收藏（Pixiv 首页 订阅源）
-1️⃣ 订阅 - 长按订阅源 - 编辑 - 菜单 - 设置源变量
-
-![img](./pic/SetSourceVariable.png)
-
-2️⃣ 设置源变量：输入作者ID，一行一个，可添加作者名，保存
-```
-12345 // 作者A
-67890 # 作者B
-```
-3️⃣ 导入：打开订阅源 - 菜单 - 登录 - 点击 ❤️ 他人收藏，同步数据
-
-![img](./pic/SetLikeAuthors.jpg)
-
-4️⃣ 更新：发现 - 长按"Pixiv" - 刷新 - 查看他人收藏
-
-![img](./pic/SetSourceVariable0.png)
-
-![img](./pic/DiscoverPixivLikeAuthors.jpg)
-</details>
 
 
 ## 五、故障排查
