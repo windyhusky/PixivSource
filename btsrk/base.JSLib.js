@@ -40,9 +40,6 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json
 
 🚫 屏蔽作者(本地)：
 设置方法1️⃣：打开小说 - 菜单 - 登录 - 🚫 屏蔽作者
-设置方法2️⃣：编辑书源 - 菜单 - 设置源变量 - 修改并保存
-设置源变量：输入作者ID，【英文逗号】间隔
-▶️ 搜索任意小说，同步屏蔽作者数据
 `.trim()
 
 function updateSource() {
