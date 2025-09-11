@@ -65,27 +65,6 @@ function getCookie() {
     }
 }
 
-function getLikeAuthors() {
-    let authorIds = []
-    try {
-        let authors = String(source.getVariable()).split("\n")
-        if (authors[0].trim() !== "" && authors.length >= 1) {
-            for (let i in authors) {
-                if (authors[i] !== "") {
-                    let authorId = authors[i].match(RegExp(/\d+/))[0]
-                    authorIds.push(authorId)
-                }
-            }
-            sleepToast(`❤️ 他人收藏\n✅ 已导入作者数据\n\n${JSON.stringify(authorIds)}\n\n更新发现：发现 - 长按\"Pixiv\" - 刷新 - 查看收藏`, 2)
-        } else {
-            sleepToast("❤️ 他人收藏\n\n❎ 已经清空作者数据")
-        }
-        putInCache("pixivLikeAuthors", authorIds)
-    } catch (e) {
-        sleepToast("❤️ 他人收藏\n⚠️ 【订阅源】源变量设置有误\n输入作者ID，一行一个，可添加作者名，保存")
-    }
-}
-
 function readMe() {
     sleepToast(`📌 简要教程\n
 1️⃣ 导入书源：点击按钮，导入书源

@@ -45,15 +45,6 @@
         }
     },
     {
-        "name": "❤️ 他人收藏",
-        "type": "button",
-        "action": "getLikeAuthors()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "⭐️ 收藏项目",
         "type": "button",
         "action": "startGithub()",

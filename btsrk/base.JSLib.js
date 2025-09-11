@@ -1,24 +1,3 @@
-function putInCache(objectName, object, saveSeconds) {
-    const {java, cache} = this
-    if (object === undefined) object = null
-    if (saveSeconds === undefined) saveSeconds = 0
-    cache.put(objectName, JSON.stringify(object), saveSeconds)
-}
-function getFromCache(objectName) {
-    const {java, cache} = this
-    let object = cache.get(objectName)
-    if (object === undefined) return null  // 兼容源阅
-    return JSON.parse(object)
-}
-
-function getWebviewJson(url, parseFunc) {
-    const {java, cache} = this
-    return cacheGetAndSet(cache, url, () => {
-        let html = java.webView(null, url, null)
-        return JSON.parse(parseFunc(html))
-    })
-}
-
 function sleep(time) {
     let endTime = new Date().getTime() + time
     while(true){
@@ -64,12 +43,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json
 设置方法2️⃣：编辑书源 - 菜单 - 设置源变量 - 修改并保存
 设置源变量：输入作者ID，【英文逗号】间隔
 ▶️ 搜索任意小说，同步屏蔽作者数据
-
-❤️ 查看他人收藏：
-1️⃣订阅 - 长按订阅源" - 编辑 - 菜单 - 设置源变量
-2️⃣源变量：输入作者ID，一行一个，保存
-3️⃣导入：打开订阅源 - 菜单 - 登录 - ❤️ 他人收藏
-4️⃣更新：发现 - 长按"Pixiv" - 刷新 - 查看他人收藏`
+`.trim()
 
 function updateSource() {
     const {java, source} = this
