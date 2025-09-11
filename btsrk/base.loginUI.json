@@ -44,6 +44,14 @@
             "layout_flexBasisPercent": -1
         }
     },
+    {   "name": "\uD83D\uDD0D 搜索教程",
+        "type": "button",
+        "action": "readMeSearch()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
     {
         "name": "⭐️ 收藏项目",
         "type": "button",
