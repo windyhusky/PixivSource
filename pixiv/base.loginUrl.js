@@ -593,30 +593,36 @@ function likeAuthorsShow() {
 }
 
 function likeAuthorsAdd() {
-    let likeAuthors = getFromCache(`likeAuthors`)
-    if (likeAuthors === null) likeAuthors = {}
-
+    let likeAuthors = getFromCacheMap(`likeAuthors`)
     let word = String(result.get("输入内容")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
         return sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 @作者名称`)
     } else if (word.startsWith("#") || word.startsWith("＃")) {
         return sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 #标签名称`)
+    } else if (likeAuthors.has(word)) {
+        word = `${likeAuthors.get(word)} ${word}`
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 【${word}】已经加入收藏列表了，请于发现页刷新后查看`)
     }
 
-    if (word === "") {  // 无输入内容，添加当前小说的作者
+    // 无输入内容，添加当前小说的作者
+    if (word === "") {
         let novel = getNovel()
-        likeAuthors[novel.userId] = novel.userName
+        likeAuthors.set(String(novel.userId), novel.userName)
         word = `@${novel.userName} ${novel.userId}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${word}】加入收藏列表了，请于发现页刷新后查看\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`,2)
-    } else if (!isNaN(word)) {  // 输入纯数字，添加对应ID的作者
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${word}】加入收藏列表了，请于发现页刷新后查看\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`)
+    }
+    // 输入纯数字，添加对应ID的作者
+    else if (!isNaN(word)) {
         let user = getAjaxJson(urlUserDetailed(word)).body
-        likeAuthors[user.userId] = user.name
+        likeAuthors.set(user.userId, user.name)
         word = `@${user.name} ${user.userId}`
         sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${word}】加入收藏列表了，请于发现页刷新后查看`)
-    } else if (word) {
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可关注其他用户的收藏`,2)
     }
-    putInCache(`likeAuthors`, likeAuthors)
+
+    else if (word) {
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可关注其他用户的收藏`)
+    }
+    putInCacheMap(`likeAuthors`, likeAuthors)
 }
 
 function likeAuthorsDelete() {
