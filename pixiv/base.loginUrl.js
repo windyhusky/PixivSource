@@ -488,7 +488,7 @@ function printAuthorMap(map) {
     return text.trim()
 }
 
-function blockWordShow() {
+function blockShow() {
     let keys = Object.keys(wordsType)
     let key = getFromCache("wordsType")
 
@@ -593,6 +593,16 @@ function blockAuthorDelete() {
         sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
     }
     putInCacheMap(`blockAuthorMap`, blockAuthors)
+}
+
+function blockAdd() {
+    if (getFromCache("wordsType") === "authors") return blockAuthorAdd()
+    else return blockWordAdd()
+}
+
+function blockDelete() {
+    if (getFromCache("wordsType") === "authors") return blockAuthorDelete()
+    else return blockWordDelete()
 }
 
 
