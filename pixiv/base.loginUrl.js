@@ -475,8 +475,17 @@ function novelCommentDelete() {
 }
 
 let wordsType = {
-    "caption":"📃 简介屏蔽列表",
-    "tags":"#️ 标签屏蔽列表"
+    "caption": "📃 简介屏蔽列表",
+    "tags": "#️ 标签屏蔽列表",
+    "authors": "👤 作者屏蔽列表"
+}
+
+function printAuthorMap(map) {
+    let text = ""
+    map.forEach((value, key) => {
+        text += `@${value}  ${key}\n`
+    })
+    return text.trim()
 }
 
 function blockWordShow() {
@@ -489,9 +498,15 @@ function blockWordShow() {
     key = keys[index]
     putInCache("wordsType", key)
 
-    let words = getFromCache(`${key}BlockWords`)
-    if (words === undefined) words = []
-    sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words.join("\n")}`, 5)
+    if (key !== "authors") {
+        let words = getFromCache(`${key}BlockWords`)
+        if (words === undefined) words = []
+        sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words.join("\n")}`, 2)
+    } else {
+        let words = printAuthorMap(getFromCacheMap("blockAuthorMap"))
+        if (words === undefined) words = ""
+        sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words}`, 2)
+    }
 }
 
 function blockWordAdd() {
