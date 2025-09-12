@@ -173,6 +173,9 @@ function urlUserWorkLatest(userID) {
 function urlUserAllWorks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
 }
+function urlUserBookmarks(userId) {
+    return `https://www.pixiv.net/ajax/user/${userId}/novels/bookmarks?tag=&offset={{(page-1)*30}}&limit=30&rest=show&lang=zh`
+}
 
 function urlSearchNovel(novelName, page) {
     return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`

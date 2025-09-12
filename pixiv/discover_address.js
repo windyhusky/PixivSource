@@ -150,8 +150,7 @@ if (!!authors && authors.length >=1) {
         let bookmark = {}
         let authorId =Object.keys(item)[0]
         let authorName = Object.values(item)[0]
-        bookmark[authorName] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*30}}&limit=30&rest=show&lang=zh`
-        // bookmark[authorName] = bookmarks(authorId)
+        bookmark[authorName] = urlUserBookmarks(authorId)
         othersBookmarks.push(bookmark)
     })
     li = li.concat(othersBookmarks)
