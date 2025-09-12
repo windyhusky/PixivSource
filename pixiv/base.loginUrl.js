@@ -543,6 +543,31 @@ function blockWordDelete() {
     }
 }
 
+function blockAuthorAdd() {
+    let method = getFromCache("wordsType")
+    let blockAuthors = getFromCacheMap(`blockAuthorMap`)
+
+    let word = String(result.get("输入内容")).trim()
+    if (word === "") {
+        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 输入内容不能为空\n⚠️ 输入【用户ID】可屏蔽该作者`)
+    } else if (blockAuthors.has(word)) {
+        let text = `${blockAuthors.get(word)} ${word}`
+        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 【${text}】已经加入屏蔽列表了`)
+    }
+    // 输入纯数字，添加对应ID的作者
+    else if (!isNaN(word)) {
+        let user = getAjaxJson(urlUserDetailed(word)).body
+        blockAuthors.set(user.userId, user.name)
+        let text = `@${user.name} ${user.userId}`
+        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 已将【${text}】加入屏蔽列表中`)
+    }
+    else if (word) {
+        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
+    }
+    putInCacheMap(`blockAuthorMap`, blockAuthors)
+}
+
+
 
 function likeTagsShow() {
     let likeTags = getFromCache(`likeTags`)
@@ -600,23 +625,23 @@ function likeAuthorsAdd() {
     } else if (word.startsWith("#") || word.startsWith("＃")) {
         return sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 #标签名称`)
     } else if (likeAuthors.has(word)) {
-        word = `${likeAuthors.get(word)} ${word}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 【${word}】已经加入收藏列表了，请于发现页刷新后查看`)
+        let text = `${likeAuthors.get(word)} ${word}`
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 【${text}】已经加入收藏列表了，请于发现页刷新后查看`)
     }
 
     // 无输入内容，添加当前小说的作者
     if (word === "") {
         let novel = getNovel()
         likeAuthors.set(String(novel.userId), novel.userName)
-        word = `@${novel.userName} ${novel.userId}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${word}】加入收藏列表了，请于发现页刷新后查看\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`)
+        let text = `@${novel.userName} ${novel.userId}`
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页刷新后查看\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`)
     }
     // 输入纯数字，添加对应ID的作者
     else if (!isNaN(word)) {
         let user = getAjaxJson(urlUserDetailed(word)).body
         likeAuthors.set(user.userId, user.name)
-        word = `@${user.name} ${user.userId}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${word}】加入收藏列表了，请于发现页刷新后查看`)
+        let text = `@${user.name} ${user.userId}`
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页刷新后查看`)
     }
 
     else if (word) {
