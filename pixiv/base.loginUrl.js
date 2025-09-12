@@ -626,37 +626,38 @@ function likeAuthorsAdd() {
 }
 
 function likeAuthorsDelete() {
-    let likeAuthors = getFromCache(`likeAuthors`)
-    if (likeAuthors === null) likeAuthors = {}
-
+    let likeAuthors = getFromCacheMap(`likeAuthors`)
     let word = String(result.get("输入内容")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
-        return sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID】取关\n不支持输入 @作者名称`)
+        return sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID/作者名称】取关\n不支持输入 @作者名称`)
     } else if (word.startsWith("#") || word.startsWith("＃")) {
-        return sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID】取关\n不支持输入 #标签名称`)
+        return sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID/作者名称】取关\n不支持输入 #标签名称`)
     }
 
     if (word === "") {
         let novel = getNovel()
-        delete likeAuthors[novel.userId]
-        word = `@${novel.userName} ${novel.userId}`
-        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${word}】\n\n输入【用户ID】可取关其他用户\n默认取关当前作者(用户)`)
+        likeAuthors.delete(novel.userId)
+        let text = `@${novel.userName} ${novel.userId}`
+        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${text}】\n\n输入【用户ID】可取关其他用户\n默认取关当前作者(用户)`)
 
-    } else if (!isNaN(word) && Object.keys(likeAuthors).includes(word)) { // 输入纯数字，添加对应ID的作者
-        delete likeAuthors[word]
-        let user = getAjaxJson(urlUserDetailed(word)).body
-        word = `@${user.name} ${user.userId}`
-        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${word}】`)
+    // 输入纯数字，删除对应ID的作者
+    } else if (!isNaN(word) && likeAuthors.has(word)) {
+        let text = `@${likeAuthors.get(word)} ${word}`
+        likeAuthors.delete(word)
+        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${text}】`)
 
-    } else if (Object.values(likeAuthors).includes(word)) { //作者名称
-        let index = Object.values(likeAuthors).indexOf(word)
-        let key = Object.keys(likeAuthors)[index]
-        delete likeAuthors[key]
-        let user = getAjaxJson(urlUserDetailed(word)).body
-        word = `@${user.name} ${user.userId}`
-        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${word}】`)
+    //作者名称
+    } else if (Array.from(likeAuthors.values()).includes(word)) {
+        let index = Array.from(likeAuthors.values()).indexOf(word)
+        let key = Array.from(likeAuthors.keys())[index]
+        let text = `@${likeAuthors.get(key)} ${key}`
+        likeAuthors.delete(key)
+        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${text}】`)
     }
-    putInCache(`likeAuthors`, likeAuthors)
+    else if (word) {
+        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可取关其他用户的收藏`)
+    }
+    putInCacheMap(`likeAuthors`, likeAuthors)
 }
 
 
