@@ -133,7 +133,7 @@ if (SHOW_GENERAL_GENRE === true) {
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
 // 收藏标签
-let likeTags = JSON.parse(cache.get("likeTags"))
+let likeTags = getFromCache("likeTags")
 if (likeTags !== null && likeTags.length >= 1) {
     likeTags.forEach(tag => {
         let tagLink = {}
@@ -144,14 +144,16 @@ if (likeTags !== null && likeTags.length >= 1) {
 }
 
 // 他人收藏
-let authors = JSON.parse(cache.get("likeAuthors"))
-if (authors !== null && Object.keys(authors).length >= 1) {
-    for (let authorId in authors) {
-        let authorName = authors[authorId]
+let authors = getFromCache("likeAuthors")
+if (!!authors && authors.length >=1) {
+    authors.forEach(item => {
         let bookmark = {}
-        bookmark[authorName] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
+        let authorId =Object.keys(item)[0]
+        let authorName = Object.values(item)[0]
+        bookmark[authorName] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*30}}&limit=30&rest=show&lang=zh`
+        // bookmark[authorName] = bookmarks(authorId)
         othersBookmarks.push(bookmark)
-        }
+    })
     li = li.concat(othersBookmarks)
 }
 
