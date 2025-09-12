@@ -107,8 +107,9 @@
             "layout_flexBasisPercent": -1
         }
     },
+
     {
-        "name": "发送评论",
+        "name": "输入内容",
         "type": "text"
     },
     {
@@ -138,38 +139,7 @@
             "layout_flexBasisPercent": -1
         }
     },
-    {
-        "name": "⤴️ 分享作者",
-        "type": "button",
-        "action": "shareFactory('author')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⤴️ 分享章节",
-        "type": "button",
-        "action": "shareFactory('novel')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⤴️ 分享系列",
-        "type": "button",
-        "action": "shareFactory('series')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
 
-    {
-        "name": "输入内容",
-        "type": "text"
-    },
     {
         "name": "\uD83D\uDEAB 添加屏蔽",
         "type": "button",

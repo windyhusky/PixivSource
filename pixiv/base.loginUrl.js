@@ -405,9 +405,9 @@ function userBlock() {
 function novelCommentAdd() {
     let resp, novel = getNovel()
     let userId = getFromCache("pixiv:uid")
-    let comment = String(result.get("发送评论")).trim()
+    let comment = String(result.get("输入内容")).trim()
     if (comment === "") {
-        return sleepToast(`✅ 发送评论\n⚠️ 请输入需要发送的评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n\n如非当前章节，请刷新正文`)
+        return sleepToast(`✅ 发送评论\n⚠️ 请在【输入内容】输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
     }
 
     let matched = comment.match(RegExp(/(；|;\s*)\d{8,}/))
@@ -447,9 +447,9 @@ function getNovelCommentID(novelId, commentText) {
 
 function novelCommentDelete() {
     let commentIDs, novel = getNovel()
-    let comment = String(result.get("发送评论")).trim()
+    let comment = String(result.get("输入内容")).trim()
     if (comment === "") {
-        return sleepToast(`🗑 删除评论\n⚠️ 请输入需要删除的【评论ID】\n或输入需要删除的【评论内容】\n\n📌 当前章节：${novel.title}\n\n如非当前章节，请刷新正文`)
+        return sleepToast(`🗑 删除评论\n⚠️ 请在【输入内容】输入需要删除的【评论ID】\n或输入需要删除的【评论内容】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
     }
 
     let matched = comment.match(RegExp(/\d{8,}/))
