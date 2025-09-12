@@ -35,6 +35,36 @@ function putInCacheMap(mapName, mapObject, saveSeconds) {
     if (saveSeconds === undefined) saveSeconds = 0
     cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
 }
+
+function getFromCacheMap(mapName) {
+    const {java, cache} = this
+    let cached = cache.get(mapName)
+    let newMap = new Map()
+    if (cached === null || cached === undefined) {
+        return newMap
+    }
+
+    let parsedData
+    try {
+        parsedData = JSON.parse(cached)
+    } catch (e) {
+        return newMap
+    }
+
+    if (Array.isArray(parsedData)) {
+        parsedData.forEach(item => {
+            for (let key in item) {
+                newMap.set(key, item[key])
+            }
+        })
+    } else {
+        for (let key in parsedData) {
+            newMap.set(key, parsedData[key])
+        }
+    }
+    return newMap
+}
+
 function isHtmlString(str) {
     return str.startsWith("<!DOCTYPE html>")
 }
