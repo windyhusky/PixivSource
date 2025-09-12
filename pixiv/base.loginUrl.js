@@ -567,6 +567,33 @@ function blockAuthorAdd() {
     putInCacheMap(`blockAuthorMap`, blockAuthors)
 }
 
+function blockAuthorDelete() {
+    let method = getFromCache("wordsType")
+    let blockAuthors = getFromCacheMap(`blockAuthorMap`)
+
+    let word = String(result.get("输入内容")).trim()
+    if (word === "") {
+        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 输入内容不能为空\n⚠️ 输入【用户ID】可屏蔽该作者`)
+    }
+    // 输入纯数字，删除对应ID的作者
+    else if (!isNaN(word) && blockAuthors.has(word)) {
+        let text = `@${blockAuthors.get(word)} ${word}`
+        blockAuthors.delete(word)
+        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n✅ 已删除【${text}】`)
+    }
+    //作者名称
+    else if (Array.from(blockAuthors.values()).includes(word)) {
+        let index = Array.from(blockAuthors.values()).indexOf(word)
+        let key = Array.from(blockAuthors.keys())[index]
+        let text = `@${blockAuthors.get(key)} ${key}`
+        blockAuthors.delete(key)
+        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n✅ 已删除【${text}】`)
+    }
+    else if (word) {
+        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
+    }
+    putInCacheMap(`blockAuthorMap`, blockAuthors)
+}
 
 
 function likeTagsShow() {
