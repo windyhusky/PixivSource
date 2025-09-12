@@ -63,24 +63,6 @@
         }
     },
     {
-        "name": "㊙️ 私密收藏",
-        "type": "button",
-        "action": "novelBookmarkFactory(2)",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDCCC 当前章节",
-        "type": "button",
-        "action": "charpterReading()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "\uD83D\uDCC3 追更系列",
         "type": "button",
         "action": "seriesWatchFactory()",
@@ -102,15 +84,6 @@
         "name": "\uD83D\uDDA4 取消收藏",
         "type": "button",
         "action": "novelsBookmarkDelete()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83C\uDFF7️ 添加书签",
-        "type": "button",
-        "action": "novelMarker()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
