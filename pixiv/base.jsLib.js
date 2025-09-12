@@ -23,6 +23,18 @@ function getFromCache(objectName) {
     return JSON.parse(object)
 }
 
+function putInCacheMap(mapName, mapObject, saveSeconds) {
+    const {java, cache} = this
+    let orderedArray = []
+    mapObject.forEach((value, key) => {
+        const item = {}
+        item[key] = value
+        orderedArray.push(item)
+    })
+    // [{'key1': 'value1'}, {'key2': 'value2'}]
+    if (saveSeconds === undefined) saveSeconds = 0
+    cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
+}
 function isHtmlString(str) {
     return str.startsWith("<!DOCTYPE html>")
 }
