@@ -470,9 +470,11 @@ let wordsType = {
 function blockWordShow() {
     let keys = Object.keys(wordsType)
     let key = getFromCache("wordsType")
-    if (!key) key = keys[0]
-    if (key === keys[0]) key = keys[1]
-    else if (key === keys[1]) key = keys[0]
+
+    // 切换屏蔽列表
+    let index = keys.indexOf(key) + 1
+    if (index === keys.length) index = 0
+    key = keys[index]
     putInCache("wordsType", key)
 
     let words = getFromCache(`${key}BlockWords`)
@@ -881,10 +883,13 @@ let maxPagesName = {
 function showMaxPages() {
     let keys = Object.keys(maxPagesName)
     let key = getFromCache("maxPagesKey")
-    if (!key) key = keys[0]
-    if (key === keys[0]) key = keys[1]
-    else if (key === keys[1]) key = keys[0]
+
+    // 切换列表
+    let index = keys.indexOf(key) + 1
+    if (index === keys.length) index = 0
+    key = keys[index]
     putInCache("maxPagesKey", key)
+
     return sleepToast(`📄 搜索页码\n设置 #️⃣ 搜索标签的最大页码数\n
     当前${maxPagesName[keys[0]]}：${getFromCache(keys[0])}\n当前${maxPagesName[keys[1]]}：${getFromCache(keys[1])}\n
     点击 ⏫ 增加页码/ ⏬ 减少页码\n调整【${maxPagesName[key]}】\n
