@@ -588,13 +588,8 @@ function likeTagsDelete() {
 
 
 function likeAuthorsShow() {
-    let likeAuthors = getFromCache(`likeAuthors`)
-    if (likeAuthors === null) likeAuthors = {}
-    let text = ""
-    for (let key in likeAuthors) {
-        text += `@${likeAuthors[key]} ${key}\n`
-    }
-    sleepToast(`👀 查看收藏\n❤️ 他人收藏\n\n${text.trim()}`, 5)
+    let text = printAuthorMap(getFromCacheMap(`likeAuthors`))
+    sleepToast(`👀 查看收藏\n❤️ 他人收藏\n\n${text.trim()}`, 2)
 }
 
 function likeAuthorsAdd() {
