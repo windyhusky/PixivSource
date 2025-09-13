@@ -513,7 +513,7 @@ function printAuthorMap(map) {
     return text.trim()
 }
 
-function blockShow() {
+function blockShowFactory() {
     let keys = Object.keys(wordsType)
     let key = getFromCache("wordsType")
 
@@ -620,12 +620,12 @@ function blockAuthorDelete() {
     putInCacheMap(`blockAuthorMap`, blockAuthors)
 }
 
-function blockAdd() {
+function blockAddFactory() {
     if (getFromCache("wordsType") === "authors") return blockAuthorAdd()
     else return blockWordAdd()
 }
 
-function blockDelete() {
+function blockDeleteFactory() {
     if (getFromCache("wordsType") === "authors") return blockAuthorDelete()
     else return blockWordDelete()
 }

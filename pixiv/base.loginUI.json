@@ -143,7 +143,7 @@
     {
         "name": "\uD83D\uDEAB 添加屏蔽",
         "type": "button",
-        "action": "blockAdd()",
+        "action": "blockAddFactory()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -152,7 +152,7 @@
     {
         "name": "⭕️ 删除屏蔽",
         "type": "button",
-        "action": "blockDelete()",
+        "action": "blockDeleteFactory()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -161,7 +161,7 @@
     {
         "name": "\uD83D\uDC40 查看屏蔽",
         "type": "button",
-        "action": "blockShow()",
+        "action": "blockShowFactory()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
