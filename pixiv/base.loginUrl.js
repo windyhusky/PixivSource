@@ -338,8 +338,10 @@ function userFollow(restrict=0) {
         "https://www.pixiv.net/bookmark_add.php",
         `mode=add&type=user&user_id=${novel.userId}&tag=""&restrict=${restrict}&format=json`
     )
-    if (resp.error === true) sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败`, 1)
-    else {
+    if (resp.error === true) {
+        sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败`, 1)
+        shareFactory("author")
+    } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
         cache.put(`follow${novel.userId}`, true)
     }
@@ -351,8 +353,10 @@ function userUnFollow() {
         "https://www.pixiv.net/rpc_group_setting.php",
         `mode=del&type=bookuser&id=${novel.userId}`
     )
-    if (resp.error === true) sleepToast(`⭐️ 关注作者\n\n⚠️ 取消关注【${novel.userName}】失败`, 1)
-    else {
+    if (resp.error === true) {
+        sleepToast(`⭐️ 关注作者\n\n⚠️ 取消关注【${novel.userName}】失败`, 1)
+        shareFactory("author")
+    } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已取消关注【${novel.userName}】`)
         cache.delete(`follow${novel.userId}`)
     }
@@ -504,7 +508,7 @@ let wordsType = {
 function printAuthorMap(map) {
     let text = ""
     map.forEach((value, key) => {
-        text += `@${value}  ${key}\n`
+        text += `@${value} ${key}\n`
     })
     return text.trim()
 }
