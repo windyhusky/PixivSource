@@ -523,14 +523,14 @@ function blockShow() {
     key = keys[index]
     putInCache("wordsType", key)
 
-    if (key !== "authors") {
-        let words = getFromCache(`${key}BlockWords`)
-        if (words === undefined) words = []
-        sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words.join("\n")}`, 2)
-    } else {
+    if (key === "authors") {
         let words = printAuthorMap(getFromCacheMap("blockAuthorMap"))
-        if (words === undefined) words = ""
+        if (!words) words = ""
         sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words}`, 2)
+    } else {
+        let words = getFromCache(`${key}BlockWords`)
+        if (!words) words = []
+        sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words.join("\n")}`, 2)
     }
 }
 
