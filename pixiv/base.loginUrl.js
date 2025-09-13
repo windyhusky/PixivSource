@@ -121,9 +121,12 @@ function novelBookmarkAdd(restrict=0) {
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
     )
-    if (resp.error === true) sleepToast(`❤️ 收藏小说\n\n⚠️ 收藏【${novel.title}】失败`)
-    else if (resp.body === null) sleepToast(`❤️ 收藏小说\n\n✅ 已经收藏【${novel.title}】了`)
-    else {
+    if (resp.error === true) {
+        sleepToast(`❤️ 收藏小说\n\n⚠️ 收藏【${novel.title}】失败`)
+        shareFactory("novel")
+    } else if (resp.body === null) {
+        sleepToast(`❤️ 收藏小说\n\n✅ 已经收藏【${novel.title}】了`)
+    } else {
         cache.put(`collect${novel.id}`, resp.body)
         sleepToast(`❤️ 收藏小说\n\n✅ 已收藏【${novel.title}】`)
 
@@ -151,8 +154,10 @@ function novelBookmarkDelete() {
         "https://www.pixiv.net/ajax/novels/bookmarks/delete",
         `del=1&book_id=${getNovelBookmarkId(novel.id)}`
     )
-    if (resp.error === true) sleepToast(`❤️ 收藏小说\n\n⚠️ 取消收藏【${novel.title}】失败`)
-    else {
+    if (resp.error === true) {
+        sleepToast(`❤️ 收藏小说\n\n⚠️ 取消收藏【${novel.title}】失败`)
+        shareFactory("novel")
+    } else {
         cache.delete(`collect${novel.id}`)
         sleepToast(`❤️ 收藏小说\n\n✅ 已取消收藏【${novel.title}】`)
 
@@ -255,8 +260,10 @@ function novelMarker(page=1) {
         `mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`
     )
     java.log(`mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`)
-    if (resp.error === true) sleepToast("🏷️ 添加书签\n\n⚠️ 操作失败", 1)
-    else if (lastMarker === true) {
+    if (resp.error === true) {
+        sleepToast("🏷️ 添加书签\n\n⚠️ 操作失败", 1)
+        shareFactory("novel")
+    } else if (lastMarker === true) {
         cache.put(`marker${novel.id}`, false)
         sleepToast(`🏷️ 添加书签\n\n✅ 已删除书签`)
     } else {
@@ -424,8 +431,12 @@ function novelCommentAdd() {
         )
     }
 
-    if (resp.error === true) sleepToast("✅ 发送评论\n\n⚠️ 评论失败", 1)
-    else sleepToast(`✅ 发送评论\n\n✅ 已在【${novel.title}】发布评论：\n${comment}`)
+    if (resp.error === true) {
+        sleepToast("✅ 发送评论\n\n⚠️ 评论失败", 1)
+        shareFactory("novel")
+    } else {
+        sleepToast(`✅ 发送评论\n\n✅ 已在【${novel.title}】发布评论：\n${comment}`)
+    }
 }
 
 function getNovelCommentID(novelId, commentText) {
@@ -469,8 +480,12 @@ function novelCommentDelete() {
             `i_id=${novel.id}&del_id=${commentID}`
         )
         // java.log(JSON.stringify(resp))
-        if (resp.error === true) sleepToast("🗑 删除评论\n\n⚠️ 评论删除失败", 1)
-        else sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${comment}`)
+        if (resp.error === true) {
+            sleepToast("🗑 删除评论\n\n⚠️ 评论删除失败", 1)
+            shareFactory("novel")
+        } else {
+            sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${comment}`)
+        }
     })
 }
 
