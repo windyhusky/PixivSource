@@ -1,5 +1,5 @@
 Pixiv：小说 + 系列 + 作者
-(https?://)?(www\.)?pixiv\.net(/ajax)?/(novel/(show\.php\?id=|series/)?|users?/)\d+
+(https?://)?(www\.)?pixiv\.net(/ajax)?/(novel/(show\.php\?id=|series/)?|users?/)\d+.*
 
 Pixiv：小说 + 系列
 (https?://)?(www\.)?pixiv\.net(/ajax)?/novel/(show\.php\?id=|series/)?\d+
