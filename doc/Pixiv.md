@@ -12,9 +12,22 @@
 
 
 ## 〇、使用须知
-### ⚠️ 使用本书源造成的一切损失由 使用者 自行承担
+### ⚠️ 使用本项目的书源造成的一切损失均由 使用者 自行承担
 ### 1. 请勿在 Pixiv 官方平台宣传本书源
-可能会有 账号限制或封号
+<details><summary> 📄 包括但不限于以下内容 </summary>
+
+- 项目名称：
+  - Pixiv 书源
+- 项目链接：
+  - https://github.com/windyhusky/PixivSource
+  - https://github.com/eigeen/PixivSourceProject
+  - https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md
+- 项目参与者链接：
+  - https://github.com/DowneyRem
+  - https://github.com/windyhusky
+  - https://github.com/eigeen
+</details>
+可能会触发 Shadow ban 限制（大）部分功能，严重的会封号
 
 
 ### 2. 使用时，请在设置里，关闭自动刷新
