@@ -363,19 +363,19 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 支持 Pixiv 多个格式的网址链接：
 ```
-Pixiv 小说链接
+Pixiv 单篇小说链接
 https://www.pixiv.net/novel/show.php?id=20063566
 
 Pixiv 系列小说链接
 https://www.pixiv.net/novel/series/8054073
+
+Pixiv 作者链接（添加近期1本小说）
+https://www.pixiv.net/users/16721009
 ```
 无法添加的链接：
 ```
 Pixiv App 小说分享链接（删掉#号即可正常添加）
 测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
-
-Pixiv 作者页面
-https://www.pixiv.net/users/16721009
 ```
 </details>
 

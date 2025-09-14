@@ -463,7 +463,14 @@ function publicFunc() {
 
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
-            let pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/series/\\d+"
+            let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/users?/\\d+"
+            let isAuthor = baseUrl.match(new RegExp(pattern))
+            if (isAuthor) {
+                java.log(`作者ID：${id}`)
+                novelId = Object.keys(getAjaxJson(urlUserWorkLatest(id)).body.novels).reverse()[0]
+            }
+
+            pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/series/\\d+"
             let isSeries = baseUrl.match(new RegExp(pattern))
             if (isSeries) {
                 java.log(`系列ID：${id}`)
