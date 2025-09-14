@@ -144,12 +144,10 @@ if (likeTags !== null && likeTags.length >= 1) {
 }
 
 // 他人收藏
-let authors = getFromCache("likeAuthors")
-if (!!authors && authors.length >=1) {
-    authors.forEach(item => {
+let likeAuthors = getFromCacheMap("likeAuthors")
+if (likeAuthors.size > 0) {
+    likeAuthors.forEach((authorName, authorId) => {
         let bookmark = {}
-        let authorId =Object.keys(item)[0]
-        let authorName = Object.values(item)[0]
         bookmark[authorName] = urlUserBookmarks(authorId)
         othersBookmarks.push(bookmark)
     })
