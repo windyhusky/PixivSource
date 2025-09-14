@@ -144,10 +144,9 @@ function publicFunc() {
                 csfrToken = null
                 sleepToast("未登录账号(csfrToken)")
             }
-            java.log(typeof csfrToken)
-            java.log(csfrToken)
+            java.log(`csfrToken:\n${csfrToken}`)
+            cache.put("csfrToken", csfrToken)  // 与登录设备有关
         }
-        cache.put("csfrToken", csfrToken)  // 与登录设备有关
         return csfrToken
     }
 
@@ -603,9 +602,6 @@ function getHeaders() {
 
 publicFunc()
 if (result.code() === 200) {
-    if (isBackupSource() && !isLogin()) {
-        util.getCsrfToken()
-    }
     getPixivUid(); getWebViewUA(); util.getCookie(); util.getCsrfToken(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
@@ -616,6 +612,7 @@ util.debugFunc(() => {
     java.log(`${getWebViewUA()}\n`)
     java.log(`${cache.get("csfrToken")}\n`)
     java.log(`${cache.get("pixivCookie")}\n`)
+    java.log(`${cache.get("headers")}\n`)
 })
 
 java.getStrResponse(null, null)
