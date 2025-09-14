@@ -1036,10 +1036,3 @@ function editMaxPages(method) {
     sleepToast(`📄 搜索页码\n\n当前搜索【${maxPagesName[key]}】：${maxPages}\n\n${(msg)}`.trim())
     return maxPages
 }
-
-function sleepToast(text, second=0) {
-    java.log(text)
-    // java.toast(text)
-    java.longToast(text)
-    sleep(1000*second)
-}

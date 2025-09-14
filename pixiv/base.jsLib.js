@@ -265,6 +265,7 @@ function sleep(time) {
 function sleepToast(text, second) {
     const {java} = this
     java.log(text)
+    // java.toast(text)
     java.longToast(text)
     if (second === undefined) second = 0.01
     sleep(1000*second)
