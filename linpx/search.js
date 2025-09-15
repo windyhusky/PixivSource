@@ -103,7 +103,7 @@ function findUserNovels() {
         })
     }
     // java.log(JSON.stringify(novelList))
-    return novelList
+    return novelList.reverse()  // 新小说前置
 }
 
 function getNovels() {
