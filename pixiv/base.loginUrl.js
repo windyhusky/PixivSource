@@ -218,8 +218,9 @@ function novelsBookmarkAdd() {
 
     let novelIds = getFromCache(`novelIds${novel.seriesId}`)
     let likeNovels = getFromCache("likeNovels")
+    if (likeNovels === null) likeNovels = []
     novelIds.forEach(novelId => {
-        if (!likeNovels.includes(Number(novelId))) {
+        if (likeNovels && !likeNovels.includes(Number(novelId))) {
             sleep(0.5 * 1000 * Math.random())
             let resp = getPostBody(
                 "https://www.pixiv.net/ajax/novels/bookmarks/add",
@@ -229,6 +230,8 @@ function novelsBookmarkAdd() {
             if (resp.error === true) {
                 sleepToast(`❤️ 收藏系列\n\n⚠️ 收藏【${novelId}】失败`)
                 shareFactory("series")
+            } else if (resp.body === null) {
+                // sleepToast(`❤️ 收藏小说\n\n✅ 已经收藏【${novel.title}】了`)
             } else {
                 cache.put(`collect${novelId}`, resp.body)
                 likeNovels.push(Number(novelId))
