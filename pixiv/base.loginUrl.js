@@ -91,7 +91,7 @@ function getCookie() {
 
 function getNovel() {
     let novel = source.getLoginInfoMap()
-    if (novel === undefined) novel = getFromCache("novel")
+    if (!novel) novel = getFromCache("novel")
     return novel
 }
 
@@ -99,7 +99,7 @@ function getPostBody(url, body, headers) {
     if (headers === undefined) headers = getFromCache("headers")
     if (isJsonString(body)) {
         headers["content-type"] = "application/json; charset=utf-8"
-    } else if (typeof(body) === "string") {
+    } else if (typeof body === "string") {
         headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
     }
     try {
