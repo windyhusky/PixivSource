@@ -175,9 +175,9 @@ function getContent(res) {
 
     // 添加投票
     if (res.pollData !== null) {
-        let poll = `📃 投票(${res.pollData.total}已投)：\n${res.pollData.question}\n`
+        let poll = `📃 投票(✅${res.pollData.total}已投)：\n${res.pollData.question}\n`
         res.pollData.choices.forEach(choice => {
-            poll += `选项${choice.id}：${choice.text}(${choice.count}已投)\n`
+            poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
         })
         content += "\n" + "——————————\n".repeat(2) + poll
     }
@@ -206,7 +206,7 @@ function getComment(res) {
         // java.log(`本章【${res.title}】(${res.id})，共有${resp.body.comments.length}评论`)
     })
 
-    let comments = "💬 评论：\n"
+    let comments = `💬 评论(共计${res.commentCount}条)：\n`
     resp.body.comments.forEach(comment => {
         if (comment.comment === "") {
             comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
