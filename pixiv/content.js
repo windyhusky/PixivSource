@@ -202,11 +202,11 @@ function getComment(res) {
         }
     }
     util.debugFunc(() => {
-        java.log(`本章【${res.title}】(${res.id})，共有${res.commentCount}评论及回复`)
-        // java.log(`本章【${res.title}】(${res.id})，共有${resp.body.comments.length}评论`)
+        // java.log(`本章【${res.title}】(${res.id})，共有${res.commentCount}评论及回复`)
+        java.log(`本章【${res.title}】(${res.id})，共有${resp.body.comments.length}评论`)
     })
 
-    let comments = `💬 评论(共计${res.commentCount}条)：\n`
+    let comments = `💬 评论(共计${resp.body.comments.length}条)：\n`
     resp.body.comments.forEach(comment => {
         if (comment.comment === "") {
             comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
