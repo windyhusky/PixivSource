@@ -191,10 +191,10 @@ function getContent(res) {
 }
 
 function getComment(res) {
-    let comments = ""
-    let resp = getAjaxJson(urlNovelComments(res.id, 0, 50), true)
-    if (resp.error === true) return comments
+    let resp = getAjaxJson(urlNovelComments(res.id, 0, res.commentCount), true)
+    if (resp.error === true) return ""
 
+    let comments = "💬 评论：\n"
     resp.body.comments.forEach(comment => {
         if (comment.comment === "") {
             comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
@@ -224,7 +224,7 @@ function getComment(res) {
         }
     })
     if (comments) {
-        comments = "\n" + "——————————\n".repeat(2) + "章节评论：\n" + comments
+        comments = "\n" + "——————————\n".repeat(2) + comments
     }
     return comments
 }
