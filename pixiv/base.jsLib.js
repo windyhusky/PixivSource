@@ -134,7 +134,7 @@ function urlNovelDetailed(novelId) {
     return `https://www.pixiv.net/ajax/novel/${novelId}`
 }
 function urlNovelsDetailed(userId, nidList) {
-    return `https://www.pixiv.net/ajax/user/${userId}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    return `https://www.pixiv.net/ajax/user/${userId}/novels?${nidList.map(v => `ids[]=${v}`).join("&")}`
 }
 function urlNovelBookmarkData(novelId) {
     return `https://www.pixiv.net/ajax/novel/${novelId}/bookmarkData`
@@ -144,6 +144,16 @@ function urlNovelComments(novelId, offset, limit) {
 }
 function urlNovelCommentsReply(commentId, page) {
     return `https://www.pixiv.net/ajax/novels/comments/replies?comment_id=${commentId}&page=${page}&lang=zh`
+}
+function urlNovelPollAnswer(novelId) {
+    return `https://www.pixiv.net/ajax/novel/${novelId}/poll/answer`
+}
+function urlNovelsRecommendInit(novelId, limit=9) {
+    return `https://www.pixiv.net/ajax/novel/${novelId}/recommend/init?limit=${limit}&lang=zh`
+}
+function urlNovelsRecommendDetailed(nidList) {
+    if (nidList.length >= 9) nidList.length = 9
+    return `https://www.pixiv.net/ajax/novel/recommend/novels?${nidList.map(v => `novelIds[]=${v}`).join("&")}`
 }
 
 function urlSeriesUrl(seriesId) {
