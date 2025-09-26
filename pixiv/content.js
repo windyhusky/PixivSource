@@ -215,7 +215,11 @@ function getComment(res) {
             comment.emojiId = emoji[comment.comment.slice(1, -1)]
             comment.comment = `<img src="${urlEmojiUrl(comment.emojiId)}">`
         }
-        comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})(${comment.id})\n`
+        if (comment.userId === cache.get("pixiv:uid")) {
+            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})(${comment.id})\n`
+        } else {
+            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})\n`
+        }
 
         // 获取评论回复
         if (comment.hasReplies === true) {
@@ -230,7 +234,11 @@ function getComment(res) {
                     reply.emojiId = emoji[reply.comment.slice(1, -1)]
                     reply.comment = `<img src="${urlEmojiUrl(reply.emojiId)}">`
                 }
-                comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})(${reply.id})\n`
+                if (comment.userId === cache.get("pixiv:uid")) {
+                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})(${reply.id})\n`
+                } else {
+                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})\n`
+                }
             })
             comments += "——————————\n"
         }
