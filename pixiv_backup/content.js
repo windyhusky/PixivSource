@@ -58,6 +58,8 @@ function getNovelInfo(res) {
         novel.isBookmark = !!bookmarkId
     }
 
+    // 添加投票信息
+    novel.pollData = res.pollData
     source.putLoginInfo(JSON.stringify(novel))
     cache.put("novel", JSON.stringify(novel))
 }
@@ -171,6 +173,16 @@ function getContent(res) {
         }
     }
 
+    // 添加投票
+    if (res.pollData !== null) {
+        let poll = `📃 投票(✅${res.pollData.total}已投)：\n${res.pollData.question}\n`
+        res.pollData.choices.forEach(choice => {
+            poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
+        })
+        content += "\n" + "——————————\n".repeat(2) + poll
+    }
+
+    // 添加评论
     if (util.settings.SHOW_COMMENTS) {
         return content + getComment(res)
     } else {
@@ -179,10 +191,22 @@ function getContent(res) {
 }
 
 function getComment(res) {
-    let comments = ""
-    let resp = getAjaxJson(urlNovelComments(res.id, 0, 50), true)
-    if (resp.error === true) return comments
+    // let resp = getAjaxJson(urlNovelComments(res.id, 0, res.commentCount), true)
+    const limit = 50  // 模拟 Pixiv 请求
+    let resp = {"error": false, "message": "", "body": {comments:[]} }
+    let maxPage = (res.commentCount / limit) + 1
+    for (let i = 0; i < maxPage; i++) {
+        let result = getAjaxJson(urlNovelComments(res.id, i*limit, 50), true)
+        if (result.error !== true && result.body.comments !== null) {
+            resp.body.comments = resp.body.comments.concat(result.body.comments)
+        }
+    }
+    util.debugFunc(() => {
+        // java.log(`本章【${res.title}】(${res.id})，共有${res.commentCount}评论及回复`)
+        java.log(`本章【${res.title}】(${res.id})，共有${resp.body.comments.length}评论`)
+    })
 
+    let comments = `💬 评论(共计${resp.body.comments.length}条)：\n`
     resp.body.comments.forEach(comment => {
         if (comment.comment === "") {
             comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
@@ -191,7 +215,11 @@ function getComment(res) {
             comment.emojiId = emoji[comment.comment.slice(1, -1)]
             comment.comment = `<img src="${urlEmojiUrl(comment.emojiId)}">`
         }
-        comments += `${comment.userName}：${comment.comment}(${comment.id})\n`
+        if (comment.userId === cache.get("pixiv:uid")) {
+            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})(${comment.id})\n`
+        } else {
+            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})\n`
+        }
 
         // 获取评论回复
         if (comment.hasReplies === true) {
@@ -206,13 +234,17 @@ function getComment(res) {
                     reply.emojiId = emoji[reply.comment.slice(1, -1)]
                     reply.comment = `<img src="${urlEmojiUrl(reply.emojiId)}">`
                 }
-                comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}(${reply.id})\n`
+                if (comment.userId === cache.get("pixiv:uid")) {
+                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})(${reply.id})\n`
+                } else {
+                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})\n`
+                }
             })
             comments += "——————————\n"
         }
     })
     if (comments) {
-        comments = "\n" + "——————————\n".repeat(2) + "章节评论：\n" + comments
+        comments = "\n" + "——————————\n".repeat(2) + comments
     }
     return comments
 }

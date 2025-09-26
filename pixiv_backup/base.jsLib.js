@@ -92,7 +92,7 @@ function urlNovelDetailed(novelId) {
     return `https://www.pixiv.net/ajax/novel/${novelId}`
 }
 function urlNovelsDetailed(userId, nidList) {
-    return `https://www.pixiv.net/ajax/user/${userId}/novels?${nidList.map(v => "ids[]=" + v).join("&")}`
+    return `https://www.pixiv.net/ajax/user/${userId}/novels?${nidList.map(v => `ids[]=${v}`).join("&")}`
 }
 function urlNovelBookmarkData(novelId) {
     return `https://www.pixiv.net/ajax/novel/${novelId}/bookmarkData`
@@ -102,6 +102,16 @@ function urlNovelComments(novelId, offset, limit) {
 }
 function urlNovelCommentsReply(commentId, page) {
     return `https://www.pixiv.net/ajax/novels/comments/replies?comment_id=${commentId}&page=${page}&lang=zh`
+}
+function urlNovelPollAnswer(novelId) {
+    return `https://www.pixiv.net/ajax/novel/${novelId}/poll/answer`
+}
+function urlNovelsRecommendInit(novelId, limit=9) {
+    return `https://www.pixiv.net/ajax/novel/${novelId}/recommend/init?limit=${limit}&lang=zh`
+}
+function urlNovelsRecommendDetailed(nidList) {
+    if (nidList.length >= 9) nidList.length = 9
+    return `https://www.pixiv.net/ajax/novel/recommend/novels?${nidList.map(v => `novelIds[]=${v}`).join("&")}`
 }
 
 function urlSeriesUrl(seriesId) {
@@ -130,6 +140,9 @@ function urlUserWorkLatest(userID) {
 }
 function urlUserAllWorks(userId) {
     return `https://www.pixiv.net/ajax/user/${userId}/profile/all?lang=zh`
+}
+function urlUserBookmarks(userId) {
+    return `https://www.pixiv.net/ajax/user/${userId}/novels/bookmarks?tag=&offset={{(page-1)*30}}&limit=30&rest=show&lang=zh`
 }
 
 function urlSearchNovel(novelName, page) {
@@ -220,6 +233,7 @@ function sleep(time) {
 function sleepToast(text, second) {
     const {java} = this
     java.log(text)
+    // java.toast(text)
     java.longToast(text)
     if (second === undefined) second = 0.01
     sleep(1000*second)
@@ -252,7 +266,9 @@ function updateSource() {
         }
     }
     comment = onlineSource.bookSourceComment.split("\n")
+    // onlineSource = source
     // comment = source.bookSourceComment.split("\n")
+
     let htm = `
 <!DOCTYPE html>
 <html lang="zh-CN">
@@ -282,7 +298,7 @@ function updateSource() {
             <td>📆 更新：${timeFormat(source.lastUpdateTime)}</td>
         </tr> 
         <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 10).join("<br>")}</td></tr>
-        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-13, comment.length).join("<br>")}</td></tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-20, comment.length).join("<br>")}</td></tr>
     </table>
     
     <table border="0" cellspacing="20">

@@ -144,10 +144,9 @@ function publicFunc() {
                 csfrToken = null
                 sleepToast("未登录账号(csfrToken)")
             }
-            java.log(typeof csfrToken)
-            java.log(csfrToken)
+            java.log(`csfrToken:\n${csfrToken}`)
+            cache.put("csfrToken", csfrToken)  // 与登录设备有关
         }
-        cache.put("csfrToken", csfrToken)  // 与登录设备有关
         return csfrToken
     }
 
@@ -414,7 +413,8 @@ function publicFunc() {
     u.formatNovels = function(novels) {
         novels = util.novelFilter(novels)
         novels.forEach(novel => {
-            if (novel.title) novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
+            if (novel.title) novel.title = novel.title.trim()
+            if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
             novel.readingTime = `${novel.readingTime / 60} 分钟`
             novel.createDate = dateFormat(novel.createDate)
@@ -462,7 +462,14 @@ function publicFunc() {
 
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
-            let pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/series/\\d+"
+            let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/users?/\\d+"
+            let isAuthor = baseUrl.match(new RegExp(pattern))
+            if (isAuthor) {
+                java.log(`作者ID：${id}`)
+                novelId = Object.keys(getAjaxJson(urlUserWorkLatest(id)).body.novels).reverse()[0]
+            }
+
+            pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/series/\\d+"
             let isSeries = baseUrl.match(new RegExp(pattern))
             if (isSeries) {
                 java.log(`系列ID：${id}`)
@@ -592,38 +599,9 @@ function getHeaders() {
     return headers
 }
 
-function getBlockAuthorsFromSource() {
-    let authors = []
-    try {
-        authors = JSON.parse(`[${source.getVariable().replace("，", ",")}]`)
-        // sleepToast(JSON.stringify(authors))
-    } catch (e) {
-        sleepToast("🚫 屏蔽作者\n⚠️ 【书源】源变量设置有误\n输入作者ID，以英文逗号间隔，保存")
-    }
-    return authors
-}
-
-function syncBlockAuthorList() {
-    let authors1 = getFromCache("blockAuthorList")
-    let authors2 = getBlockAuthorsFromSource()
-    util.debugFunc(() => {
-        java.log(`屏蔽作者：缓存　：${JSON.stringify(authors1)}`)
-        java.log(`屏蔽作者：源变量：${JSON.stringify(authors2)}`)
-    })
-    putInCache("blockAuthorList", authors2)
-    if (authors1 === null || authors1.length !== authors2.length) {
-        java.log("🚫 屏蔽作者：已将源变量同步至缓存")
-    } else if (authors2.length === 0) {
-        java.log("🚫 屏蔽作者：已清空屏蔽作者")
-    }
-}
 
 publicFunc()
-syncBlockAuthorList()
 if (result.code() === 200) {
-    if (isBackupSource() && !isLogin()) {
-        util.getCsrfToken()
-    }
     getPixivUid(); getWebViewUA(); util.getCookie(); util.getCsrfToken(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
@@ -634,6 +612,7 @@ util.debugFunc(() => {
     java.log(`${getWebViewUA()}\n`)
     java.log(`${cache.get("csfrToken")}\n`)
     java.log(`${cache.get("pixivCookie")}\n`)
+    java.log(`${cache.get("headers")}\n`)
 })
 
 java.getStrResponse(null, null)

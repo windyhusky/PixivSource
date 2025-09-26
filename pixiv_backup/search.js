@@ -191,7 +191,7 @@ function getSeries() {
     novels = novels.concat(JSON.parse(result).body.novel.data)
     java.log(urlSearchSeries(name, 1))
     cache.put(urlSearchSeries(name, 1), result, cacheSaveSeconds)  // 加入缓存
-    for (let page = Number(java.get("page")) + 1; page <= lastPage, page <= maxPages; page++) {
+    for (let page = Number(java.get("page")) + 1; page <= lastPage && page <= maxPages; page++) {
         novels = novels.concat(search(name,"series", page).data)
     }
     return novels
@@ -210,7 +210,7 @@ function getNovels() {
 
     let resp = search(name, "novel", 1)
     novels = novels.concat(resp.data)
-    for (let page = Number(java.get("page")) + 1; page <= resp.lastPage, page <= maxPages; page++) {
+    for (let page = Number(java.get("page")) + 1; page <= resp.lastPage && page <= maxPages; page++) {
         novels = novels.concat(search(name,"novel", page).data)
     }
     return util.combineNovels(novels)
