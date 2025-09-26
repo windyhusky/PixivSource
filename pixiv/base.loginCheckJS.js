@@ -413,7 +413,7 @@ function publicFunc() {
     u.formatNovels = function(novels) {
         novels = util.novelFilter(novels)
         novels.forEach(novel => {
-            if (novel.title) novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
+            if (novel.title) novel.title = novel.title.trim()
             if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
             novel.readingTime = `${novel.readingTime / 60} 分钟`
