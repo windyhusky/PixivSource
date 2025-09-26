@@ -191,8 +191,20 @@ function getContent(res) {
 }
 
 function getComment(res) {
-    let resp = getAjaxJson(urlNovelComments(res.id, 0, res.commentCount), true)
-    if (resp.error === true) return ""
+    // let resp = getAjaxJson(urlNovelComments(res.id, 0, res.commentCount), true)
+    const limit = 50  // 模拟 Pixiv 请求
+    let resp = {"error": false, "message": "", "body": {comments:[]} }
+    let maxPage = (res.commentCount / limit) + 1
+    for (let i = 0; i < maxPage; i++) {
+        let result = getAjaxJson(urlNovelComments(res.id, i*limit, 50), true)
+        if (result.error !== true && result.body.comments !== null) {
+            resp.body.comments = resp.body.comments.concat(result.body.comments)
+        }
+    }
+    util.debugFunc(() => {
+        java.log(`本章【${res.title}】(${res.id})，共有${res.commentCount}评论及回复`)
+        // java.log(`本章【${res.title}】(${res.id})，共有${resp.body.comments.length}评论`)
+    })
 
     let comments = "💬 评论：\n"
     resp.body.comments.forEach(comment => {
