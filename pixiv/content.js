@@ -215,7 +215,7 @@ function getComment(res) {
             comment.emojiId = emoji[comment.comment.slice(1, -1)]
             comment.comment = `<img src="${urlEmojiUrl(comment.emojiId)}">`
         }
-        comments += `${comment.userName}：${comment.comment}(${comment.id})\n`
+        comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})(${comment.id})\n`
 
         // 获取评论回复
         if (comment.hasReplies === true) {
@@ -230,7 +230,7 @@ function getComment(res) {
                     reply.emojiId = emoji[reply.comment.slice(1, -1)]
                     reply.comment = `<img src="${urlEmojiUrl(reply.emojiId)}">`
                 }
-                comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}(${reply.id})\n`
+                comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})(${reply.id})\n`
             })
             comments += "——————————\n"
         }
