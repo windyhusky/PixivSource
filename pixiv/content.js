@@ -58,6 +58,8 @@ function getNovelInfo(res) {
         novel.isBookmark = !!bookmarkId
     }
 
+    // 添加投票信息
+    novel.pollData = res.pollData
     source.putLoginInfo(JSON.stringify(novel))
     cache.put("novel", JSON.stringify(novel))
 }
@@ -171,6 +173,16 @@ function getContent(res) {
         }
     }
 
+    // 添加投票
+    if (res.pollData !== null) {
+        let poll = `📃 投票(${res.pollData.total}已投)：\n${res.pollData.question}\n`
+        res.pollData.choices.forEach(choice => {
+            poll += `选项${choice.id}：${choice.text}(${choice.count}已投)\n`
+        })
+        content += "\n" + "——————————\n".repeat(2) + poll
+    }
+
+    // 添加评论
     if (util.settings.SHOW_COMMENTS) {
         return content + getComment(res)
     } else {
