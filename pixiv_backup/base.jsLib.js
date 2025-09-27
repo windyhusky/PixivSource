@@ -298,7 +298,7 @@ function updateSource() {
             <td>📆 更新：${timeFormat(source.lastUpdateTime)}</td>
         </tr> 
         <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 10).join("<br>")}</td></tr>
-        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-20, comment.length).join("<br>")}</td></tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-2, comment.length).join("<br>")}</td></tr>
     </table>
     
     <table border="0" cellspacing="20">
