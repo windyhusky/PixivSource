@@ -216,7 +216,7 @@ function getComment(res) {
             comment.emojiId = emoji[comment.comment.slice(1, -1)]
             comment.comment = `<img src="${urlEmojiUrl(comment.emojiId)}">`
         }
-        if (comment.userId === cache.get("pixiv:uid")) {
+        if (comment.userId === String(cache.get("pixiv:uid"))) {
             comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})(${comment.id})\n`
         } else {
             comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})\n`
@@ -235,7 +235,7 @@ function getComment(res) {
                     reply.emojiId = emoji[reply.comment.slice(1, -1)]
                     reply.comment = `<img src="${urlEmojiUrl(reply.emojiId)}">`
                 }
-                if (comment.userId === cache.get("pixiv:uid")) {
+                if (comment.userId === String(cache.get("pixiv:uid"))) {
                     comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})(${reply.id})\n`
                 } else {
                     comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})\n`
