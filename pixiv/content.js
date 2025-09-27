@@ -191,6 +191,9 @@ function getContent(res) {
 }
 
 function getComment(res) {
+    if (res.commentCount === 0) {
+        return ""
+    }
     // let resp = getAjaxJson(urlNovelComments(res.id, 0, res.commentCount), true)
     const limit = 50  // 模拟 Pixiv 请求
     let resp = {"error": false, "message": "", "body": {comments:[]} }
@@ -201,12 +204,10 @@ function getComment(res) {
             resp.body.comments = resp.body.comments.concat(result.body.comments)
         }
     }
-    util.debugFunc(() => {
-        // java.log(`本章【${res.title}】(${res.id})，共有${res.commentCount}评论及回复`)
-        java.log(`本章【${res.title}】(${res.id})，共有${resp.body.comments.length}评论`)
-    })
 
-    let comments = `💬 评论(共计${resp.body.comments.length}条)：\n`
+    let commentCount = resp.body.comments.length
+    let comments = `💬 评论(共计${commentCount}条)：\n`
+    java.log(`【${res.title}】(${res.id})，共有${commentCount}条评论，${res.commentCount - commentCount}条回复`)
     resp.body.comments.forEach(comment => {
         if (comment.comment === "") {
             comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
