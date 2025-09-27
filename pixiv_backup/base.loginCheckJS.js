@@ -568,11 +568,15 @@ function checkMessageThread(checkTimes) {
 
 // 获取请求的user id方便其他ajax请求构造
 function getPixivUid() {
-    let uid = java.getResponse().headers().get("x-userid")
-    if (uid != null) {
+    let uid = cache.get("pixiv:uid")
+    if (!uid || String(uid) === "null") {
+        let html = java.webView(null, "https://www.pixiv.net/", null)
+        try {
+            uid = html.match(/user_id:'(\d+)'/)[1]
+        } catch (e) {
+            uid = null
+        }
         cache.put("pixiv:uid", String(uid))
-    } else {
-        cache.delete("pixiv:uid")
     }
 }
 
