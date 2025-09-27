@@ -504,6 +504,26 @@ function novelCommentDelete() {
     })
 }
 
+function novelPullAnswer(choiceId) {
+    let novel = getNovel()
+    let resp = getPostBody(
+        `https://www.pixiv.net/ajax/novel/${novel.id}/poll/answer`,
+        JSON.stringify({"choice_id": choiceId})
+    )
+    // 200 成功，403 重复投票，400 选项超过范围
+    if (resp.error === true) {
+        if (resp.code === "400") {
+            sleepToast(`📃 小说投票\n\n⚠️ 投票失败：选项${choiceId}超出范围`)
+        } else if (resp.code === "403") {
+            sleepToast(`📃 小说投票\n\n✅ 已经投过票了`)
+        } else {
+            sleepToast(`📃 小说投票\n\n⚠️ 投票失败`)
+        }
+    } else {
+        sleepToast(`📃 小说投票\n\n✅ 投票成功`)
+    }
+}
+
 let wordsType = {
     "caption": "📃 简介屏蔽列表",
     "tags": "#️ 标签屏蔽列表",
