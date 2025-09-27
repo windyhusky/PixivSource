@@ -106,13 +106,14 @@ function getPostBody(url, body, headers) {
         java.log(`getPostBody(${url}, ${body}, ${headers})`)
         return JSON.parse(java.post(url, body, headers).body())
     } catch (e) {
+        e = String(e)
         // sleepToast(e)
         // sleepToast(JSON.stringify(headers))
-        if (String(e).includes(400)) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 headers`, 1)
-        else if (String(e).includes(403)) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
-        else if (String(e).includes(404)) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 csfrToken `, 1)
-        else if (String(e).includes(422)) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
-        return {error: true}
+        if (e.includes("400")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 headers`, 1)
+        else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
+        else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 csfrToken `, 1)
+        else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
+        return {error: true, code:e}
     }
 }
 
