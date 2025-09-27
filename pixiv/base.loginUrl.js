@@ -113,7 +113,7 @@ function getPostBody(url, body, headers) {
         else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
         else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 csfrToken `, 1)
         else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
-        return {error: true, code:e}
+        return {error: true, errMsg:e}
     }
 }
 
@@ -506,18 +506,33 @@ function novelCommentDelete() {
 
 function novelPullAnswer(choiceId) {
     let novel = getNovel()
+    // novel.pollData = getAjaxJson(urlNovelDetailed(novel.id)).body.pollData
+    if (!novel.pollData) {
+        return sleepToast(`✔️ 小说投票\n\n⚠️ 该小说【${novel.title}】无投票信息，建议【清除缓存】【刷新】后重试`)
+    }
+
+    if (!choiceId) {
+        let poll = `📃 投票(✅${novel.pollData.total}已投)：\n${novel.pollData.question}\n`
+        novel.pollData.choices.forEach(choice => {
+            poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
+        })
+        return sleepToast(`✔️ 小说投票\n\n⚠️ 投票失败：请输入投票选项（数字）\n\n${poll}`)
+    } else if (choiceId > novel.pollData.selectedValue) {
+        return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：选项${choiceId}超出范围`)
+    }
+
     let resp = getPostBody(
         `https://www.pixiv.net/ajax/novel/${novel.id}/poll/answer`,
         JSON.stringify({"choice_id": choiceId})
     )
+
     // 200 成功，403 重复投票，400 选项超过范围
     if (resp.error === true) {
-        if (resp.code === "400") {
-            sleepToast(`📃 小说投票\n\n⚠️ 投票失败：选项${choiceId}超出范围`)
-        } else if (resp.code === "403") {
+        if (resp.errMsg.includes("403")) {
             sleepToast(`📃 小说投票\n\n✅ 已经投过票了`)
         } else {
             sleepToast(`📃 小说投票\n\n⚠️ 投票失败`)
+            shareFactory("novel")
         }
     } else {
         sleepToast(`📃 小说投票\n\n✅ 投票成功`)
