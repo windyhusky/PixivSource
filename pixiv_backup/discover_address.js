@@ -112,9 +112,6 @@ generalgGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
-let likeTagLinks = [{"📌 喜欢标签 📌":""}]
-let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
-
 li = li.concat(normal)
 li = li.concat(r18New)
 if (SHOW_GENERAL_NEW === true) {
@@ -131,29 +128,6 @@ if (SHOW_GENERAL_GENRE === true) {
     li = li.concat(generalgGenre)
 }
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
-
-// 收藏标签
-let likeTags = JSON.parse(cache.get("likeTags"))
-if (likeTags !== null && likeTags.length >= 1) {
-    likeTags.forEach(tag => {
-        let tagLink = {}
-        tagLink[tag] = `${urlSearchNovel(tag, "{{page}}")}`
-        likeTagLinks.push(tagLink)
-    })
-    li = li.concat(likeTagLinks)
-}
-
-// 他人收藏
-let authors = JSON.parse(cache.get("likeAuthors"))
-if (authors !== null && Object.keys(authors).length >= 1) {
-    for (let authorId in authors) {
-        let authorName = authors[authorId]
-        let bookmark = {}
-        bookmark[authorName] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
-        othersBookmarks.push(bookmark)
-        }
-    li = li.concat(othersBookmarks)
-}
 
 // 添加格式
 li.forEach(item => {
