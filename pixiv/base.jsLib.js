@@ -145,9 +145,6 @@ function urlNovelComments(novelId, offset, limit) {
 function urlNovelCommentsReply(commentId, page) {
     return `https://www.pixiv.net/ajax/novels/comments/replies?comment_id=${commentId}&page=${page}&lang=zh`
 }
-function urlNovelPollAnswer(novelId) {
-    return `https://www.pixiv.net/ajax/novel/${novelId}/poll/answer`
-}
 function urlNovelsRecommendInit(novelId, limit=9) {
     return `https://www.pixiv.net/ajax/novel/${novelId}/recommend/init?limit=${limit}&lang=zh`
 }
