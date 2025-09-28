@@ -23,6 +23,48 @@ function getFromCache(objectName) {
     return JSON.parse(object)
 }
 
+function putInCacheMap(mapName, mapObject, saveSeconds) {
+    const {java, cache} = this
+    let orderedArray = []
+    mapObject.forEach((value, key) => {
+        const item = {}
+        item[key] = value
+        orderedArray.push(item)
+    })
+    // [{'key1': 'value1'}, {'key2': 'value2'}]
+    if (saveSeconds === undefined) saveSeconds = 0
+    cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
+}
+
+function getFromCacheMap(mapName) {
+    const {java, cache} = this
+    let cached = cache.get(mapName)
+    let newMap = new Map()
+    if (cached === null || cached === undefined) {
+        return newMap
+    }
+
+    let parsedData
+    try {
+        parsedData = JSON.parse(cached)
+    } catch (e) {
+        return newMap
+    }
+
+    if (Array.isArray(parsedData)) {
+        parsedData.forEach(item => {
+            for (let key in item) {
+                newMap.set(key, item[key])
+            }
+        })
+    } else {
+        for (let key in parsedData) {
+            newMap.set(key, parsedData[key])
+        }
+    }
+    return newMap
+}
+
 function isHtmlString(str) {
     return str.startsWith("<!DOCTYPE html>")
 }
@@ -102,9 +144,6 @@ function urlNovelComments(novelId, offset, limit) {
 }
 function urlNovelCommentsReply(commentId, page) {
     return `https://www.pixiv.net/ajax/novels/comments/replies?comment_id=${commentId}&page=${page}&lang=zh`
-}
-function urlNovelPollAnswer(novelId) {
-    return `https://www.pixiv.net/ajax/novel/${novelId}/poll/answer`
 }
 function urlNovelsRecommendInit(novelId, limit=9) {
     return `https://www.pixiv.net/ajax/novel/${novelId}/recommend/init?limit=${limit}&lang=zh`
@@ -298,7 +337,7 @@ function updateSource() {
             <td>📆 更新：${timeFormat(source.lastUpdateTime)}</td>
         </tr> 
         <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 10).join("<br>")}</td></tr>
-        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-2, comment.length).join("<br>")}</td></tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-20, comment.length).join("<br>")}</td></tr>
     </table>
     
     <table border="0" cellspacing="20">
