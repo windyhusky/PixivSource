@@ -504,20 +504,19 @@ function novelCommentDelete() {
     })
 }
 
-function novelPullAnswer(choiceId) {
+function novelPollAnswer() {
     let novel = getNovel()
-    // novel.pollData = getAjaxJson(urlNovelDetailed(novel.id)).body.pollData
-    if (!novel.pollData) {
-        return sleepToast(`✔️ 小说投票\n\n⚠️ 该小说【${novel.title}】无投票信息，建议【清除缓存】【刷新】后重试`)
+    // novel.pollChoicesCount = getAjaxJson(urlNovelDetailed(novel.id)).body.pollData.selectedValue
+    if (!novel.pollChoicesCount) {
+        return sleepToast(`📃 小说投票\n\n⚠️ 该小说【${novel.title}】无投票信息，建议【清除缓存】【刷新】后重试`)
     }
 
+    let choiceId = String(result.get("输入内容")).trim()
     if (!choiceId) {
-        let poll = `📃 投票(✅${novel.pollData.total}已投)：\n${novel.pollData.question}\n`
-        novel.pollData.choices.forEach(choice => {
-            poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
-        })
-        return sleepToast(`✔️ 小说投票\n\n⚠️ 投票失败：请输入投票选项（数字）\n\n${poll}`)
-    } else if (choiceId > novel.pollData.selectedValue) {
+        return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：请在【输入内容】输入投票选项(数字)`)
+    } else if (Number(choiceId) > novel.pollData.selectedValue) {
+        return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：选项${choiceId}超出范围`)
+    } else if (Number(choiceId) <= 0 || Number(choiceId) > novel.pollChoicesCount) {
         return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：选项${choiceId}超出范围`)
     }
 
@@ -525,7 +524,6 @@ function novelPullAnswer(choiceId) {
         `https://www.pixiv.net/ajax/novel/${novel.id}/poll/answer`,
         JSON.stringify({"choice_id": choiceId})
     )
-
     // 200 成功，403 重复投票，400 选项超过范围
     if (resp.error === true) {
         if (resp.errMsg.includes("403")) {
