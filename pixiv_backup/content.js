@@ -59,7 +59,8 @@ function getNovelInfo(res) {
     }
 
     // 添加投票信息
-    novel.pollChoicesCount = res.pollData.choices.length
+    if (res.pollData) novel.pollChoicesCount = res.pollData.choices.length
+    else novel.pollChoicesCount = 0
     source.putLoginInfo(JSON.stringify(novel))
     cache.put("novel", JSON.stringify(novel))
 }
