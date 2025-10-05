@@ -67,10 +67,6 @@
 | BTSRK 订阅源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
 | Books 订阅源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
 | Import 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
-
-> 更多导入方法详见：
-> **[导入书源](./doc/ImportBookSource.md)** &
-> **[导入订阅源](./doc/ImportRssSource.md)**
 </details>
 
 
@@ -337,9 +333,9 @@
 <details><summary> ⏩ 速率限制 </summary>
 
 ### ⏩ 书源请求限制
-#### 1.最大缓存时间
-<details><summary> 最大缓存时间：7天 </summary>
+<details><summary> 🕖 缓存时间：7天 </summary>
 
+#### 1.最大缓存时间
 - 书源内部 JsLib 使用 `getAjaxJson() getAjaxAllJson() getWebviewJson() urlIllustOriginal() ` 等，访问网络资源时，会默认写入缓存，最多存放7天
 - 后续如果重复请求同一内容，在缓存时间内则不会发送请求，而是直接读取缓存数据，加快请求速度的同时，减少实际请求次数
 - 登录界面中的功能使用了 `getPostBody()`，不受此限制
@@ -354,24 +350,25 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-#### 2.请求速率限制
-<details><summary> 速率限制：每2s访问3次 </summary>
+<details><summary> ⏩ 速率限制：每2s访问3次 </summary>
 
+#### 2.请求速率限制
 - 因为上面设置了最大缓存时间，会减少实际的（重复的）网络请求
 - ~~此处网络请求速率限制可适当调高~~，但账号因此受限请自负其责
 
 
 - 自定义：编辑书源 - 基本 - 并发率 - 修改并保存
   ```
-  180/60000    60s内访问180次（默认）
+  3/2000    2s内访问3次（默认）
   ```
 - **每次更新书源后，需要重新设置**
 </details>
 
 
-#### 3.【正文为空】提示
-<details><summary> 无法获取正文时，弹出提示 </summary>
 
+<details><summary> ⚠️ 正文为空 提示 </summary>
+
+#### 3.无法获取正文时，弹出提示
 短时间内请求过多会无法获取正文。 此时弹出窗口，提示：
 ```
 您于X时X分触发 Pixiv 【请求限制】，建议 稍候/重新登录 再继续
@@ -379,9 +376,10 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-#### 4.【过度访问】提示
-<details><summary> 过度访问后，提示修改密码 </summary>
 
+<details><summary> ⚠️ 过度访问 提示 </summary>
+
+#### 4.【过度访问】提示修改密码
 - 触发 Pixiv 的过度访问后的【3天内】，每4个小时检测1次弹出提示，并推荐修改密码
 ```
 您于X时X分触发 Pixiv 【过度访问】，请修改密码并重新登录。如已修改请忽略
