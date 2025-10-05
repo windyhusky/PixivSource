@@ -42,7 +42,7 @@
 
 - jsDelivr 免代理导入有延迟
 - 阅读3.0一键导入链接由 [@Luoyacheng](https://github.com/Luoyacheng)  提供支持
-- 没有阅读软件？ => [下载阅读](./doc/Download.md) => [导入书源](./doc/Import.md)
+- 没有阅读软件？ => [下载阅读](./doc/Download.md) => 一键导入/[导入书源](./doc/Import.md)
 - 更多导入方法详见：**[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)**
 
 

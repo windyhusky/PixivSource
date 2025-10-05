@@ -1,6 +1,8 @@
 ## 3.下载阅读
 阅读的各个版本，参见[阅读版本](./Version.md)（不重要）
 
+<details><summary> 书源兼容性 </summary>
+
 ###  3.0 书源兼容性
 | 阅读版本                 | Pixiv 书源 | 更新时间   | Github 导入链接  |
 | ---------------------- | --------- | --------- | --------------- |
@@ -13,7 +15,7 @@
 | ---------------------- | --------- | --------- | --------------- |
 |　3.23.0503 - 最新版本    | 最新版　　  |           | [Linpx 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
 |　3.22.0103 - 3.23.0404 | 1.7.4版本 | 2025.02.20 | [Linpx 书源](https://github.com/windyhusky/PixivSource/releases/download/ver1.7.4/linpx.json) |
-
+</details>
 
 ###  3.1 【官方】Android 版
 <details><summary> 阅读 Android 版 </summary>
