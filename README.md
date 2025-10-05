@@ -77,6 +77,7 @@
 | Linpx   |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
 | 兽人小说  |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
 
+<details><summary> 📖 书源功能 </summary>
 
 <details><summary> 🅿️ Ｐ站特性 </summary>
 
@@ -329,7 +330,6 @@
     ```
   - 3️⃣ 更新：发现 - 长按 **"兽人小说站"** - 刷新 - 查看筛选后的小说
 </details>
-</details>
 
 
 <details><summary> ⏩ 速率限制 </summary>
@@ -378,7 +378,6 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-
 <details><summary> ⚠️ 过度访问 提示 </summary>
 
 #### 4.【过度访问】提示修改密码
@@ -388,7 +387,8 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 ```
 </details>
 </details>
-
+</details>
+</details>
 
 ## 订阅源
 <details><summary> 🐲 btsrk 订阅源 </summary>
