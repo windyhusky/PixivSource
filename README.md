@@ -25,7 +25,7 @@
 
 ### 兼容软件
 | 书源　　 | 阅读 Beta    | 源阅 Test Flight |
-| ------- | ----------- | --------------- |
+| ------- | ---------- | --------------- |
 | 小说书源 | 3.25.0527   | 1.0 (112)       |
 | 小说备用 | 3.23.0503?  | 1.0 (112)       |
 </details>
@@ -33,30 +33,31 @@
 
 ## 一键导入
 | 源名称 | jsDelivr | Github |
-|------ | --------- | ------ |
+|------ | -------- | ------ |
 | Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
-| Linpx 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
-| BTSRK 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
+| Linpx 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
+| BTSRK 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
 
 <details><summary> 🔗 更多资源 </summary>
 
 | 源名称 | jsDelivr | Github |
-|------ | --------- | ------ |
-| 通用书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/normal.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json) |
+|------ | -------- | ------ |
+| 通用书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/normal.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json) |
 | 书源分享 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json) |
-| Import 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json) |
-| Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixivToc.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json) |
+| Import 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json) |
+| Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixivToc.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json) |
 </details>
 
 
 - jsDelivr 免代理导入有延迟
-- 阅读3.0一键导入链接由 [@Luoyacheng](https://github.com/Luoyacheng)  提供支持
-- 没有阅读软件？ => [下载阅读](./doc/Download.md) => 一键导入/[导入书源](./doc/Import.md)
-- 更多导入方法详见：**[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)**
+- 一键导入链接由 [@Luoyacheng](https://github.com/Luoyacheng)  提供支持
+- 没有阅读软件？=> [下载阅读](./doc/Download.md)
+- 更多方法详见：[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)
 
 
 ## 规则订阅
 订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
+详见：[导入书源](./doc/ImportBookSource.md)
 <details><summary> 🔗 订阅链接 </summary>
 
 | 源名称 | jsDelivr | Github |
