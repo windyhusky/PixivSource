@@ -31,7 +31,7 @@
 </details>
 
 
-## 阅读3.0 一键导入
+## 一键导入
 | 源名称 | jsDelivr | Github |
 |------ | --------- | ------ |
 | Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
@@ -40,37 +40,28 @@
 | Books 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json) |
 | Import 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json) |
 
-
-- 一键导入链接由 [@Luoyacheng](https://github.com/Luoyacheng)  提供支持
+- jsDelivr 免代理导入有延迟
+- 阅读3.0一键导入链接由 [@Luoyacheng](https://github.com/Luoyacheng)  提供支持
 - 没有阅读软件？ => [下载阅读](./doc/Download.md) => [导入书源](./doc/Import.md)
 - 更多导入方法详见：**[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)**
 
-<details>
-<summary> Jsdelivr 导入地址 </summary>
 
-| 名称          | 免代理导入网址                                                        |
-| ------------ | ------------------------------------------------------------------- |
-| Pixiv 书源    | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json  |
-| BTSRK 订阅源  | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json  |
-| Import 订阅源 | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json |
-- 免代理导入有延迟
-</details>
+## 规则订阅
+订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
+<details><summary> 🔗 订阅链接 </summary>
 
-<details>
-<summary> Github 导入地址 </summary>
+| 源名称 | jsDelivr | Github |
+|------ | --------- | ------ |
+| Pixiv 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
+| Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
+| BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
+| Books 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json) |
 
-| 名称           | [Github 项目网址](https://github.com/windyhusky/PixivSource)               |
-| ------------- | ------------------------------------------------------------------------- |
-| Pixiv 书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json  |
-| Linpx 书源　   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
-| 兽人小说站书源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json  |
-| BTSRK 订阅源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json  |
-| Books 订阅源   | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json  |
-| Import 订阅源  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json |
+- jsDelivr 免代理导入有延迟
 </details>
 
 
-## 书源状态 & 功能
+## 书源功能
 | 书源     | 状态 | 支持 Ｐ站 特性 | 实现 阅读 功能 |
 | ------- | ---- | --------- | ------- |
 | Pixiv   |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
