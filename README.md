@@ -5,43 +5,49 @@
 </div>
 
 
+### 源起：为了更好的阅读体验
+- Pixiv 小说功能不够完善，阅读体验不佳
+- 多数第三方 APP 没有优化过小说阅读功能
+- [阅读 3.0 ](https://github.com/gedoor/legado) 可以自定义书源，阅读体验较好
+
 <details><summary> 🔗 项目链接 </summary>
 
 ### 项目链接
 | 书源　　 | 链接                                          |
-| ------- | -------------------------------------------- |
+| ------ | -------------------------------------------- |
 | 本项目　 | https://github.com/windyhusky/PixivSource    |
 | 备份项目 | https://codeberg.org/DowneyRem/PixivSource   |
 | TS重构版 | https://github.com/eigeen/PixivSourceProject |
 </details>
 
 
-### 源起：为了更好的阅读体验
-- Pixiv 小说功能不够完善，阅读体验不佳
-- 多数第三方 APP 没有优化过小说阅读功能
-- [阅读 3.0 ](https://github.com/gedoor/legado) 可以自定义书源，阅读体验较好
+<details><summary> 📖 兼容软件 </summary>
 
-
-### 兼容软件：
-
+### 兼容软件
 | 书源　　 | 阅读 Beta    | 源阅 Test Flight |
 | ------- | ----------- | --------------- |
 | 小说书源 | 3.25.0527   | 1.0 (112)       |
 | 小说备用 | 3.23.0503?  | 1.0 (112)       |
+</details>
 
 
-## 阅读3.0 一键导入：
+## 阅读3.0 一键导入
 | 源名称 | jsDelivr | Github |
 |------ | --------- | ------ |
-| Pixiv 书源    | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
-| Linpx 书源    | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
-| BTSRK 订阅源  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
+| Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
+| Linpx 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
+| BTSRK 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
+| Books 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json) |
+| Import 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json) |
+
+
 - 一键导入链接由 [@Luoyacheng](https://github.com/Luoyacheng)  提供支持
+- 没有阅读软件？ => [下载阅读](./doc/Download.md) => [导入书源](./doc/Import.md)
+- 更多导入方法详见：**[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)**
 
 <details>
 <summary> Jsdelivr 导入地址 </summary>
 
-## 快速导入：[下载阅读](./doc/Download.md) =>  [导入书源](./doc/Import.md)
 | 名称          | 免代理导入网址                                                        |
 | ------------ | ------------------------------------------------------------------- |
 | Pixiv 书源    | https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json  |
@@ -66,22 +72,6 @@
 > **[导入书源](./doc/ImportBookSource.md)** &
 > **[导入订阅源](./doc/ImportRssSource.md)**
 </details>
-
-
-<details>
-<summary> Codeberg 镜像地址 </summary>
-
-| 名称           | [Codeberg 镜像网址](https://codeberg.org/DowneyRem/PixivSource)　       |
-| ------------- | ---------------------------------------------------------------------- |
-| Pixiv 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/pixiv.json  |
-| Linpx 书源　   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
-| 兽人小说站书源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/linpx.json  |
-| BTSRK 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/btsrk.json  |
-| Books 订阅源   | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/books.json  |
-| Import 订阅源  | https://codeberg.org/DowneyRem/PixivSource/raw/branch/main/import.json |
-- [Codeberg](https://codeberg.org/DowneyRem/PixivSource) 免代理，更新无延迟（网站服务不是很稳定）
-</details>
-
 
 
 ## 书源状态 & 功能
@@ -427,15 +417,15 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 <details><summary> 📚 books 订阅源 </summary>
 
 ### 📚 books 订阅源：快速导入阅读书源、订阅源等资源
-| 名称           | Github 导入网址                                               |
+| 名称           | 网址链接                                              |
 | ------------- | ------------------------------------------------------------ |
-| 源仓库　　　　  | https://www.yckceo.com/yuedu/index/index.html                |
+| 源仓库　　　　   | https://www.yckceo.com/yuedu/index/index.html                |
 | Yiove 书源仓库　| https://shuyuan.yiove.com                                    |
 | 喵公子书源管理　 | https://yuedu.miaogongzi.net/gx.html                         |
 | 阅读 APP 源　　 | https://legado.aoaostar.com                                  |
-| 阅读合集　 　　 | https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b  |
-| 聚合搜索  |  |
-| 阅读使用手册  | https://www.yuque.com/legado/wiki |
+| 阅读合集　 　　  | https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b  |
+| 聚合搜索        | 诸多搜索引擎 |
+| 阅读使用手册    | https://www.yuque.com/legado/wiki |
 </details>
 
 
@@ -444,12 +434,12 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 ### 📄 import 订阅源 （非本项目的其他资源）
 - import 订阅源：导入本项目整理的书源、订阅源等
 
-| 名称           | 相关网址                                                              |
-| ------------- | --------------------------------------------------------------------------- |
-| 通用书源　　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json   |
-| 聚合搜索　　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json    |
-| 书源订阅　　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json   |
-| Pixiv目录规则  | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json |
+| 名称         | 相关网址                                                                     |
+| ----------- | --------------------------------------------------------------------------- |
+| 通用书源　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json   |
+| 聚合搜索　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json    |
+| 书源订阅　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json   |
+| Pixiv目录规则 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json |
 
 - **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇 为网文网站编写的通用书源，用搜索引擎获取全网小说。
 - **[聚合搜索](https://legado.cn/thread-3723-1-1.html)** ：是不世玄奇 制作的聚合多个搜索引擎的订阅源，需要配合 **[通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用。(集入 books 订阅源)
