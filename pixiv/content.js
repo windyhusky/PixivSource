@@ -24,6 +24,7 @@ function getNovelInfo(res) {
     // 放入小说信息以便登陆界面使用
     let novel = source.getLoginInfoMap()
     if (novel === undefined) novel = JSON.parse(cache.get("novel"))
+    if (res && res.error === true) return
     novel.id = Number(res.id)
     novel.title = res.title
     novel.userId = res.userId
@@ -67,7 +68,6 @@ function getNovelInfo(res) {
 
 function getContent(res) {
     getNovelInfo(res)  // 放入信息以便登陆界面使用
-    // charpterReading()  // 输出章节信息
     let content = String(res.content)
     // let content = "undefined"
     if (content.includes("undefined")) {
@@ -175,7 +175,7 @@ function getContent(res) {
     }
 
     // 添加投票
-    if (res.pollData !== null) {
+    if (res.pollData) {
         let poll = `📃 投票(✅${res.pollData.total}已投)：\n${res.pollData.question}\n`
         res.pollData.choices.forEach(choice => {
             poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
