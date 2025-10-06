@@ -37,6 +37,9 @@ body:
   - type: textarea
     attributes:
       label: 调试信息（我的-编辑书源-🐞调试源，输入书名或链接） / 🐞Debug Message in Legado 
+      description: |
+        目录：```++https://www.pixiv.net/novel/show.php?id=123```
+        正文：```--https://www.pixiv.net/novel/show.php?id=123```
       placeholder: |
         下述情况大概率是 Pixiv 限制，并非书源错误。请 过段时间/重新登陆 后再尝试
         {"error":true, "message":"出现错误。请稍后再试。", "body":[]}
