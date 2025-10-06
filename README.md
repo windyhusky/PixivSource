@@ -31,7 +31,7 @@
 </details>
 
 
-## 一键导入
+## [下载阅读](./doc/Download.md) => 一键导入
 | 源名称 | jsDelivr | Github |
 |------ | -------- | ------ |
 | Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
@@ -51,11 +51,10 @@
 
 - jsDelivr 免代理导入有延迟
 - 一键导入链接由 [@Luoyacheng](https://github.com/Luoyacheng)  提供支持
-- 没有阅读软件？=> [下载阅读](./doc/Download.md)
 - 更多方法详见：[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)
 
 
-## 规则订阅
+## [下载阅读](./doc/Download.md) => 规则订阅
 订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
 详见：[导入书源](./doc/ImportBookSource.md)
 <details><summary> 🔗 订阅链接 </summary>
@@ -389,7 +388,23 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 </details>
 </details>
+
+<details><summary> 🐞 调试书源 </summary>
+
+###  🐞 调试书源
+#### 1.阅读内部调试
+我的 - 书源管理 - 编辑书源 - 调试 - 输入内容
+
+| 调试区域 | 输入内容 |
+|--------|---------|
+| 搜索 | 搜索相应关键词 |
+| 发现 | `::https://www.pixiv.net/ajax/top/novel` |
+| 详情 | `https://www.pixiv.net/novel/show.php?id=123` |
+| 目录 | `++https://www.pixiv.net/novel/show.php?id=123` |
+| 正文 | `--https://www.pixiv.net/novel/show.php?id=123` |
 </details>
+</details>
+
 
 ## 订阅源
 <details><summary> 🐲 btsrk 订阅源 </summary>
@@ -497,8 +512,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 ## TODO
 - ~~Linpx 系列小说书源（上游不支持）~~
 
-<details>
-<summary> ✅ 已完成 </summary>
+<details><summary> ✅ 已完成 </summary>
 
 - ✅ Linpx 订阅源
 - ✅ Pixiv 订阅源（使用JS注入，代码来自【聚合搜索】）
