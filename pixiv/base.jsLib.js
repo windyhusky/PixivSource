@@ -4,12 +4,19 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
 
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
+    // 缓存信息错误时，重新请求
+    if (v && JSON.parse(v).error === true) {
+        cache.delete(key)
+        v = cache.get(key)
+    }
+    // 无缓存信息时，进行请求
     if (v === undefined || v === null) {
         v = JSON.stringify(supplyFunc())
         cache.put(key, v, cacheSaveSeconds)
     }
     return JSON.parse(v)
 }
+
 function putInCache(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
@@ -35,7 +42,6 @@ function putInCacheMap(mapName, mapObject, saveSeconds) {
     if (saveSeconds === undefined) saveSeconds = 0
     cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
 }
-
 function getFromCacheMap(mapName) {
     const {java, cache} = this
     let cached = cache.get(mapName)
