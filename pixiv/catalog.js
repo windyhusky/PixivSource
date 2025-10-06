@@ -77,9 +77,14 @@ function seriesHandler(res) {
             returnList = returnList.concat(list)
         }
     }
-    // 放入信息以便登陆界面使用
+    // 放入小说信息以便登陆界面使用
+    let novel = source.getLoginInfoMap()
+    if (novel === undefined) novel = JSON.parse(cache.get("novel"))
+    novel.novelIds = novelIds
     cache.put(`novelIds${seriesID}`, JSON.stringify(novelIds), cacheSaveSeconds)
     // java.log(JSON.stringify(returnList))
+    source.putLoginInfo(JSON.stringify(novel))
+    cache.put("novel", JSON.stringify(novel))
     return returnList
 }
 
