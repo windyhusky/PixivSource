@@ -4,16 +4,19 @@
 ## 开源阅读 Pixiv 书源
 </div>
 
-
 ### 源起：为了更好的阅读体验
+<details><summary> ▶️ 项目起源 </summary>
+
 - Pixiv 小说功能不够完善，阅读体验不佳
-- 多数第三方 APP 没有优化过小说阅读功能
+- 多数第三方 APP 没有优化小说阅读功能
 - [阅读 3.0 ](https://github.com/gedoor/legado) 可以自定义书源，阅读体验较好
+</details>
+
 
 <details><summary> 🔗 项目链接 </summary>
 
 ### 项目链接
-| 书源　　 | 链接                                          |
+| 书源项目 | 链接                                          |
 | ------ | -------------------------------------------- |
 | 本项目　 | https://github.com/windyhusky/PixivSource    |
 | 备份项目 | https://codeberg.org/DowneyRem/PixivSource   |
@@ -28,6 +31,7 @@
 | ------- | ---------- | --------------- |
 | 小说书源 | 3.25.0527   | 1.0 (112)       |
 | 小说备用 | 3.23.0503?  | 1.0 (112)       |
+- 详见：[下载阅读](./doc/Download.md)
 </details>
 
 
