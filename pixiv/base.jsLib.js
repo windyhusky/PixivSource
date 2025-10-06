@@ -101,23 +101,14 @@ function isLogin() {
 
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
-    if (forceUpdate === true) {
-        let result = JSON.parse(java.ajax(url))
-        cache.put(url, JSON.stringify(result), cacheSaveSeconds)
-        return result
-    }
+    if (forceUpdate) cache.delete(url)
     return cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     })
 }
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
-    if (forceUpdate === true) {
-        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
-        cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
-        for (let i in urls) cache.put(urls[i], JSON.stringify(result[i]), cacheSaveSeconds)
-        return result
-    }
+    if (forceUpdate) cache.delete(urls)
     return cacheGetAndSet(cache, urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
