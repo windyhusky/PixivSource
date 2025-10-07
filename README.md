@@ -35,7 +35,7 @@
 </details>
 
 ## 使用流程
-### [下载阅读](./doc/Download.md) => 一键导入 => [登录账号](./doc/Pixiv.md) => 开始使用
+### A.[下载阅读](./doc/Download.md) => 一键导入 => [登录账号](./doc/Pixiv.md) => 开始使用
 | 源名称 | jsDelivr | Github |
 |------ | -------- | ------ |
 | Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
@@ -58,7 +58,7 @@
 - 更多方法详见：[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)
 
 
-### [下载阅读](./doc/Download.md) => 规则订阅 => [登录账号](./doc/Pixiv.md) => 开始使用
+### B.[下载阅读](./doc/Download.md) => 规则订阅 => [登录账号](./doc/Pixiv.md) => 开始使用
 订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
 详见：[导入书源](./doc/ImportBookSource.md)
 <details><summary> 🔗 订阅链接 </summary>
@@ -72,6 +72,24 @@
 
 - jsDelivr 免代理导入有延迟
 </details>
+
+### C.更多教程
+<details><summary> 📌 使用教程 </summary>
+
+> ### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
+> ### 0. [下载 开源阅读 Legado](./doc/Download.md)
+> ### 1. [阅读使用教程（太长不看版）](./doc/TooLongToRead.md)
+>> #### 1.1 [Pixiv 书源的导入与使用](./doc/Pixiv.md)
+>> #### 1.2 [Linpx 书源的导入与使用](./doc/Linpx.md)
+>> #### 1.3 [兽人控小说站 书源的导入与使用](./doc/FurryNovel.md)
+>> #### 1.4 搜索小说、查看订阅，畅享阅读
+> ### 2. [添加远程书籍](./doc/RemoteBooks.md)，畅享阅读
+> ### 3. [设置 Webdav 备份](./doc/WebdavBackup.md)
+> ### 4. [故障排查与处理](./doc/TroubleShoot.md)
+#### 此处教程由 [@FurryReading](https://t.me/FurryReading) 提供
+</details>
+
+
 
 
 ## 书源功能
@@ -465,23 +483,6 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 - **[聚合搜索](https://legado.cn/thread-3723-1-1.html)** ：是不世玄奇 制作的聚合多个搜索引擎的订阅源，需要配合 **[通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用。(集入 books 订阅源)
 - **[书源订阅](https://gitee.com/feiniao6/yd)** ：是Thomas喲 制作的第三方规则订阅，旨在快速导入书源/订阅源。(已修改)
 - **[Pixiv 目录规则](https://akaito.xyz/post/Legado)** ：是[一片痴心俱成灰](https://akaito.xyz/post/Legado) 为 Pixiv 本地小说制作的目录规则
-</details>
-
-
-## 使用教程
-<details><summary> 📌 使用教程 </summary>
-
-> ### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
-> ### 0. [下载 开源阅读 Legado](./doc/Download.md)
-> ### 1. [阅读使用教程（太长不看版）](./doc/TooLongToRead.md)
->> #### 1.1 [Pixiv 书源的导入与使用](./doc/Pixiv.md)
->> #### 1.2 [Linpx 书源的导入与使用](./doc/Linpx.md)
->> #### 1.3 [兽人控小说站 书源的导入与使用](./doc/FurryNovel.md)
->> #### 1.4 搜索小说、查看订阅，畅享阅读
-> ### 2. [添加远程书籍](./doc/RemoteBooks.md)，畅享阅读
-> ### 3. [设置 Webdav 备份](./doc/WebdavBackup.md)
-> ### 4. [故障排查与处理](./doc/TroubleShoot.md)
-#### 此处教程由 [@FurryReading](https://t.me/FurryReading) 提供
 </details>
 
 
