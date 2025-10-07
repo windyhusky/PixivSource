@@ -3,16 +3,26 @@
 ## 3.0 订阅源来源
 - [Legado｜开源阅读 | 频道](https://t.me/legado_channels)
 - [源仓库](https://www.yckceo.com/yuedu/rss/index.html)
+- [三千书源 | Yiove 书源仓库](https://shuyuan.yiove.com)
 > **更多方式请查看[书源获取方式](./ImportBookSource.md)，一般二者会同时提供**
 
 书源分享【订阅源】：
 - [喵公子订阅源](https://yd.mgz6.com)
 - [阅读 APP 源](https://legado.aoaostar.com)
-- [一程 阅读合集](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b)
 
 
 ## 3.1 导入订阅源
-以下导入方法任选其一即可
+### O.一键导入
+- 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)
+- 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json)
+- 🐲 [一键导入 BTSRK 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json)
+- 📚 [一键导入 Books 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json)
+- ➕ [一键导入 Import 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json)
+
+
+<details><summary> ➕ 更多方法 </summary>
+
+以下导入方法任选其一亦可
 
 <details>
 <summary> A. 文件导入 </summary>
@@ -160,4 +170,5 @@ yuedu://rsssource/importonline?src=http://yuedu.miaogongzi.net/shuyuan/miaogongz
 点击订阅源，导入订阅源
 
 ![img](./pic/InportRssSourceBtsrk.png)
+</details>
 </details>

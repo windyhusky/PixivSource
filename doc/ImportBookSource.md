@@ -15,6 +15,9 @@
 - 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)
 - 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json)
 - 🐲 [一键导入 BTSRK 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json)
+- 📚 [一键导入 Books 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json)
+- ➕ [一键导入 Import 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json)
+
 
 <details><summary> ➕ 更多方法 </summary>
 
@@ -25,7 +28,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 ```
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
 ```
-以下导入方法任选其一即可
+以下导入方法任选其一亦可
 <details><summary> A. 文件导入 </summary>
 
 ### A.文件导入更简单
