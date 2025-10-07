@@ -5,8 +5,12 @@
 
 
 ## 1. 配置坚果云
-### 1.0 [注册并登录坚果云](https://www.jianguoyun.com/d/signup)
+<details><summary> 🌰 注册坚果云 </summary>
 
+### 1.0 [注册并登录坚果云](https://www.jianguoyun.com/d/signup)
+</details>
+
+<details><summary> ☁️ 配置坚果云 </summary>
 
 ### 1.1 [配置坚果云](https://www.yuque.com/legado/wiki/fkx510)
 
@@ -22,11 +26,11 @@
 
 #### 4. 到此 WebDav 账户设置完成
 ![image.png](https://cdn.nlark.com/yuque/0/2021/png/12737724/1614783363300-d74cf960-ddf4-4a04-aee2-df1f21565b0f.png?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_23%2Ctext_TGVnYWRvIMK3IOW8gOa6kOmYheivuw%3D%3D%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10)
+</details>
 
 
-<br><br>
 ## 2. [设置备份信息](https://www.yuque.com/legado/wiki/mgu5qu)
-
+<details><summary> 💾 设置备份信息 </summary>
 
 #### 2.1 进入备份与恢复
 主界面 - 我的 - 设置 - 备份与恢复
@@ -35,10 +39,13 @@
 
 
 #### 2.2 设置 WebDav 备份信息
-在 WebDav 设置里填入服务器地址、账户、应用密码
-
 ![img](pic/WebdavBackup1.png)
 
+在 WebDav 设置里填入服务器地址、账户、应用密码，保存即可
+</details>
+
+
+<details><summary> 🔜 自动备份数据 </summary>
 
 #### 2.3 自动备份
 完成 WebDav 备份设置后，每次退出APP即会自动备份。
@@ -46,20 +53,24 @@
 **仅返回式退出会自动备份，任务栏直接关闭不会备份**
 
 **同一天的备份会覆盖，不同日期的备份不会覆盖**
+</details>
 
 
-<br><br>
-## 3. 备份与恢复数据
-![img.png](pic/WebdavBackup2.png)
-
+## 3. 备份与恢复
+<details><summary> 🔜 备份数据 </summary>
 
 ### 3.1 手动备份数据
+![img.png](pic/WebdavBackup2.png)
+
 **备份与恢复 - 备份，即可备份数据**
 
 首次备份，请检查坚果云里是否有备份文件。 
 
 如果备份失败，请手动在坚果云根目录新建文件夹"legado"，然后再备份
+</details>
 
+
+<details><summary> 🔙 恢复数据 </summary>
 
 ### 3.2 [恢复数据](https://www.yuque.com/legado/wiki/nxs89y)
 **备份与恢复 - 恢复**
@@ -68,3 +79,4 @@
 
 **选择需要恢复的备份文件**，即可恢复数据
 ![img](pic/WebdavBackup3.png)
+</details>
