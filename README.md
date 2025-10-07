@@ -25,7 +25,7 @@
 </details>
 
 
-## 使用流程：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md) => 开始使用
+## 使用流程：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#三登录账号) => 开始使用
 <details><summary> ➡️ 详细流程 </summary>
 
 ### 1.[下载阅读](./doc/Download.md)
@@ -42,7 +42,7 @@
 ### 2.导入书源
 [comment]: <> (<details><summary> ➡️ A.一键导入 </summary>)
 
-#### A.一键导入 => [登录账号](./doc/Pixiv.md) => 开始使用
+#### A.一键导入 => [登录账号](./doc/Pixiv.md#三登录账号) => 开始使用
 | 源名称 | jsDelivr | Github |
 |------ | -------- | ------ |
 | Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
@@ -67,7 +67,7 @@
 
 <details><summary> 🔗 B.规则订阅 </summary>
 
-#### B.规则订阅 => [登录账号](./doc/Pixiv.md) => 开始使用
+#### B.规则订阅 => [登录账号](./doc/Pixiv.md#三登录账号) => 开始使用
 订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
 详见：[导入书源](./doc/ImportBookSource.md)
 
@@ -80,7 +80,7 @@
 </details>
 
 
-### 3.[登录账号](./doc/Pixiv.md)
+### 3.[登录账号](./doc/Pixiv.md#三登录账号)
 ### 4.开始使用
 <details><summary> 📌 更多教程 </summary>
 
