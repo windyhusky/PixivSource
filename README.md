@@ -5,16 +5,16 @@
 </div>
 
 ## 源起：为了更好的阅读体验
-<details><summary> 🔗 项目链接 </summary>
 
-### 项目链接
-| 书源项目 | 链接                                          |
-| ------ | -------------------------------------------- |
-| 本项目　 | https://github.com/windyhusky/PixivSource    |
-| 备份项目 | https://codeberg.org/DowneyRem/PixivSource   |
-| TS重构版 | https://github.com/eigeen/PixivSourceProject |
+<details><summary> 📄 免责声明 </summary>
+
+### 免责声明
+1. 开源阅读 Legado 是一个做了很多阅读功能的浏览器
+2. 书源(及订阅源)是浏览器向网站请求数据、处理数据的一套方法
+3. 使用开源阅读 Legado 阅读小说，相当于访问相关网页阅读小说
+4. 开源阅读 Legado 内的作品数据均来自书源内的网站，作品版权归原作者或站方所有
+5. 如有版权问题，请找到书源内的网站，向站方投诉
 </details>
-
 
 <details><summary> 📖 兼容软件 </summary>
 
@@ -474,17 +474,21 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-## 免责声明
-1. 开源阅读 Legado 是一个做了很多阅读功能的浏览器
-2. 书源(及订阅源)是浏览器向网站请求数据、处理数据的一套方法
-3. 使用开源阅读 Legado 阅读小说，相当于访问相关网页阅读小说
-4. 开源阅读 Legado 内的作品数据均来自书源内的网站，作品版权归原作者或站方所有
-5. 如有版权问题，请找到书源内的网站，向站方投诉
+## 杂类
+<details><summary> 🔗 项目链接 </summary>
+
+### 项目链接
+| 书源项目 | 链接                                          |
+| ------ | -------------------------------------------- |
+| 本项目　 | https://github.com/windyhusky/PixivSource    |
+| 备份项目 | https://codeberg.org/DowneyRem/PixivSource   |
+| TS重构版 | https://github.com/eigeen/PixivSourceProject |
+</details>
 
 
-## 鸣谢
 <details><summary> 📢 鸣谢 </summary>
 
+### 鸣谢
 - 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)
@@ -502,9 +506,10 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
 </details>
 
-## TODO
-- ~~Linpx 系列小说书源（上游不支持）~~
+<details><summary> ☑️ To Do </summary>
 
+### To Do
+- ~~Linpx 系列小说书源（上游不支持）~~
 <details><summary> ✅ 已完成 </summary>
 
 - ✅ Linpx 订阅源
@@ -532,6 +537,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 - ✅ 订阅源：导入/更新书源
 - ✅ Pixiv 漫画书源：搜索、详情、目录、正文
 - ✅ Pixiv & Linpx & 兽人控小说站 书源：繁简通搜
+</details>
 </details>
 
 
