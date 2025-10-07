@@ -1,16 +1,22 @@
 ## 2.导入书源
 
-## 2.0 书源（订阅源）来源
-- [Legado｜开源阅读 | 频道](https://t.me/legado_channels)
-- [三千书源](https://shuyuan.yiove.com)
-- [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
-- [阅读 APP 源](https://legado.aoaostar.com/)  
-- [一程书源/订阅源](https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b/)
+## 2.0 获取书源（订阅源）
+- [Legado | 开源阅读 | 频道](https://t.me/legado_channels)
 - [源仓库](https://www.yckceo.com/yuedu/shuyuan/index.html)
+- [三千书源 | Yiove 书源仓库](https://shuyuan.yiove.com)
+- [喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)
+- [书源、图源、订阅源、规则、直播源、各种源 大型整合](https://source.zgqinc.gq)  
+- [阅读 APP 源](https://legado.aoaostar.com)
 - 其他网络来源
 
 
 ## 2.1 导入书源
+### O.一键导入
+- 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)
+- 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json)
+- 🐲 [一键导入 BTSRK 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json)
+
+<details><summary> ➕ 更多方法 </summary>
 
 请【**开启代理**】后，复制下面的【书源】链接
 ```
@@ -146,18 +152,21 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 
 ![img](./pic/InportRssSourceBtsrk.png)
 </details>
+</details>
 
 
-## 2.2 确认启用书源
+## 2.2 启用书源
+<details><summary> ✅ 启用书源 </summary>
+
 ![img](https://telegra.ph/file/7b866f92fa9b556818206.png)
 
 转载网站一般无需登录，基本上到这里就可以回到主页面，搜索书名看小说了
 
 **正版付费网站，以及一些登陆后才能看所有小说的网站，都需要登录账号**
-
+</details>
 
 ## 2.3 登录账号
-<details><summary> 登陆账号 </summary>
+<details><summary> ➡️ 登录账号 </summary>
 
 ### 0.【根据需要】开启代理工具
 此处略过，请自行学习，**最好开启【全局代理】**
