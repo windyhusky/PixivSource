@@ -17,10 +17,11 @@
 |　3.22.0103 - 3.23.0404 | 1.7.4版本 | 2025.02.20 | [Linpx 书源](https://github.com/windyhusky/PixivSource/releases/download/ver1.7.4/linpx.json) |
 </details>
 
+
 ### 3.1 Android 版
 <details><summary> 🤖 阅读 Android 版 </summary>
 
-#### 3.1.0 【非官方】洛娅橙 Fork 版【推荐】
+#### 3.1.0 👍【推荐】[洛娅橙 Fork 版](https://github.com/Luoyacheng/legado)
 **可覆盖下方 Beta 版本（原包名/共存），推荐使用【共存版】**
 
 | 下载站点 | 版本 | 备注 |
@@ -28,6 +29,8 @@
 | [Github Release](https://github.com/Luoyacheng/legado/releases) | 测试版 | 需要代理，无需登录 |
 | [Github Action](https://github.com/Luoyacheng/legado/actions)   | 测试版 | 需要代理，需要登录 |
 
+
+<details><summary> 🏛️ 阅读 Beta 版（喵公子等）</summary>
 
 #### 3.1.1 【官方】喵公子 Beta 版
 **点击链接，下载安装包并安装，推荐使用【共存版/新共存版】**
@@ -39,9 +42,10 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 | [Github Action](https://github.com/gedoor/legado/actions)    | 测试版 | 需要代理，需要登录 |
 | [Telegram 频道](https://t.me/Legado_Channels)                 | 稳定版 | 需要代理，需要登录 |
 | [Telegram 频道(Beta版)](https://t.me/Legado_Beta)             | 测试版 | 需要代理，需要登录 |
+</details>
 
 
-<details><summary> 👎🏼 Android 正式版 </summary>
+<details><summary> 👎🏼 阅读 正式版（已停更）</summary>
 
 #### ~~3.1.2 【官方】Android 正式版~~
 **Android 正式版已经停止更新，不推荐继续使用**
@@ -54,7 +58,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 </details>
 
 
-<details><summary> 🚮 阅读 Pro 版 </summary>
+<details><summary> 🚮 阅读 Pro 版（已下架）</summary>
 
 #### ~~3.1.3 【官方】阅读 Pro 版~~
 - 阅读 Pro 版于2023年被Google下架
@@ -119,11 +123,11 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 项目地址：https://github.com/hectorqin/reader
 <details><summary> 🖥️ 阅读 服务器版/桌面版 </summary>
 
-| 下载站点                                                 | 版本   | 备注            |
-| ------------------------------------------------------ | ----- | -------------- |
-| [Github](https://github.com/hectorqin/reader/releases) |       | 需要代理         |
-| [Telegram 频道](https://t.me/facker_channel)            |       | 需要代理，需要登录 |
-| 微信公众号【假装大佬】                                      |       |                |
+| 下载站点                                                 | 备注            |
+| ------------------------------------------------------ | -------------- |
+| [Github](https://github.com/hectorqin/reader/releases) | 需要代理         |
+| [Telegram 频道](https://t.me/facker_channel)            | 需要代理，需要登录 |
+| 微信公众号【假装大佬】                                      |                |
 </details>
 
 
