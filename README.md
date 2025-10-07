@@ -6,10 +6,6 @@
 
 
 ### 源起：为了更好的阅读体验
-
-[comment]: <> (<details><summary> 📌 免责声明 </summary>)
-
-[comment]: <> (### 免责声明)
 <details><summary> ©️ 版权问题 </summary>
 
 #### 版权问题
@@ -28,11 +24,10 @@
 2. 使用书源造成的一切损失均由【书源使用者】自行承担
 </details>
 
-[comment]: <> (</details>)
-
 
 ## 使用流程
 **1.[下载阅读](./doc/Download.md) => 2.导入书源 => 3.[登录账号](./doc/Pixiv.md) => 4.开始使用**
+<details><summary> ➡️ 详细流程 </summary>
 
 ### 1.[下载阅读](./doc/Download.md)
 <details><summary> 📖 兼容软件 </summary>
@@ -75,7 +70,6 @@
 #### B.规则订阅 => [登录账号](./doc/Pixiv.md) => 开始使用
 订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
 详见：[导入书源](./doc/ImportBookSource.md)
-<details><summary> 🔗 订阅链接 </summary>
 
 | 源名称 | jsDelivr | Github |
 |------ | --------- | ------ |
@@ -83,7 +77,6 @@
 | Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
 | BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
 | Books 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json) |
-</details>
 </details>
 
 
@@ -103,8 +96,7 @@
 > ### 4. [故障排查与处理](./doc/TroubleShoot.md)
 #### 此处教程由 [@FurryReading](https://t.me/FurryReading) 提供
 </details>
-
-
+</details>
 
 
 ## 书源功能
