@@ -5,10 +5,11 @@
 </div>
 
 
-## 源起：为了更好的阅读体验
-<details><summary> ⚠️ 免责声明 </summary>
+### 源起：为了更好的阅读体验
 
-### 免责声明
+[comment]: <> (<details><summary> 📌 免责声明 </summary>)
+
+[comment]: <> (### 免责声明)
 <details><summary> ©️ 版权问题 </summary>
 
 #### 版权问题
@@ -20,18 +21,22 @@
 </details>
 
 
-<details><summary> ⚠️ 免责声明 </summary>
+<details><summary> 📌 免责声明 </summary>
 
 #### 免责声明
 1. 本书源仅用于【交流书源代码】和【学习分享 JS 技术】
 2. 使用书源造成的一切损失均由【书源使用者】自行承担
 </details>
-</details>
+
+[comment]: <> (</details>)
 
 
+## 使用流程
+**1.[下载阅读](./doc/Download.md) => 2.导入书源 => 3.[登录账号](./doc/Pixiv.md) => 4.开始使用**
+
+### 1.[下载阅读](./doc/Download.md)
 <details><summary> 📖 兼容软件 </summary>
 
-### 兼容软件
 | 书源　　 | 阅读 Beta    | 源阅 Test Flight |
 | ------- | ---------- | --------------- |
 | 小说书源 | 3.25.0527   | 1.0 (112)       |
@@ -39,13 +44,17 @@
 - 详见：[下载阅读](./doc/Download.md)
 </details>
 
-## 使用流程
-### A.[下载阅读](./doc/Download.md) => 一键导入 => [登录账号](./doc/Pixiv.md) => 开始使用
+
+### 2.导入书源
+<details><summary> ➡️ A.一键导入 </summary>
+
+#### A.一键导入 => [登录账号](./doc/Pixiv.md) => 开始使用
 | 源名称 | jsDelivr | Github |
 |------ | -------- | ------ |
 | Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
 | Linpx 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
 | BTSRK 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
+
 
 <details><summary> 🔗 更多资源 </summary>
 
@@ -58,9 +67,12 @@
 </details>
 
 - 更多方法详见：[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)
+</details>
 
 
-### B.[下载阅读](./doc/Download.md) => 规则订阅 => [登录账号](./doc/Pixiv.md) => 开始使用
+<details><summary> 🔗 B.规则订阅 </summary>
+
+#### B.规则订阅 => [登录账号](./doc/Pixiv.md) => 开始使用
 订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
 详见：[导入书源](./doc/ImportBookSource.md)
 <details><summary> 🔗 订阅链接 </summary>
@@ -72,10 +84,12 @@
 | BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
 | Books 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json) |
 </details>
+</details>
 
 
-### C.更多教程
-<details><summary> 📌 使用教程 </summary>
+### 3.[登录账号](./doc/Pixiv.md)
+### 4.开始使用
+<details><summary> 📌 更多教程 </summary>
 
 > ### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
 > ### 0. [下载 开源阅读 Legado](./doc/Download.md)
