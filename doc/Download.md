@@ -17,16 +17,25 @@
 |　3.22.0103 - 3.23.0404 | 1.7.4版本 | 2025.02.20 | [Linpx 书源](https://github.com/windyhusky/PixivSource/releases/download/ver1.7.4/linpx.json) |
 </details>
 
-###  3.1 【官方】Android 版
+###  3.1 Android 版
 <details><summary> 阅读 Android 版 </summary>
 
-#### 3.1.1 Android Beta 版
-**点击链接，下载安装包并安装，推荐使用【共存版】**
+#### 3.1.0 【非官方】洛娅橙 Fork 版【推荐】
+**可覆盖下方 Beta 版本（原包名/共存），推荐使用【共存版】，**
+
+| 下载站点                                                          | 版本   | 备注           |
+| --------------------------------------------------------------- | ----- | -------------- |
+| [Github Release](https://github.com/Luoyacheng/legado/releases) | 测试版 | 需要代理，无需登录 |
+| [Github Action](https://github.com/Luoyacheng/legado/actions)       | 测试版 | 需要代理，需要登录 |
+
+
+#### 3.1.1 【官方】喵公子 Beta 版
+**点击链接，下载安装包并安装，推荐使用【共存版/新共存版】**
 https://miaogongzi.lanzout.com/b01rgkhhe
 
 | 下载站点                                                       | 版本   | 备注           |
 | ------------------------------------------------------------ | ----- | -------------- |
-| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)  | 测试版 | 无需代理，无需登录 |
+| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)   | 测试版 | 无需代理，无需登录 |
 | [Github Action](https://github.com/gedoor/legado/actions)    | 测试版 | 需要代理，需要登录 |
 | [Telegram 频道](https://t.me/Legado_Channels)                 | 稳定版 | 需要代理，需要登录 |
 | [Telegram 频道(Beta版)](https://t.me/Legado_Beta)             | 测试版 | 需要代理，需要登录 |
@@ -34,17 +43,17 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 <details><summary> Android 正式版 & Pro 版 </summary>
 
-#### ~~3.1.2 Android 正式版~~
+#### ~~3.1.2 【官方】Android 正式版~~
 **Android 正式版已经停止更新，不推荐继续使用**
 
 | 下载站点                                                        | 版本   | 备注            |
 | ------------------------------------------------------------- | ----- | -------------- |
-| [喵公子阅读资源](https://yuedu.miaogongzi.net)                  | 稳定版 | 无需代理，无需登录 |
+| [喵公子阅读资源](https://yuedu.miaogongzi.net)                   | 稳定版 | 无需代理，无需登录 |
 | [Github Release](https://github.com/gedoor/legado/releases)   | 稳定版 | 需要代理，无需登录 |
 | [Telegram 频道](https://t.me/Legado_Channels)                  | 稳定版 | 需要代理，需要登录 |
 
 
-#### ~~3.1.3 阅读 Pro 版~~
+#### ~~3.1.3 【官方】阅读 Pro 版~~
 **阅读 Pro 版已经停止更新，不推荐继续使用。所有 Pro 版限定功能已经移植到普通版（2023.11.01）**
 </details>
 </details>
