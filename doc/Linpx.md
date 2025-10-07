@@ -13,7 +13,7 @@
 <details>
 <summary> ⬇️ 下载阅读 </summary>
 
-点击链接，下载安装包并安装，**推荐使用共存版**
+点击链接，下载安装包并安装，**推荐使用【共存版】**
 > https://miaogongzi.lanzout.com/b01rgkhhe
 >
 > 最新下载链接请查看 [下载阅读](./Download.md)
@@ -25,6 +25,13 @@
 
 
 ## 一、导入书源 & 订阅源
+📥 [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+
+📥 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+
+
+<details><summary> ➕ 导入书源 & 订阅源（旧） </summary>
+
 ### 1.导入 Linpx 书源
 <details>
 <summary> ➕ 导入书源 </summary>
@@ -82,6 +89,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 **导入之后，再次点击则会检查更新**
 
 > 更多导入方法请查看[如何导入订阅源](./ImportRssSource.md)
+</details>
 </details>
 
 

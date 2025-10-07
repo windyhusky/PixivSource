@@ -10,8 +10,7 @@
 
 ## 〇、下载并安装阅读
 ### 1.下载阅读 3.0 版本
-<details>
-<summary> ⬇️ 下载阅读 </summary>
+<details><summary> ⬇️ 下载阅读 </summary>
 
 点击链接，下载安装包并安装，**推荐使用共存版**
 > https://miaogongzi.lanzout.com/b01rgkhhe
@@ -25,9 +24,15 @@
 
 
 ## 一、导入书源 & 订阅源
+📥 [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+
+📥 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+
+
+<details><summary> ➕ 导入书源 & 订阅源（旧） </summary>
+
 ### 1.导入 兽人控小说站 书源
-<details>
-<summary> ➕ 导入书源 </summary>
+<details><summary> ➕ 导入书源 </summary>
 
 复制下方【免代理】书源链接
 ```
@@ -55,8 +60,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json
 
 
 ### 2.导入 兽人控小说站 订阅源
-<details>
-<summary> ➕ 导入订阅源 </summary>
+<details><summary> ➕ 导入订阅源 </summary>
 
 复制下方【免代理】订阅源链接
 ```
@@ -83,11 +87,11 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 > 更多导入方法请查看[如何导入订阅源](./ImportRssSource.md)
 </details>
+</details>
 
 
 ## 二、确保网站可以访问
-<details>
-<summary> 🌐 检查网站能否访问 </summary>
+<details><summary> 🌐 检查网站能否访问 </summary>
 
 订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
 - 如果可以直接打开，那么一切大功告成！
@@ -102,8 +106,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 ## 三、添加小说，尽情使用
 ### 1.阅读内部搜索
-<details>
-<summary> 🔎 搜索小说 </summary>
+<details><summary> 🔎 搜索小说 </summary>
 
 ✅ 支持搜索：小说名称、系列小说名称、作者名称、小说标签
 
@@ -112,8 +115,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 
 ### 2.发现更多小说
-<details>
-<summary> ⭐️ 常规功能 </summary>
+<details><summary> ⭐️ 常规功能 </summary>
 
 发现：热门小说、最新小说、随便来点
 
@@ -142,8 +144,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 
 ### 3.添加网址
-<details>
-<summary> 🔗 添加网址 </summary>
+<details><summary> 🔗 添加网址 </summary>
 
 书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
 
@@ -167,8 +168,7 @@ https://api.furrynovel.com/api/zh/novel/8312
 
 
 ### 4.订阅源添加小说
-<details>
-<summary> 🏠 订阅源 </summary>
+<details><summary> 🏠 订阅源 </summary>
 
 #### 4.1 替代阅读搜索
 受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx的功能。网站的搜索功能更加全面。
@@ -192,8 +192,7 @@ https://api.furrynovel.com/api/zh/novel/8312
 
 ## 四、故障排查
 > 详见：[故障排查与处理](./TroubleShoot.md)
-<details>
-<summary> 🐞 故障排查 </summary>
+<details><summary> 🐞 故障排查 </summary>
 
 ### 1.没有搜索结果，请自行检查一下内容：
 
