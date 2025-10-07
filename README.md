@@ -25,8 +25,7 @@
 </details>
 
 
-## 使用流程
-**1.[下载阅读](./doc/Download.md) => 2.导入书源 => 3.[登录账号](./doc/Pixiv.md) => 4.开始使用**
+## 使用流程：[下载阅读](./doc/Download.md) => 2.导入书源 => 3.[登录账号](./doc/Pixiv.md) => 4.开始使用
 <details><summary> ➡️ 详细流程 </summary>
 
 ### 1.[下载阅读](./doc/Download.md)
@@ -41,7 +40,7 @@
 
 
 ### 2.导入书源
-<details><summary> ➡️ A.一键导入 </summary>
+[comment]: <> (<details><summary> ➡️ A.一键导入 </summary>)
 
 #### A.一键导入 => [登录账号](./doc/Pixiv.md) => 开始使用
 | 源名称 | jsDelivr | Github |
@@ -62,7 +61,8 @@
 </details>
 
 - 更多方法详见：[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)
-</details>
+
+[comment]: <> (</details>)
 
 
 <details><summary> 🔗 B.规则订阅 </summary>
