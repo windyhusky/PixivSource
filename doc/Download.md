@@ -21,7 +21,7 @@
 <details><summary> 阅读 Android 版 </summary>
 
 #### 3.1.1 Android Beta 版
-**点击链接，下载安装包并安装，推荐使用共存版**
+**点击链接，下载安装包并安装，推荐使用【共存版】**
 https://miaogongzi.lanzout.com/b01rgkhhe
 
 | 下载站点                                                       | 版本   | 备注           |

@@ -34,8 +34,8 @@
 - 详见：[下载阅读](./doc/Download.md)
 </details>
 
-
-## [下载阅读](./doc/Download.md) => 一键导入
+## 使用流程
+### [下载阅读](./doc/Download.md) => 一键导入 => [登录账号](./doc/Pixiv.md) => 开始使用
 | 源名称 | jsDelivr | Github |
 |------ | -------- | ------ |
 | Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
@@ -58,7 +58,7 @@
 - 更多方法详见：[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)
 
 
-## [下载阅读](./doc/Download.md) => 规则订阅
+### [下载阅读](./doc/Download.md) => 规则订阅 => [登录账号](./doc/Pixiv.md) => 开始使用
 订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
 详见：[导入书源](./doc/ImportBookSource.md)
 <details><summary> 🔗 订阅链接 </summary>
