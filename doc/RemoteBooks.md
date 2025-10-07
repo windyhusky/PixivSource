@@ -1,5 +1,6 @@
 ## 远程书籍
 ### 1.远程书籍配置
+<details><summary> ☁️ 配置远程书籍 </summary>
 
 书架菜单 - 远程书籍 - 右上角三点菜单 - 服务器配置 - 加号 - 添加服务器配置信息
 
@@ -26,6 +27,11 @@
 保存，选择添加的服务器
 
 ![img](./pic/RemoteBooksSettings5.png)
+</details>
+
+
+### 2.查看远程书籍
+<details><summary> 👀 查看远程书籍 </summary>
 
 刷新，查看文件
 
@@ -34,9 +40,13 @@
 选择书籍，放入书架
 
 ![img](./pic/RemoteBooksSettings7.png)
+</details>
 
 
-### 2.兽人小说分享 [@FurryNovels](https://t.me/FurryReading/2145)
+### 3.兽人小说分享 [@FurryNovels](https://t.me/FurryReading/2145)
+<details><summary> 🐺 兽人小说分享 </summary>
+
 > https://t.me/FurryReading/2145
 > 
-> [兽人小说服务器配置信息](https://github.com/DowneyRem/FurryNovels/blob/main/doc/RemoteBooks.md#2%E5%85%BD%E4%BA%BA%E5%B0%8F%E8%AF%B4%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE)
+> [兽人小说服务器配置信息](https://github.com/DowneyRem/FurryNovels/blob/main/doc/RemoteBooks.md#2-%E5%85%BD%E4%BA%BA%E5%B0%8F%E8%AF%B4%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE)
+</details>
