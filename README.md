@@ -4,17 +4,30 @@
 ## [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 </div>
 
-## 源起：为了更好的阅读体验
 
-<details><summary> 📄 免责声明 </summary>
+## 源起：为了更好的阅读体验
+<details><summary> ⚠️ 免责声明 </summary>
 
 ### 免责声明
+<details><summary> ©️ 版权问题 </summary>
+
+#### 版权问题
 1. 开源阅读 Legado 是一个做了很多阅读功能的浏览器
 2. 书源(及订阅源)是浏览器向网站请求数据、处理数据的一套方法
 3. 使用开源阅读 Legado 阅读小说，相当于访问相关网页阅读小说
 4. 开源阅读 Legado 内的作品数据均来自书源内的网站，作品版权归原作者或站方所有
 5. 如有版权问题，请找到书源内的网站，向站方投诉
 </details>
+
+
+<details><summary> ⚠️ 免责声明 </summary>
+
+#### 免责声明
+1. 本书源仅用于【交流书源代码】和【学习分享 JS 技术】
+2. 使用书源造成的一切损失均由【书源使用者】自行承担
+</details>
+</details>
+
 
 <details><summary> 📖 兼容软件 </summary>
 
