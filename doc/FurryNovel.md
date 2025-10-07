@@ -24,9 +24,8 @@
 
 
 ## 一、导入书源 & 订阅源
-📥 [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
-
-📥 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+- 🐯 [一键导入 兽人控小说站 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+- 🐲 [一键导入 兽人控小说站 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
 
 
 <details><summary> ➕ 导入书源 & 订阅源（旧） </summary>
@@ -91,7 +90,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 
 ## 二、确保网站可以访问
-<details><summary> 🌐 检查网站能否访问 </summary>
+<details><summary> ☑️ 检查网站能否访问 </summary>
 
 订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
 - 如果可以直接打开，那么一切大功告成！
@@ -105,25 +104,25 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 
 ## 三、添加小说，尽情使用
-### 1.阅读内部搜索
 <details><summary> 🔎 搜索小说 </summary>
 
+### 1.阅读内部搜索
 ✅ 支持搜索：小说名称、系列小说名称、作者名称、小说标签
 
 ![img](./pic/SearchViaLegado.png)
 </details>
 
 
-### 2.发现更多小说
-<details><summary> ⭐️ 常规功能 </summary>
+<details><summary> ⭐️ 发现小说 </summary>
 
+### 2.发现更多小说
 发现：热门小说、最新小说、随便来点
 
 ![img](./pic/DiscoverFurryNovel.png)
 </details>
 
 
-<details><summary> 🔎 筛选发现 </summary>
+<details><summary> ⏬ 筛选发现 </summary>
 
 发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量
 
@@ -143,9 +142,9 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 </details>
 
 
-### 3.添加网址
 <details><summary> 🔗 添加网址 </summary>
 
+### 3.添加网址
 书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
 
 ![img](./pic/AddBookViaUrl1.png)
@@ -167,26 +166,38 @@ https://api.furrynovel.com/api/zh/novel/8312
 </details>
 
 
-### 4.订阅源添加小说
 <details><summary> 🏠 订阅源 </summary>
+
+### 4.订阅源
+<details><summary> ⬇️ 导入书源 </summary>
+</details>
+
+
+<details><summary> 🔍 站内搜索 </summary>
 
 #### 4.1 替代阅读搜索
 受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx的功能。网站的搜索功能更加全面。
 
 ![img](./pic/SearchViaFurryNovel.png)
+</details>
 
+
+<details><summary> ⭐️ 站内发现 </summary>
 
 #### 4.2 替代阅读发现
 阅读内部浏览器打开 Pixiv，即可使用 Pixiv 书源未完成的功能，如排行榜等功能
 
 ![img](./pic/FurryNovelRaces.png)
+</details>
 
+<details><summary> ➕ 添加小说 </summary>
 
 #### 4.3 添加小说至书架
 在阅读内部浏览器内打开 兽人控小说站 小说页面，点击【添加到书架】按钮即可添加小说到书架
 
 ![img](./pic/AddBookViaFurryNovel1.png)
 ![img](./pic/AddBookViaFurryNovel2.png)
+</details>
 </details>
 
 

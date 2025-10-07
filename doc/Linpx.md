@@ -10,8 +10,7 @@
 
 ## 〇、下载并安装阅读
 ### 1.下载阅读 3.0 版本
-<details>
-<summary> ⬇️ 下载阅读 </summary>
+<details><summary> ⬇️ 下载阅读 </summary>
 
 点击链接，下载安装包并安装，**推荐使用【共存版】**
 > https://miaogongzi.lanzout.com/b01rgkhhe
@@ -25,16 +24,15 @@
 
 
 ## 一、导入书源 & 订阅源
-📥 [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+- 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
 
-📥 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+- 🐲 [一键导入 Linpx 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
 
 
 <details><summary> ➕ 导入书源 & 订阅源（旧） </summary>
 
 ### 1.导入 Linpx 书源
-<details>
-<summary> ➕ 导入书源 </summary>
+<details><summary> ➕ 导入书源 </summary>
 
 复制下方【免代理】书源链接
 ```
@@ -62,8 +60,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json
 
 
 ### 2.导入 Linpx 订阅源
-<details>
-<summary> ➕ 导入订阅源 </summary>
+<details><summary> ➕ 导入订阅源 </summary>
 
 复制下方【免代理】订阅源链接
 ```
@@ -94,8 +91,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 
 ## 二、确保网站可以访问
-<details>
-<summary> 🌐 检查网站能否访问 </summary>
+<details><summary> ☑️ 检查网站能否访问 </summary>
 
 订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
 - 如果可以直接打开，那么一切大功告成！
@@ -109,10 +105,10 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 
 
 ## 三、添加小说，尽情使用
-### 1.阅读内部搜索
-<details>
-<summary> 🔎 搜索小说 </summary>
 
+<details><summary> 🔎 搜索小说 </summary>
+
+### 1.阅读内部搜索
 - ✅ 支持搜索：小说名称、作者名称、小说标签、小说链接
 - ⚠️ 暂不支持：系列小说名称
 
@@ -120,20 +116,18 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
 </details>
 
 
-### 2.发现更多小说
-<details>
-<summary> ⭐️ 常规功能 </summary>
+<details><summary> ⭐️ 发现小说 </summary>
 
+### 2.发现更多小说
 发现：推荐作者、最新小说
 
 ![img](./pic/DiscoverLinpx.png)
 </details>
 
 
-### 3.添加网址
-<details>
-<summary> 🔗 添加网址 </summary>
+<details><summary> 🔗 添加网址 </summary>
 
+### 3.添加网址
 书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
 
 ![img](./pic/AddBookViaUrl1.png)
@@ -158,15 +152,23 @@ https://furrynovel.ink/pn/20063566
 </details>
 
 
-### 4.订阅源添加小说
-<details>
-<summary> 🏠 订阅源 </summary>
+<details><summary> 🏠 订阅源 </summary>
+
+### 4.订阅源
+<details><summary> ⬇️ 导入书源 </summary>
+</details>
+
+
+<details><summary> 🔍 站内搜索 </summary>
 
 #### 4.1 替代阅读搜索
 受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx 的功能。网站的搜索功能更加全面。
 
 ![img](./pic/SearchViaLinpx.png)
+</details>
 
+
+<details><summary> 🔜 链接转换 </summary>
 
 #### 4.2 Pixiv 链接转换
 阅读内部浏览器内打开 Linpx，搜索栏中粘贴 Pixiv 小说链接，即可进入对应页面
@@ -174,12 +176,16 @@ https://furrynovel.ink/pn/20063566
 ![img](./pic/LinpxConvertPixivUrl1.png)
 
 ![img](./pic/LinpxConvertPixivUrl2.png)
+</details>
 
+
+<details><summary> ➕ 添加小说 </summary>
 
 #### 4.3 添加小说至书架
 打开 Linpx 小说页面，点击【添加到书架】按钮，即可添加小说到书架
 
 ![img](./pic/AddBookViaLinpx.png)
+</details>
 </details>
 
 

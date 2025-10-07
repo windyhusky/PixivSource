@@ -59,9 +59,9 @@
 
 
 ## 二、导入书源 & 订阅源
-📥 [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json)
+- 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json)
 
-📥 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)
+- 🐲 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)
 
 
 <details><summary> ➕ 导入书源 & 订阅源（旧） </summary>
@@ -187,6 +187,8 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 
 ## 四、添加小说，尽情使用
+<details><summary> 🔍 搜索小说 </summary>
+
 ### 1.阅读内部搜索
 <details><summary> 🔍 搜索小说 </summary>
 
@@ -284,7 +286,10 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
   - 使用此功能预先设置 单次搜索的最大页面数，否则无法获取数据
   - 不是很推荐使用这个搜索方法
 </details>
+</details>
 
+
+<details><summary> ⭐️ 发现小说 </summary>
 
 ### 2.发现更多小说
 <details><summary> ⭐️ 常规发现 </summary>
@@ -371,11 +376,12 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 ![img](./pic/DiscoverPixivLikeAuthors.jpg)
 </details>
+</details>
 
+
+<details><summary> 🔗 添加网址 </summary>
 
 ### 3.添加网址
-<details>
-<summary> 🔗 添加网址 </summary>
 书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
 
 ![img](./pic/AddBookViaUrl1.png)
@@ -400,6 +406,8 @@ Pixiv App 小说分享链接（删掉#号即可正常添加）
 ```
 </details>
 
+
+<details><summary> 🏠 订阅源 </summary>
 
 ### 4.订阅源
 <details><summary> ⬇️ 导入书源 </summary>
@@ -473,7 +481,10 @@ Pixiv 网站的搜索功能更加全面
 - Github 更新需代理
 - Godeberg 更新免代理
 </details>
+</details>
 
+
+<details><summary> 🅿️ 登录界面 </summary>
 
 ### 5.书源 登录界面
 <details><summary> 🅿️ 账号功能（同上） </summary>
@@ -548,7 +559,10 @@ Pixiv 网站的搜索功能更加全面
 - 🐞 调试模式：开启调试模式
 - 🔍 搜索说明：显示搜索说明
 </details>
+</details>
 
+
+<details><summary> 📃 自定义功能 </summary>
 
 ### 6.书源 自定义功能
 <details><summary> 📃 功能说明 </summary>
@@ -626,6 +640,7 @@ Pixiv 网站的搜索功能更加全面
 - 3️⃣ 点击按钮，查看内容
 
 ![img](./pic/DiscoverPixivLikeAuthors.jpg)
+</details>
 </details>
 
 
