@@ -22,7 +22,7 @@
 <details><summary> 🤖 阅读 Android 版 </summary>
 
 #### 3.1.0 👍【推荐】[洛娅橙 Fork 版](https://github.com/Luoyacheng/legado)
-**可覆盖下方 Beta 版本（原包名/共存），推荐使用【共存版】**
+**可覆盖下方 Beta 版本（原包名/共存），推荐使用【共存版/ReleaseA版】**
 
 | 下载站点 | 版本 | 备注 |
 | ------ | --- | --- |

@@ -29,13 +29,24 @@
 <details><summary> ➡️ 详细流程 </summary>
 
 ### 1.[下载阅读](./doc/Download.md)
+
+<details><summary> ⬇️ 下载阅读 </summary>
+
+| 阅读版本 | 推荐版本 |
+| ------ | ------- |
+| [阅读 洛娅橙 Fork](https://github.com/Luoyacheng/legado/releases) | 共存版/ReleaseA |
+| [阅读 Beta 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) | 共存版、新共存版 |
+| [阅读 Beta Telegram](https://t.me/Legado_Beta) | 共存版、新共存版 |
+- 详见：[下载阅读](./doc/Download.md)
+</details>
+
+
 <details><summary> 📖 兼容软件 </summary>
 
 | 书源　　 | 阅读 Beta    | 源阅 Test Flight |
 | ------- | ---------- | --------------- |
 | 小说书源 | 3.25.0527   | 1.0 (112)       |
 | 小说备用 | 3.23.0503?  | 1.0 (112)       |
-- 详见：[下载阅读](./doc/Download.md)
 </details>
 
 
