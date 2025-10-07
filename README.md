@@ -1,18 +1,10 @@
 <div align="center">
 <img width="125" height="125" src="doc/pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
 
-## 开源阅读 Pixiv 书源
+## [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 </div>
 
-### 源起：为了更好的阅读体验
-<details><summary> ▶️ 项目起源 </summary>
-
-- Pixiv 小说功能不够完善，阅读体验不佳
-- 多数第三方 APP 没有优化小说阅读功能
-- [阅读 3.0 ](https://github.com/gedoor/legado) 可以自定义书源，阅读体验较好
-</details>
-
-
+## 源起：为了更好的阅读体验
 <details><summary> 🔗 项目链接 </summary>
 
 ### 项目链接
@@ -52,9 +44,6 @@
 | Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixivToc.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json) |
 </details>
 
-
-- jsDelivr 免代理导入有延迟
-- 一键导入链接由 [@Luoyacheng](https://github.com/Luoyacheng)  提供支持
 - 更多方法详见：[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)
 
 
@@ -69,9 +58,8 @@
 | Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
 | BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
 | Books 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json) |
-
-- jsDelivr 免代理导入有延迟
 </details>
+
 
 ### C.更多教程
 <details><summary> 📌 使用教程 </summary>
