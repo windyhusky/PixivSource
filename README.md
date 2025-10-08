@@ -25,7 +25,7 @@
 </details>
 
 
-## 使用流程：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#三登录账号) => 开始使用
+## 使用流程：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#三登录账号) => [开始使用](./doc/Pixiv.md#四添加小说尽情使用)
 <details><summary> ➡️ 详细流程 </summary>
 
 ### 1.[下载阅读](./doc/Download.md)
@@ -92,7 +92,7 @@
 
 
 ### 3.[登录账号](./doc/Pixiv.md#三登录账号)
-### 4.开始使用
+### 4.[开始使用](./doc/Pixiv.md#四添加小说尽情使用)
 <details><summary> 📌 更多教程 </summary>
 
 > ### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
