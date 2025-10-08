@@ -136,16 +136,17 @@ function publicFunc() {
     // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
     u.getCsrfToken = function() {
         let csfrToken = cache.get("csfrToken")
-        if (!csfrToken || csfrToken === "null") {
+        if (!csfrToken) {
             let html = java.webView(null, "https://www.pixiv.net/", null)
             try {
                 csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+                cache.put("csfrToken", csfrToken)  // 与登录设备有关，无法存储 nul
             } catch (e) {
                 csfrToken = null
-                sleepToast("未登录账号(csfrToken)")
+                cache.delete("csfrToken")  // 与登录设备有关，无法存储 nul
+                // sleepToast("⚠️ 未登录账号(csfrToken)")
             }
             java.log(`csfrToken:\n${csfrToken}`)
-            cache.put("csfrToken", csfrToken)  // 与登录设备有关
         }
         return csfrToken
     }

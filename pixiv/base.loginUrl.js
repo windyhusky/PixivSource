@@ -64,15 +64,19 @@ function removeSettingsCache() {
 // https://github.com/Ocrosoft/PixivPreviewer
 // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
 function getCsrfToken() {
-    let csfrToken
-    let html = java.webView(null, "https://www.pixiv.net/", null)
-    try {
-        csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
-    } catch (e) {
-        csfrToken = null
+    let csfrToken = cache.get("csfrToken")
+    if (!csfrToken) {
+        let html = java.webView(null, "https://www.pixiv.net/", null)
+        try {
+            csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+            cache.put("csfrToken", csfrToken)  // 与登录设备有关，无法存储 nul
+        } catch (e) {
+            csfrToken = null
+            cache.delete("csfrToken")  // 与登录设备有关，无法存储 nul
+            // sleepToast("⚠️ 未登录账号(csfrToken)")
+        }
+        java.log(`csfrToken:\n${csfrToken}`)
     }
-    // java.log(csfrToken)
-    cache.put("csfrToken", csfrToken)  // 与登录设备有关
     return csfrToken
 }
 
