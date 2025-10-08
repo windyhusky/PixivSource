@@ -117,6 +117,7 @@ function publicFunc() {
         cookie.removeCookie('https://accounts.google.com')
         cookie.removeCookie('https://api.weibo.com')
         cache.delete("pixivCookie")
+        cache.delete("pixiv:uid")
         cache.delete("csfrToken")  // 与登录设备有关
         cache.delete("headers")
     }
