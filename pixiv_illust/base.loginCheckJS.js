@@ -37,6 +37,27 @@ function publicFunc() {
         }
     }
 
+    // 获取 Csrf Token，以便进行收藏等请求
+    // 获取方法来自脚本 Pixiv Previewer
+    // https://github.com/Ocrosoft/PixivPreviewer
+    // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
+    u.getCsrfToken = function() {
+        let csfrToken = cache.get("csfrToken")
+        if (!csfrToken) {
+            let html = java.webView(null, "https://www.pixiv.net/", null)
+            try {
+                csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+                cache.put("csfrToken", csfrToken)  // 与登录设备有关，无法存储 nul
+            } catch (e) {
+                csfrToken = null
+                cache.delete("csfrToken")  // 与登录设备有关，无法存储 nul
+                // sleepToast("⚠️ 未登录账号(csfrToken)")
+            }
+            java.log(`csfrToken:\n${csfrToken}`)
+        }
+        return csfrToken
+    }
+
     u.handIllusts = function (illusts) {
         illusts.forEach(illust => {
             // illust.id = illust.id
@@ -155,6 +176,6 @@ function getPixivUid() {
 
 publicFunc()
 if (result.code() === 200) {
-    getPixivUid()
+    getPixivUid(); util.getCsrfToken()
 }
 java.getStrResponse(null, null)
