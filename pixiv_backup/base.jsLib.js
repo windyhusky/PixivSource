@@ -99,8 +99,7 @@ function getWebViewUA() {
 }
 function isLogin() {
     const {java, cache} = this
-    let cookie = String(java.getCookie("https://www.pixiv.net/", null))
-    return cookie.includes("first_visit_datetime")
+    return !!cache.get("csfrToken")
 }
 
 function getAjaxJson(url, forceUpdate) {
