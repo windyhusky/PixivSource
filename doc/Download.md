@@ -85,11 +85,12 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 #### 3.2.2 非官方 iOS 版
 兼容阅读书源的 **【非官方】软件**：
 
-| 软件名称     | AppStore  | Github                                          | 付费                        | 备注                          |
-|------------ | --------- | ----------------------------------------------- | -------------------------- | ----------------------------- |
-| 源阅        | 无         | [源阅](https://github.com/kaich/SourceReadSite) | TestFlight 付费 ￥128       | 兼容阅读书源，【源阅读】的后续版本 |
-| 千阅        | [千阅](https://apps.apple.com/app/id1665963317)     | 无     | 订阅制 & 永久 ~~￥98~~ ￥199 | 不完全兼容阅读书源               |
-| ~~读不舍手~~ | [读不舍手](https://apps.apple.com/app/id1662413517) | 无     | 订阅制                      | 不完全兼容阅读书源，广告较多      |
+| 软件名称 | 收费方式 | 备注 |
+| ------ | ------ | ---- |
+| [源阅](https://github.com/kaich/SourceReadSite)    | TestFlight 付费 ￥128      | 兼容书源，【源阅读】的后续版本 |
+| [千阅](https://apps.apple.com/app/id1665963317)    | 订阅制 & 永久 ~~￥98~~ ￥199 | 不完全兼容书源              |
+| [读不舍手](https://apps.apple.com/app/id1662413517) | 订阅制 & 永久 ￥128 ~ ￥368  | 不完全兼容书源，广告较多      |
+| [阅读阅多](https://apps.apple.com/app/id6747099551) | 订阅制 & 永久 ￥399 ~ ￥788 ~ ￥1488 | Bug 较多，不完全兼容书源，内置浏览器支持不佳 |
 
 
 <details><summary> 🚮 iOS 已下架软件 </summary>
