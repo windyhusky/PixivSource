@@ -8,7 +8,7 @@ function login() {
     let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
     {"headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
     if (resp.code() === 200) {
-        getCookie(); getCsrfToken()
+        getCsrfToken(); getCookie()
         return true
     } else {
         java.log(resp.code()); sleepToast("🅿️ 登录账号\n\n⚠️ 登录失败")
@@ -59,6 +59,11 @@ function removeSettingsCache() {
     // cache.delete("captionBlockWords")
 }
 
+function getCookie() {
+    let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
+    if (isLogin()) cache.put("pixivCookie", pixivCookie, 60*60)
+}
+
 // 获取 Csrf Token，以便进行收藏等请求
 // 获取方法来自脚本 Pixiv Previewer
 // https://github.com/Ocrosoft/PixivPreviewer
@@ -78,19 +83,6 @@ function getCsrfToken() {
         java.log(`csfrToken:\n${csfrToken}`)
     }
     return csfrToken
-}
-
-function getCookie() {
-    let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (pixivCookie.includes("first_visit_datetime")) {
-        // java.log(pixivCookie)
-        cache.put("pixivCookie", pixivCookie, 60*60)
-        return pixivCookie
-    } else {
-        cache.delete("pixivCookie")
-        sleepToast("未登录账号(pixivCookie)")
-        return null
-    }
 }
 
 function getNovel() {

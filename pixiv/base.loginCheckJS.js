@@ -93,7 +93,7 @@ function publicFunc() {
         let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
     {"headers": {"User-Agent": "${java.getWebViewUA()}"}}`, '登录账号', false)
         if (resp.code() === 200) {
-            this.getCookie(); this.getCsrfToken()
+            this.getCsrfToken(); this.getCookie()
         } else {
             java.log(resp.code()); sleepToast("⚠️ 登录失败")
         }
@@ -108,16 +108,7 @@ function publicFunc() {
 
     u.getCookie = function() {
         let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-        if (pixivCookie.includes("first_visit_datetime")) {
-            // java.log(typeof pixivCookie)
-            // java.log(pixivCookie)
-            cache.put("pixivCookie", pixivCookie, 60*60)
-            return pixivCookie
-        } else {
-            cache.delete("pixivCookie")
-            sleepToast("未登录账号(pixivCookie)")
-            return null
-        }
+        if (isLogin()) cache.put("pixivCookie", pixivCookie, 60*60)  // 缓存1h
     }
 
     u.removeCookie = function() {
