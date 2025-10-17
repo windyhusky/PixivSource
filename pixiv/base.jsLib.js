@@ -1,12 +1,12 @@
 var checkTimes = 0
-var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天
-
+var cacheSaveSeconds = 7*24*60*60  // 长期缓存时间 7天
+var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
 
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
-    // 缓存信息错误时，保留10min后重新请求
+    // 缓存信息错误时，保存 10min 后重新请求
     if (v && JSON.parse(v).error === true) {
-        if (new Date().getTime() >= JSON.parse(v).timestamp + 10*60*1000) {
+        if (new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
             cache.delete(key)
             v = cache.get(key)
         }
@@ -80,9 +80,7 @@ function isHtmlString(str) {
 }
 function isJsonString(str) {
     try {
-        if (typeof JSON.parse(str) === "object") {
-            return true
-        }
+        if (typeof JSON.parse(str) === "object") return true
     } catch(e) {}
     return false
 }
@@ -104,14 +102,16 @@ function isLogin() {
 
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
-    if (forceUpdate) cache.delete(url)
+    let v = cache.get(url)
+    if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(url)
     return cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     })
 }
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
-    if (forceUpdate) cache.delete(urls)
+    let v = cache.get(url)
+    if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(urls)
     return cacheGetAndSet(cache, urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
