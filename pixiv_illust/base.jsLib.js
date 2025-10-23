@@ -47,7 +47,7 @@ function getAjaxJson(url, forceUpdate) {
 }
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
-    let v = cache.get(url)
+    let v = cache.get(urls)
     if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(urls)
     return cacheGetAndSet(cache, urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
