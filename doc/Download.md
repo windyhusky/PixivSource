@@ -45,7 +45,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 </details>
 
 
-<details><summary> 👎🏼 阅读 正式版（已停更）</summary>
+<details><summary> 👎 阅读 正式版（已停更）</summary>
 
 #### ~~3.1.2 【官方】Android 正式版~~
 **Android 正式版已经停止更新，不推荐继续使用**
