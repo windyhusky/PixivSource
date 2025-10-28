@@ -9,32 +9,6 @@
         }
     },
     {
-        "name": "\uD83D\uDCCC 简要教程",
-        "type": "button",
-        "action": "readMe()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {   "name": "\uD83D\uDD0D 搜索教程",
-        "type": "button",
-        "action": "readMeSearch()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⭐️ 收藏项目",
-        "type": "button",
-        "action": "startGithub()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "\uD83D\uDD30 使用指南",
         "type": "button",
         "action": "startGithubReadme()",
@@ -47,6 +21,33 @@
         "name": "\uD83D\uDC1E 反馈问题",
         "type": "button",
         "action": "startGithubIssue()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⭐️ 收藏项目",
+        "type": "button",
+        "action": "startGithubLogin()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC3A 兽人阅读",
+        "type": "button",
+        "action": "startTelegram()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC65 反馈群组",
+        "type": "button",
+        "action": "startTelegramGroup()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
