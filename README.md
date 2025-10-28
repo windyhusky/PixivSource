@@ -32,11 +32,11 @@
 
 <details><summary> ⬇️ 下载阅读 </summary>
 
-| 阅读版本 | 推荐版本 |
-| ------ | ------- |
-| [阅读 洛娅橙 Fork](https://github.com/Luoyacheng/legado/releases) | 共存版/ReleaseA |
-| [阅读 Beta 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) | 共存版、新共存版 |
-| [阅读 Beta Telegram](https://t.me/Legado_Beta) | 共存版、新共存版 |
+| 阅读版本 | 推荐版本 | 版本号 |
+| ------ | ------- | ---- |
+| 👍【推荐】[阅读 洛娅橙](https://github.com/Luoyacheng/legado/releases) | 共存版 / ReleaseA | 3.25.0927 |
+| 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe) | 共存版、新共存版 | 3.25.0527 |
+| 🍎【兼容】[源阅](https://github.com/kaich/SourceReadSite) | TestFlight | 1.0 (112) |
 - 详见：[下载阅读](./doc/Download.md)
 </details>
 
