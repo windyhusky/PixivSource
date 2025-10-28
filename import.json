@@ -28,7 +28,7 @@
         "sourceGroup": "Pixiv,Furry,书源",
         "sourceIcon": "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/doc/pic/Legado-Pixiv.png",
         "sourceName": "书源订阅",
-        "sourceUrl": "https://github.com/windyhusky/PixivSource",
+        "sourceUrl": "https://codeberg.org/DowneyRem/PixivSource",
         "style": "",
         "variableComment": "【刷新分类】【刷新分类】【刷新分类】"
     }
