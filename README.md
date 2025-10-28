@@ -48,7 +48,7 @@
 | 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | 最新版 | 
 | 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | 最新版 | 
 | 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | 最新版 | 
-| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [1.9.1](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://github.com/windyhusky/PixivSource/releases/download/ver1.9.1/pixiv.json) |
+| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [1.9.1](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/ee3ae50bd647dab1e7802cc31f2f77e92f326611/pixiv.json) |
 </details>
 
 
