@@ -1,20 +1,35 @@
 ## 3.下载阅读
 阅读的各个版本，参见[阅读版本](./Version.md)（不重要）
 
-<details><summary> ✅ 书源兼容性 </summary>
 
 ### 3.0 书源兼容性
-| 阅读版本                 | Pixiv 书源 | 更新时间   | Github 导入链接  |
-| ---------------------- | --------- | --------- | --------------- |
-|　3.25.0527 - 最新版本    | 最新版　　  |           | [Pixiv 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)|
-|　3.23.0503 - 3.25.0526 | 1.9.4版本 | 2025.05.28 | [Pixiv 书源](https://github.com/windyhusky/PixivSource/releases/download/ver1.9.4/pixiv.json) |
-|　3.22.0103 - 3.23.0404 | 1.7.4版本 | 2025.02.20 | [Pixiv 书源](https://github.com/windyhusky/PixivSource/releases/download/ver1.7.4/pixiv.json) |
+<details><summary> ✅ 书源兼容性 </summary>
+
+| 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
+| ------ | ----- | ------- | ------ |
+| 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)  | 
+| 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)  | 
+| 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)  | 
+| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [191 版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/191/pixiv.json) |
 
 
-| 阅读版本                 | Linpx 书源 | 更新时间   | Github 导入链接  |
-| ---------------------- | --------- | --------- | --------------- |
-|　3.23.0503 - 最新版本    | 最新版　　  |           | [Linpx 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
-|　3.22.0103 - 3.23.0404 | 1.7.4版本 | 2025.02.20 | [Linpx 书源](https://github.com/windyhusky/PixivSource/releases/download/ver1.7.4/linpx.json) |
+<details><summary> 🅿️ Pixiv 书源 </summary>
+
+| 阅读 Beta | Pixiv 书源 | 更新时间 | 导入链接 |
+| -------- | --------- | ------ | ------- |
+|　3.25.0527 - 最新版本    | 最新 |           | [Pixiv 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
+|　3.23.0503 - 3.25.0526 | 194 | 2025.05.28 | [Pixiv 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/194/pixiv.json) |
+|　3.22.0103 - 3.23.0404 | 174 | 2025.02.20 | [Pixiv 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/174/pixiv.json) |
+</details>
+
+
+<details><summary> 🦊 Linpx 书源 </summary>
+
+| 阅读 Beta | Linpx 书源 | 更新时间 | 导入链接 |
+| -------- | --------- | ------ | ------- |
+|　3.23.0503 - 最新版本    | 最新 |           | [Linpx 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
+|　3.22.0103 - 3.23.0404 | 174 | 2025.02.20 | [Linpx 书源](https://raw.githubusercontent.com/windyhusky/PixivSource/174/pixiv.json)  |
+</details>
 </details>
 
 
