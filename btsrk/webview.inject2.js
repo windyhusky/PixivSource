@@ -12,7 +12,6 @@ if (!/^https:\/\/(so\.toutiao\.com\/search\/?|quark\.sm\.cn\/s|wap\.sogou\.com\/
     font-size:${window.innerWidth/80}vw;font-weight: 400;padding: ${window.innerWidth/400}vw ${window.innerWidth/150}vw;
     "onclick="window.open('legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json','_blank');">导入书源</button>`;
     document.body.appendChild(btn2);
-
 }
 
 let time,num=0;

@@ -1,7 +1,7 @@
 if (!/^https:\/\/(so\.toutiao\.com\/search\/?|quark\.sm\.cn\/s|wap\.sogou\.com\/web\/searchList\.jsp|m\.so\.com\/s|cn\.bing\.com\/search|www\.baidu\.com\/s)\?/.test(window.location.href) && !document.getElementById('open-yuedu-bookshelf')) {
     const btn = document.createElement('div');
     btn.innerHTML = `<button type="button" id='open-yuedu-bookshelf' style="z-index: 9999999999;
-    position: fixed;bottom: 8.1%;right: 7%;background-color: rgb(255, 153, 0);border-radius: 2px;border: 1px solid rgb(255, 153, 0);color: #fff;
+    position: fixed;bottom: 8.1%;left: 9.5%;background-color: rgb(255, 153, 0);border-radius: 2px;border: 1px solid rgb(255, 153, 0);color: #fff;
     font-size:${window.innerWidth/80}vw;font-weight: 400;padding: ${window.innerWidth/400}vw ${window.innerWidth/150}vw;
     "onclick="window.open('legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json','_blank');">导入书源</button>`;
     document.body.appendChild(btn);
