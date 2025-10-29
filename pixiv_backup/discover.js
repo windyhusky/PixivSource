@@ -18,7 +18,7 @@ function handlerFactory() {
     //     result = resp
     // }
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
-        return updateSource()
+        return () => {updateSource(); return []}
     }
     if (!isLogin()) {
         return handlerNoLogin()
@@ -72,8 +72,6 @@ function handlerNoLogin() {
     return () => {
         sleepToast("此功能需要在书源登录后才能使用")
         sleepToast('发现 - 长按"Pixiv" - 登录 - 登录账号')
-        sleepToast('订阅源处退出账号后，需要清除 Webview 数据，才能重新登录')
-        sleepToast('我的 - 其他设置 - 清除 Webview 数据 - 确定 - 重新登录')
         return []
     }
 }
