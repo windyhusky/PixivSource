@@ -3,10 +3,8 @@ let SHOW_GENERAL_NEW, SHOW_GENERAL_RANK
 try {
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     SHOW_GENERAL_NEW = settings.SHOW_GENERAL_NEW     // 发现：最新、企划、约稿显示一般小说
-    SHOW_GENERAL_RANK = settings.SHOW_GENERAL_RANK   // 发现：排行榜显示一般小说
 } catch (e) {
     SHOW_GENERAL_NEW = false
-    SHOW_GENERAL_RANK = false
 }
 
 li = [
@@ -30,28 +28,26 @@ generalNew = [
 
 r18Rank = [
     {"👑 排行榜单 👑": ""},
-    {"今日": "https://www.pixiv.net/ranking.php?mode=daily_r18&content=manga&p={{page}}&format=json"},
-    {"本周": "https://www.pixiv.net/ranking.php?mode=weekly_r18&content=manga&p={{page}}&format=json"},
-    {"R18G": "https://www.pixiv.net/ranking.php?mode=r18g&content=manga&p={{page}}&format=json"},
+    {"今日": "https://www.pixiv.net/ranking.php?mode=daily_r18&p={{page}}&format=json"},
+    {"本周": "https://www.pixiv.net/ranking.php?mode=weekly_r18&p={{page}}&format=json"},
+    {"R18G": "https://www.pixiv.net/ranking.php?mode=r18g&p={{page}}&format=json"},
     {"男性": "https://www.pixiv.net/ranking.php?mode=male_r18"},
     {"女性": "https://www.pixiv.net/ranking.php?mode=female_r18"}
 ]
 
 generalRank = [
     {"🏆 排行榜单 🏆": ""},
-    {"今日": "https://www.pixiv.net/ranking.php?mode=daily&content=manga&p={{page}}&format=json"},
-    {"本周": "https://www.pixiv.net/ranking.php?mode=weekly&content=manga&p={{page}}&format=json"},
-    {"本月": "https://www.pixiv.net/ranking.php?mode=monthly&content=manga&p={{page}}&format=json"},
-    {"新人": "https://www.pixiv.net/ranking.php?mode=rookie&content=manga&p={{page}}&format=json"}
+    {"今日": "https://www.pixiv.net/ranking.php?mode=daily&p={{page}}&format=json"},
+    {"本周": "https://www.pixiv.net/ranking.php?mode=weekly&p={{page}}&format=json"},
+    {"本月": "https://www.pixiv.net/ranking.php?mode=monthly&p={{page}}&format=json"},
+    {"新人": "https://www.pixiv.net/ranking.php?mode=rookie&p={{page}}&format=json"}
 ]
 
 if (SHOW_GENERAL_RANK === true) {
     li = li.concat(generalNew)
 }
 li = li.concat(r18Rank)
-if (SHOW_GENERAL_RANK === true) {
-    li = li.concat(generalRank)
-}
+li = li.concat(generalRank)
 
 li.forEach(item => {
     item.title = Object.keys(item)[0]
