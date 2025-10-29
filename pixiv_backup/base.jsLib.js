@@ -1,25 +1,80 @@
 var checkTimes = 0
+var cacheSaveSeconds = 7*24*60*60  // 长期缓存时间 7天
+var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
 
 function cacheGetAndSet(cache, key, supplyFunc) {
     let v = cache.get(key)
+    // 缓存信息错误时，保存 10min 后重新请求
+    if (v && JSON.parse(v).error === true) {
+        if (new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
+            cache.delete(key)
+            v = cache.get(key)
+        }
+    }
+    // 无缓存信息时，进行请求
     if (v === undefined || v === null) {
-        v = JSON.stringify(supplyFunc())
-        cache.put(key, v, 30*60) // 缓存 30 min
+        v = supplyFunc()
+        v.timestamp = new Date().getTime()
+        v = JSON.stringify(v)
+        cache.put(key, v, cacheSaveSeconds)
     }
     return JSON.parse(v)
 }
+
+function putInCache(objectName, object, saveSeconds) {
+    const {java, cache} = this
+    if (object === undefined) object = null
+    if (saveSeconds === undefined) saveSeconds = 0
+    cache.put(objectName, JSON.stringify(object), saveSeconds)
+}
+function getFromCache(objectName) {
+    const {java, cache} = this
+    let object = cache.get(objectName)
+    if (object === undefined) return null  // 兼容源阅
+    return JSON.parse(object)
+}
+function isHtmlString(str) {
+    return str.startsWith("<!DOCTYPE html>")
+}
 function isJsonString(str) {
     try {
-        if (typeof JSON.parse(str) === "object") {
-            return true
-        }
+        if (typeof JSON.parse(str) === "object") return true
     } catch(e) {}
     return false
 }
-function getAjaxJson(url) {
+
+function getWebViewUA() {
     const {java, cache} = this
+    let userAgent = String(java.getWebViewUA())
+    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
+        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+    }
+    // java.log(`userAgent=${userAgent}`)
+    cache.put("userAgent", userAgent)
+    return String(userAgent)
+}
+function isLogin() {
+    const {java, cache} = this
+    return !!cache.get("csfrToken")
+}
+
+function getAjaxJson(url, forceUpdate) {
+    const {java, cache} = this
+    let v = cache.get(url)
+    if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(url)
     return cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
+    })
+}
+function getAjaxAllJson(urls, forceUpdate) {
+    const {java, cache} = this
+    let v = cache.get(urls)
+    if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(urls)
+    return cacheGetAndSet(cache, urls, () => {
+        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
+        cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
+        for (let i in urls) cache.put(urls[i], JSON.stringify(result[i]), cacheSaveSeconds)
+        return result
     })
 }
 function getWebviewJson(url, parseFunc) {
@@ -28,11 +83,6 @@ function getWebviewJson(url, parseFunc) {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })
-}
-
-function isLogin() {
-    const {java, cache} = this
-    return !!cache.get("csfrToken")
 }
 
 function urlNovelUrl(novelId) {
