@@ -49,6 +49,27 @@ function publicFunc() {
         }
     }
 
+    // 获取 Csrf Token，以便进行收藏等请求
+    // 获取方法来自脚本 Pixiv Previewer
+    // https://github.com/Ocrosoft/PixivPreviewer
+    // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
+    u.getCsrfToken = function() {
+        let csfrToken = cache.get("csfrToken")
+        if (!csfrToken) {
+            let html = java.webView(null, "https://www.pixiv.net/", null)
+            try {
+                csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+                cache.put("csfrToken", csfrToken)  // 与登录设备有关，无法存储 nul
+            } catch (e) {
+                csfrToken = null
+                cache.delete("csfrToken")  // 与登录设备有关，无法存储 nul
+                // sleepToast("⚠️ 未登录账号(csfrToken)")
+            }
+            java.log(`csfrToken:\n${csfrToken}`)
+        }
+        return csfrToken
+    }
+
     // 将多个长篇小说解析为一本书
     u.combineNovels = function (novels) {
         return novels.filter(novel => {
@@ -300,11 +321,23 @@ function checkMessageThread(checkTimes) {
     // java.log(checkTimes + 1)
 }
 
-publicFunc()
-if (!util.FAST) checkMessageThread()
 // 获取请求的user id方便其他ajax请求构造
-let uid = java.getResponse().headers().get("x-userid")
-if (uid != null) {
-    cache.put("pixiv:uid", uid)
+function getPixivUid() {
+    let uid = cache.get("pixiv:uid")
+    if (!uid || String(uid) === "null") {
+        let html = java.webView(null, "https://www.pixiv.net/", null)
+        try {
+            uid = html.match(/user_id:'(\d+)'/)[1]
+        } catch (e) {
+            uid = null
+        }
+        cache.put("pixiv:uid", String(uid))
+    }
+}
+
+publicFunc()
+if (result.code() === 200) {
+    getPixivUid(); util.getCsrfToken()
+    if (!util.FAST) checkMessageThread()   // 检测过度访问
 }
 java.getStrResponse(null, null)
