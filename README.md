@@ -461,13 +461,17 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 <tr><td><a href="https://www.furrynovel.ink"> 2️⃣ Linpx 林匹克斯</a></td></tr>
 <tr><td><a href="https://www.furrynovel.com"> 3️⃣ 兽人控小说站</a></td></tr>
 
+<tr><td><a href="https://github.com/windyhusky/PixivSource"> 4️⃣ Pixiv 书源项目</a></td>
+  <td> ✅ 快速导入<br>📖 书源订阅</td>
+</tr>
+
 <tr>
-  <td><a href="https://furrygames.top/zh-cn/list.html"> 4️⃣ 兽人控游戏索引</a></td>
+  <td><a href="https://furrygames.top/zh-cn/list.html"> 5️⃣ 兽人控游戏索引</a></td>
   <td  rowspan="4">✅ 快速访问<br>🐺 兽人网站</td>
 </tr>
-<tr><td><a href="https://kemono.games/zh-Hans"> 5️⃣ 兽人控游戏库</a></td></tr>
-<tr><td><a href="https://www.furryeventchina.com"> 6️⃣ 兽展日历</a></td></tr>
-<tr><td><a href="https://www.furryfusion.net"> 7️⃣ 兽聚汇总</a></td></tr>
+<tr><td><a href="https://kemono.games/zh-Hans"> 6️⃣ 兽人控游戏库</a></td></tr>
+<tr><td><a href="https://www.furryeventchina.com"> 7️⃣ 兽展日历</a></td></tr>
+<tr><td><a href="https://www.furryfusion.net"> 8️⃣ 兽聚汇总</a></td></tr>
 </table>
 </details>
 
