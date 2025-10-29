@@ -1,15 +1,5 @@
 @js:
 var util = objParse(String(java.get("util")))
-let emoji = {
-    "normal": 101, "surprise": 102, "series": 103, "heaven": 104, "happy": 105,
-    "excited": 106, "sing": 107, "cry": 108, "normal2": 201, "shame2": 202,
-    "love2": 203, "interesting2": 204, "blush2": 205, "fire2": 206, "angry2": 207,
-    "shine2": 208, "panic2": 209, "normal3": 301, "satisfaction3": 302, "surprise3": 303,
-    "smile3": 304, "shock3": 305, "gaze3": 306, "wink3": 307, "happy3": 308,
-    "excited3": 309, "love3": 310, "normal4": 401, "surprise4": 402, "series4": 403,
-    "love4": 404, "shine4": 405, "sweet4": 406, "shame4": 407, "sleep4": 408,
-    "heart": 501, "teardrop": 502, "star": 503
-}
 
 function objParse(obj) {
     return JSON.parse(obj, (n, v) => {
@@ -20,54 +10,7 @@ function objParse(obj) {
     })
 }
 
-function getNovelInfo(res) {
-    // 放入小说信息以便登陆界面使用
-    let novel = source.getLoginInfoMap()
-    if (novel === undefined) novel = JSON.parse(cache.get("novel"))
-    if (res && res.error === true) return
-    novel.id = Number(res.id)
-    novel.title = res.title
-    novel.userId = res.userId
-    novel.userName = res.userName
-
-    if (res.bookmarkData) {
-        novel.isBookmark = true
-        cache.put(`collect${novel.id}`, res.bookmarkData.id)
-        util.saveNovels("likeNovels", [Number(novel.id)])
-    } else {
-        novel.isBookmark = false
-    }
-
-    if (res.seriesNavData) {
-        novel.seriesId = Number(res.seriesNavData.seriesId)
-        novel.seriesTitle = res.seriesNavData.title
-        novel.isWatched = res.seriesNavData.isWatched
-        util.saveNovels("watchedSeries", [Number(novel.seriesId)])
-    } else {
-        novel.seriesId = null
-        novel.seriesTitle = ""
-        novel.isWatched = false
-    }
-
-    // 系列 + 阅读，使用当前章节名称
-    if (novel.seriesId && util.settings.IS_LEGADO) {
-        let novelIds = JSON.parse(cache.get(`novelIds${novel.seriesId}`))
-        novel.id = novelIds[book.durChapterIndex]
-        novel.title = book.durChapterTitle
-
-        let bookmarkId = JSON.parse(cache.get(`collect${novel.id}`))
-        novel.isBookmark = !!bookmarkId
-    }
-
-    // 添加投票信息
-    if (res.pollData) novel.pollChoicesCount = res.pollData.choices.length
-    else novel.pollChoicesCount = 0
-    source.putLoginInfo(JSON.stringify(novel))
-    cache.put("novel", JSON.stringify(novel))
-}
-
 function getContent(res) {
-    getNovelInfo(res)  // 放入信息以便登陆界面使用
     let content = String(res.content)
     // let content = "undefined"
     if (content.includes("undefined")) {
@@ -75,7 +18,7 @@ function getContent(res) {
     }
 
     // 在正文内部添加小说描述
-    if (util.settings.SHOW_CAPTIONS && res.description !== "") {
+    if (util.SHOW_NOVEL_COMMENTS === true && res.description !== "") {
         content = res.description + "\n" + "——————————\n".repeat(2) + content
     }
 
@@ -157,7 +100,7 @@ function getContent(res) {
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
 
-            if (!util.settings.REPLACE_TITLE_MARKS) {
+            if (!util.REPLACE_BOOK_TITLE_MARKS) {
                 // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             } else {
@@ -174,17 +117,7 @@ function getContent(res) {
         }
     }
 
-    // 添加投票
-    if (res.pollData) {
-        let poll = `📃 投票(✅${res.pollData.total}已投)：\n${res.pollData.question}\n`
-        res.pollData.choices.forEach(choice => {
-            poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
-        })
-        content += "\n" + "——————————\n".repeat(2) + poll
-    }
-
-    // 添加评论
-    if (util.settings.SHOW_COMMENTS) {
+    if (util.SHOW_NOVEL_COMMENTS === true) {
         return content + getComment(res)
     } else {
         return content
@@ -192,63 +125,25 @@ function getContent(res) {
 }
 
 function getComment(res) {
-    // let resp = getAjaxJson(urlNovelComments(res.id, 0, res.commentCount), true)
-    const limit = 50  // 模拟 Pixiv 请求
-    let resp = {"error": false, "message": "", "body": {comments:[]} }
-    let maxPage = (res.commentCount / limit) + 1
-    for (let i = 0; i < maxPage; i++) {
-        let result = getAjaxJson(urlNovelComments(res.id, i*limit, 50), true)
-        if (result.error !== true && result.body.comments !== null) {
-            resp.body.comments = resp.body.comments.concat(result.body.comments)
-        }
-    }
-
-    // 刷新时，刷新评论，不更新正文
-    let commentCount = resp.body.comments.length
-    java.log(`【${res.title}】(${res.id})，共有${commentCount}条评论，${res.commentCount - commentCount}条回复`)
-    if (commentCount === 0) {
+    let comments = ""
+    let resp = getAjaxJson(urlNovelComments(res.id, 0, 50))
+    if (resp.error === true){
         return ""
     }
-
-    let comments = `💬 评论(共计${commentCount}条)：\n`
-    resp.body.comments.forEach(comment => {
-        if (comment.comment === "") {
-            comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
-        }
-        if (Object.keys(emoji).includes(comment.comment.slice(1, -1))) {
-            comment.emojiId = emoji[comment.comment.slice(1, -1)]
-            comment.comment = `<img src="${urlEmojiUrl(comment.emojiId)}">`
-        }
-        if (comment.userId === String(cache.get("pixiv:uid"))) {
-            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})(${comment.id})\n`
-        } else {
-            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})\n`
-        }
-
-        // 获取评论回复
+    resp.body.comments.forEach(comment =>{
+        comments += `${comment.userName}：${comment.comment}\n`
         if (comment.hasReplies === true) {
-            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1), true)
-            if (resp.error === true) return comments
-
-            resp.body.comments.reverse().forEach(reply => {
-                if (reply.comment === "") {
-                    reply.comment = `<img src="${urlStampUrl(reply.stampId)}">`
-                }
-                if (Object.keys(emoji).includes(reply.comment.slice(1, -1))) {
-                    reply.emojiId = emoji[reply.comment.slice(1, -1)]
-                    reply.comment = `<img src="${urlEmojiUrl(reply.emojiId)}">`
-                }
-                if (comment.userId === String(cache.get("pixiv:uid"))) {
-                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})(${reply.id})\n`
-                } else {
-                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})\n`
-                }
+            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1))
+            if (resp.error === true) {
+                return ""
+            }
+            resp.body.comments.reverse().forEach(reply =>{
+                comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}\n`
             })
-            comments += "——————————\n"
         }
     })
     if (comments) {
-        comments = "\n" + "——————————\n".repeat(2) + comments
+        comments = "\n" + "——————————\n".repeat(2) + "章节评论：\n" + comments
     }
     return comments
 }
@@ -257,7 +152,6 @@ function checkContent() {
     let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
     if (latestMsg.error === true) {
         java.log(JSON.stringify(latestMsg))
-
     } else if (latestMsg.body.total >= 1) {
         let msg = latestMsg.body.message_threads.filter(item => item.thread_name === "pixiv事務局")[0]
         if (msg === undefined) {

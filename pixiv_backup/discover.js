@@ -12,8 +12,13 @@ function objParse(obj) {
 }
 
 function handlerFactory() {
+    cache.put(baseUrl, result) // 发现加入缓存
+    // resp = cache.get(baseUrl)
+    // if (resp !== undefined && resp !== null) {
+    //     result = resp
+    // }
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
-        return () => {updateSource(); return []}
+        return updateSource()
     }
     if (!isLogin()) {
         return handlerNoLogin()
@@ -53,13 +58,10 @@ function handlerFactory() {
         return handlerRanking()
     }
     if (baseUrl.includes("/editors_picks")) {
-        return handlerRanking()
+        return handlerRegexNovels()
     }
-    if (baseUrl.includes("/ajax/search/novels")) {
-        return handlerSearch()
-    }
-    if (baseUrl.startsWith("https://www.pixiv.net")) {
-        return handlerRanking()
+    if (baseUrl.includes("https://www.pixiv.net")) {
+        return handlerRegexNovels()
     }
     else {
         return []
@@ -68,9 +70,10 @@ function handlerFactory() {
 
 function handlerNoLogin() {
     return () => {
-        sleepToast("⚠️ 当前未登录账号\n\n请登录 Pixiv 账号", 1.5)
-        util.removeCookie(); util.login()
-        sleepToast("登录成功后，请重新进入发现", 2)
+        sleepToast("此功能需要在书源登录后才能使用")
+        sleepToast('发现 - 长按"Pixiv" - 登录 - 登录账号')
+        sleepToast('订阅源处退出账号后，需要清除 Webview 数据，才能重新登录')
+        sleepToast('我的 - 其他设置 - 清除 Webview 数据 - 确定 - 重新登录')
         return []
     }
 }
@@ -117,14 +120,6 @@ function handlerDiscovery() {
     }
 }
 
-// 搜索标签
-function handlerSearch() {
-    return () => {
-        let res = JSON.parse(result)
-        return util.formatNovels(util.handNovels(util.combineNovels(res.body.novel.data)))
-    }
-}
-
 // 追更列表，热门分类
 function handlerWatchList() {
     return () => {
@@ -133,38 +128,10 @@ function handlerWatchList() {
     }
 }
 
-// 排行榜，书签，首页，编辑部推荐，顺序相同
-function handlerRanking() {
-    if (util.settings.IS_LEGADO) return handlerRankingAjaxAll()
-    // else if (util.settings.IS_SOURCE_READ) return handlerRankingWebview()
-    else if (util.settings.IS_SOURCE_READ) return handlerRankingAjax()
-    else return []
-}
-
-// 排行榜，书签，首页，编辑部推荐，顺序相同
-function handlerRankingAjaxAll() {
-    return () => {
-        let  novelIds = [], novelUrls = []
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
-        let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
-        for (let i in matched) {
-            let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
-            if (novelIds.indexOf(novelId) === -1) {
-                novelIds.push(novelId)
-                novelUrls.push(urlNovelDetailed(novelId))
-            }
-        }
-        // java.log(JSON.stringify(novelIds))
-        let novels = getAjaxAllJson(novelUrls).map(resp => resp.body)
-        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
-    }
-}
-
-// 排行榜，书签，首页
-function handlerRankingWebview() {
+//首页，编辑部推荐，顺序随机
+function handlerRegexNovels() {
     return () => {
         let novelIds = []  // 正则获取网址中的 novelId
-        // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
         let matched = result.match(RegExp(/\/novel\/show\.php\?id=\d{5,}/gm))
         for (let i in matched) {
             let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
@@ -172,7 +139,6 @@ function handlerRankingWebview() {
                 novelIds.push(novelId)
             }
         }
-        // java.log(JSON.stringify(novelIds))
         let userNovels = getWebviewJson(
             urlNovelsDetailed(`${cache.get("pixiv:uid")}`, novelIds), html => {
                 return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
@@ -182,7 +148,7 @@ function handlerRankingWebview() {
 }
 
 // 排行榜，书签，顺序相同
-function handlerRankingAjax() {
+function handlerRanking() {
     return () => {
         let novels = [], novelIds = []
         // let result = result + java.ajax(`${baseUrl}&p=2`)  // 正则获取网址中的 novelId
@@ -191,15 +157,17 @@ function handlerRankingAjax() {
             let novelId = matched[i].match(RegExp(/\d{5,}/))[0]
             if (novelIds.indexOf(novelId) === -1) {
                 novelIds.push(novelId)
-                // java.log(urlNovelDetailed(novelId))
-                let res = getAjaxJson(urlNovelDetailed(novelId))
-                if (res.error !== true) {
-                    novels.push(res.body)
-                } else {
-                    java.log(JSON.stringify(res))
-                }
             }
         }
+        novelIds.forEach(novelId => {
+            java.log(urlNovelDetailed(novelId))
+            let res = getAjaxJson(urlNovelDetailed(novelId))
+            if (res.error !== true) {
+                novels.push(res.body)
+            } else {
+                java.log(JSON.stringify(res))
+            }
+        })
         return util.formatNovels(util.handNovels(util.combineNovels(novels)))
     }
 }

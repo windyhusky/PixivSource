@@ -13,15 +13,12 @@ function objParse(obj) {
 function novelHandler(novel){
     novel = util.formatNovels(util.handNovels([novel]))[0]
     if (novel.seriesId === undefined || novel.seriesId === null) {
-        book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
-        book.tocUrl = novel.catalogUrl = urlNovelDetailed(novel.id)
+        novel.detailedUrl = urlNovelUrl(novel.id)
+        novel.catalogUrl = urlNovelDetailed(novel.id)
     } else {
-        book.bookUrl = novel.detailedUrl = urlSeriesUrl(novel.seriesId)
-        book.tocUrl = novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
+        novel.detailedUrl = urlSeriesUrl(novel.seriesId)
+        novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
     }
-    // 放入信息以便登陆界面使用
-    source.putLoginInfo(JSON.stringify(novel))
-    cache.put("novel", JSON.stringify(novel))
     return novel
 }
 

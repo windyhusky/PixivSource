@@ -1,16 +1,16 @@
 @js:
-let SHOW_R18_GENRE, SHOW_GENERAL_NEW, SHOW_GENERAL_RANK, SHOW_GENERAL_GENRE
+let SHOW_R18_NOVELS_GENRE, SHOW_GENERAL_NOVELS_NEW, SHOW_GENERAL_NOVELS_RANK, SHOW_GENERAL_NOVELS_GENRE
 try {
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
-    SHOW_R18_GENRE = settings.SHOW_R18_GENRE         // 发现：热门分类显示R18小说
-    SHOW_GENERAL_NEW = settings.SHOW_GENERAL_NEW     // 发现：最新、企划、约稿显示一般小说
-    SHOW_GENERAL_RANK = settings.SHOW_GENERAL_RANK   // 发现：排行榜显示一般小说
-    SHOW_GENERAL_GENRE = settings.SHOW_GENERAL_GENRE // 发现：热门分类显示一般小说
+    SHOW_R18_NOVELS_GENRE = settings.SHOW_R18_NOVELS_GENRE         // 发现：热门分类显示R18小说
+    SHOW_GENERAL_NOVELS_NEW = settings.SHOW_GENERAL_NOVELS_NEW     // 发现：最新、企划、约稿显示一般小说
+    SHOW_GENERAL_NOVELS_RANK = settings.SHOW_GENERAL_NOVELS_RANK   // 发现：排行榜显示一般小说
+    SHOW_GENERAL_NOVELS_GENRE = settings.SHOW_GENERAL_NOVELS_GENRE // 发现：热门分类显示一般小说
 } catch (e) {
-    SHOW_R18_GENRE = false
-    SHOW_GENERAL_NEW = false
-    SHOW_GENERAL_RANK = false
-    SHOW_GENERAL_GENRE = false
+    SHOW_R18_NOVELS_GENRE = false
+    SHOW_GENERAL_NOVELS_NEW = false
+    SHOW_GENERAL_NOVELS_RANK = false
+    SHOW_GENERAL_NOVELS_GENRE = false
 }
 
 li = [
@@ -112,24 +112,48 @@ generalgGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
+bookmarks = [{"❤️ 他人收藏 ❤️": ""}]
+
 li = li.concat(normal)
 li = li.concat(r18New)
-if (SHOW_GENERAL_NEW === true) {
+if (SHOW_GENERAL_NOVELS_NEW === true) {
     li = li.concat(generalNew)
 }
 li = li.concat(r18Rank)
-if (SHOW_GENERAL_RANK === true) {
+if (SHOW_GENERAL_NOVELS_RANK === true) {
     li = li.concat(generalRank)
 }
-if (SHOW_R18_GENRE === true) {
+if (SHOW_R18_NOVELS_GENRE === true) {
     li = li.concat(r18Genre)
 }
-if (SHOW_GENERAL_GENRE === true) {
+if (SHOW_GENERAL_NOVELS_GENRE === true) {
     li = li.concat(generalgGenre)
 }
-sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
-// 添加格式
+sleepToast('使用说明🔖\n\n发现 - 更新 - 点击"🔰 使用教程" - 查看')
+
+try {
+    authors = String(source.getVariable()).split("\n")
+    if (authors[0].trim() !== "" && authors.length >= 1) {
+        for (let i in authors) {
+            if (authors[i] !== "") {
+                let authorId = authors[i].match(RegExp(/\d+/))[0]
+                let resp = JSON.parse(java.ajax(`https://www.pixiv.net/ajax/user/${authorId}`))
+                if (resp.error !== true) {
+                    let bookmark = {}
+                    bookmark[resp.body.name] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
+                    bookmarks.push(bookmark)
+                }
+            }
+        }
+        li = li.concat(bookmarks)
+    } else {
+        sleepToast('查看他人收藏❤️\n\n发现 - 长按"Pixiv" - 编辑 - 菜单 - 设置源变量')
+    }
+} catch (e) {
+    sleepToast("⚠️源变量设置有误\n\n输入作者ID，一行一个，可添加作者名，保存")
+}
+
 li.forEach(item => {
     item.title = Object.keys(item)[0]
     item.url = Object.values(item)[0]
