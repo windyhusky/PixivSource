@@ -18,7 +18,7 @@ function getContent(res) {
     }
 
     // 在正文内部添加小说描述
-    if (util.SHOW_NOVEL_COMMENTS === true && res.description !== "") {
+    if (util.settings.SHOW_CAPTIONS && res.description !== "") {
         content = res.description + "\n" + "——————————\n".repeat(2) + content
     }
 
@@ -100,7 +100,7 @@ function getContent(res) {
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
 
-            if (!util.REPLACE_BOOK_TITLE_MARKS) {
+            if (!util.settings.REPLACE_TITLE_MARKS) {
                 // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             } else {
@@ -117,7 +117,8 @@ function getContent(res) {
         }
     }
 
-    if (util.SHOW_NOVEL_COMMENTS === true) {
+    // 添加评论
+    if (util.settings.SHOW_COMMENTS) {
         return content + getComment(res)
     } else {
         return content

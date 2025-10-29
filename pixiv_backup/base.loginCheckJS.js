@@ -49,34 +49,36 @@ function publicFunc() {
         java.log("⚙️ 使用自定义设置")
     } else {
         settings = {}
-        settings.CONVERT_CHINESE_CHARACTERS = true
-        settings.SHOW_ORIGINAL_NOVEL_LINK = true
-        settings.REPLACE_BOOK_TITLE_MARKS = true
-        settings.MORE_INFO_IN_DESCRIPTION = false
-        settings.SHOW_NOVEL_CAPTIONS = true
-        settings.SHOW_NOVEL_COMMENTS = true
-        settings.FAST = false
-        settings.DEBUG = false
+        settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
+        settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+        settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
+        settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
+        settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
+        settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
+        settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
+        settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
+        settings.FAST  = false              // 全局：快速模式
+        settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
-    u.CONVERT_CHINESE_CHARACTERS = settings.CONVERT_CHINESE_CHARACTERS  // 搜索：搜索时进行繁简转换
-    u.MORE_INFO_IN_DESCRIPTION = settings.MORE_INFO_IN_DESCRIPTION  // 书籍简介显示更多信息
-    u.SHOW_ORIGINAL_NOVEL_LINK = settings.SHOW_ORIGINAL_NOVEL_LINK  // 目录处显示小说源链接，但会增加请求次数
-    u.REPLACE_BOOK_TITLE_MARKS = settings.REPLACE_BOOK_TITLE_MARKS  // 注音内容为汉字时，替换为书名号
-    u.SHOW_NOVEL_CAPTIONS = settings.SHOW_NOVEL_CAPTIONS  // 章首显示描述
-    u.SHOW_NOVEL_COMMENTS = settings.SHOW_NOVEL_COMMENTS  // 章尾显示评论
-    u.DEBUG = settings.DEBUG // 调试模式
+    if (settings.FAST === true) {
+        settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称
+        settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
+        settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
+        settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
+        settings.SHOW_COMMENTS = false        // 正文：显示评论
+    } else {
+        settings.SEARCH_AUTHOR = true        // 搜索：默认搜索作者名称
+    }
 
-    if (u.FAST === true) {
-        u.CONVERT_CHINESE_CHARACTERS = false
-        u.SHOW_ORIGINAL_NOVEL_LINK = false
-    }
-    if (u.DEBUG === true) {
-        java.log(JSON.stringify(settings, null, 4))
-        java.log(`DEBUG = ${u.DEBUG}`)
-    }
+    settings.IS_LEGADO = !isSourceRead()
+    settings.IS_SOURCE_READ = isSourceRead()
+    settings.IS_BACKUP_SOURCE = isBackupSource()
+    u.settings = settings
+    putInCache("pixivSettings", settings)  // 设置写入缓存
+
     u.debugFunc = (func) => {
-        if (util.DEBUG) {
+        if (util.settings.DEBUG === true) {
             func()
         }
     }
