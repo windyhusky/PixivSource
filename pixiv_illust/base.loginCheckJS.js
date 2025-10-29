@@ -21,13 +21,11 @@ function publicFunc() {
     } else {
         settings = {}
         settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
-        settings.SEARCH_ILLUSTS = false     // 搜索插画
         settings.SHOW_ORIGINAL_LINK = true  // 目录处显示源链接，但会增加请求次数
         settings.DEBUG = false              // 调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
     u.CONVERT_CHINESE = settings.CONVERT_CHINESE
-    u.SEARCH_ILLUSTS = settings.SEARCH_ILLUSTS
     u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK
     u.DEBUG = settings.DEBUG
 
