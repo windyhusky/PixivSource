@@ -1,5 +1,15 @@
 @js:
 var util = objParse(String(java.get("util")))
+let emoji = {
+    "normal": 101, "surprise": 102, "series": 103, "heaven": 104, "happy": 105,
+    "excited": 106, "sing": 107, "cry": 108, "normal2": 201, "shame2": 202,
+    "love2": 203, "interesting2": 204, "blush2": 205, "fire2": 206, "angry2": 207,
+    "shine2": 208, "panic2": 209, "normal3": 301, "satisfaction3": 302, "surprise3": 303,
+    "smile3": 304, "shock3": 305, "gaze3": 306, "wink3": 307, "happy3": 308,
+    "excited3": 309, "love3": 310, "normal4": 401, "surprise4": 402, "series4": 403,
+    "love4": 404, "shine4": 405, "sweet4": 406, "shame4": 407, "sleep4": 408,
+    "heart": 501, "teardrop": 502, "star": 503
+}
 
 function objParse(obj) {
     return JSON.parse(obj, (n, v) => {
@@ -135,25 +145,63 @@ function getContent(res) {
 }
 
 function getComment(res) {
-    let comments = ""
-    let resp = getAjaxJson(urlNovelComments(res.id, 0, 50))
-    if (resp.error === true){
+    // let resp = getAjaxJson(urlNovelComments(res.id, 0, res.commentCount), true)
+    const limit = 50  // 模拟 Pixiv 请求
+    let resp = {"error": false, "message": "", "body": {comments:[]} }
+    let maxPage = (res.commentCount / limit) + 1
+    for (let i = 0; i < maxPage; i++) {
+        let result = getAjaxJson(urlNovelComments(res.id, i*limit, 50), true)
+        if (result.error !== true && result.body.comments !== null) {
+            resp.body.comments = resp.body.comments.concat(result.body.comments)
+        }
+    }
+
+    // 刷新时，刷新评论，不更新正文
+    let commentCount = resp.body.comments.length
+    java.log(`【${res.title}】(${res.id})，共有${commentCount}条评论，${res.commentCount - commentCount}条回复`)
+    if (commentCount === 0) {
         return ""
     }
-    resp.body.comments.forEach(comment =>{
-        comments += `${comment.userName}：${comment.comment}\n`
+
+    let comments = `💬 评论(共计${commentCount}条)：\n`
+    resp.body.comments.forEach(comment => {
+        if (comment.comment === "") {
+            comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
+        }
+        if (Object.keys(emoji).includes(comment.comment.slice(1, -1))) {
+            comment.emojiId = emoji[comment.comment.slice(1, -1)]
+            comment.comment = `<img src="${urlEmojiUrl(comment.emojiId)}">`
+        }
+        if (comment.userId === String(cache.get("pixiv:uid"))) {
+            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})(${comment.id})\n`
+        } else {
+            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})\n`
+        }
+
+        // 获取评论回复
         if (comment.hasReplies === true) {
-            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1))
-            if (resp.error === true) {
-                return ""
-            }
-            resp.body.comments.reverse().forEach(reply =>{
-                comments += `${reply.userName}(⤴️${reply.replyToUserName})：${reply.comment}\n`
+            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1), true)
+            if (resp.error === true) return comments
+
+            resp.body.comments.reverse().forEach(reply => {
+                if (reply.comment === "") {
+                    reply.comment = `<img src="${urlStampUrl(reply.stampId)}">`
+                }
+                if (Object.keys(emoji).includes(reply.comment.slice(1, -1))) {
+                    reply.emojiId = emoji[reply.comment.slice(1, -1)]
+                    reply.comment = `<img src="${urlEmojiUrl(reply.emojiId)}">`
+                }
+                if (comment.userId === String(cache.get("pixiv:uid"))) {
+                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})(${reply.id})\n`
+                } else {
+                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})\n`
+                }
             })
+            comments += "——————————\n"
         }
     })
     if (comments) {
-        comments = "\n" + "——————————\n".repeat(2) + "章节评论：\n" + comments
+        comments = "\n" + "——————————\n".repeat(2) + comments
     }
     return comments
 }
@@ -162,6 +210,7 @@ function checkContent() {
     let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
     if (latestMsg.error === true) {
         java.log(JSON.stringify(latestMsg))
+
     } else if (latestMsg.body.total >= 1) {
         let msg = latestMsg.body.message_threads.filter(item => item.thread_name === "pixiv事務局")[0]
         if (msg === undefined) {
