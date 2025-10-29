@@ -45,10 +45,10 @@
 
 | 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
 | ------ | ----- | ------ | ------- |
-| 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | 最新版 | 
-| 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | 最新版 | 
-| 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | 最新版 | 
-| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [1.9.1](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@ver1.9.1/pixiv.json) |
+| 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [1.9.1](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/ver1.9.1/pixiv.json) |
 </details>
 
 
