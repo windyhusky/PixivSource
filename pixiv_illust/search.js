@@ -22,9 +22,10 @@ function getArtwork() {
 function search(name, page) {
     let resp = getAjaxJson(urlSearchArtwork(name, page))
     java.log(urlSearchArtwork(name, page))
-    if (resp.error !== true && resp.total !== 0) {
-         return resp.body.illustManga.data
+    if (resp.error === true || resp.total === 0) {
+        return {"data": [], "total":0, "lastPage": 0}
     }
+    return resp.body.illustManga
 }
 
 function getConvertArtwork() {
