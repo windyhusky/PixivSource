@@ -18,7 +18,6 @@ function startBrowser(url, title) {
     } else if (url.includes("https://t.me")) {
         if (url.includes("FurryReading")) msg += "🐺 兽人阅读频道"
         else if (url.includes("joinchat")) msg += "🐞 反馈群组"
-        else msg += "⭐️ 收藏项目"
         msg += "\n\n即将打开 Telegram\n请确认已开启代理/梯子/VPN等"
     }
     sleepToast(msg)

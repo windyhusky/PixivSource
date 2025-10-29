@@ -5,7 +5,6 @@ Pixiv 书源项目
 
 项目地址：
 https://github.com/windyhusky/PixivSource
-https://codeberg.org/DowneyRem/PixivSource
 https://github.com/eigeen/PixivSourceProject
 
 旧版书源：
