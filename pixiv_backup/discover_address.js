@@ -112,48 +112,24 @@ generalgGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
-bookmarks = [{"❤️ 他人收藏 ❤️": ""}]
-
 li = li.concat(normal)
 li = li.concat(r18New)
-if (SHOW_GENERAL_NOVELS_NEW === true) {
+if (SHOW_GENERAL_NEW === true) {
     li = li.concat(generalNew)
 }
 li = li.concat(r18Rank)
-if (SHOW_GENERAL_NOVELS_RANK === true) {
+if (SHOW_GENERAL_RANK === true) {
     li = li.concat(generalRank)
 }
-if (SHOW_R18_NOVELS_GENRE === true) {
+if (SHOW_R18_GENRE === true) {
     li = li.concat(r18Genre)
 }
-if (SHOW_GENERAL_NOVELS_GENRE === true) {
+if (SHOW_GENERAL_GENRE === true) {
     li = li.concat(generalgGenre)
 }
+sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
-sleepToast('使用说明🔖\n\n发现 - 更新 - 点击"🔰 使用教程" - 查看')
-
-try {
-    authors = String(source.getVariable()).split("\n")
-    if (authors[0].trim() !== "" && authors.length >= 1) {
-        for (let i in authors) {
-            if (authors[i] !== "") {
-                let authorId = authors[i].match(RegExp(/\d+/))[0]
-                let resp = JSON.parse(java.ajax(`https://www.pixiv.net/ajax/user/${authorId}`))
-                if (resp.error !== true) {
-                    let bookmark = {}
-                    bookmark[resp.body.name] = `https://www.pixiv.net/ajax/user/${authorId}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh`
-                    bookmarks.push(bookmark)
-                }
-            }
-        }
-        li = li.concat(bookmarks)
-    } else {
-        sleepToast('查看他人收藏❤️\n\n发现 - 长按"Pixiv" - 编辑 - 菜单 - 设置源变量')
-    }
-} catch (e) {
-    sleepToast("⚠️源变量设置有误\n\n输入作者ID，一行一个，可添加作者名，保存")
-}
-
+// 添加格式
 li.forEach(item => {
     item.title = Object.keys(item)[0]
     item.url = Object.values(item)[0]
