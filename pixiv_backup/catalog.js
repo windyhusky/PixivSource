@@ -30,22 +30,14 @@ function oneShotHandler(res) {
 
 function seriesHandler(res) {
     const limit = 30
-    let returnList = []
-    let seriesID = 0, allChaptersCount = 0
-    if (res.seriesNavData !== undefined) {
-        seriesID = res.seriesNavData.seriesId
-        allChaptersCount = getAjaxJson(urlSeriesDetailed(seriesID)).body.total
-    } else {
-        seriesID = res.id
-        allChaptersCount = res.total
-    }
+    let returnList = [], seriesID = res.id, allChaptersCount = res.total
     util.debugFunc(() => {
         java.log(`本系列 ${seriesID} 一共有${allChaptersCount}章`);
     })
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        resp = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex))
+        let resp = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex), true)
         res = resp.body.thumbnails.novel
         // res = resp.body.page.seriesContents
         res.forEach(v => {
@@ -65,8 +57,8 @@ function seriesHandler(res) {
         return res;
     }
 
-    if (util.settings.FAST) {
-        returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID)).body
+    if (!util.settings.SHOW_UPDATE_TIME) {
+        returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID), true).body
         returnList.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
             v.chapterUrl = urlNovel(v.id)
