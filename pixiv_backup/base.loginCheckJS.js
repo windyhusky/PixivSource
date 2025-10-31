@@ -83,6 +83,13 @@ function publicFunc() {
         }
     }
 
+    u.checkStatus = function(status) {
+        if (status === true) return "✅ 已"
+        else if (status === false) return "❌ 未"
+        else if (status === undefined) return "🈚️ 无数据："
+    }
+
+
     // 获取 Csrf Token，以便进行收藏等请求
     // 获取方法来自脚本 Pixiv Previewer
     // https://github.com/Ocrosoft/PixivPreviewer
@@ -247,13 +254,14 @@ function publicFunc() {
     }
 
     // 小说信息格式化
-    u.formatNovels = function (novels) {
+    u.formatNovels = function(novels) {
         novels.forEach(novel => {
-            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
+            if (novel.title) novel.title = novel.title.trim()
+            if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
             novel.readingTime = `${novel.readingTime / 60} 分钟`
-            novel.createDate = dateFormat(novel.createDate);
-            novel.updateDate = dateFormat(novel.updateDate);
+            novel.createDate = dateFormat(novel.createDate)
+            novel.updateDate = dateFormat(novel.updateDate)
 
             novel.tags2 = []
             for (let i in novel.tags) {
@@ -267,11 +275,21 @@ function publicFunc() {
             }
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
-
-            if (util.MORE_INFO_IN_DESCRIPTION) {
-                novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n简介：${novel.description}`
+            if (novel.seriesId) {
+                collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
             } else {
-                novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}`
+                collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
+            }
+
+            if (util.settings.MORE_INFORMATION) {
+                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
+                ${collectMsg}\n📖 书名：${novel.title}\n👤 作者：${novel.userName}
+                #️ 标签：${novel.tags}\n⬆️ 上传：${novel.createDate}
+                🔄 更新：${novel.updateDate}\n📄 简介：${novel.description}`
+            } else {
+                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
+                ${collectMsg}\n⬆️ 上传：${novel.createDate}\n🔄 更新：${novel.updateDate}
+                📄 简介：${novel.description}`
             }
         })
         return novels
