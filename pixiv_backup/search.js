@@ -174,23 +174,46 @@ function search(name, type, page) {
 }
 
 function getSeries() {
-    if (JSON.parse(result).error !== true) {
-        cache.put(urlSearchSeries(java.get("keyword")), result, 30*60)  // 加入缓存
-        return JSON.parse(result).body.novel.data
-    } else {
+    let novels = []
+    let name = String(java.get("keyword"))
+    let maxPages = getFromCache("maxPages")  // 仅默认搜索使用
+    if (!maxPages) {
+        maxPages = getFromCache("seriesMaxPages")  // 搜索标签使用
+        if (!maxPages) maxPages = 1
+        putInCache("seriesMaxPages", maxPages)
+    }
+    java.log(`📄 搜索系列最大页码：${maxPages}`)
+
+    if (JSON.parse(result).error === true) {
         return []
     }
+    let lastPage = JSON.parse(result).body.novel.lastPage
+    novels = novels.concat(JSON.parse(result).body.novel.data)
+    java.log(urlSearchSeries(name, 1))
+    cache.put(urlSearchSeries(name, 1), result, cacheSaveSeconds)  // 加入缓存
+    for (let page = Number(java.get("page")) + 1; page <= lastPage && page <= maxPages; page++) {
+        novels = novels.concat(search(name,"series", page).data)
+    }
+    return novels
 }
 
 function getNovels() {
-    let MAXPAGES = 1, novels = []
-    let novelName = String(java.get("keyword"))
-    let resp = search(novelName, "novel", 1)
-    novels = novels.concat(resp.data)
-    for (let page = Number(java.get("page")) + 1; page < resp.lastPage, page <= MAXPAGES; page++) {
-        novels = novels.concat(search(novelName,"novel", page).data)
+    let novels = []
+    let name = String(java.get("keyword"))
+    let maxPages = getFromCache("maxPages")  // 仅默认搜索使用
+    if (!maxPages) {
+        maxPages = getFromCache("novelsMaxPages")  // 搜索标签使用
+        if (!maxPages) maxPages = 1
+        putInCache("novelsMaxPages", maxPages)
     }
-    return novels
+    java.log(`📄 搜索单篇最大页码：${maxPages}`)
+
+    let resp = search(name, "novel", 1)
+    novels = novels.concat(resp.data)
+    for (let page = Number(java.get("page")) + 1; page <= resp.lastPage && page <= maxPages; page++) {
+        novels = novels.concat(search(name,"novel", page).data)
+    }
+    return util.combineNovels(novels)
 }
 
 function getConvertNovels() {
