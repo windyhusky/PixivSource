@@ -48,24 +48,23 @@ var seriesSet = {
 
 function getUserNovels() {
     if (!isLogin()) {
+        sleepToast("👤 搜索作者\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
+        // util.removeCookie(); util.login()
+        sleepToast("👤 搜索作者\n\n登录成功后，请重新搜索", 2)
         return []
     }
 
-    let uidList = [] ,novels = []
+    let uidList = [], novels = []
     let username = String(java.get("keyword"))
     let page = Number(java.get("page"))
 
+    // cache.delete(username)
     let userid = cache.get(username)
     if (userid !== undefined && userid !== null) {
         uidList = [userid]
-        java.log(`缓存作者ID：${userid}`)
-    }
-    else {
-        let html = java.get(username)
-        if (html === undefined || html === null) {
-            html = java.ajax(urlSearchUser(username))
-            cache.put(username, html)
-        }
+        java.log(`👤 缓存作者ID：${userid}`)
+    } else {
+        html = java.ajax(urlSearchUser(username))
         // java.log(html)
         // 仅匹配有投稿作品的用户
         let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
@@ -80,43 +79,78 @@ function getUserNovels() {
         uidList = match.map(v => {
             return v.match(regNumber)[0]
         })
-
-        // 仅限3个作者
-        java.log(JSON.stringify(uidList))
-        if (uidList.length >= 3) {
-            uidList.length = 3
-        }
+        java.log(`👤 获取作者ID：${JSON.stringify(uidList)}`)
     }
 
-    uidList.forEach(id => {
-        // 获取系列小说
-        let resp = getAjaxJson(urlUserAllWorks(id))
+    let tempUids = []
+    for (let i in uidList) {
+        let uid = uidList[i]
+        let resp = getAjaxJson(urlUserAllWorks(uid), true)
         // java.log(urlUserAllWorks(id))
+        // java.log(JSON.stringify(resp))
         if (resp.error === true) {
             return []
         }
-        // resp.body.novelSeries.forEach(novel =>{
-        //     novel.isOneshot = false
-        //     novel.createDate = novel.createDateTime
-        //     novel.updateDate = novel.updateDateTime
-        // })
-        // novels = novels.concat(resp.body.novelSeries)
+
+        // 仅获取前3个有小说的作者
+        let novelIds = Object.keys(resp.body.novels)
+        // java.log(`${uid}-${novelIds.length}`)
+        if (novelIds.length >= 1) tempUids.push(uid)
+        if (tempUids.length === 3) {
+            java.log(`👤 显示作者ID：${JSON.stringify(tempUids)}`)
+            break
+        }
+
+        // 获取系列小说，与 util.handnovels 系列详情兼容
+        let seriesIds = []
+        if (resp.body.novelSeries.length >= 1) {
+            resp.body.novelSeries.forEach(novel =>{
+                seriesIds.push(novel.id)
+                novel.textCount = novel.publishedTotalCharacterCount
+                novel.description = novel.caption
+            })
+            novels = novels.concat(resp.body.novelSeries)
+        }
+
+        // 获取所有系列内部的小说 ID
+        let seriesNovelIds = []
+        seriesIds.forEach(seriesId => {
+            let returnList = getAjaxJson(urlSeriesNovelsTitles(seriesId)).body
+            returnList.map(novel => {return seriesNovelIds.push(novel.id)})
+        })
+        // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
+        // java.log(JSON.stringify(seriesNovelIds.length))
 
         // 获取单篇小说
-        let novelsId = Object.keys(resp.body.novels).reverse().slice((page - 1) * 20, page * 20)
-        let url = urlNovelsDetailed(id, novelsId)
-        util.debugFunc(() => {
-            java.log(`发送获取作者小说的Ajax请求:${url}`)
-        })
-        let userNovels = getWebviewJson(url, html => {
-            return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
-        }).body
-        // let userNovels = getAjaxJson(url).body
-        // 获取对应的小说 该序列是按照id排序
-        // 反转以按照更新时间排序
-        novels = novels.concat(Object.values(userNovels).reverse())
-    })
+        if (novelIds.length >= 1 && util.settings.IS_LEGADO) {
+            novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
+            novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
+            // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
+            // java.log(JSON.stringify(novelIds.length))
+            let novelUrls = novelIds.map(novelId => {return urlNovelDetailed(novelId)})
+            // java.log(JSON.stringify(novelUrls))
+            // cache.delete(novelUrls)
+            novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
+        }
 
+        // // 获取单篇小说
+        if (novelIds.length >= 1 && util.settings.IS_SOURCE_READ) {
+            novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
+            // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
+            // java.log(JSON.stringify(novelIds.length))
+            novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
+            novelIds.forEach(novelId => {
+                // java.log(urlNovelDetailed(novelId))
+                let res = getAjaxJson(urlNovelDetailed(novelId))
+                if (res.error !== true) {
+                    novels.push(res.body)
+                } else {
+                    java.log(JSON.stringify(res))
+                }
+            })
+        }
+    }
+    
     util.debugFunc(() => {
         java.log(`获取用户搜索小说结束`)
     })
