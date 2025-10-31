@@ -168,7 +168,7 @@ function search(name, type, page) {
         java.log(urlSearchSeries(name, page))
     }
     if (resp.error === true || resp.total === 0) {
-        return {"data": [], "lastPage": 0}
+        return {"data": [], "total":0, "lastPage": 0}
     }
     return resp.body.novel
 }
@@ -221,10 +221,11 @@ function getConvertNovels() {
     let novelName = String(java.get("keyword"))
     let name1 = String(java.s2t(novelName))
     let name2 = String(java.t2s(novelName))
-    if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
-    if (name2 !== novelName) novels = novels.concat(search(name2, "series", 1).data)
     if (name1 !== novelName) novels = novels.concat(search(name1, "novel", 1).data)
     if (name2 !== novelName) novels = novels.concat(search(name2, "novel", 1).data)
+    novels = util.combineNovels(novels)
+    if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
+    if (name2 !== novelName) novels = novels.concat(search(name2, "series", 1).data)
     return novels
 }
 
