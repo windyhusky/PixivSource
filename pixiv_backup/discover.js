@@ -65,10 +65,9 @@ function handlerFactory() {
 
 function handlerNoLogin() {
     return () => {
-        sleepToast("⚠️ 当前未登录账号\n\n请登录 Pixiv 账号", 1.5)
-        sleepToast('发现 - 长按"Pixiv" - 登录 - 登录账号', 1.5)
-        // util.removeCookie(); util.login()
-        sleepToast("登录成功后，请重新进入发现", 2)
+        sleepToast("🔍 发现：\n\n⚠️ 当前未登录账号\n\n请登录 Pixiv 账号", 1.5)
+        util.removeCookie(); util.login()
+        sleepToast("🔍 发现：\n\n登录成功后，请重新进入发现", 2)
         return []
     }
 }
