@@ -230,20 +230,55 @@ function getConvertNovels() {
 }
 
 function novelFilter(novels) {
+    let textCount = 0, tags = []
     let limitedTextCount = String(java.get("limitedTextCount")).replace("字数", "").replace("字數", "")
     // limitedTextCount = `3w 3k 3w5 3k5`.[0]
-    let textCount = 0
-    if (limitedTextCount.includes("w")) {
-        let num = limitedTextCount.split("w")
+    if (limitedTextCount.includes("w") || limitedTextCount.includes("W")) {
+        let num = limitedTextCount.toLowerCase().split("w")
         textCount = 10000 * num[0] + 1000 * num[1]
-    }
-    if (limitedTextCount.includes("k")) {
-        let num = limitedTextCount.split("k")
+    } else if (limitedTextCount.includes("k") || limitedTextCount.includes("K")) {
+        let num = limitedTextCount.toLowerCase().split("k")
         textCount = 1000 * num[0] + 100 * num[1]
     }
-    java.log(`字数限制：${limitedTextCount}`)
-    java.log(`字数限制：${textCount}`)
-    return novels.filter(novel => novel.textCount >= textCount)
+
+    let novels0 = novels.map(novel => novel.id)
+    if (textCount >= 1) {
+        novels = novels.filter(novel => novel.textCount >= textCount)
+        let novels1 = novels.map(novel => novel.id)
+        java.log(`🔢 字数限制：${limitedTextCount}`)
+        java.log(`⏬ 字数限制：过滤前${novels0.length}；过滤后${novels1.length}`)
+    }
+
+    let inputTags = String(java.get("inputTags")).split(" ")
+    for (let i in inputTags) {
+        let tag = inputTags[i].trim()
+        if (tag !== "") tags.push(`${tag}`)
+    }
+
+    if (tags.length >= 1) {
+        // 仅保留含有所有标签的小说
+        // novels = novels.filter(novel => {
+        //     // java.log(`${JSON.stringify(novel.tags)}\n${tags.every(item => novel.tags.includes(item))}`)
+        //     return tags.every(item => novel.tags.includes(item))
+        // })
+        novels = novels.filter(novel => tags.every(item => novel.tags.includes(item)))
+        let novels2 = novels.map(novel => novel.id)
+        java.log(`#️⃣ 过滤标签：${tags.join("、")}`)
+        java.log(`#️⃣ 过滤标签：过滤前${novels0.length}；过滤后${novels2.length}`)
+    }
+
+    let inputAuthor = String(java.get("inputAuthor")).trim()
+    if (inputAuthor) {
+        // novels = novels.filter(novel => {
+        //     java.log(`${novel.userName}-${novel.userName.includes(inputAuthor)}`)
+        //     return novel.userName.includes(inputAuthor)
+        // })
+        novels = novels.filter(novel => novel.userName.includes(inputAuthor))
+        let novels2 = novels.map(novel => novel.id)
+        java.log(`👤 过滤作者：${tags.join("、")}`)
+        java.log(`👤 过滤作者：过滤前${novels0.length}；过滤后${novels2.length}`)
+    }
+    return novels
 }
 
 (() => {
