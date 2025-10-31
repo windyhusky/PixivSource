@@ -76,7 +76,8 @@ function urlIllustsDetailed(userId, idList) {
 function urlSeriesUrl(userId, seriesId) {
     return `https://www.pixiv.net/user/${userId}/series/${seriesId}`
 }
-function urlSeriesDetailed(seriesId, page=1) {
+function urlSeriesDetailed(seriesId, page) {
+    if (page === undefined) page = 1
     return `https://www.pixiv.net/ajax/series/${seriesId}?p=${page}&lang=zh`
 }
 

@@ -113,7 +113,8 @@ function getPostBody(url, body, headers) {
     }
 }
 
-function novelBookmarkAdd(restrict=0) {
+function novelBookmarkAdd(restrict) {
+    if (restrict === undefined) restrict = 0
     let novel = getNovel()
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
@@ -253,7 +254,8 @@ function novelBookmarkFactory(code) {
     else if (code === 2) novelBookmarkAdd(1)
 }
 
-function novelMarker(page=1) {
+function novelMarker(page) {
+    if (page === undefined) page = 1
     let novel = getNovel()
     let lastMarker = getFromCache(`marker${novel.id}`)
     if (lastMarker === true) page = 0
@@ -321,7 +323,8 @@ function seriesUnWatch() {
     }
 }
 
-function seriesWatchFactory(code=1) {
+function seriesWatchFactory(code) {
+    if (code === undefined) code = 1
     let novel = getNovel()
     if (!novel.seriesId) {
         return sleepToast(`📃 追更系列\n\n⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
@@ -333,7 +336,8 @@ function seriesWatchFactory(code=1) {
     else if (code === 1) seriesWatch()
 }
 
-function userFollow(restrict=0) {
+function userFollow(restrict) {
+    if (restrict === undefined) restrict = 0
     let novel = getNovel()
     let resp = getPostBody(
         "https://www.pixiv.net/bookmark_add.php",
@@ -363,7 +367,8 @@ function userUnFollow() {
     }
 }
 
-function userFollowFactory(code=1) {
+function userFollowFactory(code) {
+    if (code === undefined) code = 1
     let novel = getNovel()
     let lastStatus = getFromCache(`follow${novel.userId}`)
     if (lastStatus === true) code = 0
@@ -948,7 +953,8 @@ function statusMsg(status) {
 }
 
 // 检测快速模式修改的4个设置
-function getSettingStatus(mode="") {
+function getSettingStatus(mode) {
+    if (mode === undefined) mode = ""
     let keys = [], msgList = []
     let settings = getFromCache("pixivSettings")
     if (mode !== "FAST") keys = Object.keys(settingsName)
