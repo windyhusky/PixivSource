@@ -396,8 +396,8 @@ function checkMessageThread(checkTimes) {
             java.log(JSON.stringify(latestMsg))
         } else if (latestMsg.body.total >= 1) {
             let msg = latestMsg.body.message_threads.filter(item => item.thread_name === "pixiv事務局")[0]
-            if (msg !== undefined && new Date().getTime()- 1000*msg.modified_at <= 3*24*60*60*1000) { // 3天内进行提示
-                sleepToast(`您于 ${java.timeFormat(1000*msg.modified_at)} 触发 Pixiv 【过度访问】，请修改密码并重新登录。\n如已修改请忽略`, 3)
+            if (msg && new Date().getTime()- 1000*msg.modified_at <= 3*24*60*60*1000) { // 3天内进行提示
+                sleepToast(`您于 ${timeFormat(1000*msg.modified_at)} 触发 Pixiv 【过度访问】，请修改密码并重新登录。\n如已修改请忽略`, 3)
                 sleepToast(`${msg.latest_content}`, 5)
                 java.startBrowser("https://accounts.pixiv.net/password/change",'修改密码')
             }

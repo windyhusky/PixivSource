@@ -539,7 +539,7 @@ function publicFunc() {
 
 function checkMessageThread(checkTimes) {
     if (checkTimes === undefined) {
-        checkTimes = cache.get("checkTimes")
+        checkTimes = Number(cache.get("checkTimes"))
     }
     if (checkTimes === 0 && isLogin()) {
         let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
