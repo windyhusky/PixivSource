@@ -308,20 +308,20 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
             if (novel.seriesId) {
-                collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
+                collectMsg = `追更：${util.checkStatus(novel.isWatched)}追更系列`
             } else {
-                collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
+                collectMsg = `收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
             }
 
             if (util.settings.MORE_INFORMATION) {
-                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
-                ${collectMsg}\n📖 书名：${novel.title}\n👤 作者：${novel.userName}
-                #️ 标签：${novel.tags}\n⬆️ 上传：${novel.createDate}
-                🔄 更新：${novel.updateDate}\n📄 简介：${novel.description}`
+                novel.description = `\n登录：${util.checkStatus(isLogin())}登录账号
+                ${collectMsg}\n书名：${novel.title}\n作者：${novel.userName}
+                标签：${novel.tags}\n⬆️ 上传：${novel.createDate}
+                更新：${novel.updateDate}\n简介：${novel.description}`
             } else {
-                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
-                ${collectMsg}\n⬆️ 上传：${novel.createDate}\n🔄 更新：${novel.updateDate}
-                📄 简介：${novel.description}`
+                novel.description = `\n登录：${util.checkStatus(isLogin())}登录账号
+                ${collectMsg}\n上传：${novel.createDate}\n更新：${novel.updateDate}
+                简介：${novel.description}`
             }
         })
         return novels
