@@ -11,6 +11,10 @@
 项目地址：https://github.com/windyhusky/PixivSource
 使用教程：https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md
 
+旧版书源：
+https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@191/pixiv.json
+https://raw.githubusercontent.com/windyhusky/PixivSource/191/pixiv.json
+
 规则订阅：import 订阅源
 https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
 https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json
