@@ -285,14 +285,20 @@ function novelFilter(novels) {
     let novels = []
     let keyword = String(java.get("keyword"))
     if (keyword.startsWith("@") || keyword.startsWith("＠")) {
-        keyword = keyword.slice(1)
-        java.log(`搜索作者：${keyword}`)
-        java.put("keyword", keyword)
+        java.put("keyword", keyword.slice(1))
         novels = novels.concat(getUserNovels())
-    } else {
-        novels = novels.concat(getNovels())
+    } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
+        java.put("keyword", keyword.slice(1))
+        // 删除默认搜索最大页码，使用内部设定的最大页码
+        cache.delete("maxPages")
         novels = novels.concat(getSeries())
-        novels = novels.concat(getUserNovels())
+        novels = novels.concat(getNovels())
+    } else {
+        // 设置默认搜索最大页码
+        putInCache("maxPages", 1)
+        novels = novels.concat(getSeries())
+        novels = novels.concat(getNovels())
+        if (util.settings.SEARCH_AUTHOR) novels = novels.concat(getUserNovels())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
