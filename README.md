@@ -1,7 +1,8 @@
 <div align="center">
 <img width="125" height="125" src="doc/pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
 
-## [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+### [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 </div>
 
 
