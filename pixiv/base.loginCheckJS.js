@@ -24,6 +24,17 @@ function isSourceRead() {
     return isSourceReadStatus
 }
 
+function checkLegadoVersion() {
+    try {
+        let obj = eval('({})?.value')
+        if (obj === undefined) {
+            sleepToast("\n阅读 Beta 版\n")
+        }
+    } catch (e) {
+        sleepToast("\n阅读 正式 版\n")
+    }
+}
+
 function publicFunc() {
     let u = {}, settings
     // 输出书源信息
@@ -595,7 +606,6 @@ function getHeaders() {
     putInCache("headers", headers)
     return headers
 }
-
 
 publicFunc()
 if (result.code() === 200) {
