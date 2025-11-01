@@ -32,10 +32,12 @@
 
 <details><summary> ⬇️ 下载阅读 </summary>
 
+#### 1.1 下载阅读
 | 阅读版本 | 推荐版本 | 版本号 |
 | ------ | ------- | ----- |
 | 👍【推荐】[阅读 洛娅橙](https://github.com/Luoyacheng/legado/releases) | 共存版 / ReleaseA | 3.25.0927 |
 | 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe) | 共存版、新共存版 | 3.25.0527 |
+| 🎀【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3/releases) |   |3.26       | 
 | 🍎【兼容】[源阅](https://github.com/kaich/SourceReadSite) | TestFlight | 1.0 (112) |
 - 详见：[下载阅读](./doc/Download.md)
 </details>
@@ -43,12 +45,14 @@
 
 <details><summary> 📖 书源兼容 </summary>
 
+#### 1.2 书源兼容
 | 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
 | ------ | ----- | ------- | ------ |
-| 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)  | 
-| 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)  | 
-| 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)  | 
-| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [191 版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/191/pixiv.json) |
+| 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 🎀【兼容】阅读 MD3  | 3.26       | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
+| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
 </details>
 
 

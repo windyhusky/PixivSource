@@ -7,10 +7,12 @@
 
 | 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
 | ------ | ----- | ------- | ------ |
-| 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)  | 
-| 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)  | 
-| 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)  | 
-| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [191 版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/191/pixiv.json) |
+| 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 🎀【兼容】阅读 MD3  | 3.26       | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
+| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+
 
 
 <details><summary> 🅿️ Pixiv 书源 </summary>
@@ -47,7 +49,7 @@
 
 <details><summary> 🏛️ 阅读 Beta 版（喵公子等）</summary>
 
-#### 3.1.1 【官方】喵公子 Beta 版
+#### 3.1.1 【官方】喵公子等的 Beta 版
 **点击链接，下载安装包并安装，推荐使用【共存版/新共存版】**
 https://miaogongzi.lanzout.com/b01rgkhhe
 
@@ -60,9 +62,22 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 </details>
 
 
+<details><summary> 🎀 阅读 MD3 版（HapeLee）</summary>
+
+#### 3.1.2 【兼容】HapeLee 的 MD3 版
+**点击链接，下载安装包并安装，推荐使用【共存版/新共存版】**
+https://miaogongzi.lanzout.com/b01rgkhhe
+
+| 下载站点 | 版本 | 备注 |
+| ------ | --- | --- |
+| [Github Release](https://github.com/HapeLee/legado-with-MD3/releases) | 测试版 | 需要代理，无需登录 |
+| [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 测试版 | 需要代理，需要登录 |
+</details>
+
+
 <details><summary> 👎 阅读 正式版（已停更）</summary>
 
-#### ~~3.1.2 【官方】Android 正式版~~
+#### ~~3.1.3 【官方】Android 正式版~~
 **Android 正式版已经停止更新，不推荐继续使用**
 
 | 下载站点 | 版本 | 备注 |
@@ -75,7 +90,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 <details><summary> 🚮 阅读 Pro 版（已下架）</summary>
 
-#### ~~3.1.3 【官方】阅读 Pro 版~~
+#### ~~3.1.4 【官方】阅读 Pro 版~~
 - 阅读 Pro 版于2023年被Google下架
 - 现已经停止更新，不推荐继续使用
 - 所有 Pro 版限定功能已经移植到普通版（2023.11.01）
