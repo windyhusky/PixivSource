@@ -24,15 +24,16 @@ function isSourceRead() {
     return isSourceReadStatus
 }
 
-function checkLegadoVersion() {
+function isLegadoOfficial() {
+    let isLagadoOfficialStatus
     try {
-        let obj = eval('({})?.value')
-        if (obj === undefined) {
-            sleepToast("\n阅读 Beta 版\n")
-        }
+        eval('({})?.value')
+        isLagadoOfficialStatus = false
     } catch (e) {
-        sleepToast("\n阅读 正式 版\n")
+        isLagadoOfficialStatus = true
     }
+    cache.put("isLegadoOfficial", isLagadoOfficialStatus)
+    return isLagadoOfficialStatus
 }
 
 function publicFunc() {
