@@ -26,19 +26,6 @@
 </details>
 
 
-<details><summary> ✈️ 社群链接 </summary>
-
-#### Telegram 频道 & 群组
-| Telegram 频道 & 群组 | 备注 |
-| ------------------ | --- |
-| 🔊 [Pixiv 书源](https://t.me/PixivSource) | Pixiv 书源 频道 |
-| 🔊 [Legado｜开源阅读](https://t.me/Legado_Channels) | 开源阅读 频道 |
-| 🔊 [Legado Beta](https://t.me/Legado_Beta) | 开源阅读 Beta 频道 |
-| 👥 [Legado·开源阅读](https://t.me/Legado_Channels/1445) | 开源阅读 群组 |
-| 👥 [Legado·开源阅读](https://t.me/Legado_Group) | 开源阅读 话题群组 |
-</details>
-
-
 ## 使用流程：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#三登录账号) => [开始使用](./doc/Pixiv.md#四添加小说尽情使用)
 <details><summary> ➡️ 详细流程 </summary>
 
@@ -529,6 +516,19 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 
 ## 杂类
+<details><summary> ✈️ 社群链接 </summary>
+
+#### Telegram 频道 & 群组
+| Telegram 频道 & 群组 | 备注 |
+| ------------------ | --- |
+| 🔊 [Pixiv 书源](https://t.me/PixivSource) | Pixiv 书源 频道 |
+| 🔊 [Legado｜开源阅读](https://t.me/Legado_Channels) | 开源阅读 频道 |
+| 🔊 [Legado Beta](https://t.me/Legado_Beta) | 开源阅读 Beta 频道 |
+| 👥 [Legado·开源阅读](https://t.me/Legado_Channels/1445) | 开源阅读 群组 |
+| 👥 [Legado·开源阅读](https://t.me/Legado_Group) | 开源阅读 话题群组 |
+</details>
+
+
 <details><summary> 🔗 项目链接 </summary>
 
 ### 项目链接
