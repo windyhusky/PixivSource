@@ -41,24 +41,25 @@
 #### 3.1.0 👍【推荐】[洛娅橙 Fork 版](https://github.com/Luoyacheng/legado)
 **可覆盖下方 Beta 版本（原包名/共存），推荐使用【共存版/ReleaseA版】**
 
-| 下载站点 | 版本 | 备注 |
-| ------ | --- | --- |
-| [Github Release](https://github.com/Luoyacheng/legado/releases) | 测试版 | 需要代理，无需登录 |
-| [Github Action](https://github.com/Luoyacheng/legado/actions)   | 测试版 | 需要代理，需要登录 |
+| 下载站点 | 推荐版本 | 备注 |
+| ------- | ------ | --- |
+| [Github Release](https://github.com/Luoyacheng/legado/releases) | 共存版 | 需要代理，无需登录 |
+| [Github Action](https://github.com/Luoyacheng/legado/actions)   | 共存版 | 需要代理，需要登录 |
+
 
 
 <details><summary> 🏛️ 阅读 Beta 版（喵公子等）</summary>
 
 #### 3.1.1 【官方】喵公子等的 Beta 版
-**点击链接，下载安装包并安装，推荐使用【共存版/新共存版】**
+**点击链接，下载安装包并安装，推荐使用【新共存版】**
 https://miaogongzi.lanzout.com/b01rgkhhe
 
-| 下载站点 | 版本 | 备注 |
-| ------- | --- | --- |
-| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)   | 测试版 | 无需代理，无需登录 |
-| [Github Action](https://github.com/gedoor/legado/actions)    | 测试版 | 需要代理，需要登录 |
-| [Telegram 频道](https://t.me/Legado_Channels)                 | 稳定版 | 需要代理，需要登录 |
-| [Telegram 频道(Beta版)](https://t.me/Legado_Beta)             | 测试版 | 需要代理，需要登录 |
+| 下载站点 | 推荐版本 | 备注 |
+| ------- | ------ | --- |
+| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)   | 新共存版 | 无需代理，无需登录 |
+| [Github Action](https://github.com/gedoor/legado/actions)    | 新共存版 | 需要代理，需要登录 |
+| [Telegram 频道](https://t.me/Legado_Channels)                 | 新共存版 | 需要代理，需要登录 |
+| [Telegram 频道(Beta版)](https://t.me/Legado_Beta)             | 新共存版 | 需要代理，需要登录 |
 </details>
 
 
@@ -69,7 +70,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 https://miaogongzi.lanzout.com/b01rgkhhe
 
 | 下载站点 | 版本 | 备注 |
-| ------ | --- | --- |
+| ------- | ---- | --- |
 | [Github Release](https://github.com/HapeLee/legado-with-MD3/releases) | 测试版 | 需要代理，无需登录 |
 | [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 测试版 | 需要代理，需要登录 |
 </details>
@@ -80,11 +81,11 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 #### ~~3.1.3 【官方】Android 正式版~~
 **Android 正式版已经停止更新，不推荐继续使用**
 
-| 下载站点 | 版本 | 备注 |
-| ------- | --- | --- |
-| [喵公子阅读资源](https://yuedu.miaogongzi.net)                   | 稳定版 | 无需代理，无需登录 |
-| [Github Release](https://github.com/gedoor/legado/releases)   | 稳定版 | 需要代理，无需登录 |
-| [Telegram 频道](https://t.me/Legado_Channels)                  | 稳定版 | 需要代理，需要登录 |
+| 下载站点 | 推荐版本 | 备注 |
+| ------- | ------ | ---- |
+| [喵公子阅读资源](https://yuedu.miaogongzi.net)                | 不推荐 | 无需代理，无需登录 |
+| [Github Release](https://github.com/gedoor/legado/releases) | 不推荐 | 需要代理，无需登录 |
+| [Telegram 频道](https://t.me/Legado_Channels)               | 不推荐 | 需要代理，需要登录 |
 </details>
 
 
