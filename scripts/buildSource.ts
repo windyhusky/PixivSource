@@ -74,8 +74,19 @@ interface BookSource {
 }
 
 function readTextFile(filePath: string): string {
-    if (fs.existsSync(filePath)) return fs.readFileSync(filePath, "utf-8")
-    else return ""
+    if (fs.existsSync(filePath)) {
+        return fs.readFileSync(filePath, "utf-8")
+    }
+    return ""
+}
+
+function saveJsonFile(folder, fileName, data) {
+    if (folder && !fs.existsSync(folder)) {
+        fs.mkdirSync(folder)
+    }
+    const outputPath = path.join(folder, fileName)
+    fs.writeFileSync(outputPath, JSON.stringify(data, null, 4), "utf-8")
+    console.log(`✅ ${outputPath} 生成成功`)
 }
 
 function buildBookSource(sourceName): BookSource[] {
@@ -146,14 +157,8 @@ function buildPixivSource() {
     const pixivBackup = buildBookSource("pixiv_backup")
     const pixivIllust = buildBookSource("pixiv_illust")
     const allSources = [...pixivMain, ...pixivBackup, ...pixivIllust]
-
     // 写入最终的 JSON 文件
-    if (!fs.existsSync("dist")) {
-        fs.mkdirSync("dist")
-    }
-    const outputPath = path.join("dist", "pixiv.json")
-    fs.writeFileSync(outputPath, JSON.stringify(allSources, null, 4), "utf-8")
-    console.log(`✅ ${outputPath} 生成成功`)
+    saveJsonFile("dist", "pixiv.json", allSources)
 }
 
 function buildLinpxSource() {
@@ -161,14 +166,8 @@ function buildLinpxSource() {
     const linpx = buildBookSource("linpx")
     const furrynovel = buildBookSource("furrynovel")
     const allSources = [...linpx, ...furrynovel]
-
     // 写入最终的 JSON 文件
-    if (!fs.existsSync("dist")) {
-        fs.mkdirSync("dist")
-    }
-    const outputPath = path.join("dist", "linpx.json")
-    fs.writeFileSync(outputPath, JSON.stringify(allSources, null, 4), "utf-8")
-    console.log(`✅ ${outputPath} 生成成功`)
+    saveJsonFile("dist", "linpx.json", allSources)
 }
 
 function main() {
