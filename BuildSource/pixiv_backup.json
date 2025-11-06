@@ -4,7 +4,7 @@
         "bookSourceGroup": "🔞 Pixiv",
         "bookSourceName": "🅿️ Pixiv 小说备用",
         "bookSourceType": 0,
-        "bookSourceUrl": "https://www.pixiv.net/novel",
+        "bookSourceUrl": "https://www.pixiv.net",
         "bookUrlPattern": "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/(novel/(show\\.php\\?id=|series/)?|users?/)\\d+.*",
         "concurrentRate": "3/2000",
         "customButton": false,

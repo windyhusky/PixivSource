@@ -86,7 +86,7 @@ function saveJsonFile(folder, fileName, data) {
     }
     const outputPath = path.join(folder, fileName)
     fs.writeFileSync(outputPath, JSON.stringify(data, null, 4), "utf-8")
-    console.log(`✅ ${outputPath} 生成成功`)
+    console.log(`✅  ${outputPath} 生成成功`)
 }
 
 function buildBookSource(sourceName): BookSource[] {
