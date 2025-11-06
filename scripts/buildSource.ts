@@ -91,7 +91,7 @@ function saveJsonFile(folder, fileName, data) {
 
 function buildBookSource(sourceName): BookSource[] {
     let templateJsonPath = `scripts/${sourceName}.json`
-    // let sourcePath = `book/${sourceName}`
+    // let sourcePath = `bookSource/${sourceName}`
     let sourcePath = sourceName
 
     // 读取基础模板
@@ -158,7 +158,7 @@ function buildPixivSource() {
     const pixivIllust = buildBookSource("pixiv_illust")
     const allSources = [...pixivMain, ...pixivBackup, ...pixivIllust]
     // 写入最终的 JSON 文件
-    saveJsonFile("dist", "pixiv.json", allSources)
+    saveJsonFile("", "pixiv.json", allSources)
 }
 
 function buildLinpxSource() {
@@ -167,7 +167,7 @@ function buildLinpxSource() {
     const furrynovel = buildBookSource("furrynovel")
     const allSources = [...linpx, ...furrynovel]
     // 写入最终的 JSON 文件
-    saveJsonFile("dist", "linpx.json", allSources)
+    saveJsonFile("", "linpx.json", allSources)
 }
 
 function main() {
