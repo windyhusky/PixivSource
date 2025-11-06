@@ -87,7 +87,6 @@ function buildPixivMainChannel(): BookSource[] {
     const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUI = JSON.parse(readTextFile(path.join(sourcePath, "base.loginUI.json")))
     const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
-    const bookUrlPattern = readTextFile(path.join(sourcePath, "base.bookUrlPattern.txt")).trim()
     const variableComment = readTextFile(path.join(sourcePath, "base.variableComment.txt"))
     const jsLibContent = readTextFile(path.join(sourcePath, "base.jsLib.js"))
 
@@ -106,8 +105,6 @@ function buildPixivMainChannel(): BookSource[] {
     pixivJson[0].loginUrl = loginUrlContent
     pixivJson[0].loginUi = JSON.stringify(loginUI)
     pixivJson[0].loginCheckJs = loginCheckJsContent
-
-    pixivJson[0].bookUrlPattern = bookUrlPattern
     pixivJson[0].variableComment = variableComment
     pixivJson[0].jsLib = jsLibContent
 

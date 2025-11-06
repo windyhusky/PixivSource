@@ -5,11 +5,11 @@
         "bookSourceName": "🅿️ Pixiv 小说",
         "bookSourceType": 0,
         "bookSourceUrl": "https://www.pixiv.net/novel",
-        "bookUrlPattern": "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(show\\.php\\?id=|series/)?\\d+",
+        "bookUrlPattern": "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/(novel/(show\\.php\\?id=|series/)?|users?/)\\d+.*",
         "concurrentRate": "180/60000",
         "customOrder": 0,
         "enabled": true,
-        "enabledCookieJar": false,
+        "enabledCookieJar": true,
         "enabledExplore": true,
         "exploreUrl": "<JS CODE>",
         "header": "{\"referer\":\"https://www.pixiv.net\"}",
@@ -67,7 +67,7 @@
             "updateTime": "chapterInfo"
         },
         "searchUrl": "<JS CODE>",
-        "variableComment": "🚫 屏蔽作者(本地)：\n..",
+        "variableComment": "<base.variableComment.txt>",
         "weight": 0
     }
 ]
