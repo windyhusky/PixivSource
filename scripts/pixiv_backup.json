@@ -1,0 +1,75 @@
+[
+    {
+        "bookSourceComment": "<ReadMe.txt>",
+        "bookSourceGroup": "🔞 Pixiv",
+        "bookSourceName": "🅿️ Pixiv 小说备用",
+        "bookSourceType": 0,
+        "bookSourceUrl": "https://www.pixiv.net/novel",
+        "bookUrlPattern": "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/(novel/(show\\.php\\?id=|series/)?|users?/)\\d+.*",
+        "concurrentRate": "3/2000",
+        "customButton": false,
+        "customOrder": 1,
+        "enabled": false,
+        "enabledCookieJar": true,
+        "enabledExplore": false,
+        "eventListener": false,
+        "exploreUrl": "<JS CODE>",
+        "header": "{\"referer\":\"https://www.pixiv.net\"}",
+        "jsLib": "<JS CODE>",
+        "lastUpdateTime": 1750694400251,
+        "loginCheckJs": "<JS CODE>",
+        "loginUi": "<JS CODE>",
+        "loginUrl": "<JS CODE>",
+        "respondTime": 180000,
+        "ruleBookInfo": {
+            "author": "userName",
+            "canReName": "true",
+            "coverUrl": "coverUrl",
+            "init": "<JS CODE>",
+            "intro": "description",
+            "kind": "tags",
+            "lastChapter": "latestChapter",
+            "name": "title",
+            "tocUrl": "catalogUrl",
+            "wordCount": "textCount"
+        },
+        "ruleContent": {
+            "content": "<JS CODE>",
+            "imageStyle": "DEFAULT"
+        },
+        "ruleExplore": {
+            "author": "userName",
+            "bookList": "@js:<JS CODE>",
+            "bookUrl": "detailedUrl",
+            "coverUrl": "coverUrl",
+            "intro": "description",
+            "kind": "tags",
+            "lastChapter": "latestChapter",
+            "name": "title",
+            "wordCount": "textCount"
+        },
+        "ruleSearch": {
+            "author": "userName",
+            "bookList": "<JS CODE>",
+            "bookUrl": "detailedUrl",
+            "checkKeyWord": "测试页面",
+            "coverUrl": "coverUrl",
+            "intro": "description",
+            "kind": "tags",
+            "lastChapter": "latestChapter",
+            "name": "title",
+            "wordCount": "textCount"
+        },
+        "ruleToc": {
+            "chapterList": "<JS CODE>",
+            "chapterName": "title",
+            "chapterUrl": "chapterUrl",
+            "isPay": "",
+            "isVip": "",
+            "updateTime": "chapterInfo"
+        },
+        "searchUrl": "<JS CODE>",
+        "variableComment": "<base.variableComment.txt>",
+        "weight": 0
+    }
+]

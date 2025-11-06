@@ -79,21 +79,9 @@ function readTextFile(filePath: string): string {
 }
 
 function buildBookSource(sourceName): BookSource[] {
-    let templateJsonPath, sourcePath
-    switch (sourceName) {
-        case ("pixivMain"):
-            templateJsonPath = "scripts/pixiv.json"
-            sourcePath = "./pixiv"
-            break
-        case ("pixivBackup"):
-            templateJsonPath = "scripts/pixiv.json"
-            sourcePath = "./pixiv_backup"
-            break
-        case ("pixivIllust"):
-            templateJsonPath = "scripts/pixiv_illust.json"
-            sourcePath = "./pixiv_illust"
-            break
-    }
+    let templateJsonPath = `scripts/${sourceName}.json`
+    // let sourcePath = `book/${sourceName}`
+    let sourcePath = sourceName
 
     // 读取基础模板
     const BookSourceJson: BookSource[] = JSON.parse(readTextFile(templateJsonPath))
@@ -139,17 +127,17 @@ function buildBookSource(sourceName): BookSource[] {
 
 
     switch (sourceName) {
-        case ("pixivMain"):
+        case ("pixiv"):
             BookSourceJson[0].customOrder = 0
             BookSourceJson[0].enabled = true
             BookSourceJson[0].enabledExplore = true
             break
-        case ("pixivBackup"):
+        case ("pixiv_backup"):
             BookSourceJson[0].customOrder = 1
             BookSourceJson[0].enabled = false
             BookSourceJson[0].enabledExplore = false
             break
-        case ("pixivIllust"):
+        case ("pixiv_illust"):
             BookSourceJson[0].customOrder = 2
             BookSourceJson[0].enabled = true
             BookSourceJson[0].enabledExplore = true
@@ -160,9 +148,9 @@ function buildBookSource(sourceName): BookSource[] {
 
 function main() {
     // 组合 Pixiv 书源
-    const pixivMain = buildBookSource("pixivMain")
-    const pixivBackup = buildBookSource("pixivBackup")
-    const pixivIllust = buildBookSource("pixivIllust")
+    const pixivMain = buildBookSource("pixiv")
+    const pixivBackup = buildBookSource("pixiv_backup")
+    const pixivIllust = buildBookSource("pixiv_illust")
     const allSources = [...pixivMain, ...pixivBackup, ...pixivIllust]
 
     // 写入最终的 JSON 文件
