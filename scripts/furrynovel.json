@@ -1,0 +1,73 @@
+[
+    {
+        "bookSourceComment": "<ReadMe.txt>",
+        "bookSourceGroup": "🔞 Pixiv,🐲 Furry",
+        "bookSourceName": "🐯 兽人控小说站",
+        "bookSourceType": 0,
+        "bookSourceUrl": "https://furrynovel.com",
+        "bookUrlPattern": "(https?://)?(www\\.|api\\.)?furrynovel\\.com(/api)?/(zh|en|ja)/novel/\\d+(/chapter/d+)?",
+        "concurrentRate": "3/2000",
+        "customButton": false,
+        "customOrder": 4,
+        "enabled": true,
+        "enabledCookieJar": true,
+        "enabledExplore": true,
+        "eventListener": false,
+        "exploreUrl": "<JS CODE>",
+        "header": "{\"referer\": \"https://furrynovel.com/\"}",
+        "jsLib": "<JS CODE>",
+        "lastUpdateTime": 1750694400251,
+        "loginCheckJs": "<JS CODE>",
+        "loginUi": "<JS CODE>",
+        "loginUrl": "<JS CODE>",
+        "respondTime": 180000,
+        "ruleBookInfo": {
+            "author": "userName",
+            "canReName": "true",
+            "coverUrl": "coverUrl",
+            "init": "<JS CODE>",
+            "intro": "description",
+            "kind": "tags",
+            "lastChapter": "latestChapter",
+            "name": "title",
+            "tocUrl": "catalogUrl",
+            "wordCount": "textCount"
+        },
+        "ruleContent": {
+            "content": "<JS CODE>",
+            "imageStyle": "DEFAULT"
+        },
+        "ruleExplore": {
+            "author": "userName",
+            "bookList": "@js:<JS CODE>",
+            "bookUrl": "detailedUrl",
+            "coverUrl": "coverUrl",
+            "intro": "description",
+            "kind": "tags",
+            "lastChapter": "latestChapter",
+            "name": "title",
+            "wordCount": "textCount"
+        },
+        "ruleSearch": {
+            "author": "userName",
+            "bookList": "<JS CODE>",
+            "bookUrl": "detailedUrl",
+            "checkKeyWord": "测试页面",
+            "coverUrl": "coverUrl",
+            "intro": "description",
+            "kind": "tags",
+            "lastChapter": "latestChapter",
+            "name": "title",
+            "wordCount": "textCount"
+        },
+        "ruleToc": {
+            "chapterList": "<JS CODE>",
+            "chapterName": "title",
+            "chapterUrl": "chapterUrl",
+            "updateTime": "chapterInfo"
+        },
+        "searchUrl": "<JS CODE>",
+        "variableComment": "<base.variableComment.txt>",
+        "weight": 0
+    }
+]
