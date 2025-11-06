@@ -1,14 +1,14 @@
 [
     {
         "bookSourceComment": "<ReadMe.txt>",
-        "bookSourceGroup": "🔞 Pixiv",
-        "bookSourceName": "🅿️ Pixiv 小说",
-        "bookSourceType": 0,
-        "bookSourceUrl": "https://www.pixiv.net/novel",
-        "bookUrlPattern": "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/(novel/(show\\.php\\?id=|series/)?|users?/)\\d+.*",
+        "bookSourceGroup": "🔞 Pixiv 漫画",
+        "bookSourceName": "🅿️ Pixiv 漫画",
+        "bookSourceType": 2,
+        "bookSourceUrl": "https://www.pixiv.net/manga",
+        "bookUrlPattern": "(https?://)?(www\\.)?pixiv\\.net/((artworks|user/\\d+/series)|ajax/(illust|series))/\\d+",
         "concurrentRate": "3/2000",
         "customButton": false,
-        "customOrder": 0,
+        "customOrder": 2,
         "enabled": true,
         "enabledCookieJar": true,
         "enabledExplore": true,
@@ -30,12 +30,11 @@
             "kind": "tags",
             "lastChapter": "latestChapter",
             "name": "title",
-            "tocUrl": "catalogUrl",
-            "wordCount": "textCount"
+            "tocUrl": "catalogUrl"
         },
         "ruleContent": {
             "content": "<JS CODE>",
-            "imageStyle": "DEFAULT"
+            "imageStyle": "FULL"
         },
         "ruleExplore": {
             "author": "userName",
@@ -46,26 +45,24 @@
             "kind": "tags",
             "lastChapter": "latestChapter",
             "name": "title",
-            "wordCount": "textCount"
+            "wordCount": ""
         },
         "ruleSearch": {
             "author": "userName",
             "bookList": "<JS CODE>",
             "bookUrl": "detailedUrl",
-            "checkKeyWord": "测试页面",
+            "checkKeyWord": "测试",
             "coverUrl": "coverUrl",
             "intro": "description",
             "kind": "tags",
             "lastChapter": "latestChapter",
             "name": "title",
-            "wordCount": "textCount"
+            "wordCount": ""
         },
         "ruleToc": {
             "chapterList": "<JS CODE>",
             "chapterName": "title",
             "chapterUrl": "chapterUrl",
-            "isPay": "",
-            "isVip": "",
             "updateTime": "chapterInfo"
         },
         "searchUrl": "<JS CODE>",
