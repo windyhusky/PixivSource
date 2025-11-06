@@ -82,15 +82,15 @@ function buildBookSource(sourceName): BookSource[] {
     let templateJsonPath, sourcePath
     switch (sourceName) {
         case ("pixivMain"):
-            templateJsonPath = "scripts/pixiv_template.json"
+            templateJsonPath = "scripts/pixiv.json"
             sourcePath = "./pixiv"
             break
         case ("pixivBackup"):
-            templateJsonPath = "scripts/pixiv_template.json"
+            templateJsonPath = "scripts/pixiv.json"
             sourcePath = "./pixiv_backup"
             break
         case ("pixivIllust"):
-            templateJsonPath = "scripts/pixiv_illust_template.json"
+            templateJsonPath = "scripts/pixiv_illust.json"
             sourcePath = "./pixiv_illust"
             break
     }
