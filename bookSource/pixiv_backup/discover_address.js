@@ -1,4 +1,3 @@
-@js:
 let SHOW_R18_GENRE, SHOW_GENERAL_NEW, SHOW_GENERAL_RANK, SHOW_GENERAL_GENRE
 try {
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))

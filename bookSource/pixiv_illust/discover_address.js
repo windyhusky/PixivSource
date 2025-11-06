@@ -1,4 +1,3 @@
-@js:
 let SHOW_GENERAL_NEW, SHOW_GENERAL_RANK
 try {
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))

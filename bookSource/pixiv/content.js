@@ -1,4 +1,3 @@
-@js:
 var util = objParse(String(java.get("util")))
 let emoji = {
     "normal": 101, "surprise": 102, "series": 103, "heaven": 104, "happy": 105,

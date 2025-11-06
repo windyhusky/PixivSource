@@ -1,4 +1,3 @@
-@js:
 let keyword = String(source.getVariable()).replace("#", "")
 let key = keyword.split(/[ 　,，、\n]/)
 if (key.includes("")) {

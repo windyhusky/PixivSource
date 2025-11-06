@@ -1,4 +1,3 @@
-@js:
 var util = objParse(String(java.get("util")))
 var seriesSet = new Set();  // 存储seriesID
 

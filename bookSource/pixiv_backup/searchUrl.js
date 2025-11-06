@@ -1,4 +1,3 @@
-@js:
 java.put("key", key)
 java.put("page", page)
 let keyword = key.split(" ")

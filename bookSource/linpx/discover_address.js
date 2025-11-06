@@ -1,4 +1,3 @@
-@js:
 li = [
     {"💯 推荐": "https://api.furrynovel.ink/fav/user/cache"},
     {"🆕 最新": "https://api.furrynovel.ink/pixiv/novels/recent/cache?page={{page}}"},

@@ -1,4 +1,3 @@
-@js:
 var util = objParse(String(java.get("util")))
 
 function objParse(obj) {
