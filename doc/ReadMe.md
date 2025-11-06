@@ -1,4 +1,11 @@
-# 开源阅读简介 & 使用指南
+<div align="center">
+<img width="125" height="125" src="../doc/pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
+
+### [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+</div>
+
+## 开源阅读简介 & 使用指南
 
 ![img](https://telegra.ph/file/baff78c0816cac595ba8a.jpg)
 
