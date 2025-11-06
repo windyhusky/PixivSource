@@ -83,14 +83,12 @@ function buildPixivMainChannel(): BookSource[] {
     const sourcePath = "./pixiv"
 
     // 读取各个构建后文件内容
-    const readme = readTextFile(`${sourcePath}/ReadMe.txt`)
+    const readme = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
-    const loginUI = JSON.parse(readTextFile(`${sourcePath}/base.loginUI.json`))
-
+    const loginUI = JSON.parse(readTextFile(path.join(sourcePath, "base.loginUI.json")))
     const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
-    const bookUrlPattern = readTextFile(`${sourcePath}/base.bookUrlPattern.txt`).trim()
-
-    const variableComment = readTextFile(`${sourcePath}/base.variableComment.txt`)
+    const bookUrlPattern = readTextFile(path.join(sourcePath, "base.bookUrlPattern.txt")).trim()
+    const variableComment = readTextFile(path.join(sourcePath, "base.variableComment.txt"))
     const jsLibContent = readTextFile(path.join(sourcePath, "base.jsLib.js"))
 
     const searchUrlContent = readTextFile(path.join(sourcePath, "searchUrl.js"))
