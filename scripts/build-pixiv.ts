@@ -82,38 +82,36 @@ function buildPixivMainChannel(): BookSource[] {
     const pixivJson: BookSource[] = JSON.parse(
         readTextFile("scripts/pixiv_template.json"),
     );
-
-    const pixivRoot = "projects/pixiv";
-    const distRoot = path.join(pixivRoot, "dist");
+    const sourcePath = "./pixiv"
 
     // 读取各个构建后的JS文件内容
-    const jsLibContent = readTextFile(path.join(distRoot, "base.jsLib.js"));
+    const jsLibContent = readTextFile(path.join(sourcePath, "base.jsLib.js"));
     const loginUrlContent = readTextFile(
-        path.join(distRoot, "base.loginUrl.js"),
+        path.join(sourcePath, "base.loginUrl.js"),
     );
     const loginCheckJsContent = readTextFile(
-        path.join(distRoot, "base.loginCheckJs.js"),
+        path.join(sourcePath, "base.loginCheckJs.js"),
     );
-    const catalogContent = readTextFile(path.join(distRoot, "catalog.js"));
-    const contentContent = readTextFile(path.join(distRoot, "content.js"));
-    const detailContent = readTextFile(path.join(distRoot, "detail.js"));
+    const catalogContent = readTextFile(path.join(sourcePath, "catalog.js"));
+    const contentContent = readTextFile(path.join(sourcePath, "content.js"));
+    const detailContent = readTextFile(path.join(sourcePath, "detail.js"));
     const discoverAddressContent = readTextFile(
-        path.join(distRoot, "discover_address.js"),
+        path.join(sourcePath, "discover_address.js"),
     );
-    const discoverContent = readTextFile(path.join(distRoot, "discover.js"));
-    const searchContent = readTextFile(path.join(distRoot, "search.js"));
-    const searchUrlContent = readTextFile(path.join(distRoot, "searchUrl.js"));
+    const discoverContent = readTextFile(path.join(sourcePath, "discover.js"));
+    const searchContent = readTextFile(path.join(sourcePath, "search.js"));
+    const searchUrlContent = readTextFile(path.join(sourcePath, "searchUrl.js"));
 
     // 读取其他静态文件
-    const readme = readTextFile(`${pixivRoot}/src/ReadMe.txt`);
+    const readme = readTextFile(`${sourcePath}/ReadMe.txt`);
     const bookUrlPattern = readTextFile(
-        `${pixivRoot}/src/base.bookUrlPattern.txt`,
+        `${sourcePath}/base.bookUrlPattern.txt`,
     ).trim();
     const loginUI = JSON.parse(
-        readTextFile(`${pixivRoot}/src/base.loginUI.json`),
+        readTextFile(`${sourcePath}/base.loginUI.json`),
     );
     const variableComment = readTextFile(
-        `${pixivRoot}/src/base.variableComment.txt`,
+        `${sourcePath}/base.variableComment.txt`,
     );
 
     // 更新主书源
@@ -156,8 +154,5 @@ function main() {
     console.log(`✅ ${outputPath} 生成成功`);
 }
 
-if (require.main === module) {
-    main();
-}
 
-export { main };
+main()
