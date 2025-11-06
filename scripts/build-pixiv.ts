@@ -159,13 +159,11 @@ function buildBookSource(sourceName): BookSource[] {
 }
 
 function main() {
-    // 组合pixiv主书源
-    const pixivMain = buildBookSource("PixivMain")
-    const pixivBackup = buildBookSource("PixivBackup")
-    // 加载其他书源
-    const otherSources = JSON.parse(readTextFile("scripts/pixiv_other_sources.json"))
-    // 与其他书源合并
-    const allSources = [...pixivMain, ...otherSources]
+    // 组合 Pixiv 书源
+    const pixivMain = buildBookSource("pixivMain")
+    const pixivBackup = buildBookSource("pixivBackup")
+    const pixivIllust = buildBookSource("pixivIllust")
+    const allSources = [...pixivMain, ...pixivBackup, ...pixivIllust]
 
     // 写入最终的 JSON 文件
     if (!fs.existsSync("dist")) {
