@@ -16,7 +16,7 @@ interface BookSource {
     exploreUrl: string;
     header: string;
     jsLib: string;
-    lastUpdateTime: number;
+    lastUpdateTime: number | string;
     loginCheckJs: string;
     loginUi: string;
     loginUrl: string;
@@ -74,18 +74,34 @@ interface BookSource {
 }
 
 function readTextFile(filePath: string): string {
+
     return fs.readFileSync(filePath, "utf-8")
 }
 
-function buildPixivMainChannel(): BookSource[] {
-    // 读取基础模板
-    const pixivJson: BookSource[] = JSON.parse(readTextFile("scripts/pixiv_template.json"))
-    const sourcePath = "./pixiv"
+function buildBookSource(sourceName): BookSource[] {
+    let templateJsonPath, sourcePath
+    switch (sourceName) {
+        case ("PixivMain"):
+            templateJsonPath = "scripts/pixiv_template.json"
+            sourcePath = "./pixiv"
+            break
+        case ("PixivBackup"):
+            templateJsonPath = "scripts/pixiv_template.json"
+            sourcePath = "./pixiv_backup"
+            break
+        case ("pixivIllust"):
+            templateJsonPath = "scripts/pixiv_template.json"
+            sourcePath = "./pixiv_illust"
+            break
+    }
 
+    // 读取基础模板
+    const BookSourceJson: BookSource[] = JSON.parse(readTextFile(templateJsonPath))
+    
     // 读取各个构建后文件内容
     const readme = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
-    const loginUI = JSON.parse(readTextFile(path.join(sourcePath, "base.loginUI.json")))
+    const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
     const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
     const variableComment = readTextFile(path.join(sourcePath, "base.variableComment.txt"))
     const jsLibContent = readTextFile(path.join(sourcePath, "base.jsLib.js"))
@@ -101,30 +117,52 @@ function buildPixivMainChannel(): BookSource[] {
     const contentContent = readTextFile(path.join(sourcePath, "content.js"))
 
     // 更新主书源
-    pixivJson[0].bookSourceComment = readme
-    pixivJson[0].loginUrl = loginUrlContent
-    pixivJson[0].loginUi = JSON.stringify(loginUI)
-    pixivJson[0].loginCheckJs = loginCheckJsContent
-    pixivJson[0].variableComment = variableComment
-    pixivJson[0].jsLib = jsLibContent
+    BookSourceJson[0].bookSourceComment = readme
+    BookSourceJson[0].loginUrl = loginUrlContent
+    BookSourceJson[0].loginUi = loginUI
+    BookSourceJson[0].loginCheckJs = loginCheckJsContent
+    BookSourceJson[0].variableComment = variableComment
+    BookSourceJson[0].jsLib = jsLibContent
 
-    pixivJson[0].searchUrl = `@js:\n${searchUrlContent}`
-    pixivJson[0].ruleSearch.bookList = `@js:\n${searchContent}`
+    BookSourceJson[0].searchUrl = `@js:\n${searchUrlContent}`
+    BookSourceJson[0].ruleSearch.bookList = `@js:\n${searchContent}`
 
-    pixivJson[0].exploreUrl = `@js:\n${discoverAddressContent}`
-    pixivJson[0].ruleExplore.bookList = `@js:\n${discoverContent}`
+    BookSourceJson[0].exploreUrl = `@js:\n${discoverAddressContent}`
+    BookSourceJson[0].ruleExplore.bookList = `@js:\n${discoverContent}`
 
-    pixivJson[0].ruleBookInfo.init = `@js:\n${detailContent}`
-    pixivJson[0].ruleToc.chapterList = `@js:\n${catalogContent}`
-    pixivJson[0].ruleContent.content = `@js:\n${contentContent}`
+    BookSourceJson[0].ruleBookInfo.init = `@js:\n${detailContent}`
+    BookSourceJson[0].ruleToc.chapterList = `@js:\n${catalogContent}`
+    BookSourceJson[0].ruleContent.content = `@js:\n${contentContent}`
 
-    pixivJson[0].lastUpdateTime = Date.now()
-    return pixivJson
+
+    BookSourceJson[0].lastUpdateTime = `${String(Date.now()).slice(0, 10)}251`
+    console.log(`${String(Date.now()).slice(0, 10)}251`)
+
+
+    switch (sourceName) {
+        case ("PixivMain"):
+            BookSourceJson[0].customOrder = 0
+            BookSourceJson[0].enabled = true
+            BookSourceJson[0].enabledExplore = true
+            break
+        case ("PixivBackup"):
+            BookSourceJson[0].customOrder = 1
+            BookSourceJson[0].enabled = false
+            BookSourceJson[0].enabledExplore = false
+            break
+        case ("PixivIllust"):
+            BookSourceJson[0].customOrder = 2
+            BookSourceJson[0].enabled = true
+            BookSourceJson[0].enabledExplore = true
+            break
+    }
+    return BookSourceJson
 }
 
 function main() {
     // 组合pixiv主书源
-    const pixivMain = buildPixivMainChannel()
+    const pixivMain = buildBookSource("PixivMain")
+    const pixivBackup = buildBookSource("PixivBackup")
     // 加载其他书源
     const otherSources = JSON.parse(readTextFile("scripts/pixiv_other_sources.json"))
     // 与其他书源合并
