@@ -9,7 +9,7 @@ Pixiv 小说（更新📆：2025-10-31）
 添加网址：✅小说✅系列✅作者
 订阅用法：点击订阅源打开小说/系列小说，【刷新】，点击【加入书架】按钮，添加到书架
 
-书源发布：兽人阅读频道 https://t.me/FurryReading
+书源发布：Pixiv 书源频道 https://t.me/PixivSource
 项目地址：https://github.com/windyhusky/PixivSource
 使用教程：https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md
 

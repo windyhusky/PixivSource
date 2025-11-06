@@ -7,7 +7,7 @@
 添加网址：✅插画链接✅漫画目录
 订阅用法：点击订阅源打开插画/漫画目录，【刷新】，点击【加入书架】按钮，添加到书架
 
-书源发布：兽人阅读频道 https://t.me/FurryReading
+书源发布：Pixiv 书源频道 https://t.me/PixivSource
 项目地址：https://github.com/windyhusky/PixivSource
 使用教程：https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md
 

@@ -7,7 +7,8 @@
 添加网址：✅兽人控小说站链接
 订阅用法：点击订阅源打开小说/系列小说，点击【加入书架】按钮，添加小说到书架
 
-书源发布：兽人阅读频道 https://t.me/FurryReading
+书源发布：Pixiv 书源频道 https://t.me/PixivSource
+兽人阅读频道 https://t.me/FurryReading
 项目地址：https://github.com/windyhusky/PixivSource
 使用教程：https://github.com/windyhusky/PixivSource/blob/main/doc/FurryNovel.md
 

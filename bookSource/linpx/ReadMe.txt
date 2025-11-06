@@ -9,7 +9,8 @@
 订阅用法：点击订阅源打开小说，点击【添加到书架】按钮添加小说到书架
 温馨提示：⚠️Linpx 搜索暂时不支持系列小说名称，添加系列小说后，无法再次通过搜索获取并更新目录
 
-书源发布：兽人阅读频道 https://t.me/FurryReading
+书源发布：Pixiv 书源频道 https://t.me/PixivSource
+兽人阅读频道 https://t.me/FurryReading
 项目地址：https://github.com/windyhusky/PixivSource
 使用教程：https://github.com/windyhusky/PixivSource/blob/main/doc/Linpx.md
 
