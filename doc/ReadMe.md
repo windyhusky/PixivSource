@@ -7,7 +7,7 @@
 
 ## 开源阅读简介 & 使用指南
 
-![img](https://telegra.ph/file/baff78c0816cac595ba8a.jpg)
+[comment]: <> (![img]&#40;https://telegra.ph/file/baff78c0816cac595ba8a.jpg&#41;)
 
 ## 1.阅读是什么？
 阅读指 [**Legado / 开源阅读**](https://github.com/gedoor/legado) 这一开源阅读软件。因其源代码公开，为与其他阅读软件区分，称其为**开源阅读**。
