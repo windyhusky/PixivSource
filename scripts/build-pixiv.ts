@@ -125,24 +125,18 @@ function buildBookSource(sourceName): BookSource[] {
     BookSourceJson[0].lastUpdateTime = `${String(Date.now()).slice(0, 10)}251`
     // console.log(`${String(Date.now()).slice(0, 10)}251`)
 
-
-    switch (sourceName) {
-        case ("pixiv"):
-            BookSourceJson[0].customOrder = 0
-            BookSourceJson[0].enabled = true
-            BookSourceJson[0].enabledExplore = true
-            break
-        case ("pixiv_backup"):
-            BookSourceJson[0].customOrder = 1
-            BookSourceJson[0].enabled = false
-            BookSourceJson[0].enabledExplore = false
-            break
-        case ("pixiv_illust"):
-            BookSourceJson[0].customOrder = 2
-            BookSourceJson[0].enabled = true
-            BookSourceJson[0].enabledExplore = true
-            break
+    if (sourceName === "pixiv") {
+        BookSourceJson[0].customOrder = 0
+    } else if (sourceName === "pixiv_backup") {
+        BookSourceJson[0].customOrder = 1
+    } else if (sourceName === "pixiv_illust") {
+        BookSourceJson[0].customOrder = 2
+    } else if (sourceName === "linpx") {
+        BookSourceJson[0].customOrder = 3
+    } else if (sourceName === "furrynovel") {
+        BookSourceJson[0].customOrder = 4
     }
+
     return BookSourceJson
 }
 
