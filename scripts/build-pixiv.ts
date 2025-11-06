@@ -81,16 +81,16 @@ function readTextFile(filePath: string): string {
 function buildBookSource(sourceName): BookSource[] {
     let templateJsonPath, sourcePath
     switch (sourceName) {
-        case ("PixivMain"):
+        case ("pixivMain"):
             templateJsonPath = "scripts/pixiv_template.json"
             sourcePath = "./pixiv"
             break
-        case ("PixivBackup"):
+        case ("pixivBackup"):
             templateJsonPath = "scripts/pixiv_template.json"
             sourcePath = "./pixiv_backup"
             break
         case ("pixivIllust"):
-            templateJsonPath = "scripts/pixiv_template.json"
+            templateJsonPath = "scripts/pixiv_illust_template.json"
             sourcePath = "./pixiv_illust"
             break
     }
@@ -135,21 +135,21 @@ function buildBookSource(sourceName): BookSource[] {
     BookSourceJson[0].ruleContent.content = `@js:\n${contentContent}`
 
     BookSourceJson[0].lastUpdateTime = `${String(Date.now()).slice(0, 10)}251`
-    console.log(`${String(Date.now()).slice(0, 10)}251`)
+    // console.log(`${String(Date.now()).slice(0, 10)}251`)
 
 
     switch (sourceName) {
-        case ("PixivMain"):
+        case ("pixivMain"):
             BookSourceJson[0].customOrder = 0
             BookSourceJson[0].enabled = true
             BookSourceJson[0].enabledExplore = true
             break
-        case ("PixivBackup"):
+        case ("pixivBackup"):
             BookSourceJson[0].customOrder = 1
             BookSourceJson[0].enabled = false
             BookSourceJson[0].enabledExplore = false
             break
-        case ("PixivIllust"):
+        case ("pixivIllust"):
             BookSourceJson[0].customOrder = 2
             BookSourceJson[0].enabled = true
             BookSourceJson[0].enabledExplore = true
