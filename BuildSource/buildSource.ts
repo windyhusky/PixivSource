@@ -90,9 +90,8 @@ function saveJsonFile(folder, fileName, data) {
 }
 
 function buildBookSource(sourceName): BookSource[] {
-    let templateJsonPath = `scripts/${sourceName}.json`
-    // let sourcePath = `bookSource/${sourceName}`
-    let sourcePath = sourceName
+    let sourcePath = `bookSource/${sourceName}`
+    let templateJsonPath = `BuildSource/${sourceName}.json`
 
     // 读取基础模板
     const BookSourceJson: BookSource[] = JSON.parse(readTextFile(templateJsonPath))
@@ -162,7 +161,7 @@ function buildPixivSource() {
 }
 
 function buildLinpxSource() {
-    // 组合 Pixiv 书源
+    // 组合 Linpx 书源
     const linpx = buildBookSource("linpx")
     const furrynovel = buildBookSource("furrynovel")
     const allSources = [...linpx, ...furrynovel]
