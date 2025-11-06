@@ -74,8 +74,8 @@ interface BookSource {
 }
 
 function readTextFile(filePath: string): string {
-
-    return fs.readFileSync(filePath, "utf-8")
+    if (fs.existsSync(filePath)) return fs.readFileSync(filePath, "utf-8")
+    else return ""
 }
 
 function buildBookSource(sourceName): BookSource[] {
@@ -97,7 +97,7 @@ function buildBookSource(sourceName): BookSource[] {
 
     // 读取基础模板
     const BookSourceJson: BookSource[] = JSON.parse(readTextFile(templateJsonPath))
-    
+
     // 读取各个构建后文件内容
     const readme = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
@@ -133,7 +133,6 @@ function buildBookSource(sourceName): BookSource[] {
     BookSourceJson[0].ruleBookInfo.init = `@js:\n${detailContent}`
     BookSourceJson[0].ruleToc.chapterList = `@js:\n${catalogContent}`
     BookSourceJson[0].ruleContent.content = `@js:\n${contentContent}`
-
 
     BookSourceJson[0].lastUpdateTime = `${String(Date.now()).slice(0, 10)}251`
     console.log(`${String(Date.now()).slice(0, 10)}251`)
