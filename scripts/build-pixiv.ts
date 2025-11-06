@@ -140,7 +140,7 @@ function buildBookSource(sourceName): BookSource[] {
     return BookSourceJson
 }
 
-function main() {
+function buildPixivSource() {
     // 组合 Pixiv 书源
     const pixivMain = buildBookSource("pixiv")
     const pixivBackup = buildBookSource("pixiv_backup")
@@ -156,5 +156,24 @@ function main() {
     console.log(`✅ ${outputPath} 生成成功`)
 }
 
+function buildLinpxSource() {
+    // 组合 Pixiv 书源
+    const linpx = buildBookSource("linpx")
+    const furrynovel = buildBookSource("furrynovel")
+    const allSources = [...linpx, ...furrynovel]
+
+    // 写入最终的 JSON 文件
+    if (!fs.existsSync("dist")) {
+        fs.mkdirSync("dist")
+    }
+    const outputPath = path.join("dist", "linpx.json")
+    fs.writeFileSync(outputPath, JSON.stringify(allSources, null, 4), "utf-8")
+    console.log(`✅ ${outputPath} 生成成功`)
+}
+
+function main() {
+    buildPixivSource()
+    buildLinpxSource()
+}
 
 main()
