@@ -18,7 +18,7 @@ interface BookSource {
     exploreUrl: string
     header: string
     jsLib: string
-    lastUpdateTime: number | string
+    lastUpdateTime: number
     loginCheckJs: string
     loginUi: string
     loginUrl: string
@@ -77,7 +77,8 @@ interface BookSource {
 
 function readTextFile(filePath: string): string {
     if (fs.existsSync(filePath)) {
-        return fs.readFileSync(filePath, "utf-8").trim()
+        let data = fs.readFileSync(filePath, "utf-8").trim()
+        return data.split("\r\n").join("\n")
     }
     return ""
 }
@@ -126,9 +127,9 @@ function buildBookSource(sourceName:string): BookSource {
     BookSource.loginUi = loginUI
     BookSource.loginCheckJs = loginCheckJsContent
 
-    BookSource.bookUrlPattern = bookUrlPattern.split("\r\n")[1]
+    BookSource.bookUrlPattern = bookUrlPattern.split("\n")[1]
     BookSource.header = header
-    BookSource.variableComment = variableComment
+    BookSource.variableComment = `${variableComment}\n\n`
     BookSource.concurrentRate = "3/2000"
     BookSource.jsLib = jsLibContent
 
