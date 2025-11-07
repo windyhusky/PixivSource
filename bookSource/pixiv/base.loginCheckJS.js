@@ -107,6 +107,13 @@ function publicFunc() {
     u.settings = settings
     putInCache("pixivSettings", settings)  // 设置写入缓存
 
+    u.environment = {}
+    u.environment.IS_SOURCEREAD = isSourceRead()
+    u.environment.IS_LEGADO = !isSourceRead()
+    u.environment.IS_LYC_BRUNCH = isLegadoLYC()
+    u.environment.IS_BACKUP_SOURCE = isBackupSource()
+    putInCache("sourceEnvironment", u.environment)  // 设置写入缓存
+
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
             func()
