@@ -516,7 +516,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 
 ## 杂类
-<details><summary> ✈️ 社群链接 </summary>
+<details><summary> ✈ 社群链接 </summary>
 
 #### Telegram 频道 & 群组
 | Telegram 频道 & 群组 | 备注 |
