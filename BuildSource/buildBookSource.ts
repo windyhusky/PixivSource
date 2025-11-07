@@ -94,10 +94,10 @@ function saveJsonFile(folder:string, fileName:string, data:any):void {
 
 function buildBookSource(sourceName:string): BookSource {
     let sourcePath = `bookSource/${sourceName}`
-    let templateJsonPath = `BuildSource/${sourceName}.json`
+    let templatePath = `BuildSource/${sourceName}.json`
 
     // 读取基础模板
-    const BookSource: BookSource = JSON.parse(readTextFile(templateJsonPath))[0]
+    const BookSource: BookSource = JSON.parse(readTextFile(templatePath))[0]
 
     // 读取各个构建后文件内容
     const readme = readTextFile(path.join(sourcePath, "ReadMe.txt"))
@@ -145,13 +145,13 @@ function buildBookSource(sourceName:string): BookSource {
 
     if (sourceName === "pixiv") {
         BookSource.customOrder = 0
-    } else if (sourceName === "pixiv_backup") {
+    } else if (sourceName === "pixivBackup") {
         BookSource.customOrder = 1
-    } else if (sourceName === "pixiv_illust") {
+    } else if (sourceName === "pixivIllust") {
         BookSource.customOrder = 2
     } else if (sourceName === "linpx") {
         BookSource.customOrder = 3
-    } else if (sourceName === "furrynovel") {
+    } else if (sourceName === "furryNovel") {
         BookSource.customOrder = 4
     }
 
@@ -161,8 +161,8 @@ function buildBookSource(sourceName:string): BookSource {
 function buildPixivSource() {
     // 组合 Pixiv 书源
     const pixivMain = buildBookSource("pixiv")
-    const pixivBackup = buildBookSource("pixiv_backup")
-    const pixivIllust = buildBookSource("pixiv_illust")
+    const pixivBackup = buildBookSource("pixivBackup")
+    const pixivIllust = buildBookSource("pixivIllust")
     const allSources = [pixivMain, pixivBackup, pixivIllust]
     // 写入最终的 JSON 文件
     saveJsonFile("", "pixiv.json", allSources)
@@ -171,8 +171,8 @@ function buildPixivSource() {
 function buildLinpxSource() {
     // 组合 Linpx 书源
     const linpx = buildBookSource("linpx")
-    const furrynovel = buildBookSource("furrynovel")
-    const allSources = [linpx, furrynovel]
+    const furryNovel = buildBookSource("furryNovel")
+    const allSources = [linpx, furryNovel]
     // 写入最终的 JSON 文件
     saveJsonFile("", "linpx.json", allSources)
 }
