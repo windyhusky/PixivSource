@@ -4,7 +4,8 @@ const path = require("path")
 
 function readTextFile(filePath) {
     if (fs.existsSync(filePath)) {
-        return fs.readFileSync(filePath, "utf-8").trim()
+        let data = fs.readFileSync(filePath, "utf-8").trim()
+        return data.split("\r\n").join("\n")
     }
     return ""
 }
@@ -15,7 +16,7 @@ function saveJsonFile(folder, fileName, data) {
     }
     const outputPath = path.join(folder, fileName)
     data = JSON.stringify(data, null, 4)
-    fs.writeFileSync(outputPath, data, "utf8")
+    fs.writeFileSync(outputPath, data, "utf-8",)
     console.log(`✅  ${outputPath} 生成成功`)
 }
 
@@ -28,7 +29,8 @@ function buildBookSource(sourceName) {
 
     // 读取各个构建后文件内容
     const bookSourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
-    const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
+    const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
+    const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.txt"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
     const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
 
@@ -49,7 +51,7 @@ function buildBookSource(sourceName) {
 
     // 更新书源
     BookSource.bookSourceComment = bookSourceComment
-    BookSource.loginUrl = loginUrlContent
+    BookSource.loginUrl = loginUrl? loginUrl : loginUrlContent
     BookSource.loginUi = loginUI
     BookSource.loginCheckJs = loginCheckJsContent
 
@@ -69,7 +71,7 @@ function buildBookSource(sourceName) {
     BookSource.ruleToc.chapterList = `@js:\n${catalogContent}`
     BookSource.ruleContent.content = `@js:\n${contentContent}`
 
-    BookSource.lastUpdateTime = `${String(Date.now()).slice(0, 10)}251`
+    BookSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
     // console.log(`${String(Date.now()).slice(0, 10)}251`)
 
     if (sourceName === "pixiv") {
