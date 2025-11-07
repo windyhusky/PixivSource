@@ -4,7 +4,7 @@ const path = require("path")
 
 function readTextFile(filePath) {
     if (fs.existsSync(filePath)) {
-        return fs.readFileSync(filePath, "utf-8")
+        return fs.readFileSync(filePath, "utf-8").trim()
     }
     return ""
 }
@@ -27,12 +27,13 @@ function buildBookSource(sourceName) {
     const BookSource = JSON.parse(readTextFile(templatePath))[0]
 
     // 读取各个构建后文件内容
-    const readme = readTextFile(path.join(sourcePath, "ReadMe.txt"))
+    const bookSourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
     const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
 
     const bookUrlPattern = readTextFile(path.join(sourcePath, "base.bookUrlPattern.txt"))
+    const header = readTextFile(path.join(sourcePath, "base.header.json"))
     const variableComment = readTextFile(path.join(sourcePath, "base.variableComment.txt"))
     const jsLibContent = readTextFile(path.join(sourcePath, "base.jsLib.js"))
 
@@ -47,13 +48,13 @@ function buildBookSource(sourceName) {
     const contentContent = readTextFile(path.join(sourcePath, "content.js"))
 
     // 更新书源
-    BookSource.bookSourceComment = readme
+    BookSource.bookSourceComment = bookSourceComment
     BookSource.loginUrl = loginUrlContent
     BookSource.loginUi = loginUI
     BookSource.loginCheckJs = loginCheckJsContent
 
     BookSource.bookUrlPattern = bookUrlPattern.split("\r\n")[1]
-    // console.log(BookSource.bookUrlPattern)
+    BookSource.header = header
     BookSource.variableComment = variableComment
     BookSource.jsLib = jsLibContent
 
