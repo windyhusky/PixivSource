@@ -82,12 +82,13 @@ function readTextFile(filePath: string): string {
     return ""
 }
 
-function saveJsonFile(folder, fileName, data) {
+function saveJsonFile(folder:string, fileName:string, data:any):void {
     if (folder && !fs.existsSync(folder)) {
         fs.mkdirSync(folder)
     }
     const outputPath = path.join(folder, fileName)
-    fs.writeFileSync(outputPath, JSON.stringify(data, null, 4), "utf-8")
+    data = JSON.stringify(data, null, 4)
+    fs.writeFileSync(outputPath, data, "utf-8",)
     console.log(`✅  ${outputPath} 生成成功`)
 }
 
