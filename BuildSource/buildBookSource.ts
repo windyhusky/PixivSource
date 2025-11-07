@@ -2,75 +2,77 @@ import fs from "fs"
 import path from "path"
 
 interface BookSource {
-    bookSourceComment: string;
-    bookSourceGroup: string;
-    bookSourceName: string;
-    bookSourceType: number;
-    bookSourceUrl: string;
-    bookUrlPattern: string;
-    concurrentRate: string;
-    customOrder: number;
-    enabled: boolean;
-    enabledCookieJar: boolean;
-    enabledExplore: boolean;
-    exploreUrl: string;
-    header: string;
-    jsLib: string;
-    lastUpdateTime: number | string;
-    loginCheckJs: string;
-    loginUi: string;
-    loginUrl: string;
-    respondTime: number;
+    bookSourceComment: string
+    bookSourceGroup: string
+    bookSourceName: string
+    bookSourceType: number
+    bookSourceUrl: string
+    bookUrlPattern: string
+    concurrentRate: string
+    customButton: boolean
+    customOrder: number
+    enabled: boolean
+    enabledCookieJar: boolean
+    enabledExplore: boolean
+    eventListener: boolean
+    exploreUrl: string
+    header: string
+    jsLib: string
+    lastUpdateTime: number | string
+    loginCheckJs: string
+    loginUi: string
+    loginUrl: string
+    respondTime: number
     ruleBookInfo: {
-        author: string;
-        canReName: string;
-        coverUrl: string;
-        init: string;
-        intro: string;
-        kind: string;
-        lastChapter: string;
-        name: string;
-        tocUrl: string;
-        wordCount: string;
-    };
+        author: string
+        canReName: string
+        coverUrl: string
+        init: string
+        intro: string
+        kind: string
+        lastChapter: string
+        name: string
+        tocUrl: string
+        wordCount: string
+    }
     ruleContent: {
-        content: string;
-        imageStyle: string;
-    };
+        content: string
+        imageStyle: string
+    }
     ruleExplore: {
-        author: string;
-        bookList: string;
-        bookUrl: string;
-        coverUrl: string;
-        intro: string;
-        kind: string;
-        lastChapter: string;
-        name: string;
-        wordCount: string;
-    };
+        author: string
+        bookList: string
+        bookUrl: string
+        coverUrl: string
+        intro: string
+        kind: string
+        lastChapter: string
+        name: string
+        wordCount: string
+    }
     ruleSearch: {
-        author: string;
-        bookList: string;
-        bookUrl: string;
-        checkKeyWord: string;
-        coverUrl: string;
-        intro: string;
-        kind: string;
-        lastChapter: string;
-        name: string;
-        wordCount: string;
-    };
+        author: string
+        bookList: string
+        bookUrl: string
+        checkKeyWord: string
+        coverUrl: string
+        intro: string
+        kind: string
+        lastChapter: string
+        name: string
+        wordCount: string
+    }
     ruleToc: {
-        chapterList: string;
-        chapterName: string;
-        chapterUrl: string;
-        isPay: string;
-        isVip: string;
-        updateTime: string;
-    };
-    searchUrl: string;
-    variableComment: string;
-    weight: number;
+        chapterList: string
+        chapterName: string
+        chapterUrl: string
+        isPay: string
+        isVip: string
+        updateTime: string
+    }
+    searchUrl: string
+    variableComment: string
+    weight: number
 }
 
 function readTextFile(filePath: string): string {
@@ -89,18 +91,20 @@ function saveJsonFile(folder, fileName, data) {
     console.log(`✅  ${outputPath} 生成成功`)
 }
 
-function buildBookSource(sourceName): BookSource[] {
+function buildBookSource(sourceName:string): BookSource {
     let sourcePath = `bookSource/${sourceName}`
     let templateJsonPath = `BuildSource/${sourceName}.json`
 
     // 读取基础模板
-    const BookSourceJson: BookSource[] = JSON.parse(readTextFile(templateJsonPath))
+    const BookSource: BookSource = JSON.parse(readTextFile(templateJsonPath))[0]
 
     // 读取各个构建后文件内容
     const readme = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
     const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
+
+    const bookUrlPattern = readTextFile(path.join(sourcePath, "base.bookUrlPattern.txt"))
     const variableComment = readTextFile(path.join(sourcePath, "base.variableComment.txt"))
     const jsLibContent = readTextFile(path.join(sourcePath, "base.jsLib.js"))
 
@@ -114,40 +118,43 @@ function buildBookSource(sourceName): BookSource[] {
     const catalogContent = readTextFile(path.join(sourcePath, "catalog.js"))
     const contentContent = readTextFile(path.join(sourcePath, "content.js"))
 
-    // 更新主书源
-    BookSourceJson[0].bookSourceComment = readme
-    BookSourceJson[0].loginUrl = loginUrlContent
-    BookSourceJson[0].loginUi = loginUI
-    BookSourceJson[0].loginCheckJs = loginCheckJsContent
-    BookSourceJson[0].variableComment = variableComment
-    BookSourceJson[0].jsLib = jsLibContent
+    // 更新书源
+    BookSource.bookSourceComment = readme
+    BookSource.loginUrl = loginUrlContent
+    BookSource.loginUi = loginUI
+    BookSource.loginCheckJs = loginCheckJsContent
 
-    BookSourceJson[0].searchUrl = `@js:\n${searchUrlContent}`
-    BookSourceJson[0].ruleSearch.bookList = `@js:\n${searchContent}`
+    BookSource.bookUrlPattern = bookUrlPattern.split("\r\n")[1]
+    // console.log(BookSource.bookUrlPattern)
+    BookSource.variableComment = variableComment
+    BookSource.jsLib = jsLibContent
 
-    BookSourceJson[0].exploreUrl = `@js:\n${discoverAddressContent}`
-    BookSourceJson[0].ruleExplore.bookList = `@js:\n${discoverContent}`
+    BookSource.searchUrl = `@js:\n${searchUrlContent}`
+    BookSource.ruleSearch.bookList = `@js:\n${searchContent}`
 
-    BookSourceJson[0].ruleBookInfo.init = `@js:\n${detailContent}`
-    BookSourceJson[0].ruleToc.chapterList = `@js:\n${catalogContent}`
-    BookSourceJson[0].ruleContent.content = `@js:\n${contentContent}`
+    BookSource.exploreUrl = `@js:\n${discoverAddressContent}`
+    BookSource.ruleExplore.bookList = `@js:\n${discoverContent}`
 
-    BookSourceJson[0].lastUpdateTime = `${String(Date.now()).slice(0, 10)}251`
+    BookSource.ruleBookInfo.init = `@js:\n${detailContent}`
+    BookSource.ruleToc.chapterList = `@js:\n${catalogContent}`
+    BookSource.ruleContent.content = `@js:\n${contentContent}`
+
+    BookSource.lastUpdateTime = `${String(Date.now()).slice(0, 10)}251`
     // console.log(`${String(Date.now()).slice(0, 10)}251`)
 
     if (sourceName === "pixiv") {
-        BookSourceJson[0].customOrder = 0
+        BookSource.customOrder = 0
     } else if (sourceName === "pixiv_backup") {
-        BookSourceJson[0].customOrder = 1
+        BookSource.customOrder = 1
     } else if (sourceName === "pixiv_illust") {
-        BookSourceJson[0].customOrder = 2
+        BookSource.customOrder = 2
     } else if (sourceName === "linpx") {
-        BookSourceJson[0].customOrder = 3
+        BookSource.customOrder = 3
     } else if (sourceName === "furrynovel") {
-        BookSourceJson[0].customOrder = 4
+        BookSource.customOrder = 4
     }
 
-    return BookSourceJson
+    return BookSource
 }
 
 function buildPixivSource() {
@@ -155,7 +162,7 @@ function buildPixivSource() {
     const pixivMain = buildBookSource("pixiv")
     const pixivBackup = buildBookSource("pixiv_backup")
     const pixivIllust = buildBookSource("pixiv_illust")
-    const allSources = [...pixivMain, ...pixivBackup, ...pixivIllust]
+    const allSources = [pixivMain, pixivBackup, pixivIllust]
     // 写入最终的 JSON 文件
     saveJsonFile("", "pixiv.json", allSources)
 }
@@ -164,7 +171,7 @@ function buildLinpxSource() {
     // 组合 Linpx 书源
     const linpx = buildBookSource("linpx")
     const furrynovel = buildBookSource("furrynovel")
-    const allSources = [...linpx, ...furrynovel]
+    const allSources = [linpx, furrynovel]
     // 写入最终的 JSON 文件
     saveJsonFile("", "linpx.json", allSources)
 }
