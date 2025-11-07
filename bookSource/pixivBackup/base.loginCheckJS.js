@@ -24,18 +24,48 @@ function isSourceRead() {
     cache.put("isSourceRead", isSourceReadStatus)
     return isSourceReadStatus
 }
+// 检测 阅读 正式版 与 Beta 版本
+function isLegadoOfficial() {
+    let isLegadoOfficialStatus
+    try {
+        eval('({})?.value')
+        isLegadoOfficialStatus = false
+    } catch (e) {
+        isLegadoOfficialStatus = true
+    }
+    cache.put("isLegadoOfficial", isLegadoOfficialStatus)
+    return isLegadoOfficialStatus
+}
+// 检测 阅读 Beta 版本 与 LYC 版本
+// LYC 版本新增函数
+// java.ajaxTestAll()
+// java.openVideoPlayer(url: String, title: String, float: Boolean)
+// cookie.setWebCookie(url,cookie)
+// source.refreshExplore()
+// source.refreshJSLib()
+function isLegadoLYC() {
+    let isLegadoLYCStatus = (typeof java.ajaxTestAll === "function")
+    cache.put("isLegadoLYCStatus", isLegadoLYCStatus)
+    return isLegadoLYCStatus
+}
 
 function publicFunc() {
-    let u = {}, settings = {}
+    let u = {}, settings
     // 输出书源信息
     java.log(`🅿️ ${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
+    java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
     if (isSourceRead()) {
-        java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
         java.log("📱 软件平台：🍎 源阅 SourceRead")
+    } else if (isLegadoOfficial()) {
+        java.log("📱 软件平台：🤖 开源阅读 【正式版】")
+        java.log("当前软件为：阅读【正式版】\n\n【正式版】已年久失修，不推荐继续使用\n推荐使用【Beta版】【共存/新共存版】\n\nBeta版本下载链接：\nhttps://miaogongzi.lanzout.com/b01rgkhhe\n如需更新，可去书源调试界面\n打开下载链接切换阅读版本\n")
     } else {
-        java.log(`📆 更新时间：${timeFormat(source.lastUpdateTime)}`)
-        java.log("📱 软件平台：🤖 开源阅读 Leagdo")
+        if (isLegadoLYC()) {
+            java.log("📱 软件平台：🤖 开源阅读 Beta/LYC 版")
+        } else {
+            java.log("📱 软件平台：🤖 开源阅读 Beta 版（未合入 LYC 功能）")
+        }
     }
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
@@ -70,12 +100,15 @@ function publicFunc() {
     } else {
         settings.SEARCH_AUTHOR = true        // 搜索：默认搜索作者名称
     }
-
-    settings.IS_LEGADO = !isSourceRead()
-    settings.IS_SOURCE_READ = isSourceRead()
-    settings.IS_BACKUP_SOURCE = isBackupSource()
     u.settings = settings
     putInCache("pixivSettings", settings)  // 设置写入缓存
+
+    u.environment = {}
+    u.environment.IS_SOURCEREAD = isSourceRead()
+    u.environment.IS_LEGADO = !isSourceRead()
+    u.environment.IS_LYC_BRUNCH = isLegadoLYC()
+    u.environment.IS_BACKUP_SOURCE = isBackupSource()
+    putInCache("sourceEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
