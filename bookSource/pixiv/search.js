@@ -121,7 +121,7 @@ function getUserNovels() {
         // java.log(JSON.stringify(seriesNovelIds.length))
 
         // 获取单篇小说
-        if (novelIds.length >= 1 && util.settings.IS_LEGADO) {
+        if (novelIds.length >= 1 && util.environment.IS_LEGADO) {
             novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
             novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
             // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
@@ -133,7 +133,7 @@ function getUserNovels() {
         }
 
         // // 获取单篇小说
-        if (novelIds.length >= 1 && util.settings.IS_SOURCE_READ) {
+        if (novelIds.length >= 1 && util.environment.IS_SOURCE_READ) {
             novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
             // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
             // java.log(JSON.stringify(novelIds.length))

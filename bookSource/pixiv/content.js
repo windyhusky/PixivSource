@@ -49,7 +49,7 @@ function getNovelInfo(res) {
     }
 
     // 系列 + 阅读，使用当前章节名称
-    if (novel.seriesId && util.settings.IS_LEGADO) {
+    if (novel.seriesId && util.environment.IS_LEGADO) {
         let novelIds = JSON.parse(cache.get(`novelIds${novel.seriesId}`))
         novel.id = novelIds[book.durChapterIndex]
         novel.title = book.durChapterTitle
