@@ -129,6 +129,7 @@ function buildBookSource(sourceName:string): BookSource {
     BookSource.bookUrlPattern = bookUrlPattern.split("\r\n")[1]
     BookSource.header = header
     BookSource.variableComment = variableComment
+    BookSource.concurrentRate = "3/2000"
     BookSource.jsLib = jsLibContent
 
     BookSource.searchUrl = `@js:\n${searchUrlContent}`
