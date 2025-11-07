@@ -143,7 +143,7 @@ function buildBookSource(sourceName:string): BookSource {
     BookSource.ruleToc.chapterList = `@js:\n${catalogContent}`
     BookSource.ruleContent.content = `@js:\n${contentContent}`
 
-    BookSource.lastUpdateTime = `${String(Date.now()).slice(0, 10)}251`
+    BookSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
     // console.log(`${String(Date.now()).slice(0, 10)}251`)
 
     if (sourceName === "pixiv") {
