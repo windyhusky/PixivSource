@@ -10,7 +10,7 @@ function objParse(obj) {
 }
 
 function urlIllust(novelId){
-    if (util.SHOW_ORIGINAL_LINK) {
+    if (util.settings.SHOW_ORIGINAL_LINK) {
         return urlIllustUrl(novelId)
     } else {
         return urlIllustDetailed(novelId)

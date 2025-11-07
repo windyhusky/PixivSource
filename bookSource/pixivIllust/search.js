@@ -40,7 +40,7 @@ function getConvertArtwork() {
 (() => {
     let artworks = []
     artworks = artworks.concat(getArtwork())
-    if (util.CONVERT_CHINESE) artworks = artworks.concat(getConvertArtwork())
+    if (util.settings.CONVERT_CHINESE) artworks = artworks.concat(getConvertArtwork())
     // java.log(JSON.stringify(artworks))
     // 返回空列表中止流程
     if (artworks.length === 0) {
