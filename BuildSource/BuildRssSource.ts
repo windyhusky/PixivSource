@@ -68,35 +68,64 @@ function buildRssSource(){
     return RssSources
 }
 
-function buildBTSRKSource(name){
+function buildSource(name){
+    let sourcePath = `rssSource/${name}`
+    let templatePath = `rssSource/furry.json`
+    let defaultDataPath = `BuildSource/rssSource.json`
+    // console.log(sourcePath)
+    // console.log(templatePath)
+    // console.log(defaultDataPath)
+
     let sourceName
-    let templatePath = `BuildSource/rssSource.json`
-    let defaultData: RssSource = JSON.parse(readTextFile(templatePath))
+    if (name === "pixiv") sourceName = "Pixiv"
+    else if (name === "linpx") sourceName = "Linpx"
+    else if (name === "furryNovel") sourceName = "兽人小说站"
+    else sourceName = "Pixiv 书源 Github"
 
-    if (name === "pixiv") {
-        sourceName = "Pixiv"
-    } else if (name === "linpx") {
-        sourceName = "Pixiv"
-    } else if (name === "furryNovel") {
-        sourceName = "furryNovel"
-    }
+    // 读取基础模板
+    const RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
+    const RssSource: RssSource = RssSources.find(item => item.sourceName === sourceName)
+    const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
 
+    // 读取各个构建后文件内容
+    const sourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
+    const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
+    const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
 
-    // if (novelSites.indexOf(item.sourceName) !== -1) {
-    //     if (item.sourceName === "Pixiv")
-    //
-    //         item.loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
-    //     item.loginUi = readTextFile(path.join(sourcePath, "base.loginUI.json"))
-    //     item.header = readTextFile(path.join(sourcePath, "base.header.json"))
-    //     item.jsLib = readTextFile(path.join(sourcePath, "base.jsLib.js"))
-    //     item.injectJs = readTextFile(path.join(sourcePath, "webview.inject.js"))
-    //     item.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
-    // }
+    const header = readTextFile(path.join(sourcePath, "base.header.json"))
+    const jsLib = readTextFile(path.join(sourcePath, "base.jsLib.js"))
+    const inJectJs = readTextFile(path.join(sourcePath, "webview.inject.js"))
+
+    // 填充默认数据
+    Object.keys(defaultData).forEach((key) => {
+        if (RssSource[key] === undefined) RssSource[key] = defaultData[key]
+        if (RssSource[key] === "") delete RssSource[key]
+    })
+
+    // 更新订阅
+    RssSource.sourceComment = sourceComment
+    RssSource.loginUrl = loginUrl
+    RssSource.loginUi = loginUI
+    RssSource.loginUrl = loginUrl
+
+    RssSource.header = header
+    RssSource.jsLib = jsLib
+    RssSource.injectJs = inJectJs
+    RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
+
+    Object.keys(RssSource).forEach((key) => {
+        if (RssSource[key] === "") delete RssSource[key]
+    })
+
+    // console.log(JSON.stringify(RssSource, null, 4))
+    // saveJsonFile("dist", "btstk.json", RssSource)
+    return RssSource
 }
 
 
 function main() {
-    buildRssSource()
+    // buildRssSource()
+    buildBTSRKSource("pixiv")
 }
 
 main()
