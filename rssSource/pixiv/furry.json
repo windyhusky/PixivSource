@@ -39,7 +39,8 @@
         "sourceName":"兽人控游戏库",
         "sourceUrl":"https://kemono.games/zh-Hans/explore?sort=latest_update",
         "sourceIcon":"https://img.srkyxk.com/logo-512x512.png",
-        "sourceGroup": "🐲 Furry"
+        "sourceGroup": "🐲 Furry",
+        "loginUrl": "https://kemono.games/zh-Hans/user/login"
     },
     {
         "customOrder": 7,
