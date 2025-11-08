@@ -45,14 +45,12 @@ function saveJsonFile(folder:string, fileName:string, data:any):void {
 
 function buildRssSource(){
     // 需要在 项目根目录下执行
-    let templatePath = `BuildSource/furrySites.json`
+    let templatePath = `rssSource/furry.json`
     let defaultDataPath = `BuildSource/rssSource.json`
-    // console.log(sourcePath)
-    // console.log(templatePath)
-    // console.log(defaultDataPath)
 
     // 读取基础模板
-    const RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
+    let RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
+    RssSources = RssSources.slice(4, RssSources.length)
     const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
 
     // 填充默认数据
@@ -62,19 +60,14 @@ function buildRssSource(){
             if (item[key] === "") delete item[key]
         })
     })
-
-    // console.log(JSON.stringify(RssSources, null, 4))
-    // saveJsonFile("dist", "btstk.json", RssSources)
     return RssSources
 }
 
 function buildSource(name){
+    // 需要在 项目根目录下执行
     let sourcePath = `rssSource/${name}`
     let templatePath = `rssSource/furry.json`
     let defaultDataPath = `BuildSource/rssSource.json`
-    // console.log(sourcePath)
-    // console.log(templatePath)
-    // console.log(defaultDataPath)
 
     let sourceName
     if (name === "pixiv") sourceName = "Pixiv"
@@ -116,9 +109,6 @@ function buildSource(name){
     Object.keys(RssSource).forEach((key) => {
         if (RssSource[key] === "") delete RssSource[key]
     })
-
-    // console.log(JSON.stringify(RssSource, null, 4))
-    // saveJsonFile("dist", "btstk.json", RssSource)
     return RssSource
 }
 
@@ -129,7 +119,7 @@ function buildBTSRKSource() {
     const repo = buildSource("repo")
     const normal = buildRssSource()
     const allSources = [pixiv, linpx, furryNovel, repo, ...normal]
-    saveJsonFile("dist", "btstk.json", allSources)
+    saveJsonFile("", "btsrk.json", allSources)
 }
 
 
