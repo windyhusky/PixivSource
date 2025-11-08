@@ -94,8 +94,11 @@ function saveJsonFile(folder:string, fileName:string, data:any):void {
 }
 
 function buildBookSource(sourceName:string): BookSource {
+    // 需要在 项目根目录下执行
     let sourcePath = `bookSource/${sourceName}`
     let templatePath = `BuildSource/${sourceName}.json`
+    // console.log(sourcePath)
+    // console.log(templatePath)
 
     // 读取基础模板
     const BookSource: BookSource = JSON.parse(readTextFile(templatePath))[0]

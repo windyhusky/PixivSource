@@ -1,5 +1,5 @@
-const fs = require("fs")
-const path = require("path")
+import fs from "fs"
+import path from "path"
 
 function readTextFile(filePath) {
     if (fs.existsSync(filePath)) {
@@ -20,8 +20,11 @@ function saveJsonFile(folder, fileName, data) {
 }
 
 function buildBookSource(sourceName) {
+    // 需要在 项目根目录下执行
     let sourcePath = `bookSource/${sourceName}`
     let templatePath = `BuildSource/${sourceName}.json`
+    // console.log(sourcePath)
+    // console.log(templatePath)
 
     // 读取基础模板
     const BookSource = JSON.parse(readTextFile(templatePath))[0]
