@@ -122,10 +122,19 @@ function buildSource(name){
     return RssSource
 }
 
+function buildBTSRKSource() {
+    const pixiv = buildSource("pixiv")
+    const linpx = buildSource("linpx")
+    const furryNovel = buildSource("furryNovel")
+    const repo = buildSource("repo")
+    const normal = buildRssSource()
+    const allSources = [pixiv, linpx, furryNovel, repo, ...normal]
+    saveJsonFile("dist", "btstk.json", allSources)
+}
+
 
 function main() {
-    // buildRssSource()
-    buildBTSRKSource("pixiv")
+    buildBTSRKSource()
 }
 
 main()
