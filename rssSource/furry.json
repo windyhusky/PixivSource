@@ -24,14 +24,14 @@
         "customOrder": 4,
         "sourceName":"Pixiv 书源 Github",
         "sourceUrl":"https://github.com/windyhusky/PixivSource",
-        "sourceIcon":"https://www.furrynovel.com/static/icon.png",
+        "sourceIcon":"https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/doc/pic/Legado-Pixiv.png",
         "sourceGroup": "🐲 Furry"
     },
     {
         "customOrder": 5,
         "sourceName":"兽人控游戏索引",
         "sourceUrl":"https://furrygames.top/zh-cn/list-b.html",
-        "sourceIcon":"https://raw.githubusercontent.com/FurryGamesIndex/games/master/assets/_README/logo.png",
+        "sourceIcon":"https://cdn.jsdelivr.net/gh/FurryGamesIndex/games@master/assets/_README/logo.png",
         "sourceGroup": "🐲 Furry"
     },
     {
