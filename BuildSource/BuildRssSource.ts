@@ -85,7 +85,7 @@ function buildSource(name){
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
 
-    const header = readTextFile(path.join(sourcePath, "base.header.json"))
+    const header = readTextFile(path.join("rssSource", "base.header.json"))
     const jsLib = readTextFile(path.join(sourcePath, "base.jsLib.js"))
     const inJectJs = readTextFile(path.join(sourcePath, "webview.inject.js"))
 

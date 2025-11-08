@@ -4,15 +4,12 @@ Pixiv 订阅源（更新📆：2025-10-31）
 添加小说：打开小说，【刷新】，点击【加入书架】按钮，添加小说到书架
 
 书源发布：
+Pixiv 书源频道 https://t.me/PixivSource
 兽人阅读频道 https://t.me/FurryReading
 
 项目地址：
 https://github.com/windyhusky/PixivSource
 https://github.com/eigeen/PixivSourceProject
-
-旧版书源：
-https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@191/pixiv.json
-https://raw.githubusercontent.com/windyhusky/PixivSource/191/pixiv.json
 
 规则订阅：Import 订阅源
 https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
