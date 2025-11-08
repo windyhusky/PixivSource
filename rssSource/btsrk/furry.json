@@ -1,37 +1,58 @@
 [
     {
-        "name":"Pixiv",
-        "link":"https://www.pixiv.net/novel",
-        "icon":"https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png"
+        "customOrder": 1,
+        "sourceName":"Pixiv",
+        "sourceUrl":"https://www.pixiv.net/novel,{\"js\":\"java.longToast('请使用右上角菜单中的【登录】进行登录/退出账号')\"}",
+        "sourceIcon":"https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png",
+        "sourceGroup": "🅿️ Pixiv,🐲 Furry",
     },
     {
-        "name":"Linpx",
-        "link":"https://furrynovel.ink/?from=read",
-        "icon":"https://furrynovel.ink/apple-touch-icon.png"
+        "customOrder": 2,
+        "sourceName":"Linpx",
+        "sourceUrl":"https://furrynovel.ink/?from=read",
+        "sourceIcon":"https://furrynovel.ink/apple-touch-icon.png",
+        "sourceGroup": "🅿️ Pixiv,🐲 Furry"
     },
     {
-        "name":"兽人控小说站",
-        "link":"https://www.furrynovel.com/zh/?utm_source=reader",
-        "icon":"https://www.furrynovel.com/static/icon.png"
+        "customOrder": 3,
+        "sourceName":"兽人小说站",
+        "sourceUrl":"https://www.furrynovel.com/zh/?utm_source=reader",
+        "sourceIcon":"https://www.furrynovel.com/static/icon.png",
+        "sourceGroup": "🐲 Furry"
     },
     {
-        "name":"兽人控游戏索引",
-        "link":"https://furrygames.top/zh-cn/list-b.html",
-        "icon":"https://raw.githubusercontent.com/FurryGamesIndex/games/master/assets/_README/logo.png"
+        "customOrder": 4,
+        "sourceName":"Pixiv 书源 Github",
+        "sourceUrl":"https://github.com/windyhusky/PixivSource",
+        "sourceIcon":"https://www.furrynovel.com/static/icon.png",
+        "sourceGroup": "🐲 Furry"
     },
     {
-        "name":"兽人控游戏库",
-        "link":"https://kemono.games/zh-Hans/explore?sort=latest_update",
-        "icon":"https://img.srkyxk.com/logo-512x512.png"
+        "customOrder": 5,
+        "sourceName":"兽人控游戏索引",
+        "sourceUrl":"https://furrygames.top/zh-cn/list-b.html",
+        "sourceIcon":"https://raw.githubusercontent.com/FurryGamesIndex/games/master/assets/_README/logo.png",
+        "sourceGroup": "🐲 Furry"
     },
     {
-        "name":"兽展日历",
-        "link":"https://www.furrycons.cn",
-        "icon":"https://images.furrycons.cn/logo_800x800.png"
+        "customOrder": 6,
+        "sourceName":"兽人控游戏库",
+        "sourceUrl":"https://kemono.games/zh-Hans/explore?sort=latest_update",
+        "sourceIcon":"https://img.srkyxk.com/logo-512x512.png",
+        "sourceGroup": "🐲 Furry"
     },
     {
-        "name":"兽聚汇总",
-        "link":"https://www.furryfusion.net",
-        "icon":"https://www.furryfusion.net/images/LOGO.png"
+        "customOrder": 7,
+        "sourceName":"兽展日历",
+        "sourceUrl":"https://www.furrycons.cn",
+        "sourceIcon":"https://images.furrycons.cn/logo_800x800.png",
+        "sourceGroup": "🐲 Furry"
+    },
+    {
+        "customOrder": 8,
+        "sourceName":"兽聚汇总",
+        "sourceUrl":"https://www.furryfusion.net",
+        "sourceIcon":"https://www.furryfusion.net/images/LOGO.png",
+        "sourceGroup": "🐲 Furry"
     }
 ]
