@@ -37,8 +37,8 @@ function startGithubReadme() {
     startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 function startTelegram() {
-    startBrowser("https://t.me/FurryReading", "兽人阅读频道")
+    startBrowser("https://t.me/PixivSource", "Pixiv 书源频道")
 }
-function startTelegramGroup() {
-    startBrowser("https://t.me/joinchat/ccb6zNXZ2R0zYmM9", "反馈群组")
+function startTelegram2() {
+    startBrowser("https://t.me/FurryReading", "兽人阅读频道")
 }

@@ -36,7 +36,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC3A 兽人阅读",
+        "name": "\uD83C\uDD7F️ 书源频道",
         "type": "button",
         "action": "startTelegram()",
         "style": {
@@ -45,9 +45,9 @@
         }
     },
     {
-        "name": "\uD83D\uDC65 反馈群组",
+        "name": "\uD83D\uDC3A 兽人阅读",
         "type": "button",
-        "action": "startTelegramGroup()",
+        "action": "startTelegram2()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
