@@ -44,7 +44,7 @@ function saveJsonFile(folder:string, fileName:string, data:any):void {
 }
 
 function buildRssSource(sourceName:string){
-    sourceName = "btsrk"
+    sourceName = "pixiv"
     // 需要在 项目根目录下执行
     let sourcePath = `rssSource/${sourceName}`
     let templatePath = `rssSource/${sourceName}/furry.json`
@@ -57,23 +57,37 @@ function buildRssSource(sourceName:string){
     const RssSource: RssSource[] = JSON.parse(readTextFile(templatePath))
     const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
 
-    // 填充默认数据
+    const loginUi = readTextFile(path.join(sourcePath, "base.loginUI.json"))
+    const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
+
+    const header = readTextFile(path.join(sourcePath, "base.header.json"))
+    const jsLibContent = readTextFile(path.join(sourcePath, "base.jsLib.js"))
+    const injectContent = readTextFile(path.join(sourcePath, "webview.inject.js"))
+
+    // 更新订阅
     RssSource.forEach(item => {
+        // 填充默认数据
         item.articleStyle = defaultData.articleStyle
         item.enableJs = defaultData.enableJs
         item.enabled = defaultData.enabled
         item.enabledCookieJar = defaultData.enabledCookieJar
-        item.lastUpdateTime = defaultData.lastUpdateTime
         item.loadWithBaseUrl = defaultData.loadWithBaseUrl
         item.showWebLog = defaultData.showWebLog
         item.singleUrl = defaultData.singleUrl
         item.type = defaultData.type
+        item.lastUpdateTime = defaultData.lastUpdateTime
+
+        if (sourceName === "pixiv") {
+
+            item.loginUrl = loginUrl
+            item.loginUi = loginUi
+            item.header = header
+            item.jsLib = jsLibContent
+
+            item.injectJs = injectContent
+            item.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
+        }
     })
-
-
-    // item.header = defaultData.header
-    // item.injectJs = defaultData.injectJs
-    // item.jsLib = defaultData.jsLib
 
     console.log(JSON.stringify(RssSource, null, 4))
     return RssSource
