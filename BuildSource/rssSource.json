@@ -1,0 +1,20 @@
+[
+    {
+        "articleStyle": 0,
+        "customOrder": 1,
+        "enableJs": true,
+        "enabled": true,
+        "enabledCookieJar": true,
+        "lastUpdateTime": 1761840000251,
+        "loadWithBaseUrl": true,
+        "preload": false,
+        "showWebLog": false,
+        "singleUrl": true,
+        "sourceComment": "",
+        "sourceGroup": "",
+        "sourceIcon": "",
+        "sourceName": "",
+        "sourceUrl": "",
+        "type": 0
+    }
+]

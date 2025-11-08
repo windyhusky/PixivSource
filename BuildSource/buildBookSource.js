@@ -1,7 +1,6 @@
 const fs = require("fs")
 const path = require("path")
 
-
 function readTextFile(filePath) {
     if (fs.existsSync(filePath)) {
         let data = fs.readFileSync(filePath, "utf-8").trim()
