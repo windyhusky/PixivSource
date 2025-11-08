@@ -54,22 +54,44 @@ function buildRssSource(){
     // 读取基础模板
     const RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
     const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
+
     // 填充默认数据
     RssSources.forEach(item => {
-        item.articleStyle = defaultData.articleStyle
-        item.enableJs = defaultData.enableJs
-        item.enabled = defaultData.enabled
-        item.enabledCookieJar = defaultData.enabledCookieJar
-        item.loadWithBaseUrl = defaultData.loadWithBaseUrl
-        item.showWebLog = defaultData.showWebLog
-        item.singleUrl = defaultData.singleUrl
-        item.type = defaultData.type
-        item.lastUpdateTime = defaultData.lastUpdateTime
+        Object.keys(defaultData).forEach((key) => {
+            if (item[key] === undefined) item[key] = defaultData[key]
+            if (item[key] === "") delete item[key]
+        })
     })
 
-    console.log(JSON.stringify(RssSources, null, 4))
-    saveJsonFile("dist", "btstk.json", RssSources)
+    // console.log(JSON.stringify(RssSources, null, 4))
+    // saveJsonFile("dist", "btstk.json", RssSources)
     return RssSources
+}
+
+function buildBTSRKSource(name){
+    let sourceName
+    let templatePath = `BuildSource/rssSource.json`
+    let defaultData: RssSource = JSON.parse(readTextFile(templatePath))
+
+    if (name === "pixiv") {
+        sourceName = "Pixiv"
+    } else if (name === "linpx") {
+        sourceName = "Pixiv"
+    } else if (name === "furryNovel") {
+        sourceName = "furryNovel"
+    }
+
+
+    // if (novelSites.indexOf(item.sourceName) !== -1) {
+    //     if (item.sourceName === "Pixiv")
+    //
+    //         item.loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
+    //     item.loginUi = readTextFile(path.join(sourcePath, "base.loginUI.json"))
+    //     item.header = readTextFile(path.join(sourcePath, "base.header.json"))
+    //     item.jsLib = readTextFile(path.join(sourcePath, "base.jsLib.js"))
+    //     item.injectJs = readTextFile(path.join(sourcePath, "webview.inject.js"))
+    //     item.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
+    // }
 }
 
 
