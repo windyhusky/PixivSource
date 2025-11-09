@@ -157,23 +157,36 @@ function buildImportSource() {
     const sortUrl  = readTextFile(path.join(sourcePath, "base.sortUrl.js"))
     const sourceComment = readTextFile(path.join(sourcePath, "base.sourceComment.txt"))
     const ruleArticles = readTextFile(path.join(sourcePath, "list.ruleArticles.js"))
+    const ruleNextArticles = readTextFile(path.join(sourcePath, "list.ruleNextArticles.js"))
+    const ruleDescription = readTextFile(path.join(sourcePath, "list.ruleDescription.js"))
     const ruleImage = readTextFile(path.join(sourcePath, "list.ruleImage.js"))
+    const ruleLink = readTextFile(path.join(sourcePath, "list.ruleLink.js"))
     const rulePubDate = readTextFile(path.join(sourcePath, "list.rulePubDate.js"))
     const ruleTitle = readTextFile(path.join(sourcePath, "list.ruleTitle.txt"))
 
+    RssSource.sourceName = "书源订阅"
+    RssSource.sourceUrl = "https://codeberg.org/DowneyRem/PixivSource"
+    RssSource.sourceIcon = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/doc/pic/Legado-Pixiv.png"
+    RssSource.sourceGroup = "🅿️ Pixiv,🐲 Furry,书源"
+    RssSource.variableComment = "【刷新分类】【刷新分类】【刷新分类】"
+
     RssSource.header = header
     RssSource.loginUrl = loginUrl
-    RssSource.sortUrl = sortUrl
+    RssSource.sortUrl = `@js:\n${sortUrl}`
     RssSource.sourceComment = sourceComment
+
     RssSource.ruleArticles = ruleArticles
+    // RssSource.ruleNextArticles = ruleNextArticles
+    RssSource.ruleDescription = ""
     RssSource.ruleImage = ruleImage
+    RssSource.ruleLink = ruleLink
     RssSource.rulePubDate = rulePubDate
     RssSource.ruleTitle = ruleTitle
 
     // 去除空键
-    Object.keys(RssSource).forEach((key) => {
-        if (RssSource[key] === "") delete RssSource[key]
-    })
+    // Object.keys(RssSource).forEach((key) => {
+    //     if (RssSource[key] === "") delete RssSource[key]
+    // })
     console.log(JSON.stringify([RssSource]))
     saveJsonFile("dist", "import.json", [RssSource])
 }
