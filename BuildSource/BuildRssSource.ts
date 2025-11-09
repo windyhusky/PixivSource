@@ -3,6 +3,10 @@ import path from "path"
 
 interface RssSource {
     articleStyle: number
+    concurrentRate: string
+    contentBlacklist: string
+    contentWhitelist: string
+    coverDecodeJs: string
     customOrder: number
     enableJs: boolean
     enabled: boolean
@@ -12,17 +16,34 @@ interface RssSource {
     jsLib: string
     lastUpdateTime: number
     loadWithBaseUrl: boolean
+    loginCheckJs: string
     loginUi: string
     loginUrl: string
     preload: boolean
+    ruleArticles: string
+    ruleContent: string
+    ruleDescription: string
+    ruleImage: string
+    ruleLink: string
+    ruleNextPage: string
+    rulePubDate :string
+    ruleTitle :string
+    searchUrl :string
+    shouldOverrideUrlLoading: string
     showWebLog: boolean
     singleUrl: boolean
+    sortUrl : string
     sourceComment: string
     sourceGroup: string
     sourceIcon: string
     sourceName: string
     sourceUrl: string
+    startHtml: string
+    startJs: string
+    startStyle: string
+    style: string
     type: number
+    variableComment: string
 }
 
 function readTextFile(filePath: string): string {
@@ -87,7 +108,7 @@ function buildSource(name){
 
     const header = readTextFile(path.join("rssSource", "base.header.json"))
     const jsLib = readTextFile(path.join(sourcePath, "base.jsLib.js"))
-    const inJectJs = readTextFile(path.join(sourcePath, "webview.inject.js"))
+    const injectJs = readTextFile(path.join(sourcePath, "webview.inject.js"))
 
     // 填充默认数据
     Object.keys(defaultData).forEach((key) => {
@@ -103,7 +124,7 @@ function buildSource(name){
 
     RssSource.header = header
     RssSource.jsLib = jsLib
-    RssSource.injectJs = inJectJs
+    RssSource.injectJs = injectJs
     RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
 
     Object.keys(RssSource).forEach((key) => {
@@ -124,7 +145,8 @@ function buildBTSRKSource() {
 
 
 function main() {
-    buildBTSRKSource()
+    // buildBTSRKSource()
+    buildImportSource()
 }
 
 main()
