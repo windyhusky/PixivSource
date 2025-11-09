@@ -152,17 +152,19 @@ function buildImportSource() {
     // 读取基础模板
     let RssSource: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
     // 读取各个构建后文件内容
-    const header = readTextFile(path.join(sourcePath, "base.header.json"))
-    const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
-    const sortUrl  = readTextFile(path.join(sourcePath, "base.sortUrl.js"))
     const sourceComment = readTextFile(path.join(sourcePath, "base.sourceComment.txt"))
+    const sortUrl  = readTextFile(path.join(sourcePath, "base.sortUrl.js"))
+    const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
+    const header = readTextFile(path.join(sourcePath, "base.header.json"))
+
     const ruleArticles = readTextFile(path.join(sourcePath, "list.ruleArticles.js"))
     const ruleNextPage = readTextFile(path.join(sourcePath, "list.ruleNextPage.js"))
+    const ruleTitle = readTextFile(path.join(sourcePath, "list.ruleTitle.txt"))
+
+    const rulePubDate = readTextFile(path.join(sourcePath, "list.rulePubDate.js"))
     const ruleDescription = readTextFile(path.join(sourcePath, "list.ruleDescription.js"))
     const ruleImage = readTextFile(path.join(sourcePath, "list.ruleImage.js"))
     const ruleLink = readTextFile(path.join(sourcePath, "list.ruleLink.js"))
-    const rulePubDate = readTextFile(path.join(sourcePath, "list.rulePubDate.js"))
-    const ruleTitle = readTextFile(path.join(sourcePath, "list.ruleTitle.txt"))
 
     RssSource.sourceName = "书源订阅"
     RssSource.sourceUrl = "https://codeberg.org/DowneyRem/PixivSource"
@@ -192,13 +194,12 @@ function buildImportSource() {
     Object.keys(RssSource).forEach((key) => {
         if (RssSource[key] === "") delete RssSource[key]
     })
-    // console.log(JSON.stringify([RssSource]))
-    saveJsonFile("dist", "import.json", [RssSource])
+    saveJsonFile("", "import.json", [RssSource])
 }
 
 function main() {
-    // buildBTSRKSource()
-    buildImportSource()
+    buildBTSRKSource()
+    // buildImportSource()
 }
 
 main()
