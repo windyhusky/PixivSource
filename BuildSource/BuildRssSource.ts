@@ -169,6 +169,9 @@ function buildImportSource() {
     RssSource.sourceIcon = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/doc/pic/Legado-Pixiv.png"
     RssSource.sourceGroup = "🅿️ Pixiv,🐲 Furry,书源"
     RssSource.variableComment = "【刷新分类】【刷新分类】【刷新分类】"
+    RssSource.singleUrl = false
+    RssSource.lastUpdateTime = 1739808000251
+    // RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
 
     // 基本页面，按顺序排序
     RssSource.sourceComment = sourceComment
@@ -186,10 +189,10 @@ function buildImportSource() {
     RssSource.ruleLink = ruleLink
 
     // 去除空键
-    // Object.keys(RssSource).forEach((key) => {
-    //     if (RssSource[key] === "") delete RssSource[key]
-    // })
-    console.log(JSON.stringify([RssSource]))
+    Object.keys(RssSource).forEach((key) => {
+        if (RssSource[key] === "") delete RssSource[key]
+    })
+    // console.log(JSON.stringify([RssSource]))
     saveJsonFile("dist", "import.json", [RssSource])
 }
 
