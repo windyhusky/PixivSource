@@ -157,7 +157,7 @@ function buildImportSource() {
     const sortUrl  = readTextFile(path.join(sourcePath, "base.sortUrl.js"))
     const sourceComment = readTextFile(path.join(sourcePath, "base.sourceComment.txt"))
     const ruleArticles = readTextFile(path.join(sourcePath, "list.ruleArticles.js"))
-    const ruleNextArticles = readTextFile(path.join(sourcePath, "list.ruleNextArticles.js"))
+    const ruleNextPage = readTextFile(path.join(sourcePath, "list.ruleNextPage.js"))
     const ruleDescription = readTextFile(path.join(sourcePath, "list.ruleDescription.js"))
     const ruleImage = readTextFile(path.join(sourcePath, "list.ruleImage.js"))
     const ruleLink = readTextFile(path.join(sourcePath, "list.ruleLink.js"))
@@ -170,18 +170,20 @@ function buildImportSource() {
     RssSource.sourceGroup = "🅿️ Pixiv,🐲 Furry,书源"
     RssSource.variableComment = "【刷新分类】【刷新分类】【刷新分类】"
 
-    RssSource.header = header
-    RssSource.loginUrl = loginUrl
-    RssSource.sortUrl = `@js:\n${sortUrl}`
+    // 基本页面，按顺序排序
     RssSource.sourceComment = sourceComment
+    RssSource.sortUrl = sortUrl
+    RssSource.loginUrl = loginUrl
+    RssSource.header = header
 
+    // 列表页面，按顺序排序
     RssSource.ruleArticles = ruleArticles
-    // RssSource.ruleNextArticles = ruleNextArticles
-    RssSource.ruleDescription = ""
+    RssSource.ruleNextPage = ruleNextPage
+    RssSource.ruleTitle = ruleTitle
+    RssSource.rulePubDate = rulePubDate
+    RssSource.ruleDescription = ruleDescription
     RssSource.ruleImage = ruleImage
     RssSource.ruleLink = ruleLink
-    RssSource.rulePubDate = rulePubDate
-    RssSource.ruleTitle = ruleTitle
 
     // 去除空键
     // Object.keys(RssSource).forEach((key) => {
