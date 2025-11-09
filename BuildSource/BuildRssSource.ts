@@ -78,7 +78,7 @@ function buildRssSource(){
     RssSources.forEach(item => {
         Object.keys(defaultData).forEach((key) => {
             if (item[key] === undefined) item[key] = defaultData[key]
-            if (item[key] === "") delete item[key]
+            if (item[key] === "") delete item[key]  // 去除空键
         })
     })
     return RssSources
@@ -127,6 +127,7 @@ function buildSource(name){
     RssSource.injectJs = injectJs
     RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
 
+    // 去除空键
     Object.keys(RssSource).forEach((key) => {
         if (RssSource[key] === "") delete RssSource[key]
     })
@@ -143,6 +144,39 @@ function buildBTSRKSource() {
     saveJsonFile("", "btsrk.json", allSources)
 }
 
+function buildImportSource() {
+    // 需要在 项目根目录下执行
+    let sourcePath = `rssSource/import`
+    let defaultDataPath = `BuildSource/rssSource.json`
+
+    // 读取基础模板
+    let RssSource: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
+    // 读取各个构建后文件内容
+    const header = readTextFile(path.join(sourcePath, "base.header.json"))
+    const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
+    const sortUrl  = readTextFile(path.join(sourcePath, "base.sortUrl.js"))
+    const sourceComment = readTextFile(path.join(sourcePath, "base.sourceComment.txt"))
+    const ruleArticles = readTextFile(path.join(sourcePath, "list.ruleArticles.js"))
+    const ruleImage = readTextFile(path.join(sourcePath, "list.ruleImage.js"))
+    const rulePubDate = readTextFile(path.join(sourcePath, "list.rulePubDate.js"))
+    const ruleTitle = readTextFile(path.join(sourcePath, "list.ruleTitle.txt"))
+
+    RssSource.header = header
+    RssSource.loginUrl = loginUrl
+    RssSource.sortUrl = sortUrl
+    RssSource.sourceComment = sourceComment
+    RssSource.ruleArticles = ruleArticles
+    RssSource.ruleImage = ruleImage
+    RssSource.rulePubDate = rulePubDate
+    RssSource.ruleTitle = ruleTitle
+
+    // 去除空键
+    Object.keys(RssSource).forEach((key) => {
+        if (RssSource[key] === "") delete RssSource[key]
+    })
+    console.log(JSON.stringify([RssSource]))
+    saveJsonFile("dist", "import.json", [RssSource])
+}
 
 function main() {
     // buildBTSRKSource()
