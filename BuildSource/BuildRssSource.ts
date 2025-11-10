@@ -75,10 +75,11 @@ function buildRssSource(sourceName:string): RssSource[] {
     const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
 
     // 填充默认数据
-    RssSources.forEach(item => {
+    RssSources.forEach(RssSource => {
         Object.keys(defaultData).forEach((key) => {
-            if (item[key] === undefined) item[key] = defaultData[key]
-            if (item[key] === "") delete item[key]  // 去除空键
+            if (RssSource[key] === undefined) RssSource[key] = defaultData[key]
+            if (RssSource[key] === false) delete RssSource[key]
+            if (RssSource[key] === "") delete RssSource[key]
         })
     })
     return RssSources
@@ -113,7 +114,6 @@ function buildNovelSource(name){
     // 填充默认数据
     Object.keys(defaultData).forEach((key) => {
         if (RssSource[key] === undefined) RssSource[key] = defaultData[key]
-        if (RssSource[key] === "") delete RssSource[key]
     })
 
     // 更新订阅
@@ -129,6 +129,7 @@ function buildNovelSource(name){
 
     // 去除空键
     Object.keys(RssSource).forEach((key) => {
+        if (RssSource[key] === false) delete RssSource[key]
         if (RssSource[key] === "") delete RssSource[key]
     })
     return RssSource
@@ -192,6 +193,7 @@ function buildImportSource() {
 
     // 去除空键
     Object.keys(RssSource).forEach((key) => {
+        if (RssSource[key] === false) delete RssSource[key]
         if (RssSource[key] === "") delete RssSource[key]
     })
     saveJsonFile("", "import.json", [RssSource])
