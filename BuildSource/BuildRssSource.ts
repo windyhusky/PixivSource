@@ -145,6 +145,12 @@ function buildBTSRKSource() {
     saveJsonFile("", "btsrk.json", allSources)
 }
 
+function buildBooksSources() {
+    const books = buildRssSource("books")
+    // console.log(JSON.stringify(books, null, 4))
+    saveJsonFile("dist", "books.json", books)
+}
+
 function buildImportSource() {
     // 需要在 项目根目录下执行
     let sourcePath = `rssSource/import`
@@ -200,7 +206,8 @@ function buildImportSource() {
 }
 
 function main() {
-    buildBTSRKSource()
+    // buildBTSRKSource()
+    buildBooksSources()
     // buildImportSource()
 }
 
