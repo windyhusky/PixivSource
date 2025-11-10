@@ -85,7 +85,7 @@ function buildRssSource(sourceName:string): RssSource[] {
     return RssSources
 }
 
-function buildNovelSource(name){
+function buildNovelSource(name:string): RssSource {
     // 需要在 项目根目录下执行
     let sourcePath = `rssSource/${name}`
     let templatePath = `rssSource/furry.json`
@@ -167,16 +167,19 @@ function buildSearchSource() {
 
     RssSource.lastUpdateTime = 1739808000251
     // RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
-
-    console.log(JSON.stringify(RssSource, null, 4))
-    saveJsonFile("dist", "books.json", RssSource)
+    // 去除空键
+    Object.keys(RssSource).forEach((key) => {
+        if (RssSource[key] === false) delete RssSource[key]
+        if (RssSource[key] === "") delete RssSource[key]
+    })
     return RssSource
 }
 
 function buildBooksSources() {
     const books = buildRssSource("books")
-    // console.log(JSON.stringify(books, null, 4))
-    saveJsonFile("dist", "books.json", books)
+    const search = buildSearchSource()
+    const allSources = [...books, search]
+    saveJsonFile("", "books.json", allSources)
 }
 
 function buildImportSource() {
@@ -234,9 +237,9 @@ function buildImportSource() {
 }
 
 function main() {
-    // buildBTSRKSource()
+    buildBTSRKSource()
     buildBooksSources()
-    // buildImportSource()
+    buildImportSource()
 }
 
 main()
