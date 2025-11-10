@@ -1,0 +1,30 @@
+[
+    {
+        "name": "夸克搜索",
+        "url": "https://quark.sm.cn/s?q=小说排行"
+    },
+    {
+        "name": "搜狗搜索",
+        "url": "https://wap.sogou.com/web/searchList.jsp?keyword=小说排行"
+    },
+    {
+        "name": "头条搜索",
+        "url": "https://so.toutiao.com/search/?keyword=小说排行"
+    },
+    {
+        "name": "360搜索",
+        "url": "https://m.so.com/s?q=小说排行"
+    },
+    {
+        "name": "必应搜索",
+        "url": "https://cn.bing.com/search?q=小说排行"
+    },
+    {
+        "name": "百度搜索",
+        "url": "https://www.baidu.com/s?wd=小说排行"
+    },
+    {
+        "name":"谷歌搜索(VPN)",
+        "url":"https://www.google.com/search?q="
+    }
+]

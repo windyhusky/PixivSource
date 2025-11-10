@@ -145,6 +145,34 @@ function buildBTSRKSource() {
     saveJsonFile("", "btsrk.json", allSources)
 }
 
+function buildSearchSource() {
+    let sourcePath = `rssSource/search`
+    let defaultDataPath = `BuildSource/rssSource.json`
+    // 读取基础模板
+    let RssSource: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
+    // 读取各个构建后文件内容
+    const ruleArticles = readTextFile(path.join(sourcePath, "list.ruleArticles.json"))
+    const injectJs = readTextFile(path.join(sourcePath, "webview.inject.js"))
+
+    RssSource.sourceName = "聚合搜索"
+    RssSource.sourceUrl = "https://www.baidu.com"
+    RssSource.sourceIcon = "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180118/22271e695f5f48a89795e2b9858f5008.jpeg"
+    RssSource.sourceGroup = "🔍 搜索"
+    RssSource.singleUrl = false
+
+    RssSource.ruleArticles = `@js:\n${ruleArticles}`
+    RssSource.ruleTitle = "name"
+    RssSource.ruleLink = "url"
+    RssSource.injectJs = injectJs
+
+    RssSource.lastUpdateTime = 1739808000251
+    // RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
+
+    console.log(JSON.stringify(RssSource, null, 4))
+    saveJsonFile("dist", "books.json", RssSource)
+    return RssSource
+}
+
 function buildBooksSources() {
     const books = buildRssSource("books")
     // console.log(JSON.stringify(books, null, 4))
