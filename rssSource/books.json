@@ -1,0 +1,38 @@
+[
+    {
+        "customOrder": 6,
+        "sourceGroup": "书源",
+        "sourceIcon": "https://i.loli.net/2021/06/23/S7rvWRZtPIq34MJ.png",
+        "sourceName": "喵公子书源管理",
+        "sourceUrl": "https://yuedu.miaogongzi.net/gx.html"
+    },
+    {
+        "customOrder": 7,
+        "sourceGroup": "书源",
+        "sourceIcon": "https://www.yckceo.com//favicon.ico",
+        "sourceName": "源仓库",
+        "sourceUrl": "https://www.yckceo.com/yuedu/shuyuan/index.html"
+    },
+    {
+        "customOrder": 8,
+        "sourceComment": "www.yiove.com",
+        "sourceGroup": "书源",
+        "sourceIcon": "https://shuyuan.yiove.com/logo.jpeg",
+        "sourceName": "Yiove 书源仓库",
+        "sourceUrl": "https://shuyuan.yiove.com"
+    },
+    {
+        "articleStyle": 9,
+        "sourceGroup": "legado",
+        "sourceIcon": "https://www.yuque.com/favicon.ico",
+        "sourceName": "使用文档",
+        "sourceUrl": "https://www.yuque.com/legado/wiki"
+    },
+        {
+        "articleStyle": 10,
+        "sourceGroup": "legado",
+        "sourceIcon": "https://cdn.jsdelivr.net/gh/mgz0227/meowcloud/icon.png",
+        "sourceName": "Meow云",
+        "sourceUrl": "https://pan.miaogongzi.net"
+    }
+]
