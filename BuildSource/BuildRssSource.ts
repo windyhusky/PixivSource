@@ -64,14 +64,14 @@ function saveJsonFile(folder:string, fileName:string, data:any):void {
     console.log(`✅  ${outputPath} 生成成功`)
 }
 
-function buildRssSource(){
+function buildRssSource(sourceName:string): RssSource[] {
     // 需要在 项目根目录下执行
-    let templatePath = `rssSource/furry.json`
+    let templatePath = `rssSource/${sourceName}.json`
     let defaultDataPath = `BuildSource/rssSource.json`
 
     // 读取基础模板
     let RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
-    RssSources = RssSources.slice(4, RssSources.length)
+    if (sourceName === "furry") RssSources = RssSources.slice(4, RssSources.length)
     const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
 
     // 填充默认数据
@@ -84,7 +84,7 @@ function buildRssSource(){
     return RssSources
 }
 
-function buildSource(name){
+function buildNovelSource(name){
     // 需要在 项目根目录下执行
     let sourcePath = `rssSource/${name}`
     let templatePath = `rssSource/furry.json`
@@ -135,12 +135,12 @@ function buildSource(name){
 }
 
 function buildBTSRKSource() {
-    const pixiv = buildSource("pixiv")
-    const linpx = buildSource("linpx")
-    const furryNovel = buildSource("furryNovel")
-    const repo = buildSource("repo")
-    const normal = buildRssSource()
-    const allSources = [pixiv, linpx, furryNovel, repo, ...normal]
+    const pixiv = buildNovelSource("pixiv")
+    const linpx = buildNovelSource("linpx")
+    const furryNovel = buildNovelSource("furryNovel")
+    const repo = buildNovelSource("repo")
+    const furrySites = buildRssSource("furry")
+    const allSources = [pixiv, linpx, furryNovel, repo, ...furrySites]
     saveJsonFile("", "btsrk.json", allSources)
 }
 
