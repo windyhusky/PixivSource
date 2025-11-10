@@ -32,11 +32,12 @@
         "sourceName":"兽人控游戏索引",
         "sourceUrl":"https://furrygames.top/zh-cn/list-b.html",
         "sourceIcon":"https://cdn.jsdelivr.net/gh/FurryGamesIndex/games@master/assets/_README/logo.png",
-        "sourceGroup": "🐲 Furry"
+        "sourceGroup": "🐲 Furry",
+        "loginUrl": "https://github.com/FurryGamesIndex/games"
     },
     {
         "customOrder": 6,
-        "sourceName":"兽人控游戏库",
+        "sourceName":"兽人游戏库",
         "sourceUrl":"https://kemono.games/zh-Hans/explore?sort=latest_update",
         "sourceIcon":"https://img.srkyxk.com/logo-512x512.png",
         "sourceGroup": "🐲 Furry",
@@ -47,7 +48,8 @@
         "sourceName":"兽展日历",
         "sourceUrl":"https://www.furrycons.cn",
         "sourceIcon":"https://images.furrycons.cn/logo_800x800.png",
-        "sourceGroup": "🐲 Furry"
+        "sourceGroup": "🐲 Furry",
+        "loginUrl": "https://github.com/FurryConsChina/website"
     },
     {
         "customOrder": 8,
