@@ -98,6 +98,17 @@ function saveTextFile(folder:string, fileName:string, data:any):void {
     }
 }
 
+function dateFormat(timeStamp) {
+    let addZero = function (num) {
+        return num < 10 ? '0' + num : num;
+    }
+    let time = new Date(timeStamp)
+    let YY = time.getFullYear()
+    let MM = addZero(time.getMonth() + 1)
+    let DD = addZero(time.getDate())
+    return `${YY}-${MM}-${DD}`
+}
+
 function buildBookSource(sourceName:string): BookSource {
     // 需要在 项目根目录下执行
     let sourcePath = `bookSource/${sourceName}`
@@ -109,7 +120,7 @@ function buildBookSource(sourceName:string): BookSource {
     const BookSource: BookSource = JSON.parse(readTextFile(templatePath))[0]
 
     // 读取各个构建后文件内容
-    const bookSourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
+    let bookSourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.txt"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
@@ -129,6 +140,17 @@ function buildBookSource(sourceName:string): BookSource {
     const detailContent = readTextFile(path.join(sourcePath, "detail.js"))
     const catalogContent = readTextFile(path.join(sourcePath, "catalog.js"))
     const contentContent = readTextFile(path.join(sourcePath, "content.js"))
+
+    // 更新书源更新时间
+    let lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
+    let updateTimeOld = bookSourceComment.split("\n")[0].split("：")[1].replace("）", "")
+    let updateTimeNew = dateFormat(lastUpdateTime)
+    bookSourceComment = bookSourceComment.replace(updateTimeOld, updateTimeNew)
+
+    let versionOld = bookSourceComment.split("\n")[2].split("：")[1]
+    let versionNew = `${Number(versionOld) + 1}`
+    bookSourceComment = bookSourceComment.replace(versionOld, versionNew)
+    saveTextFile(sourcePath, "ReadMe.txt", bookSourceComment)
 
     // 更新书源
     BookSource.bookSourceComment = bookSourceComment
