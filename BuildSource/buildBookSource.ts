@@ -83,12 +83,14 @@ function readTextFile(filePath: string): string {
     return ""
 }
 
-function saveJsonFile(folder:string, fileName:string, data:any):void {
+function saveTextFile(folder:string, fileName:string, data:any):void {
     if (folder && !fs.existsSync(folder)) {
         fs.mkdirSync(folder)
     }
+    if (fileName.endsWith(".json")) {
+        data = JSON.stringify(data, null, 4)
+    }
     const outputPath = path.join(folder, fileName)
-    data = JSON.stringify(data, null, 4)
     fs.writeFileSync(outputPath, data, "utf-8",)
     console.log(`✅  ${outputPath} 生成成功`)
 }
@@ -172,7 +174,7 @@ function buildPixivSource() {
     const pixivIllust = buildBookSource("pixivIllust")
     const allSources = [pixivMain, pixivBackup, pixivIllust]
     // 写入最终的 JSON 文件
-    saveJsonFile("", "pixiv.json", allSources)
+    saveTextFile("", "pixiv.json", allSources)
 }
 
 function buildLinpxSource() {
@@ -181,7 +183,7 @@ function buildLinpxSource() {
     const furryNovel = buildBookSource("furryNovel")
     const allSources = [linpx, furryNovel]
     // 写入最终的 JSON 文件
-    saveJsonFile("", "linpx.json", allSources)
+    saveTextFile("", "linpx.json", allSources)
 }
 
 function main() {

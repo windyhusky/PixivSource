@@ -54,12 +54,14 @@ function readTextFile(filePath: string): string {
     return ""
 }
 
-function saveJsonFile(folder:string, fileName:string, data:any):void {
+function saveTextFile(folder:string, fileName:string, data:any):void {
     if (folder && !fs.existsSync(folder)) {
         fs.mkdirSync(folder)
     }
+    if (fileName.endsWith(".json")) {
+        data = JSON.stringify(data, null, 4)
+    }
     const outputPath = path.join(folder, fileName)
-    data = JSON.stringify(data, null, 4)
     fs.writeFileSync(outputPath, data, "utf-8",)
     console.log(`✅  ${outputPath} 生成成功`)
 }
@@ -142,7 +144,7 @@ function buildBTSRKSource() {
     const repo = buildNovelSource("repo")
     const furrySites = buildRssSource("furry")
     const allSources = [pixiv, linpx, furryNovel, repo, ...furrySites]
-    saveJsonFile("", "btsrk.json", allSources)
+    saveTextFile("", "btsrk.json", allSources)
 }
 
 function buildSearchSource() {
@@ -179,7 +181,7 @@ function buildBooksSources() {
     const books = buildRssSource("books")
     const search = buildSearchSource()
     const allSources = [...books, search]
-    saveJsonFile("", "books.json", allSources)
+    saveTextFile("", "books.json", allSources)
 }
 
 function buildImportSource() {
@@ -233,7 +235,7 @@ function buildImportSource() {
         if (RssSource[key] === false) delete RssSource[key]
         if (RssSource[key] === "") delete RssSource[key]
     })
-    saveJsonFile("", "import.json", [RssSource])
+    saveTextFile("", "import.json", [RssSource])
 }
 
 function main() {
