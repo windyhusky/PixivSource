@@ -92,7 +92,10 @@ function saveTextFile(folder:string, fileName:string, data:any):void {
     }
     const outputPath = path.join(folder, fileName)
     fs.writeFileSync(outputPath, data, "utf-8",)
-    console.log(`✅  ${outputPath} 生成成功`)
+
+    if (fileName.endsWith(".json")) {
+        console.log(`✅  ${outputPath} 生成成功`)
+    }
 }
 
 function buildBookSource(sourceName:string): BookSource {
