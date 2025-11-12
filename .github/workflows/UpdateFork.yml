@@ -1,0 +1,88 @@
+name: Update Fork
+
+on: 
+  schedule:
+    - cron: '0 0,8,16 * * *' # 定时任务，每 8h 同步一次
+  workflow_dispatch:
+
+jobs:
+  UpdateFork:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner != 'DowneyRem' }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set env
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions"
+
+      - name: Update fork
+        run: |
+          git remote add upstream https://github.com/DowneyRem/PixivSource.git
+          git remote -v
+          git fetch upstream
+          git checkout main
+          git merge upstream/main
+          git push origin main
+
+  purgeCache:
+    needs: UpdateFork
+    name: Purge Jsdelivr Cache
+    runs-on: ubuntu-latest
+    if: ${{ github.repository_owner != 'DowneyRem' }}
+    steps:
+      - name: Purge Pixiv Cache
+        run: |
+          result=$(curl -s https://purge.jsdelivr.net/gh/${{github.repository_owner}}/PixivSource@main/pixiv.json)
+          if echo $result |grep -q 'finished'; then
+            echo "Pixiv 书源 jsdelivr 缓存更新成功"
+          else
+            echo $result
+          fi
+
+      - name: Purge Linpx Cache
+        run: |
+          result=$(curl -s https://purge.jsdelivr.net/gh/${{github.repository_owner}}/PixivSource@main/linpx.json)
+          if echo $result |grep -q 'finished'; then
+            echo "Linpx 书源 jsdelivr 缓存更新成功"
+          else
+            echo $result
+          fi
+
+      - name: Purge BTSRK Cache
+        run: |
+          result=$(curl -s https://purge.jsdelivr.net/gh/${{github.repository_owner}}/PixivSource@main/btsrk.json)
+          if echo $result |grep -q 'finished'; then
+            echo "BTSRK 订阅源 jsdelivr 缓存更新成功"
+          else
+            echo $result
+          fi
+
+      - name: Purge Books Cache
+        run: |
+          result=$(curl -s https://purge.jsdelivr.net/gh/${{github.repository_owner}}/PixivSource@main/books.json)
+          if echo $result |grep -q 'finished'; then
+            echo "Books 订阅源 jsdelivr 缓存更新成功"
+          else
+            echo $result
+          fi
+
+      - name: Purge Import Cache
+        run: |
+          result=$(curl -s https://purge.jsdelivr.net/gh/${{github.repository_owner}}/PixivSource@main/import.json)
+          if echo $result |grep -q 'finished'; then
+            echo "Import 订阅源 jsdelivr 缓存更新成功"
+          else
+            echo $result
+          fi
+
+      - name: Purge Normal Cache
+        run: |
+          result=$(curl -s https://purge.jsdelivr.net/gh/${{github.repository_owner}}/PixivSource@main/normal.json)
+          if echo $result |grep -q 'finished'; then
+            echo "Normal 书源 jsdelivr 缓存更新成功"
+          else
+            echo $result
+          fi
