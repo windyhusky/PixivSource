@@ -1,6 +1,6 @@
 [
     {
-        "bookSourceComment": "🦊 Linpx 书源（单篇）（更新📆：2025-11-11）\n\n书源版本：241\n可用功能：✅搜索✅发现✅添加网址✅订阅源\n搜索小说：✅单篇❌系列✅作者✅标签✅链接\n发现小说：✅推荐作者✅最近更新\n添加网址：✅Linpx 链接✅Linpx 分享链接\n搜索网址：✅Linpx 链接✅Pixiv 原文链接\n订阅用法：点击订阅源打开小说，点击【添加到书架】按钮添加小说到书架\n温馨提示：⚠️Linpx 搜索暂时不支持系列小说名称，添加系列小说后，无法再次通过搜索获取并更新目录\n\n书源发布：Pixiv 书源频道 https://t.me/PixivSource\n兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/DowneyRem/PixivSource\n使用教程：https://github.com/DowneyRem/PixivSource/blob/main/doc/Linpx.md\n\n规则订阅：Import 订阅源\nhttps://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json\nhttps://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json\n\n⚙️ 书源设置：\n书源管理 - 编辑书源 - 基本 - 变量说明 - 修改并保存",
+        "bookSourceComment": "🦊 Linpx 书源（单篇）（更新📆：2025-11-14）\n\n书源版本：242\n可用功能：✅搜索✅发现✅添加网址✅订阅源\n搜索小说：✅单篇❌系列✅作者✅标签✅链接\n发现小说：✅推荐作者✅最近更新\n添加网址：✅Linpx 链接✅Linpx 分享链接\n搜索网址：✅Linpx 链接✅Pixiv 原文链接\n订阅用法：点击订阅源打开小说，点击【添加到书架】按钮添加小说到书架\n温馨提示：⚠️Linpx 搜索暂时不支持系列小说名称，添加系列小说后，无法再次通过搜索获取并更新目录\n\n书源发布：Pixiv 书源频道 https://t.me/PixivSource\n兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/DowneyRem/PixivSource\n使用教程：https://github.com/DowneyRem/PixivSource/blob/main/doc/Linpx.md\n\n规则订阅：Import 订阅源\nhttps://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json\nhttps://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json\n\n⚙️ 书源设置：\n书源管理 - 编辑书源 - 基本 - 变量说明 - 修改并保存",
         "bookSourceGroup": "🔞 Pixiv,🐲 Furry",
         "bookSourceName": "🦊 Linpx",
         "bookSourceType": 0,
@@ -71,7 +71,7 @@
         "lastUpdateTime": 1739808000251
     },
     {
-        "bookSourceComment": "🐯 兽人控小说站书源（更新📆：2025-11-11）\n\n书源版本：241\n可用功能：✅搜索✅发现✅添加网址✅订阅源\n搜索小说：✅单篇✅系列✅作者✅标签\n发现小说：✅热门小说✅最新小说✅随便来点\n添加网址：✅兽人控小说站链接\n订阅用法：点击订阅源打开小说/系列小说，点击【加入书架】按钮，添加小说到书架\n\n书源发布：Pixiv 书源频道 https://t.me/PixivSource\n兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/DowneyRem/PixivSource\n使用教程：https://github.com/DowneyRem/PixivSource/blob/main/doc/FurryNovel.md\n\n规则订阅：Import 订阅源\nhttps://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json\nhttps://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json\n\n⚙️ 书源设置：\n书源管理 - 编辑书源 - 基本 - 变量说明 - 修改并保存\n\n🔎 筛选发现：\n发现 - 长按\"Pixiv\" - 编辑 - 右上角菜单 - 设置源变量\n设置源变量：输入想要搜索/筛选的标签，以空格间隔（或一行一个），保存\n发现 - 长按\"Pixiv\" - 刷新 - 查看他人收藏",
+        "bookSourceComment": "🐯 兽人控小说站书源（更新📆：2025-11-14）\n\n书源版本：242\n可用功能：✅搜索✅发现✅添加网址✅订阅源\n搜索小说：✅单篇✅系列✅作者✅标签\n发现小说：✅热门小说✅最新小说✅随便来点\n添加网址：✅兽人控小说站链接\n订阅用法：点击订阅源打开小说/系列小说，点击【加入书架】按钮，添加小说到书架\n\n书源发布：Pixiv 书源频道 https://t.me/PixivSource\n兽人阅读频道 https://t.me/FurryReading\n项目地址：https://github.com/DowneyRem/PixivSource\n使用教程：https://github.com/DowneyRem/PixivSource/blob/main/doc/FurryNovel.md\n\n规则订阅：Import 订阅源\nhttps://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json\nhttps://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json\n\n⚙️ 书源设置：\n书源管理 - 编辑书源 - 基本 - 变量说明 - 修改并保存\n\n🔎 筛选发现：\n发现 - 长按\"Pixiv\" - 编辑 - 右上角菜单 - 设置源变量\n设置源变量：输入想要搜索/筛选的标签，以空格间隔（或一行一个），保存\n发现 - 长按\"Pixiv\" - 刷新 - 查看他人收藏",
         "bookSourceGroup": "🔞 Pixiv,🐲 Furry",
         "bookSourceName": "🐯 兽人控小说站",
         "bookSourceType": 0,

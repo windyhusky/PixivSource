@@ -165,7 +165,7 @@ function buildSearchSource() {
     RssSource.ruleLink = "url"
     RssSource.injectJs = injectJs
 
-    RssSource.lastUpdateTime = 1739808000251
+    RssSource.lastUpdateTime = 1763049600251
     // RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
     // 去除空键
     Object.keys(RssSource).forEach((key) => {
