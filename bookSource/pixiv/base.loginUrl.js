@@ -821,10 +821,10 @@ function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
 function startGithubIssue() {
-    startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
+    startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
 }
 function startGithubReadme() {
-    startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
+    startBrowser("https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 
 function checkStatus(status) {

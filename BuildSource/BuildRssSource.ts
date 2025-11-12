@@ -206,7 +206,7 @@ function buildImportSource() {
 
     RssSource.sourceName = "书源订阅"
     RssSource.sourceUrl = "https://codeberg.org/DowneyRem/PixivSource"
-    RssSource.sourceIcon = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/doc/pic/Legado-Pixiv.png"
+    RssSource.sourceIcon = "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/doc/pic/Legado-Pixiv.png"
     RssSource.sourceGroup = "🅿️ Pixiv,🐲 Furry,书源"
     RssSource.variableComment = "【刷新分类】【刷新分类】【刷新分类】"
     RssSource.singleUrl = false

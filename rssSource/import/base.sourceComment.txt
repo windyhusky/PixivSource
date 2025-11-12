@@ -5,17 +5,17 @@ Pixiv 书源订阅（更新📆：2025-02-18）
 
 
 『🅿️丨Pixiv 书源』
-https://github.com/windyhusky/PixivSource《⬇️ 导入 Pixiv 等书源 ⬇️》【https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png】◎✍️ windyhusky & DowneyRem &nbsp; 🔗 长期更新◎
+https://github.com/DowneyRem/PixivSource《⬇️ 导入 Pixiv 等书源 ⬇️》【https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png】◎✍️ windyhusky & DowneyRem &nbsp; 🔗 长期更新◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json《Pixiv 书源》【https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png】◎🏷️ Pixiv &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+一键导入https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json《Pixiv 书源》【https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png】◎🏷️ Pixiv &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json《Linpx & 兽人小说 书源》【https://furrynovel.ink/apple-touch-icon.png】◎🏷️ Linpx &nbsp; 🏷️ 兽人小说 &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
+一键导入https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json《Linpx & 兽人小说 书源》【https://furrynovel.ink/apple-touch-icon.png】◎🏷️ Linpx &nbsp; 🏷️ 兽人小说 &nbsp; ✅ 单篇 &nbsp; ✅ 系列 &nbsp; 🔗 长期更新◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json《Pixiv & Linpx & 兽人小说 订阅源》【https://www.furrynovel.com/static/icon.png】◎🏷️Pixiv &nbsp; 🏷️ Linpx &nbsp; 🏷️ 兽人小说 &nbsp; 🔗 长期更新◎
+一键导入https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json《Pixiv & Linpx & 兽人小说 订阅源》【https://www.furrynovel.com/static/icon.png】◎🏷️Pixiv &nbsp; 🏷️ Linpx &nbsp; 🏷️ 兽人小说 &nbsp; 🔗 长期更新◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json《书源分享/ books 订阅源》◎🏷️ 订阅源 &nbsp; 🔗 长期更新◎
+一键导入https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json《书源分享/ books 订阅源》◎🏷️ 订阅源 &nbsp; 🔗 长期更新◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json《检查更新 import 订阅源》◎📌 全选-确认-覆盖导入-退出-刷新分类 &nbsp; 🔗 长期更新◎
+一键导入https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json《检查更新 import 订阅源》◎📌 全选-确认-覆盖导入-退出-刷新分类 &nbsp; 🔗 长期更新◎
 
 
 『🅿️丨Pixiv 其他』
@@ -26,7 +26,7 @@ https://github.com/Luoyacheng/yuedu《⬇️ 导入 Pixiv 书源 (APP API) ⬇�
 
 https://akaito.xyz/post/Legado《⬇️ 导入 Pixiv 小说目录规则 ⬇️》【https://akaito.xyz/favicon.ico】◎✍️ 一片痴心俱成灰 &nbsp; 🏷️ Pixiv 本地小说目录规则 &nbsp;◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixivToc.json《Pixiv 目录规则》【https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png】◎✍️ 一片痴心俱成灰 &nbsp; 🏷️ 本地小说 &nbsp; 🏷️ 目录规则 &nbsp;◎
+一键导入https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json《Pixiv 目录规则》【https://asset.brandfetch.io/idIlKj_n7C/idSsbP7h1m.png】◎✍️ 一片痴心俱成灰 &nbsp; 🏷️ 本地小说 &nbsp; 🏷️ 目录规则 &nbsp;◎
 
 
 https://books.fishhawk.top/forum/66a8e77866bff10c16e51d6a《⬇️ 导入 轻小说机翻机器人 书源 ⬇️》【https://books.fishhawk.top/icon.svg】◎✍️ holzora &nbsp; 🏷️ 轻小说机翻机器人 &nbsp; ◎
@@ -37,7 +37,7 @@ https://books.fishhawk.top/forum/66a8e77866bff10c16e51d6a《⬇️ 导入 轻小
 『🔎丨不世玄奇』
 https://github.com/bushixuanqi/book-source《⬇️ 一键导入 不世玄奇 的书源 ⬇️》【https://github.githubassets.com/assets/GitHub-Mark-ea2971cee799.png】◎✍️ 不世玄奇 &nbsp; 🏷️ 通用书源 & 通用订阅 &nbsp; 📆 2023-05 &nbsp; 🔗 停更◎
 
-一键导入https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/normal.json《通用书源 & 搜索引擎书源》【002/93/87/83】◎ 🏷️ 通用书源 &nbsp; 📆 2023-05 &nbsp; 🔗 停更◎
+一键导入https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json《通用书源 & 搜索引擎书源》【002/93/87/83】◎ 🏷️ 通用书源 &nbsp; 📆 2023-05 &nbsp; 🔗 停更◎
 
 一键导入https://bushixuanqi.oss-cn-chengdu.aliyuncs.com/通用发现v5.json【002/93/87/83】《聚合搜索 / 通用订阅》◎🏷️ 通用订阅 &nbsp; 📆 2023-04 &nbsp; 🔗 停更◎
 

@@ -12,28 +12,28 @@
 
 ## 2.1 导入书源
 ### O.一键导入
-- 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json)
-- 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
-- 🐲 [一键导入 BTSRK 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)
-- 📚 [一键导入 Books 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)
-- ➕ [一键导入 Import 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)
+- 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json)
+- 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
+- 🐲 [一键导入 BTSRK 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
+- 📚 [一键导入 Books 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
+- ➕ [一键导入 Import 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
 
 
 <details><summary> ➕ 更多方法 </summary>
 
 请【**开启代理**】后，复制下面的【书源】链接
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json
 ```
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json
 ```
 以下导入方法任选其一亦可
 <details><summary> A. 文件导入 </summary>
 
 ### A.文件导入更简单
 #### 1.下载书源/订阅源文件
-Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/PixivSource) ，选择 **链接另存为** 或 **下载链接**，下载相应书源
+Chrome 等浏览器可以打开 [这个网址](https://github.com/DowneyRem/PixivSource) ，选择 **链接另存为** 或 **下载链接**，下载相应书源
 
 
 #### 2.使用阅读打开
@@ -109,10 +109,10 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/windyhusky/Pix
 
 导入 Pixiv 书源的连接如下：
 ```
-yuedu://booksource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
+yuedu://booksource/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json
 ```
 ```
-legado://import/bookSource?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
+legado://import/bookSource?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json
 ```
 
 #### 1.手机浏览器内点击链接，跳转阅读

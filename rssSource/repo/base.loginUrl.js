@@ -25,16 +25,16 @@ function startBrowser(url, title) {
 }
 
 function startGithub() {
-    startBrowser("https://github.com/windyhusky/PixivSource", "书源介绍")
+    startBrowser("https://github.com/DowneyRem/PixivSource", "书源介绍")
 }
 function startGithubLogin() {
-    startBrowser("https://github.com/login?return_to=https://github.com/windyhusky/PixivSource", "收藏项目")
+    startBrowser("https://github.com/login?return_to=https://github.com/DowneyRem/PixivSource", "收藏项目")
 }
 function startGithubIssue() {
-    startBrowser("https://github.com/windyhusky/PixivSource/issues", "反馈问题")
+    startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
 }
 function startGithubReadme() {
-    startBrowser("https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
+    startBrowser("https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 function startTelegram() {
     startBrowser("https://t.me/PixivSource", "Pixiv 书源频道")

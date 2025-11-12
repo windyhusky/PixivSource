@@ -27,12 +27,12 @@ let bookSourceCommentText = `Pixiv 小说
 订阅用法：点击订阅源打开小说/系列小说，【刷新】，点击【加入书架】按钮，添加到书架
 
 书源发布：兽人阅读频道 https://t.me/FurryReading
-项目地址：https://github.com/windyhusky/PixivSource
-使用教程：https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md
+项目地址：https://github.com/DowneyRem/PixivSource
+使用教程：https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md
 
 规则订阅：import 订阅源
-https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json
 
 ⚙️ 书源设置：
 设置1️⃣：打开小说 - 菜单 - 登录 - 点击下方按钮
@@ -47,12 +47,12 @@ function updateSource() {
     let onlineSource, comment
     java.longToast("🆙 更新书源\n\nJsdelivr CDN 更新有延迟\nGithub 更新需代理")
     try {
-        let updateUrl = "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"
+        let updateUrl = "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
         onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
         comment = onlineSource.bookSourceComment.split("\n")
     } catch (e) {
         try {
-            let updateUrl = "https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json"
+            let updateUrl = "https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json"
             onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[0]  // 第1个书源
             comment = onlineSource.bookSourceComment.split("\n")
         } catch (e) {
@@ -78,7 +78,7 @@ function updateSource() {
 
 <body>
     <table border="1" cellspacing="0">
-        <th colspan="2"> Pixiv 书源 <a href="https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md">🔰 使用指南</a></th>
+        <th colspan="2"> Pixiv 书源 <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md">🔰 使用指南</a></th>
         <tr>
             <td>☁️ 远程版本：${onlineSource.bookSourceComment.split("\n")[2].replace("书源版本：", "")}</td>
             <td>📆 更新：${java.timeFormat(onlineSource.lastUpdateTime)}</td>
@@ -90,23 +90,23 @@ function updateSource() {
     <table border="0" cellspacing="20">
         <th colspan="2"> 更新 Pixiv 书源 </th>
         <tr><td><div class="ann">
-            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json">
+            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json">
             <button><span>更新书源<br>(Jsdelivr CDN)</span></button>
             </a></div></td>
             
             <td><div class="ann">
-            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json">
+            <a href="legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json">
             <button><span>更新订阅<br>(Jsdelivr CDN)</span></button>
             </a></div></td>
         </tr>
         
         <tr><td><div class="ann">
-            <a href="legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json">
+            <a href="legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json">
             <button><span>书源链接<br>(GitHub)</span></button>
             </a></div></td>
             
             <td><div class="ann">
-            <a href="legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json">
+            <a href="legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json">
             <button><span>订阅链接<br>(GitHub)</span></button>
             </a></div></td>
         </tr>

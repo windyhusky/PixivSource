@@ -19,9 +19,9 @@
 - 项目名称：
   - Pixiv 书源
 - 项目链接：
-  - https://github.com/windyhusky/PixivSource
+  - https://github.com/DowneyRem/PixivSource
   - https://github.com/eigeen/PixivSourceProject
-  - https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md
+  - https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md
 - 项目参与者链接：
   - https://github.com/DowneyRem
   - https://github.com/windyhusky
@@ -59,9 +59,9 @@
 
 
 ## 二、导入书源 & 订阅源
-- 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json)
+- 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
 
-- 🐲 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)
+- 🐲 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
 
 
 <details><summary> ➕ 导入书源 & 订阅源（旧） </summary>
@@ -71,7 +71,7 @@
 
 【**开启代理**】后，复制下方的书源链接
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json
 ```
 
 
@@ -103,7 +103,7 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json
 
 【**开启代理**】后，复制下方的订阅源链接
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ```
 
 #### 2.1 打开【订阅】页面，点击【规则订阅】

@@ -13,11 +13,11 @@
 
 ## 3.1 导入订阅源
 ### O.一键导入
-- 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json)
-- 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
-- 🐲 [一键导入 BTSRK 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)
-- 📚 [一键导入 Books 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)
-- ➕ [一键导入 Import 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)
+- 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
+- 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
+- 🐲 [一键导入 BTSRK 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
+- 📚 [一键导入 Books 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
+- ➕ [一键导入 Import 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
 
 
 <details><summary> ➕ 更多方法 </summary>
@@ -30,10 +30,10 @@
 ### A.文件导入更简单
 #### 1.下载书源/订阅源文件
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ```
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 ```
 
 #### 2.使用阅读打开
@@ -52,10 +52,10 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 ### B.规则订阅易更新
 【**开启代理**】后，复制下方的订阅源链接
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ```
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 ```
 #### 1. 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
@@ -82,11 +82,11 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 请【**开启代理**】后，复制下面的【订阅书源】链接
 - btsrk 订阅源
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ```
 - 书源分享 订阅源
 ```
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 ```
 
 #### 1.打开【订阅】页面，点击右上角【设置】
@@ -124,10 +124,10 @@ https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json
 
 导入 Pixiv 订阅源的连接如下：
 ```
-yuedu://rsssource/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
+yuedu://rsssource/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ```
 ```
-legado://import/rssSource?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json
+legado://import/rssSource?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ```
 
 #### 1.点击链接，跳转阅读

@@ -9,7 +9,7 @@
     {
         "customOrder": 7,
         "sourceGroup": "书源",
-        "sourceIcon":"https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/doc/pic/yck.png",
+        "sourceIcon":"https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/doc/pic/yck.png",
         "sourceName": "源仓库",
         "sourceUrl": "https://www.yckceo.com/yuedu/shuyuan/index.html"
     },

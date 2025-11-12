@@ -14,7 +14,7 @@ li = [
     {"❤️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/illusts/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"},
     {"㊙️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/illusts/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=hide&lang=zh"},
     {"🏠 首页": "https://www.pixiv.net"},
-    {"🆙 更新": "https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json"}
+    {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"}
 ]
 
 generalNew = [

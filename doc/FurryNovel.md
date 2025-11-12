@@ -24,8 +24,8 @@
 
 
 ## 一、导入书源 & 订阅源
-- 🐯 [一键导入 兽人控小说站 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
-- 🐲 [一键导入 兽人控小说站 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)
+- 🐯 [一键导入 兽人控小说站 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
+- 🐲 [一键导入 兽人控小说站 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
 
 
 <details><summary> ➕ 导入书源 & 订阅源（旧） </summary>
@@ -35,7 +35,7 @@
 
 复制下方【免代理】书源链接
 ```
-https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json
 ```
 #### 1.1 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
@@ -63,7 +63,7 @@ https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json
 
 复制下方【免代理】订阅源链接
 ```
-https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 ```
 #### 2.1 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)

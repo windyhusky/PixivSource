@@ -26,7 +26,7 @@
 </details>
 
 
-## 使用流程：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#三登录账号) => [开始使用](./doc/Pixiv.md#四添加小说尽情使用)
+## 使用流程：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#三登录账号) => [开始使用](./doc/Pixiv.md#四添加小说尽情使用)
 <details><summary> ➡️ 详细流程 </summary>
 
 ### 1.[下载阅读](./doc/Download.md)
@@ -49,11 +49,11 @@
 #### 1.2 书源兼容
 | 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
 | ------ | ----- | ------- | ------ |
-| 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
-| 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
-| 🎀【兼容】阅读 MD3  | 3.26       | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
-| 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
-| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) | 
+| 👍【推荐】阅读 洛娅橙 |  3.25.0927 | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) | 
+| 🏛️【官方】阅读 Beta | 3.25.0527  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) | 
+| 🎀【兼容】阅读 MD3  | 3.26       | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) | 
+| 🍎【兼容】源阅       | 1.0 (112)  | Pixiv 小说 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| 👎【官方】阅读 正式版 | 3.25    | Pixiv 小说备用 | [最新版](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) | 
 </details>
 
 
@@ -63,19 +63,19 @@
 #### A.一键导入 => [登录账号](./doc/Pixiv.md#三登录账号) => 开始使用
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
-| Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
-| Linpx 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
-| BTSRK 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
+| Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| Linpx 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| BTSRK 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
 
 
 <details><summary> 🔗 更多资源 </summary>
 
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
-| 通用书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/normal.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json) |
-| 书源分享 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json) |
-| Import 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json) |
-| Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixivToc.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json) |
+| 通用书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/normal.json) |
+| 书源分享 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json) |
+| Import 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json) |
+| Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixivToc.json) |
 </details>
 
 - 更多方法详见：[导入书源](./doc/ImportBookSource.md) & [导入订阅源](./doc/ImportRssSource.md)
@@ -91,10 +91,10 @@
 
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
-| Pixiv 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/pixiv.json) | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixiv.json) |
-| Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/linpx.json) |
-| BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/btsrk.json) |
-| Books 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/books.json)  | [订阅链接](https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json) |
+| Pixiv 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
+| Books 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json) |
 </details>
 
 
@@ -466,7 +466,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 <tr><td><a href="https://www.furrynovel.ink"> 2️⃣ Linpx 林匹克斯</a></td></tr>
 <tr><td><a href="https://www.furrynovel.com"> 3️⃣ 兽人控小说站</a></td></tr>
 
-<tr><td><a href="https://github.com/windyhusky/PixivSource"> 4️⃣ Pixiv 书源项目</a></td>
+<tr><td><a href="https://github.com/DowneyRem/PixivSource"> 4️⃣ Pixiv 书源项目</a></td>
   <td> ✅ 快速导入<br>📖 书源订阅</td>
 </tr>
 
@@ -503,10 +503,10 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 | 名称         | 相关网址                                                                     |
 | ----------- | --------------------------------------------------------------------------- |
-| 通用书源　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/normal.json   |
-| 聚合搜索　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/books.json    |
-| 书源订阅　　　 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json   |
-| Pixiv目录规则 | https://raw.githubusercontent.com/windyhusky/PixivSource/main/pixivToc.json |
+| 通用书源　　　 | https://raw.githubusercontent.com/DowneyRem/PixivSource/main/normal.json   |
+| 聚合搜索　　　 | https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json    |
+| 书源订阅　　　 | https://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json   |
+| Pixiv目录规则 | https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixivToc.json |
 
 - **[通用书源](https://github.com/bushixuanqi/book-source)** ：是不世玄奇 为网文网站编写的通用书源，用搜索引擎获取全网小说。
 - **[聚合搜索](https://legado.cn/thread-3723-1-1.html)** ：是不世玄奇 制作的聚合多个搜索引擎的订阅源，需要配合 **[通用书源](http://yuedu.miaogongzi.net/gx.html)** 使用。(集入 books 订阅源)
@@ -534,7 +534,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 ### 项目链接
 | 书源项目 | 链接                                          |
 | ------ | -------------------------------------------- |
-| 本项目　 | https://github.com/windyhusky/PixivSource    |
+| 本项目　 | https://github.com/DowneyRem/PixivSource    |
 | 备份项目 | https://codeberg.org/DowneyRem/PixivSource   |
 | TS重构版 | https://github.com/eigeen/PixivSourceProject |
 </details>
@@ -569,16 +569,16 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 - ✅ Linpx 订阅源
 - ✅ Pixiv 订阅源（使用JS注入，代码来自【聚合搜索】）
 - ✅ 兽人控小说站 订阅源
-- ✅ Pixiv 书源：关注作者的最新小说 https://github.com/windyhusky/PixivSource/issues/11
+- ✅ Pixiv 书源：关注作者的最新小说 https://github.com/DowneyRem/PixivSource/issues/11
 - ✅ Linpx 书源：推荐作者的近期小说
 - ✅ Pixiv 书源：通过作品ID添加插画
 - ✅ Linpx 书源：通过作品ID添加插画（使用 pixiv.cat ）
 - ✅ Pixiv 书源：添加网址加入书架；订阅源添加到书架
-- ✅ Pixiv 书源：追更列表 https://github.com/windyhusky/PixivSource/issues/14
-- ✅ Pixiv 书源：排行榜 https://github.com/windyhusky/PixivSource/issues/13
+- ✅ Pixiv 书源：追更列表 https://github.com/DowneyRem/PixivSource/issues/14
+- ✅ Pixiv 书源：排行榜 https://github.com/DowneyRem/PixivSource/issues/13
 - ✅ Pixiv 系列小说 书源 
-- ✅ Pixiv 书源：完善字数统计 https://github.com/windyhusky/PixivSource/issues/18
-- ✅ Pixiv 书源：显示更多信息 https://github.com/windyhusky/PixivSource/issues/17
+- ✅ Pixiv 书源：完善字数统计 https://github.com/DowneyRem/PixivSource/issues/18
+- ✅ Pixiv 书源：显示更多信息 https://github.com/DowneyRem/PixivSource/issues/17
 - ✅ Pixiv & Linpx 书源：添加小说更新时间
 - ✅ Pixiv & Linpx 书源：搜索作者
 - ✅ import 订阅源：导入其他书源、订阅源
@@ -596,5 +596,5 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 
 ## Stargazers over time
-[![Stargazers over time](https://starchart.cc/windyhusky/PixivSource.svg?variant=adaptive)](https://starchart.cc/windyhusky/PixivSource)
+[![Stargazers over time](https://starchart.cc/DowneyRem/PixivSource.svg?variant=adaptive)](https://starchart.cc/DowneyRem/PixivSource)
 

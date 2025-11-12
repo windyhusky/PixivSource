@@ -10,16 +10,16 @@ Pixiv 小说备用（更新📆：2025-11-11）
 订阅用法：点击订阅源打开小说/系列小说，【刷新】，点击【加入书架】按钮，添加到书架
 
 书源发布：Pixiv 书源频道 https://t.me/PixivSource
-项目地址：https://github.com/windyhusky/PixivSource
-使用教程：https://github.com/windyhusky/PixivSource/blob/main/doc/Pixiv.md
+项目地址：https://github.com/DowneyRem/PixivSource
+使用教程：https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md
 
 旧版书源：
-https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@191/pixiv.json
-https://raw.githubusercontent.com/windyhusky/PixivSource/191/pixiv.json
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@191/pixiv.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/191/pixiv.json
 
 规则订阅：import 订阅源
-https://cdn.jsdelivr.net/gh/windyhusky/PixivSource@main/import.json
-https://raw.githubusercontent.com/windyhusky/PixivSource/main/import.json
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json
+https://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json
 
 ⚙️ 书源设置：
 书源管理 - 编辑书源 - 基本 - 变量说明 - 修改并保存
