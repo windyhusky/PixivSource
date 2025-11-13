@@ -109,7 +109,7 @@ function dateFormat(timeStamp) {
     return `${YY}-${MM}-${DD}`
 }
 
-function buildBookSource(sourceName:string): BookSource {
+function buildBookSource(sourceName:string, test:boolean|number =undefined): BookSource {
     // 需要在 项目根目录下执行
     let sourcePath = `bookSource/${sourceName}`
     let templatePath = `BuildSource/${sourceName}.json`
@@ -143,14 +143,16 @@ function buildBookSource(sourceName:string): BookSource {
 
     // 更新书源更新时间
     let lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
-    let updateTimeOld = bookSourceComment.split("\n")[0].split("：")[1].replace("）", "")
-    let updateTimeNew = dateFormat(lastUpdateTime)
-    bookSourceComment = bookSourceComment.replace(updateTimeOld, updateTimeNew)
+    if (!test) {
+        let updateTimeOld = bookSourceComment.split("\n")[0].split("：")[1].replace("）", "")
+        let updateTimeNew = dateFormat(lastUpdateTime)
+        bookSourceComment = bookSourceComment.replace(updateTimeOld, updateTimeNew)
 
-    let versionOld = bookSourceComment.split("\n")[2].split("：")[1]
-    let versionNew = `${Number(versionOld) + 1}`
-    bookSourceComment = bookSourceComment.replace(versionOld, versionNew)
-    saveTextFile(sourcePath, "ReadMe.txt", bookSourceComment)
+        let versionOld = bookSourceComment.split("\n")[2].split("：")[1]
+        let versionNew = `${Number(versionOld) + 1}`
+        bookSourceComment = bookSourceComment.replace(versionOld, versionNew)
+        saveTextFile(sourcePath, "ReadMe.txt", bookSourceComment)
+    }
 
     // 更新书源
     BookSource.bookSourceComment = bookSourceComment
@@ -174,8 +176,8 @@ function buildBookSource(sourceName:string): BookSource {
     BookSource.ruleToc.chapterList = `@js:\n${catalogContent}`
     BookSource.ruleContent.content = `@js:\n${contentContent}`
 
-    BookSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
-    // console.log(`${String(Date.now()).slice(0, 10)}251`)
+    BookSource.lastUpdateTime = lastUpdateTime
+    // console.log(lastUpdateTime)
 
     if (sourceName === "pixiv") {
         BookSource.customOrder = 0
@@ -192,28 +194,29 @@ function buildBookSource(sourceName:string): BookSource {
     return BookSource
 }
 
-function buildPixivSource() {
+function buildPixivSource(test:boolean|number =undefined) {
     // 组合 Pixiv 书源
-    const pixivMain = buildBookSource("pixiv")
-    const pixivBackup = buildBookSource("pixivBackup")
-    const pixivIllust = buildBookSource("pixivIllust")
+    const pixivMain = buildBookSource("pixiv", test)
+    const pixivBackup = buildBookSource("pixivBackup", test)
+    const pixivIllust = buildBookSource("pixivIllust", test)
     const allSources = [pixivMain, pixivBackup, pixivIllust]
     // 写入最终的 JSON 文件
     saveTextFile("", "pixiv.json", allSources)
 }
 
-function buildLinpxSource() {
+function buildLinpxSource(test:boolean|number =undefined) {
     // 组合 Linpx 书源
-    const linpx = buildBookSource("linpx")
-    const furryNovel = buildBookSource("furryNovel")
+    const linpx = buildBookSource("linpx", test)
+    const furryNovel = buildBookSource("furryNovel", test)
     const allSources = [linpx, furryNovel]
     // 写入最终的 JSON 文件
     saveTextFile("", "linpx.json", allSources)
 }
 
-function main() {
-    buildPixivSource()
-    buildLinpxSource()
+function main(test:boolean|number =undefined) {
+    buildPixivSource(test)
+    buildLinpxSource(test)
 }
 
-main()
+// main(0)
+main(1)
