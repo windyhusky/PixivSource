@@ -137,7 +137,7 @@ function getGetJson(url, forceUpdate) {
         "Host": "www.pixiv.net"
     }
     return cacheGetAndSet(cache, url, () => {
-        return JSON.parse(java.get(java.get(url, headers).header("Location"), headers).body())
+        return JSON.parse(java.get(url, headers).body())
     })
 }
 function getWebviewJson(url, parseFunc) {
