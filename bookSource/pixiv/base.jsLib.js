@@ -103,7 +103,9 @@ function isLogin() {
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
     let v = cache.get(url)
-    if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(url)
+    if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
+        cache.delete(url)
+    }
     return cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     })
@@ -111,7 +113,9 @@ function getAjaxJson(url, forceUpdate) {
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
     let v = cache.get(urls)
-    if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(urls)
+    if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
+        cache.delete(urls)
+    }
     return cacheGetAndSet(cache, urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
@@ -123,6 +127,10 @@ function getAjaxAllJson(urls, forceUpdate) {
 function getGetJson(url, forceUpdate) {
     const {java, cache} = this
     url = url.replace("www.pixiv.net", "210.140.139.155")
+    let v = cache.get(url)
+    if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
+        cache.delete(url)
+    }
     let headers = {
         "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
         "X-Requested-With": "XMLHttpRequest",
