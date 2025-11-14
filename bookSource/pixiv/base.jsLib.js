@@ -119,6 +119,18 @@ function getAjaxAllJson(urls, forceUpdate) {
         return result
     })
 }
+
+function getGetJson(url, forceUpdate) {
+    const {java, cache} = this
+    url = url.replace("www.pixiv.net", "210.140.139.155")
+    let headers = {
+        "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
+        "X-Requested-With": "XMLHttpRequest",
+        "Host": "www.pixiv.net"
+    }
+    return JSON.parse(java.get(java.get(url, headers).header("Location"), headers).body())
+}
+
 function getWebviewJson(url, parseFunc) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
