@@ -126,7 +126,7 @@ function getAjaxAllJson(urls, forceUpdate) {
 }
 function getGetJson(url, forceUpdate) {
     const {java, cache} = this
-    url = url.replace("www.pixiv.net", "210.140.139.155")
+    url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
     let v = cache.get(url)
     if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
         cache.delete(url)
