@@ -116,6 +116,7 @@ function getAjaxAllJson(urls, forceUpdate) {
     if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
         cache.delete(urls)
     }
+
     return cacheGetAndSet(cache, urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
@@ -123,7 +124,6 @@ function getAjaxAllJson(urls, forceUpdate) {
         return result
     })
 }
-
 function getGetJson(url, forceUpdate) {
     const {java, cache} = this
     url = url.replace("www.pixiv.net", "210.140.139.155")
@@ -136,9 +136,10 @@ function getGetJson(url, forceUpdate) {
         "X-Requested-With": "XMLHttpRequest",
         "Host": "www.pixiv.net"
     }
-    return JSON.parse(java.get(java.get(url, headers).header("Location"), headers).body())
+    return cacheGetAndSet(cache, url, () => {
+        return JSON.parse(java.get(java.get(url, headers).header("Location"), headers).body())
+    })
 }
-
 function getWebviewJson(url, parseFunc) {
     const {java, cache} = this
     return cacheGetAndSet(cache, url, () => {
