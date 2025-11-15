@@ -66,6 +66,8 @@ function publicFunc() {
             java.log("📱 软件平台：🤖 开源阅读 Beta 版（未合入 LYC 功能）")
         }
     }
+    let isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
+    if (isIPDirect) java.log("✈️ 直连模式：✅ 已开启")
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
     if (isBackupSource()) {
