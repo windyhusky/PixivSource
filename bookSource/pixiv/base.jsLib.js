@@ -150,15 +150,19 @@ function getWebviewJson(url, parseFunc) {
 
 function urlIP(url) {
     const {java, cache} = this
-    url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
-    let headers = {
-        "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
-        "X-Requested-With": "XMLHttpRequest",
-        "Host": "www.pixiv.net",
-        "x-csrf-token": cache.get("csfrToken") || "",
-        "Cookie": cache.get("pixivCookie") || ""
+    let isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
+    if (isIPDirect) {
+        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
+        let headers = {
+            "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
+            "X-Requested-With": "XMLHttpRequest",
+            "Host": "www.pixiv.net",
+            "x-csrf-token": cache.get("csfrToken") || "",
+            "Cookie": cache.get("pixivCookie") || ""
+        }
+        return `${url}, ${JSON.stringify({headers: headers})}`
     }
-    return `${url}, ${JSON.stringify({headers: headers})}`
+    return url
 }
 
 function urlNovelUrl(novelId) {
