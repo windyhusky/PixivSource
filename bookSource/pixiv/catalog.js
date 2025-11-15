@@ -22,7 +22,7 @@ function oneShotHandler(res) {
     res.createDate = timeTextFormat(res.createDate)
     return [{
         title: res.title.replace(RegExp(/^\s+|\s+$/g), ""),
-        chapterUrl: urlNovel(res.id),
+        chapterUrl: urlIP(urlNovel(res.id)),
         chapterInfo: `${res.createDate}　　${res.textCount}字`
     }]
 }
@@ -37,12 +37,12 @@ function seriesHandler(res) {
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        resp = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex), true)
+        resp = getAjaxJson(urlIP(urlSeriesNovels(seriesID, limit, lastIndex)), true)
         res = resp.body.thumbnails.novel
         // res = resp.body.page.seriesContents
         res.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
-            v.chapterUrl = urlNovel(v.id)
+            v.chapterUrl = urlIP(urlNovel(v.id))
             novelIds.push(v.id)
             if (v.updateDate !== undefined) {
                 v.updateDate = timeTextFormat(v.createDate)
@@ -59,10 +59,10 @@ function seriesHandler(res) {
     }
 
     if (!util.settings.SHOW_UPDATE_TIME) {
-        returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID), true).body
+        returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesID)), true).body
         returnList.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
-            v.chapterUrl = urlNovel(v.id)
+            v.chapterUrl = urlIP(urlNovel(v.id))
             novelIds.push(v.id)
         })
     } else {

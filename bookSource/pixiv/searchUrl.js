@@ -39,7 +39,7 @@ if (keyword.startsWith("@") || keyword.startsWith("＠")) {
 } else {
     java.log(`🔍 搜索内容：${keyword}`)
 }
-urlSearchSeries(keyword, page)
+urlIP(urlSearchSeries(keyword, page))
 
 //  // 同时搜索多个链接的搜索结果
 // let li = [

@@ -191,12 +191,12 @@ function getContent(res) {
 }
 
 function getComment(res) {
-    // let resp = getAjaxJson(urlNovelComments(res.id, 0, res.commentCount), true)
+    // let resp = getAjaxJson(urlIP(urlNovelComments(res.id, 0, res.commentCount)), true)
     const limit = 50  // 模拟 Pixiv 请求
     let resp = {"error": false, "message": "", "body": {comments:[]} }
     let maxPage = (res.commentCount / limit) + 1
     for (let i = 0; i < maxPage; i++) {
-        let result = getAjaxJson(urlNovelComments(res.id, i*limit, 50), true)
+        let result = getAjaxJson(urlIP(urlNovelComments(res.id, i*limit, 50)), true)
         if (result.error !== true && result.body.comments !== null) {
             resp.body.comments = resp.body.comments.concat(result.body.comments)
         }
@@ -226,7 +226,7 @@ function getComment(res) {
 
         // 获取评论回复
         if (comment.hasReplies === true) {
-            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1), true)
+            let resp = getAjaxJson(urlIP(urlNovelCommentsReply(comment.id, 1)), true)
             if (resp.error === true) return comments
 
             resp.body.comments.reverse().forEach(reply => {

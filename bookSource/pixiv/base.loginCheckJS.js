@@ -383,7 +383,7 @@ function publicFunc() {
             if (!novel.seriesId) {
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
-                novel.detailedUrl = urlNovelDetailed(novel.id)
+                novel.detailedUrl = urlIP(urlNovelDetailed(novel.id))
                 novel.total = 1
                 if (novel.bookmarkData) {
                     novel.isBookmark = true
@@ -395,7 +395,7 @@ function publicFunc() {
             }
             // 系列添加更多信息
             if (novel.seriesId) {
-                let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
+                let series = getAjaxJson(urlIP(urlSeriesDetailed(novel.seriesId))).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
                 novel.tags = novel.tags.concat(series.tags)
@@ -403,7 +403,7 @@ function publicFunc() {
                 novel.textCount = series.publishedTotalCharacterCount
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
-                novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
+                novel.detailedUrl = urlIP(urlSeriesDetailed(novel.seriesId))
                 novel.createDate = series.createDate
                 novel.updateDate = series.updateDate
                 novel.total = series.publishedContentCount
@@ -415,7 +415,7 @@ function publicFunc() {
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}
                 try {
-                    firstNovel = getAjaxJson(urlNovelDetailed(series.firstNovelId)).body
+                    firstNovel = getAjaxJson(urlIP(urlNovelDetailed(series.firstNovelId))).body
                     novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
                     if (firstNovel.bookmarkData) {
                         firstNovel.isBookmark = true
@@ -424,7 +424,7 @@ function publicFunc() {
                     }
                 } catch (e) {  // 防止系列首篇无权限获取
                     try {
-                        firstNovel = getAjaxJson(urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
+                        firstNovel = getAjaxJson(urlIP(urlSeriesNovels(novel.seriesId, 30, 0))).body.thumbnails.novel[0]
                         novel.id = novel.firstNovelId = firstNovel.id
                         novel.tags = novel.tags.concat(firstNovel.tags)
                     } catch (e) { // 防止系列首篇无权限获取
@@ -504,7 +504,7 @@ function publicFunc() {
             let isAuthor = baseUrl.match(new RegExp(pattern))
             if (isAuthor) {
                 java.log(`作者ID：${id}`)
-                novelId = Object.keys(getAjaxJson(urlUserWorkLatest(id)).body.novels).reverse()[0]
+                novelId = Object.keys(getAjaxJson(urlIP(urlUserWorkLatest(id))).body.novels).reverse()[0]
             }
 
             pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/series/\\d+"
@@ -512,9 +512,9 @@ function publicFunc() {
             if (isSeries) {
                 java.log(`系列ID：${id}`)
                 try {
-                    novelId = getAjaxJson(urlSeriesDetailed(id)).body.firstNovelId
+                    novelId = getAjaxJson(urlIP(urlSeriesDetailed(id))).body.firstNovelId
                 } catch (e) {
-                    novelId = getAjaxJson(urlSeriesNovels(id, 30, 0)).body.thumbnails.novel[0].id
+                    novelId = getAjaxJson(urlIP(urlSeriesNovels(id, 30, 0))).body.thumbnails.novel[0].id
                 }
             } else {
                 let pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/(show\\.php\\?id=)?\\d+"
@@ -530,7 +530,7 @@ function publicFunc() {
 
         if (novelId) {
             java.log(`匹配小说ID：${novelId}`)
-            res = getAjaxJson(urlNovelDetailed(novelId))
+            res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
         }
         if (res.error === true) {
             java.log(`无法从 Pixiv 获取当前小说`)
@@ -556,7 +556,7 @@ function publicFunc() {
                 let isNovel = baseUrl.match(new RegExp(pattern))
                 if (isNovel) {
                     java.log(`匹配小说ID：${id}`)
-                    res = getAjaxJson(urlNovelDetailed(id))
+                    res = getAjaxJson(urlIP(urlNovelDetailed(id)))
                 }
             }
         }
@@ -569,7 +569,7 @@ function publicFunc() {
         }
         if (seriesId) {
             java.log(`系列ID：${seriesId}`)
-            res = getAjaxJson(urlSeriesDetailed(seriesId))
+            res = getAjaxJson(urlIP(urlSeriesDetailed(seriesId)))
         }
         if (res.error === true) {
             java.log(`无法从 Pixiv 获取当前小说`)
@@ -587,7 +587,7 @@ function checkMessageThread(checkTimes) {
         checkTimes = Number(cache.get("checkTimes"))
     }
     if (checkTimes === 0 && isLogin()) {
-        let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
+        let latestMsg = getAjaxJson(urlIP(urlMessageThreadLatest(5)))
         if (latestMsg.error === true) {
             java.log(JSON.stringify(latestMsg))
         } else if (latestMsg.body.total >= 1) {

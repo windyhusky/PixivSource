@@ -84,8 +84,8 @@ function getUserNovels() {
     let tempUids = []
     for (let i in uidList) {
         let uid = uidList[i]
-        let resp = getAjaxJson(urlUserAllWorks(uid), true)
-        // java.log(urlUserAllWorks(id))
+        let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)), true)
+        // java.log(urlIP(urlIP(urlUserAllWorks(id))))
         // java.log(JSON.stringify(resp))
         if (resp.error === true) {
             return []
@@ -114,7 +114,7 @@ function getUserNovels() {
         // 获取所有系列内部的小说 ID
         let seriesNovelIds = []
         seriesIds.forEach(seriesId => {
-            let returnList = getAjaxJson(urlSeriesNovelsTitles(seriesId)).body
+            let returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
             returnList.map(novel => {return seriesNovelIds.push(novel.id)})
         })
         // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
@@ -139,8 +139,8 @@ function getUserNovels() {
             // java.log(JSON.stringify(novelIds.length))
             novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
             novelIds.forEach(novelId => {
-                // java.log(urlNovelDetailed(novelId))
-                let res = getAjaxJson(urlNovelDetailed(novelId))
+                // java.log(urlIP(urlNovelDetailed(novelId)))
+                let res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
                 if (res.error !== true) {
                     novels.push(res.body)
                 } else {
@@ -159,12 +159,12 @@ function getUserNovels() {
 function search(name, type, page) {
     let resp = {}
     if (type.includes("novel")) {
-        resp = getAjaxJson(urlSearchNovel(name, page))
-        java.log(urlSearchNovel(name, page))
+        resp = getAjaxJson(urlIP(urlSearchNovel(name, page)))
+        java.log(urlIP(urlSearchNovel(name, page)))
     }
     if (type.includes("series")) {
-        resp = getAjaxJson(urlSearchSeries(name, page))
-        java.log(urlSearchSeries(name, page))
+        resp = getAjaxJson(urlIP(urlSearchSeries(name, page)))
+        java.log(urlIP(urlSearchSeries(name, page)))
     }
     if (resp.error === true || resp.total === 0) {
         return {"data": [], "total":0, "lastPage": 0}
@@ -188,8 +188,8 @@ function getSeries() {
     }
     let lastPage = JSON.parse(result).body.novel.lastPage
     novels = novels.concat(JSON.parse(result).body.novel.data)
-    java.log(urlSearchSeries(name, 1))
-    cache.put(urlSearchSeries(name, 1), result, cacheSaveSeconds)  // 加入缓存
+    java.log(urlIP(urlSearchSeries(name, 1)))
+    cache.put(urlIP(urlSearchSeries(name, 1)), result, cacheSaveSeconds)  // 加入缓存
     for (let page = Number(java.get("page")) + 1; page <= lastPage && page <= maxPages; page++) {
         novels = novels.concat(search(name,"series", page).data)
     }
