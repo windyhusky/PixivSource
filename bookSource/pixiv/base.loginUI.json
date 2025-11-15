@@ -45,9 +45,9 @@
         }
     },
     {
-        "name": "\uD83D\uDC1E 反馈问题",
+        "name": "✈\uFE0F 直连模式",
         "type": "button",
-        "action": "startGithubIssue()",
+        "action": "editSettings('IPDirect')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
