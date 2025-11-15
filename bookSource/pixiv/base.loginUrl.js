@@ -1007,11 +1007,12 @@ function editSettings(object) {
         msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
 
     } else {
-        if (settings[object] !== undefined) {
-            status = settings[object] = (!settings[object])
+        if (!!settings[object]) {
+            status = settings[object] = !settings[object]
         } else {
             status = settings[object] = true  // 无设置则默认开启
         }
+        putInCache("pixivSettings", settings)
         msg = `${statusMsg(status)}　${settingsName[object]}`
     }
     sleepToast(msg)
