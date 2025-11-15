@@ -91,9 +91,9 @@ function publicFunc() {
         settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
         settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
 
+        settings.IPDirect = false           // 全局：IP直连，可免代理
         settings.FAST  = false              // 全局：快速模式
         settings.DEBUG = false              // 全局：调试模式
-        settings.IPDirect = false           // 全局：IP直连，可免代理
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
 

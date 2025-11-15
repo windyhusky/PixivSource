@@ -868,6 +868,7 @@ let settingsName = {
     "SHOW_CAPTIONS": "🖼️ 显示描述",
     "SHOW_LIKE_NOVELS" :"❤️ 显示收藏",
     "SHOW_WATCHED_SERIES" :"📃 显示追更",
+    "IPDirect": "✈️ 直连模式",
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
     // "":"Pixiv 设置",
@@ -957,8 +958,13 @@ function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
     let keys = [], msgList = []
     let settings = getFromCache("pixivSettings")
-    if (mode !== "FAST") keys = Object.keys(settingsName)
-    else keys = Object.keys(settingsName).slice(0, 5)
+    if (mode === "FAST") {
+        keys = Object.keys(settingsName).slice(0, 5)
+    } else if (mode === "IPDirect") {
+        keys = [Object.keys(settingsName)[0], Object.keys(settingsName)[3]]
+    } else {
+        keys = Object.keys(settingsName)
+    }
     for (let i in keys) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
     }
@@ -977,12 +983,16 @@ function editSettings(object) {
         settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
         settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示收藏小说
         settings.SHOW_WATCHED_SERIES = true // 搜索：搜索结果显示追整系列小说
+
         settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
         settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
         settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
+
         settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
         settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
         settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
+
+        settings.IPDirect  = false          // 全局：快速模式
         settings.FAST  = false              // 全局：快速模式
         settings.DEBUG = false              // 全局：调试模式
         putInCache("pixivSettings", settings)
@@ -1008,6 +1018,21 @@ function editSettings(object) {
         putInCache("pixivSettings", settings)
         let status = settings[object]
         let message = getSettingStatus("FAST")
+        msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
+
+    } else if (object === "IPDirect") {
+        if (settings[object] === true) {
+            settings.IPDirect = false            // 关闭：直连模式
+            settings.SEARCH_AUTHOR = true        // 搜索：默认关闭搜索作者名称
+            settings.SHOW_ORIGINAL_LINK = true   // 目录：不显示章节源链接
+        } else {
+            settings.IPDirect = true
+            settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
+            settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
+        }
+        putInCache("pixivSettings", settings)
+        let status = settings[object]
+        let message = getSettingStatus("IPDirect")
         msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
 
     } else {
