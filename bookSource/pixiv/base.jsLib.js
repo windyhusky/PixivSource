@@ -239,7 +239,20 @@ function urlSearchUser(userName, full) {
 }
 
 function urlCoverUrl(url) {
-    return `${url}, {"headers": {"Referer":"https://www.pixiv.net/"}}`
+    const {java, cache} = this
+    let headers = {"Referer": "https://www.pixiv.net/"}
+    let isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
+    if (isIPDirect) {
+        if (url.includes("i.pximg.net")) {
+            url = url.replace("https://i.pximg.net", "https://210.140.139.133")
+            headers.host = "i.pximg.net"
+        } else {
+            url = url.replace("https://s.pximg.net", "https://210.140.139.133")
+            headers.host = "s.pximg.net"
+        }
+    }
+    java.log(`${url}, ${JSON.stringify({headers: headers})}`)
+    return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
@@ -247,17 +260,17 @@ function urlIllustDetailed(illustId) {
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (order <= 1) order = 1
-    let url = urlIllustDetailed(illustId)
+    let url = this.urlIP(urlIllustDetailed(illustId))
     let illustOriginal = cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     }).body.urls.original
-    return urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
+    return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 function urlEmojiUrl(emojiId) {
-    return urlCoverUrl(`https://s.pximg.net/common/images/emoji/${emojiId}.png`)
+    return this.urlCoverUrl(`https://s.pximg.net/common/images/emoji/${emojiId}.png`)
 }
 function urlStampUrl(stampId) {
-    return urlCoverUrl(`https://s.pximg.net/common/images/stamp/generated-stamps/${stampId}_s.jpg`)
+    return this.urlCoverUrl(`https://s.pximg.net/common/images/stamp/generated-stamps/${stampId}_s.jpg`)
 }
 
 function urlMessageThreadLatest(max) {
