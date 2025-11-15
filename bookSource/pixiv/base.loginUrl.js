@@ -990,16 +990,20 @@ function editSettings(object) {
 
     } else if (object === "FAST") {
         if (settings[object] === true) {
-            putInCache("pixivLastSettings", settings)
-            settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
+            settings.FAST = false                // 关闭：快速模式
+            settings.SEARCH_AUTHOR = true        // 搜索：默认搜索作者
+            settings.CONVERT_CHINESE = true      // 搜索：繁简通
+            settings.SHOW_UPDATE_TIME = true     // 目录：显示章节更新时间
+            settings.SHOW_ORIGINAL_LINK = true   // 目录：显示章节源链接
+            settings.SHOW_COMMENTS = true        // 正文：显示评论
+        } else {
+            settings.FAST = true
             settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者
+            settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
             settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
             settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
             settings.SHOW_COMMENTS = false        // 正文：显示评论
-        } else {
-            settings = getFromCache("pixivLastSettings")
-            settings.SEARCH_AUTHOR = true
-            settings.FAST = false
+
         }
         putInCache("pixivSettings", settings)
         let status = settings[object]
