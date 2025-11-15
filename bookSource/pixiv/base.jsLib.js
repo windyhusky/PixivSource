@@ -124,7 +124,7 @@ function getAjaxAllJson(urls, forceUpdate) {
         return result
     })
 }
-function getGetJson(url, forceUpdate) {
+function getIPJson(url, forceUpdate) {
     const {java, cache} = this
     url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
     let v = cache.get(url)
@@ -146,6 +146,16 @@ function getWebviewJson(url, parseFunc) {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })
+}
+
+function urlIP(url) {
+    url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
+    let headers = {
+        "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
+        "X-Requested-With": "XMLHttpRequest",
+        "Host": "www.pixiv.net"
+    }
+    return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
 function urlNovelUrl(novelId) {
