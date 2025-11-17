@@ -1,5 +1,4 @@
 let SHOW_R18_GENRE, SHOW_GENERAL_NEW, SHOW_GENERAL_RANK, SHOW_GENERAL_GENRE
-let isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
 try {
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     SHOW_R18_GENRE = settings.SHOW_R18_GENRE         // 发现：热门分类显示R18小说
@@ -112,6 +111,9 @@ generalgGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
+let likeTagLinks = [{"📌 喜欢标签 📌":""}]
+let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
+
 li = li.concat(normal)
 li = li.concat(r18New)
 if (SHOW_GENERAL_NEW === true) {
@@ -129,11 +131,33 @@ if (SHOW_GENERAL_GENRE === true) {
 }
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
+// 收藏标签
+let likeTags = getFromCache("likeTags")
+if (likeTags !== null && likeTags.length >= 1) {
+    likeTags.forEach(tag => {
+        let tagLink = {}
+        tagLink[tag] = `${urlSearchNovel(tag, "{{page}}")}`
+        likeTagLinks.push(tagLink)
+    })
+    li = li.concat(likeTagLinks)
+}
+
+// 他人收藏
+let likeAuthors = getFromCacheMap("likeAuthors")
+if (likeAuthors.size > 0) {
+    likeAuthors.forEach((authorName, authorId) => {
+        let bookmark = {}
+        bookmark[authorName] = urlUserBookmarks(authorId)
+        othersBookmarks.push(bookmark)
+    })
+    li = li.concat(othersBookmarks)
+}
+
 // 添加格式
 li.forEach(item => {
     item.title = Object.keys(item)[0]
     item.url = Object.values(item)[0]
-    if (isIPDirect && item.url.includes("https://www.pixiv.net")) item.url = urlIP(item.url)
+    if (item.url.includes("https://www.pixiv.net")) item.url = urlIP(item.url)
     delete item[Object.keys(item)[0]]
     item.style = {}
     item.style.layout_flexGrow = 1
