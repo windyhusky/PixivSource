@@ -63,7 +63,11 @@ function publicFunc() {
         }
     }
 
+    // 载入设置
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+    let isIPDirect = settings?.IPDirect || false
+    if (isIPDirect) java.log("✈️ 直连模式：✅ 已开启")
+
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
     } else {
