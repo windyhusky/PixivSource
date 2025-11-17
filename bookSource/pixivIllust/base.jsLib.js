@@ -25,9 +25,7 @@ function isHtmlString(str) {
 }
 function isJsonString(str) {
     try {
-        if (typeof JSON.parse(str) === "object") {
-            return true
-        }
+        if (typeof JSON.parse(str) === "object") return true
     } catch(e) {}
     return false
 }
@@ -36,11 +34,12 @@ function isLogin() {
     const {java, cache} = this
     return !!cache.get("csfrToken")
 }
-
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
     let v = cache.get(url)
-    if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(url)
+    if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
+        cache.delete(url)
+    }
     return cacheGetAndSet(cache, url, () => {
         return JSON.parse(java.ajax(url))
     })
@@ -48,7 +47,9 @@ function getAjaxJson(url, forceUpdate) {
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
     let v = cache.get(urls)
-    if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(urls)
+    if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
+        cache.delete(urls)
+    }
     return cacheGetAndSet(cache, urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
@@ -188,6 +189,7 @@ function sleepToast(text, second) {
 
 function updateSource() {
     const {java, source} = this
+    java.longToast("🆙 更新书源\n\nJsdelivr CDN 更新有延迟\nGithub 更新需代理")
     let onlineSource, comment, sourceName, sourceNameCapitalize, index = 0
     if (source.bookSourceUrl.includes("pixiv")) sourceName = "pixiv"
     else if (source.bookSourceUrl.includes("furrynovel")) sourceName = "linpx"
@@ -214,10 +216,15 @@ function updateSource() {
             comment = source.bookSourceComment.split("\n")
         }
     }
+    comment = onlineSource.bookSourceComment.split("\n")
+    // onlineSource = source
     // comment = source.bookSourceComment.split("\n")
-    let htm = `data:text/html; charset=utf-8,
-<html>
+
+    let htm = `
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>更新 ${source.bookSourceName} 书源</title>
     <style> 
@@ -281,7 +288,7 @@ function updateSource() {
         </tr>
     </table>
 </body>
-</html>`;
-    java.startBrowser(htm,'更新书源');
+</html>`
+    java.startBrowser(`data:text/html;charset=utf-8;base64, ${java.base64Encode(htm)}`, '更新书源')
     return []
 }
