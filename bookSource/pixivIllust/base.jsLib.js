@@ -136,15 +136,6 @@ function urlCoverUrl(url) {
     }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
-function urlIllustOriginal(illustId, order) {
-    const {java, cache} = this
-    if (order <= 1) order = 1
-    let url = this.urlIP(urlIllustDetailed(illustId))
-    let illustOriginal = cacheGetAndSet(cache, url, () => {
-        return JSON.parse(java.ajax(url))
-    }).body.urls.original
-    return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
-}
 
 function dateFormat(str) {
     let addZero = function (num) {

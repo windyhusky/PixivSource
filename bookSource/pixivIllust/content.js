@@ -14,7 +14,7 @@ function getContent(res) {
     // li = "mini thumb small regular original".split(" ")
     let illustLink = getAjaxJson(urlIP(urlIllustDetailed(res.id))).body.urls.regular
     for (let order = 0; order < res.pageCount; order++) {
-        content.push(`<img src="${illustLink}">`)
+        content.push(`<img src="${urlCoverUrl(illustLink)}">`)
         illustLink = illustLink.replace(`_p${order}`, `_p${order + 1}`)
     }
     content = content.join("\n")
