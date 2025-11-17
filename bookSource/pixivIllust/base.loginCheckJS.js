@@ -69,10 +69,21 @@ function publicFunc() {
     } else {
         settings = {}
         settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
-        settings.SHOW_ORIGINAL_LINK = true  // 目录处显示源链接，但会增加请求次数
-        settings.DEBUG = false              // 调试模式
+        settings.SHOW_ORIGINAL_LINK = true  // 目录：显示源链接
+        settings.IPDirect = false           // 全局：直连模式
+        settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
     }
+
+    if (settings.IPDirect) {
+        settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
+        settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
+    } else {
+        settings.IPDirect = false
+        settings.SEARCH_AUTHOR = true        // 搜索：默认关闭搜索作者名称
+        settings.SHOW_ORIGINAL_LINK = true   // 目录：不显示章节源链接
+    }
+
     u.settings = settings
     // putInCache("pixivSettings", settings)  // 设置写入缓存
 

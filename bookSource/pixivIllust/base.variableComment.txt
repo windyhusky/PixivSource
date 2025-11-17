@@ -8,7 +8,10 @@
 {
 "CONVERT_CHINESE": true,
 "SHOW_GENERAL_NEW": false,
+
+"IPDirect": false,
 "DEBUG": false,
+
 "SHOW_ORIGINAL_LINK": true
 }
 
@@ -16,8 +19,12 @@
 // 搜索：搜索时进行繁简转换
 // SHOW_ORIGINAL_LINK
 // 目录：显示源链接，但会增加请求次数
+
+// IPDirect
+// 直连模式
 // DEBUG
 // 调试模式
+
 // SHOW_GENERAL_NEW
 // 发现：最新、企划、约稿显示一般漫画
 
