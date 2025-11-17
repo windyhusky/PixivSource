@@ -116,7 +116,6 @@ function getAjaxAllJson(urls, forceUpdate) {
     if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
         cache.delete(urls)
     }
-
     return cacheGetAndSet(cache, urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
@@ -428,7 +427,7 @@ function updateSource() {
         </tr>
     </table>
 </body>
-</html>`;
-    java.startBrowser(`data:text/html;charset=utf-8;base64, ${java.base64Encode(htm)}`, '更新书源');
+</html>`
+    java.startBrowser(`data:text/html;charset=utf-8;base64, ${java.base64Encode(htm)}`, '更新书源')
     return []
 }

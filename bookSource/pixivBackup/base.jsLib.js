@@ -33,6 +33,7 @@ function getFromCache(objectName) {
     if (object === undefined) return null  // 兼容源阅
     return JSON.parse(object)
 }
+
 function isHtmlString(str) {
     return str.startsWith("<!DOCTYPE html>")
 }
@@ -74,7 +75,6 @@ function getAjaxAllJson(urls, forceUpdate) {
     if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
         cache.delete(urls)
     }
-
     return cacheGetAndSet(cache, urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
@@ -193,7 +193,6 @@ function urlCoverUrl(url) {
             headers.host = "s.pximg.net"
         }
     }
-    java.log(`${url}, ${JSON.stringify({headers: headers})}`)
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlIllustDetailed(illustId) {
@@ -370,7 +369,7 @@ function updateSource() {
         </tr>
     </table>
 </body>
-</html>`;
-    java.startBrowser(`data:text/html;charset=utf-8;base64, ${java.base64Encode(htm)}`, '更新书源');
+</html>`
+    java.startBrowser(`data:text/html;charset=utf-8;base64, ${java.base64Encode(htm)}`, '更新书源')
     return []
 }
