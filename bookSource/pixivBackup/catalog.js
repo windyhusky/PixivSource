@@ -22,26 +22,28 @@ function oneShotHandler(res) {
     res.createDate = timeTextFormat(res.createDate)
     return [{
         title: res.title.replace(RegExp(/^\s+|\s+$/g), ""),
-        chapterUrl: urlNovel(res.id),
+        chapterUrl: urlIP(urlNovel(res.id)),
         chapterInfo: `${res.createDate}　　${res.textCount}字`
     }]
 }
 
 function seriesHandler(res) {
     const limit = 30
-    let returnList = [], seriesID = res.id, allChaptersCount = res.total
+    let returnList = [], novelIds = []
+    let seriesID = res.id, allChaptersCount = res.total
     util.debugFunc(() => {
         java.log(`本系列 ${seriesID} 一共有${allChaptersCount}章`);
     })
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        let resp = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex), true)
+        resp = getAjaxJson(urlIP(urlSeriesNovels(seriesID, limit, lastIndex)), true)
         res = resp.body.thumbnails.novel
         // res = resp.body.page.seriesContents
         res.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
-            v.chapterUrl = urlNovel(v.id)
+            v.chapterUrl = urlIP(urlNovel(v.id))
+            novelIds.push(v.id)
             if (v.updateDate !== undefined) {
                 v.updateDate = timeTextFormat(v.createDate)
                 v.chapterInfo = `${v.updateDate}　　${v.textCount}字`
@@ -57,10 +59,11 @@ function seriesHandler(res) {
     }
 
     if (!util.settings.SHOW_UPDATE_TIME) {
-        returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID), true).body
+        returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesID)), true).body
         returnList.forEach(v => {
             v.title = v.title.replace(RegExp(/^\s+|\s+$/g), "").replace(RegExp(/（|）|-/g), "")
-            v.chapterUrl = urlNovel(v.id)
+            v.chapterUrl = urlIP(urlNovel(v.id))
+            novelIds.push(v.id)
         })
     } else {
         //逻辑控制者 也就是使用上面定义的两个函数来做对应功能

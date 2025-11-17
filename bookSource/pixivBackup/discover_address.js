@@ -1,4 +1,5 @@
 let SHOW_R18_GENRE, SHOW_GENERAL_NEW, SHOW_GENERAL_RANK, SHOW_GENERAL_GENRE
+let isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
 try {
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     SHOW_R18_GENRE = settings.SHOW_R18_GENRE         // 发现：热门分类显示R18小说
@@ -132,6 +133,7 @@ sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - �
 li.forEach(item => {
     item.title = Object.keys(item)[0]
     item.url = Object.values(item)[0]
+    if (isIPDirect && item.url.includes("https://www.pixiv.net")) item.url = urlIP(item.url)
     delete item[Object.keys(item)[0]]
     item.style = {}
     item.style.layout_flexGrow = 1
