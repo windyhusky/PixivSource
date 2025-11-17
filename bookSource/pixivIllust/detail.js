@@ -12,7 +12,7 @@ function objParse(obj) {
 function illustHandler(illust){
     illust = util.formatIllusts(util.handIllusts([illust]))[0]
     book.bookUrl = illust.detailedUrl = urlIllustUrl(illust.id)
-    book.tocUrl = illust.catalogUrl = urlIllustDetailed(illust.id)
+    book.tocUrl = illust.catalogUrl = urlIP(urlIllustDetailed(illust.id))
     return illust
 }
 

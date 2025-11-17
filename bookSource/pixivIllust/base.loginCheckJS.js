@@ -135,7 +135,7 @@ function publicFunc() {
             // illust.pageCount = illust.pageCount
             // illust.description = illust.description
             illust.coverUrl = illust.url
-            illust.detailedUrl = urlIllustDetailed(illust.id)
+            illust.detailedUrl = urlIP(urlIllustDetailed(illust.id))
             // illust.createDate = illust.createDate
             // illust.updateDate = illust.updateDate
             // illust.aiType = illust.aiType
@@ -148,14 +148,14 @@ function publicFunc() {
             }
 
             if (illust.seriesId !== undefined) {
-                let resp = getAjaxJson(urlSeriesDetailed(illust.seriesId)).body
+                let resp = getAjaxJson(urlIP(urlSeriesDetailed(illust.seriesId))).body
                 let series = resp.illustSeries.filter(item => item.id === illust.seriesId)[0]
                 // illust.title = illust.title
                 illust.tags = illust.tags.concat(series.tags)
                 illust.latestChapter = resp.thumbnails.illust.filter(item => item.id === series.latestIllustId)[0].title
                 illust.description = series.description
                 if (series.url === undefined) {
-                    let firstChapter = getAjaxJson(urlIllustDetailed(series.firstIllustId)).body
+                    let firstChapter = getAjaxJson(urlIP(urlIllustDetailed(series.firstIllustId))).body
                     illust.coverUrl = firstChapter.urls.regular
                     illust.tags = illust.tags.concat(firstChapter.tags.tags.map(item => item.tag))
                 }
@@ -199,7 +199,7 @@ function publicFunc() {
             } else if (isSeries) {
                 seriesId = isSeries[4]
                 java.log(`匹配系列ID：${seriesId}`)
-                illustId = getAjaxJson(urlSeriesDetailed(seriesId)).body.page.series.reverse()[0].workId
+                illustId = getAjaxJson(urlIP(urlSeriesDetailed(seriesId))).body.page.series.reverse()[0].workId
             }
         }
         if (isJson) {
@@ -208,7 +208,7 @@ function publicFunc() {
 
         if (illustId) {
             java.log(`匹配插画ID：${illustId}`)
-            res = getAjaxJson(urlIllustDetailed(illustId))
+            res = getAjaxJson(urlIP(urlIllustDetailed(illustId)))
         }
         if (res.error) {
             java.log(`无法从 Pixiv 获取当前漫画`)

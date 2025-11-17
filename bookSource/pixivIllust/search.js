@@ -11,7 +11,7 @@ function objParse(obj) {
 
 function getArtwork() {
     if (JSON.parse(result).error !== true) {
-        cache.put(urlSearchArtwork(java.get("key"), java.get("page")), result, cacheSaveSeconds)  // 加入缓存
+        cache.put(urlIP(urlSearchArtwork(java.get("key"), java.get("page"))), result, cacheSaveSeconds)  // 加入缓存
         return JSON.parse(result).body.illustManga.data
     } else {
         return []
@@ -19,8 +19,8 @@ function getArtwork() {
 }
 
 function search(name, page) {
-    let resp = getAjaxJson(urlSearchArtwork(name, page))
-    java.log(urlSearchArtwork(name, page))
+    let resp = getAjaxJson(urlIP(urlSearchArtwork(name, page)))
+    java.log(urlIP(urlSearchArtwork(name, page)))
     if (resp.error === true || resp.total === 0) {
         return {"data": [], "total":0, "lastPage": 0}
     }

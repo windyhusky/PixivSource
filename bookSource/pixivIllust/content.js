@@ -12,7 +12,7 @@ function objParse(obj) {
 function getContent(res) {
     let content = [""]
     // li = "mini thumb small regular original".split(" ")
-    let illustLink = getAjaxJson(urlIllustDetailed(res.id)).body.urls.regular
+    let illustLink = getAjaxJson(urlIP(urlIllustDetailed(res.id))).body.urls.regular
     for (let order = 0; order < res.pageCount; order++) {
         content.push(`<img src="${illustLink}">`)
         illustLink = illustLink.replace(`_p${order}`, `_p${order + 1}`)
