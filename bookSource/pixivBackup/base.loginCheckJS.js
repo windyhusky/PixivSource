@@ -67,6 +67,8 @@ function publicFunc() {
             java.log("📱 软件平台：🤖 开源阅读 Beta 版（未合入 LYC 功能）")
         }
     }
+    let isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
+    if (isIPDirect) java.log("✈️ 直连模式：✅ 已开启")
 
     // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
     if (isBackupSource()) {
@@ -87,6 +89,8 @@ function publicFunc() {
         settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
         settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
         settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
+
+        settings.IPDirect = false           // 全局：IP直连，可免代理
         settings.FAST  = false              // 全局：快速模式
         settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
@@ -100,6 +104,12 @@ function publicFunc() {
     } else {
         settings.SEARCH_AUTHOR = true        // 搜索：默认搜索作者名称
     }
+
+    if (settings.IPDirect) {
+        settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
+        settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
+    }
+
     u.settings = settings
     putInCache("pixivSettings", settings)  // 设置写入缓存
 
@@ -264,7 +274,7 @@ function publicFunc() {
             if (!novel.seriesId) {
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
-                novel.detailedUrl = urlNovelDetailed(novel.id)
+                novel.detailedUrl = urlIP(urlNovelDetailed(novel.id))
                 novel.total = 1
                 if (novel.bookmarkData) {
                     novel.isBookmark = true
@@ -274,7 +284,7 @@ function publicFunc() {
             }
             // 系列添加更多信息
             if (novel.seriesId) {
-                let series = getAjaxJson(urlSeriesDetailed(novel.seriesId)).body
+                let series = getAjaxJson(urlIP(urlSeriesDetailed(novel.seriesId))).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
                 novel.tags = novel.tags.concat(series.tags)
@@ -282,7 +292,7 @@ function publicFunc() {
                 novel.textCount = series.publishedTotalCharacterCount
                 novel.description = series.caption
                 novel.coverUrl = series.cover.urls["480mw"]
-                novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
+                novel.detailedUrl = urlIP(urlSeriesDetailed(novel.seriesId))
                 novel.createDate = series.createDate
                 novel.updateDate = series.updateDate
                 novel.total = series.publishedContentCount
@@ -291,14 +301,14 @@ function publicFunc() {
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}
                 try {
-                    firstNovel = getAjaxJson(urlNovelDetailed(series.firstNovelId)).body
+                    firstNovel = getAjaxJson(urlIP(urlNovelDetailed(series.firstNovelId))).body
                     novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
                     if (firstNovel.bookmarkData) {
                         firstNovel.isBookmark = true
                     }
                 } catch (e) {  // 防止系列首篇无权限获取
                     try {
-                        firstNovel = getAjaxJson(urlSeriesNovels(novel.seriesId, 30, 0)).body.thumbnails.novel[0]
+                        firstNovel = getAjaxJson(urlIP(urlSeriesNovels(novel.seriesId, 30, 0))).body.thumbnails.novel[0]
                         novel.id = novel.firstNovelId = firstNovel.id
                         novel.tags = novel.tags.concat(firstNovel.tags)
                     } catch (e) { // 防止系列首篇无权限获取
@@ -373,7 +383,7 @@ function publicFunc() {
             let isAuthor = baseUrl.match(new RegExp(pattern))
             if (isAuthor) {
                 java.log(`作者ID：${id}`)
-                novelId = Object.keys(getAjaxJson(urlUserWorkLatest(id)).body.novels).reverse()[0]
+                novelId = Object.keys(getAjaxJson(urlIP(urlUserWorkLatest(id))).body.novels).reverse()[0]
             }
 
             pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/series/\\d+"
@@ -381,9 +391,9 @@ function publicFunc() {
             if (isSeries) {
                 java.log(`系列ID：${id}`)
                 try {
-                    novelId = getAjaxJson(urlSeriesDetailed(id)).body.firstNovelId
+                    novelId = getAjaxJson(urlIP(urlSeriesDetailed(id))).body.firstNovelId
                 } catch (e) {
-                    novelId = getAjaxJson(urlSeriesNovels(id, 30, 0)).body.thumbnails.novel[0].id
+                    novelId = getAjaxJson(urlIP(urlSeriesNovels(id, 30, 0))).body.thumbnails.novel[0].id
                 }
             } else {
                 let pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/(show\\.php\\?id=)?\\d+"
@@ -399,7 +409,7 @@ function publicFunc() {
 
         if (novelId) {
             java.log(`匹配小说ID：${novelId}`)
-            res = getAjaxJson(urlNovelDetailed(novelId))
+            res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
         }
         if (res.error === true) {
             java.log(`无法从 Pixiv 获取当前小说`)
@@ -425,7 +435,7 @@ function publicFunc() {
                 let isNovel = baseUrl.match(new RegExp(pattern))
                 if (isNovel) {
                     java.log(`匹配小说ID：${id}`)
-                    res = getAjaxJson(urlNovelDetailed(id))
+                    res = getAjaxJson(urlIP(urlNovelDetailed(id)))
                 }
             }
         }
@@ -438,7 +448,7 @@ function publicFunc() {
         }
         if (seriesId) {
             java.log(`系列ID：${seriesId}`)
-            res = getAjaxJson(urlSeriesDetailed(seriesId))
+            res = getAjaxJson(urlIP(urlSeriesDetailed(seriesId)))
         }
         if (res.error === true) {
             java.log(`无法从 Pixiv 获取当前小说`)
@@ -456,7 +466,7 @@ function checkMessageThread(checkTimes) {
         checkTimes = Number(cache.get("checkTimes"))
     }
     if (checkTimes === 0 && isLogin()) {
-        let latestMsg = getAjaxJson(urlMessageThreadLatest(5))
+        let latestMsg = getAjaxJson(urlIP(urlMessageThreadLatest(5)))
         if (latestMsg.error === true) {
             java.log(JSON.stringify(latestMsg))
         } else if (latestMsg.body.total >= 1) {
@@ -490,6 +500,6 @@ function getPixivUid() {
 publicFunc()
 if (result.code() === 200) {
     getPixivUid(); util.getCsrfToken()
-    if (!util.FAST) checkMessageThread()   // 检测过度访问
+    if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 java.getStrResponse(null, null)

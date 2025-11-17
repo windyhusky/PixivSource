@@ -3,7 +3,7 @@
 ⚙️ 自定义设置：将 true 改为 false，或相反
 ⚠️ 设置源变量【无法】更改书源自定义设置
 ⚠️ 注意不要添加或删除尾随逗号","
-⚠️ 发现页需要长按"Pixiv"，手动刷新
+⚠️ 更新发现页需要长按"Pixiv"，手动刷新
 以下内容为书源设置：
 {
 "CONVERT_CHINESE":true,
@@ -14,6 +14,7 @@
 "SHOW_CAPTIONS": true,
 "SHOW_COMMENTS": true,
 
+"IPDirect": false,
 "FAST": false,
 "DEBUG": false,
 
@@ -37,6 +38,8 @@
 // SHOW_COMMENTS
 // 正文：章尾显示小说评论
 
+// IPDirect
+// 直连模式
 // FAST
 // 快速模式
 // DEBUG
