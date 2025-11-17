@@ -64,6 +64,23 @@ function getWebviewJson(url, parseFunc) {
     })
 }
 
+function urlIP(url) {
+    const {java, cache} = this
+    let isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
+    if (isIPDirect) {
+        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
+        let headers = {
+            "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
+            "X-Requested-With": "XMLHttpRequest",
+            "Host": "www.pixiv.net",
+            "x-csrf-token": cache.get("csfrToken") || "",
+            "Cookie": cache.get("pixivCookie") || ""
+        }
+        return `${url}, ${JSON.stringify({headers: headers})}`
+    }
+    return url
+}
+
 function urlIllustUrl(illustId) {
     return `https://www.pixiv.net/artworks/${illustId}`
 }
@@ -103,7 +120,28 @@ function urlSearchUser(name) {
 }
 
 function urlCoverUrl(url) {
-    return `${url}, {"headers": {"Referer":"https://www.pixiv.net/"}}`
+    const {java, cache} = this
+    let headers = {"Referer": "https://www.pixiv.net/"}
+    let isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
+    if (isIPDirect) {
+        if (url.includes("i.pximg.net")) {
+            url = url.replace("https://i.pximg.net", "https://210.140.139.133")
+            headers.host = "i.pximg.net"
+        } else {
+            url = url.replace("https://s.pximg.net", "https://210.140.139.133")
+            headers.host = "s.pximg.net"
+        }
+    }
+    return `${url}, ${JSON.stringify({headers: headers})}`
+}
+function urlIllustOriginal(illustId, order) {
+    const {java, cache} = this
+    if (order <= 1) order = 1
+    let url = this.urlIP(urlIllustDetailed(illustId))
+    let illustOriginal = cacheGetAndSet(cache, url, () => {
+        return JSON.parse(java.ajax(url))
+    }).body.urls.original
+    return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
 function dateFormat(str) {
