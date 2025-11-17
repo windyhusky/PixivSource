@@ -93,7 +93,7 @@ function publicFunc() {
         settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
         settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
 
-        settings.IPDirect = false           // 全局：IP直连，可免代理
+        settings.IPDirect = false           // 全局：直连模式
         settings.FAST  = false              // 全局：快速模式
         settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
@@ -106,12 +106,17 @@ function publicFunc() {
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
         settings.SHOW_COMMENTS = false        // 正文：显示评论
     } else {
+        settings.FAST = false
         settings.SEARCH_AUTHOR = true         // 搜索：默认搜索作者名称
     }
 
     if (settings.IPDirect) {
         settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
         settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
+    } else {
+        settings.IPDirect = false
+        settings.SEARCH_AUTHOR = true        // 搜索：默认关闭搜索作者名称
+        settings.SHOW_ORIGINAL_LINK = true   // 目录：不显示章节源链接
     }
 
     u.settings = settings
