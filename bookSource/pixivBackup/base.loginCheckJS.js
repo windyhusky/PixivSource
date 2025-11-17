@@ -505,7 +505,7 @@ function getPixivUid() {
 
 publicFunc()
 if (result.code() === 200) {
-    getPixivUid(); util.getCsrfToken()
+    getPixivUid(); util.getCookie(); util.getCsrfToken()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 java.getStrResponse(null, null)
