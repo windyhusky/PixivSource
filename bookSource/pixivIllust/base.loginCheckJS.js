@@ -74,6 +74,7 @@ function publicFunc() {
         settings = {}
         settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
         settings.SHOW_ORIGINAL_LINK = true  // 目录：显示源链接
+        settings.QUALITY_REGULAR = true     // 正文：图片质量，regular 或 original
         settings.IPDirect = false           // 全局：直连模式
         settings.DEBUG = false              // 全局：调试模式
         java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")

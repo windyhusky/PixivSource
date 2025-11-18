@@ -12,7 +12,8 @@ function objParse(obj) {
 function getContent(res) {
     let content = [""]
     // li = "mini thumb small regular original".split(" ")
-    let illustLink = getAjaxJson(urlIP(urlIllustDetailed(res.id))).body.urls.regular
+    let quality = util.settings.QUALITY_REGULAR ? "regular" : "original"
+    let illustLink = getAjaxJson(urlIP(urlIllustDetailed(res.id))).body.urls[quality]
     for (let order = 0; order < res.pageCount; order++) {
         content.push(`<img src="${urlCoverUrl(illustLink)}">`)
         illustLink = illustLink.replace(`_p${order}`, `_p${order + 1}`)

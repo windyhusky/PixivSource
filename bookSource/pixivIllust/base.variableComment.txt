@@ -8,6 +8,7 @@
 {
 "CONVERT_CHINESE": true,
 "SHOW_GENERAL_NEW": false,
+"QUALITY_REGULAR": true,
 
 "IPDirect": false,
 "DEBUG": false,
@@ -19,6 +20,8 @@
 // 搜索：搜索时进行繁简转换
 // SHOW_ORIGINAL_LINK
 // 目录：显示源链接，但会增加请求次数
+// QUALITY_REGULAR
+// 正文：图片质量：是 regular ；否 original
 
 // IPDirect
 // 直连模式
