@@ -17,12 +17,20 @@ li = [
     {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"}
 ]
 
-generalNew = [
+r18New = [
     {"🆕 最新 企划 约稿 💰": ""},
-    {"🆕 最新": "https://www.pixiv.net/ajax/illust/new?lastId=0&limit=20&type=manga&lang=zh"},
-    {"📑 企划": "https://www.pixiv.net/ajax/user_event/portal/artworks?mode=all&p={{page}}&lang=zh"},
-    {"💰 约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/manga?mode=all&p={{page}}&lang=zh"},
-    {"🔍 发现": "https://www.pixiv.net/ajax/illust/discovery?mode=all&lang=zh"}
+    {"🆕 最新": "https://www.pixiv.net/ajax/illust/new?lastId=0&limit=20&type=manga&r18=true&lang=zh"},
+    {"📑 企划": "https://www.pixiv.net/ajax/user_event/portal/artworks?mode=r18&p={{page}}&lang=zh"},
+    {"💰 约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/manga?mode=r18&p={{page}}&lang=zh"},
+    {"🔍 发现": "https://www.pixiv.net/ajax/illust/discovery?mode=r18&lang=zh"},
+]
+
+generalNew = [
+    {"✅ 最新 企划 约稿 ✅": ""},
+    {"最新": "https://www.pixiv.net/ajax/illust/new?lastId=0&limit=20&type=manga&lang=zh"},
+    {"企划": "https://www.pixiv.net/ajax/user_event/portal/artworks?mode=all&p={{page}}&lang=zh"},
+    {"约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/manga?mode=all&p={{page}}&lang=zh"},
+    {"发现": "https://www.pixiv.net/ajax/illust/discovery?mode=all&lang=zh"}
 ]
 
 r18Rank = [
@@ -49,6 +57,7 @@ generalRank = [
 if (SHOW_GENERAL_RANK === true) {
     li = li.concat(generalNew)
 }
+li = li.concat(r18New)
 li = li.concat(r18Rank)
 li = li.concat(generalRank)
 
