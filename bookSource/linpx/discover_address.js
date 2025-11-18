@@ -12,6 +12,13 @@ li.forEach(item => {
     delete item[Object.keys(item)[0]]
     item.style = {}
     item.style.layout_flexGrow = 1
-    item.style.layout_flexBasisPercent = 0.15
+    item.style.layout_flexShrink = 1
+    item.style.layout_alignSelf = "auto"
+    item.style.layout_wrapBefore = "false"
+    if (item.url === "") {
+        item.style.layout_flexBasisPercent = 1
+    } else {
+        item.style.layout_flexBasisPercent = -1
+    }
 })
 JSON.stringify(li)
