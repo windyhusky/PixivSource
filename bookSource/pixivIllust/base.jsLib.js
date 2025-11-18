@@ -77,11 +77,11 @@ function urlIP(url) {
     if (isIPDirect) {
         url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
         let headers = {
-            "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
-            "X-Requested-With": "XMLHttpRequest",
+            // "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
+            // "X-Requested-With": "XMLHttpRequest",
             "Host": "www.pixiv.net",
-            "x-csrf-token": cache.get("csfrToken") || "",
-            "Cookie": cache.get("pixivCookie") || ""
+            // "x-csrf-token": cache.get("csfrToken") || "",
+            // "Cookie": cache.get("pixivCookie") || ""
         }
         return `${url}, ${JSON.stringify({headers: headers})}`
     }
