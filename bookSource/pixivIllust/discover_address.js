@@ -30,8 +30,8 @@ r18Rank = [
     {"今日": "https://www.pixiv.net/ranking.php?mode=daily_r18&p={{page}}&format=json"},
     {"本周": "https://www.pixiv.net/ranking.php?mode=weekly_r18&p={{page}}&format=json"},
     {"R18G": "https://www.pixiv.net/ranking.php?mode=r18g&p={{page}}&format=json"},
-    {"男性": "https://www.pixiv.net/ranking.php?mode=male_r18"},
-    {"女性": "https://www.pixiv.net/ranking.php?mode=female_r18"}
+    {"男性": "https://www.pixiv.net/ranking.php?mode=male_r18&p={{page}}&format=json"},
+    {"女性": "https://www.pixiv.net/ranking.php?mode=female_r18&p={{page}}&format=json"}
 ]
 
 generalRank = [
@@ -39,7 +39,11 @@ generalRank = [
     {"今日": "https://www.pixiv.net/ranking.php?mode=daily&p={{page}}&format=json"},
     {"本周": "https://www.pixiv.net/ranking.php?mode=weekly&p={{page}}&format=json"},
     {"本月": "https://www.pixiv.net/ranking.php?mode=monthly&p={{page}}&format=json"},
-    {"新人": "https://www.pixiv.net/ranking.php?mode=rookie&p={{page}}&format=json"}
+    {"新人": "https://www.pixiv.net/ranking.php?mode=rookie&p={{page}}&format=json"},
+    {"原创": "https://www.pixiv.net/ranking.php?mode=original&p={{page}}&format=json"},
+    {"A I ": "https://www.pixiv.net/ranking.php?mode=original&p={{page}}&format=json"},
+    {"男性": "https://www.pixiv.net/ranking.php?mode=male&p={{page}}&format=json"},
+    {"女性": "https://www.pixiv.net/ranking.php?mode=female&p={{page}}&format=json"},
 ]
 
 if (SHOW_GENERAL_RANK === true) {

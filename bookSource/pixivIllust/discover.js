@@ -143,7 +143,7 @@ function handlerRanking() {
     }
 }
 
-//首页，编辑部推荐，顺序随机
+//首页，顺序随机
 function handlerRegexIllusts() {
     return () => {
         let illustIds = []  // 正则获取网址中的 illustId
