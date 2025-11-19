@@ -2,7 +2,7 @@ name: Update Fork
 
 on: 
   schedule:
-    - cron: '0 0,8,16 * * *' # 定时任务，每 8h 同步一次
+    - cron: '0 0,4,8,12,16,20 * * *' # 定时任务，每 4h 同步一次
   workflow_dispatch:
 
 jobs:
@@ -24,8 +24,8 @@ jobs:
           git remote -v
           git fetch upstream
           git checkout main
-          git merge upstream/main
-          git push origin main
+          git reset --hard upstream/main
+          git push origin main --force
 
   purgeCache:
     needs: UpdateFork
