@@ -25,5 +25,5 @@ function novelHandler(novel){
 }
 
 (() => {
-    return novelHandler(util.getNovelRes(result))
+    return novelHandler(util.getNovelResFirst(result))
 })()

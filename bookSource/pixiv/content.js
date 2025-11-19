@@ -273,5 +273,5 @@ function checkContent() {
 }
 
 (() => {
-    return getContent(util.getNovelRes(result))
+    return getContent(util.getNovelResFirst(result))
 })()

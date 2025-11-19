@@ -502,7 +502,7 @@ function publicFunc() {
 
     // 正文，详情，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     // pixiv 默认分享信息中有#号，不会被识别成链接，无法使用添加网址
-    u.getNovelRes = function(result) {
+    u.getNovelResFirst = function(result) {
         let novelId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
