@@ -3,6 +3,7 @@
 
 ### [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+### ❤️ [Pixiv 书源项目 赞助名单](./doc/Sponsor.md)
 </div>
 
 
@@ -584,6 +585,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 <details><summary> 📢 鸣谢 </summary>
 
 ### 鸣谢
+- ❤️ [Pixiv 书源项目 赞助名单](./doc/Sponsor.md)
 - 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)

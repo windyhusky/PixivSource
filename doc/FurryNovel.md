@@ -1,5 +1,6 @@
 # FurryNovel 书源的导入与使用
 
+### ❤️ [Pixiv 书源项目 赞助名单](../doc/Sponsor.md)
 ### [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
 
 ## 本书源使用前提

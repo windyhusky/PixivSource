@@ -1,5 +1,6 @@
 # Linpx 书源的导入与使用
 
+### ❤️ [Pixiv 书源项目 赞助名单](../doc/Sponsor.md)
 ### [Linpx](http://www.furrynovel.ink) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**
 
 ## 本书源使用前提

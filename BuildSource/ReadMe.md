@@ -3,6 +3,7 @@
 
 ### [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+### ❤️ [Pixiv 书源项目 赞助名单](../doc/Sponsor.md)
 </div>
 
 

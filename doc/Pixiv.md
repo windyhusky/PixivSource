@@ -1,5 +1,6 @@
 # Pixiv 书源的导入与使用
 
+### ❤️ [Pixiv 书源项目 赞助名单](../doc/Sponsor.md)
 ### [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 
 
