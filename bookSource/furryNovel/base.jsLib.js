@@ -168,7 +168,10 @@ function updateSource() {
 
 <body>
     <table border="1" cellspacing="0">
-        <th colspan="2"> ${source.bookSourceName} 书源 <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/FurryNovel.md">🔰 使用指南</a></th>
+        <th colspan="2"> ${source.bookSourceName} 书源 
+        <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/${sourceNameCapitalize}.md">🔰 使用指南</a>
+        || <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/Sponsor.md">❤️ 赞助开发</a>
+        </th>
         <tr>
             <td>☁️ 远程版本：${onlineSource.bookSourceComment.split("\n")[2].replace("书源版本：", "")}</td>
             <td>📆 更新：${timeFormat(onlineSource.lastUpdateTime)}</td>

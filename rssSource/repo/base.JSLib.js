@@ -26,7 +26,7 @@ let bookSourceCommentText = `Pixiv 小说
 添加网址：✅Pixiv小说链接✅Pixiv系列链接
 订阅用法：点击订阅源打开小说/系列小说，【刷新】，点击【加入书架】按钮，添加到书架
 
-书源发布：兽人阅读频道 https://t.me/FurryReading
+书源发布：https://t.me/PixivSource
 项目地址：https://github.com/DowneyRem/PixivSource
 使用教程：https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md
 
@@ -78,7 +78,10 @@ function updateSource() {
 
 <body>
     <table border="1" cellspacing="0">
-        <th colspan="2"> Pixiv 书源 <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md">🔰 使用指南</a></th>
+        <th colspan="2"> Pixiv 书源 
+        <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md">🔰 使用指南</a>
+        || <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/Sponsor.md">❤️ 赞助开发</a>
+        </th>
         <tr>
             <td>☁️ 远程版本：${onlineSource.bookSourceComment.split("\n")[2].replace("书源版本：", "")}</td>
             <td>📆 更新：${java.timeFormat(onlineSource.lastUpdateTime)}</td>
