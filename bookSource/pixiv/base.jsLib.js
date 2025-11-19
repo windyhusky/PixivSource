@@ -262,7 +262,6 @@ function urlCoverUrl(url) {
             headers.host = "s.pximg.net"
         }
     }
-    java.log(`${url}, ${JSON.stringify({headers: headers})}`)
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlIllustDetailed(illustId) {
