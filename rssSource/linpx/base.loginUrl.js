@@ -1,3 +1,5 @@
+function login() {}
+
 function getWebViewUA() {
     let userAgent = String(java.getWebViewUA())
     if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
@@ -6,8 +8,6 @@ function getWebViewUA() {
     return String(userAgent)
 }
 
-function login() {}
-
 function startBrowser(url, title) {
     let msg = "", headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
     if (url.includes("https://github.com")) {
@@ -15,20 +15,17 @@ function startBrowser(url, title) {
         else if (url.includes("doc")) msg += "🔰 使用指南"
         else msg += "⭐️ 收藏项目"
         msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
-    } else if (url.includes("https://t.me")) {
-        if (url.includes("FurryReading")) msg += "🐺 兽人阅读频道"
-        else if (url.includes("joinchat")) msg += "🐞 反馈群组"
-        msg += "\n\n即将打开 Telegram\n请确认已开启代理/梯子/VPN等"
     }
     sleepToast(msg)
     java.startBrowser(`${url}, ${headers}`, title)
 }
 
+// function updateSource() {
+//     java.openUrl("legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json")
+// }
+
 function startGithub() {
     startBrowser("https://github.com/DowneyRem/PixivSource", "书源介绍")
-}
-function startGithubLogin() {
-    startBrowser("https://github.com/login?return_to=https://github.com/DowneyRem/PixivSource", "收藏项目")
 }
 function startGithubIssue() {
     startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
@@ -37,8 +34,11 @@ function startGithubReadme() {
     startBrowser("https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 function startGithubSponsor() {
-    startBrowser("https://github.com/DowneyRem/PixivSource/blob/main/doc/Sponsor.md", "使用指南")
+    startBrowser("https://github.com/DowneyRem/PixivSource/blob/main/doc/Sponsor.md", "赞助开发")
 }
-function startTelegram() {
+function startTelegramPixivSource() {
     startBrowser("https://t.me/PixivSource", "Pixiv 书源频道")
+}
+function startTelegramFurryReading() {
+    startBrowser("https://t.me/FurryReading", "兽人阅读频道")
 }

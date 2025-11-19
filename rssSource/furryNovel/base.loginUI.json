@@ -1,61 +1,8 @@
 [
     {
-        "name": "\uD83C\uDD7F️ 登录账号",
-        "type": "button",
-        "action": "login()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⚙️ 账号设置",
-        "type": "button",
-        "action": "startPixivSettings()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDD19 退出账号",
-        "type": "button",
-        "action": "logout()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "🆙 更新书源",
         "type": "button",
         "action": "updateSource()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDCCC 简要教程",
-        "type": "button",
-        "action": "readMe()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {   "name": "\uD83D\uDD0D 搜索教程",
-        "type": "button",
-        "action": "readMeSearch()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⭐️ 收藏项目",
-        "type": "button",
-        "action": "startGithub()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -74,6 +21,15 @@
         "name": "\uD83D\uDC1E 反馈问题",
         "type": "button",
         "action": "startGithubIssue()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⭐️ 收藏项目",
+        "type": "button",
+        "action": "startGithub()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
