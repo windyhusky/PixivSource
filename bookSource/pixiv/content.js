@@ -97,7 +97,11 @@ function getContent(res) {
                 matched2 = pixivimage.match(RegExp("\\d+"))
                 illustId = matched2[0];
             }
-            content = content.replace(`${pixivimage}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
+            if (urlIllustOriginal(illustId, order)) {
+                content = content.replace(`${pixivimage}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
+            } else {
+                content = content.replace(`${pixivimage}`, ``)
+            }
         })
     }
 

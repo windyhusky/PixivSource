@@ -254,7 +254,7 @@ function urlCoverUrl(url) {
     }
 
     let headers = {"Referer": "https://www.pixiv.net/"}
-    if (isIPDirect) {
+    if (isIPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
             headers.host = "i.pximg.net"
@@ -274,7 +274,7 @@ function urlIllustOriginal(illustId, order) {
     let url = this.urlIP(urlIllustDetailed(illustId))
     let illustOriginal = this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
-    }).body.urls.original
+    })?.body?.urls?.original || ""
     return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 function urlEmojiUrl(emojiId) {
