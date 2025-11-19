@@ -574,11 +574,12 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 <details><summary> 🔗 项目链接 </summary>
 
 ### 项目链接
-| 书源项目 | 链接                                          |
-| ------ | -------------------------------------------- |
-| 本项目　 | https://github.com/DowneyRem/PixivSource    |
-| 备份项目 | https://codeberg.org/DowneyRem/PixivSource   |
-| TS重构版 | https://github.com/eigeen/PixivSourceProject |
+| 书源项目  | 链接                                         |
+| ------- | -------------------------------------------- |
+| 本项目　  | https://github.com/DowneyRem/PixivSource     |
+| 备份项目  | https://codeberg.org/DowneyRem/PixivSource   |
+| TS重构版  | https://github.com/eigeen/PixivSourceProject |
+| 旧项目链接 | https://github.com/windyhusky/PixivSource    |
 </details>
 
 
