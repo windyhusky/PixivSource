@@ -2,6 +2,7 @@ var cacheSaveSeconds = 7*24*60*60  // 长期缓存时间 7天
 var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
 
 function cacheGetAndSet(key, supplyFunc) {
+    const {java, cache} = this
     let v = cache.get(key)
     // 缓存信息错误时，保存 10min 后重新请求
     if (v && JSON.parse(v).error === true) {
