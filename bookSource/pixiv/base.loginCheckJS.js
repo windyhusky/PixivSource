@@ -172,7 +172,7 @@ function publicFunc() {
         cookie.removeCookie('https://api.weibo.com')
         cache.delete("pixivCookie")
         cache.delete("pixiv:uid")
-        cache.delete("csfrToken")  // 与登录设备有关
+        cache.delete("pixivCsrfToken")  // 与登录设备有关
         cache.delete("headers")
     }
 
@@ -181,20 +181,20 @@ function publicFunc() {
     // https://github.com/Ocrosoft/PixivPreviewer
     // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
     u.getCsrfToken = function() {
-        let csfrToken = cache.get("csfrToken")
-        if (!csfrToken) {
+        let pixivCsrfToken = cache.get("pixivCsrfToken")
+        if (!pixivCsrfToken) {
             let html = java.webView(null, "https://www.pixiv.net/", null)
             try {
-                csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
-                cache.put("csfrToken", csfrToken)  // 与登录设备有关，无法存储 nul
+                pixivCsrfToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+                cache.put("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
             } catch (e) {
-                csfrToken = null
-                cache.delete("csfrToken")  // 与登录设备有关，无法存储 nul
-                // sleepToast("⚠️ 未登录账号(csfrToken)")
+                pixivCsrfToken = null
+                cache.delete("pixivCsrfToken")  // 与登录设备有关，无法存储 nul
+                // sleepToast("⚠️ 未登录账号(pixivCsrfToken)")
             }
-            java.log(`csfrToken:\n${csfrToken}`)
+            java.log(`pixivCsrfToken:\n${pixivCsrfToken}`)
         }
-        return csfrToken
+        return pixivCsrfToken
     }
 
     // 将多个长篇小说解析为一本书
@@ -643,7 +643,7 @@ function getHeaders() {
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
         "user-agent": cache.get("userAgent"),
-        "x-csrf-token": cache.get("csfrToken"),
+        "x-csrf-token": cache.get("pixivCsrfToken"),
         "Cookie": cache.get("pixivCookie")
     }
     putInCache("headers", headers)
@@ -660,7 +660,7 @@ util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
     java.log(`${getWebViewUA()}\n`)
-    java.log(`${cache.get("csfrToken")}\n`)
+    java.log(`${cache.get("pixivCsrfToken")}\n`)
     java.log(`${cache.get("pixivCookie")}\n`)
     java.log(`${cache.get("headers")}\n`)
 })
