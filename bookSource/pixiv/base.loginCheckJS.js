@@ -421,25 +421,16 @@ function publicFunc() {
                     watchedSeries.push(Number(novel.seriesId))
                 }
 
+                // 防止系列首篇无权限获取
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}
                 try {
-                    firstNovel = getAjaxJson(urlIP(urlNovelDetailed(series.firstNovelId))).body
-                    novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
-                    if (firstNovel.bookmarkData) {
-                        firstNovel.isBookmark = true
-                        cache.put(`collect${firstNovel.id}`, firstNovel.bookmarkData.id)
-                        likeNovels.push(Number(firstNovel.id))
-                    }
-                } catch (e) {  // 防止系列首篇无权限获取
-                    try {
-                        firstNovel = getAjaxJson(urlIP(urlSeriesNovels(novel.seriesId, 30, 0))).body.thumbnails.novel[0]
-                        novel.id = novel.firstNovelId = firstNovel.id
-                        novel.tags = novel.tags.concat(firstNovel.tags)
-                    } catch (e) { // 防止系列首篇无权限获取
-                        firstNovel = {}
-                        firstNovel.description = ""
-                    }
+                    firstNovel = getAjaxJson(urlIP(urlSeriesNovels(novel.seriesId, 30, 0))).body.thumbnails.novel[0]
+                    novel.id = novel.firstNovelId = firstNovel.id
+                    novel.tags = novel.tags.concat(firstNovel.tags)
+                } catch (e) { // 防止系列首篇无权限获取
+                    firstNovel = {}
+                    firstNovel.description = ""
                 }
                 novel.tags.unshift("长篇")
                 if (novel.description === "") {
@@ -520,11 +511,7 @@ function publicFunc() {
             let isSeries = baseUrl.match(new RegExp(pattern))
             if (isSeries) {
                 java.log(`系列ID：${id}`)
-                try {
-                    novelId = getAjaxJson(urlIP(urlSeriesDetailed(id))).body.firstNovelId
-                } catch (e) {
-                    novelId = getAjaxJson(urlIP(urlSeriesNovels(id, 30, 0))).body.thumbnails.novel[0].id
-                }
+                novelId = getAjaxJson(urlIP(urlSeriesNovels(id, 30, 0))).body.thumbnails.novel[0].id
             } else {
                 let pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/(show\\.php\\?id=)?\\d+"
                 let isNovel = baseUrl.match(new RegExp(pattern))
