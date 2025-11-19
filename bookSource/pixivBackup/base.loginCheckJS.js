@@ -169,7 +169,7 @@ function publicFunc() {
         cookie.removeCookie('https://api.weibo.com')
         cache.delete("pixivCookie")
         cache.delete("pixiv:uid")
-        cache.delete("csfrToken")  // 与登录设备有关
+        cache.delete("pixivCsrfToken")  // 与登录设备有关
         cache.delete("headers")
     }
 
@@ -178,20 +178,20 @@ function publicFunc() {
     // https://github.com/Ocrosoft/PixivPreviewer
     // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
     u.getCsrfToken = function() {
-        let csfrToken = cache.get("csfrToken")
-        if (!csfrToken) {
+        let pixivCsrfToken = cache.get("pixivCsrfToken")
+        if (!pixivCsrfToken) {
             let html = java.webView(null, "https://www.pixiv.net/", null)
             try {
-                csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
-                cache.put("csfrToken", csfrToken)  // 与登录设备有关，无法存储 nul
+                pixivCsrfToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+                cache.put("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
             } catch (e) {
-                csfrToken = null
-                cache.delete("csfrToken")  // 与登录设备有关，无法存储 nul
-                // sleepToast("⚠️ 未登录账号(csfrToken)")
+                pixivCsrfToken = null
+                cache.delete("pixivCsrfToken")  // 与登录设备有关，无法存储 nul
+                // sleepToast("⚠️ 未登录账号(pixivCsrfToken)")
             }
-            java.log(`csfrToken:\n${csfrToken}`)
+            java.log(`pixivCsrfToken:\n${pixivCsrfToken}`)
         }
-        return csfrToken
+        return pixivCsrfToken
     }
 
     // 将多个长篇小说解析为一本书
@@ -306,23 +306,16 @@ function publicFunc() {
                 novel.total = series.publishedContentCount
                 novel.isWatched = series.isWatched
 
+                // 防止系列首篇无权限获取
                 // 发送请求获取第一章 获取标签与简介
                 let firstNovel = {}
                 try {
-                    firstNovel = getAjaxJson(urlIP(urlNovelDetailed(series.firstNovelId))).body
-                    novel.tags = novel.tags.concat(firstNovel.tags.tags.map(item => item.tag))
-                    if (firstNovel.bookmarkData) {
-                        firstNovel.isBookmark = true
-                    }
-                } catch (e) {  // 防止系列首篇无权限获取
-                    try {
-                        firstNovel = getAjaxJson(urlIP(urlSeriesNovels(novel.seriesId, 30, 0))).body.thumbnails.novel[0]
-                        novel.id = novel.firstNovelId = firstNovel.id
-                        novel.tags = novel.tags.concat(firstNovel.tags)
-                    } catch (e) { // 防止系列首篇无权限获取
-                        firstNovel = {}
-                        firstNovel.description = ""
-                    }
+                    firstNovel = getAjaxJson(urlIP(urlSeriesNovels(novel.seriesId, 30, 0))).body.thumbnails.novel[0]
+                    novel.id = novel.firstNovelId = firstNovel.id
+                    novel.tags = novel.tags.concat(firstNovel.tags)
+                } catch (e) { // 防止系列首篇无权限获取
+                    firstNovel = {}
+                    firstNovel.description = ""
                 }
                 novel.tags.unshift("长篇")
                 if (novel.description === "") {
@@ -380,7 +373,7 @@ function publicFunc() {
 
     // 正文，详情，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     // pixiv 默认分享信息中有#号，不会被识别成链接，无法使用添加网址
-    u.getNovelRes = function(result) {
+    u.getNovelResFirst = function(result) {
         let novelId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
@@ -398,11 +391,7 @@ function publicFunc() {
             let isSeries = baseUrl.match(new RegExp(pattern))
             if (isSeries) {
                 java.log(`系列ID：${id}`)
-                try {
-                    novelId = getAjaxJson(urlIP(urlSeriesDetailed(id))).body.firstNovelId
-                } catch (e) {
-                    novelId = getAjaxJson(urlIP(urlSeriesNovels(id, 30, 0))).body.thumbnails.novel[0].id
-                }
+                novelId = getAjaxJson(urlIP(urlSeriesNovels(id, 30, 0))).body.thumbnails.novel[0].id
             } else {
                 let pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/(show\\.php\\?id=)?\\d+"
                 let isNovel = baseUrl.match(new RegExp(pattern))

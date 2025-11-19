@@ -2,7 +2,8 @@ var checkTimes = 0
 var cacheSaveSeconds = 7*24*60*60  // 长期缓存时间 7天
 var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
 
-function cacheGetAndSet(cache, key, supplyFunc) {
+function cacheGetAndSet(key, supplyFunc) {
+    const {java, cache} = this
     let v = cache.get(key)
     // 缓存信息错误时，保存 10min 后重新请求
     if (v && JSON.parse(v).error === true) {
@@ -56,7 +57,7 @@ function getWebViewUA() {
 }
 function isLogin() {
     const {java, cache} = this
-    return !!cache.get("csfrToken")
+    return !!cache.get("pixivCsrfToken")
 }
 
 function getAjaxJson(url, forceUpdate) {
@@ -65,7 +66,7 @@ function getAjaxJson(url, forceUpdate) {
     if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
         cache.delete(url)
     }
-    return cacheGetAndSet(cache, url, () => {
+    return this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
     })
 }
@@ -75,7 +76,7 @@ function getAjaxAllJson(urls, forceUpdate) {
     if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
         cache.delete(urls)
     }
-    return cacheGetAndSet(cache, urls, () => {
+    return this.cacheGetAndSet(urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
         for (let i in urls) cache.put(urls[i], JSON.stringify(result[i]), cacheSaveSeconds)
@@ -84,7 +85,7 @@ function getAjaxAllJson(urls, forceUpdate) {
 }
 function getWebviewJson(url, parseFunc) {
     const {java, cache} = this
-    return cacheGetAndSet(cache, url, () => {
+    return this.cacheGetAndSet(url, () => {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })
@@ -105,7 +106,7 @@ function urlIP(url) {
             "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
             "X-Requested-With": "XMLHttpRequest",
             "Host": "www.pixiv.net",
-            "x-csrf-token": cache.get("csfrToken") || "",
+            "x-csrf-token": cache.get("pixivCsrfToken") || "",
             "Cookie": cache.get("pixivCookie") || ""
         }
         return `${url}, ${JSON.stringify({headers: headers})}`
@@ -196,7 +197,7 @@ function urlCoverUrl(url) {
     }
 
     let headers = {"Referer": "https://www.pixiv.net/"}
-    if (isIPDirect) {
+    if (isIPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
             headers.host = "i.pximg.net"
@@ -214,9 +215,9 @@ function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (order <= 1) order = 1
     let url = this.urlIP(urlIllustDetailed(illustId))
-    let illustOriginal = cacheGetAndSet(cache, url, () => {
+    let illustOriginal = this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
-    }).body.urls.original
+    })?.body?.urls?.original || ""
     return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 function urlEmojiUrl(emojiId) {

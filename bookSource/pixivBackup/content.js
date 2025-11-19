@@ -32,8 +32,7 @@ function getContent(res) {
     }
 
     // 获取 [uploadedimage:] 的图片链接
-    let hasEmbeddedImages = res.textEmbeddedImages !== undefined && res.textEmbeddedImages !== null
-    if (hasEmbeddedImages) {
+    if (res.textEmbeddedImages) {
         Object.keys(res.textEmbeddedImages).forEach((key) => {
             content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(res.textEmbeddedImages[key].urls.original)}">`)
         })
@@ -51,7 +50,11 @@ function getContent(res) {
                 matched2 = pixivimage.match(RegExp("\\d+"))
                 illustId = matched2[0];
             }
-            content = content.replace(`${pixivimage}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
+            if (urlIllustOriginal(illustId, order)) {
+                content = content.replace(`${pixivimage}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
+            } else {
+                content = content.replace(`${pixivimage}`, ``)
+            }
         })
     }
 
@@ -226,5 +229,5 @@ function checkContent() {
 }
 
 (() => {
-    return getContent(util.getNovelRes(result))
+    return getContent(util.getNovelResFirst(result))
 })()
