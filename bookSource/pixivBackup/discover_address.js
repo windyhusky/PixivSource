@@ -131,28 +131,6 @@ if (SHOW_GENERAL_GENRE === true) {
 }
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
-// 收藏标签
-let likeTags = getFromCache("likeTags")
-if (likeTags !== null && likeTags.length >= 1) {
-    likeTags.forEach(tag => {
-        let tagLink = {}
-        tagLink[tag] = `${urlSearchNovel(tag, "{{page}}")}`
-        likeTagLinks.push(tagLink)
-    })
-    li = li.concat(likeTagLinks)
-}
-
-// 他人收藏
-let likeAuthors = getFromCacheMap("likeAuthors")
-if (likeAuthors.size > 0) {
-    likeAuthors.forEach((authorName, authorId) => {
-        let bookmark = {}
-        bookmark[authorName] = urlUserBookmarks(authorId)
-        othersBookmarks.push(bookmark)
-    })
-    li = li.concat(othersBookmarks)
-}
-
 // 添加格式
 li.forEach(item => {
     item.title = Object.keys(item)[0]
