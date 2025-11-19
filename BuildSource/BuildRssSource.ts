@@ -81,6 +81,7 @@ function buildRssSource(sourceName:string): RssSource[] {
 
     // 填充默认数据
     RssSources.forEach(RssSource => {
+        RssSource.lastUpdateTime = 1763049600251
         Object.keys(defaultData).forEach((key) => {
             if (RssSource[key] === undefined) RssSource[key] = defaultData[key]
             if (RssSource[key] === false) delete RssSource[key]
@@ -215,7 +216,7 @@ function buildImportSource() {
     RssSource.sourceGroup = "🅿️ Pixiv,🐲 Furry,书源"
     RssSource.variableComment = "【刷新分类】【刷新分类】【刷新分类】"
     RssSource.singleUrl = false
-    RssSource.lastUpdateTime = 1739808000251
+    RssSource.lastUpdateTime = 1763049600251
     // RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
 
     // 基本页面，按顺序排序
