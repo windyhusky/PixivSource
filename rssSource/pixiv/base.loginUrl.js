@@ -31,7 +31,7 @@ function removeCookie() {
     cookie.removeCookie('https://accounts.google.com')
     cookie.removeCookie('https://api.weibo.com')
     cache.delete("pixivCookie")
-    cache.delete("csfrToken")  // 与登录设备有关
+    cache.delete("pixivCsrfToken")  // 与登录设备有关
     cache.delete("headers")
 }
 
@@ -40,16 +40,16 @@ function removeCookie() {
 // https://github.com/Ocrosoft/PixivPreviewer
 // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
 function getCsrfToken() {
-    let csfrToken
+    let pixivCsrfToken
     let html = java.webView(null, "https://www.pixiv.net/", null)
     try {
-        csfrToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+        pixivCsrfToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
     } catch (e) {
-        csfrToken = null
+        pixivCsrfToken = null
     }
-    // java.log(csfrToken)
-    cache.put("csfrToken", csfrToken)  // 与登录设备有关
-    return csfrToken
+    // java.log(pixivCsrfToken)
+    cache.put("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关
+    return pixivCsrfToken
 }
 
 function getCookie() {
