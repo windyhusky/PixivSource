@@ -79,8 +79,7 @@ function getContent(res) {
     }
 
     // 获取 [uploadedimage:] 的图片链接
-    let hasEmbeddedImages = res.textEmbeddedImages !== undefined && res.textEmbeddedImages !== null
-    if (hasEmbeddedImages) {
+    if (res.textEmbeddedImages) {
         Object.keys(res.textEmbeddedImages).forEach((key) => {
             content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(res.textEmbeddedImages[key].urls.original)}">`)
         })
