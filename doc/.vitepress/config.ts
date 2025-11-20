@@ -34,6 +34,7 @@ export default defineConfig({
         sidebar: [
             {
                 text: "专用教程",
+                collapsed: false,
                 items: [
                     { text: "Pixiv 书源", link: "/Pixiv" },
                     { text: "Linpx 书源", link: "/Linpx" },
@@ -42,6 +43,7 @@ export default defineConfig({
             },
             {
                 text: "通用教程",
+                collapsed: false,
                 items: [
                     { text: "下载阅读", link: "/Download" },
                     { text: "导入书源", link: "/ImportBookSource" },
@@ -53,6 +55,7 @@ export default defineConfig({
             },
             {
                 text: "赞助名单",
+                collapsed: false,
                 items: [
                     { text: "赞助名单", link: "/Sponsor" },
                 ]
