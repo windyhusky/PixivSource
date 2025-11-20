@@ -5,7 +5,11 @@ export default defineConfig({
     lang: "zh-CN",
     title: "Pixiv 书源",
     description: "适配 开源阅读 Legado 3.0 的 Pixiv 书源",
-    base: "/PixivSource/",
+    base: "/PixivSource/",  // 项目名称
+    cleanUrls: true,        // 简洁URL
+    ignoreDeadLinks: true,  // 忽略死链
+    appearance: true,       // 默认主题由用户配色方案决定
+    lastUpdated: true,      // 获取页面最后更新的时间戳
     head: [
         ["link", { rel: "icon", href: "/PixivSource/favicon.png" }],
         ["link", { rel: "apple-touch-icon", href: "/PixivSource/apple-touch-icon.png" }],
@@ -58,6 +62,29 @@ export default defineConfig({
             { icon: "github", link: "https://github.com/DowneyRem/PixivSource" },
             { icon: "codeberg", link: "https://codeberg.org/DowneyRem/PixivSource" },
             { icon: "telegram", link: "https://t.me/PixivSource" },
-        ]
+        ],
+        search: {
+            provider: 'local',
+            options: {
+                locales: {
+                    zh: {
+                        translations: {
+                            button: {
+                                buttonText: '搜索文档',
+                                buttonAriaLabel: '搜索文档'
+                            },
+                            modal: {
+                                noResultsText: '无法找到相关结果',
+                                resetButtonTitle: '清除查询条件',
+                                footer: {
+                                    selectText: '选择',
+                                    navigateText: '切换'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 })
