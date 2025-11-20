@@ -3,11 +3,16 @@ import { defineConfig } from "vitepress"
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     lang: "zh-CN",
-    title: "PixivSource",
-    description: "Pixiv 书源",
+    title: "Pixiv 书源",
+    description: "适配 开源阅读 Legado 3.0 的 Pixiv 书源",
     base: "/PixivSource/",
+    head: [
+        ["link", { rel: "icon", href: "/PixivSource/favicon.png" }],
+        ["link", { rel: "apple-touch-icon", href: "/PixivSource/apple-touch-icon.png" }],
+        // ["link", { rel: "manifest", href: "/manifest.json" }]
+    ],
     themeConfig: {
-        logo: "/pic/Legado-Pixiv.png",
+        logo: "/favicon.png",
         nav: [
             { text: "主页", link: "/" },
             { text: "Pixiv 书源", link: "/Pixiv" },

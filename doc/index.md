@@ -9,7 +9,7 @@ hero:
   text: "开源阅读 Pixiv 书源"
   tagline: 适配 开源阅读 Legado 3.0 的 Pixiv 书源
 #  image:
-#    src: "pic/Legado-Pixiv.png"
+#    src: "/apple-touch-icon.png"
 #    alt: Pixiv Source Logo
   actions:
     - theme: brand
