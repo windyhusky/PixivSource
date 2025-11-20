@@ -72,7 +72,7 @@ function urlIP(url) {
     if (source.bookSourceName.includes("备用") || source.bookSourceName.includes("漫画")) {
         isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))?.IPDirect || false
     } else {
-        isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
+        isIPDirect = JSON.parse(cache.get("pixivSettings"))?.IPDirect || false
     }
 
     if (isIPDirect) {
@@ -133,7 +133,7 @@ function urlCoverUrl(url) {
     if (source.bookSourceName.includes("备用")|| source.bookSourceName.includes("漫画")) {
         isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))?.IPDirect || false
     } else {
-        isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
+        isIPDirect = JSON.parse(cache.get("pixivSettings"))?.IPDirect || false
     }
 
     let headers = {"Referer": "https://www.pixiv.net/"}
