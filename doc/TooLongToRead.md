@@ -108,7 +108,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 >> #### 1.2 [Linpx 书源的导入与使用](./Linpx.md)
 >> #### 1.3 [兽人控小说站 书源的导入与使用](./FurryNovel.md)
 >> #### 1.4 搜索小说、查看订阅，畅享阅读
-> ### 2. [添加远程书籍](./Remotebooks)，畅享阅读
+> ### 2. [添加远程书籍](./RemoteBooks.md)，畅享阅读
 > ### 3. [设置 Webdav 备份](./WebdavBackup.md)
 > ### 4. [故障排查与处理](./TroubleShoot.md)
 </details>
