@@ -25,6 +25,7 @@ export default defineConfig({
         ],
     themeConfig: {
         logo: "/favicon.png",
+        // siteTitle: false,   // 隐藏站点标题
         nav: [
             { text: "主页", link: "/" },
             { text: "Pixiv 书源", link: "/Pixiv" },
