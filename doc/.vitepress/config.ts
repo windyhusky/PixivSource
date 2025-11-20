@@ -63,6 +63,10 @@ export default defineConfig({
             { icon: "codeberg", link: "https://codeberg.org/DowneyRem/PixivSource" },
             { icon: "telegram", link: "https://t.me/PixivSource" },
         ],
+        editLink: { 
+            pattern: "https://github.com/DowneyRem/PixivSource/blob/main/doc/:path",
+            text: "在 GitHub 上编辑本文"
+        },
         search: {
             provider: 'local',
             options: {
