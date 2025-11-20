@@ -10,7 +10,15 @@ export default defineConfig({
         ["link", { rel: "icon", href: "/PixivSource/favicon.png" }],
         ["link", { rel: "apple-touch-icon", href: "/PixivSource/apple-touch-icon.png" }],
         // ["link", { rel: "manifest", href: "/manifest.json" }]
-    ],
+        ["script", { 
+            async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-MJW9QDKTDH" }],
+        ["script", {},
+            `window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag("js", new Date());
+            gtag("config", "TAG_ID");`
+            ],
+        ],
     themeConfig: {
         logo: "/favicon.png",
         nav: [
