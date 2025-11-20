@@ -1,6 +1,6 @@
 /.idea
 /.test
 node_modules
-package.json
-pnpm-lock.yaml
+/doc/.vitepress/dist
+/doc/.vitepress/cache
 *.pdf

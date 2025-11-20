@@ -1,0 +1,31 @@
+{
+  "name": "pixivsource",
+  "version": "1.0.0",
+  "description": "<div align=\"center\">\r <img width=\"125\" height=\"125\" src=\"doc/pic/Legado-Pixiv.png\" alt=\"Legado x Pixiv\"/>",
+  "homepage": "https://github.com/DowneyRem/PixivSource#readme",
+  "bugs": {
+    "url": "https://github.com/DowneyRem/PixivSource/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DowneyRem/PixivSource.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsx BuildSource/buildBookSource.ts",
+    "docs:dev": "vitepress dev doc --host",
+    "docs:build": "vitepress build doc",
+    "docs:preview": "vitepress preview doc"
+  },
+  "dependencies": {
+    "tsx": "^4.20.6",
+    "vitepress": "^1.6.4"
+  }
+}
