@@ -100,7 +100,15 @@ export default defineConfig({
     },
     markdown: {
         config: (md) => {
-            // // 优化导入链接，站内使用 legado:// 链接
+            // // 优化中文锚点，但无法兼容 Github
+            md.use(markdownItAnchor, {
+                slugify: (s:string) => s,
+                // slugify: (s:string) => s.replace(/[，。、？！《》—…]/gm, ""),
+                // slugify: (s:string) => s.replace("、", ""),
+                permalink: false   // 显示锚点符号
+            })
+
+            // // 优化导入链接，站内使用 legado:// 链接，github 使用原始链接
             const defaultRender = md.renderer.rules.link_open || ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options))
             md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
                 const hrefIndex = tokens[idx].attrIndex("href")
