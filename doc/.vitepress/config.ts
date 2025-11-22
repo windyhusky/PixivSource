@@ -1,4 +1,5 @@
 import { defineConfig } from "vitepress"
+import markdownItAnchor from 'markdown-it-anchor'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -95,6 +96,24 @@ export default defineConfig({
                     }
                 }
             }
+        }
+    },
+    markdown: {
+        config: (md) => {
+            // // 优化导入链接，站内使用 legado:// 链接
+            const defaultRender = md.renderer.rules.link_open || ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options))
+            md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
+                const hrefIndex = tokens[idx].attrIndex("href")
+                if (hrefIndex >= 0) {
+                    const hrefAttr = tokens[idx].attrs[hrefIndex]
+                    let href = hrefAttr[1]
+                    // @ts-ignore
+                    if (href.startsWith("https://loyc.xyz/b/cdx.html?src=")) {
+                        hrefAttr[1] = href.replace("https://loyc.xyz/b/cdx.html?src=", "")
+                    }
+                }
+                return defaultRender(tokens, idx, options, env, self);
+            };
         }
     }
 })

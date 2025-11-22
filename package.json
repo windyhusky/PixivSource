@@ -22,9 +22,10 @@
     "build": "tsx BuildSource/buildBookSource.ts",
     "docs:dev": "vitepress dev doc --host",
     "docs:build": "vitepress build doc",
-    "docs:preview": "vitepress preview doc"
+    "docs:preview": "vitepress build doc && vitepress preview doc"
   },
   "dependencies": {
+    "markdown-it-anchor": "^9.2.0",
     "tsx": "^4.20.6",
     "vitepress": "^1.6.4"
   }
