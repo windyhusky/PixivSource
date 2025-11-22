@@ -12,7 +12,7 @@
 5. 开启 Pixiv R18 设置
 
 
-## 〇、使用须知 {#notice}
+## 〇、使用须知 {#Notice}
 ### ⚠️ 使用本项目的书源造成的一切损失均由 使用者 自行承担
 ### 1. 请勿在 Pixiv 官方平台宣传本书源
 <details><summary> 📄 包括但不限于以下内容 </summary>
@@ -44,7 +44,7 @@
 否则手动刷新时，也可能触发请求限制，甚至封号
 
 
-## 一、下载并安装阅读 {#download-app}
+## 一、下载并安装阅读 {#DownloadApp}
 ### 1.下载阅读 3.0 版本
 <details><summary> ⬇️ 下载阅读 </summary>
 
@@ -59,7 +59,7 @@
 </details>
 
 
-## 二、导入书源 & 订阅源 {#import-source}
+## 二、导入书源 & 订阅源 {#ImportSource}
 - 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
 
 - 🐲 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
@@ -131,7 +131,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 </details>
 
 
-## 三、登录账号 {#login-account}
+## 三、登录账号 {#LoginAccount}
 Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 ### 1. 登录 Pixiv 账号
 
@@ -187,10 +187,10 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 </details>
 
 
-## 四、添加小说，尽情使用 {#add-novel}
+## 四、添加小说，尽情使用 {#AddNovel}
+### 1.阅读内部搜索 {#Search}
 <details><summary> 🔍 搜索小说 </summary>
 
-### 1.阅读内部搜索
 书架页面 - 放大镜 - 输入关键词 - 搜索小说
 <details><summary> 🔍 搜索小说 </summary>
 
@@ -291,9 +291,9 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 </details>
 
 
+### 2.发现更多小说
 <details><summary> ⭐️ 发现小说 </summary>
 
-### 2.发现更多小说
 发现页面 - 点击各按钮
 <details><summary> ⭐️ 常规发现 </summary>
 
@@ -382,9 +382,9 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 </details>
 
 
+### 3.添加网址 {#AddUrl}
 <details><summary> 🔗 添加网址 </summary>
 
-### 3.添加网址
 - 书架 - 菜单 - 添加网址 - 粘贴小说链接 
 - 可以同时添加多个小说的链接
 
@@ -411,9 +411,9 @@ Pixiv App 小说分享链接（删掉#号即可正常添加）
 </details>
 
 
+### 4.订阅源
 <details><summary> 🏠 订阅源 </summary>
 
-### 4.订阅源
 <details><summary> ⬇️ 导入书源 </summary>
 
 #### 4.0 导入书源
@@ -488,9 +488,9 @@ Pixiv 网站的搜索功能更加全面
 </details>
 
 
+### 5.书源 登录界面
 <details><summary> 🅿️ 登录界面 </summary>
 
-### 5.书源 登录界面
 <details><summary> 🅿️ 账号功能（同上） </summary>
 
 #### 5.0 账号功能
@@ -566,9 +566,10 @@ Pixiv 网站的搜索功能更加全面
 </details>
 
 
+### 6.书源 自定义功能
+[//]: # ({$Custom})
 <details><summary> 📃 自定义功能 </summary>
 
-### 6.书源 自定义功能
 <details><summary> 📃 功能说明 </summary>
 
 #### 6.0 功能说明
@@ -648,7 +649,8 @@ Pixiv 网站的搜索功能更加全面
 </details>
 
 
-## 五、故障排查 {#troubleshoot}
+## 五、故障排查
+[//]: # ({#TroubleShoot})
 > 详见：[故障排查与处理](./TroubleShoot.md)
 <details>
 <summary> 🐞 故障排查 </summary>
