@@ -27,7 +27,11 @@ export default defineConfig({
     themeConfig: {
         logo: "/favicon.png",
         // siteTitle: false,   // 隐藏站点标题
-        outline: [2, 3],
+        outline: {
+            level: [2, 3],     // H2 H3 标题
+            label: '本页目录'
+        },
+        returnToTopLabel: "回到顶部",
         nav: [
             { text: "主页", link: "/" },
             { text: "快速开始", link: "/QuickStart" },
@@ -35,6 +39,8 @@ export default defineConfig({
             { text: "Linpx 书源", link: "/Linpx" },
             { text: "赞助名单", link: "/Sponsor" }
         ],
+        lightModeSwitchTitle: "",
+        sidebarMenuLabel: "菜单",
         sidebar: [
             {
                 text: "快速开始",
@@ -73,9 +79,14 @@ export default defineConfig({
             { icon: "codeberg", link: "https://codeberg.org/DowneyRem/PixivSource" },
             { icon: "telegram", link: "https://t.me/PixivSource" },
         ],
-        editLink: { 
+        lastUpdated: { text: '上次更新'},
+        editLink: {
             pattern: "https://github.com/DowneyRem/PixivSource/blob/main/doc/:path",
             text: "在 GitHub 上编辑本文"
+        },
+        docFooter: {
+            prev: '上一页',
+            next: '下一页'
         },
         search: {
             provider: "local",
