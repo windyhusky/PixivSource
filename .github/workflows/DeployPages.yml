@@ -21,6 +21,7 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: ${{ github.repository_owner == 'DowneyRem' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -53,6 +54,7 @@ jobs:
 
   # 部署工作
   deploy:
+    if: ${{ github.repository_owner == 'DowneyRem' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
