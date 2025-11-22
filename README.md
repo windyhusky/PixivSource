@@ -562,9 +562,10 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 
 ## 杂类
+### ❤️ [打赏开发者](./doc/Sponsor.md)
 <details><summary> ✈ 社群链接 </summary>
 
-#### Telegram 频道 & 群组
+### Telegram 频道 & 群组
 | Telegram 频道 & 群组 | 备注 |
 | ------------------ | --- |
 | 🔊 [Pixiv 书源](https://t.me/PixivSource) | Pixiv 书源 频道 |
