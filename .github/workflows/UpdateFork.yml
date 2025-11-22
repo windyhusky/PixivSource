@@ -5,6 +5,9 @@ on:
     - cron: '0 0,4,8,12,16,20 * * *' # 定时任务，每 4h 同步一次
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   UpdateFork:
     runs-on: ubuntu-latest
