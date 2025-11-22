@@ -1,6 +1,13 @@
-# Pixiv 书源的导入与使用
+<div align="center">
+<img width="150" height="150" src="./pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
+<br>
 
-### ❤️ [Pixiv 书源项目 赞助名单](../doc/Sponsor.md)
+# Pixiv 书源使用指南
+### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+#### ❤️ [书源项目赞助名单](./Sponsor.md)
+</div>
+
 ### [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 
 
@@ -13,14 +20,19 @@
 
 
 ## 〇、使用须知 {#Notice}
-### ⚠️ 使用本项目的书源造成的一切损失均由 使用者 自行承担
-### 1. 请勿在 Pixiv 官方平台宣传本书源
+> [!CAUTION]
+> ### ⚠️ 使用本书源造成的一切损失均由【使用者】自行承担
+
+> [!WARNING]
+> ### 1. 请勿在 Pixiv 平台宣传本书源
 <details><summary> 📄 包括但不限于以下内容 </summary>
 
 - 项目名称：
   - Pixiv 书源
+  - PixivSource
 - 项目链接：
   - https://github.com/DowneyRem/PixivSource
+  - https://github.com/windyhusky/PixivSource
   - https://github.com/eigeen/PixivSourceProject
   - https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md
 - 项目参与者链接：
@@ -30,8 +42,8 @@
 </details>
 可能会触发 Shadow ban 限制（大）部分功能，严重的会封号
 
-
-### 2. 使用时，请在设置里，关闭自动刷新
+> [!IMPORTANT] 
+> ### 2. 使用时，请在设置里，关闭自动刷新
 <details><summary> 🔄 关闭自动刷新 </summary>
 
 我的 - 其他设置 - 自动刷新
@@ -39,8 +51,8 @@
 否则很容易触发触发请求限制，甚至封号
 </details>
 
-
-### 3. 不建议在书架上添加过多（超过100篇）小说
+> [!IMPORTANT]  
+> ### 3. 不建议在书架上添加过多（超过100篇）小说 
 否则手动刷新时，也可能触发请求限制，甚至封号
 
 
@@ -48,7 +60,9 @@
 ### 1.下载阅读 3.0 版本
 <details><summary> ⬇️ 下载阅读 </summary>
 
-点击链接，下载安装包并安装，**推荐使用【共存版】**
+> [!IMPORTANT]
+> 点击链接，下载 **【新共存版】** 安装包并安装软件
+
 > https://miaogongzi.lanzout.com/b01rgkhhe
 > 
 > 最新下载链接请查看 [下载阅读](./Download.md)
@@ -132,7 +146,8 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 
 
 ## 三、登录账号 {#LoginAccount}
-Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
+> [!NOTE]
+> **Pixiv 及正版付费书源，需要登录账号才能阅读相关小说**
 ### 1. 登录 Pixiv 账号
 
 <details><summary> 🅿️ 登录 Pixiv 账号 </summary>
@@ -151,8 +166,8 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 **登录你的账号，登录成功后，点击右上角的对勾**
 
 ![img](./pic/PixivLogin2.jpg)
-
-**如果需要验证码，请更换代理，或过段时间再次尝试**
+> [!TIP]
+> **如果需要验证码，请更换代理，或过段时间再次尝试**
 </details>
 
 
@@ -307,9 +322,11 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 #### 2.1 最新 企划 约稿
 ![img](./pic/DiscoverPixivNew.png)
-- ✅ R18 小说 (🆕 最新 企划 约稿 💰，默认显示)
-- ☑️ 一般小说 (✅ 最新 企划 约稿 ✅，默认隐藏)
-  > 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+> [!TIP]
+> - ✅ R18 小说 (🆕 最新 企划 约稿 💰，默认显示)
+> - ☑️ 一般小说 (✅ 最新 企划 约稿 ✅，默认隐藏)
+> 
+> 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
 </details>
 
 
@@ -317,9 +334,11 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 #### 2.2 小说排行
 ![img](./pic/DiscoverPixivRanking.png)
-  - ✅ R18 小说 (👑 排行榜单 👑，默认显示)
-  - ☑️ 一般小说 (🏆 排行榜单 🏆，默认隐藏)
-    > 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+> [!TIP]
+> - ✅ R18 小说 (👑 排行榜单 👑，默认显示)
+> - ☑️ 一般小说 (🏆 排行榜单 🏆，默认隐藏)
+> 
+> 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
 </details>
 
 
@@ -327,10 +346,13 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 #### 2.3 原创热门（默认隐藏）
 ![img](./pic/DiscoverPixivHot.png)
-- ☑️ R18 小说 (🔥 原创热门 🔥，默认隐藏)
-  > 可在书源设置中修改`SHOW_R18_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
-- ☑️ 一般小说 (❤️‍🔥 原创热门 ❤️‍🔥，默认隐藏)
-  > 可在书源设置中修改`SHOW_GENERAL_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+> [!TIP]
+> - ☑️ R18 小说 (🔥 原创热门 🔥，默认隐藏)
+> 
+> 可在书源设置中修改`SHOW_R18_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+> - ☑️ 一般小说 (❤️‍🔥 原创热门 ❤️‍🔥，默认隐藏)
+> 
+> 可在书源设置中修改`SHOW_GENERAL_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
 </details>
 
 
@@ -338,10 +360,11 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 
 #### 2.4 更新书源
 ![img](./pic/UpdateSource.png)
-点击按钮【🆙 更新】以更新书源/更新订阅
-- Jsdelivr CDN 更新有延迟
-- Github 更新需代理
-- Godeberg 更新免代理
+> [!NOTE]
+> 点击按钮【🆙 更新】以更新书源/更新订阅
+> - Jsdelivr CDN 更新有延迟
+> - Github 更新需代理
+> - Godeberg 更新免代理
 </details>
 
 
@@ -393,19 +416,21 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 ![img](./pic/AddBookViaUrl3.png)
 
 支持 Pixiv 多个格式的网址链接：
+- Pixiv 单篇小说链接
 ```
-Pixiv 单篇小说链接
 https://www.pixiv.net/novel/show.php?id=20063566
-
-Pixiv 系列小说链接
+```
+- Pixiv 系列小说链接
+```
 https://www.pixiv.net/novel/series/8054073
-
-Pixiv 作者链接（添加近期1本小说）
+```
+- Pixiv 作者链接（添加近期1本小说）
+```
 https://www.pixiv.net/users/16721009
 ```
-无法添加的链接：
+**无法添加的链接：**
+- Pixiv App 小说分享链接 **（删掉#号即可正常添加）**
 ```
-Pixiv App 小说分享链接（删掉#号即可正常添加）
 测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
 ```
 </details>
@@ -477,13 +502,14 @@ Pixiv 网站的搜索功能更加全面
 </details>
 
 
-<details><summary> 🆙 更新书源（同上） </summary>
+<details><summary> 🆙 更新书源（同上）</summary>
 
 ![img](./pic/UpdateSource.png)
-点击按钮【🆙 更新】以更新书源/更新订阅
-- Jsdelivr CDN 更新有延迟
-- Github 更新需代理
-- Godeberg 更新免代理
+> [!NOTE]
+> 点击按钮【🆙 更新】以更新书源/更新订阅
+> - Jsdelivr CDN 更新有延迟
+> - Github 更新需代理
+> - Godeberg 更新免代理
 </details>
 </details>
 
@@ -649,8 +675,7 @@ Pixiv 网站的搜索功能更加全面
 </details>
 
 
-## 五、故障排查
-[//]: # ({#TroubleShoot})
+## 五、故障排查 {#TroubleShoot}
 > 详见：[故障排查与处理](./TroubleShoot.md)
 <details>
 <summary> 🐞 故障排查 </summary>

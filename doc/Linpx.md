@@ -13,7 +13,7 @@
 ### 1.下载阅读 3.0 版本
 <details><summary> ⬇️ 下载阅读 </summary>
 
-点击链接，下载安装包并安装，**推荐使用【共存版】**
+点击链接，下载安装包并安装，**推荐使用【新共存版】**
 > https://miaogongzi.lanzout.com/b01rgkhhe
 >
 > 最新下载链接请查看 [下载阅读](./Download.md)

@@ -1,5 +1,5 @@
 <div align="center">
-<img width="125" height="125" src="./pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
+<img width="150" height="150" src="./pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
 <br>
 
 # ❤️ 赞助名单❤️
