@@ -20,14 +20,14 @@ hero:
       link: "https://github.com/Luoyacheng/legado/releases/latest"
       
     - theme: alt
-      text: 🚀 一键导入 Pixiv 书源
+      text: 🚀 导入 Pixiv 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
     - theme: alt
       text: 📘 Pixiv 书源指南
       link: Pixiv
       
     - theme: alt
-      text: 🚀 一键导入 Linpx 书源
+      text: 🚀 导入 Linpx 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"
     - theme: alt
       text: 📘 Linpx 书源指南
@@ -44,7 +44,7 @@ features:
     
   - icon: ⭐️
     title: 互动功能齐全
-    details: ❤️收藏小说❤️收藏系列📃追更系列<br>✅发送评论⭐️关注作者🚫屏蔽作者
+    details: ❤️收藏小说📃追更系列<br>✅发送评论⭐️关注作者
     
   - icon: ✈️
     title: 直连无需代理
