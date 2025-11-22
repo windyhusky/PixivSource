@@ -36,8 +36,7 @@
 | 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
 | 🎀【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3/releases) | | 3.26     | 
 | 🍎【兼容】[源阅](https://github.com/kaich/SourceReadSite)      | TestFlight | 1.0 (112) |
-| 👎【官方】阅读 | 不推荐<br>正式版 | 3.25 | 
-
+| 👎【官方】阅读 | 不推荐<br>正式版 | 3.25 |
 </details>
 
 
