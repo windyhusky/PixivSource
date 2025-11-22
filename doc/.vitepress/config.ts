@@ -28,11 +28,17 @@ export default defineConfig({
         // siteTitle: false,   // 隐藏站点标题
         nav: [
             { text: "主页", link: "/" },
+            { text: "快速开始", link: "/QuickStart" },
             { text: "Pixiv 书源", link: "/Pixiv" },
             { text: "Linpx 书源", link: "/Linpx" },
             { text: "赞助名单", link: "/Sponsor" }
         ],
         sidebar: [
+            {
+                text: "快速开始",
+                collapsed: false,
+                items: [{ text: "快速开始", link: "/QuickStart" }]
+            },
             {
                 text: "专用教程",
                 collapsed: false,
@@ -57,9 +63,7 @@ export default defineConfig({
             {
                 text: "赞助名单",
                 collapsed: false,
-                items: [
-                    { text: "赞助名单", link: "/Sponsor" },
-                ]
+                items: [{ text: "赞助名单", link: "/Sponsor" }]
             }
         ],
         socialLinks: [

@@ -16,8 +16,8 @@ hero:
       text: ⬇️ 下载阅读 新共存版
       link: "https://miaogongzi.lanzout.com/b01rgkhhe"
     - theme: brand
-      text: ⬇️ 下载阅读 Plus
-      link: "https://github.com/Luoyacheng/legado/releases/latest"
+      text: ⚡ 快速开始
+      link: QuickStart
       
     - theme: alt
       text: 🚀 导入 Pixiv 书源
