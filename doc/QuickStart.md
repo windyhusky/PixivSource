@@ -9,7 +9,7 @@
 </div>
 
 
-## 使用流程：[下载阅读](https://miaogongzi.lanzout.com/b01rgkhhe) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./Pixiv.md#三、登录账号) => [开始使用](./Pixiv.md#四、添加小说，尽情使用)
+## 使用流程：[下载阅读](https://miaogongzi.lanzout.com/b01rgkhhe) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./Pixiv.md#login-account) => [开始使用](./Pixiv.md#add-novel)
 
 
 ### 1.[下载阅读](./Download.md)
@@ -43,7 +43,7 @@
 ### 2.导入书源
 [comment]: <> (<details><summary> ➡️ A.一键导入 </summary>)
 
-#### A.一键导入 => [登录账号](./Pixiv.md#三登录账号) => 开始使用
+#### A.一键导入 => [登录账号](./Pixiv.md#login-account) => 开始使用
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
 | Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
@@ -68,7 +68,7 @@
 
 <details><summary> 🔗 B.规则订阅 </summary>
 
-#### B.规则订阅 => [登录账号](./Pixiv.md#三登录账号) => 开始使用
+#### B.规则订阅 => [登录账号](./Pixiv.md#login-account) => 开始使用
 订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
 详见：[导入书源](./ImportBookSource.md)
 
@@ -81,9 +81,9 @@
 </details>
 
 
-### 3.[登录账号](./Pixiv.md#三、登录账号)
-> 详见 [Pixiv 书源使用指南](./Pixiv.md#三、登录账号)
-### 4.[开始使用](./Pixiv.md#四、添加小说尽情使用)
+### 3.[登录账号](./Pixiv.md#login-account)
+> 详见 [Pixiv 书源使用指南](./Pixiv.md#login-account)
+### 4.[开始使用](./Pixiv.md#add-novel)
 <details><summary> 📌 更多教程 </summary>
 
 > #### 0. [阅读是什么软件？阅读简介](./ReadMe.md)

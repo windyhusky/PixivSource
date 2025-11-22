@@ -12,7 +12,7 @@
 5. 开启 Pixiv R18 设置
 
 
-## 〇、使用须知
+## 〇、使用须知 {#notice}
 ### ⚠️ 使用本项目的书源造成的一切损失均由 使用者 自行承担
 ### 1. 请勿在 Pixiv 官方平台宣传本书源
 <details><summary> 📄 包括但不限于以下内容 </summary>
@@ -44,7 +44,7 @@
 否则手动刷新时，也可能触发请求限制，甚至封号
 
 
-## 一、下载并安装阅读
+## 一、下载并安装阅读 {#download-app}
 ### 1.下载阅读 3.0 版本
 <details><summary> ⬇️ 下载阅读 </summary>
 
@@ -59,7 +59,7 @@
 </details>
 
 
-## 二、导入书源 & 订阅源
+## 二、导入书源 & 订阅源 {#import-source}
 - 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
 
 - 🐲 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
@@ -131,7 +131,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 </details>
 
 
-## 三、登录账号
+## 三、登录账号 {#login-account}
 Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 ### 1. 登录 Pixiv 账号
 
@@ -187,7 +187,7 @@ Pixiv 及正版付费书源，需要登录账号才能阅读相关小说
 </details>
 
 
-## 四、添加小说，尽情使用
+## 四、添加小说，尽情使用 {#add-novel}
 <details><summary> 🔍 搜索小说 </summary>
 
 ### 1.阅读内部搜索
@@ -648,7 +648,7 @@ Pixiv 网站的搜索功能更加全面
 </details>
 
 
-## 五、故障排查
+## 五、故障排查 {#troubleshoot}
 > 详见：[故障排查与处理](./TroubleShoot.md)
 <details>
 <summary> 🐞 故障排查 </summary>

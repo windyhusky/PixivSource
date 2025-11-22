@@ -53,22 +53,22 @@ features:
   - icon: 🔍
     title: 高级搜索
     details: 🀄️繁简通搜👤作者专搜<br>#️⃣标签专搜⏬字数过滤
-#    link: Pixiv.html#_1-阅读内部搜索
+#    link: Pixiv.html#add-novel
     
   - icon: 🌟
     title: 定制发现
     details: ⭐️关注📃追更💯推荐<br>❤️收藏👑排行🔥原创
-#    link: Pixiv.md#_2-发现更多小说
+#    link: Pixiv.md#add-novel
 
   - icon: 🔗
     title: 添加网址
     details: 📄单篇📚系列👤作者<br>✅多条网址相继处理
-#    link: Pixiv.md#_3-添加网址
+#    link: Pixiv.md#add-novel
     
   - icon: 🌐
     title: 订阅源
     details: ✅添加小说<br>⏫导入/更新书源
-#    link: Pixiv.md#_4-订阅源
+#    link: Pixiv.md#add-novel
 
 #  - icon: 🚫
 #    title: 屏蔽功能

@@ -9,7 +9,7 @@
 3. 导入 Linpx 的书源、订阅源
 
 
-## 〇、下载并安装阅读
+## 〇、下载并安装阅读 {#download-app}
 ### 1.下载阅读 3.0 版本
 <details><summary> ⬇️ 下载阅读 </summary>
 
@@ -24,7 +24,7 @@
 </details>
 
 
-## 一、导入书源 & 订阅源
+## 一、导入书源 & 订阅源 {#import-source}
 - 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
 
 - 🐲 [一键导入 Linpx 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
@@ -91,7 +91,7 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
-## 二、确保网站可以访问
+## 二、确保网站可以访问 {#check-access}
 <details><summary> ☑️ 检查网站能否访问 </summary>
 
 订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
@@ -105,7 +105,7 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
-## 三、添加小说，尽情使用
+## 三、添加小说，尽情使用 {#add-novel}
 
 <details><summary> 🔎 搜索小说 </summary>
 
@@ -190,7 +190,7 @@ https://furrynovel.ink/pn/20063566
 </details>
 
 
-## 四、故障排查
+## 四、故障排查 {#troubleshoot}
 > 详见：[故障排查与处理](./TroubleShoot.md)
 <details>
 <summary> 🐞 故障排查 </summary>
