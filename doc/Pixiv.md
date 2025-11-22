@@ -1,5 +1,5 @@
 <div align="center">
-<img width="150" height="150" src="./pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
+<img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
 # Pixiv 书源使用指南

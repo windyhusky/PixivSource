@@ -1,5 +1,5 @@
 <div align="center">
-<img width="125" height="125" src="doc/pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
+<img width="150" height="150" src="doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)

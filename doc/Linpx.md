@@ -1,5 +1,5 @@
 <div align="center">
-<img width="150" height="150" src="./pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
+<img width="150" height="150" src="./pic/BookSourceLinpx.png" alt="Linpx BookSource"/>
 <br>
 
 # Linpx 书源使用指南

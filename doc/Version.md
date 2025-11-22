@@ -7,7 +7,7 @@
 
 ### 阅读3.0的细化版
 <div align="center">
-<img width="125" height="125" src="https://raw.githubusercontent.com/gedoor/legado/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="Legado x Pixiv"/>
+<img width="150" height="150" src="https://raw.githubusercontent.com/gedoor/legado/master/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" alt="Pixiv BookSource"/>
 </div>
 
 

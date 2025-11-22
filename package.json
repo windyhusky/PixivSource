@@ -1,7 +1,7 @@
 {
   "name": "pixivsource",
   "version": "1.0.0",
-  "description": "<div align=\"center\">\r <img width=\"125\" height=\"125\" src=\"doc/pic/Legado-Pixiv.png\" alt=\"Legado x Pixiv\"/>",
+  "description": "<div align=\"center\">\r <img width=\"125\" height=\"125\" src=\"doc/pic/BookSourcePixiv.png\" alt=\"Pixiv BookSource\"/>",
   "homepage": "https://github.com/DowneyRem/PixivSource#readme",
   "bugs": {
     "url": "https://github.com/DowneyRem/PixivSource/issues"
