@@ -26,6 +26,7 @@ export default defineConfig({
     themeConfig: {
         logo: "/favicon.png",
         // siteTitle: false,   // 隐藏站点标题
+        outline: [2, 3],
         nav: [
             { text: "主页", link: "/" },
             { text: "快速开始", link: "/QuickStart" },
