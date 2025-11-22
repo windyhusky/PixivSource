@@ -1,19 +1,28 @@
-# Linpx 书源的导入与使用
+<div align="center">
+<img width="150" height="150" src="./pic/Legado-Pixiv.png" alt="Legado x Pixiv"/>
+<br>
 
-### ❤️ [Pixiv 书源项目 赞助名单](../doc/Sponsor.md)
+# Linpx 书源使用指南
+### 🦊 [开源阅读](https://github.com/gedoor/legado) Linpx 书源
+#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+#### ❤️ [书源项目赞助名单](./Sponsor.md)
+</div>
+
 ### [Linpx](http://www.furrynovel.ink) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**
 
 ## 本书源使用前提
 1. 使用阅读 3.0 版本
-2. ⚠️ 部分区域需要代理（建议准备）
+2. 部分区域需要代理（建议准备）
 3. 导入 Linpx 的书源、订阅源
 
 
-## 〇、下载并安装阅读 {#download-app}
+## 一、下载并安装阅读 {#DownloadApp}
 ### 1.下载阅读 3.0 版本
 <details><summary> ⬇️ 下载阅读 </summary>
 
-点击链接，下载安装包并安装，**推荐使用【新共存版】**
+> [!IMPORTANT]
+> 点击链接，下载 **【新共存版】** 安装包并安装软件
+
 > https://miaogongzi.lanzout.com/b01rgkhhe
 >
 > 最新下载链接请查看 [下载阅读](./Download.md)
@@ -24,7 +33,7 @@
 </details>
 
 
-## 一、导入书源 & 订阅源 {#import-source}
+## 二、导入书源 & 订阅源 {#ImportSource}
 - 🦊 [一键导入 Linpx 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
 
 - 🐲 [一键导入 Linpx 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
@@ -52,7 +61,7 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json
 
 **首次点击【订阅规则】 即可导入**
 
-![img](./pic/InportBookSourceLinpx.jpg)
+![img](./pic/InportBookSourceLinpx.png)
 
 **导入之后，再次点击则会检查更新**
 
@@ -91,7 +100,7 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
-## 二、确保网站可以访问 {#check-access}
+## 三、确保网站可以访问 {#CheckAccess}
 <details><summary> ☑️ 检查网站能否访问 </summary>
 
 订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
@@ -105,11 +114,10 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
-## 三、添加小说，尽情使用 {#add-novel}
-
+## 四、添加小说，尽情使用 {#AddNovel}
+### 1.阅读内部搜索 {#Search}
 <details><summary> 🔎 搜索小说 </summary>
 
-### 1.阅读内部搜索
 - ✅ 支持搜索：小说名称、作者名称、小说标签、小说链接
 - ⚠️ 暂不支持：系列小说名称
 
@@ -117,18 +125,18 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
+### 2.发现更多小说
 <details><summary> ⭐️ 发现小说 </summary>
 
-### 2.发现更多小说
 发现：推荐作者、最新小说
 
 ![img](./pic/DiscoverLinpx.png)
 </details>
 
 
+### 3.添加网址 {#AddUrl}
 <details><summary> 🔗 添加网址 </summary>
 
-### 3.添加网址
 书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
 
 ![img](./pic/AddBookViaUrl1.png)
@@ -136,17 +144,22 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 ![img](./pic/AddBookViaUrl3.png)
 
 支持 Linpx 多个格式的网址链接：
-
+- Linpx 小说长链接
 ```
-Linpx 小说长链接
 https://www.furrynovel.xyz/pixiv/novel/20063566
+```
+```
 https://furrynovel.ink/pixiv/novel/20063566
-
-Linpx 分享链接
+```
+- Linpx 分享链接
+```
 http://furrynovel.xyz/pn/20063566
+```
+```
 https://furrynovel.ink/pn/20063566
-
-Linpx 分享信息
+```
+- Linpx 分享信息
+```
 我正在看唐尼瑞姆创作的《测试页面》一起来看吧！
 https://furrynovel.ink/pn/20063566
 ```
@@ -157,6 +170,13 @@ https://furrynovel.ink/pn/20063566
 
 ### 4.订阅源
 <details><summary> ⬇️ 导入书源 </summary>
+
+![img](./pic/InportBookSourceLinpxWeb.png)
+
+- 点击按钮，导入书源；再次点击，则可更新书源
+- 此处使用的是 Jsdelivr CDN ，更新有延迟
+
+![img](./pic/InportBookSourceLinpx.png)
 </details>
 
 
@@ -190,7 +210,7 @@ https://furrynovel.ink/pn/20063566
 </details>
 
 
-## 四、故障排查 {#troubleshoot}
+## 五、故障排查 {#troubleshoot}
 > 详见：[故障排查与处理](./TroubleShoot.md)
 <details>
 <summary> 🐞 故障排查 </summary>
