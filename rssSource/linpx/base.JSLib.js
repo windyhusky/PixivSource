@@ -29,7 +29,7 @@ let bookSourceCommentText = `Linpx 书源（单篇）
 书源发布：Pixiv 书源频道 https://t.me/PixivSource
 兽人阅读频道 https://t.me/FurryReading
 项目地址：https://github.com/DowneyRem/PixivSource
-使用教程：https://github.com/DowneyRem/PixivSource/blob/main/doc/Linpx.md
+使用教程：https://downeyrem.github.io/PixivSource/Linpx
 
 规则订阅：Import 订阅源
 https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json
@@ -76,7 +76,7 @@ function updateSource() {
 <body>
     <table border="1" cellspacing="0">
         <th colspan="2"> Linpx 书源 
-        <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/Linpx.md">🔰 使用指南</a>
+        <a href="https://downeyrem.github.io/PixivSource/Linpx">🔰 使用指南</a>
         || <a href="https://downeyrem.github.io/PixivSource/Sponsor">❤️ 赞助开发</a>
         </th>
         <tr>

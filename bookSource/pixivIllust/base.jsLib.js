@@ -244,7 +244,7 @@ function updateSource() {
 <body>
     <table border="1" cellspacing="0">
         <th colspan="2"> ${source.bookSourceName} 书源 
-        <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/FurryNovel.md">🔰 使用指南</a>
+        <a href="https://downeyrem.github.io/PixivSource/FurryNovel">🔰 使用指南</a>
         || <a href="https://downeyrem.github.io/PixivSource/Sponsor">❤️ 赞助开发</a>
         </th>
         <tr>

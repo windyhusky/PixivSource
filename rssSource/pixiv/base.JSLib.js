@@ -28,7 +28,7 @@ let bookSourceCommentText = `Pixiv 小说
 
 书源发布：兽人阅读频道 https://t.me/FurryReading
 项目地址：https://github.com/DowneyRem/PixivSource
-使用教程：https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md
+使用教程：https://downeyrem.github.io/PixivSource/Pixiv
 
 规则订阅：import 订阅源
 https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json
@@ -79,7 +79,7 @@ function updateSource() {
 <body>
     <table border="1" cellspacing="0">
         <th colspan="2"> Pixiv 书源 
-        <a href="https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md">🔰 使用指南</a>
+        <a href="https://downeyrem.github.io/PixivSource/Pixiv">🔰 使用指南</a>
         || <a href="https://downeyrem.github.io/PixivSource/Sponsor">❤️ 赞助开发</a>
         </th>
         <tr>
