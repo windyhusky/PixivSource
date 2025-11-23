@@ -22,7 +22,7 @@
 
 > [!IMPORTANT]
 > 点击链接，下载 **【新共存版】** 安装包并安装软件
-
+> 
 > https://miaogongzi.lanzout.com/b01rgkhhe
 >
 > 最新下载链接请查看 [下载阅读](./Download.md)
@@ -137,104 +137,110 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 ### 3.添加网址 {#AddUrl}
 <details><summary> 🔗 添加网址 </summary>
 
-书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
+- 书架 - 菜单 - 添加网址 - 粘贴小说链接
+- 可以同时添加多个小说的链接
 
-![img](./pic/AddBookViaUrl1.png)
-![img](./pic/AddBookViaUrl2.png)
-![img](./pic/AddBookViaUrl3.png)
+- <details><summary> 🔗 操作流程 </summary>
 
-支持 Linpx 多个格式的网址链接：
-- Linpx 小说长链接
-```
-https://www.furrynovel.xyz/pixiv/novel/20063566
-```
-```
-https://furrynovel.ink/pixiv/novel/20063566
-```
-- Linpx 分享链接
-```
-http://furrynovel.xyz/pn/20063566
-```
-```
-https://furrynovel.ink/pn/20063566
-```
-- Linpx 分享信息
-```
-我正在看唐尼瑞姆创作的《测试页面》一起来看吧！
-https://furrynovel.ink/pn/20063566
-```
+  ### 3.1 操作流程
+  ![img](./pic/AddBookViaUrl1.png)
+  ![img](./pic/AddBookViaUrl2.png)
+  ![img](./pic/AddBookViaUrl3.png)
+  </details>
+
+- <details><summary> 🔗 支持链接 </summary>
+
+  ### 3.1 支持 Linpx 链接：
+
+  - Linpx 小说长链接
+  ```
+  https://www.furrynovel.xyz/pixiv/novel/20063566
+  ```
+  ```
+  https://furrynovel.ink/pixiv/novel/20063566
+  ```
+  - Linpx 分享链接
+  ```
+  http://furrynovel.xyz/pn/20063566
+  ```
+  ```
+  https://furrynovel.ink/pn/20063566
+  ```
+  - Linpx 分享信息
+  ```
+  我正在看唐尼瑞姆创作的《测试页面》一起来看吧！
+  https://furrynovel.ink/pn/20063566
+  ```
+  </details>
 </details>
 
-
-<details><summary> 🏠 订阅源 </summary>
 
 ### 4.订阅源
-<details><summary> ⬇️ 导入书源 </summary>
+<details><summary> 🏠 订阅源 </summary>
 
-![img](./pic/InportBookSourceLinpxWeb.png)
+- <details><summary> ⬇️ 导入书源 </summary>
 
-- 点击按钮，导入书源；再次点击，则可更新书源
-- 此处使用的是 Jsdelivr CDN ，更新有延迟
+  ![img](./pic/InportBookSourceLinpxWeb.png)
 
-![img](./pic/InportBookSourceLinpx.png)
-</details>
+  - 点击按钮，导入书源；再次点击，则可更新书源
+  - 此处使用的是 Jsdelivr CDN ，更新有延迟
 
+  ![img](./pic/InportBookSourceLinpx.png)
+  </details>
 
-<details><summary> 🔍 站内搜索 </summary>
+- <details><summary> 🔍 站内搜索 </summary>
 
-#### 4.1 替代阅读搜索
-受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx 的功能。网站的搜索功能更加全面。
+  #### 4.1 替代阅读搜索
+  受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx 的功能。网站的搜索功能更加全面。
 
-![img](./pic/SearchViaLinpx.png)
-</details>
+  ![img](./pic/SearchViaLinpx.png)
+  </details>
 
+- <details><summary> 🔜 链接转换 </summary>
 
-<details><summary> 🔜 链接转换 </summary>
+  #### 4.2 Pixiv 链接转换
+  阅读内部浏览器内打开 Linpx，搜索栏中粘贴 Pixiv 小说链接，即可进入对应页面
+  
+  ![img](./pic/LinpxConvertPixivUrl1.png)
+  
+  ![img](./pic/LinpxConvertPixivUrl2.png)
+  </details>
 
-#### 4.2 Pixiv 链接转换
-阅读内部浏览器内打开 Linpx，搜索栏中粘贴 Pixiv 小说链接，即可进入对应页面
+- <details><summary> ➕ 添加小说 </summary>
 
-![img](./pic/LinpxConvertPixivUrl1.png)
-
-![img](./pic/LinpxConvertPixivUrl2.png)
-</details>
-
-
-<details><summary> ➕ 添加小说 </summary>
-
-#### 4.3 添加小说至书架
-打开 Linpx 小说页面，点击【添加到书架】按钮，即可添加小说到书架
-
-![img](./pic/AddBookViaLinpx.png)
-</details>
+  #### 4.3 添加小说至书架
+  打开 Linpx 小说页面，点击【添加到书架】按钮，即可添加小说到书架
+  
+  ![img](./pic/AddBookViaLinpx.png)
+  </details>
 </details>
 
 
 ## 五、故障排查 {#troubleshoot}
 > 详见：[故障排查与处理](./TroubleShoot.md)
-<details>
-<summary> 🐞 故障排查 </summary>
+<details><summary> 🐞 故障排查 </summary>
 
-### 1.没有搜索结果，请自行检查一下内容：
+- <details><summary> 🐞 无法使用 </summary>
 
-**⓪检查 Linpx 书源是否导入**
+  ### 1.确定书源可以正常使用
+  - 书架页面，搜索 `测试页面` 测试书源能否正常使用
 
-**①检查 Linpx 书源是否启用**
+  #### 如果没有搜索结果，请检查一下内容：
+  - **⓪检查 Linpx 书源是否导入**
+  - **①检查 Linpx 书源是否启用**
+  - **②检查代理是否可用**
+  - **③检查阅读是否走了代理**
+  - **④检查网络是否可用**
 
-**②检查代理是否可用**
+  **如果上述均无问题，但依然没有搜索结果，那就是书源需要更新了**
+  </details>
 
-**③检查阅读是否走了代理**
+- <details><summary> 🐞 图片无法显示 </summary>
 
-**④检查网络是否可用**
-
-**如果上述均无问题，但依然没有搜索结果，那就是书源需要更新了**
-
-
-### 2.图片无法正常显示
-
-#### 解决措施：关闭替换净化
-![img](./pic/ReplaceTurnOff.png)
+  ### 2.图片无法正常显示
+  #### 解决措施：关闭替换净化
+  ![img](./pic/ReplaceTurnOff.png)
+  </details>
 </details>
-
 
 ## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
