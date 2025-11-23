@@ -61,8 +61,9 @@
 <details><summary> ⬇️ 下载阅读 </summary>
 
 > [!IMPORTANT]
+> 
 > 点击链接，下载 **【新共存版】** 安装包并安装软件
-
+> 
 > https://miaogongzi.lanzout.com/b01rgkhhe
 > 
 > 最新下载链接请查看 [下载阅读](./Download.md)
@@ -147,6 +148,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 
 ## 三、登录账号 {#LoginAccount}
 > [!NOTE]
+> 
 > **Pixiv 及正版付费书源，需要登录账号才能阅读相关小说**
 ### 1. 登录 Pixiv 账号
 
@@ -167,6 +169,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 
 ![img](./pic/PixivLogin2.jpg)
 > [!TIP]
+> 
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
 </details>
 
@@ -207,102 +210,96 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 <details><summary> 🔍 搜索小说 </summary>
 
 书架页面 - 放大镜 - 输入关键词 - 搜索小说
-<details><summary> 🔍 搜索小说 </summary>
 
-#### 1.0 搜索小说
-✅ 默认搜索：同时搜索小说名称、系列小说名称、标签、作者
-![img](./pic/SearchViaLegado.png)
-</details>
+- <details><summary> 🔍 搜索小说 </summary>
 
+  #### 1.0 搜索小说
+  ✅ 默认搜索：同时搜索小说名称、系列小说名称、标签、作者
+  ![img](./pic/SearchViaLegado.png)
+  </details>
 
-<details><summary> ➖ 排除标签 </summary>
+- <details><summary> 🀄️ 繁简通搜 </summary>
 
-#### 1.2 排除标签（格式：`标签1 -标签2` `标签1 -标签2 -标签3`）
-- 使用减号 `-` 在搜索结果中，排除不想看的的标签
-- **每个排除的标签前都需要添加减号**`-`
-- **减号前需加空格，减号后无需空格**
-- 由 Pixiv 官方提供支持
-- 仅适用于单次搜索
+  #### 1.1 繁简通搜
+  - 搜索【名称】和【标签】时，【默认】进行繁简转换，同时返回繁体简体小说内容（可在书源设置中修改）
+  - 【搜索作者】不转换
+  - 返回小说内容不转换
 
-![img](./pic/SearchViaLegadoExclude.jpg)
-</details>
+  ![img](./pic/SearchViaLegadoConvert.jpg)
+  </details>
 
+- <details><summary> ➖ 排除标签 </summary>
 
-<details><summary> ➕ 多选标签 </summary>
+  #### 1.2 排除标签（格式：`标签1 -标签2` `标签1 -标签2 -标签3`）
+  - 使用减号 `-` 在搜索结果中，排除不想看的的标签
+  - **每个排除的标签前都需要添加减号**`-`
+  - **减号前需加空格，减号后无需空格**
+  - 由 Pixiv 官方提供支持
+  - 仅适用于单次搜索
 
-#### 1.3 多选标签（格式：`标签1 or 标签2` `标签1 or 标签2 or 标签3`）
-- 使用 `or` 同时搜索多个标签（满足其一即可，也就是取并集）
-- **可相互替换的标签间添加` or `，前后需要空格间隔**
-- 由 Pixiv 官方提供支持
-- 仅适用于单次搜索
+  ![img](./pic/SearchViaLegadoExclude.jpg)
+  </details>
 
-![img](./pic/SearchViaLegadoUnion.jpg)
-</details>
+- <details><summary> ➕ 多选标签 </summary>
 
+  #### 1.3 多选标签（格式：`标签1 or 标签2` `标签1 or 标签2 or 标签3`）
+  - 使用 `or` 同时搜索多个标签（满足其一即可，也就是取并集）
+  -  **可相互替换的标签间添加` or `，前后需要空格间隔**
+  - 由 Pixiv 官方提供支持
+  - 仅适用于单次搜索
 
-<details><summary> 🀄️ 繁简通搜 </summary>
+  ![img](./pic/SearchViaLegadoUnion.jpg)
+  </details>
 
-#### 1.1 繁简通搜
-- 搜索【名称】和【标签】时，【默认】进行繁简转换，同时返回繁体简体小说内容（可在书源设置中修改）
-- 【搜索作者】不转换
-- 返回小说内容不转换
+- <details><summary> 👤 作者专搜 </summary>
 
-![img](./pic/SearchViaLegadoConvert.jpg)
-</details>
+  #### 1.4 作者专搜（格式：`@作者`）
+  - 仅搜索作者；不进行繁简转换
+  - `@` 为标记符，打出1个即可，例如：`@pixiv事務局`
+  - 可与【字数过滤】同时使用，格式：`@作者 字数3k`
+  - 可与【标签专搜】同时使用，格式：`@作者 #标签`，筛选 `@作者` 的具有 `#标签` 的小说
 
+  ![img](./pic/SearchViaLegadoAuthor.jpg)
+  </details>
 
-<details><summary> 👤 作者专搜 </summary>
+- <details><summary> #️⃣ 标签专搜 </summary>
 
-#### 1.4 作者专搜（格式：`@作者`）
-- 仅搜索作者；不进行繁简转换
-- `@` 为标记符，打出1个即可，例如：`@pixiv事務局` 
-- 可与【字数过滤】同时使用，格式：`@作者 字数3k`
-- 可与【标签专搜】同时使用，格式：`@作者 #标签`，筛选 `@作者` 的具有 `#标签` 的小说
+  #### 1.5 标签专搜（格式：`#标签1` `#标签1 标签2 `）
+  - 仅搜索标签、小说名称；多个标签空格间隔，【默认】进行繁简转换
+  - `#` 为标记符，打出1个即可，例如：`#校园` `#校园 纯爱` `#校园 纯爱 BG`
+  - 可与【排除标签】【字数过滤】同时使用
+  - 可与【作者专搜】同时使用，格式：`#标签 @作者`，搜索 `#标签` 并筛选出 `@作者` 的小说【不是很推荐使用】
 
-![img](./pic/SearchViaLegadoAuthor.jpg)
-</details>
+  ![img](./pic/SearchViaLegadoHashtag.jpg)
+  </details>
 
+- <details><summary> ⏬ 字数过滤 </summary>
 
-<details><summary> #️⃣ 标签专搜 </summary>
+  #### 1.6 字数过滤（格式：`关键词 字数3k`）
+  - 字数限制规则：`3k 3k5 3w 3w5`【注意`k`与`w`均为小写】
+  - 例如：`校园 字数3k` `校园 纯爱 字数3k`
+  - 可与【标签专搜】【排除标签】同时使用
 
-#### 1.5 标签专搜（格式：`#标签1` `#标签1 标签2 `）
-- 仅搜索标签、小说名称；多个标签空格间隔，【默认】进行繁简转换
-- `#` 为标记符，打出1个即可，例如：`#校园` `#校园 纯爱` `#校园 纯爱 BG`
-- 可与【排除标签】【字数过滤】同时使用
-- 可与【作者专搜】同时使用，格式：`#标签 @作者`，搜索 `#标签` 并筛选出 `@作者` 的小说【不是很推荐使用】
+  ![img](./pic/SearchViaLegadoWordCountFilter1.jpg)
+  - 可与【搜索作者】同时使用
 
-![img](./pic/SearchViaLegadoHashtag.jpg)
-</details>
+  ![img](./pic/SearchViaLegadoWordCountFilter2.jpg)
+  </details>
 
+- <details><summary> 🔝 高级搜索 </summary>
 
-<details><summary> ⏬ 字数过滤 </summary>
+  #### 1.7 高级搜索
+  上述搜索规则基本可以共同使用，~~发挥你的想象力，自由组合吧~~
 
-#### 1.6 字数过滤（格式：`关键词 字数3k`）
-- 字数限制规则：`3k 3k5 3w 3w5`【注意`k`与`w`均为小写】
-- 例如：`校园 字数3k` `校园 纯爱 字数3k`
-- 可与【标签专搜】【排除标签】同时使用
+  - 搜索`@作者`指定`#标签1`或`标签2`，排除`标签3`，筛选字数 3k 及以上的小说：
+    - 格式：`@作者 #标签1 or 标签2 -标签3 字数3k`
+    - 推荐使用
 
-![img](./pic/SearchViaLegadoWordCountFilter1.jpg)
-- 可与【搜索作者】同时使用
-
-![img](./pic/SearchViaLegadoWordCountFilter2.jpg)
-</details>
-
-
-<details><summary> 🔝 高级搜索 </summary>
-
-#### 1.7 高级搜索
-上述搜索规则基本可以共同使用，~~发挥你的想象力，自由组合吧~~
-
-- 搜索`@作者`指定`#标签1`或`标签2`，排除`标签3`，筛选字数 3k 及以上的小说：
-  - 格式：`@作者 #标签1 or 标签2 -标签3 字数3k`
-  - 推荐使用
-
-- 搜索 `#标签1`或`标签2`，排除`标签3`，指定`@作者`，筛选字数 3k 及以上的小说：
-  - 格式：`#标签1 or 标签2 -标签3 @作者 字数3k`
-  - 使用此功能预先设置 单次搜索的最大页面数，否则无法获取数据
-  - 不是很推荐使用这个搜索方法
-</details>
+  - 搜索 `#标签1`或`标签2`，排除`标签3`，指定`@作者`，筛选字数 3k 及以上的小说：
+    - 格式：`#标签1 or 标签2 -标签3 @作者 字数3k`
+    - 使用此功能预先设置 单次搜索的最大页面数，否则无法获取数据
+    - 不是很推荐使用这个搜索方法
+  </details>
 </details>
 
 
@@ -323,6 +320,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 #### 2.1 最新 企划 约稿
 ![img](./pic/DiscoverPixivNew.png)
 > [!TIP]
+> 
 > - ✅ R18 小说 (🆕 最新 企划 约稿 💰，默认显示)
 > - ☑️ 一般小说 (✅ 最新 企划 约稿 ✅，默认隐藏)
 > 
@@ -335,6 +333,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 #### 2.2 小说排行
 ![img](./pic/DiscoverPixivRanking.png)
 > [!TIP]
+> 
 > - ✅ R18 小说 (👑 排行榜单 👑，默认显示)
 > - ☑️ 一般小说 (🏆 排行榜单 🏆，默认隐藏)
 > 
@@ -347,6 +346,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 #### 2.3 原创热门（默认隐藏）
 ![img](./pic/DiscoverPixivHot.png)
 > [!TIP]
+> 
 > - ☑️ R18 小说 (🔥 原创热门 🔥，默认隐藏)
 > 
 > 可在书源设置中修改`SHOW_R18_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
@@ -677,31 +677,31 @@ Pixiv 网站的搜索功能更加全面
 </details>
 
 
-## 五、故障排查 {#TroubleShoot}
+## 五、故障排查 {#troubleshoot}
 > 详见：[故障排查与处理](./TroubleShoot.md)
-<details>
-<summary> 🐞 故障排查 </summary>
+<details><summary> 🐞 故障排查 </summary>
 
-### 1.确定书源可以正常使用
-书架页面，搜索 `R18` 测试书源能否正常使用，以及R18设置是否开启。
+- <details><summary> 🐞 无法使用 </summary>
 
-#### 如果没有搜索结果，请检查一下内容：
-**⓪检查 Pixiv 书源是否导入**
+  ### 1.确定书源可以正常使用
+  - 书架页面，搜索 `测试页面` 测试书源能否正常使用
 
-**①检查 Pixiv 书源是否启用**
+  #### 如果没有搜索结果，请检查一下内容：
+  - **⓪检查 Linpx 书源是否导入**
+  - **①检查 Linpx 书源是否启用**
+  - **②检查代理是否可用**
+  - **③检查阅读是否走了代理**
+  - **④检查网络是否可用**
 
-**②检查代理是否可用**
+  **如果上述均无问题，但依然没有搜索结果，那就是书源需要更新了**
+  </details>
 
-**③检查阅读是否走了代理**
+- <details><summary> 🐞 图片无法显示 </summary>
 
-**④检查网络是否可用**
-
-**如果上述均无问题，但依然没有搜索结果，那就是书源需要更新了**
-
-
-### 2.图片无法正常显示
-#### 解决措施：关闭替换净化
-![img](./pic/ReplaceTurnOff.png)
+  ### 2.图片无法正常显示
+  #### 解决措施：关闭替换净化
+  ![img](./pic/ReplaceTurnOff.png)
+  </details>
 </details>
 
 ## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
