@@ -77,9 +77,12 @@ export default defineConfig({
                 ]
             },
             {
-                text: "赞助名单",
+                text: "其他",
                 collapsed: false,
-                items: [{ text: "赞助名单", link: "/Sponsor" }]
+                items: [
+                    { text: "开发团队", link: "/Team" },
+                    { text: "赞助名单", link: "/Sponsor" },
+                ]
             }
         ],
         socialLinks: [
