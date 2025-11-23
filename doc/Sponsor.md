@@ -35,6 +35,7 @@
 - 寒沫龙吟
 - Melaton [@HundSimon](https://github.com/HundSimon)
 - 寒武纪CLS
+- 贾斯 
 
 
 ## ⌨️ 帮助名单
