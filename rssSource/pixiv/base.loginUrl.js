@@ -119,7 +119,7 @@ function startGithubReadme() {
     startBrowser("https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 function startGithubSponsor() {
-    startBrowser("https://github.com/DowneyRem/PixivSource/blob/main/doc/Sponsor.md", "赞助开发")
+    startBrowser("https://downeyrem.github.io/PixivSource/Sponsor", "赞助开发")
 }
 function startTelegramPixivSource() {
     startBrowser("https://t.me/PixivSource", "Pixiv 书源频道")

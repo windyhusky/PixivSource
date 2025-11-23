@@ -37,7 +37,7 @@ function startGithubReadme() {
     startBrowser("https://github.com/DowneyRem/PixivSource/blob/main/doc/Pixiv.md", "使用指南")
 }
 function startGithubSponsor() {
-    startBrowser("https://github.com/DowneyRem/PixivSource/blob/main/doc/Sponsor.md", "使用指南")
+    startBrowser("https://downeyrem.github.io/PixivSource/Sponsor", "使用指南")
 }
 function startTelegram() {
     startBrowser("https://t.me/PixivSource", "Pixiv 书源频道")
