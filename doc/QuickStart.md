@@ -81,8 +81,35 @@
 </details>
 
 
-### 3.[登录账号](./Pixiv.md#login-account)
-> 详见 [Pixiv 书源使用指南](./Pixiv.md#login-account)
+### 3.登录账号 {#LoginAccount}
+> [!NOTE]
+>
+> **Pixiv 及正版付费书源，需要登录账号才能阅读相关小说**
+#### 1. 登录 Pixiv 账号
+
+<details><summary> 🅿️ 登录 Pixiv 账号 </summary>
+
+##### 1.1 开启代理工具
+此处略过，请自行学习，**最好开启【全局代理】**
+
+
+##### 1.2 登录 Pixiv 账号
+**我的 - 书源管理 - 菜单 - 登录 - 登录账号**
+
+![img](./pic/PixivLogin1.jpg)
+
+![img](./pic/PixivLoginUIAccount.jpg)
+
+**登录你的账号，登录成功后，点击右上角的对勾**
+
+![img](./pic/PixivLogin2.jpg)
+> [!TIP]
+>
+> **如果需要验证码，请更换代理，或过段时间再次尝试**
+</details>
+
+
+
 ### 4.[开始使用](./Pixiv.md#add-novel)
 <details><summary> 📌 更多教程 </summary>
 
