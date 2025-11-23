@@ -35,9 +35,16 @@ export default defineConfig({
         returnToTopLabel: "回到顶部",
         nav: [
             { text: "主页", link: "/" },
-            { text: "快速开始", link: "/QuickStart" },
-            { text: "Pixiv 书源", link: "/Pixiv" },
-            { text: "Linpx 书源", link: "/Linpx" },
+            {
+                text: "使用指南",
+                items: [
+                    { text: "快速开始", link: "/QuickStart" },
+                    { text: "Pixiv 书源", link: "/Pixiv" },
+                    { text: "Linpx 书源", link: "/Linpx" },
+                    { text: "兽人控小说站 书源", link: "/FurryNovel" },
+                ],
+            },
+            { text: "开发团队", link: "/Team" },
             { text: "赞助名单", link: "/Sponsor" }
         ],
         lightModeSwitchTitle: "",
