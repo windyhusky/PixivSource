@@ -15,6 +15,7 @@ hero:
     - theme: brand
       text: ⬇️ 下载阅读 新共存版
       link: "https://miaogongzi.lanzout.com/b01rgkhhe"
+      
     - theme: brand
       text: ⚡ 快速开始
       link: QuickStart
@@ -22,16 +23,26 @@ hero:
     - theme: alt
       text: 🚀 导入 Pixiv 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
+      
     - theme: alt
-      text: 📘 Pixiv 书源指南
+      text: 📘 指南
       link: Pixiv
       
     - theme: alt
       text: 🚀 导入 Linpx 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"
+      
     - theme: alt
-      text: 📘 Linpx 书源指南
+      text: 📙 指南
       link: Linpx
+      
+    - theme: alt
+      text: 🏠 项目主页
+      link: "https://github.com/DowneyRem/PixivSource"
+
+    - theme: alt
+      text: ✈️ Telegram 
+      link: "https://t.me/PixivSource"
 
 features:
   - icon: 📖
@@ -82,4 +93,3 @@ features:
 #    title: 设置灵活
 #    details: ✈️直连模式⚡️快速模式<br>🐞调试模式🔧默认设置
 ---
-
