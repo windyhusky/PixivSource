@@ -37,8 +37,9 @@ export default defineConfig({
             { text: "主页", link: "/" },
             {
                 text: "使用指南",
+                activeMatch: '/',
                 items: [
-                    { text: "快速开始", link: "/QuickStart" },
+                    { text: "快速开始", link: "/QuickStart", activeMatch: '/' },
                     { text: "Pixiv 书源", link: "/Pixiv" },
                     { text: "Linpx 书源", link: "/Linpx" },
                     { text: "兽人控小说站 书源", link: "/FurryNovel" },
