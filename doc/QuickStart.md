@@ -9,7 +9,7 @@
 </div>
 
 
-## 使用流程：[下载阅读](https://miaogongzi.lanzout.com/b01rgkhhe) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./Pixiv.md#login-account) => [开始使用](./Pixiv.md#add-novel)
+## 使用流程：[下载阅读](https://miaogongzi.lanzout.com/b01rgkhhe) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./QuickStart#LoginAccount) => [开始使用](./QuickStart#AddNovel)
 
 
 ### 1.下载软件
@@ -36,6 +36,7 @@
 
 
 ### 2.导入书源
+> [!TIP]
 > 更多方法详见：[导入书源](./ImportBookSource.md) & [导入订阅源](./ImportRssSource.md)
 
 <details><summary> ➡️ A.一键导入 </summary>
@@ -97,11 +98,11 @@
 </details>
 
 
-### 3.登录账号 {#LoginAccount}
+### 3.登录账号
 > [!NOTE]
 >
 > **Pixiv 及正版付费书源，需要登录账号才能阅读相关小说**
-#### 3.1 登录 Pixiv 账号
+#### 3.1 [Pixiv 账号登录](./Pixiv#LoginAccount) {#LoginAccount}
 
 <details><summary> 🅿️ 登录 Pixiv 账号 </summary>
 
@@ -139,7 +140,7 @@
 </details>
 
 
-### 4.[使用书源，畅享阅读](./Pixiv.md#add-novel)
+### 4.[使用书源，畅享阅读](./Pixiv.md#AddNovel) {#AddNovel}
 <details><summary> 📖 畅享阅读 </summary>
 
 - ✅ 搜索：书架页面，搜索小说，添加小说到书架
