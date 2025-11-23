@@ -1,6 +1,13 @@
-# FurryNovel 书源的导入与使用
+<div align="center">
+<img width="150" height="150" src="./pic/BookSourceFurryNovel.png" alt="FurryNovel BookSource"/>
+<br>
 
-### ❤️ [Pixiv 书源项目 赞助名单](../doc/Sponsor.md)
+# FurryNovel 书源使用指南
+### 🐯 [开源阅读](https://github.com/gedoor/legado) FurryNovel 书源
+#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+#### ❤️ [书源项目赞助名单](./Sponsor.md)
+</div>
+
 ### [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
 
 ## 本书源使用前提
@@ -9,11 +16,13 @@
 3. 导入 兽人控小说站 的书源、订阅源
 
 
-## 〇、下载并安装阅读 {#download-app}
+## 一、下载并安装阅读 {#DownloadApp}
 ### 1.下载阅读 3.0 版本
 <details><summary> ⬇️ 下载阅读 </summary>
 
-点击链接，下载安装包并安装，**推荐使用共存版**
+> [!IMPORTANT]
+> 点击链接，下载 **【新共存版】** 安装包并安装软件
+>
 > https://miaogongzi.lanzout.com/b01rgkhhe
 >
 > 最新下载链接请查看 [下载阅读](./Download.md)
@@ -24,7 +33,7 @@
 </details>
 
 
-## 一、导入书源 & 订阅源 {#import-source}
+## 二、导入书源 & 订阅源 {#ImportSource}
 - 🐯 [一键导入 兽人控小说站 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
 - 🐲 [一键导入 兽人控小说站 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
 
@@ -90,7 +99,7 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
-## 二、确保网站可以访问 {#check-access}
+## 三、确保网站可以访问 {#CheckAccess}
 <details><summary> ☑️ 检查网站能否访问 </summary>
 
 订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
@@ -119,113 +128,128 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 ### 2.发现更多小说
 发现：热门小说、最新小说、随便来点
 
-![img](./pic/DiscoverFurryNovel.png)
+- <details><summary> ⭐️ 发现小说 </summary>
+  
+  ![img](./pic/DiscoverFurryNovel.png)
+  </details>
+
+- <details><summary> ⏬ 筛选发现 </summary>
+
+  发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量
+  
+  ![img](./pic/SetSourceVariable0.png)
+  
+  ![img](./pic/SetSourceVariable1.png)
+  
+  ![img](./pic/SetSourceVariable.png)
+  
+  设置源变量：输入标签，保存
+  ```
+  龙
+  ```
+  发现 - 长按 **"兽人小说站"** - 刷新 - 查看筛选后的小说
+  
+  ![img](./pic/DiscoverFurryNovelSort.png)
+  </details>
 </details>
 
 
-<details><summary> ⏬ 筛选发现 </summary>
-
-发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量
-
-![img](./pic/SetSourceVariable0.png)
-
-![img](./pic/SetSourceVariable1.png)
-
-![img](./pic/SetSourceVariable.png)
-
-设置源变量：输入标签，保存
-```
-龙
-```
-发现 - 长按 **"兽人小说站"** - 刷新 - 查看筛选后的小说
-
-![img](./pic/DiscoverFurryNovelSort.png)
-</details>
-
-
+### 3.添加网址 {#AddUrl}
 <details><summary> 🔗 添加网址 </summary>
 
-### 3.添加网址
-书架 - 菜单 - 添加网址 - 粘贴小说链接，可以同时添加多个小说的链接
+- 书架 - 菜单 - 添加网址 - 粘贴小说链接
+- 可以同时添加多个小说的链接
 
-![img](./pic/AddBookViaUrl1.png)
-![img](./pic/AddBookViaUrl2.png)
-![img](./pic/AddBookViaUrl3.png)
+- <details><summary> 🔗 操作流程 </summary>
 
-支持 兽人控小说站 多个格式的网址链接：
+  ### 3.1 操作流程
+  ![img](./pic/AddBookViaUrl1.png)
+  ![img](./pic/AddBookViaUrl2.png)
+  ![img](./pic/AddBookViaUrl3.png)
+  </details>
 
-```
-兽人控小说站 目录链接
-https://furrynovel.com/zh/novel/8312
+- <details><summary> 🔗 支持链接 </summary>
 
-兽人控小说站 章节链接
-https://furrynovel.com/zh/novel/8312/chapter/33116
-
-兽人控小说站 API链接
-https://api.furrynovel.com/api/zh/novel/8312
-```
+  ### 3.1 支持 兽人控小说站 链接：
+  - 兽人控小说站 目录链接
+  ```
+  https://furrynovel.com/zh/novel/8312
+  ```
+  - 兽人控小说站 章节链接
+  ```
+  https://furrynovel.com/zh/novel/8312/chapter/33116
+  ```
+  - 兽人控小说站 API链接
+  ```
+  https://api.furrynovel.com/api/zh/novel/8312
+  ```
+  </details>
 </details>
 
-
-<details><summary> 🏠 订阅源 </summary>
 
 ### 4.订阅源
-<details><summary> ⬇️ 导入书源 </summary>
+<details><summary> 🏠 订阅源 </summary>
+
+- <details><summary> ⬇️ 导入书源 </summary>
+
+  ![img](./pic/InportBookSourceFurryNovelWeb.png)
+
+  - 点击按钮，导入书源；再次点击，则可更新书源
+  - 此处使用的是 Jsdelivr CDN ，更新有延迟
+
+  ![img](./pic/InportBookSourceLinpx.png)
+  </details>
+
+- <details><summary> 🔍 站内搜索 </summary>
+
+  #### 4.1 替代阅读搜索
+  受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx 的功能。网站的搜索功能更加全面。
+
+  ![img](./pic/SearchViaFurryNovel.png)
+  </details>
+
+- <details><summary> ⭐️ 站内发现 </summary>
+
+  #### 4.2 替代阅读发现
+  阅读内部浏览器打开 Pixiv，即可使用 Pixiv 书源未完成的功能，如排行榜等功能
+  
+  ![img](./pic/FurryNovelRaces.png)
+  </details>
+
+- <details><summary> ➕ 添加小说 </summary>
+
+  #### 4.3 添加小说至书架
+  在阅读内部浏览器内打开 兽人控小说站 小说页面，点击【添加到书架】按钮即可添加小说到书架
+  
+  ![img](./pic/AddBookViaFurryNovel1.png)
+  ![img](./pic/AddBookViaFurryNovel2.png)
+  </details>
 </details>
 
 
-<details><summary> 🔍 站内搜索 </summary>
-
-#### 4.1 替代阅读搜索
-受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx的功能。网站的搜索功能更加全面。
-
-![img](./pic/SearchViaFurryNovel.png)
-</details>
-
-
-<details><summary> ⭐️ 站内发现 </summary>
-
-#### 4.2 替代阅读发现
-阅读内部浏览器打开 Pixiv，即可使用 Pixiv 书源未完成的功能，如排行榜等功能
-
-![img](./pic/FurryNovelRaces.png)
-</details>
-
-<details><summary> ➕ 添加小说 </summary>
-
-#### 4.3 添加小说至书架
-在阅读内部浏览器内打开 兽人控小说站 小说页面，点击【添加到书架】按钮即可添加小说到书架
-
-![img](./pic/AddBookViaFurryNovel1.png)
-![img](./pic/AddBookViaFurryNovel2.png)
-</details>
-</details>
-
-
-## 四、故障排查 {#troubleshoot}
+## 五、故障排查 {#troubleshoot}
 > 详见：[故障排查与处理](./TroubleShoot.md)
 <details><summary> 🐞 故障排查 </summary>
 
-### 1.没有搜索结果，请自行检查一下内容：
+- <details><summary> 🐞 无法使用 </summary>
 
-**⓪检查 兽人控小说站 书源是否导入**
+  ### 1.确定书源可以正常使用
+  - 书架页面，搜索 `测试页面` 测试书源能否正常使用
+  - **⓪检查 兽人控小说站 书源是否导入**
+  - **①检查 兽人控小说站 书源是否启用**
+  - **②检查代理是否可用**
+  - **③检查阅读是否走了代理**
+  - **④检查网络是否可用**
 
-**①检查 兽人控小说站 书源是否启用**
+  **如果上述均无问题，但依然没有搜索结果，那就是书源需要更新了**
+  </details>
 
-**②检查代理是否可用**
+- <details><summary> 🐞 图片无法显示 </summary>
 
-**③检查阅读是否走了代理**
-
-**④检查网络是否可用**
-
-**如果上述均无问题，但依然没有搜索结果，那就是书源需要更新了**
-
-
-### 2.图片无法正常显示
-
-#### 解决措施：关闭替换净化
-![img](./pic/ReplaceTurnOff.png)
+  ### 2.图片无法正常显示
+  #### 解决措施：关闭替换净化
+  ![img](./pic/ReplaceTurnOff.png)
+  </details>
 </details>
-
 
 ## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
