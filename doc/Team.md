@@ -63,8 +63,28 @@ const supportor = [
             { icon: 'github', link: 'https://github.com/k99k5' },
         ]
     },
-]
+];
 
+const partners = [
+    {
+        avatar: 'https://github.com/Luoyacheng.png',
+        name: 'Luoyacheng',
+        title: '洛娅橙',
+        desc: '',
+        links: [
+            { icon: 'github', link: 'https://github.com/Luoyacheng' },
+        ]
+    },
+    {
+        avatar: 'https://github.com/HundSimon.png',
+        name: 'Melaton',
+        title: '梅拉顿',
+        desc: '',
+        links: [
+            { icon: 'github', link: 'https://github.com/HundSimon' },
+        ]
+    },
+]
 </script>
 
 <VPTeamPage>
@@ -82,6 +102,12 @@ const supportor = [
             <template #title> 站方协助 </template>
         </VPTeamPageTitle>
         <VPTeamMembers size="small" :members="supportor"/>
+    </VPTeamPageSection>
+    <VPTeamPageSection>
+        <VPTeamPageTitle>
+            <template #title> 社区帮助 </template>
+        </VPTeamPageTitle>
+        <VPTeamMembers size="small" :members="partners"/>
     </VPTeamPageSection>
 </VPTeamPage>
 
