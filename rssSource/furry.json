@@ -22,8 +22,8 @@
     },
     {
         "customOrder": 4,
-        "sourceName":"Pixiv 书源 Github",
-        "sourceUrl":"https://github.com/DowneyRem/PixivSource",
+        "sourceName":"Pixiv 书源 发布页",
+        "sourceUrl":"https://downeyrem.github.io/PixivSource",
         "sourceIcon":"https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/doc/pic/BookSourcePixiv.png",
         "sourceGroup": "🐲 Furry"
     },
