@@ -41,7 +41,9 @@
 
 
 ### 2.导入书源
-[comment]: <> (<details><summary> ➡️ A.一键导入 </summary>)
+> 更多方法详见：[导入书源](./ImportBookSource.md) & [导入订阅源](./ImportRssSource.md)
+
+<details><summary> ➡️ A.一键导入 </summary>
 
 #### A.一键导入 => [登录账号](./Pixiv.md#login-account) => 开始使用
 | 源名称 | jsDelivr | Github |
@@ -60,10 +62,7 @@
 | Import 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json) |
 | Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixivToc.json) |
 </details>
-
-- 更多方法详见：[导入书源](./ImportBookSource.md) & [导入订阅源](./ImportRssSource.md)
-
-[comment]: <> (</details>)
+</details>
 
 
 <details><summary> 🔗 B.规则订阅 </summary>
@@ -78,6 +77,28 @@
 | Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
 | BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
 | Books 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json) |
+</details>
+
+
+<details><summary> 💾 C.文件导入 </summary>
+
+#### C.文件导入
+##### 1.下载书源/订阅源文件
+如果你下载了书源文件，可以使用本地文件导入
+
+![img](./pic/DownloadResource.png)
+
+
+##### 2.使用阅读打开
+点击下载完成的书源文件，选择【用其他应用打开】
+![img](pic/OpenInQQ.png)
+
+打开方式选择阅读
+![img](pic/OpenInLegado.png)
+
+
+##### 3.导入完成并启用书源/订阅源
+![img](./pic/InportBookSourcePixiv.jpg)
 </details>
 
 
