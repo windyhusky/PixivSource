@@ -43,6 +43,28 @@ const members = [
         ]
     },
 ];
+
+const supportor = [
+    {
+        avatar: 'https://www.github.com/libudu.png',
+        name: 'Linpicio',
+        title: '林彼丢',
+        desc: 'Linpx 前站长',
+        links: [
+            { icon: 'github', link: 'https://github.com/libudu' },
+        ]
+    },
+    {
+        avatar: 'https://www.github.com/k99k5.png',
+        name: 'k99k5',
+        title: 'KK',
+        desc: 'FurryNovel 前站长',
+        links: [
+            { icon: 'github', link: 'https://github.com/k99k5' },
+        ]
+    },
+]
+
 </script>
 
 <VPTeamPage>
@@ -54,6 +76,12 @@ const members = [
             </template>
         </VPTeamPageTitle>
         <VPTeamMembers size="small" :members="members"/>
+    </VPTeamPageSection>
+    <VPTeamPageSection>
+        <VPTeamPageTitle>
+            <template #title> 站方协助 </template>
+        </VPTeamPageTitle>
+        <VPTeamMembers size="small" :members="supportor"/>
     </VPTeamPageSection>
 </VPTeamPage>
 
