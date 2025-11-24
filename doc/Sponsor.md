@@ -9,44 +9,26 @@
 </div>
 
 
-## ❤️ 打赏/赞助 本项目
+## ❤️ 支持开发
 > [!NOTE]
-> 如果本项目帮到了你，可以给开发者一点打赏
+> 如果书源为你提供了帮助，欢迎通过以下方式支持开发者，你的鼓励是持续更新的动力～
 
 💜 [爱发电【需要登录】](https://afdian.com/a/DowneyRem)
-<details><summary>🧧 支付宝 赚钱红包 </summary>
-<div align="center">
-    <img width="200" height="200" src="./pic/SponsorAlipayRedEnvelope.png" alt="Alipay Reward">
+<details><summary>🧧 支付宝 红包 </summary>
+<div style="display:flex; justify-content:center; align-items:center; gap:40px; margin:20px auto;">
+    <img width="200" height="200" src="./pic/SponsorAlipayRedEnvelope.png" alt="支付宝赚钱红包" style="border:1px solid #eee;border-radius:8px;padding:8px;" />
 </div>
 </details>
 
-<style>
-    .flex-container {
-        display: flex;
-        justify-content: center; /* 水平居中 */
-        align-items: center; /* 垂直居中 */
-        margin: 0 auto;
-    }
-</style>
-<div class="flex-container">
-<table>
-<thead>
-    <tr>
-        <th> 🅿️ 支付宝 </th>
-        <th> 💬 微信赞赏 </th>
-    </tr>
-</thead>
-<tbody>
-    <tr>
-        <td>
-            <img width="200" height="200" src="./pic/SponsorAlipay.png" alt="Alipay Reward">
-        </td>
-        <td>
-            <img width="200" height="200" src="./pic/SponsorWechatReward.png" alt="Wechat Reward">
-        </td>
-    </tr>
-</tbody>
-</table>
+<div style="display:flex; justify-content:center; align-items:center; gap:40px; margin:20px auto;">
+    <div style="text-align:center">
+        <h4 style="margin-bottom:12px">🅿️ 支付宝转账</h4>
+        <img width="200" height="200" src="./pic/SponsorAlipay.png" alt="支付宝打赏二维码" style="border:1px solid #eee; border-radius:8px; padding:8px;" />
+    </div>
+    <div style="text-align:center">
+        <h4 style="margin-bottom:12px">💬 微信赞赏</h4>
+        <img width="200" height="200" src="./pic/SponsorWechatReward.png" alt="微信赞赏二维码" style="border:1px solid #eee; border-radius:8px; padding:8px;" />
+    </div>
 </div>
 
 > [!IMPORTANT] 
