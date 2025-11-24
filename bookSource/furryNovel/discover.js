@@ -17,7 +17,7 @@ function handlerFactory() {
         return util.formatNovels(util.handNovels(util.getNovels()))
     }
     else {
-        return []
+        return startBrowser(baseUrl, "")
     }
 }
 
