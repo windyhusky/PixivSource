@@ -83,6 +83,7 @@ export default defineConfig({
                 items: [
                     { text: "开发团队", link: "/Team" },
                     { text: "赞助名单", link: "/Sponsor" },
+                    { text: "赞助记录", link: "/Sponsor2" },
                 ]
             }
         ],

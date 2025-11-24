@@ -29,17 +29,24 @@
     }
 </style>
 <div class="flex-container">
-    <table>
-        <th> 🅿️ 支付宝 </th><th> 💬 微信赞赏 </th>  
-        <tr>
-            <td>
-                <img width="200" height="200" src="./pic/SponsorAlipay.png" alt="Alipay Reward">
-            </td>
-            <td>
-                <img width="200" height="200" src="./pic/SponsorWechatReward.png" alt="Wechat Reward">
-            </td>
-        </tr>
-    </table>
+<table>
+<thead>
+    <tr>
+        <th> 🅿️ 支付宝 </th>
+        <th> 💬 微信赞赏 </th>
+    </tr>
+</thead>
+<tbody>
+    <tr>
+        <td>
+            <img width="200" height="200" src="./pic/SponsorAlipay.png" alt="Alipay Reward">
+        </td>
+        <td>
+            <img width="200" height="200" src="./pic/SponsorWechatReward.png" alt="Wechat Reward">
+        </td>
+    </tr>
+</tbody>
+</table>
 </div>
 
 > [!IMPORTANT] 
@@ -51,22 +58,24 @@
 > 按赞助本项目的先后顺序排名
 - 唐尼瑞姆 [@DowneyRem](https://github.com/DowneyRem)
 - 噬空
-- 迅迅龙龙 x2
+- 迅迅龙龙
+- 迅迅龙龙
 - 闲鱼家的凡人
 - 噬空
-- 阿瑞希
+- 阿瑞希 Arciey
 - 低咪
 - 寒沫龙吟
-- Melaton [@HundSimon](https://github.com/HundSimon)
+- 梅拉顿 Melaton [@HundSimon](https://github.com/HundSimon)
 - 寒武纪CLS
 - 贾斯
 - 农晴
+- 无果 jddn
 
 
 ## ⌨️ 帮助名单
 > [!TIP]
 > 按帮助本项目的先后顺序排名
-- Husky [@windyhusky](https://github.com/windyhusky)
+- 狗子 [@windyhusky](https://github.com/windyhusky)
 - 不世玄奇 [@bushixuanqi](https://github.com/bushixuanqi)
 - 洛娅橙 [@Luoyacheng](https://github.com/Luoyacheng)
 - 本征 [@Eigeen](https://github.com/eigeen)
@@ -78,7 +87,17 @@
 ## 💸 定期赞助
 > [!TIP]
 > 本项目的定期赞助项目
-- [Linpx](https://www.furrynovel.ink) 每年 ￥100
+- [Linpx](https://www.furrynovel.ink) 每年 ￥100 （2023年起）
+
+
+## 💴 早期支出
+> [!NOTE]
+>
+> 项目早期是由 唐尼瑞姆 [@DowneyRem](https://github.com/DowneyRem) 委托 狗子 [@windyhusky](https://github.com/windyhusky) 编写代码
+>
+> 早期支出为支付其代码报酬。
+>
+> 因时间久远，具体支付时间、金额现已无法考证
 
 
 ## 🙏 感谢上方诸位的支持，让这个项目变得更好
