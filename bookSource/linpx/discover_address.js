@@ -3,6 +3,11 @@ li = [
     {"🆕 最新": "https://api.furrynovel.ink/pixiv/novels/recent/cache?page={{page}}"},
     {"🔄 随便": "https://furrynovel.ink"},
     {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"},
+    {"📙 书源相关 📙": ""},
+    {"🏠 主页": "https://downeyrem.github.io/PixivSource"},
+    {"🔰 指南": "https://downeyrem.github.io/PixivSource/Linpx"},
+    {"🐞 反馈": "https://github.com/DowneyRem/PixivSource/issues"},
+    {"💰 打赏": "https://downeyrem.github.io/PixivSource/Sponsor"},
 ]
 
 // 格式化发现地址
