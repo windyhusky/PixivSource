@@ -12,10 +12,34 @@
 ## ❤️ 打赏/赞助 本项目
 > [!NOTE]
 > 如果本项目帮到了你，可以给开发者一点打赏
-- [爱发电【需要登录】](https://afdian.com/a/DowneyRem)
-- 微信赞赏
+
+💜 [爱发电【需要登录】](https://afdian.com/a/DowneyRem)
+<details><summary>🧧 支付宝 赚钱红包 </summary>
 <div align="center">
-<img width="200" height="200" src="./pic/WechatReward.png" alt="Wechat Reward"/>
+    <img width="200" height="200" src="./pic/SponsorAlipayRedEnvelope.png" alt="Alipay Reward">
+</div>
+</details>
+
+<style>
+    .flex-container {
+        display: flex;
+        justify-content: center; /* 水平居中 */
+        align-items: center; /* 垂直居中 */
+        margin: 0 auto;
+    }
+</style>
+<div class="flex-container">
+    <table>
+        <th> 🅿️ 支付宝 </th><th> 💬 微信赞赏 </th>  
+        <tr>
+            <td>
+                <img width="200" height="200" src="./pic/SponsorAlipay.png" alt="Alipay Reward">
+            </td>
+            <td>
+                <img width="200" height="200" src="./pic/SponsorWechatReward.png" alt="Wechat Reward">
+            </td>
+        </tr>
+    </table>
 </div>
 
 > [!IMPORTANT] 
@@ -35,7 +59,8 @@
 - 寒沫龙吟
 - Melaton [@HundSimon](https://github.com/HundSimon)
 - 寒武纪CLS
-- 贾斯 
+- 贾斯
+- 农晴
 
 
 ## ⌨️ 帮助名单
