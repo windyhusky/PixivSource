@@ -140,10 +140,13 @@ function sleep(time) {
         }
     }
 }
-function sleepToast(text) {
+function sleepToast(text, second) {
     const {java} = this
+    java.log(text)
+    // java.toast(text)
     java.longToast(text)
-    sleep(2000)
+    if (second === undefined) second = 0.01
+    this.sleep(1000*second)
 }
 
 function updateSource() {
