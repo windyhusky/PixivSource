@@ -1,7 +1,8 @@
 var cacheSaveSeconds = 7*24*60*60  // 长期缓存时间 7天
 var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
 
-function cacheGetAndSet(cache, key, supplyFunc) {
+function cacheGetAndSet(key, supplyFunc) {
+    const {java, cache} = this
     let v = cache.get(key)
     // 缓存信息错误时，保存 10min 后重新请求
     if (v && JSON.parse(v).code === 404) {
@@ -24,7 +25,7 @@ function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
     let v = cache.get(url)
     if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(url)
-    return cacheGetAndSet(cache, url, () => {
+    return this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
     })
 }
@@ -32,7 +33,7 @@ function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
     let v = cache.get(urls)
     if (forceUpdate && v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) cache.delete(urls)
-    return cacheGetAndSet(cache, urls, () => {
+    return this.cacheGetAndSet(urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
         cache.put(urls, JSON.stringify(result), cacheSaveSeconds)
         for (let i in urls) cache.put(urls[i], JSON.stringify(result[i]), cacheSaveSeconds)
