@@ -155,6 +155,22 @@ function timeTextFormat(text) {
     }
     return `${text.slice(0, 10)} ${text.slice(11, 19)}`
 }
+function sleep(time) {
+    let endTime = new Date().getTime() + time
+    while(true) {
+        if (new Date().getTime() > endTime){
+            return;
+        }
+    }
+}
+function sleepToast(text, second) {
+    const {java} = this
+    java.log(text)
+    // java.toast(text)
+    java.longToast(text)
+    if (second === undefined) second = 0.01
+    this.sleep(1000*second)
+}
 
 function updateSource() {
     const {java, source} = this
