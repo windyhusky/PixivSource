@@ -200,9 +200,12 @@ function updateSource() {
     }
     comment = onlineSource.bookSourceComment.split("\n")
     // comment = source.bookSourceComment.split("\n")
-    let htm = `data:text/html; charset=utf-8,
-<html>
+
+    let htm = `
+<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>更新 ${source.bookSourceName} 书源</title>
     <style> 
