@@ -45,16 +45,6 @@ function isJsonString(str) {
     return false
 }
 
-function getWebViewUA() {
-    const {java, cache} = this
-    let userAgent = String(java.getWebViewUA())
-    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
-        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-    }
-    // java.log(`userAgent=${userAgent}`)
-    cache.put("userAgent", userAgent)
-    return String(userAgent)
-}
 function isLogin() {
     const {java, cache} = this
     return !!cache.get("pixivCsrfToken")
@@ -89,6 +79,32 @@ function getWebviewJson(url, parseFunc) {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })
+}
+
+function getWebViewUA() {
+    const {java, cache} = this
+    let userAgent = String(java.getWebViewUA())
+    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
+        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+    }
+    // java.log(`userAgent=${userAgent}`)
+    cache.put("userAgent", userAgent)
+    return String(userAgent)
+}
+function startBrowser(url, title) {
+    const {java, cache} = this
+    if (!title) title = url
+    let msg = "", headers = `{"headers": {"User-Agent":"${this.getWebViewUA()}"}}`
+    if (url.includes("https://www.pixiv.net")) {
+        if (url.includes("settings")) msg += "⚙️ 账号设置"
+        else msg += "⤴️ 分享小说"
+        msg += "\n\n即将打开 Pixiv\n请确认已开启代理/梯子/VPN等"
+    } else if (url.includes("github.com") || url.includes("github.io")) {
+        if (url.includes("issues")) msg += "🐞 反馈问题"
+        msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
+    }
+    this.sleepToast(msg, 0.01)
+    java.startBrowser(`${url}, ${headers}`, title)
 }
 
 function urlIP(url) {
@@ -281,7 +297,7 @@ function sleepToast(text, second) {
     // java.toast(text)
     java.longToast(text)
     if (second === undefined) second = 0.01
-    sleep(1000*second)
+    this.sleep(1000*second)
 }
 
 function updateSource() {
