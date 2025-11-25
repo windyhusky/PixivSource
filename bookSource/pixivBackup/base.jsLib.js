@@ -111,9 +111,9 @@ function urlIP(url) {
     const {java, cache, source} = this
     let isIPDirect
     if (String(source.bookSourceName).includes("备用") || String(source.bookSourceName).includes("漫画")) {
-        isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))?.IPDirect || false
+        isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm))).IPDirect || false
     } else {
-        isIPDirect = JSON.parse(cache.get("pixivSettings"))?.IPDirect || false
+        isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
     }
 
     if (isIPDirect) {
@@ -207,9 +207,9 @@ function urlCoverUrl(url) {
     const {java, cache, source} = this
     let isIPDirect
     if (source.bookSourceName.includes("备用")|| source.bookSourceName.includes("漫画")) {
-        isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))?.IPDirect || false
+        isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm))).IPDirect || false
     } else {
-        isIPDirect = JSON.parse(cache.get("pixivSettings"))?.IPDirect || false
+        isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
     }
 
     let headers = {"Referer": "https://www.pixiv.net/"}
@@ -233,7 +233,7 @@ function urlIllustOriginal(illustId, order) {
     let url = this.urlIP(urlIllustDetailed(illustId))
     let illustOriginal = this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
-    })?.body?.urls?.original || ""
+    }).body.urls.original || ""
     return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 function urlEmojiUrl(emojiId) {

@@ -24,6 +24,8 @@ function isSourceRead() {
     cache.put("isSourceRead", isSourceReadStatus)
     return isSourceReadStatus
 }
+// 正式版 不支持在 JSlib 的函数直接设置默认参数
+// 正式版 不支持 a?.b 的写法
 // 检测 阅读 正式版 与 Beta 版本
 function isLegadoOfficial() {
     let isLegadoOfficialStatus
@@ -75,7 +77,7 @@ function publicFunc() {
         // cache.delete("pixivSettings")
         settings = getFromCache("pixivSettings")
     }
-    let isIPDirect = settings?.IPDirect || false
+    let isIPDirect = settings.IPDirect || false
     if (isIPDirect) java.log("✈️ 直连模式：✅ 已开启")
 
     // 初始化设置
