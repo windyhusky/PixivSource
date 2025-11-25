@@ -58,7 +58,7 @@ function handlerFactory() {
         return handlerRanking()
     }
     else {
-        return []
+        return () => {startBrowser(baseUrl, ""); return []}
     }
 }
 
