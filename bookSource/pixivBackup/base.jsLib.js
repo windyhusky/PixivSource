@@ -110,7 +110,7 @@ function startBrowser(url, title) {
 function urlIP(url) {
     const {java, cache, source} = this
     let isIPDirect
-    if (source.bookSourceName.includes("备用") || source.bookSourceName.includes("漫画")) {
+    if (String(source.bookSourceName).includes("备用") || String(source.bookSourceName).includes("漫画")) {
         isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))?.IPDirect || false
     } else {
         isIPDirect = JSON.parse(cache.get("pixivSettings"))?.IPDirect || false
