@@ -1,5 +1,15 @@
-## 3.导入订阅源
+<div align="center">
+<img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<br>
 
+# 导入订阅源
+### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+#### ❤️ [书源项目赞助名单](./Sponsor.md)
+</div>
+
+
+## 3.导入订阅源
 ## 3.0 订阅源来源
 - [Legado｜开源阅读 | 频道](https://t.me/legado_channels)
 - [源仓库](https://www.yckceo.com/yuedu/rss/index.html)

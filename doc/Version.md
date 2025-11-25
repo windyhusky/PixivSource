@@ -1,3 +1,14 @@
+<div align="center">
+<img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<br>
+
+# 版本区分
+### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+#### ❤️ [书源项目赞助名单](./Sponsor.md)
+</div>
+
+
 ### 3.3 版本区分
 #### 1. 阅读2.0版本与3.0版本
 [阅读2.0版本](https://github.com/gedoor/MyBookshelf/releases) 于2022年4月份停止更新。

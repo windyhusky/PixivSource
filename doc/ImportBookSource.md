@@ -1,5 +1,15 @@
-## 2.导入书源
+<div align="center">
+<img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<br>
 
+# 导入书源
+### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+#### ❤️ [书源项目赞助名单](./Sponsor.md)
+</div>
+
+
+## 2.导入书源
 ## 2.0 获取书源（订阅源）
 - [Legado | 开源阅读 | 频道](https://t.me/legado_channels)
 - [源仓库](https://www.yckceo.com/yuedu/shuyuan/index.html)

@@ -1,3 +1,14 @@
+<div align="center">
+<img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<br>
+
+# 备份与恢复
+### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
+#### ❤️ [书源项目赞助名单](./Sponsor.md)
+</div>
+
+
 ## [Webdav 备份与恢复](https://www.yuque.com/legado/wiki/fkx510)
 阅读支持 WebDav 云备份，所有支持 WebDav 的云盘都可以用来备份。
 
