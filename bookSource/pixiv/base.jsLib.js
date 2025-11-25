@@ -96,6 +96,22 @@ function getWebViewUA() {
     cache.put("userAgent", userAgent)
     return String(userAgent)
 }
+function startBrowser(url, title) {
+    const {java, cache} = this
+    if (!title) title = url
+    let msg = "", headers = `{"headers": {"User-Agent":"${this.getWebViewUA()}"}}`
+    if (url.includes("https://www.pixiv.net")) {
+        if (url.includes("settings")) msg += "⚙️ 账号设置"
+        else msg += "⤴️ 分享小说"
+        msg += "\n\n即将打开 Pixiv\n请确认已开启代理/梯子/VPN等"
+    } else if (url.includes("github.com") || url.includes("github.io")) {
+        if (url.includes("issues")) msg += "🐞 反馈问题"
+        msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
+    }
+    this.sleepToast(msg, 0.01)
+    java.startBrowser(`${url}, ${headers}`, title)
+}
+
 function isLogin() {
     const {java, cache} = this
     return !!cache.get("pixivCsrfToken")
@@ -151,7 +167,7 @@ function getWebviewJson(url, parseFunc) {
 function urlIP(url) {
     const {java, cache, source} = this
     let isIPDirect
-    if (source.bookSourceName.includes("备用") || source.bookSourceName.includes("漫画")) {
+    if (String(source.bookSourceName).includes("备用") || String(source.bookSourceName).includes("漫画")) {
         isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))?.IPDirect || false
     } else {
         isIPDirect = JSON.parse(cache.get("pixivSettings"))?.IPDirect || false
@@ -338,7 +354,7 @@ function sleepToast(text, second) {
     // java.toast(text)
     java.longToast(text)
     if (second === undefined) second = 0.01
-    sleep(1000*second)
+    this.sleep(1000*second)
 }
 
 function updateSource() {

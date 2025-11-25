@@ -786,23 +786,6 @@ function likeAuthorsDelete() {
     putInCacheMap(`likeAuthors`, likeAuthors)
 }
 
-
-function startBrowser(url, title) {
-    let msg = "", headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
-    if (url.includes("https://www.pixiv.net")) {
-        if (url.includes("settings")) msg += "⚙️ 账号设置"
-        else msg += "⤴️ 分享小说"
-        msg += "\n\n即将打开 Pixiv\n请确认已开启代理/梯子/VPN等"
-    } else if (url.includes("https://github.com")) {
-        if (url.includes("issues")) msg += "🐞 反馈问题"
-        else if (url.includes("doc")) msg += "🔰 使用指南"
-        else msg += "⭐️ 收藏项目"
-        msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
-    }
-    sleepToast(msg, 0.01)
-    java.startBrowser(`${url}, ${headers}`, title)
-}
-
 function shareFactory(type) {
     let novel = getNovel()
     if (novel === undefined || novel === null) return sleepToast("⚠️ 请在小说阅读页面，使用本功能")
