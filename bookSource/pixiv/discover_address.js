@@ -111,6 +111,14 @@ generalgGenre = [
     {"其他": "https://www.pixiv.net/ajax/genre/novel/other?mode=safe&lang=zh"}
 ]
 
+let source = [
+    {"📘 书源相关 📘": ""},
+    {"🏠 主页": "https://downeyrem.github.io/PixivSource"},
+    {"🔰 指南": "https://downeyrem.github.io/PixivSource/Pixiv"},
+    {"🐞 反馈": "https://github.com/DowneyRem/PixivSource/issues"},
+    {"💰 打赏": "https://downeyrem.github.io/PixivSource/Sponsor"},
+]
+
 let likeTagLinks = [{"📌 喜欢标签 📌":""}]
 let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
@@ -152,6 +160,9 @@ if (likeAuthors.size > 0) {
     })
     li = li.concat(othersBookmarks)
 }
+
+// 书源相关
+li = li.concat(source)
 
 // 添加格式
 li.forEach(item => {
