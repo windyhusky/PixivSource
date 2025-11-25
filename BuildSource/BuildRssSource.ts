@@ -243,6 +243,8 @@ function buildImportSource() {
 }
 
 function main() {
+    // 输出当前时间
+    console.log(new Date(Date.now()).toLocaleString())
     buildBTSRKSource()
     // buildBooksSources()
     // buildImportSource()

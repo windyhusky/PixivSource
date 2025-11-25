@@ -214,6 +214,8 @@ function buildLinpxSource(test:boolean|number =undefined) {
 }
 
 function main(test:boolean|number =undefined) {
+    // 输出当前时间
+    console.log(new Date(Date.now()).toLocaleString())
     buildPixivSource(test)
     buildLinpxSource(test)
 }
