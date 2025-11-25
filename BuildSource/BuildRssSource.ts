@@ -131,7 +131,10 @@ function buildNovelSource(name:string): RssSource {
     RssSource.header = header
     RssSource.jsLib = jsLib
     RssSource.injectJs = injectJs
-    RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
+
+    // 更新订阅更新时间
+    let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString().slice(0, 10)
+    RssSource.lastUpdateTime = Number(`${String(Date.parse(updateTimeNew)).slice(0, 10)}251`)
 
     // 去除空键
     Object.keys(RssSource).forEach((key) => {
@@ -245,9 +248,13 @@ function buildImportSource() {
 function main() {
     // 输出当前时间
     console.log(new Date(Date.now()).toLocaleString())
+    console.log("——".repeat(11))
+    let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString().slice(0, 10)
+    console.log(`订阅更新时间：${updateTimeNew}`)
     buildBTSRKSource()
     // buildBooksSources()
     // buildImportSource()
 }
 
+let delayTime = 2 * 24 * 60 * 60 * 1000
 main()

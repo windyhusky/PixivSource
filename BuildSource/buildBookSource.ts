@@ -98,17 +98,6 @@ function saveTextFile(folder:string, fileName:string, data:any):void {
     }
 }
 
-function dateFormat(timeStamp) {
-    let addZero = function (num) {
-        return num < 10 ? '0' + num : num;
-    }
-    let time = new Date(timeStamp)
-    let YY = time.getFullYear()
-    let MM = addZero(time.getMonth() + 1)
-    let DD = addZero(time.getDate())
-    return `${YY}-${MM}-${DD}`
-}
-
 function buildBookSource(sourceName:string, test:boolean|number =undefined): BookSource {
     // 需要在 项目根目录下执行
     let sourcePath = `bookSource/${sourceName}`
@@ -142,10 +131,10 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     const contentContent = readTextFile(path.join(sourcePath, "content.js"))
 
     // 更新书源更新时间
-    let lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
+    let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString().slice(0, 10)
+    let lastUpdateTime = Number(`${String(Date.parse(updateTimeNew)).slice(0, 10)}251`)
     if (!test) {
         let updateTimeOld = bookSourceComment.split("\n")[0].split("：")[1].replace("）", "")
-        let updateTimeNew = dateFormat(lastUpdateTime)
         bookSourceComment = bookSourceComment.replace(updateTimeOld, updateTimeNew)
 
         let versionOld = bookSourceComment.split("\n")[2].split("：")[1]
@@ -216,9 +205,15 @@ function buildLinpxSource(test:boolean|number =undefined) {
 function main(test:boolean|number =undefined) {
     // 输出当前时间
     console.log(new Date(Date.now()).toLocaleString())
+    console.log("——".repeat(11))
+    if (!test) {
+        let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString().slice(0, 10)
+        console.log(`书源更新时间：${updateTimeNew}`)
+    }
     buildPixivSource(test)
     buildLinpxSource(test)
 }
 
-// main(0)
-main(1)
+let delayTime = 2 * 24 * 60 * 60 * 1000
+main(0)
+// main(1)
