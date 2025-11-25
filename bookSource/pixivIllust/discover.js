@@ -49,7 +49,7 @@ function handlerFactory() {
         return handlerRegexIllusts()
     }
     else {
-        return []
+        return () => {startBrowser(baseUrl, ""); return []}
     }
 }
 

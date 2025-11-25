@@ -54,13 +54,21 @@ generalRank = [
     {"女性": "https://www.pixiv.net/ranking.php?mode=female&p={{page}}&format=json"},
 ]
 
-if (SHOW_GENERAL_RANK === true) {
-    li = li.concat(generalNew)
-}
-li = li.concat(r18New)
-li = li.concat(r18Rank)
-li = li.concat(generalRank)
+let source = [
+    {"📘 书源相关 📘": ""},
+    {"🏠 主页": "https://downeyrem.github.io/PixivSource"},
+    {"🔰 指南": "https://downeyrem.github.io/PixivSource/Pixiv"},
+    {"🐞 反馈": "https://github.com/DowneyRem/PixivSource/issues"},
+    {"💰 打赏": "https://downeyrem.github.io/PixivSource/Sponsor"},
+]
 
+li = li.concat(r18New)
+if (SHOW_GENERAL_NEW) li = li.concat(generalNew)
+li = li.concat(r18Rank)
+if (SHOW_GENERAL_RANK) li = li.concat(generalRank)
+li = li.concat(source)
+
+// 添加格式
 li.forEach(item => {
     item.title = Object.keys(item)[0]
     item.url = Object.values(item)[0]
