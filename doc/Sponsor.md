@@ -13,7 +13,7 @@
 > [!NOTE]
 > 如果书源为你提供了帮助，欢迎通过以下方式支持开发者，你的鼓励是持续更新的动力～
 
-💜 [爱发电【需要登录】](https://afdian.com/a/DowneyRem)
+💜 [爱发电 打赏 & 指导](https://afdian.com/a/DowneyRem)
 <details><summary>🧧 支付宝 红包 </summary>
 <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin:20px auto;">
     <img width="200" height="200" src="./pic/SponsorAlipayRedEnvelope.png" alt="支付宝赚钱红包" style="border:1px solid #eee;border-radius:8px;padding:8px;" />
