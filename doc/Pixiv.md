@@ -704,4 +704,9 @@ Pixiv 网站的搜索功能更加全面
   </details>
 </details>
 
+
+## ❤️ [支持开发](./Sponsor.md)
+> [!NOTE]
+> 如果书源和教程帮到了你，欢迎给开发者一点打赏。你的鼓励是持续更新的动力～
+
 ## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供

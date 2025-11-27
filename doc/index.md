@@ -16,33 +16,38 @@ hero:
       text: ⬇️ 下载阅读 新共存版
       link: "https://miaogongzi.lanzout.com/b01rgkhhe"
       
-    - theme: brand
+    - theme: alt
       text: ⚡ 快速开始
       link: QuickStart
       
-    - theme: alt
+    - theme: brand
       text: 🚀 导入 Pixiv 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
     - theme: alt
-      text: 📘 指南
+      text: 📘 使用指南
       link: Pixiv
       
-    - theme: alt
+    - theme: brand
       text: 🚀 导入 Linpx 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"
       
     - theme: alt
-      text: 📙 指南
+      text: 📙 使用指南
       link: Linpx
       
-    - theme: alt
-      text: 🏠 项目主页
-      link: "https://github.com/DowneyRem/PixivSource"
+#    - theme: alt
+#      text: 🏠 项目
+#      link: "https://github.com/DowneyRem/PixivSource"
 
     - theme: alt
-      text: ✈️ Telegram 
+      text: ✈️ 频道 
       link: "https://t.me/PixivSource"
+
+    - theme: alt
+      text: ❤️ 打赏
+      link: "Sponsor"
+      
 
 features:
   - icon: 📖
