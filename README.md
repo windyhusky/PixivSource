@@ -2,6 +2,7 @@
 <img width="150" height="150" src="doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+### 🌐 [书源官网 & 使用指南](https://downeyrem.github.io/PixivSource)
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 ### ❤️ [Pixiv 书源项目 赞助名单](./doc/Sponsor.md)
 </div>
@@ -27,30 +28,20 @@
 </details>
 
 
-## ⚡ 快速开始：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#三登录账号) => [开始使用](./doc/Pixiv.md#四添加小说尽情使用)
+## ⚡ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#LoginAccount) => [开始使用](./doc/Pixiv.md#AddNovel)
 <details><summary> ➡️ 详细流程 </summary>
 
 ### 1.[下载阅读](./doc/Download.md)
-
-<details><summary> ⬇️ 下载阅读 </summary>
-
 #### 1.1 下载阅读
-- [Pixiv 小说书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
-
-| 阅读版本 | 推荐 | 版本号 |
-| ------ | --- | ----- |
-| 👍【推荐】[阅读 Σ](https://github.com/Luoyacheng/legado/releases) | Plus  | 3.25.0927 |
-| 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
-| 🎀【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3/releases) | | 3.26     |
-| 🍎【兼容】[源阅](https://github.com/kaich/SourceReadSite)      | TestFlight | 1.0 (112) |
-- 详见：[下载阅读](./Download.md)
-</details>
+> ⬇️ 点击链接，下载 **【新共存版】** 安装包并安装软件
+>
+> https://miaogongzi.lanzout.com/b01rgkhhe
 
 
-<details><summary> 📖 书源兼容 </summary>
+<details><summary> 📖 兼容软件 </summary>
 
 #### 1.2 书源兼容
-- [Pixiv 小说备用书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
+- [Pixiv 小说书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
 
 | 阅读版本 | 推荐 | 版本号 |
 | ------ | --- | ----- |
@@ -58,7 +49,7 @@
 | 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
 | 🎀【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3/releases) | | 3.26     | 
 | 🍎【兼容】[源阅](https://github.com/kaich/SourceReadSite)      | TestFlight | 1.0 (112) |
-| 👎【官方】阅读 | 不推荐<br>正式版 | 3.25 |
+- 详见：[下载阅读](./doc/Download.md)
 </details>
 
 
@@ -103,22 +94,10 @@
 </details>
 
 
-### 3.[登录账号](./doc/Pixiv.md#三登录账号)
-### 4.[开始使用](./doc/Pixiv.md#四添加小说尽情使用)
-<details><summary> 📌 更多教程 </summary>
-
-> #### 0. [阅读是什么软件？阅读简介](./doc/ReadMe.md)
-> #### 0. [下载 开源阅读 Legado](./doc/Download.md)
-> #### 1. [阅读使用教程（太长不看版）](./doc/TooLongToRead.md)
->> ##### 1.1 [Pixiv 书源的导入与使用](./doc/Pixiv.md)
->> ##### 1.2 [Linpx 书源的导入与使用](./doc/Linpx.md)
->> ##### 1.3 [兽人控小说站 书源的导入与使用](./doc/FurryNovel.md)
->> ##### 1.4 搜索小说、查看订阅，畅享阅读
-> #### 2. [添加远程书籍](./doc/RemoteBooks.md)，畅享阅读
-> #### 3. [设置 Webdav 备份](./doc/WebdavBackup.md)
-> #### 4. [故障排查与处理](./doc/TroubleShoot.md)
-#### 此处教程由 [@FurryReading](https://t.me/FurryReading) 提供
-</details>
+### 3.[登录账号](https://downeyrem.github.io/PixivSource/QuickStart#LoginAccount)
+> ➡️ 详见 https://downeyrem.github.io/PixivSource/Pixiv#LoginAccount
+### 4.[开始使用](https://downeyrem.github.io/PixivSource/QuickStart#AddNovel)
+> ➡️ 详见 https://downeyrem.github.io/PixivSource/Pixiv#AddNovel
 </details>
 
 
