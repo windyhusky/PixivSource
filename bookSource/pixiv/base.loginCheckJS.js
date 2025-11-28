@@ -70,18 +70,18 @@ function publicFunc() {
     }
 
     // 设置初始化
-    // cache.delete("pixivSettings")
-    settings = getFromCache("pixivSettings")
+    if (isBackupSource()) {
+        settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+    } else {
+        // cache.delete("pixivSettings")
+        settings = getFromCache("pixivSettings")
+    }
     if (settings) {
         java.log("⚙️ 使用自定义设置")
     } else {
         java.log("⚙️ 使用默认设置")
-        if (isBackupSource()) {
-            settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
-        } else {
-            settings = setDefaultSettings()
+        settings = setDefaultSettings()
         }
-    }
     settings = checkSettings()
     if (settings.IPDirect) {
         java.log("✈️ 直连模式：✅ 已开启")
