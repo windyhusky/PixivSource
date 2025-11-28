@@ -842,9 +842,9 @@ function readMeSearch() {
 
 let settingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
     "SHOW_UPDATE_TIME": "📅 更新时间",
-    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "SHOW_COMMENTS": "💬 显示评论",
     "MORE_INFORMATION": "📖 更多简介",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
@@ -944,7 +944,7 @@ function getSettingStatus(mode) {
     if (mode === "FAST") {
         keys = Object.keys(settingsName).slice(0, 5)
     } else if (mode === "IPDirect") {
-        keys = [Object.keys(settingsName)[0], Object.keys(settingsName)[3]]
+        keys = Object.keys(settingsName).slice(0, 2)
     } else {
         keys = Object.keys(settingsName)
     }
