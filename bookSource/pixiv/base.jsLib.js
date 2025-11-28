@@ -149,15 +149,10 @@ function getWebviewJson(url, parseFunc) {
 }
 
 function urlIP(url) {
-    const {java, cache, source} = this
-    let isIPDirect
-    if (String(source.bookSourceName).includes("备用") || String(source.bookSourceName).includes("漫画")) {
-        isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm))).IPDirect || false
-    } else {
-        isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
-    }
-
-    if (isIPDirect) {
+    const {java, cache} = this
+    let settings = this.getFromCache("pixivSettings")
+    if (!settings) settings = this.setDefaultSettings()
+    if (settings.IPDirect) {
         url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
         let headers = {
             "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
@@ -245,16 +240,12 @@ function urlSearchUser(userName, full) {
 }
 
 function urlCoverUrl(url) {
-    const {java, cache, source} = this
-    let isIPDirect
-    if (String(source.bookSourceName).includes("备用") || String(source.bookSourceName).includes("漫画")) {
-        isIPDirect = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm))).IPDirect || false
-    } else {
-        isIPDirect = JSON.parse(cache.get("pixivSettings")).IPDirect || false
-    }
+    const {java, cache} = this
+    let settings = this.getFromCache("pixivSettings")
+    if (!settings) settings = this.setDefaultSettings()
 
     let headers = {"Referer": "https://www.pixiv.net/"}
-    if (isIPDirect && url.trim()) {
+    if (settings.IPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
             headers.host = "i.pximg.net"
