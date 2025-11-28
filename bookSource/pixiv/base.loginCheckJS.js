@@ -82,34 +82,12 @@ function publicFunc() {
             settings = setDefaultSettings()
         }
     }
-
+    settings = checkSettings()
     if (settings.IPDirect) {
         java.log("✈️ 直连模式：✅ 已开启")
     } else {
         java.log("✈️ 直连模式：❌ 已关闭")
     }
-
-    // 设置检查
-    if (settings.FAST) {
-        settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称
-        settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
-        settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
-        settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
-        settings.SHOW_COMMENTS = false        // 正文：显示评论
-    } else {
-        settings.FAST = false
-        settings.SEARCH_AUTHOR = true         // 搜索：默认搜索作者名称
-    }
-
-    if (settings.IPDirect) {
-        settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
-        settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
-    } else {
-        settings.IPDirect = false
-        settings.SEARCH_AUTHOR = true        // 搜索：默认关闭搜索作者名称
-        settings.SHOW_ORIGINAL_LINK = true   // 目录：不显示章节源链接
-    }
-
     u.settings = settings
     putInCache("pixivSettings", settings)  // 设置写入缓存
 
