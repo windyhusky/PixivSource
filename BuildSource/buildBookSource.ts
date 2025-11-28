@@ -131,7 +131,9 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     const contentContent = readTextFile(path.join(sourcePath, "content.js"))
 
     // 更新书源更新时间
-    let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString().slice(0, 10)
+    let options = { year: "numeric", month: "2-digit", day: "2-digit"}
+
+    let updateTimeNew = new Date(Date.now() + delayTime).toLocaleDateString("zh", options)
     let lastUpdateTime = Number(`${String(Date.parse(updateTimeNew)).slice(0, 10)}251`)
     if (!test) {
         let updateTimeOld = bookSourceComment.split("\n")[0].split("：")[1].replace("）", "")
@@ -204,10 +206,11 @@ function buildLinpxSource(test:boolean|number =undefined) {
 
 function main(test:boolean|number =undefined) {
     // 输出当前时间
-    console.log(new Date(Date.now()).toLocaleString())
+    let options = { year: "numeric", month: "2-digit", day: "2-digit"}
+    console.log(new Date(Date.now()).toLocaleString("zh"))
     console.log("——".repeat(11))
     if (!test) {
-        let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString().slice(0, 10)
+        let updateTimeNew = new Date(Date.now() + delayTime).toLocaleDateString("zh", options)
         console.log(`书源更新时间：${updateTimeNew}`)
     }
     buildPixivSource(test)
