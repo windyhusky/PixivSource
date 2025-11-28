@@ -69,40 +69,27 @@ function publicFunc() {
         }
     }
 
-    // 获取设置，备用书源使用旧版设置，书源从缓存获取设置
-    if (isBackupSource()) {
-        settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
-    } else {
-        // cache.delete("pixivSettings")
-        settings = getFromCache("pixivSettings")
-    }
-    let isIPDirect = settings.IPDirect || false
-    if (isIPDirect) java.log("✈️ 直连模式：✅ 已开启")
-
-    // 初始化设置
-    if (settings !== null) {
+    // 设置初始化
+    // cache.delete("pixivSettings")
+    settings = getFromCache("pixivSettings")
+    if (settings) {
         java.log("⚙️ 使用自定义设置")
     } else {
-        settings = {}
-        settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
-        settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
-        settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示收藏小说
-        settings.SHOW_WATCHED_SERIES = true // 搜索：搜索结果显示追整系列小说
-
-        settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
-        settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
-        settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
-
-        settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
-        settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
-        settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
-
-        settings.IPDirect = false           // 全局：直连模式
-        settings.FAST  = false              // 全局：快速模式
-        settings.DEBUG = false              // 全局：调试模式
-        java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
+        java.log("⚙️ 使用默认设置")
+        if (isBackupSource()) {
+            settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+        } else {
+            settings = setDefaultSettings()
+        }
     }
 
+    if (settings.IPDirect) {
+        java.log("✈️ 直连模式：✅ 已开启")
+    } else {
+        java.log("✈️ 直连模式：❌ 已关闭")
+    }
+
+    // 设置检查
     if (settings.FAST) {
         settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
