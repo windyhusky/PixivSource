@@ -963,57 +963,24 @@ function setDefaultSettingsLoginUrl() {
     sleepToast(`\n✅ 已恢复　🔧 默认设置\n\n${getSettingStatus()}`)
 }
 
-function editSettings(object) {
+function editSettings(settingName) {
     let msg, status
     let settings = getFromCache("pixivSettings")
-    if (object === "FAST") {
-        if (settings[object] === true) {
-            settings.FAST = false                // 关闭：快速模式
-            settings.SEARCH_AUTHOR = true        // 搜索：默认搜索作者
-            settings.CONVERT_CHINESE = true      // 搜索：繁简通
-            settings.SHOW_UPDATE_TIME = true     // 目录：显示章节更新时间
-            settings.SHOW_ORIGINAL_LINK = true   // 目录：显示章节源链接
-            settings.SHOW_COMMENTS = true        // 正文：显示评论
-        } else {
-            settings.FAST = true
-            settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者
-            settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
-            settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
-            settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
-            settings.SHOW_COMMENTS = false        // 正文：显示评论
-
-        }
-        putInCache("pixivSettings", settings)
-        let status = settings[object]
-        let message = getSettingStatus("FAST")
-        msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
-
-    } else if (object === "IPDirect") {
-        if (settings[object] === true) {
-            settings.IPDirect = false            // 关闭：直连模式
-            settings.SEARCH_AUTHOR = true        // 搜索：默认关闭搜索作者名称
-            settings.SHOW_ORIGINAL_LINK = true   // 目录：不显示章节源链接
-        } else {
-            settings.IPDirect = true
-            settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
-            settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
-        }
-        putInCache("pixivSettings", settings)
-        let status = settings[object]
-        let message = getSettingStatus("IPDirect")
-        msg = `\n${statusMsg(status)}　${settingsName[object]}\n\n${message}`
-
+    if (!settings) settings = setDefaultSettings()
+    if (!!settings[settingName]) {
+        status = settings[settingName] = !settings[settingName]
     } else {
-        if (!!settings[object]) {
-            status = settings[object] = !settings[object]
-        } else {
-            status = settings[object] = true  // 无设置则默认开启
-        }
-        putInCache("pixivSettings", settings)
-        msg = `${statusMsg(status)}　${settingsName[object]}`
+        status = settings[settingName] = true
+    }
+    putInCache("pixivSettings", settings)
+
+    if (settingName === "FAST" || (settingName === "IPDirect")) {
+        checkSettings()
+        msg = `\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
+    } else {
+        msg = `\n${statusMsg(status)}　${settingsName[settingName]}`
     }
     sleepToast(msg)
-    putInCache("pixivSettings", settings)
 }
 
 function cleanCache() {
