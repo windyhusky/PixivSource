@@ -361,33 +361,32 @@ function setDefaultSettings() {
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
 
-    this.putInCache("pixivSettings", settings)  // 设置写入缓存
+    this.putInCache("pixivSettings", settings)
     return settings
 }
 function checkSettings() {
     const {java, cache} = this
     let settings = this.getFromCache("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
-    if (settings.FAST) {
+    if (settings.FAST || settings.IPDirect) {
         settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称
-        settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
-        settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
-        settings.SHOW_COMMENTS = false        // 正文：显示评论
-    } else {
-        settings.FAST = false
+    }
+    if (!settings.FAST && !settings.IPDirect) {
         settings.SEARCH_AUTHOR = true         // 搜索：默认搜索作者名称
+        settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
     }
 
-    if (settings.IPDirect) {
-        settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
-        settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
+    if (settings.FAST === true) {
+        settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
+        settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
+        settings.SHOW_COMMENTS = false        // 正文：显示评论
     } else {
-        settings.IPDirect = false
-        settings.SEARCH_AUTHOR = true        // 搜索：默认关闭搜索作者名称
-        settings.SHOW_ORIGINAL_LINK = true   // 目录：不显示章节源链接
+        settings.CONVERT_CHINESE = true       // 搜索：繁简通搜
+        settings.SHOW_UPDATE_TIME = true      // 目录：显示章节更新时间
+        settings.SHOW_COMMENTS = true         // 正文：显示评论
     }
-    this.putInCache("pixivSettings", settings)  // 设置写入缓存
+    this.putInCache("pixivSettings", settings)
     return settings
 }
 
