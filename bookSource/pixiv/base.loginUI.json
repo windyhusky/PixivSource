@@ -240,7 +240,7 @@
     {
         "name": "\uD83D\uDD27 默认设置",
         "type": "button",
-        "action": "editSettings('')",
+        "action": "setDefaultSettingsLoginUrl()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
