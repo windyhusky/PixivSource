@@ -208,6 +208,35 @@ function sleepToast(text, second) {
     this.sleep(1000*second)
 }
 
+function setDefaultSettings() {
+    const {java, cache} = this
+    let settings = {}
+    settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+    settings.SHOW_ORIGINAL_LINK = true  // 目录：显示源链接
+    settings.QUALITY_REGULAR = true     // 正文：图片质量，regular 或 original
+
+    settings.IPDirect = false           // 全局：直连模式
+    settings.DEBUG = false              // 全局：调试模式
+
+    // this.putInCache("pixivSettings", settings)
+    return settings
+}
+function checkSettings() {
+    const {java, cache} = this
+    let settings = this.getFromCache("pixivSettings")
+    if (!settings) settings = this.setDefaultSettings()
+    if (settings.IPDirect) {
+        settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
+        settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
+    } else {
+        settings.IPDirect = false
+        settings.SEARCH_AUTHOR = true        // 搜索：默认关闭搜索作者名称
+        settings.SHOW_ORIGINAL_LINK = true   // 目录：不显示章节源链接
+    }
+    // this.putInCache("pixivSettings", settings)
+    return settings
+}
+
 function updateSource() {
     const {java, source} = this
     java.longToast("🆙 更新书源\n\nJsdelivr CDN 更新有延迟\nGithub 更新需代理")
