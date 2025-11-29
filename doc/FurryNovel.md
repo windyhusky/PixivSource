@@ -113,19 +113,19 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
-## 三、添加小说，尽情使用 {#add-novel}
+## 四、添加小说，尽情使用 {#add-novel}
+### 1.阅读内部搜索
 <details><summary> 🔎 搜索小说 </summary>
 
-### 1.阅读内部搜索
 ✅ 支持搜索：小说名称、系列小说名称、作者名称、小说标签
 
 ![img](./pic/SearchViaLegado.png)
 </details>
 
 
+### 2.发现更多小说
 <details><summary> ⭐️ 发现小说 </summary>
 
-### 2.发现更多小说
 发现：热门小说、最新小说、随便来点
 
 - <details><summary> ⭐️ 发现小说 </summary>
