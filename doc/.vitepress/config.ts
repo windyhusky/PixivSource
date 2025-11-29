@@ -12,7 +12,7 @@ export default defineConfig({
     appearance: true,       // 默认主题由用户配色方案决定
     lastUpdated: true,      // 获取页面最后更新的时间戳
     head: [
-        ['link', { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32x32.png' }],
+        ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon.png' }],
         ["link", { rel: "apple-touch-icon", sizes: '180x180', href: "/PixivSource/favicon-180x180.png" }],
         ['link', { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/PixivSource/favicon-192x192.png' }],
         // ["link", { rel: "manifest", href: "/manifest.json" }]
