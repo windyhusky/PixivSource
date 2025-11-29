@@ -440,79 +440,75 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ### 4.订阅源
 <details><summary> 🏠 订阅源 </summary>
 
-<details><summary> ⬇️ 导入书源 </summary>
+- <details><summary> ⬇️ 导入书源 </summary>
+  
+  #### 4.0 导入书源
+  ![img](./pic/InportBookSourcePixivWeb.png)
 
-#### 4.0 导入书源
-![img](./pic/InportBookSourcePixivWeb.png)
+  - 点击按钮，导入书源；再次点击，则可更新书源
+  - 此处使用的是 Jsdelivr CDN ，更新有延迟
+  
+  ![img](./pic/InportBookSourcePixiv.jpg)
+  </details>
 
-- 点击按钮，导入书源；再次点击，则可更新书源
-- 此处使用的是 Jsdelivr CDN ，更新有延迟
+- <details><summary> 🔍 站内搜索 </summary>
 
-![img](./pic/InportBookSourcePixiv.jpg)
-</details>
+  #### 4.1 替代阅读搜索
+  Pixiv 网站的搜索功能更加全面
+  
+  ![img](./pic/SearchViaPixiv.png)
+  
+  #### 4.2 替代阅读发现
+  使用 Pixiv 书源未完成/隐藏功能
+  ![img](./pic/PixivNovelRanking.png)
+  </details>
 
+- <details><summary> ➕ 添加小说 </summary>
 
-<details><summary> 🔍 站内搜索 </summary>
+  #### 4.3 添加小说至书架
+  在阅读内部浏览器内打开 Pixiv 小说/系列小说页面，【刷新】，点击【加入书架】按钮添加小说到书架
 
-#### 4.1 替代阅读搜索
-Pixiv 网站的搜索功能更加全面
+  - 小说正文页，添加小说到书架
+  ![img](./pic/AddBookViaPixiv1.png)
 
-![img](./pic/SearchViaPixiv.png)
-
-#### 4.1 替代阅读发现
-使用 Pixiv 书源未完成/隐藏功能
-![img](./pic/PixivNovelRanking.png)
-</details>
-
-
-<details><summary> ➕ 添加小说 </summary>
-
-#### 4.3 添加小说至书架
-在阅读内部浏览器内打开 Pixiv 小说/系列小说页面，【刷新】，点击【加入书架】按钮添加小说到书架
-
-- 小说正文页，添加小说到书架
-![img](./pic/AddBookViaPixiv1.png)
-
-- 系列目录页，添加系列到书架
-![img](./pic/AddBookViaPixiv2.png)
-</details>
+  - 系列目录页，添加系列到书架
+  ![img](./pic/AddBookViaPixiv2.png)
+  </details>  
 
 
 ### 4.订阅源 登录界面
-<details><summary> 🅿️ 账号功能（同下） </summary>
+- <details><summary> 🅿️ 账号功能（同下） </summary>
 
-#### 4.4 账号功能
-- ⚠️ 登录/退出账号都要使用按钮
-- ⚠️ 订阅源登账号录后，书源最好也登录一次
+  #### 4.4 账号功能
+  - ⚠️ 登录/退出账号都要使用按钮
+  - ⚠️ 订阅源登账号录后，书源最好也登录一次
 
-![img](./pic/PixivLoginUIAccount.jpg)
+  ![img](./pic/PixivLoginUIAccount.jpg)
 
-- 🅿️ 登录账号：登录 Pixiv 账号，并获取 cookie 和 csfrToken
-- ⚙️ 账号设置：Pixiv 的浏览范围设置
-- 🔙 退出账号：退出 Pixiv 账号，并清理 cookie 和 csfrToken
-</details>
+  - 🅿️ 登录账号：登录 Pixiv 账号，并获取 cookie 和 csfrToken
+  - ⚙️ 账号设置：Pixiv 的浏览范围设置
+  - 🔙 退出账号：退出 Pixiv 账号，并清理 cookie 和 csfrToken
+  </details>
 
+- <details><summary> 📢 书源帮助（同下） </summary>
 
-<details><summary> 📢 书源帮助（同下） </summary>
+  #### 4.5 书源帮助
+  ![img](./pic/PixivLoginUISource2.jpg)
+  - ⭐️ 收藏项目：打开 Github 项目首页
+  - 🔰 使用指南：打开 Github 文档(本页)
+  - 🐞 反馈问题：打开 Github Issue
+  </details>
 
-#### 4.5 书源帮助
-![img](./pic/PixivLoginUISource2.jpg)
-- ⭐️ 收藏项目：打开 Github 项目首页
-- 🔰 使用指南：打开 Github 文档(本页)
-- 🐞 反馈问题：打开 Github Issue
-</details>
+- <details><summary> 🆙 更新书源（同上）</summary>
 
-
-<details><summary> 🆙 更新书源（同上）</summary>
-
-![img](./pic/UpdateSource.png)
-> [!NOTE]
-> 
-> 点击按钮【🆙 更新】以更新书源/更新订阅
-> - Jsdelivr CDN 更新有延迟
-> - Github 更新需代理
-> - Godeberg 更新免代理
-</details>
+  ![img](./pic/UpdateSource.png)
+  > [!NOTE]
+  > 
+  > 点击按钮【🆙 更新】以更新书源/更新订阅
+  > - Jsdelivr CDN 更新有延迟
+  > - Github 更新需代理
+  > - Godeberg 更新免代理
+  </details> 
 </details>
 
 
