@@ -52,8 +52,7 @@ function getNovelInfo(res) {
     if (novel.seriesId && util.environment.IS_LEGADO) {
         let novelIds = JSON.parse(cache.get(`novelIds${novel.seriesId}`))
         novel.id = novelIds[book.durChapterIndex]
-        novel.title = book.durChapterTitle
-
+        novel["章节名称"] = novel.title = book.durChapterTitle
         let bookmarkId = JSON.parse(cache.get(`collect${novel.id}`))
         novel.isBookmark = !!bookmarkId
     }

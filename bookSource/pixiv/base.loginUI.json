@@ -54,6 +54,10 @@
         }
     },
     {
+        "name": "章节名称",
+        "type": "text"
+    },
+    {
         "name": "❤️ 公开收藏",
         "type": "button",
         "action": "novelBookmarkFactory(1)",
