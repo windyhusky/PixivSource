@@ -307,102 +307,97 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 <details><summary> ⭐️ 发现小说 </summary>
 
 发现页面 - 点击各按钮
-<details><summary> ⭐️ 常规发现 </summary>
+- <details><summary> ⭐️ 常规发现 </summary>
 
-#### 2.0 常规发现
-发现默认显示的内容
-![img](./pic/DiscoverPixiv.jpg)
-</details>
+  #### 2.0 常规发现
+  发现默认显示的内容
+  ![img](./pic/DiscoverPixiv.jpg)
+  </details>
 
+- <details><summary> 🆕 最新企划约稿 </summary>
 
-<details><summary> 🆕 最新企划约稿 </summary>
-
-#### 2.1 最新 企划 约稿
-![img](./pic/DiscoverPixivNew.png)
-> [!TIP]
-> 
-> - ✅ R18 小说 (🆕 最新 企划 约稿 💰，默认显示)
-> - ☑️ 一般小说 (✅ 最新 企划 约稿 ✅，默认隐藏)
-> 
-> 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
-</details>
-
-
-<details><summary> 👑 小说排行 </summary>
-
-#### 2.2 小说排行
-![img](./pic/DiscoverPixivRanking.png)
-> [!TIP]
-> 
-> - ✅ R18 小说 (👑 排行榜单 👑，默认显示)
-> - ☑️ 一般小说 (🏆 排行榜单 🏆，默认隐藏)
-> 
-> 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
-</details>
+  #### 2.1 最新 企划 约稿
+  ![img](./pic/DiscoverPixivNew.png)
+  > [!TIP]
+  >
+  > - ✅ R18 小说 (🆕 最新 企划 约稿 💰，默认显示)
+  > - ☑️ 一般小说 (✅ 最新 企划 约稿 ✅，默认隐藏)
+  > 
+  > 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+  </details>
 
 
-<details><summary> 🔥 原创热门（默认隐藏） </summary>
+- <details><summary> 👑 小说排行 </summary>
 
-#### 2.3 原创热门（默认隐藏）
-![img](./pic/DiscoverPixivHot.png)
-> [!TIP]
-> 
-> - ☑️ R18 小说 (🔥 原创热门 🔥，默认隐藏)
-> 
-> 可在书源设置中修改`SHOW_R18_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
-> - ☑️ 一般小说 (❤️‍🔥 原创热门 ❤️‍🔥，默认隐藏)
-> 
-> 可在书源设置中修改`SHOW_GENERAL_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
-</details>
+  #### 2.2 小说排行
+  ![img](./pic/DiscoverPixivRanking.png)
+  > [!TIP]
+  > 
+  > - ✅ R18 小说 (👑 排行榜单 👑，默认显示)
+  > - ☑️ 一般小说 (🏆 排行榜单 🏆，默认隐藏)
+  > 
+  > 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+  </details>
 
+- <details><summary> 🔥 原创热门（默认隐藏） </summary>
 
-<details><summary> 🆙 更新书源 </summary>
+  #### 2.3 原创热门（默认隐藏）
+  ![img](./pic/DiscoverPixivHot.png)
+  > [!TIP]
+  > 
+  > - ☑️ R18 小说 (🔥 原创热门 🔥，默认隐藏)
+  > 
+  > 可在书源设置中修改`SHOW_R18_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+  > - ☑️ 一般小说 (❤️‍🔥 原创热门 ❤️‍🔥，默认隐藏)
+  > 
+  > 可在书源设置中修改`SHOW_GENERAL_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+  </details>
 
-#### 2.4 更新书源
-![img](./pic/UpdateSource.png)
-> [!NOTE]
-> 
-> 点击按钮【🆙 更新】以更新书源/更新订阅
-> - Jsdelivr CDN 更新有延迟
-> - Github 更新需代理
-> - Godeberg 更新免代理
-</details>
+- <details><summary> 🆙 更新书源 </summary>
 
+  #### 2.4 更新书源
+  ![img](./pic/UpdateSource.png)
+  > [!NOTE]
+  > 
+  > 点击按钮【🆙 更新】以更新书源/更新订阅
+  > - Jsdelivr CDN 更新有延迟
+  > - Github 更新需代理
+  > - Godeberg 更新免代理
+  </details>
 
-<details><summary> 📌 喜欢标签 </summary>
+- <details><summary> 📌 喜欢标签 </summary>
 
-#### 2.5 喜欢标签
-- 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
+  #### 2.5 喜欢标签
+  - 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
 
-![img](./pic/PixivLoginUILikeTags.png)
-- 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
+  ![img](./pic/PixivLoginUILikeTags.png)
+  - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
 
-![img](./pic/DiscoverRefresh.png)
-- 3️⃣ 点击按钮，查看内容
+  ![img](./pic/DiscoverRefresh.png)
+  - 3️⃣ 点击按钮，查看内容
 
-![img](./pic/DiscoverPixivLikeTags.png)
-</details>
+  ![img](./pic/DiscoverPixivLikeTags.png)
+  </details>
 
+- <details><summary> ❤️ 他人收藏 </summary>
 
-<details><summary> ❤️ 他人收藏 </summary>
+  #### 2.6 他人收藏
+  - 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
 
-#### 2.6 他人收藏
-- 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
+  ![img](pic/PixivLoginUILikeAuthors.png)
+  - 输入作者/用户ID，则会添加【指定作者/用户】
 
-![img](pic/PixivLoginUILikeAuthors.png)
-- 输入作者/用户ID，则会添加【指定作者/用户】
+  ![img](pic/DiscoverPixivLikeAuthors1.png)
+  - 若未输入作者/用户ID，则会添加【当前小说的作者】
 
-![img](pic/DiscoverPixivLikeAuthors1.png)
-- 若未输入作者/用户ID，则会添加【当前小说的作者】
+  ![img](pic/DiscoverPixivLikeAuthors2.png)
+  - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
 
-![img](pic/DiscoverPixivLikeAuthors2.png)
-- 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
+  ![img](pic/DiscoverRefresh.png)
+  - 3️⃣ 点击按钮，查看内容
 
-![img](./pic/DiscoverRefresh.png)
-- 3️⃣ 点击按钮，查看内容
-
-![img](./pic/DiscoverPixivLikeAuthors.jpg)
-</details>
+  ![img](pic/DiscoverPixivLikeAuthors.jpg)
+  </details>
 </details>
 
 
