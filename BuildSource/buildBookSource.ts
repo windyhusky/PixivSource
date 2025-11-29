@@ -38,6 +38,7 @@ interface BookSource {
     ruleContent: {
         content: string
         imageStyle: string
+        callBackJs: string
     }
     ruleExplore: {
         author: string
@@ -129,6 +130,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     const detailContent = readTextFile(path.join(sourcePath, "detail.js"))
     const catalogContent = readTextFile(path.join(sourcePath, "catalog.js"))
     const contentContent = readTextFile(path.join(sourcePath, "content.js"))
+    const callBackJs = readTextFile(path.join(sourcePath, "content.callBack.js"))
 
     // 更新书源更新时间
     let options = { year: "numeric", month: "2-digit", day: "2-digit"}
@@ -165,7 +167,9 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
 
     BookSource.ruleBookInfo.init = `@js:\n${detailContent}`
     BookSource.ruleToc.chapterList = `@js:\n${catalogContent}`
+
     BookSource.ruleContent.content = `@js:\n${contentContent}`
+    BookSource.ruleContent.callBackJs = callBackJs
 
     BookSource.lastUpdateTime = lastUpdateTime
     // console.log(lastUpdateTime)
@@ -218,5 +222,5 @@ function main(test:boolean|number =undefined) {
 }
 
 let delayTime = 2 * 24 * 60 * 60 * 1000
-main(0)
-// main(1)
+// main(0)
+main(1)
