@@ -12,7 +12,7 @@
         "enabled": true,
         "enabledCookieJar": true,
         "enabledExplore": true,
-        "eventListener": false,
+        "eventListener": true,
         "exploreUrl": "<JS CODE>",
         "header": "{\"referer\":\"https://furrynovel.ink/\"}",
         "jsLib": "<JS CODE>",
