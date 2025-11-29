@@ -406,29 +406,34 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 
 - 书架 - 菜单 - 添加网址 - 粘贴小说链接 
 - 可以同时添加多个小说的链接
+- <details><summary> 🔗 实际操作 </summary>
 
-![img](./pic/AddBookViaUrl1.png)
-![img](./pic/AddBookViaUrl2.png)
-![img](./pic/AddBookViaUrl3.png)
+  ![img](./pic/AddBookViaUrl1.png)
+  ![img](./pic/AddBookViaUrl2.png)
+  ![img](./pic/AddBookViaUrl3.png)
+  </details>
 
-支持 Pixiv 多个格式的网址链接：
-- Pixiv 单篇小说链接
-```
-https://www.pixiv.net/novel/show.php?id=20063566
-```
-- Pixiv 系列小说链接
-```
-https://www.pixiv.net/novel/series/8054073
-```
-- Pixiv 作者链接（添加近期1本小说）
-```
-https://www.pixiv.net/users/16721009
-```
-**无法添加的链接：**
-- Pixiv App 小说分享链接 **（删掉#号即可正常添加）**
-```
-测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
-```
+- <details><summary> 🔗 支持链接 </summary>
+  
+  支持 Pixiv 多个格式的网址链接：
+  - Pixiv 单篇小说链接
+  ```
+  https://www.pixiv.net/novel/show.php?id=20063566
+  ```
+  - Pixiv 系列小说链接
+  ```
+  https://www.pixiv.net/novel/series/8054073
+  ```
+  - Pixiv 作者链接（添加近期1本小说）
+  ```
+  https://www.pixiv.net/users/16721009
+  ```
+  **无法添加的链接：**
+  - Pixiv App 小说分享链接 **（删掉#号即可正常添加）**
+  ```
+  测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
+  ```
+  </details>
 </details>
 
 
@@ -532,7 +537,7 @@ Pixiv 网站的搜索功能更加全面
 ![img](./pic/PixivLoginUISource.jpg)
 - 🆙 更新书源：更新书源/更新订阅(同上)
 - 🔰 使用指南：打开 Github 文档(本页)
-- 🐞 反馈问题：打开 Github Issue
+- ✈️ 直连模式：直连模式（需登录账号）
 </details>
 
 
@@ -545,16 +550,16 @@ Pixiv 网站的搜索功能更加全面
 - 📌 当前章节：显示当前章节信息
 - 
 - 📃 追更系列：追更系列、取消追更
-- ❤️ 收藏系列：公开收藏系列内的每篇小说
-- 🖤 取消收藏：取消收藏系列内的每篇小说
+- ❤️ 收藏系列：公开收藏系列内的每篇小说（可追加收藏）
+- 🖤 取消收藏：取消收藏单篇、取消收藏系列内的每篇小说
 - 
 - 🏷 添加书签：添加书签、删除书签
 - ⭐️ 关注作者：关注作者、取消关注
 - 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
 - 
-- ✅ 发送评论：当前章节下发送评论（随后可手动刷新正文，更新评论）
-- 🗑 删除评论：当前章节下删除评论（随后可手动刷新正文，更新评论）
-- 🧹 清除缓存：清除当前章节的正文缓存（随后可手动刷新正文，更新正文和评论）
+- ✅ 发送评论：当前章节下发送评论（手动刷新章节，更新评论）
+- 🗑 删除评论：当前章节下删除评论（手动刷新章节，更新评论）
+- 🧹 清除缓存：清除当前章节的正文缓存（手动刷新章节，更新正文和评论）
 - 
 - ⤴️ 分享章节：打开当前章节的网址
 - ⤴️ 分享系列：打开当前系列的网址（如无系列则打开章节网址）
