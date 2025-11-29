@@ -591,82 +591,77 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 [//]: # ({$Custom})
 <details><summary> 📃 自定义功能 </summary>
 
-<details><summary> 📃 功能说明 </summary>
+- <details><summary> 📃 功能说明 </summary>
 
-#### 6.0 功能说明
-- 此处功能都是书源本地实现功能，不会向 Pixiv 提交数据
-- 屏蔽作者、屏蔽标签、屏蔽描述，均为全局屏蔽
-  - 搜索、发现、添加链接、订阅源添加链接 全部屏蔽
-- 显示/屏蔽收藏小说、显示/屏蔽追更系列，均为全局
-  - 搜索、发现、添加链接、订阅源添加链接 全部屏蔽
-</details>
+  #### 6.0 功能说明
+  - 此处功能都是书源本地实现功能，不会向 Pixiv 提交数据
+  - 屏蔽作者、屏蔽标签、屏蔽描述，均为全局屏蔽
+    - 搜索、发现、添加链接、订阅源添加链接 全部屏蔽
+  - 显示/屏蔽收藏小说、显示/屏蔽追更系列，均为全局
+    - 搜索、发现、添加链接、订阅源添加链接 全部屏蔽
+  </details>
 
+- <details><summary> 🚫 屏蔽作者 </summary>
 
-<details><summary> 🚫 屏蔽作者 </summary>
+  #### 6.1 屏蔽作者
+  ![img](./pic/PixivLoginUINovels.jpg)
+  - 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
+  </details>
 
-#### 6.1 屏蔽作者
-![img](./pic/PixivLoginUINovels.jpg)
-- 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
-</details>
+- <details><summary> 🚫 屏蔽收藏 & 屏蔽追更 </summary>
 
+  #### 6.2 屏蔽收藏 & 屏蔽追更
+  - ❤️ 显示收藏：搜索发现 显示/屏蔽 收藏单篇小说
+  - 📃 显示追更：搜索发现 显示/屏蔽 追更系列小说
+  </details>
 
-<details><summary> 🚫 屏蔽收藏 & 屏蔽追更 </summary>
+- <details><summary> 🚫 屏蔽标签 & 屏蔽描述 </summary>
 
-#### 6.2 屏蔽收藏 & 屏蔽追更
-- ❤️ 显示收藏：搜索发现 显示/屏蔽 收藏单篇小说
-- 📃 显示追更：搜索发现 显示/屏蔽 追更系列小说
-</details>
+  #### 6.3 屏蔽标签 & 屏蔽描述
+  - 1️⃣ 在登陆页面的【输入内容】输入内容（不需要`#`），点击【添加屏蔽】，添加至【标签屏蔽列表】或【描述屏蔽列表】
 
+  ![img](./pic/PixivLoginUIBlockWords.png)
+  - 2️⃣ 添加屏蔽内容时，会提示具体的屏蔽列表
 
-<details><summary> 🚫 屏蔽标签 & 屏蔽描述 </summary>
+  ![img](./pic/PixivLoginUIBlockWords1.png)
+  - 3️⃣ 点击【查看屏蔽】按钮，会切换屏蔽列表，并显示屏蔽内容
+  
+  ![img](./pic/PixivLoginUIBlockWords2.png)
+  </details>
 
-#### 6.3 屏蔽标签 & 屏蔽描述
-- 1️⃣ 在登陆页面的【输入内容】输入内容（不需要`#`），点击【添加屏蔽】，添加至【标签屏蔽列表】或【描述屏蔽列表】
+- <details><summary> 📌 喜欢标签 </summary>
 
-![img](./pic/PixivLoginUIBlockWords.png)
-- 2️⃣ 添加屏蔽内容时，会提示具体的屏蔽列表
+  #### 6.4 喜欢标签
+  - 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
+  
+  ![img](./pic/PixivLoginUILikeTags.png)
+  - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
+  
+  ![img](./pic/DiscoverRefresh.png)
+  - 3️⃣ 点击按钮，查看内容
+  
+  ![img](./pic/DiscoverPixivLikeTags.png)
+  </details>
 
-![img](./pic/PixivLoginUIBlockWords1.png)
-- 3️⃣ 点击【查看屏蔽】按钮，会切换屏蔽列表，并显示屏蔽内容
+- <details><summary> ❤️ 他人收藏 </summary>
 
-![img](./pic/PixivLoginUIBlockWords2.png)
-</details>
-
-
-<details><summary> 📌 喜欢标签 </summary>
-
-#### 6.4 喜欢标签
-- 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
-
-![img](./pic/PixivLoginUILikeTags.png)
-- 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
-
-![img](./pic/DiscoverRefresh.png)
-- 3️⃣ 点击按钮，查看内容
-
-![img](./pic/DiscoverPixivLikeTags.png)
-</details>
-
-
-<details><summary> ❤️ 他人收藏 </summary>
-
-#### 6.5 他人收藏
-- 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
-
-![img](pic/PixivLoginUILikeAuthors.png)
-- 输入作者/用户ID，则会添加【指定作者/用户】
-
-![img](pic/DiscoverPixivLikeAuthors1.png)
-- 若未输入作者/用户ID，则会添加【当前小说的作者】
-
-![img](pic/DiscoverPixivLikeAuthors2.png)
-- 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
-
-![img](./pic/DiscoverRefresh.png)
-- 3️⃣ 点击按钮，查看内容
-
-![img](./pic/DiscoverPixivLikeAuthors.jpg)
-</details>
+  #### 6.5 他人收藏
+  - 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
+  
+  ![img](pic/PixivLoginUILikeAuthors.png)
+  - 输入作者/用户ID，则会添加【指定作者/用户】
+  
+  ![img](pic/DiscoverPixivLikeAuthors1.png)
+  - 若未输入作者/用户ID，则会添加【当前小说的作者】
+  
+  ![img](pic/DiscoverPixivLikeAuthors2.png)
+  - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
+  
+  ![img](./pic/DiscoverRefresh.png)
+  - 3️⃣ 点击按钮，查看内容
+  
+  ![img](./pic/DiscoverPixivLikeAuthors.jpg)
+  </details>
 </details>
 
 
