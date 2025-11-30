@@ -86,7 +86,7 @@ function publicFunc() {
     u.environment.IS_SOURCEREAD = isSourceRead()
     u.environment.IS_LEGADO = !isSourceRead()
     u.environment.IS_LYC_BRUNCH = isLegadoLYC()
-    // putInCache("sourceEnvironment", u.environment)  // 设置写入缓存
+    // putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
