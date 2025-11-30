@@ -44,6 +44,10 @@ if (event === "saveRead") {
 // if (event === "clickCustomButton") {
 // }
 // // 开始书架刷新
-// if (event === "startShelfRefresh") {}
+// if (event === "startShelfRefresh") {
+//     source.putConcurrent("1/2000")
+// }
 // // 结束书架刷新
-// if (event === "endShelfRefresh") {}
+// if (event === "endShelfRefresh") {
+//     source.putConcurrent("3/2000")
+// }
