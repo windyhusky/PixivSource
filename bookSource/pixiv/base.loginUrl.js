@@ -86,30 +86,37 @@ function getCsrfToken() {
 }
 
 function getNovel() {
-    try {
-        let novel = {}
-        novel.id = chapter.url.match(/\d+/)[0]
-        novel.title = chapter.title
-        novel.userName = book.author.replace("@", "")
-        if (book.bookUrl.includes("series")) {
-            novel.seriesId = book.bookUrl.match(/\d+/)[0]
-            novel.seriesTitle = book.name
-        } else {
-            novel.seriesId = 0
-            novel.seriesTitle = ""
-        }
+    let environment = getFromCache("pixivEnvironment")
+    if (environment.IS_LYC_BRUNCH) {
+        try {
+            let novel = {}
+            novel.id = chapter.url.match(/\d+/)[0]
+            novel.title = chapter.title
+            novel.userName = book.author.replace("@", "")
+            if (book.bookUrl.includes("series")) {
+                novel.seriesId = book.bookUrl.match(/\d+/)[0]
+                novel.seriesTitle = book.name
+            } else {
+                novel.seriesId = 0
+                novel.seriesTitle = ""
+            }
 
-        let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
-        novel.userId = resp.userId
-        if (resp.pollData) {
-            novel.pollChoicesCount = resp.pollData.choices.length
-        } else {
-            novel.pollChoicesCount = 0
+            let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
+            novel.userId = resp.userId
+            if (resp.pollData) {
+                novel.pollChoicesCount = resp.pollData.choices.length
+            } else {
+                novel.pollChoicesCount = 0
+            }
+            return novel
+        } catch (e) {
+            // 无法阻止后续函数在日志中报错
+            return sleepToast("🔰 功能提示\n\n⚠️ 请在【小说正文】使用该功能")
         }
+    } else {  // 兼容用
+        let novel = source.getLoginInfoMap()
+        if (!novel) novel = getFromCache("novel")
         return novel
-    } catch (e) {
-        // 无法阻止后续函数在日志中报错
-        return sleepToast("🔰 功能提示\n\n⚠️ 请在【小说正文】使用该功能")
     }
 }
 
