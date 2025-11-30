@@ -241,10 +241,6 @@ function checkSettings() {
     if (settings.IPDirect) {
         settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
         settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
-    } else {
-        settings.IPDirect = false
-        settings.SEARCH_AUTHOR = true        // 搜索：默认关闭搜索作者名称
-        settings.SHOW_ORIGINAL_LINK = true   // 目录：不显示章节源链接
     }
     // this.putInCache("pixivSettings", settings)
     return settings
