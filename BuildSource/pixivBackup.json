@@ -35,6 +35,7 @@
         },
         "ruleContent": {
             "content": "<JS CODE>",
+            "title": "@js:\nJSON.parse(result).body.title",
             "imageStyle": "DEFAULT"
         },
         "ruleExplore": {
