@@ -12,7 +12,7 @@ if (event === "clickAuthor") {
 // 覆盖阅读默认分享
 if (event === "clickShareBook") {
     let text = `我正在看：【${book.author}】创作的《${book.name}》`
-    if (String(book.name) !== String(book.durChapterTitle)) {
+    if (!!book.durChapterTitle && String(book.name) !== String(book.durChapterTitle)) {
         text += `的 【${book.durChapterTitle}】`
     }
     text += `\n\n小说链接：\n${book.bookUrl}\n\n分享自【开源阅读】兽人控小说站书源。使用添加网址，快速添加本文`
