@@ -86,8 +86,25 @@ function getCsrfToken() {
 }
 
 function getNovel() {
-    let novel = source.getLoginInfoMap()
-    if (!novel) novel = getFromCache("novel")
+    let novel = {}
+    novel.id = chapter.url.match(/\d+/)[0]
+    novel.title = chapter.title
+    novel.userName = book.author.replace("@", "")
+    if (book.bookUrl.includes("series")) {
+        novel.seriesId = book.bookUrl.match(/\d+/)[0]
+        novel.seriesTitle = book.name
+    } else {
+        novel.seriesId = 0
+        novel.seriesTitle = ""
+    }
+
+    let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
+    novel.userId = resp.userId
+    if (resp.pollData) {
+        novel.pollChoicesCount = resp.pollData.choices.length
+    } else {
+        novel.pollChoicesCount = 0
+    }
     return novel
 }
 
