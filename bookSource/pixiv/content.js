@@ -52,7 +52,7 @@ function getNovelInfo(res) {
     if (novel.seriesId && util.environment.IS_LEGADO) {
         let novelIds = JSON.parse(cache.get(`novelIds${novel.seriesId}`))
         novel.id = novelIds[book.durChapterIndex]
-        novel["章节名称"] = novel.title = book.durChapterTitle
+        novel.title = book.durChapterTitle
         let bookmarkId = JSON.parse(cache.get(`collect${novel.id}`))
         novel.isBookmark = !!bookmarkId
     }
@@ -60,6 +60,7 @@ function getNovelInfo(res) {
     // 添加投票信息
     if (res.pollData) novel.pollChoicesCount = res.pollData.choices.length
     else novel.pollChoicesCount = 0
+    novel["章节名称"] = novel.title
     source.putLoginInfo(JSON.stringify(novel))
     cache.put("novel", JSON.stringify(novel))
 }
