@@ -1,7 +1,7 @@
 // java.log(event)
 // java.log(typeof event)
 
-// 恢复阅读搜索作者
+// 恢复阅读搜索书名
 if (event === "clickBookName") {
     java.searchBook(book.name)
 }
@@ -19,6 +19,11 @@ if (event === "clickShareBook") {
     java.copyText(text)
 }
 
+// 保存阅读，更新登录界面的章节名称
+if (event === "saveRead") {
+    // sleepToast(book.durChapterTitle)
+    source.putLoginInfo(JSON.stringify({"章节名称": book.durChapterTitle}))
+}
 
 // // 开始阅读，登录界面添加当前章节名称
 // if (event === "startRead") {
