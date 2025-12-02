@@ -4,11 +4,13 @@
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 ### 🌐 [书源官网 & 使用指南](https://downeyrem.github.io/PixivSource)
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-### ❤️ [Pixiv 书源项目 赞助名单](./doc/Sponsor.md)
+### ❤️ [Pixiv 书源项目 打赏名单](./doc/Sponsor.md)
 </div>
 
 
-### 源起：为了更好的阅读体验
+### 📂 [项目归档、书源仍然可用](doc/ArchivedNotice.md)
+### ✨ [臻享阅读：开源阅读 + Pixiv 书源](./doc/BetterExperience.md)
+### 🔰 源起：为了更好的阅读体验
 <details><summary> ©️ 版权问题 </summary>
 
 #### 版权问题
@@ -111,7 +113,7 @@
 </details>
 
 
-## 书源功能
+## 📖 书源功能
 | 书源    | 状态 | 直连 | 支持 Ｐ站 特性 | 实现 阅读 功能 |
 | ------ | --- | --- |------------ | ----------- |
 | Pixiv  | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
@@ -488,7 +490,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-## 订阅源
+## 🌐 订阅源
 <details><summary> 🐲 btsrk 订阅源 </summary>
 
 ### 🐲 btsrk 订阅源：快速导入小说网站等订阅
@@ -550,7 +552,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-## 杂类
+## 🗃 杂类
 ### ❤️ [打赏开发者](./doc/Sponsor.md)
 <details><summary> ✈ 社群链接 </summary>
 
@@ -580,7 +582,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 <details><summary> 📢 鸣谢 </summary>
 
 ### 鸣谢
-- ❤️ [Pixiv 书源项目 赞助名单](./doc/Sponsor.md)
+- ❤️ [Pixiv 书源项目 打赏名单](./doc/Sponsor.md)
 - 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)
@@ -633,6 +635,6 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 </details>
 
 
-## Stargazers over time
+## ⭐️ Stargazers over time
 [![Stargazers over time](https://starchart.cc/DowneyRem/PixivSource.svg?variant=adaptive)](https://starchart.cc/DowneyRem/PixivSource)
 
