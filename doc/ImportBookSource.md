@@ -188,7 +188,7 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 ### 1.找到需要登录的书源
 **点击右上角的三点菜单，选择【登录】,登录你的账号**
 
-![img](./pic/PixivLogin1.jpg)
+![img](./pic/PixivLogin1.png)
 
 
 ### 2.登录你的账号

@@ -111,7 +111,7 @@
 ##### 3.1.2 登录 Pixiv 账号
 **我的 - 书源管理 - 菜单 - 登录 - 登录账号**
 
-![img](./pic/PixivLogin1.jpg)
+![img](./pic/PixivLogin1.png)
 
 ![img](./pic/PixivLoginUIAccount.jpg)
 

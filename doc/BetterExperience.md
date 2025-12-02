@@ -109,4 +109,41 @@
 - 这样才能保证最佳的使用体验
 
 
+## 书源配置
+### ⚙️ 书源管理
+打开书源管理，没有书源的话就是这样：
+![img.png](pic/ImportOnlineBookSource2.jpg)
 
+有书源的话，点击书源菜单后，应该是这样的：
+![img.png](pic/PixivLogin1.png)
+注意这里的【登录】和【调试】，这两个功能很重要
+
+
+### 🅿️ 登录账号
+> [!NOTE]
+>
+> **Pixiv 及正版付费书源，需要登录账号才能阅读相关小说**
+<details><summary> 🅿️ 登录 Pixiv 账号 </summary>
+
+#### 1. 开启代理工具
+此处略过，请自行学习，**最好开启【全局代理】**
+
+#### 2. 登录 Pixiv 账号
+**我的 - 书源管理 - 菜单 - 登录 - 登录账号**
+
+![img](./pic/PixivLogin1.png)
+
+![img](./pic/PixivLoginUIAccount.jpg)
+
+**登录你的账号，登录成功后，点击右上角的对勾**
+
+![img](./pic/PixivLogin2.jpg)
+> [!TIP]
+>
+> **如果需要验证码，请更换代理，或过段时间再次尝试**
+- 登录成功后，就可以使用 Pixiv 书源查看小说了
+</details>
+
+
+
+## 💾 备份与恢复
