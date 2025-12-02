@@ -45,7 +45,15 @@ export default defineConfig({
                     { text: "兽人控小说站 书源", link: "/FurryNovel" },
                 ],
             },
-            { text: "开发团队", link: "/Team" },
+            {
+                text: "开发动态",
+                activeMatch: '/',
+                items: [
+                    { text: "开发团队", link: "/Team", activeMatch: '/' },
+                    { text: "更新日志", link: "/UpdateLog" },
+                    { text: "归档声明", link: "/ArchivedNotice" },
+                ],
+            },
             { text: "赞助名单", link: "/Sponsor" }
         ],
         lightModeSwitchTitle: "",
@@ -78,21 +86,22 @@ export default defineConfig({
                 ]
             },
             {
-                text: "其他",
+                text: "开发动态",
                 collapsed: false,
                 items: [
                     { text: "开发团队", link: "/Team" },
+                    { text: "更新日志", link: "/UpdateLog" },
+                    { text: "归档声明", link: "/ArchivedNotice" },
+                ]
+            },
+            {
+                text: "赞助记录",
+                collapsed: false,
+                items: [
                     { text: "赞助名单", link: "/Sponsor" },
                     { text: "赞助记录", link: "/Sponsor2" },
                 ]
             },
-            {
-                text: "杂项",
-                collapsed: false,
-                items: [
-                    { text: "归档声明", link: "/ArchivedNotice" },
-                ]
-            }
         ],
         socialLinks: [
             { icon: "github", link: "https://github.com/DowneyRem/PixivSource" },
