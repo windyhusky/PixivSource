@@ -17,8 +17,8 @@ hero:
 #      link: "https://miaogongzi.lanzout.com/b01rgkhhe"
       
     - theme: brand
-      text: ✨ 提升阅读体验
-      link: BetterApp
+      text: ✨ 臻享阅读
+      link: BetterExperience
       
     - theme: alt
       text: ⚡ 快速开始

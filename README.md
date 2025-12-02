@@ -9,6 +9,14 @@
 
 
 ### 📂 [项目归档、书源仍然可用](doc/ArchivedNotice.md)
+- 书源功能基本完善
+  - 已支持当前主流阅读软件
+  - 已支持 Pixiv 多数功能
+- 短期内无需继续维护
+  - 只要 Pixiv 的 Web API 没有较大变化，书源就能正常使用
+  - 欢迎接盘/Fork
+
+
 ### ✨ [臻享阅读：开源阅读 + Pixiv 书源](./doc/BetterExperience.md)
 ### 🔰 源起：为了更好的阅读体验
 <details><summary> ©️ 版权问题 </summary>
