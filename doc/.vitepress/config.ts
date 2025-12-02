@@ -67,7 +67,7 @@ export default defineConfig({
             },
             {
                 text: "通用教程",
-                collapsed: false,
+                collapsed: true,
                 items: [
                     { text: "下载阅读", link: "/Download" },
                     { text: "导入书源", link: "/ImportBookSource" },
@@ -84,6 +84,13 @@ export default defineConfig({
                     { text: "开发团队", link: "/Team" },
                     { text: "赞助名单", link: "/Sponsor" },
                     { text: "赞助记录", link: "/Sponsor2" },
+                ]
+            },
+            {
+                text: "杂项",
+                collapsed: false,
+                items: [
+                    { text: "归档声明", link: "/ArchivedNotice" },
                 ]
             }
         ],
