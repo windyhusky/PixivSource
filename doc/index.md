@@ -2,19 +2,23 @@
 # https://vitepress.dev/reference/default-theme-home-page
 layout: home
 title: Pixiv 书源
-description: 适配开源阅读 Legado 3.0 的 Pixiv 小说书源。
+description: 一个更好的 Pixiv 小说阅读器。——开源阅读 + Pixiv 书源。适配开源阅读 Legado 3.0 的 Pixiv 小说书源。Pixiv book Source for Legado 3.0. A better app for reading Pixiv novels
 
 hero:
-  name: "PixivSource"
-  text: "开源阅读 Pixiv 书源"
-  tagline: 适配 开源阅读 Legado 3.0 的 Pixiv 书源
+  name: PixivSource
+  text: 开源阅读 Pixiv 书源<br>只为更好的阅读体验
+  tagline: 更好的 Pixiv 小说阅读器<br>——开源阅读 + Pixiv 书源
 #  image:
-#    src: "/apple-touch-icon.png"
+#    src: "/favicon-512x512.png"
 #    alt: Pixiv Source Logo
   actions:
+#    - theme: brand
+#      text: ⬇️ 下载阅读 新共存版
+#      link: "https://miaogongzi.lanzout.com/b01rgkhhe"
+      
     - theme: brand
-      text: ⬇️ 下载阅读 新共存版
-      link: "https://miaogongzi.lanzout.com/b01rgkhhe"
+      text: ✨ 提升阅读体验
+      link: BetterApp
       
     - theme: alt
       text: ⚡ 快速开始
@@ -45,7 +49,7 @@ hero:
       link: "https://t.me/PixivSource"
 
     - theme: alt
-      text: ❤️ 打赏
+      text: ☕ 打赏
       link: "Sponsor"
       
 
