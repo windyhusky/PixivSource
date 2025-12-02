@@ -50,17 +50,26 @@
 ## 开源阅读 + Pixiv 书源
 
 ### 开源阅读软件
-像常规阅读软件一样，有：书架、搜索、发现、我的 等页面
+> [!IMPORTANT]
+>
+> 点击链接，下载 **【新共存版】** 安装包并安装软件
+>
+> https://miaogongzi.lanzout.com/b01rgkhhe
+
+像常规阅读软件一样，也有：书架、搜索、发现、我的 等页面
 
 <details><summary> 🖼 软件界面 </summary>
 
 ### 📚 书架页面
+添加小说后如图：
 ![img](./pic/LegadoBookShelf.png)
 
 ### 🔎 搜索页面
+添加书源后如图：
 ![img](./pic/SearchViaLegado.png)
 
 ### 🌟 发现页面
+添加书源后如图：
 ![img](./pic/LegadoDiscover.png)
 
 ### 👤 我的页面
@@ -69,5 +78,35 @@
 与常规阅读软件不同，【开源阅读】的我的页面，最上面却是【书源管理】
 ![img.png](pic/LegadoProfile.png)
 </details>
+
+
+## 概念介绍
+### 📖 书源
+> [!NOTE]
+> **【开源阅读】没有账号体系，软件本身并不提供小说资源**
+> 
+> **提供小说资源的是【书源】**
+> **（准确来说是书源内部的网站）**
+
+有什么网站的书源，就可以看什么网站的小说
+- 有【起点】书源，就可以看 起点网文
+- 有【番茄】书源，就可以看 番茄小说
+- 有【Pixiv】书源，就可以看 Pixiv 的小说
+
+### 🌐 订阅源
+既然提到了书源，也顺便说一下订阅源
+> [!NOTE]
+> 订阅源类似于RSS，甚至可以听音乐看视频
+- 书源、订阅源的内部数据不同，添加源（网络导入、规则订阅）的时候需要区分一下
+- 这里使用的是一键导入，不需要区分
+
+> [!IMPORTANT]
+>
+> 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
+>
+> 🐲 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
+- 一般来说，书源开发者同时提供书源和订阅源的话，最好都要导入
+- 这样才能保证最佳的使用体验
+
 
 
