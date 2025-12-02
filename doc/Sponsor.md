@@ -2,7 +2,7 @@
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
-# ❤️ 赞助名单❤️
+# ❤️ 赞助名单 ❤️
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ❤️ [书源项目赞助名单](./Sponsor.md)
@@ -55,6 +55,11 @@
 - 无果 jddn
 - 墨燝 @SodaLee
 - 梨树
+- 本征 [@Eigeen](https://github.com/eigeen)
+- 天意618A03
+- **鸿
+- 龙牙虎
+- 缘落碎羽
 
 
 ## ⌨️ 帮助名单
