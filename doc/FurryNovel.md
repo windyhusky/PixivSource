@@ -2,7 +2,7 @@
 <img width="150" height="150" src="./pic/BookSourceFurryNovel.png" alt="FurryNovel BookSource"/>
 <br>
 
-# FurryNovel 书源使用指南
+# FurryNovel 书源指南
 ### 🐯 [开源阅读](https://github.com/gedoor/legado) FurryNovel 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)

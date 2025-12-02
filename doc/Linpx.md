@@ -2,7 +2,7 @@
 <img width="150" height="150" src="./pic/BookSourceLinpx.png" alt="Linpx BookSource"/>
 <br>
 
-# Linpx 书源使用指南
+# Linpx 书源指南
 ### 🦊 [开源阅读](https://github.com/gedoor/legado) Linpx 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)
