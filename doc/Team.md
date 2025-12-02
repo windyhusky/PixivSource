@@ -15,7 +15,7 @@ const members = [
         name: "DowneyRem",
         title: "唐尼瑞姆",
         desc: "项目创始、主要维护",
-        actionText: "赞助",
+        actionText: "打赏",
         sponsor: "/Sponsor",
         links: [
             { icon: "github", link: "https://github.com/DowneyRem" },

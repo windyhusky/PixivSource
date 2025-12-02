@@ -5,7 +5,7 @@
 # FurryNovel 书源使用指南
 ### 🐯 [开源阅读](https://github.com/gedoor/legado) FurryNovel 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ❤️ [书源项目赞助名单](./Sponsor.md)
+#### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
 ### [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说

@@ -54,7 +54,7 @@ export default defineConfig({
                     { text: "归档声明", link: "/ArchivedNotice" },
                 ],
             },
-            { text: "赞助名单", link: "/Sponsor" }
+            { text: "打赏名单", link: "/Sponsor" }
         ],
         lightModeSwitchTitle: "",
         sidebarMenuLabel: "菜单",
@@ -62,7 +62,9 @@ export default defineConfig({
             {
                 text: "快速开始",
                 collapsed: false,
-                items: [{ text: "快速开始", link: "/QuickStart" }]
+                items: [
+                    { text: "快速开始", link: "/QuickStart" }
+                ]
             },
             {
                 text: "专用教程",
@@ -95,11 +97,11 @@ export default defineConfig({
                 ]
             },
             {
-                text: "赞助记录",
+                text: "打赏记录",
                 collapsed: false,
                 items: [
-                    { text: "赞助名单", link: "/Sponsor" },
-                    { text: "赞助记录", link: "/Sponsor2" },
+                    { text: "打赏名单", link: "/Sponsor" },
+                    { text: "打赏记录", link: "/Sponsor2" },
                 ]
             },
         ],

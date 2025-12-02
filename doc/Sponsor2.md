@@ -2,16 +2,16 @@
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
-# 💰 赞助记录 💰
+# 💰 打赏记录 💰
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ❤️ [书源项目赞助名单](./Sponsor.md)
+#### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
 
-## 💰 赞助记录
+## 💰 打赏记录
 > [!TIP]
-> 按赞助本项目的先后顺序排名
+> 按打赏本项目的先后顺序排名
  
 | 昵称          |     时间     | 渠道  |  金额   |
 |-------------|:----------:|:---:|:-----:|

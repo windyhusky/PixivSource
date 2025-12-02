@@ -2,14 +2,14 @@
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
-# ❤️ 赞助名单 ❤️
+# ☕ 打赏名单 ☕
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ❤️ [书源项目赞助名单](./Sponsor.md)
+#### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
 
-## ❤️ 支持开发
+## ☕ 支持开发
 > [!NOTE]
 > 如果书源为你提供了帮助，欢迎通过以下方式支持开发者，你的鼓励是持续更新的动力～
 
@@ -33,12 +33,12 @@
 </div>
 
 > [!IMPORTANT] 
-> 可在【留言】中留下【书源】和【你的ID/昵称】，以便统计赞助名单
+> 可在【留言】中留下【书源】和【你的ID/昵称】，以便统计打赏名单
 
 
-## 💰 赞助名单
+## 💰 打赏名单
 > [!TIP]
-> 按赞助本项目的先后顺序排名
+> 按打赏本项目的先后顺序排名
 - 唐尼瑞姆 [@DowneyRem](https://github.com/DowneyRem)
 - 噬空
 - 迅迅龙龙
@@ -76,7 +76,7 @@
 
 ## 💸 定期赞助
 > [!TIP]
-> 本项目的定期赞助项目
+> 本项目的赞助项目
 - [Linpx](https://www.furrynovel.ink) 每年 ￥100 （2023年起）
 
 

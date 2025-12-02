@@ -5,7 +5,7 @@
 # 版本区分
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ❤️ [书源项目赞助名单](./Sponsor.md)
+#### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
 

@@ -5,7 +5,7 @@
 # Linpx 书源使用指南
 ### 🦊 [开源阅读](https://github.com/gedoor/legado) Linpx 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ❤️ [书源项目赞助名单](./Sponsor.md)
+#### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
 ### [Linpx](http://www.furrynovel.ink) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**

@@ -5,7 +5,7 @@
 # Pixiv 书源使用指南
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ❤️ [书源项目赞助名单](./Sponsor.md)
+#### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
 ### [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
