@@ -151,7 +151,7 @@
 
 > #### 0. [阅读是什么软件？阅读简介](./ReadMe.md)
 > #### 0. [下载 开源阅读 Legado](./Download.md)
-> #### 1. [阅读使用教程（太长不看版）](./TooLongToRead.md)
+> #### 1. [快速开始](./QuickStart.md)【你在这里】
 >> ##### 1.1 [Pixiv 书源的导入与使用](./Pixiv.md)
 >> ##### 1.2 [Linpx 书源的导入与使用](./Linpx.md)
 >> ##### 1.3 [兽人控小说站 书源的导入与使用](./FurryNovel.md)
