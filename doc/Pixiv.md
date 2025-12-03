@@ -44,11 +44,12 @@
 
 > [!IMPORTANT] 
 > ### 2. 使用时，请在设置里，关闭自动刷新
+>
+> **否则很容易触发触发请求限制，甚至封号**
 <details><summary> 🔄 关闭自动刷新 </summary>
 
 我的 - 其他设置 - 自动刷新
 ![img](./pic/LegadoSettingsAutoRefreash.png)
-否则很容易触发触发请求限制，甚至封号
 </details>
 
 > [!IMPORTANT]  
