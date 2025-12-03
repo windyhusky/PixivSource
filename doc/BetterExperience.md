@@ -28,22 +28,28 @@
 </details>
 
 
-### 第三方 APP 没有优化小说阅读体验
-<details><summary> 🧩 第三方 APP </summary>
+### 第三方 APP 的小说阅读体验不佳
+> 软件整理自 https://linux.do/t/topic/657910
+<details><summary> 🈚️ 无小说功能 </summary>
 
-- [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)
-- [Pixiv Shaft](https://github.com/CeuiLiSA/Pixiv-Shaft)
-- [Pixiv Viewer](https://github.com/asadahimeka/pixiv-viewer)
 - [PixEz Viewer](https://github.com/ultranity/Pix-EzViewer)
 - [Pi Pixiv](https://github.com/darriousliu/PiPixiv)
-- [Pixiv Multi Platform](https://github.com/magic-cucumber/Pixiv-MultiPlatform)
-- [Pixiv Artvier](https://github.com/kerrinz/pixiv-artvier)
-- [Pixes](https://github.com/wgh136/pixes)
-- [Pixeval](https://github.com/Pixeval/Pixeval)
-> 数据源自 https://linux.do/t/topic/657910
-
-迄今为止（2025.12），上述软件依然没有优化过 小说阅读体验
 </details>
+
+<details><summary> 👎 阅读体验明显不如 Pixiv </summary>
+
+- [Pixiv Shaft](https://github.com/CeuiLiSA/Pixiv-Shaft) 
+- [Pixiv Artvier](https://github.com/kerrinz/pixiv-artvier) 
+- [Pixes](https://github.com/wgh136/pixes)
+</details>
+
+<details><summary> 😞 阅读体验略逊色于 Pixiv </summary>
+
+- [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)
+- [Pixiv Multi Platform](https://github.com/magic-cucumber/Pixiv-MultiPlatform)
+- [Pixiv Viewer](https://github.com/asadahimeka/pixiv-viewer)
+</details>
+迄今为止（2025.12），上述软件依然没有一个小说阅读体验超过了 Pixiv
 
 
 ## 你是否想改善你的阅读体验呢？<br>如果你的回答是“是”，那么你可能需要：
