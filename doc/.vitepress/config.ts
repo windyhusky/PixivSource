@@ -51,6 +51,7 @@ export default defineConfig({
                 items: [
                     { text: "开发团队", link: "/Team", activeMatch: '/' },
                     { text: "更新日志", link: "/UpdateLog" },
+                    { text: "项目起源", link: "/Beginning" },
                     { text: "归档声明", link: "/ArchivedNotice" },
                 ],
             },
@@ -94,6 +95,7 @@ export default defineConfig({
                 items: [
                     { text: "开发团队", link: "/Team" },
                     { text: "更新日志", link: "/UpdateLog" },
+                    { text: "项目起源", link: "/Beginning" },
                     { text: "归档声明", link: "/ArchivedNotice" },
                 ]
             },
