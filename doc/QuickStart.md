@@ -113,7 +113,7 @@
 
 ![img](./pic/PixivLogin1.png)
 
-![img](./pic/PixivLoginUIAccount.jpg)
+![img](./pic/PixivLoginUIAccount.png)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 

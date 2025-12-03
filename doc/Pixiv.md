@@ -164,7 +164,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 
 ![img](./pic/PixivLogin1.png)
 
-![img](./pic/PixivLoginUIAccount.jpg)
+![img](./pic/PixivLoginUIAccount.png)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 
@@ -194,7 +194,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 
 #### 2.2 修改作品浏览范围
 **我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录-账号设置**
-![img](./pic/PixivLoginUIAccount.jpg)
+![img](./pic/PixivLoginUIAccount.png)
 
 [Pixiv 设置](https://www.pixiv.net/settings/viewing) - 浏览与显示 - 年龄限制作品
 
@@ -484,7 +484,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
   - ⚠️ 登录/退出账号都要使用按钮
   - ⚠️ 订阅源登账号录后，书源最好也登录一次
 
-  ![img](./pic/PixivLoginUIAccount.jpg)
+  ![img](./pic/PixivLoginUIAccount.png)
 
   - 🅿️ 登录账号：登录 Pixiv 账号，并获取 cookie 和 csfrToken
   - ⚙️ 账号设置：Pixiv 的浏览范围设置
@@ -521,7 +521,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
   #### 5.0 账号功能
   - ⚠️ 登录/退出账号都要使用按钮
 
-  ![img](./pic/PixivLoginUIAccount.jpg)
+  ![img](./pic/PixivLoginUIAccount.png)
   - 🅿️ 登录账号：登录 Pixiv 账号，并获取 cookie 和 csfrToken
   - ⚙️ 账号设置：Pixiv 的浏览范围设置
   - 🔙 退出账号：退出 Pixiv 账号，并清理 cookie 和 csfrToken
@@ -530,7 +530,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 - <details><summary> 📢 书源功能 </summary>
 
   #### 5.1 书源功能
-  ![img](./pic/PixivLoginUISource.jpg)
+  ![img](./pic/PixivLoginUISource.png)
   - 🆙 更新书源：更新书源/更新订阅(同上)
   - 🔰 使用指南：打开 Github 文档(本页)
   - ✈️ 直连模式：直连模式（需登录账号）
@@ -539,32 +539,24 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 - <details><summary> 📃 小说功能 </summary>
 
   #### 5.2 小说功能
-  ![img](./pic/PixivLoginUINovels.jpg)
+  ![img](./pic/PixivLoginUINovels.png)
   - ❤️ 公开收藏：公开收藏、取消收藏
-  - ㊙️ 私密收藏：私密收藏、取消收藏
-  - 📌 当前章节：显示当前章节信息
-  - 
   - 📃 追更系列：追更系列、取消追更
   - ❤️ 收藏系列：公开收藏系列内的每篇小说（可追加收藏）
-  - 🖤 取消收藏：取消收藏单篇、取消收藏系列内的每篇小说
   - 
-  - 🏷 添加书签：添加书签、删除书签
+  - 🖤 取消收藏：取消收藏单篇、取消收藏系列内的每篇小说
   - ⭐️ 关注作者：关注作者、取消关注
   - 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
   - 
   - ✅ 发送评论：当前章节下发送评论（手动刷新章节，更新评论）
   - 🗑 删除评论：当前章节下删除评论（手动刷新章节，更新评论）
   - 🧹 清除缓存：清除当前章节的正文缓存（手动刷新章节，更新正文和评论）
-  - 
-  - ⤴️ 分享章节：打开当前章节的网址
-  - ⤴️ 分享系列：打开当前系列的网址（如无系列则打开章节网址）
-  - ⤴️ 分享作者：打开当前作者的网址
   </details>
 
 - <details><summary> ⚙️ 书源设置 </summary>
   
   #### 5.4 书源设置
-  ![img](./pic/PixivLoginUISettings.jpg)
+  ![img](./pic/PixivLoginUISettings.png)
   - ⚙️ 当前设置：显示当前设置
   - ⚙️ 默认设置：恢复默认设置
   - 👤 搜索作者：默认搜索作者
@@ -605,7 +597,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 - <details><summary> 🚫 屏蔽作者 </summary>
 
   #### 6.1 屏蔽作者
-  ![img](./pic/PixivLoginUINovels.jpg)
+  ![img](./pic/PixivLoginUINovels.png)
   - 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
   </details>
 
