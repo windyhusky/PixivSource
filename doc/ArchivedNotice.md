@@ -9,24 +9,36 @@
 </div>
 
 
-## 项目归档、书源仍然可用
-- 书源功能基本完善
-  - 已支持当前主流阅读软件
-  - 已支持 Pixiv 多数功能
-- 短期内无需继续维护
-  - 只要 Pixiv 的 Web API 没有较大变化，书源就能正常使用
-  - 欢迎接盘/Fork
+## 📂 项目归档：书源仍然可用
+> [!TIP]
+>
+> **2025年12月02日，项目归档**
+>
+> **2025年12月05日，取消归档，进入消极维护状态**
+> - **不承诺有后续更新**
+> - **不主动增加新特性**
+> - **不主动修复 BUG**
 
 
-## 另有替代
-- Pixiv App API 书源
+- **书源功能基本完善**
+  - **已支持当前主流阅读软件**
+  - **已支持 Pixiv 多数功能**
+- **短期内无需继续维护**
+  - **只要 Pixiv 的 Web API 没有较大变化，书源就能正常使用**
+  - **欢迎接盘/Fork**
 
-搜索更快，加载更快！快就是王道
 
-https://github.com/Luoyacheng/yuedu
+## 🔜 另有替代
+- [Pixiv App API 书源](https://github.com/Luoyacheng/yuedu)
+  - **搜索更快，加载更快！快就是王道**
+  - **强力推荐**
+- [轻小说机翻机器人](https://n.novelia.cc/forum/66a8e77866bff10c16e51d6a)
+  - 注册1个月后，可访问 NSFW 内容
+- [H 图书馆（hlib.cc）书源](https://github.com/Herokine/legado-source-hlib.cc)
+  - 暂未完成，未来可期
 
 
-## 无病呻吟
+## 🙊 无病呻吟
 <details><summary> 🙊 无病呻吟1 </summary>
 
 - 交流反馈群
@@ -98,3 +110,11 @@ https://github.com/Luoyacheng/yuedu
 
 ![img](pic/ArchivedNotice2.png)
 </details>
+
+
+## ☕️ [支持开发](./Sponsor.md)
+> [!NOTE]
+>
+> **如果书源帮到了你，欢迎请开发者喝杯咖啡**
+>
+> **你的鼓励是持续更新的动力～**
