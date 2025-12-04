@@ -30,7 +30,7 @@
 </details>
 
 
-## ⚡ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#LoginAccount) => [开始使用](./doc/Pixiv.md#AddNovel)
+## ⚡️ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#LoginAccount) => [开始使用](./doc/Pixiv.md#AddNovel)
 <details><summary> ➡️ 详细流程 </summary>
 
 ### 1.[下载阅读](./doc/Download.md)

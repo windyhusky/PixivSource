@@ -15,7 +15,7 @@
 > **——向你的亲朋好友分享 Pixiv 书源**
 > 
 > [✨臻享阅读](BetterExperience.md)、
-> [⚡快速开始](QuickStart.md) **将有助于你的分享**
+> [⚡️快速开始](QuickStart.md) **将有助于你的分享**
 
 > [!NOTE]
 >

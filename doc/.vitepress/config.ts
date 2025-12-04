@@ -40,7 +40,7 @@ export default defineConfig({
                 activeMatch: '/',
                 items: [
                     { text: "✨ 臻享阅读", link: "/BetterExperience", activeMatch: '/' },
-                    { text: "⚡️️ 快速开始", link: "/QuickStart" },
+                    { text: "⚡️️️ 快速开始", link: "/QuickStart" },
                     { text: "💾 备份恢复", link: "/WebdavBackup" , activeMatch: '/' },
                     { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
                     { text: "🦊 Linpx 书源", link: "/Linpx" },
@@ -66,7 +66,7 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                     { text: "✨ 臻享阅读", link: "/BetterExperience" },
-                    { text: "⚡️️ 快速开始", link: "/QuickStart" },
+                    { text: "⚡️️️ 快速开始", link: "/QuickStart" },
                 ]
             },
             {
