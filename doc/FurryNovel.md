@@ -125,7 +125,33 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
-## 四、添加小说，尽情使用 {#add-novel}
+## 四、配置阅读
+### 💾 [备份与恢复](WebdavBackup.md)
+> [!IMPORTANT]
+>
+> **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
+>
+> **需要配置 Webdav 服务，才能从云端恢复数据**
+>
+> **详见：[备份与恢复](WebdavBackup.md)**
+
+### 🔄 关闭自动刷新
+> [!IMPORTANT]
+>
+> **使用时，请在设置里，关闭自动刷新**
+>
+> **否则很容易触发触发请求限制，甚至封号**
+
+我的 - 其他设置 - 自动刷新
+![img](./pic/LegadoSettingsAutoRefreash.png)
+> [!NOTE]
+>
+> **截止到这里，你基本上就拥有了完整的阅读体验了**
+>
+> **可以像是使用常规阅读软件一样，使用开源阅读了**
+
+
+## 五、添加小说，尽情使用 {#add-novel}
 ### 1.阅读内部搜索
 <details><summary> 🔎 搜索小说 </summary>
 
@@ -239,30 +265,8 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
-## 五、故障排查 {#troubleshoot}
+## 六、故障排查 {#troubleshoot}
 > 详见：[故障排查与处理](./TroubleShoot.md)
-<details><summary> 🐞 故障排查 </summary>
-
-- <details><summary> 🐞 无法使用 </summary>
-
-  ### 1.确定书源可以正常使用
-  - 书架页面，搜索 `测试页面` 测试书源能否正常使用
-  - **⓪检查 兽人控小说站 书源是否导入**
-  - **①检查 兽人控小说站 书源是否启用**
-  - **②检查代理是否可用**
-  - **③检查阅读是否走了代理**
-  - **④检查网络是否可用**
-
-  **如果上述均无问题，但依然没有搜索结果，那就是书源需要更新了**
-  </details>
-
-- <details><summary> 🐞 图片无法显示 </summary>
-
-  ### 2.图片无法正常显示
-  #### 解决措施：关闭替换净化
-  ![img](./pic/ReplaceTurnOff.png)
-  </details>
-</details>
 
 
 ## ☕️ [支持开发](./Sponsor.md)
