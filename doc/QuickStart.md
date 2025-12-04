@@ -97,10 +97,10 @@
 
 
 ### 3.登录账号
+#### 3.1 [Pixiv 账号登录](./Pixiv#LoginAccount) {#LoginAccount}
 > [!NOTE]
 >
-> **Pixiv 及正版付费书源，需要登录账号才能阅读相关小说**
-#### 3.1 [Pixiv 账号登录](./Pixiv#LoginAccount) {#LoginAccount}
+> **有账号的网站，在书源里登录账号才能阅读相关小说**
 
 <details><summary> 🅿️ 登录 Pixiv 账号 </summary>
 
@@ -125,6 +125,10 @@
 
 
 #### 3.2. Linpx 与 兽人控小说站
+> [!NOTE]
+> 
+> **Linpx & 兽人控小说站 暂无账号体系，无需登录即可使用**
+
 <details><summary> ☑️ 检查网站能否访问 </summary>
 
 订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
@@ -168,5 +172,3 @@
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
 >
 > **你的鼓励是持续更新的动力～**
-
-### 此教程由 [@FurryReading](https://t.me/FurryReading) 提供

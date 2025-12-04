@@ -101,6 +101,12 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 
 
 ## 三、确保网站可以访问 {#CheckAccess}
+> [!NOTE]
+>
+> **有账号的网站，在书源里登录账号才能阅读相关小说**
+> 
+> **Linpx & 兽人控小说站 暂无账号体系，无需登录即可使用**
+
 <details><summary> ☑️ 检查网站能否访问 </summary>
 
 订阅 - 点击 Linpx / 兽人控小说站 - 打开网站

@@ -149,8 +149,9 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 
 ## 三、登录账号 {#LoginAccount}
 > [!NOTE]
-> 
-> **Pixiv 及正版付费书源，需要登录账号才能阅读相关小说**
+>
+> **有账号的网站，在书源里登录账号才能阅读相关小说**
+
 ### 1. 登录 Pixiv 账号
 
 <details><summary> 🅿️ 登录 Pixiv 账号 </summary>
