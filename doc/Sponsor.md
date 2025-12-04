@@ -22,13 +22,9 @@
 > **当然，也可以请开发者喝杯咖啡**
 > 
 > **你的鼓励是持续更新的动力～**
+
 - 💜 [爱发电 打赏 & 指导](https://afdian.com/a/DowneyRem)
 - ☕️ [Buy me a Coffee](https://ko-fi.com/downeyrem)
-- <details><summary>🧧 支付宝 红包 </summary>
-  <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin:20px auto;">
-    <img width="200" height="200" src="./pic/SponsorAlipayRedEnvelope.png" alt="支付宝赚钱红包" style="border:1px solid #eee;border-radius:8px;padding:8px;" />
-  </div>
-  </details>
 
 <div style="display:flex; justify-content:center; align-items:center; gap:40px; margin:20px auto;">
     <div style="text-align:center">
@@ -48,7 +44,11 @@
 
 ## 💰 打赏名单
 > [!TIP]
+> 
 > **按打赏本项目的先后顺序排名**
+>
+> 本表手动更新，数据更新会有少许延迟，还请见谅
+
 - 唐尼瑞姆 [@DowneyRem](https://github.com/DowneyRem)
 - 噬空
 - 迅迅龙龙
@@ -76,6 +76,7 @@
 > [!TIP]
 > 
 > **按帮助本项目的先后顺序排名**
+
 - 狗子 [@windyhusky](https://github.com/windyhusky)
 - 不世玄奇 [@bushixuanqi](https://github.com/bushixuanqi)
 - 洛娅橙 [@Luoyacheng](https://github.com/Luoyacheng)
