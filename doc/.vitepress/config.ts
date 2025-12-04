@@ -23,8 +23,8 @@ export default defineConfig({
             function gtag(){dataLayer.push(arguments);}
             gtag("js", new Date());
             gtag("config", "G-MJW9QDKTDH");`
-            ],
         ],
+    ],
     themeConfig: {
         logo: "/favicon.png",
         // siteTitle: false,   // 隐藏站点标题
@@ -34,28 +34,29 @@ export default defineConfig({
         },
         returnToTopLabel: "回到顶部",
         nav: [
-            { text: "主页", link: "/" },
+            { text: "🏠 主页", link: "/" },
             {
-                text: "使用指南",
+                text: "📌 使用指南",
                 activeMatch: '/',
                 items: [
-                    { text: "臻享阅读", link: "/BetterExperience", activeMatch: '/' },
-                    { text: "快速开始", link: "/QuickStart", activeMatch: '/' },
-                    { text: "Pixiv 书源", link: "/Pixiv" },
-                    { text: "Linpx 书源", link: "/Linpx" },
+                    { text: "✨ 臻享阅读", link: "/BetterExperience", activeMatch: '/' },
+                    { text: "⚡️️ 快速开始", link: "/QuickStart" },
+                    { text: "💾 备份恢复", link: "/WebdavBackup" , activeMatch: '/' },
+                    { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
+                    { text: "🦊 Linpx 书源", link: "/Linpx" },
                 ],
             },
             {
-                text: "开发动态",
-                activeMatch: '/',
+                text: "🚧 开发动态",
                 items: [
-                    { text: "开发团队", link: "/Team", activeMatch: '/' },
-                    { text: "更新日志", link: "/UpdateLog" },
-                    { text: "项目起源", link: "/Beginning" },
-                    { text: "归档声明", link: "/ArchivedNotice" },
+                    { text: "🤝 开发团队", link: "/Team" , activeMatch: '/' },
+                    { text: "📜 更新日志", link: "/UpdateLog" },
+                    { text: "🌱 项目起源", link: "/Beginning" },
+                    { text: "📂 归档声明", link: "/ArchivedNotice" },
+                    { text: "☕ 支持开发", link: "/Sponsor" , activeMatch: '/' },
                 ],
             },
-            { text: "打赏名单", link: "/Sponsor" }
+            { text: "☕ 打赏名单", link: "/Sponsor" },
         ],
         lightModeSwitchTitle: "",
         sidebarMenuLabel: "菜单",
@@ -64,47 +65,47 @@ export default defineConfig({
                 text: "快速开始",
                 collapsed: false,
                 items: [
-                    { text: "臻享阅读", link: "/BetterExperience" },
-                    { text: "快速开始", link: "/QuickStart" }
+                    { text: "✨ 臻享阅读", link: "/BetterExperience" },
+                    { text: "⚡️️ 快速开始", link: "/QuickStart" },
                 ]
             },
             {
                 text: "专用教程",
                 collapsed: false,
                 items: [
-                    { text: "Pixiv 书源", link: "/Pixiv" },
-                    { text: "Linpx 书源", link: "/Linpx" },
-                    { text: "兽人控小说站 书源", link: "/FurryNovel" },
+                    { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
+                    { text: "🦊 Linpx 书源", link: "/Linpx" },
+                    { text: "🐯 兽人控小说站 书源", link: "/FurryNovel" },
                 ]
             },
             {
                 text: "通用教程",
                 collapsed: true,
                 items: [
-                    { text: "下载阅读", link: "/Download" },
-                    { text: "导入书源", link: "/ImportBookSource" },
-                    { text: "导入订阅", link: "/ImportRssSource" },
-                    { text: "远程书籍", link: "/RemoteBooks" },
-                    { text: "备份恢复", link: "/WebdavBackup" },
-                    { text: "故障排查", link: "/TroubleShoot" }
+                    { text: "⬇️ 下载阅读", link: "/Download" },
+                    { text: "🚀 导入书源", link: "/ImportBookSource" },
+                    { text: "🚀 导入订阅", link: "/ImportRssSource" },
+                    { text: "☁️ 远程书籍", link: "/RemoteBooks" },
+                    { text: "💾 备份恢复", link: "/WebdavBackup" },
+                    { text: "🛠️ 故障排查", link: "/TroubleShoot" }
                 ]
             },
             {
                 text: "开发动态",
                 collapsed: false,
                 items: [
-                    { text: "开发团队", link: "/Team" },
-                    { text: "更新日志", link: "/UpdateLog" },
-                    { text: "项目起源", link: "/Beginning" },
-                    { text: "归档声明", link: "/ArchivedNotice" },
+                    { text: "🤝 开发团队", link: "/Team" },
+                    { text: "📜 更新日志", link: "/UpdateLog" },
+                    { text: "🌱 项目起源", link: "/Beginning" },
+                    { text: "📂 归档声明", link: "/ArchivedNotice" },
                 ]
             },
             {
                 text: "打赏记录",
                 collapsed: false,
                 items: [
-                    { text: "打赏名单", link: "/Sponsor" },
-                    { text: "打赏记录", link: "/Sponsor2" },
+                    { text: "☕ 打赏名单", link: "/Sponsor" },
+                    { text: "💰 打赏记录", link: "/Sponsor2" },
                 ]
             },
         ],
