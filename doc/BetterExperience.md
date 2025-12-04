@@ -49,11 +49,16 @@
 - [Pixiv Multi Platform](https://github.com/magic-cucumber/Pixiv-MultiPlatform)
 - [Pixiv Viewer](https://github.com/asadahimeka/pixiv-viewer)
 </details>
-迄今为止（2025.12），上述软件依然没有一个小说阅读体验超过了 Pixiv
+
+**迄今为止（2025.12），上述软件依然没有一个小说阅读体验超过了 Pixiv**
 
 
 ## 你是否想改善你的阅读体验呢？<br>如果你的回答是“是”，那么你可能需要：
 ## 开源阅读 + Pixiv 书源
+> [!NOTE]
+> 
+> **我们的目标：做最好的 Pixiv 的小说阅读器**
+
 
 ### 开源阅读软件
 > [!IMPORTANT]
@@ -76,14 +81,17 @@
 
 ### 🌟 发现页面
 添加书源后如图：
+
 ![img](./pic/LegadoDiscover.png)
 
 ### 👤 我的页面
 多数阅读软件的我的页面都有登录账号
 
 与常规阅读软件不同，【开源阅读】的我的页面，最上面却是【书源管理】
+
 ![img.png](pic/LegadoProfile.png)
-【书源管理】和【备份与恢复】这两项非常重要
+
+【书源管理】和【备份与恢复】这两项非常重要，稍后讲解
 </details>
 
 
@@ -107,7 +115,9 @@
 - 这里使用的是一键导入，不需要区分
 
 > [!IMPORTANT]
->
+> 
+> **点击下方链接，导入书源、订阅源**
+> 
 > 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
 >
 > 🐲 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
@@ -119,13 +129,13 @@
 ### ⚙️ 书源管理
 打开书源管理，有书源的话，点击书源菜单后，应该是这样的：
 ![img.png](pic/PixivLogin1.png)
-注意这里的【登录】和【调试】，这两个功能很重要
+注意这里的【登录】和【调试】，这两个功能很重要，我们稍后讲解
 
 
 ### 🅿️ 登录账号
 > [!NOTE]
->
-> **Pixiv 及正版付费书源，需要登录账号才能阅读相关小说**
+> 
+> **有账号的网站，在书源里登录账号才能阅读相关小说**
 
 #### 1. 开启代理工具
 此处略过，请自行学习，**最好开启【全局代理】**
@@ -198,8 +208,8 @@
 ![img](./pic/PixivLoginUI.png)
 
 
-### ✈️ 直连模式
-<details><summary> ✈️ 直连模式 </summary>
+### ✈ 直连模式
+<details><summary> ✈ 直连模式 </summary>
 
 登录账号后，可在登录界面打开直连模式
 ![img](pic/PixivIPDirect0.png)
@@ -214,8 +224,8 @@
 </details>
 
 
-### ⏺️ 互动功能
-<details><summary> ⏺️ 互动功能 </summary>
+### ⏺ 互动功能
+<details><summary> ⏺ 互动功能 </summary>
 
 ![img](./pic/PixivLoginUINovels.png)
 - ❤️ 公开收藏：公开收藏、取消收藏
@@ -259,3 +269,11 @@
 
 ### ▶️ 更多内容
 > 详见：[Pixiv 书源的导入与使用](./Pixiv.md)
+
+
+## ☕ [打赏开发](Sponsor.md)
+> [!NOTE]
+>
+> **如果书源帮到了你，欢迎请开发者喝杯咖啡**
+> 
+> **你的鼓励是持续更新的动力～**
