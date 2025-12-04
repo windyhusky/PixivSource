@@ -7,3 +7,13 @@
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
+
+
+
+
+## ☕️ [支持开发](./Sponsor.md)
+> [!NOTE]
+>
+> **如果书源帮到了你，欢迎请开发者喝杯咖啡**
+>
+> **你的鼓励是持续更新的动力～**

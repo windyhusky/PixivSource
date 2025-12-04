@@ -170,7 +170,7 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 
 - <details><summary> 🔗 支持链接 </summary>
 
-  ### 3.1 支持 兽人控小说站 链接：
+  ### 3.2 支持链接
   - 兽人控小说站 目录链接
   ```
   https://furrynovel.com/zh/novel/8312
@@ -253,8 +253,11 @@ https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
 </details>
 
 
-## ❤️ [支持开发](./Sponsor.md)
+## ☕️ [支持开发](./Sponsor.md)
 > [!NOTE]
-> 如果书源和教程帮到了你，欢迎给开发者一点打赏。你的鼓励是持续更新的动力～
+>
+> **如果书源帮到了你，欢迎请开发者喝杯咖啡**
+>
+> **你的鼓励是持续更新的动力～**
 
 ## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供

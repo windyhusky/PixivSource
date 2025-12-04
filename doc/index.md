@@ -49,7 +49,7 @@ hero:
       link: "https://t.me/PixivSource"
 
     - theme: alt
-      text: ☕ 打赏
+      text: ☕ 支持开发
       link: "Sponsor"
       
 

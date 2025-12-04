@@ -9,7 +9,7 @@
 
 
 ### 📂 [项目归档、书源仍然可用](doc/ArchivedNotice.md)
-### ✨ [臻享阅读：开源阅读 + Pixiv 书源](./doc/BetterExperience.md)
+### ✨ [臻享阅读：开源阅读 + Pixiv 书源——最好的 Pixiv 小说阅读器](./doc/BetterExperience.md)
 ### 🔰 [源起：为了更好的小说阅读体验](./doc/Beginning.md)
 <details><summary> ©️ 版权问题 </summary>
 
@@ -553,7 +553,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 
 ## 🗃 杂类
-### ❤️ [打赏开发者](./doc/Sponsor.md)
+### ☕️ [打赏开发](./doc/Sponsor.md)
 <details><summary> ✈ 社群链接 </summary>
 
 ### Telegram 频道 & 群组
