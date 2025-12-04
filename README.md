@@ -1,16 +1,15 @@
 <div align="center">
 <img width="150" height="150" src="doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
-### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
-### 🌐 [书源官网 & 使用指南](https://downeyrem.github.io/PixivSource)
+## 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+### 🏠 [书源官网 & 使用指南](https://downeyrem.github.io/PixivSource)
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-### ❤️ [Pixiv 书源项目 打赏名单](./doc/Sponsor.md)
+### ❤️ [Pixiv 书源项目 打赏名单](/https://downeyrem.github.io/PixivSource/Sponsor)
 </div>
 
 
-### 📂 [项目归档：书源仍然可用](doc/ArchivedNotice.md)
-### ✨ [臻享阅读：开源阅读 + Pixiv 书源——最好的 Pixiv 小说阅读器](./doc/BetterExperience.md)
-### 🔰 [项目源起：为了更好的小说阅读体验](./doc/Beginning.md)
+### 📂 [项目归档：书源仍然可用](https://downeyrem.github.io/PixivSource/ArchivedNotice)
+### ✨ [臻享阅读：开源阅读 + Pixiv 书源——最好的 Pixiv 小说阅读器](https://downeyrem.github.io/PixivSource/BetterExperience)
 <details><summary> ©️ 版权问题 </summary>
 
 #### 版权问题
@@ -30,10 +29,10 @@
 </details>
 
 
-## ⚡️ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：[下载阅读](./doc/Download.md) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./doc/Pixiv.md#LoginAccount) => [开始使用](./doc/Pixiv.md#AddNovel)
+## ⚡️ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：[下载阅读](https://downeyrem.github.io/PixivSource/Download) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](https://downeyrem.github.io/PixivSource/Pixiv#LoginAccount) => [开始使用](https://downeyrem.github.io/PixivSource/./#AddNovel)
 <details><summary> ➡️ 详细流程 </summary>
 
-### 1.[下载阅读](./doc/Download.md)
+### 1.[下载阅读](https://downeyrem.github.io/PixivSource/./)
 #### 1.1 下载阅读
 > ⬇️ 点击链接，下载 **【新共存版】** 安装包并安装软件
 >
@@ -553,6 +552,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 
 ## 🗃 杂类
+### 🌱 [项目源起：为了更好的小说阅读体验](https://downeyrem.github.io/PixivSource/Beginning)
 ### ☕️ [打赏开发](./doc/Sponsor.md)
 <details><summary> ✈ 社群链接 </summary>
 
@@ -582,7 +582,7 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 <details><summary> 📢 鸣谢 </summary>
 
 ### 鸣谢
-- ❤️ [Pixiv 书源项目 打赏名单](./doc/Sponsor.md)
+- ☕️ [Pixiv 书源项目 打赏名单](./doc/Sponsor.md)
 - 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)
