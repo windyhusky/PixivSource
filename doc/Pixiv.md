@@ -8,6 +8,11 @@
 #### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
+
+> [!TIP]
+> 
+> **从未使用过【开源阅读】的读者可以看这篇指南：**
+> [✨臻享阅读](BetterExperience.md)
 ### [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 
 

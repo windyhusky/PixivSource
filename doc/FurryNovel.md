@@ -8,7 +8,13 @@
 #### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
+
+> [!TIP]
+>
+> **从未使用过【开源阅读】的读者可以看这篇指南：**
+> [✨臻享阅读](BetterExperience.md)
 ### [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
+
 
 ## 本书源使用前提
 1. 使用阅读 3.0 版本

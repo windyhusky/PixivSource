@@ -8,7 +8,13 @@
 #### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
+
+> [!TIP]
+>
+> **从未使用过【开源阅读】的读者可以看这篇指南：**
+> [✨臻享阅读](BetterExperience.md)
 ### [Linpx](http://www.furrynovel.ink) 是第三方 免代理 Pixiv 小说镜像站，主要内容为**兽人小说**
+
 
 ## 本书源使用前提
 1. 使用阅读 3.0 版本
