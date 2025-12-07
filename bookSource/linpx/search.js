@@ -75,11 +75,12 @@ function getUserNovels(nidList) {
 function findUserNovels() {
     let novelList = []
     let username = String(java.get("key"))
-    let userArr = getUser(username, true)
+    let userArr = getUser(username, false)
     // 获取用户所有小说
     let uidList = userArr.filter(user => {
         return user.novels.length > 0
     }).map(user => user.id)
+    // java.log(JSON.stringify(uidList))
 
     if (uidList.length > 0) {
         let list = getWebviewJson(urlUsersDetailed(uidList))  // 包含所有小说数据
