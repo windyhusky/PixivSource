@@ -9,36 +9,6 @@ function objParse(obj) {
     })
 }
 
-function getUser(username, exactMatch) {
-    // let resp = getAjaxJson(urlSearchUsers(String(username)))
-    let resp = java.ajax(urlSearchUsers(String(username)))  // 兼容搜索链接
-    if (resp.startsWith("<!DOCTYPE html>") || JSON.parse(result).error) {
-        return []
-    }
-    resp = JSON.parse(resp)
-    if (resp.users.length === 0) {
-        return []
-    }
-    if (!exactMatch) {
-        return resp.users
-    }
-    // 只返回用户名完全一样的用户
-    return resp.users.filter(user => {
-        return user.name === username
-    })
-}
-
-function getUserNovels(nidList) {
-    let page = Number(java.get("page"))
-    // 分页
-    let list = nidList.slice((page - 1) * 20, page * 20)
-    if (list.length === 0) {
-        return []
-    }
-    // java.log(`NIDURL:${urlNovelsDetailed(list)}`)
-    return getWebviewJson(urlNovelsDetailed(list))
-}
-
 // 存储seriesID
 var first = true;
 var seriesSet = {
@@ -75,6 +45,35 @@ var seriesSet = {
     },
 };
 
+function getUser(username, exactMatch) {
+    // let resp = getAjaxJson(urlSearchUsers(String(username)))
+    let resp = java.ajax(urlSearchUsers(String(username)))  // 兼容搜索链接
+    if (resp.startsWith("<!DOCTYPE html>") || JSON.parse(result).error) {
+        return []
+    }
+    resp = JSON.parse(resp)
+    if (resp.users.length === 0) {
+        return []
+    }
+    if (!exactMatch) {
+        return resp.users
+    }
+    // 只返回用户名完全一样的用户
+    return resp.users.filter(user => {
+        return user.name === username
+    })
+}
+
+function getUserNovels(nidList) {
+    let page = Number(java.get("page"))
+    // 分页
+    let list = nidList.slice((page - 1) * 20, page * 20)
+    if (list.length === 0) {
+        return []
+    }
+    // java.log(`NIDURL:${urlNovelsDetailed(list)}`)
+    return getWebviewJson(urlNovelsDetailed(list))
+}
 
 function findUserNovels() {
     let novelList = []
