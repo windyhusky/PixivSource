@@ -46,13 +46,10 @@ var seriesSet = {
 };
 
 function getUser(username, exactMatch) {
-    // let resp = getAjaxJson(urlSearchUsers(String(username)))
-    let resp = java.ajax(urlSearchUsers(String(username)))  // 兼容搜索链接
-    if (resp.startsWith("<!DOCTYPE html>") || JSON.parse(result).error) {
-        return []
-    }
-    resp = JSON.parse(resp)
-    if (resp.users.length === 0) {
+    let resp = getAjaxJson(urlSearchUsers(String(username)))
+    java.log(urlSearchUsers(String(username)))
+    // java.log(JSON.stringify(resp))
+    if (resp.error || resp.users.length === 0) {
         return []
     }
     if (!exactMatch) {
@@ -132,14 +129,9 @@ function getConvertNovels() {
     return novels
 }
 
-function getLinkNovels() {
-    return util.getNovelRes(String(java.get("key")))
-}
-
 (() => {
     let novels = []
     novels = novels.concat(getNovels())
-    novels = novels.concat(getLinkNovels())
     novels = novels.concat(findUserNovels())
     if (util.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     // java.log(JSON.stringify(novels))
