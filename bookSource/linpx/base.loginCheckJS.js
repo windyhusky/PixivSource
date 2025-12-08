@@ -82,14 +82,15 @@ function publicFunc() {
                 novel.tags = []
             }
             // 兼容详情页
-            if (novel.content !== undefined) {
-                if (novel.series !== undefined && novel.series !== null) {
+            if (novel.content) {
+                if (novel.series) {
                     novel.seriesId = novel.series.id
                     novel.seriesTitle = novel.series.title
                 }
                 novel.textCount = novel.length = novel.content.length
             }
-            if (novel.seriesId === undefined || novel.seriesId === null) {
+
+            if (!novel.seriesId) {
                 novel.tags.unshift("单本")
                 novel.textCount = novel.length
                 novel.latestChapter = novel.title
@@ -102,7 +103,7 @@ function publicFunc() {
                 let series = this.getSeriesData(novel.seriesId)
                 novel.id = series.novels[0].id
                 novel.title = series.title
-                if (series.tags !== undefined && series.tags !== null) {
+                if (series.tags) {
                     novel.tags = novel.tags.concat(series.tags)
                 }
                 novel.tags.unshift("长篇")
