@@ -63,10 +63,18 @@ function publicFunc() {
         })
     }
 
+    // 获取 模拟系列数据
+    u.getSeriesData = function (seriesId) {
+        let series = getAjaxJson(urlSeriesDetailed(seriesId))
+        if (series.error) series = getFromCache(`LSeries${seriesId}`)
+        // java.log(JSON.stringify(series))
+        return series
+    }
+
     // 处理 novels 列表
     u.handNovels = function (novels) {
         novels.forEach(novel => {
-            // novel.id = novel.id
+            novel.id = novel._id
             // novel.title = novel.title
             // novel.userName = novel.userName
             // novel.tags = novel.tags
@@ -90,7 +98,8 @@ function publicFunc() {
                 novel.detailedUrl = urlNovelDetailed(novel.id)
             } else {
                 java.log(`正在获取系列小说：${novel.seriesId}`)
-                let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+                // let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+                let series = this.getSeriesData(novel.seriesId)
                 novel.id = series.novels[0].id
                 novel.title = series.title
                 if (series.tags !== undefined && series.tags !== null) {
