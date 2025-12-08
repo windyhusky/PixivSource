@@ -13,9 +13,11 @@ function novelHandler(novel) {
     novel = util.formatNovels(util.handNovels([novel]))[0]
     novel.detailedUrl = urlNovelUrl(novel.id)
     if (!novel.seriesId) {
-        novel.catalogUrl = urlNovelDetailed(novel.id)
+        book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
+        book.tocUrl = novel.catalogUrl = urlNovelDetailed(novel.id)
     } else {
-        novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
+        // book.bookUrl = novel.detailedUrl = urlSeriesUrl(novel.seriesId)
+        book.tocUrl = novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
     }
     return novel
 }
