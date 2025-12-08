@@ -11,14 +11,8 @@ function objParse(obj) {
 
 function novelHandler(novel) {
     novel = util.formatNovels(util.handNovels([novel]))[0]
-    novel.detailedUrl = urlNovelUrl(novel.id)
-    if (!novel.seriesId) {
-        book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
-        book.tocUrl = novel.catalogUrl = urlNovelDetailed(novel.id)
-    } else {
-        // book.bookUrl = novel.detailedUrl = urlSeriesUrl(novel.seriesId)
-        book.tocUrl = novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
-    }
+    book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
+    book.tocUrl = novel.catalogUrl = urlNovelDetailed(novel.id)
     return novel
 }
 
