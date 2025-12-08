@@ -21,6 +21,19 @@ function cacheGetAndSet(key, supplyFunc) {
     return JSON.parse(v)
 }
 
+function putInCache(objectName, object, saveSeconds) {
+    const {java, cache} = this
+    if (object === undefined) object = null
+    if (saveSeconds === undefined) saveSeconds = 0
+    cache.put(objectName, JSON.stringify(object), saveSeconds)
+}
+function getFromCache(objectName) {
+    const {java, cache} = this
+    let object = cache.get(objectName)
+    if (object === undefined) return null  // 兼容源阅
+    return JSON.parse(object)
+}
+
 function isHtmlString(str) {
     return str.startsWith("<!DOCTYPE html>")
 }

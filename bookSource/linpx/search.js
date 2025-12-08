@@ -101,13 +101,26 @@ function findUserNovels() {
         list.forEach(user => {
             // 按id降序排序-相当于按时间降序排序
             user.novels.reverse().forEach(nid => nidList.push(nid))
+            // series 数据写入缓存
+            user.series.forEach(series => {
+                series.novels = []
+                putInCache(`LSeries${series.id}`, series)
+            })
         })
         // java.log(JSON.stringify(nidList))
         getUserNovels(nidList).forEach(novel => {
             novelList.push(novel)
         })
     }
-    // java.log(JSON.stringify(novelList))
+
+    // series 数据写入缓存
+    novelList.forEach(novel =>{
+        if (novel.seriesId) {
+            let series = getFromCache(`LSeries${novel.seriesId}`)
+            series.novels.push(novel)
+            putInCache(`LSeries${novel.seriesId}`, series)
+        }
+    })
     return novelList.reverse()  // 新小说前置
 }
 
