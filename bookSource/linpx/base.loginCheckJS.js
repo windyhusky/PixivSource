@@ -162,7 +162,7 @@ function publicFunc() {
     u.getNovelRes = function (result) {
         let novelId = 0, res = []
         let isJson = isJsonString(result)
-        let isHtml = result.startsWith("<!DOCTYPE html>")
+        let isHtml = isHtmlString(result)
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
             let pattern = "(https?://)?(www\\.)?pixiv\\.net/novel/(series/)?\\d+"
@@ -200,7 +200,7 @@ function publicFunc() {
     u.getNovelResSeries = function (result) {
         let seriesId = 0, res = []
         let isJson = isJsonString(result)
-        let isHtml = result.startsWith("<!DOCTYPE html>")
+        let isHtml = isHtmlString(result)
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
             let pattern = "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/novel/(series/)?\\d+"
