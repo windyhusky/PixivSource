@@ -12,7 +12,7 @@ function objParse(obj) {
 function novelHandler(novel) {
     novel = util.formatNovels(util.handNovels([novel]))[0]
     novel.detailedUrl = urlNovelUrl(novel.id)
-    if (novel.seriesId === undefined || novel.seriesId === null) {
+    if (!novel.seriesId) {
         novel.catalogUrl = urlNovelDetailed(novel.id)
     } else {
         novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
