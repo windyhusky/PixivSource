@@ -49,9 +49,20 @@ function getUser(username, exactMatch) {
     let resp = getAjaxJson(urlSearchUsers(String(username)))
     java.log(urlSearchUsers(String(username)))
     // java.log(JSON.stringify(resp))
-    if (resp.error || resp.users.length === 0) {
+    if (resp.error || resp.total === 0) {
         return []
     }
+
+    // 去除无小说作者
+    resp.users = resp.users.filter(user => user.novels.length >= 1)
+    // java.log(JSON.stringify(resp))
+    if (resp.total > resp.users.length) {
+        java.log(`已经去除 ${resp.total - resp.users.length} 位无小说的作者`)
+    }
+    if (resp.users.length === 0) {
+        return []
+    }
+
     if (!exactMatch) {
         return resp.users
     }
@@ -88,10 +99,8 @@ function findUserNovels() {
         let nidList = []
         // 从两层数组中提取novelsId
         list.forEach(user => {
-            user.novels
-                // 按id降序排序-相当于按时间降序排序
-                .reverse()
-                .forEach(nid => nidList.push(nid))
+            // 按id降序排序-相当于按时间降序排序
+            user.novels.reverse().forEach(nid => nidList.push(nid))
         })
         // java.log(JSON.stringify(nidList))
         getUserNovels(nidList).forEach(novel => {
