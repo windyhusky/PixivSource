@@ -21,7 +21,7 @@ function oneShotHandler(resp) {
     resp.textCount =　resp.content.length
     resp.updateDate = timeTextFormat(resp.createDate)
     return [{
-        // title: resp.title.replace(RegExp(/^\s+|\s+$/g), ""),
+        title: resp.title.trim(),
         chapterUrl: urlNovel(resp.id),
         chapterInfo:`${resp.updateDate}　　${resp.textCount}字`
     }]
@@ -29,13 +29,14 @@ function oneShotHandler(resp) {
 
 function seriesHandler(resp) {
     resp.novels.forEach(novel => {
-        // novel.title = novel.title
+        novel.title = novel.title.trim()
         novel.chapterUrl = urlNovel(novel.id)
         // novel.updateDate = String(novel.coverUrl.match(RegExp("\\d{4}/\\d{2}/\\d{2}")))  //fake
         novel.detail = getAjaxJson(urlNovelDetailed(novel.id))
         novel.textCount = novel.detail.content.length
         novel.updateDate = timeTextFormat(novel.detail.createDate)
         novel.chapterInfo = `${novel.updateDate}　　${novel.textCount}字`
+        delete novel.detail
     })
     return resp.novels
 }
@@ -54,6 +55,7 @@ function seriesContentHandler(resp) {
     novels = novels.concat(prevNovels.reverse())
     novels = novels.concat(nextNovels)
     novels.forEach(novel => {
+        novel.title = novel.title.trim()
         novel.chapterUrl = urlNovel(novel.id)
         novel.detail = getAjaxJson(urlNovelDetailed(novel.id))
         novel.textCount = novel.detail.content.length
