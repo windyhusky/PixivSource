@@ -11,8 +11,8 @@ function objParse(obj) {
 
 function novelHandler(novel) {
     novel = util.formatNovels(util.handNovels([novel]))[0]
-    novel.detailedUrl = urlNovelUrl(novel.id)
-    novel.catalogUrl = urlNovelChapterInfo(novel.id)
+    book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
+    book.tocUrl = novel.catalogUrl = urlNovelChapterInfo(novel.id)
     return novel
 }
 
