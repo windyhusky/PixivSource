@@ -66,20 +66,10 @@ function seriesContentHandler(resp) {
 }
 
 (() => {
-    if (isJsonString(result)) {
-        result = JSON.parse(result)
-        if (result.series) {
-            return seriesHandler(result)
-        } else {
-            return oneShotHandler(result)
-        }
+    let resp = util.getNovelRes(result)
+    if (resp.novels !== undefined) {
+        return seriesHandler(resp) || seriesContentHandler(resp)
+    } else {
+        return oneShotHandler(resp)
     }
-
-    // let res = util.getNovelRes(result)
-    // java.log(JSON.stringify(res))
-    // if (res.novels !== undefined) {
-    //     return seriesHandler(res)
-    // } else {
-    //     return oneShotHandler(res)
-    // }
 })()

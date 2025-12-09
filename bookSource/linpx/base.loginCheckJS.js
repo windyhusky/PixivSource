@@ -170,6 +170,7 @@ function publicFunc() {
             if (isSeries) {
                 java.log(`系列ID：${id}`)
                 res = getAjaxJson(urlSeriesDetailed(id))
+                // res = this.getSeriesData(id)
             } else {
                 let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
                 let isNovel = baseUrl.match(new RegExp(pattern))
@@ -225,7 +226,8 @@ function publicFunc() {
         }
         if (seriesId) {
             java.log(`系列ID：${seriesId}`)
-            res = getAjaxJson(urlSeriesDetailed(seriesId))
+            // res = getAjaxJson(urlSeriesDetailed(seriesId))
+            res = this.getSeriesData(seriesId)
         }
         if (res.error) {
             java.log(`无法从 Linpx 获取当前小说`)
