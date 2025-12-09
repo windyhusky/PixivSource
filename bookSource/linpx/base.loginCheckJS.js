@@ -74,7 +74,7 @@ function publicFunc() {
     // 处理 novels 列表
     u.handNovels = function (novels) {
         novels.forEach(novel => {
-            novel.id = novel._id
+            if (!novel.id) novel.id = novel._id
             // novel.title = novel.title
             // novel.userName = novel.userName
             // novel.tags = novel.tags
