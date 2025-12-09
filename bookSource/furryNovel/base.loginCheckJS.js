@@ -93,7 +93,8 @@ function publicFunc() {
 
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
-            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
+            novel.title = novel.title.trim()
+            if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
             novel.tags2 = []
             for (let i in novel.tags) {
                 let tag = novel.tags[i]
