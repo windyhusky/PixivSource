@@ -63,6 +63,14 @@
 
 
 ## 一、下载并安装阅读 {#DownloadApp}
+> [!TIP]
+>
+> **Android 设备：阅读 + Pixiv 书源**
+>
+> **苹果设备可用：源阅 + Pixiv 书源**
+> **，详见：[下载阅读](Download.md)**
+
+
 ### 1.下载阅读 3.0 版本
 <details><summary> ⬇️ 下载阅读 </summary>
 

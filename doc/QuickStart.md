@@ -10,7 +10,16 @@
 
 
 ## 使用流程：[下载阅读](https://miaogongzi.lanzout.com/b01rgkhhe) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./QuickStart#LoginAccount) => [开始使用](./QuickStart#AddNovel)
+
 ### 1.下载软件
+> [!TIP]
+>
+> **Android 设备：阅读 + Pixiv 书源**
+>
+> **苹果设备可用：源阅 + Pixiv 书源**
+> **，详见：[下载阅读](Download.md)**
+
+
 #### 1.1 下载阅读
 > [!IMPORTANT]
 >
