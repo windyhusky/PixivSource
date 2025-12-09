@@ -203,7 +203,8 @@ function publicFunc() {
 
     u.formatIllusts = function (illusts) {
         illusts.forEach(illust => {
-            illust.title = illust.title.replace(RegExp(/^\s+|\s+$/g), "")
+            illust.title = illust.title.trim()
+            if (!illust.userName.startsWith("@")) illust.userName = `@${illust.userName}`
             illust.tags = Array.from(new Set(illust.tags))
             illust.tags = illust.tags.join(",")
             illust.coverUrl = urlCoverUrl(illust.coverUrl)
