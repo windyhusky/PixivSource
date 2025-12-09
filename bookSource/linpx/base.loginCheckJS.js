@@ -132,7 +132,8 @@ function publicFunc() {
     // 小说信息格式化
     u.formatNovels = function (novels) {
         novels.forEach(novel => {
-            novel.title = novel.title.replace(RegExp(/^\s+|\s+$/g), "")
+            novel.title = novel.title.trim()
+            if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
             novel.coverUrl = urlCoverUrl(novel.coverUrl)
             novel.createDate = dateFormat(novel.createDate)
 
