@@ -17,18 +17,18 @@ function urlNovel(novelId) {
     }
 }
 
-function oneShotHandler(res) {
-    res.textCount =　res.content.length
-    res.updateDate = timeTextFormat(res.createDate)
+function oneShotHandler(resp) {
+    resp.textCount =　resp.content.length
+    resp.updateDate = timeTextFormat(resp.createDate)
     return [{
-        // title: res.title.replace(RegExp(/^\s+|\s+$/g), ""),
-        chapterUrl: urlNovel(res.id),
-        chapterInfo:`${res.updateDate}　　${res.textCount}字`
+        // title: resp.title.replace(RegExp(/^\s+|\s+$/g), ""),
+        chapterUrl: urlNovel(resp.id),
+        chapterInfo:`${resp.updateDate}　　${resp.textCount}字`
     }]
 }
 
-function seriesHandler(res) {
-    res.novels.forEach(novel => {
+function seriesHandler(resp) {
+    resp.novels.forEach(novel => {
         // novel.title = novel.title
         novel.chapterUrl = urlNovel(novel.id)
         // novel.updateDate = String(novel.coverUrl.match(RegExp("\\d{4}/\\d{2}/\\d{2}")))  //fake
@@ -37,7 +37,7 @@ function seriesHandler(res) {
         novel.updateDate = timeTextFormat(novel.detail.createDate)
         novel.chapterInfo = `${novel.updateDate}　　${novel.textCount}字`
     })
-    return res.novels
+    return resp.novels
 }
 
 function seriesContentHandler(resp) {
