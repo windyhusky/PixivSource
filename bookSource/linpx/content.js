@@ -31,9 +31,8 @@ function getContent(res) {
             let matched2 = matched[i].match(RegExp("(\\d+)-?(\\d+)"))
             let temp = matched2[0].split("-")
             illustId = temp[0]
-            if (temp.length >= 2) {
-                order = temp[1]
-            }
+            if (temp.length >= 2) order = temp[1]
+            else order = 1
             content = content.replace(`${matched[i]}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
         }
     }
@@ -42,7 +41,6 @@ function getContent(res) {
     matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
     if (matched) {
         for (let i in matched) {
-            java.log(matched[i])
             content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}`)
         }
     }
