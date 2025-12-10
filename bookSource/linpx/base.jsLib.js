@@ -129,15 +129,57 @@ function urlSearchUsers(userName) {
 function urlCoverUrl(pxImgUrl) {
     return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
 }
-function urlIllustOriginal(illustId, order) {
-    // 使用 pixiv.cat 获取插图
-    let illustOriginal = `https://pixiv.re/${illustId}.png`
-    // let illustOriginal = `https://pixiv.nl/${illustId}.png`
-    if (order >= 1) {
-        illustOriginal = `https://pixiv.re/${illustId}-${order}.png`
-        // illustOriginal = `https://pixiv.nl/${illustId}-${order}.png`
+
+function urlIllustUrl(illustId) {
+    return `https://www.pixiv.net/artworks/${illustId}`
+}
+function urlIllustDetailed(illustId) {
+    return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
+}
+function urlIP(url) {
+    const {java, cache} = this
+    url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
+    let headers = {
+        "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
+        "X-Requested-With": "XMLHttpRequest",
+        "Host": "www.pixiv.net",
     }
-    return illustOriginal
+    return `${url}, ${JSON.stringify({headers: headers})}`
+}
+function urlPixivCoverUrl1(url) {
+    const {java, cache} = this
+    if (url.trim()) {
+        if (url.includes("i.pximg.net")) {
+            url = url.replace("https://i.pximg.net", "https://pixiv.tnt-wwxs-tz.workers.dev")
+        } else {
+            url = url.replace("https://s.pximg.net", "https://pixiv.tnt-wwxs-tz.workers.dev")
+        }
+    }
+    return url
+}
+
+function urlPixivCoverUrl(url) {
+    const {java, cache} = this
+    let headers = {"Referer": "https://www.pixiv.net/"}
+    if (url.trim()) {
+        if (url.includes("i.pximg.net")) {
+            url = url.replace("https://i.pximg.net", "https://210.140.139.133")
+            headers.host = "i.pximg.net"
+        } else {
+            url = url.replace("https://s.pximg.net", "https://210.140.139.133")
+            headers.host = "s.pximg.net"
+        }
+    }
+    return `${url}, ${JSON.stringify({headers: headers})}`
+}
+function urlIllustOriginal(illustId, order) {
+    const {java, cache} = this
+    if (!order || order <= 1) order = 1
+    let url = this.urlIP(urlIllustDetailed(illustId))
+    let illustOriginal = this.cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    }).body.urls.original || ""
+    return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
 function dateFormat(str) {
