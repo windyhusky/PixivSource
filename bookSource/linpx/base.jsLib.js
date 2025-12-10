@@ -127,7 +127,9 @@ function urlSearchUsers(userName) {
 }
 
 function urlCoverUrl(pxImgUrl) {
-    return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+    let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+    let headers = {"Referer": "https://furrynovel.ink/"}
+    return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
 function urlIllustUrl(illustId) {
@@ -146,18 +148,6 @@ function urlIP(url) {
     }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
-function urlPixivCoverUrl1(url) {
-    const {java, cache} = this
-    if (url.trim()) {
-        if (url.includes("i.pximg.net")) {
-            url = url.replace("https://i.pximg.net", "https://pixiv.tnt-wwxs-tz.workers.dev")
-        } else {
-            url = url.replace("https://s.pximg.net", "https://pixiv.tnt-wwxs-tz.workers.dev")
-        }
-    }
-    return url
-}
-
 function urlPixivCoverUrl(url) {
     const {java, cache} = this
     let headers = {"Referer": "https://www.pixiv.net/"}
