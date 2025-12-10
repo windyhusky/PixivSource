@@ -256,12 +256,15 @@ function urlCoverUrl(url) {
     }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
+function urlIllustUrl(illustId) {
+    return `https://www.pixiv.net/artworks/${illustId}`
+}
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
-    if (order <= 1) order = 1
+    if (!order || order <= 1) order = 1
     let url = this.urlIP(urlIllustDetailed(illustId))
     let illustOriginal = this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
