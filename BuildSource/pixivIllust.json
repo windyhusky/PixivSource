@@ -14,7 +14,7 @@
         "enabledExplore": true,
         "eventListener": false,
         "exploreUrl": "<JS CODE>",
-        "header": "{\"referer\":\"https://www.pixiv.net\"}",
+        "header": "{\"Referer\":\"https://www.pixiv.net\"}",
         "jsLib": "<JS CODE>",
         "lastUpdateTime": 1750694400251,
         "loginCheckJs": "<JS CODE>",
