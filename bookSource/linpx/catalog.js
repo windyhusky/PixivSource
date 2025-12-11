@@ -68,9 +68,11 @@ function seriesContentHandler(resp) {
 }
 
 (() => {
-    let resp = util.getNovelRes(result)
+    let resp = util.getNovelResSeries(result)
     if (resp.novels !== undefined) {
-        return seriesHandler(resp) || seriesContentHandler(resp)
+        return seriesHandler(resp)
+    } else if (resp.series) {
+        return seriesContentHandler(resp)
     } else {
         return oneShotHandler(resp)
     }

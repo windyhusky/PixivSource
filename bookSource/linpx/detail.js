@@ -12,7 +12,11 @@ function objParse(obj) {
 function novelHandler(novel) {
     novel = util.formatNovels(util.handNovels([novel]))[0]
     book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
-    book.tocUrl = novel.catalogUrl = urlNovelDetailed(novel.id)
+    if (!novel.seriesId) {
+        book.tocUrl = novel.catalogUrl = urlNovelDetailed(novel.id)
+    } else {
+        book.tocUrl = novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
+    }
     return novel
 }
 
