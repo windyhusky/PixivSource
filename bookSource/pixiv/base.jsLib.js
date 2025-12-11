@@ -158,7 +158,8 @@ function urlIP(url) {
             "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
             "X-Requested-With": "XMLHttpRequest",
             "Host": "www.pixiv.net",
-            "x-csrf-token": cache.get("pixivCsrfToken") || "",
+            "Referer": "https://www.pixiv.net/",
+            "X-csrf-token": cache.get("pixivCsrfToken") || "",
             "Cookie": cache.get("pixivCookie") || ""
         }
         return `${url}, ${JSON.stringify({headers: headers})}`
@@ -269,14 +270,19 @@ function urlIllustOriginal(illustId, order) {
     if (!order || order <= 1) order = 1
     let illustOriginal
     let url = this.urlIP(urlIllustDetailed(illustId))
-    try{
+    try {
         illustOriginal = this.cacheGetAndSet(url, () => {
             return JSON.parse(java.ajax(url))
         }).body.urls.original
-        java.log(illustOriginal)
+        if (!illustOriginal) throw Error("e")
     } catch (e) {
-        illustOriginal = ""
+        let illustThumb = this.cacheGetAndSet(url, () => {
+            return JSON.parse(java.ajax(url))
+        }).body.userIllusts[illustId].url
+        let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
+        illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
     }
+    // java.log(illustOriginal)
     return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 function urlEmojiUrl(emojiId) {
