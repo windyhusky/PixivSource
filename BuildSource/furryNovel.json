@@ -14,7 +14,7 @@
         "enabledExplore": true,
         "eventListener": true,
         "exploreUrl": "<JS CODE>",
-        "header": "{\"Referer\": \"https://furrynovel.com/\"}",
+        "header": "",
         "jsLib": "<JS CODE>",
         "lastUpdateTime": 1750694400251,
         "loginCheckJs": "<JS CODE>",
