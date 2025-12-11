@@ -105,9 +105,10 @@ function urlIP(url) {
     const {java, cache} = this
     url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
     let headers = {
-        "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
+        "User-Agent": this.getWebViewUA(),
         "X-Requested-With": "XMLHttpRequest",
         "Host": "www.pixiv.net",
+        "Referer": "https://www.pixiv.net/"
     }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
@@ -119,10 +120,10 @@ function urlPixivCoverUrl(url) {
     if (url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
-            headers.host = "i.pximg.net"
+            headers.Host = "i.pximg.net"
         } else {
             url = url.replace("https://s.pximg.net", "https://210.140.139.133")
-            headers.host = "s.pximg.net"
+            headers.Host = "s.pximg.net"
         }
     }
     return `${url}, ${JSON.stringify({headers: headers})}`
@@ -132,16 +133,22 @@ function urlIllustOriginal(illustId, order) {
     if (!order || order <= 1) order = 1
     let illustOriginal
     let url = this.urlIP(urlIllustDetailed(illustId))
+
     try {
         illustOriginal = this.cacheGetAndSet(url, () => {
             return JSON.parse(java.ajax(url))
         }).body.urls.original
-        java.log(illustOriginal)
+        if (!illustOriginal) throw Error("e")
     } catch (e) {
-        illustOriginal = ""
+        let illustThumb = this.cacheGetAndSet(url, () => {
+            return JSON.parse(java.ajax(url))
+        }).body.userIllusts[illustId].url
+        let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
+        illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
     }
-    // return this.urlLinpxCoverUrl(illustOriginal).replace(`_p0`, `_p${order - 1}`)
-    return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
+    // java.log(illustOriginal)
+    // return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
+    return this.urlLinpxCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
 function urlSourceUrl(source, oneShot, sourceId) {
