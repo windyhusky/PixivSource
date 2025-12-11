@@ -236,6 +236,7 @@ function sleepToast(text, second) {
 
 function updateSource() {
     const {java, source} = this
+    java.longToast("🆙 更新书源\n\nJsdelivr CDN 更新有延迟\nGithub 更新需代理")
     let onlineSource, comment, sourceName, sourceNameCapitalize, index = 0
     if (source.bookSourceUrl.includes("pixiv")) sourceName = "pixiv"
     else if (source.bookSourceUrl.includes("furrynovel")) sourceName = "linpx"
@@ -260,6 +261,7 @@ function updateSource() {
         }
     }
     comment = onlineSource.bookSourceComment.split("\n")
+    // onlineSource = source
     // comment = source.bookSourceComment.split("\n")
 
     let htm = `
@@ -333,7 +335,7 @@ function updateSource() {
         </tr>
     </table>
 </body>
-</html>`;
-    java.startBrowser(htm,'更新书源');
+</html>`
+    java.startBrowser(`data:text/html;charset=utf-8;base64, ${java.base64Encode(htm)}`, '更新书源')
     return []
 }
