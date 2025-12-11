@@ -241,6 +241,8 @@ function urlSearchUser(userName, full) {
 
 function urlCoverUrl(url) {
     const {java, cache} = this
+    if (!url.trim()) return ""
+
     let settings = this.getFromCache("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
 
@@ -265,10 +267,16 @@ function urlIllustDetailed(illustId) {
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
+    let illustOriginal
     let url = this.urlIP(urlIllustDetailed(illustId))
-    let illustOriginal = this.cacheGetAndSet(url, () => {
-        return JSON.parse(java.ajax(url))
-    }).body.urls.original || ""
+    try{
+        illustOriginal = this.cacheGetAndSet(url, () => {
+            return JSON.parse(java.ajax(url))
+        }).body.urls.original
+        java.log(illustOriginal)
+    } catch (e) {
+        illustOriginal = ""
+    }
     return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 function urlEmojiUrl(emojiId) {
