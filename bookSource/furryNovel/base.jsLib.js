@@ -90,8 +90,11 @@ function urlLinpxNovelDetail(sourceId) {
     return `https://api.furrynovel.ink/pixiv/novel/${sourceId}/cache`
 }
 function urlLinpxCoverUrl(pxImgUrl) {
-    return `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+    let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+    let headers = {"Referer": "https://furrynovel.ink/"}
+    return `${url}, ${JSON.stringify({headers: headers})}`
 }
+
 function urlIllustOriginal(illustId, order) {
     // 使用 pixiv.cat 获取插图
     let illustOriginal = `https://pixiv.re/${illustId}.png`
