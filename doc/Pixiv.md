@@ -250,7 +250,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ### 1.阅读内部搜索 {#Search}
 <details><summary> 🔍 搜索小说 </summary>
 
-书架页面 - 放大镜 - 输入关键词 - 搜索小说
+**书架页面 - 放大镜 - 输入关键词 - 搜索小说**
 
 - <details><summary> 🔍 搜索小说 </summary>
 
@@ -347,7 +347,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ### 2.发现更多小说
 <details><summary> ⭐️ 发现小说 </summary>
 
-发现页面 - 点击各按钮
+**发现页面 - 点击各按钮**
 - <details><summary> ⭐️ 常规发现 </summary>
 
   #### 2.0 常规发现
@@ -445,7 +445,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ### 3.添加网址 {#AddUrl}
 <details><summary> 🔗 添加网址 </summary>
 
-- 书架 - 菜单 - 添加网址 - 粘贴小说链接 
+- **书架 - 菜单 - 添加网址 - 粘贴小说链接** 
 - 可以同时添加多个小说的链接
 - <details><summary> 🔗 实际操作 </summary>
 
@@ -555,6 +555,18 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 
 ### 5.书源 登录界面
 <details><summary> 🅿️ 登录界面 </summary>
+
+
+- <details><summary> 🅿️ 打开登录界面 </summary>
+  
+  - **①我的 - 书源管理 - Pixiv 小说 - 登录**
+  
+  ![img](./pic/PixivLogin1.png)
+  
+  - **②小说阅读界面 - Pixiv 小说 - 登录**
+  
+  ![img](./pic/PixivLogin0.png)
+  </details>
 
 - <details><summary> 🅿️ 账号功能（同上） </summary>
 
