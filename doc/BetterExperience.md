@@ -11,69 +11,74 @@
 
 ## 你是否被下面的问题所困扰？
 ### 官方 APP 的小说阅读体验堪忧
-<details><summary> 👎 阅读体验堪忧 </summary>
+<details><summary><strong> 👎 阅读体验堪忧 </strong></summary>
 
 - 小说功能缺陷
-  - 没有小说书架
-  - 没有首行缩进
-  - 不能保存阅读进度
-  - 拉黑功能并非屏蔽
+  - **没有小说书架**
+  - **没有首行缩进**
+  - **不能保存阅读进度**
+  - **拉黑功能并非屏蔽**
 - 搜索功能缺陷
-  - 默认搜索标签，而非小说名称
-  - 不能直接搜索作者名称，获取其小说
+  - **默认搜索标签，而非小说名称**
+  - **不能直接搜索作者名称，获取其小说**
 - 基础功能却需要付费
-  - 浏览记录是 Vip 功能
-  - 屏蔽标签是 Vip 功能
-  - 屏蔽作者是 Vip 功能
+  - **浏览记录是 Vip 功能**
+  - **屏蔽标签是 Vip 功能**
+  - **屏蔽作者是 Vip 功能**
 </details>
 
 
 ### 第三方 APP 的小说阅读体验不佳
+<details><summary><strong> 😞 阅读体验不佳 </strong></summary>
+
+- <details><summary> 🈚️ 无小说功能 </summary>
+
+  - [PixEz Viewer](https://github.com/ultranity/Pix-EzViewer)
+  - [Pi Pixiv](https://github.com/darriousliu/PiPixiv)
+  </details>
+
+- <details><summary> 👎 阅读体验明显不如 Pixiv </summary>
+
+  - [Pixiv Shaft](https://github.com/CeuiLiSA/Pixiv-Shaft) 
+  - [Pixiv Artvier](https://github.com/kerrinz/pixiv-artvier) 
+  - [Pixes](https://github.com/wgh136/pixes)
+  </details>
+
+- <details><summary> 😞 阅读体验略逊色于 Pixiv </summary>
+
+  - [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)
+  - [Pixiv Multi Platform](https://github.com/magic-cucumber/Pixiv-MultiPlatform)
+  - [Pixiv Viewer](https://github.com/asadahimeka/pixiv-viewer)
+  </details>
+</details>
+
 > 软件整理自 https://linux.do/t/topic/657910
-<details><summary> 🈚️ 无小说功能 </summary>
-
-- [PixEz Viewer](https://github.com/ultranity/Pix-EzViewer)
-- [Pi Pixiv](https://github.com/darriousliu/PiPixiv)
-</details>
-
-<details><summary> 👎 阅读体验明显不如 Pixiv </summary>
-
-- [Pixiv Shaft](https://github.com/CeuiLiSA/Pixiv-Shaft) 
-- [Pixiv Artvier](https://github.com/kerrinz/pixiv-artvier) 
-- [Pixes](https://github.com/wgh136/pixes)
-</details>
-
-<details><summary> 😞 阅读体验略逊色于 Pixiv </summary>
-
-- [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)
-- [Pixiv Multi Platform](https://github.com/magic-cucumber/Pixiv-MultiPlatform)
-- [Pixiv Viewer](https://github.com/asadahimeka/pixiv-viewer)
-</details>
 
 **迄今为止（2025.12），上述软件的小说阅读体验，依然没有一个超过了 Pixiv**
 
 
 ## 你是否想改善阅读体验呢？<br>如果你的回答是“是的”<br>那么你可能需要：
 ## 开源阅读 + Pixiv 书源
-> [!TIP]
-> 
-> **Android 设备：阅读 + Pixiv 书源**
-> 
-> **苹果设备可用：源阅 + Pixiv 书源**
-> **，详见：[下载阅读](Download.md)**
-
 > [!NOTE]
-> 
+>
 > **我们的目标：做最好的 Pixiv 的小说阅读器**
 
-
-### 开源阅读软件
+### ⬇️ 下载阅读
 > [!IMPORTANT]
 >
 > 点击链接，下载 **【新共存版】** 安装包并安装软件
 >
 > https://miaogongzi.lanzout.com/b01rgkhhe
 
+> [!TIP]
+>
+> **Android 设备：阅读 + Pixiv 书源**
+>
+> **苹果设备可用：源阅 + Pixiv 书源**
+> **，详见：[下载阅读](Download.md)**
+
+
+## 软件介绍
 像常规阅读软件一样，也有：书架、搜索、发现、我的 等页面
 
 <details><summary> 🖼 软件界面 </summary>
@@ -109,27 +114,31 @@
 > 
 > **提供小说资源的是【书源】，准确来说是书源内部的网站**
 
-有什么网站的书源，就可以看什么网站的小说
+**有什么网站的书源，就可以看什么网站的小说**
 - 有【起点】书源，就可以看 起点网文
 - 有【番茄】书源，就可以看 番茄小说
 - 有【Pixiv】书源，就可以看 Pixiv 的小说
 
 ### 🌐 订阅源
-既然提到了书源，也顺便说一下订阅源
 > [!NOTE]
-> 订阅源类似于RSS，甚至可以听音乐看视频
-- 书源、订阅源的内部数据不同，添加源（网络导入、规则订阅）的时候需要区分一下
-- 这里使用的是一键导入，不需要区分
+> 
+> 「订阅源类似于RSS，甚至可以听音乐看视频」
+> 
+> **这里提供的订阅源类似于浏览器书签，可以在阅读软件内快速访问相关网站**
 
+
+### 🚀 导入书源 & 订阅源
+- **书源、订阅源的内部数据不同，添加源（网络导入、规则订阅）的时候需要区分**
+- 这里使用的是**一键导入，不需要区分二者**
 > [!IMPORTANT]
 > 
-> **点击下方链接，导入书源、订阅源**
+> **点击下方链接，一键导入书源、订阅源**
 > 
 > 🅿️ [一键导入 Pixiv 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
 >
 > 🐲 [一键导入 Pixiv 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
-- 一般来说，书源开发者同时提供书源和订阅源的话，最好都要导入
-- 这样才能保证最佳的使用体验
+- 一般来说，书源开发者**同时提供书源和订阅源的话，最好都要导入**
+- **这样才能保证最佳的使用体验**
 
 
 ## 书源配置
@@ -160,8 +169,8 @@
 > [!TIP]
 >
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
-- 登录成功后，就可以使用 Pixiv 书源查看小说了
-- 但还请注意，此时阅读的配置还没有全部完成
+- **登录成功后，就可以使用 Pixiv 书源查看小说了**
+- 但还请注意，**此时阅读的配置还没有全部完成**
 
 
 ## 阅读设置
@@ -275,7 +284,7 @@
 </details>
 
 ### ▶️ 更多内容
-> 详见：[Pixiv 书源的导入与使用](./Pixiv.md)
+> 详见：[Pixiv 书源指南](./Pixiv.md#AddNovel)
 
 
 ## ☕️ [支持开发](./Sponsor.md)
