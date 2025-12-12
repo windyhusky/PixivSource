@@ -105,7 +105,7 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                     { text: "☕ 打赏名单", link: "/Sponsor" },
-                    { text: "💰 打赏记录", link: "/Sponsor2" },
+                    { text: "💵 打赏记录", link: "/Sponsor2" },
                 ]
             },
         ],
