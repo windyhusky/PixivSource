@@ -10,6 +10,38 @@
 
 
 ## ⏱️ 近期更新
+### ⬆️ 更新 252
+- 正文：优化 pixivimage 图片替换
+  - Pixiv 小说、Linpx、FN
+
+- 搜索：搜索作者、搜索标签
+  - Pixiv 漫画、Linpx、FN
+
+- Linpx、FN
+  - 书源：手动管理请求头
+  - 登录检测：优化小说名称
+  - JSLib：添加 Pixiv 直连方法获取图片链接
+  - JSLib：拼接图片链接
+  - 正文：优化 pixivimage 图片链接替换
+  - 正文：uploadedimage 图片尝试使用 Pixiv 直连
+  
+- Linpx
+  - 搜索：优化搜索作者
+  - 搜索：关闭搜索链接
+  - 登录检测：优化缓存系列小说
+  - 目录：获取缓存小说
+  - 目录：修复系列小说无目录
+  
+
+### ⬆️ 更新 251
+- ⚙️ Pixiv 小说设置
+  - 优化 设置初始化
+  - 修复 设置显示错误
+  - 优化 相关代码
+- 🏠 站点教程新增
+  - ✨ [臻享阅读](BetterExperience.md)
+
+
 ### ⬆️ 更新 250
 - 🔗 优化：分享链接：
   - Pixiv 小说、Linpx、FN
@@ -34,6 +66,35 @@
   - Pixiv、Linnx、FurryNovel
     - ✅ Plus、Beta 版可用
     - 🚫 正式版、MD3、源阅 不可用
+
+
+### ⬆️ 更新 248
+- 添加 书源主页
+- 兼容正式版 325
+
+
+### ⬆️ 更新 247
+- ⚙️修复设置未初始化时，直连模式开关引起的 bug
+  - Pixiv 书源
+- 🌐 新增书源发布页 
+  - https://downeyrem.github.io/PixivSource
+- 🔗 替换指南、赞助链接：
+  - Pixiv 书源
+  - Linpx 书源
+  - FurryNovel 书源
+  - BTSRK 订阅源
+
+
+### ⬆️ 更新 246
+- Pixiv、Linpx、FurryNovel、BTSRK 订阅源
+  - 添加赞助入口
+
+
+### ⬆️ 更新 245
+- Pixiv 小说、备用小说
+  - 添加网址：添加 首篇有权限限制的系列
+  - 优化正文：替换 不存在插图的链接 为空
+  - 修正拼写错误
 
 
 ### ⬆️ 未知更新
