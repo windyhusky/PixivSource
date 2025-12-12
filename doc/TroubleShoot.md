@@ -9,6 +9,12 @@
 </div>
 
 
+> [!TIP]
+>
+> **从未使用过【开源阅读】的读者可以看这篇指南：**
+> [✨臻享阅读](BetterExperience.md)
+
+
 ## 5.故障排查与处理
 ### 5.1 搜索无结果
 <details><summary> 🔍 搜索无结果 </summary>

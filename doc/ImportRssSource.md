@@ -9,6 +9,12 @@
 </div>
 
 
+> [!TIP]
+>
+> **从未使用过【开源阅读】的读者可以看这篇指南：**
+> [✨臻享阅读](BetterExperience.md)
+
+
 ## 3.导入订阅源
 ## 3.0 订阅源来源
 - [Legado｜开源阅读 | 频道](https://t.me/legado_channels)

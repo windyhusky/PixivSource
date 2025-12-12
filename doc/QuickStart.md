@@ -9,6 +9,12 @@
 </div>
 
 
+> [!TIP]
+>
+> **从未使用过【开源阅读】的读者可以看这篇指南：**
+> [✨臻享阅读](BetterExperience.md)
+
+
 ## 使用流程：[下载阅读](https://miaogongzi.lanzout.com/b01rgkhhe) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./QuickStart#LoginAccount) => [开始使用](./QuickStart#AddNovel)
 
 ### 1.下载软件

@@ -9,6 +9,12 @@
 </div>
 
 
+> [!TIP]
+>
+> **从未使用过【开源阅读】的读者可以看这篇指南：**
+> [✨臻享阅读](BetterExperience.md)
+
+
 ## 远程书籍
 ### 1.远程书籍配置
 <details><summary> ☁️ 配置远程书籍 </summary>
