@@ -7,7 +7,7 @@ description: 最好的 Pixiv 小说阅读器。——开源阅读 + Pixiv 书源
 hero:
   name: PixivSource
   text: 最好的 Pixiv 小说软件<br>开源阅读 + Pixiv 书源
-  tagline: 你值得拥有，更好的小说阅读体验
+  tagline: 你值得拥有，更好的小说阅读体验<br>⬇️ 点击【✨ 臻享阅读】改善你的阅读体验吧
 
 #  image:
 #    src: "/favicon-512x512.png"
