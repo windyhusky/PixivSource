@@ -14,6 +14,9 @@ function handlerFactory() {
     if (baseUrl.includes("https://cdn.jsdelivr.net")) {
         return () => {updateSource(); return []}
     }
+    if (baseUrl.includes("github")) {
+        return () => {startBrowser(baseUrl, ""); return []}
+    }
     if (!isLogin()) {
         return handlerNoLogin()
     }
