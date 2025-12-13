@@ -24,6 +24,9 @@ function startBrowser(url, title) {
     java.startBrowser(`${url}, ${headers}`, title)
 }
 
+function startGithub() {
+    startBrowser("https://github.com/DowneyRem/PixivSource", "书源介绍")
+}
 function startGithubIntroduction() {
     startBrowser("https://downeyrem.github.io/PixivSource/BetterExperience", "阅读指南")
 }

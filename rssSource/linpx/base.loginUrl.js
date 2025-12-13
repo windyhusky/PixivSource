@@ -20,25 +20,24 @@ function startBrowser(url, title) {
     java.startBrowser(`${url}, ${headers}`, title)
 }
 
-// function updateSource() {
-//     java.openUrl("legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json")
-// }
-
 function startGithub() {
     startBrowser("https://github.com/DowneyRem/PixivSource", "书源介绍")
+}
+function startGithubIntroduction() {
+    startBrowser("https://downeyrem.github.io/PixivSource/BetterExperience", "阅读指南")
+}
+function startGithubReadme() {
+    startBrowser("https://downeyrem.github.io/PixivSource/Linpx", "书源指南")
 }
 function startGithubIssue() {
     startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
 }
-function startGithubReadme() {
-    startBrowser("https://downeyrem.github.io/PixivSource/Pixiv", "使用指南")
+function startGithubLogin() {
+    startBrowser("https://github.com/login?return_to=https://github.com/DowneyRem/PixivSource", "收藏项目")
 }
 function startGithubSponsor() {
     startBrowser("https://downeyrem.github.io/PixivSource/Sponsor", "赞助开发")
 }
-function startTelegramPixivSource() {
+function startTelegram() {
     startBrowser("https://t.me/PixivSource", "Pixiv 书源频道")
-}
-function startTelegramFurryReading() {
-    startBrowser("https://t.me/FurryReading", "兽人阅读频道")
 }

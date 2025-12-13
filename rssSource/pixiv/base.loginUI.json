@@ -65,7 +65,7 @@
     {
         "name": "✈️ 书源频道",
         "type": "button",
-        "action": "startTelegramPixivSource()",
+        "action": "startTelegram()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1

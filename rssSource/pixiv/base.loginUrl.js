@@ -85,6 +85,9 @@ function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
 
+function startGithub() {
+    startBrowser("https://github.com/DowneyRem/PixivSource", "书源介绍")
+}
 function startGithubIntroduction() {
     startBrowser("https://downeyrem.github.io/PixivSource/BetterExperience", "阅读指南")
 }
