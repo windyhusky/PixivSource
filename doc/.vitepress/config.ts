@@ -85,8 +85,8 @@ export default defineConfig({
                     { text: "⬇️ 下载阅读", link: "/Download" },
                     { text: "🚀 导入书源", link: "/ImportBookSource" },
                     { text: "🚀 导入订阅", link: "/ImportRssSource" },
-                    { text: "☁️ 远程书籍", link: "/RemoteBooks" },
                     { text: "💾 备份恢复", link: "/WebdavBackup" },
+                    { text: "☁️ 远程书籍", link: "/RemoteBooks" },
                     { text: "🛠️ 故障排查", link: "/TroubleShoot" }
                 ]
             },
