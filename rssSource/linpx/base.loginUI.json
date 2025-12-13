@@ -36,6 +36,33 @@
         }
     },
     {
+        "name": "\uD83D\uDCBE 备份恢复",
+        "type": "button",
+        "action": "startGithubWebdavBackup()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "☁️ 远程书籍",
+        "type": "button",
+        "action": "startGithubRemoteBooks()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC3A 兽人阅读",
+        "type": "button",
+        "action": "startTelegramFurryReading()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
         "name": "✈️ 书源频道",
         "type": "button",
         "action": "startTelegram()",

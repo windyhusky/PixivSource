@@ -20,9 +20,6 @@ function startBrowser(url, title) {
     java.startBrowser(`${url}, ${headers}`, title)
 }
 
-function startGithub() {
-    startBrowser("https://github.com/DowneyRem/PixivSource", "书源介绍")
-}
 function startGithubIntroduction() {
     startBrowser("https://downeyrem.github.io/PixivSource/BetterExperience", "阅读指南")
 }
@@ -32,12 +29,25 @@ function startGithubReadme() {
 function startGithubIssue() {
     startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
 }
-function startGithubLogin() {
-    startBrowser("https://github.com/login?return_to=https://github.com/DowneyRem/PixivSource", "收藏项目")
+function startGithub() {
+    startBrowser("https://github.com/DowneyRem/PixivSource", "书源介绍")
+}
+function startGithubWebdavBackup() {
+    startBrowser("https://downeyrem.github.io/PixivSource/WebdavBackup", "远程书籍")
+}
+function startGithubRemoteBooks() {
+    startBrowser("https://downeyrem.github.io/PixivSource/RemoteBooks", "远程书籍")
 }
 function startGithubSponsor() {
     startBrowser("https://downeyrem.github.io/PixivSource/Sponsor", "支持开发")
 }
+
 function startTelegram() {
     startBrowser("https://t.me/PixivSource", "书源频道")
+}
+function startTelegramLegadoBeta() {
+    startBrowser("https://t.me/Legado_Beta", "阅读频道")
+}
+function startTelegramFurryReading() {
+    startBrowser("https://t.me/FurryReading", "兽人阅读频道")
 }
