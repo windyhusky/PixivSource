@@ -36,7 +36,7 @@ function startGithubLogin() {
     startBrowser("https://github.com/login?return_to=https://github.com/DowneyRem/PixivSource", "收藏项目")
 }
 function startGithubSponsor() {
-    startBrowser("https://downeyrem.github.io/PixivSource/Sponsor", "赞助开发")
+    startBrowser("https://downeyrem.github.io/PixivSource/Sponsor", "支持开发")
 }
 function startTelegram() {
     startBrowser("https://t.me/PixivSource", "书源频道")
