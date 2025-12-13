@@ -27,42 +27,16 @@
         }
     },
     {
-        "name": "🆙 更新书源",
+        "name": "✨ 臻享阅读",
         "type": "button",
-        "action": "updateSource()",
+        "action": "startGithubIntroduction()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "\uD83D\uDCCC 简要教程",
-        "type": "button",
-        "action": "readMe()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {   "name": "\uD83D\uDD0D 搜索教程",
-        "type": "button",
-        "action": "readMeSearch()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "⭐️ 收藏项目",
-        "type": "button",
-        "action": "startGithub()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "\uD83D\uDD30 使用指南",
+        "name": "\uD83D\uDCD8 书源指南",
         "type": "button",
         "action": "startGithubReadme()",
         "style": {
@@ -80,7 +54,16 @@
         }
     },
     {
-        "name": "\uD83C\uDD7F️ 书源频道",
+        "name": "⭐️ 收藏项目",
+        "type": "button",
+        "action": "startGithubLogin()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "✈️ 书源频道",
         "type": "button",
         "action": "startTelegramPixivSource()",
         "style": {
@@ -89,16 +72,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC3A 兽人阅读",
-        "type": "button",
-        "action": "startTelegramFurryReading()",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "❤\uFE0F 赞助开发",
+        "name": "☕ ️支持开发",
         "type": "button",
         "action": "startGithubSponsor()",
         "style": {
