@@ -1,6 +1,6 @@
 [
     {
-        "name": "✨ 臻享阅读",
+        "name": "🔰 使用指南",
         "type": "button",
         "action": "startGithubIntroduction()",
         "style": {

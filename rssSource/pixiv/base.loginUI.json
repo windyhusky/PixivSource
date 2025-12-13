@@ -27,7 +27,11 @@
         }
     },
     {
-        "name": "✨ 臻享阅读",
+        "name": "书源相关",
+        "type": "text"
+    },
+    {
+        "name": "🔰 使用指南",
         "type": "button",
         "action": "startGithubIntroduction()",
         "style": {
