@@ -2,14 +2,11 @@ function login() {}
 
 function startBrowser(url, title) {
     let msg = "", headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
-    if (url.includes("https://github.com")) {
-        if (url.includes("issues")) msg += "🐞 反馈问题"
-        else if (url.includes("doc")) msg += "🔰 使用指南"
-        else msg += "⭐️ 收藏项目"
+    if (url.includes("pixiv.net")) {
+        msg += "\n\n即将打开 Pixiv\n请确认已开启代理/梯子/VPN等"
+    } else if (url.includes("github")) {
         msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
-    } else if (url.includes("https://t.me")) {
-        if (url.includes("FurryReading")) msg += "🐺 兽人阅读频道"
-        else if (url.includes("joinchat")) msg += "🐞 反馈群组"
+    } else if (url.includes("https://t.me/")){
         msg += "\n\n即将打开 Telegram\n请确认已开启代理/梯子/VPN等"
     }
     sleepToast(msg)
