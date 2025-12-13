@@ -1,3 +1,5 @@
+function login() {}
+
 function getWebViewUA() {
     let userAgent = String(java.getWebViewUA())
     if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
@@ -5,8 +7,6 @@ function getWebViewUA() {
     }
     return String(userAgent)
 }
-
-function login() {}
 
 function startBrowser(url, title) {
     let msg = "", headers = `{"headers": {"User-Agent":"${getWebViewUA()}"}}`
@@ -33,11 +33,14 @@ function startGithubLogin() {
 function startGithubIssue() {
     startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
 }
+function startGithubIntroduction() {
+    startBrowser("https://downeyrem.github.io/PixivSource/BetterExperience", "阅读指南")
+}
 function startGithubReadme() {
-    startBrowser("https://downeyrem.github.io/PixivSource/Pixiv", "使用指南")
+    startBrowser("https://downeyrem.github.io/PixivSource/Pixiv", "书源指南")
 }
 function startGithubSponsor() {
-    startBrowser("https://downeyrem.github.io/PixivSource/Sponsor", "使用指南")
+    startBrowser("https://downeyrem.github.io/PixivSource/Sponsor", "赞助开发")
 }
 function startTelegram() {
     startBrowser("https://t.me/PixivSource", "Pixiv 书源频道")
