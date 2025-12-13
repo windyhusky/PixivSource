@@ -22,10 +22,10 @@
     },
     {
         "customOrder": 4,
-        "sourceName":"Pixiv 书源 发布页",
+        "sourceName":"Pixiv 书源",
         "sourceUrl":"https://downeyrem.github.io/PixivSource",
         "sourceIcon":"https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/doc/pic/BookSourcePixiv.png",
-        "sourceGroup": "🐲 Furry"
+        "sourceGroup": "🅿️ Pixiv,🐲 Furry"
     },
     {
         "customOrder": 5,

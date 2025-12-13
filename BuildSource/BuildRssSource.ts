@@ -101,7 +101,7 @@ function buildNovelSource(name:string): RssSource {
     if (name === "pixiv") sourceName = "Pixiv"
     else if (name === "linpx") sourceName = "Linpx"
     else if (name === "furryNovel") sourceName = "兽人小说站"
-    else sourceName = "Pixiv 书源 发布页"
+    else sourceName = "Pixiv 书源"
 
     // 读取基础模板
     const RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
