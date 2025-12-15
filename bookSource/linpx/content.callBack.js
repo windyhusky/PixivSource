@@ -15,3 +15,12 @@ if (event === "clickShareBook") {
     text += `\n\n小说链接：\n${book.bookUrl}\n\n分享自【开源阅读】Linpx书源。使用添加网址，快速添加本文`
     java.copyText(text)
 }
+
+// 开始书架刷新
+if (event === "startShelfRefresh") {
+    source.putConcurrent("1/2000")
+}
+// 结束书架刷新
+if (event === "endShelfRefresh") {
+    source.putConcurrent("3/2000")
+}

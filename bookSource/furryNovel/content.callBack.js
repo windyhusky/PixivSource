@@ -19,26 +19,11 @@ if (event === "clickShareBook") {
     java.copyText(text)
 }
 
-
-// // 开始阅读，登录界面添加当前章节名称
-// if (event === "startRead") {
-// }
-// // 保存阅读，登录界面添加当前章节名称
-// if (event === "saveRead") {
-// }
-// // 结束阅读
-// if (event === "endRead") {
-// }
-
-// // 添加书架
-// if (event === "addBookShelf") {}
-// // 移除书架
-// if (event === "delBookShelf") {}
-//
-// 自定义按钮
-// if (event === "clickCustomButton") {
-// }
-// // 开始书架刷新
-// if (event === "startShelfRefresh") {}
-// // 结束书架刷新
-// if (event === "endShelfRefresh") {}
+// 开始书架刷新
+if (event === "startShelfRefresh") {
+    source.putConcurrent("1/2000")
+}
+// 结束书架刷新
+if (event === "endShelfRefresh") {
+    source.putConcurrent("3/2000")
+}
