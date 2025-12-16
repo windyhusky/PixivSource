@@ -52,5 +52,64 @@
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
+    },
+
+    {
+        "name": "书源设置",
+        "type": "text"
+    },
+    {
+        "name": "⚙️ 当前设置",
+        "type": "button",
+        "action": "showSettings()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD27 默认设置",
+        "type": "button",
+        "action": "setDefaultSettingsLoginUrl()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83C\uDC04 繁简通搜",
+        "type": "button",
+        "action": "editSettings('CONVERT_CHINESE')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD17 原始链接",
+        "type": "button",
+        "action": "editSettings('SHOW_ORIGINAL_LINK')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDBC️ 常规质量",
+        "type": "button",
+        "action": "editSettings('QUALITY_REGULAR')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC1E 调试模式",
+        "type": "button",
+        "action": "editSettings('DEBUG')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
     }
 ]
