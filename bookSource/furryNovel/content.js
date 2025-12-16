@@ -44,12 +44,10 @@ function replacePixivImage(content) {
 }
 function replaceNewPage(content) {
     // 替换 Pixiv 分页标记符号 [newpage]
-    if (!util.environment.IS_LEGADO) {
-        let matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
-        if (matched) {
-            for (let i in matched) {
-                content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}`)
-            }
+    let matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
+    if (matched) {
+        for (let i in matched) {
+            content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}`)
         }
     }
     return content
@@ -110,7 +108,7 @@ function replaceRb(content) {
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
 
-            if (!util.settings.REPLACE_TITLE_MARKS) {
+            if (!util.REPLACE_TITLE_MARKS) {
                 // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             } else {
