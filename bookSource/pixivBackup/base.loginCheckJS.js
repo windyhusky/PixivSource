@@ -8,9 +8,7 @@ function objStringify(obj) {
     });
 }
 function isBackupSource() {
-    let isBackupSource = source.bookSourceName.includes("备用")
-    cache.put("isBackupSource", isBackupSource)
-    return isBackupSource
+    return source.bookSourceName.includes("备用")
 }
 // 检测 源阅
 // 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
@@ -70,18 +68,14 @@ function publicFunc() {
     }
 
     // 设置初始化
-    if (isBackupSource()) {
-        settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
-    } else {
-        // cache.delete("pixivSettings")
-        settings = getFromCache("pixivSettings")
-    }
+    // cache.delete("pixivSettings")
+    settings = getFromCache("pixivSettings")
     if (settings) {
         java.log("⚙️ 使用自定义设置")
     } else {
         java.log("⚙️ 使用默认设置")
         settings = setDefaultSettings()
-        }
+    }
     settings = checkSettings()
     if (settings.IPDirect) {
         java.log("✈️ 直连模式：✅ 已开启")
