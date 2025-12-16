@@ -33,10 +33,21 @@
 >
 > https://miaogongzi.lanzout.com/b01rgkhhe
 
-<details><summary> 📖 更多阅读软件 </summary>
 
-#### 1.2 书源兼容的阅读软件版本
+#### 1.2 兼容软件
+<details><summary> 🉑 兼容软件 </summary>
+
 - [Pixiv 小说书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
+
+| 阅读版本 | 推荐 | 版本号 |
+| ------ | --- | ----- |
+| 👍【推荐】[阅读 Σ](https://github.com/Luoyacheng/legado/releases) | Plus  | 3.25.0927 |
+| 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
+</details>
+
+<details><summary> 🈶 更多软件 </summary>
+
+- [Pixiv 小说备用书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
 
 | 阅读版本 | 推荐 | 版本号 |
 | ------ | --- | ----- |
@@ -44,7 +55,7 @@
 | 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
 | 🎀【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3/releases) | | 3.26     | 
 | 🍎【兼容】[源阅](https://github.com/kaich/SourceReadSite)      | TestFlight | 1.0 (112) |
-| 👎【官方】阅读 | 不推荐<br>正式版 | 3.25 |
+- 详见：[下载阅读](./Download.md)
 </details>
 
 
