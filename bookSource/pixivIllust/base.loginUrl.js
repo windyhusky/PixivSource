@@ -155,7 +155,7 @@ function getSettingStatus(mode) {
     //     keys = Object.keys(settingsName).slice(0, 5)
     // }
     if (mode === "IPDirect") {
-        keys = Object.keys(settingsName).slice(0, 2)
+        keys = Object.keys(settingsName).slice(0, 1)
     } else {
         keys = Object.keys(settingsName)
     }
@@ -185,7 +185,7 @@ function editSettings(settingName) {
     }
     putInCache("pixivIllustSettings", settings)
 
-    if (settingName === "FAST" || (settingName === "IPDirect")) {
+    if (settingName === "IPDirect") {
         if (settings.IPDirect && !isLogin()) {
             msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
             settings.IPDirect = false
