@@ -86,15 +86,15 @@ function replaceJumpUrl(content) {
             let urlName = matched2[1].trim()
             let urlLink = matched2[2].trim()
 
-            if (util.environment.IS_LEGADO) {
-                content = content.replace(`${matchedText}`, `<a href=${urlLink}> ${urlName}</a>`)
+            // if (util.environment.IS_LEGADO) {
+            //     content = content.replace(`${matchedText}`, `<a href=${urlLink}> ${urlName}</a>`)
+            // } else {
+            if (urlLink === urlName) {
+                content = content.replace(`${matchedText}`, `${urlName}`)
             } else {
-                if (urlLink === urlName) {
-                    content = content.replace(`${matchedText}`, `${urlName}`)
-                } else {
-                    content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
-                }
+                content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
             }
+            // }
         }
     }
     return content
