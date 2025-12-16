@@ -1,0 +1,56 @@
+[
+    {
+        "name": "\uD83C\uDD7F️ 登录账号",
+        "type": "button",
+        "action": "login()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⚙️ 账号设置",
+        "type": "button",
+        "action": "startPixivSettings()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD19 退出账号",
+        "type": "button",
+        "action": "logout()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🆙 更新书源",
+        "type": "button",
+        "action": "updateSource()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD30 使用指南",
+        "type": "button",
+        "action": "startGithubReadme()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "✈\uFE0F 直连模式",
+        "type": "button",
+        "action": "editSettings('IPDirect')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    }
+]

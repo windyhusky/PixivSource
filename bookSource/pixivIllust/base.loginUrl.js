@@ -1,0 +1,210 @@
+function login() {
+    sleepToast("🔄 正在检测登陆状态，请稍候")
+    if (isLogin()) {
+        sleepToast("️🅿️ 登录账号\n✅ 已经登录过账号了\n\n可以点击【🔙 退出账号】来切换账号")
+        return false
+    }
+
+    let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
+    {"headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
+    if (resp.code() === 200) {
+        getCsrfToken(); getCookie()
+        return true
+    } else {
+        java.log(resp.code()); sleepToast("🅿️ 登录账号\n\n⚠️ 登录失败")
+        return false
+    }
+}
+
+function logout() {
+    removeCookie()
+    java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
+    removeCookie(); removeLikeDataCache(); removeSettingsCache()
+    sleepToast(`✅ 已退出当前账号\n\n退出后请点击右上角的 ✔️ 退出\n\n登录请点击【登录账号】进行登录`)
+}
+
+function removeCookie() {
+    cookie.removeCookie('https://www.pixiv.net')
+    cookie.removeCookie('https://accounts.pixiv.net')
+    cookie.removeCookie('https://accounts.google.com')
+    cookie.removeCookie('https://api.weibo.com')
+    cache.delete("pixivCookie")
+    cache.delete("pixiv:uid")
+    cache.delete("pixivCsrfToken")  // 与登录设备有关
+    cache.delete("headers")
+}
+
+function getCookie() {
+    let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
+    if (isLogin()) cache.put("pixivCookie", pixivCookie, 60*60)
+}
+
+// 获取 Csrf Token，以便进行收藏等请求
+// 获取方法来自脚本 Pixiv Previewer
+// https://github.com/Ocrosoft/PixivPreviewer
+// https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
+function getCsrfToken() {
+    let pixivCsrfToken = cache.get("pixivCsrfToken")
+    if (!pixivCsrfToken) {
+        let html = java.webView(null, "https://www.pixiv.net/", null)
+        try {
+            pixivCsrfToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
+            cache.put("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
+        } catch (e) {
+            pixivCsrfToken = null
+            cache.delete("pixivCsrfToken")  // 与登录设备有关，无法存储 nul
+            // sleepToast("⚠️ 未登录账号(pixivCsrfToken)")
+        }
+        java.log(`pixivCsrfToken:\n${pixivCsrfToken}`)
+    }
+    return pixivCsrfToken
+}
+
+function getIllust() {}
+
+function getPostBody(url, body, headers) {
+    if (headers === undefined) headers = getFromCache("headers")
+    if (isJsonString(body)) {
+        headers["content-type"] = "application/json; charset=utf-8"
+    } else if (typeof body === "string") {
+        headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
+    }
+    try {
+        java.log(`getPostBody(${url}, ${body}, ${headers})`)
+        return JSON.parse(java.post(url, body, headers).body())
+    } catch (e) {
+        e = String(e)
+        // sleepToast(e)
+        // sleepToast(JSON.stringify(headers))
+        if (e.includes("400")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 headers`, 1)
+        else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
+        else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 pixivCsrfToken `, 1)
+        else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
+        return {error: true, errMsg:e}
+    }
+}
+
+function userFollow(restrict) {
+    if (restrict === undefined) restrict = 0
+    let novel = getNovel()
+    let resp = getPostBody(
+        "https://www.pixiv.net/bookmark_add.php",
+        `mode=add&type=user&user_id=${novel.userId}&tag=""&restrict=${restrict}&format=json`
+    )
+    if (resp.error === true) {
+        sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败`, 1)
+        shareFactory("author")
+    } else {
+        sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
+        cache.put(`follow${novel.userId}`, true)
+    }
+}
+
+function userUnFollow() {
+    let novel = getNovel()
+    let resp = getPostBody(
+        "https://www.pixiv.net/rpc_group_setting.php",
+        `mode=del&type=bookuser&id=${novel.userId}`
+    )
+    if (resp.error === true) {
+        sleepToast(`⭐️ 关注作者\n\n⚠️ 取消关注【${novel.userName}】失败`, 1)
+        shareFactory("author")
+    } else {
+        sleepToast(`⭐️ 关注作者\n\n✅ 已取消关注【${novel.userName}】`)
+        cache.delete(`follow${novel.userId}`)
+    }
+}
+
+function userFollowFactory(code) {
+    if (code === undefined) code = 1
+    let novel = getNovel()
+    let lastStatus = getFromCache(`follow${novel.userId}`)
+    if (lastStatus === true) code = 0
+
+    if (code === 0) userUnFollow()
+    else if (code === 1) userFollow()
+}
+
+function startPixivSettings() {
+    startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
+}
+function startGithubReadme() {
+    startBrowser("https://downeyrem.github.io/PixivSource/Pixiv", "使用指南")
+}
+
+let settingsName = {
+    "SEARCH_AUTHOR": "🔍 搜索作者",
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+    "CONVERT_CHINESE": "🀄️ 繁简通搜",
+    "SHOW_UPDATE_TIME": "📅 更新时间",
+    "SHOW_COMMENTS": "💬 显示评论",
+    "MORE_INFORMATION": "📖 更多简介",
+    "REPLACE_TITLE_MARKS": "📚 恢复《》",
+    "SHOW_CAPTIONS": "🖼️ 显示描述",
+    "SHOW_LIKE_NOVELS" :"❤️ 显示收藏",
+    "SHOW_WATCHED_SERIES" :"📃 显示追更",
+    "IPDirect": "✈️ 直连模式",
+    "FAST": "⏩ 快速模式",
+    "DEBUG": "🐞 调试模式"
+}
+
+function statusMsg(status) {
+    if (status === true) return "✅ 已开启"
+    else if (status === false) return "🚫 已关闭"
+    else return "🈚️ 未设置"
+}
+
+// 检测快速模式修改的4个设置
+function getSettingStatus(mode) {
+    if (mode === undefined) mode = ""
+    let keys = [], msgList = []
+    let settings = getFromCache("pixivSettings")
+    // if (mode === "FAST") {
+    //     keys = Object.keys(settingsName).slice(0, 5)
+    // }
+    if (mode === "IPDirect") {
+        keys = Object.keys(settingsName).slice(0, 2)
+    } else {
+        keys = Object.keys(settingsName)
+    }
+    for (let i in keys) {
+        msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
+    }
+    return msgList.join("\n").trim()
+}
+
+function showSettings() {
+    sleepToast(`⚙️ 当前设置\n\n${getSettingStatus()}`)
+}
+
+function setDefaultSettingsLoginUrl() {
+    setDefaultSettings()
+    sleepToast(`\n✅ 已恢复　🔧 默认设置\n\n${getSettingStatus()}`)
+}
+
+function editSettings(settingName) {
+    let msg, status
+    let settings = getFromCache("pixivSettings")
+    if (!settings) settings = setDefaultSettings()
+    if (!!settings[settingName]) {
+        status = settings[settingName] = !settings[settingName]
+    } else {
+        status = settings[settingName] = true
+    }
+    putInCache("pixivSettings", settings)
+
+    if (settingName === "FAST" || (settingName === "IPDirect")) {
+        if (settings.IPDirect && !isLogin()) {
+            msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
+            settings.IPDirect = false
+            checkSettings()
+            putInCache("pixivSettings", settings)
+        } else {
+            checkSettings()
+            msg = `\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
+        }
+    } else {
+        msg = `\n${statusMsg(status)}　${settingsName[settingName]}`
+    }
+    sleepToast(msg)
+}
