@@ -295,31 +295,6 @@
   ```
   </details>
 
-- <details><summary> 4️⃣ 默认配置代码（备用书源） </summary>
-  
-  ```
-  {
-    "CONVERT_CHINESE": true,
-    "SHOW_UPDATE_TIME": true,
-    "MORE_INFORMATION": false,
-    "SHOW_ORIGINAL_LINK": true,
-    
-    "REPLACE_TITLE_MARKS": true,
-    "SHOW_CAPTIONS": true,
-    "SHOW_COMMENTS": true,
-    
-    "IPDirect": false,
-    "FAST": false,
-    "DEBUG": false,
-    
-    "SHOW_GENERAL_NEW": false,
-    "SHOW_GENERAL_RANK": false,
-    "SHOW_R18_GENRE": false,
-    "SHOW_GENERAL_GENRE": false
-  }
-  ```
-  </details>
-
 
 #### 2.设置源变量
 - <details><summary> 🔎 筛选发现（兽人小说站 书源）</summary>
@@ -470,8 +445,8 @@ var cacheSaveSeconds = 7*24*60*60  // 缓存时间7天，可以延长，不建�
 
 
 ## 🗃 杂类
-### 🌱 [项目源起：为了更好的小说阅读体验](https://downeyrem.github.io/PixivSource/Beginning)
-### ☕️ [打赏开发](./doc/Sponsor.md)
+### 🌱 [项目源起：为了更好的阅读体验](https://downeyrem.github.io/PixivSource/Beginning)
+### ☕️ [支持开发](https://downeyrem.github.io/PixivSource/Sponsor)
 <details><summary> ✈ 社群链接 </summary>
 
 ### Telegram 频道 & 群组
