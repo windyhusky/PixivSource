@@ -114,6 +114,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.txt"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
+    const loginUIJs = readTextFile(path.join(sourcePath, "base.loginUI.js"))
     const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
 
     const bookUrlPattern = readTextFile(path.join(sourcePath, "base.bookUrlPattern.txt"))
@@ -149,8 +150,8 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
 
     // 更新书源
     BookSource.bookSourceComment = bookSourceComment
-    BookSource.loginUrl = loginUrl? loginUrl : loginUrlContent
-    BookSource.loginUi = loginUI
+    BookSource.loginUrl = loginUrl? loginUrl: loginUrlContent
+    BookSource.loginUi = loginUI? loginUI: loginUIJs
     BookSource.loginCheckJs = loginCheckJsContent
 
     BookSource.bookUrlPattern = bookUrlPattern.split("\n")[1]
