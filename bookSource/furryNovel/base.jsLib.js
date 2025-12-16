@@ -90,6 +90,7 @@ function urlLinpxNovelDetail(sourceId) {
     return `https://api.furrynovel.ink/pixiv/novel/${sourceId}/cache`
 }
 function urlLinpxCoverUrl(pxImgUrl) {
+    if (!pxImgUrl.trim()) return ""
     let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
     let headers = {"Referer": "https://furrynovel.ink/"}
     return `${url}, ${JSON.stringify({headers: headers})}`
@@ -140,11 +141,15 @@ function urlIllustOriginal(illustId, order) {
         }).body.urls.original
         if (!illustOriginal) throw Error("e")
     } catch (e) {
-        let illustThumb = this.cacheGetAndSet(url, () => {
-            return JSON.parse(java.ajax(url))
-        }).body.userIllusts[illustId].url
-        let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
-        illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
+        try{
+            let illustThumb = this.cacheGetAndSet(url, () => {
+                return JSON.parse(java.ajax(url))
+            }).body.userIllusts[illustId].url
+            let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
+            illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
+        } catch (e) {
+            illustOriginal = ""
+        }
     }
     // java.log(illustOriginal)
     // return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
