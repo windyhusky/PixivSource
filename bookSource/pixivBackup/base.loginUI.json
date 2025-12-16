@@ -1,6 +1,6 @@
 [
     {
-        "name": "\uD83C\uDD7F️ 登录账号",
+        "name": "🅿️ 登录账号",
         "type": "button",
         "action": "login()",
         "style": {
@@ -18,7 +18,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD19 退出账号",
+        "name": "🔙 退出账号",
         "type": "button",
         "action": "logout()",
         "style": {
@@ -36,7 +36,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD30 使用指南",
+        "name": "🔰 使用指南",
         "type": "button",
         "action": "startGithubReadme()",
         "style": {
@@ -45,7 +45,7 @@
         }
     },
     {
-        "name": "✈\uFE0F 直连模式",
+        "name": "✈️ 直连模式",
         "type": "button",
         "action": "editSettings('IPDirect')",
         "style": {
@@ -67,7 +67,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCC3 追更系列",
+        "name": "📃 追更系列",
         "type": "button",
         "action": "seriesWatchFactory()",
         "style": {
@@ -85,7 +85,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDA4 取消收藏",
+        "name": "🖤 取消收藏",
         "type": "button",
         "action": "novelsBookmarkDelete()",
         "style": {
@@ -103,7 +103,7 @@
         }
     },
     {
-        "name": "\uD83D\uDEAB 屏蔽作者",
+        "name": "🚫 屏蔽作者",
         "type": "button",
         "action": "userBlock()",
         "style": {
@@ -126,7 +126,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDD1 删除评论",
+        "name": "🗑️ 删除评论",
         "type": "button",
         "action": "novelCommentDelete()",
         "style": {
@@ -135,7 +135,7 @@
         }
     },
     {
-        "name": "\uD83E\uDDF9 清除缓存",
+        "name": "🧹 清除缓存",
         "type": "button",
         "action": "cleanCache()",
         "style": {
@@ -145,7 +145,7 @@
     },
 
     {
-        "name": "\uD83D\uDEAB 添加屏蔽",
+        "name": "🚫 添加屏蔽",
         "type": "button",
         "action": "blockAddFactory()",
         "style": {
@@ -163,7 +163,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC40 查看屏蔽",
+        "name": "👀 查看屏蔽",
         "type": "button",
         "action": "blockShowFactory()",
         "style": {
@@ -173,7 +173,7 @@
     },
 
     {
-        "name": "\uD83D\uDCCC 喜欢标签",
+        "name": "📌 喜欢标签",
         "type": "button",
         "action": "likeTagsAdd()",
         "style": {
@@ -182,7 +182,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDD1 删除标签",
+        "name": "🗑️ 删除标签",
         "type": "button",
         "action": "likeTagsDelete()",
         "style": {
@@ -191,7 +191,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC40 查看标签",
+        "name": "👀 查看标签",
         "type": "button",
         "action": "likeTagsShow()",
         "style": {
@@ -210,7 +210,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDA4 取消收藏",
+        "name": "🖤 取消收藏",
         "type": "button",
         "action": "likeAuthorsDelete()",
         "style": {
@@ -219,7 +219,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC40 查看收藏",
+        "name": "👀 查看收藏",
         "type": "button",
         "action": "likeAuthorsShow()",
         "style": {
@@ -242,7 +242,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD27 默认设置",
+        "name": "🔧 默认设置",
         "type": "button",
         "action": "setDefaultSettingsLoginUrl()",
         "style": {
@@ -251,7 +251,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC64 搜索作者",
+        "name": "👤 搜索作者",
         "type": "button",
         "action": "editSettings('SEARCH_AUTHOR')",
         "style": {
@@ -260,7 +260,7 @@
         }
     },
     {
-        "name": "\uD83C\uDC04 繁简通搜",
+        "name": "🀄 繁简通搜",
         "type": "button",
         "action": "editSettings('CONVERT_CHINESE')",
         "style": {
@@ -269,7 +269,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCD6 更多简介",
+        "name": "📖 更多简介",
         "type": "button",
         "action": "editSettings('MORE_INFORMATION')",
         "style": {
@@ -278,7 +278,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCC5 更新时间",
+        "name": "📅 更新时间",
         "type": "button",
         "action": "editSettings('SHOW_UPDATE_TIME')",
         "style": {
@@ -287,7 +287,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD17 原始链接",
+        "name": "🔗 原始链接",
         "type": "button",
         "action": "editSettings('SHOW_ORIGINAL_LINK')",
         "style": {
@@ -296,7 +296,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCDA 恢复《》",
+        "name": "📚 恢复《》",
         "type": "button",
         "action": "editSettings('REPLACE_TITLE_MARKS')",
         "style": {
@@ -305,7 +305,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDBC️ 显示描述",
+        "name": "🖼️ 显示描述",
         "type": "button",
         "action": "editSettings('SHOW_CAPTIONS')",
         "style": {
@@ -314,7 +314,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCAC 显示评论",
+        "name": "💬 显示评论",
         "type": "button",
         "action": "editSettings('SHOW_COMMENTS')",
         "style": {
@@ -332,7 +332,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCC3 显示追更",
+        "name": "📃 显示追更",
         "type": "button",
         "action": "editSettings('SHOW_WATCHED_SERIES')",
         "style": {
@@ -350,7 +350,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC1E 调试模式",
+        "name": "🐞 调试模式",
         "type": "button",
         "action": "editSettings('DEBUG')",
         "style": {
@@ -359,7 +359,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD0D 搜索说明",
+        "name": "🔍 搜索说明",
         "type": "button",
         "action": "readMeSearch()",
         "style": {

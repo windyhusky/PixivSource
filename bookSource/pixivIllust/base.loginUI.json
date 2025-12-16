@@ -1,6 +1,6 @@
 [
     {
-        "name": "\uD83C\uDD7F️ 登录账号",
+        "name": "🅿️ 登录账号",
         "type": "button",
         "action": "login()",
         "style": {
@@ -18,7 +18,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD19 退出账号",
+        "name": "🔙 退出账号",
         "type": "button",
         "action": "logout()",
         "style": {
@@ -36,7 +36,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD30 使用指南",
+        "name": "🔰 使用指南",
         "type": "button",
         "action": "startGithubReadme()",
         "style": {
@@ -45,7 +45,7 @@
         }
     },
     {
-        "name": "✈\uFE0F 直连模式",
+        "name": "✈️ 直连模式",
         "type": "button",
         "action": "editSettings('IPDirect')",
         "style": {
@@ -68,7 +68,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD27 默认设置",
+        "name": "🔧 默认设置",
         "type": "button",
         "action": "setDefaultSettingsLoginUrl()",
         "style": {
@@ -77,7 +77,7 @@
         }
     },
     {
-        "name": "\uD83C\uDC04 繁简通搜",
+        "name": "🀄 繁简通搜",
         "type": "button",
         "action": "editSettings('CONVERT_CHINESE')",
         "style": {
@@ -86,7 +86,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD17 原始链接",
+        "name": "🔗 原始链接",
         "type": "button",
         "action": "editSettings('SHOW_ORIGINAL_LINK')",
         "style": {
@@ -95,7 +95,7 @@
         }
     },
     {
-        "name": "\uD83D\uDDBC️ 常规质量",
+        "name": "🖼️ 常规质量",
         "type": "button",
         "action": "editSettings('QUALITY_REGULAR')",
         "style": {
@@ -104,7 +104,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC1E 调试模式",
+        "name": "🐞 调试模式",
         "type": "button",
         "action": "editSettings('DEBUG')",
         "style": {
