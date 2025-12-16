@@ -158,7 +158,7 @@ function statusMsg(status) {
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
     let keys = [], msgList = []
-    let settings = getFromCache("pixivSettings")
+    let settings = getFromCache("pixivIllustSettings")
     // if (mode === "FAST") {
     //     keys = Object.keys(settingsName).slice(0, 5)
     // }
@@ -184,21 +184,21 @@ function setDefaultSettingsLoginUrl() {
 
 function editSettings(settingName) {
     let msg, status
-    let settings = getFromCache("pixivSettings")
+    let settings = getFromCache("pixivIllustSettings")
     if (!settings) settings = setDefaultSettings()
     if (!!settings[settingName]) {
         status = settings[settingName] = !settings[settingName]
     } else {
         status = settings[settingName] = true
     }
-    putInCache("pixivSettings", settings)
+    putInCache("pixivIllustSettings", settings)
 
     if (settingName === "FAST" || (settingName === "IPDirect")) {
         if (settings.IPDirect && !isLogin()) {
             msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
             settings.IPDirect = false
             checkSettings()
-            putInCache("pixivSettings", settings)
+            putInCache("pixivIllustSettings", settings)
         } else {
             checkSettings()
             msg = `\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`

@@ -65,8 +65,9 @@ function publicFunc() {
         }
     }
 
-    // 载入设置
-    settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
+    // 设置初始化
+    // cache.delete("pixivIllustSettings")
+    settings = getFromCache("pixivIllustSettings")
     if (settings) {
         java.log("⚙️ 使用自定义设置")
     } else {
@@ -80,13 +81,13 @@ function publicFunc() {
         java.log("✈️ 直连模式：❌ 已关闭")
     }
     u.settings = settings
-    // putInCache("pixivSettings", settings)  // 设置写入缓存
+    putInCache("pixivIllustSettings", settings)  // 设置写入缓存
 
     u.environment = {}
     u.environment.IS_SOURCEREAD = isSourceRead()
     u.environment.IS_LEGADO = !isSourceRead()
     u.environment.IS_LYC_BRUNCH = isLegadoLYC()
-    // putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
+    putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {

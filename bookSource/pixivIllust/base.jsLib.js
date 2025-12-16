@@ -107,7 +107,7 @@ function startBrowser(url, title) {
 
 function urlIP(url) {
     const {java, cache} = this
-    let settings = this.getFromCache("pixivSettings")
+    let settings = this.getFromCache("pixivIllustSettings")
     if (!settings) settings = this.setDefaultSettings()
     if (settings.IPDirect) {
         url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
@@ -163,7 +163,7 @@ function urlSearchUser(name) {
 
 function urlCoverUrl(url) {
     const {java, cache} = this
-    let settings = this.getFromCache("pixivSettings")
+    let settings = this.getFromCache("pixivIllustSettings")
     if (!settings) settings = this.setDefaultSettings()
 
     let headers = {"Referer": "https://www.pixiv.net/"}
@@ -231,18 +231,18 @@ function setDefaultSettings() {
     settings.IPDirect = false           // 全局：直连模式
     settings.DEBUG = false              // 全局：调试模式
 
-    // this.putInCache("pixivSettings", settings)
+    this.putInCache("pixivIllustSettings", settings)
     return settings
 }
 function checkSettings() {
     const {java, cache} = this
-    let settings = this.getFromCache("pixivSettings")
+    let settings = this.getFromCache("pixivIllustSettings")
     if (!settings) settings = this.setDefaultSettings()
     if (settings.IPDirect) {
         settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
         settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
     }
-    // this.putInCache("pixivSettings", settings)
+    this.putInCache("pixivIllustSettings", settings)
     return settings
 }
 
