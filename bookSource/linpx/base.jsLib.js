@@ -184,8 +184,8 @@ function urlIllustOriginal(illustId, order) {
         illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
     }
     // java.log(illustOriginal)
-    // return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
-    return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
+    return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
+    // return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
 function dateFormat(str) {
