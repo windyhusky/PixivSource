@@ -9,7 +9,9 @@
 
 
 ## 📂 [项目归档：书源仍然可用](https://downeyrem.github.io/PixivSource/ArchivedNotice)
-## ✨ [臻享阅读：开源阅读 + Pixiv 书源——最好的 Pixiv 小说阅读器](https://downeyrem.github.io/PixivSource/BetterExperience)
+## ✨ [臻享阅读：最好的 Pixiv 小说阅读器——开源阅读 + Pixiv 书源](https://downeyrem.github.io/PixivSource/BetterExperience)
+
+## ⚡️ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：[下载阅读](https://downeyrem.github.io/PixivSource/Download) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](https://downeyrem.github.io/PixivSource/Pixiv#LoginAccount) => [开始使用](https://downeyrem.github.io/PixivSource/./#AddNovel)
 
 <details><summary> ©️ 版权问题 </summary>
 
@@ -28,9 +30,6 @@
 1. 本书源仅用于【交流书源代码】和【学习分享 JS 技术】
 2. 使用书源造成的一切损失均由【书源使用者】自行承担
 </details>
-
-
-## ⚡️ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：[下载阅读](https://downeyrem.github.io/PixivSource/Download) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](https://downeyrem.github.io/PixivSource/Pixiv#LoginAccount) => [开始使用](https://downeyrem.github.io/PixivSource/./#AddNovel)
 
 
 ## 📖 书源功能
