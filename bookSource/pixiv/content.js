@@ -98,7 +98,7 @@ function replacePixivImage(content) {
 }
 function replaceNewPage(content) {
     // 替换 Pixiv 分页标记符号 [newpage]
-    if (!util.environment.IS_LEGADO) {
+    if (!util.environment.IS_LYC_BRUNCH) {
         let matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
         if (matched) {
             for (let i in matched) {
@@ -141,7 +141,7 @@ function replaceJumpUrl(content) {
             let urlName = matched2[1].trim()
             let urlLink = matched2[2].trim()
 
-            // if (util.environment.IS_LEGADO) {
+            // if (!util.environment.IS_LYC_BRUNCH) {
             //     content = content.replace(`${matchedText}`, `<a href=${urlLink}> ${urlName}</a>`)
             // } else {
             if (urlLink === urlName) {
