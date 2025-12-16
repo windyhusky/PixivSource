@@ -57,6 +57,9 @@ function handlerFactory() {
     if (baseUrl.includes("/editors_picks")) {
         return handlerRanking()
     }
+    if (baseUrl.includes("/ajax/search/novels")) {
+        return handlerSearch()
+    }
     if (baseUrl.startsWith("https://www.pixiv.net")) {
         return handlerRanking()
     }
@@ -67,9 +70,9 @@ function handlerFactory() {
 
 function handlerNoLogin() {
     return () => {
-        sleepToast("🔍 发现：\n\n⚠️ 当前未登录账号\n\n请登录 Pixiv 账号", 1.5)
+        sleepToast("⚠️ 当前未登录账号\n\n请登录 Pixiv 账号", 1.5)
         util.removeCookie(); util.login()
-        sleepToast("🔍 发现：\n\n登录成功后，请重新进入发现", 2)
+        sleepToast("登录成功后，请重新进入发现", 2)
         return []
     }
 }
@@ -113,6 +116,14 @@ function handlerDiscovery() {
     return () => {
         let res = JSON.parse(result)
         return util.formatNovels(util.handNovels(util.combineNovels(res.body.novels)))
+    }
+}
+
+// 搜索标签
+function handlerSearch() {
+    return () => {
+        let res = JSON.parse(result)
+        return util.formatNovels(util.handNovels(util.combineNovels(res.body.novel.data)))
     }
 }
 

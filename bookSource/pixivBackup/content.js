@@ -19,7 +19,54 @@ function objParse(obj) {
     })
 }
 
+function getNovelInfo(res) {
+    // 放入小说信息以便登陆界面使用
+    let novel = source.getLoginInfoMap()
+    if (novel === undefined) novel = JSON.parse(cache.get("novel"))
+    if (res && res.error === true) return
+    novel.id = Number(res.id)
+    novel.title = res.title
+    novel.userId = res.userId
+    novel.userName = res.userName
+
+    if (res.bookmarkData) {
+        novel.isBookmark = true
+        cache.put(`collect${novel.id}`, res.bookmarkData.id)
+        util.saveNovels("likeNovels", [Number(novel.id)])
+    } else {
+        novel.isBookmark = false
+    }
+
+    if (res.seriesNavData) {
+        novel.seriesId = Number(res.seriesNavData.seriesId)
+        novel.seriesTitle = res.seriesNavData.title
+        novel.isWatched = res.seriesNavData.isWatched
+        util.saveNovels("watchedSeries", [Number(novel.seriesId)])
+    } else {
+        novel.seriesId = null
+        novel.seriesTitle = ""
+        novel.isWatched = false
+    }
+
+    // 系列 + 阅读，使用当前章节名称
+    if (novel.seriesId && util.environment.IS_LEGADO) {
+        let novelIds = JSON.parse(cache.get(`novelIds${novel.seriesId}`))
+        novel.id = novelIds[book.durChapterIndex]
+        novel.title = book.durChapterTitle
+        let bookmarkId = JSON.parse(cache.get(`collect${novel.id}`))
+        novel.isBookmark = !!bookmarkId
+    }
+
+    // 添加投票信息
+    if (res.pollData) novel.pollChoicesCount = res.pollData.choices.length
+    else novel.pollChoicesCount = 0
+    novel["章节名称"] = novel.title
+    source.putLoginInfo(JSON.stringify(novel))
+    cache.put("novel", JSON.stringify(novel))
+}
+
 function getContent(res) {
+    getNovelInfo(res)  // 放入信息以便登陆界面使用
     let content = String(res.content)
     // let content = "undefined"
     if (content.includes("undefined")) {

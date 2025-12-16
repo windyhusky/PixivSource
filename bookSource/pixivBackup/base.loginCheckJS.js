@@ -7,7 +7,6 @@ function objStringify(obj) {
         return v;
     });
 }
-
 function isBackupSource() {
     let isBackupSource = source.bookSourceName.includes("备用")
     cache.put("isBackupSource", isBackupSource)
@@ -82,7 +81,7 @@ function publicFunc() {
     } else {
         java.log("⚙️ 使用默认设置")
         settings = setDefaultSettings()
-    }
+        }
     settings = checkSettings()
     if (settings.IPDirect) {
         java.log("✈️ 直连模式：✅ 已开启")
@@ -181,8 +180,115 @@ function publicFunc() {
         })
     }
 
+    // 屏蔽作者
+    u.authorFilter = function(novels) {
+        let authors = getFromCache("blockAuthorList")
+        if (authors !== null && authors.length >= 0) {
+            java.log(`🚫 屏蔽作者ID：${JSON.stringify(authors)}`)
+            authors.forEach(author => {
+                novels = novels.filter(novel => novel.userId !== String(author))
+            })
+        }
+        return novels
+    }
+
+
+    // 过滤收藏与追更
+    u.novelFilter = function(novels) {
+        let novels1 = [], novels2 = [], msg
+        let likeNovels = getFromCache("likeNovels")
+        let watchedSeries = getFromCache("watchedSeries")
+        let novels0 = novels.map(novel => novel.id)
+
+        msg = util.checkStatus(util.settings.SHOW_LIKE_NOVELS).replace("未","不")
+        java.log(`${msg}显示收藏小说`)
+        if (util.settings.SHOW_LIKE_NOVELS === false) {
+            novels = novels.filter(novel => !likeNovels.includes(Number(novel.id)))
+            novels1 = novels.map(novel => novel.id)
+            java.log(`⏬ 过滤收藏：过滤前${novels0.length}；过滤后${novels1.length}`)
+        }
+
+        msg = util.checkStatus(util.settings.SHOW_WATCHED_SERIES).replace("未","不")
+        java.log(`${msg}显示追更系列`)
+        if (util.settings.SHOW_WATCHED_SERIES === false) {
+            novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
+            novels2 = novels.map(novel => novel.id)
+            if (novels1.length >= 1) novels0 = novels1
+            java.log(`⏬ 过滤追更：过滤前${novels0.length}；过滤后${novels2.length}`)
+        }
+
+        let novels3 = novels.map(novel => novel.id)
+        if (novels0.length >= 1 && novels3.length === 0) {
+            let msg = `⏬ 过滤小说\n⚠️ 过滤后无结果\n\n请根据需要\n`
+            if (util.settings.SHOW_LIKE_NOVELS === false) msg += "开启显示收藏小说\n"
+            if (util.settings.SHOW_WATCHED_SERIES === false) msg += "开启显示追更系列"
+            sleepToast(msg, 1)
+        }
+
+        util.debugFunc(() => {
+            // java.log(JSON.stringify(novels0))
+            java.log(JSON.stringify(novels0.length))
+            // java.log(JSON.stringify(novels1))
+            java.log(JSON.stringify(novels1.length))
+            // java.log(JSON.stringify(novels2))
+            java.log(JSON.stringify(novels2.length))
+        })
+        return novels
+    }
+
+    // 过滤描述与标签（屏蔽标签/屏蔽描述）
+    u.novelFilter2 = function(novels) {
+        let novels0 = novels.map(novel => novel.id)
+        let captionBlockWords = getFromCache("captionBlockWords")
+        if (captionBlockWords === null) captionBlockWords = []
+        if (captionBlockWords) {
+            // 仅保留没有任何屏蔽词的小说
+            // novels = novels.filter(novel => {
+            //     return !captionBlockWords.some(item => {
+            //         if (novel.description !== undefined) return novel.description.includes(item)
+            //     })
+            // })
+            novels = novels.filter(novel => !captionBlockWords.some(item => novel.description.includes(item)))
+            let novels2 = novels.map(novel => novel.id)
+            java.log(`🚫 屏蔽描述：${captionBlockWords.join("\n")}`)
+            java.log(`🚫 屏蔽描述：过滤前${novels0.length}；过滤后${novels2.length}`)
+        }
+
+        let tagsBlockWords = getFromCache("tagsBlockWords")
+        if (tagsBlockWords === null) tagsBlockWords = []
+        if (tagsBlockWords) {
+            // 仅保留没有任何屏蔽词的小说
+            // novels = novels.filter(novel => {
+            //     return !tagsBlockWords.some(item => {
+            //         if (novel.tags !== undefined) return novel.tags.includes(item)
+            //     })
+            // })
+            novels = novels.filter(novel => !tagsBlockWords.some(item => novel.tags.includes(item)))
+            let novels2 = novels.map(novel => novel.id)
+            java.log(`🚫 屏蔽标签：${tagsBlockWords.join("、")}`)
+            java.log(`🚫 屏蔽标签：过滤前${novels0.length}；过滤后${novels2.length}`)
+        }
+        return novels
+    }
+
+    // 收藏小说/追更系列 写入缓存
+    u.saveNovels = function(listInCacheName, list) {
+        let listInCache = getFromCache(listInCacheName)
+        if (listInCache === null) listInCache = []
+
+        listInCache = listInCache.concat(list)
+        listInCache = Array.from(new Set(listInCache))
+        cache.put(listInCacheName, JSON.stringify(listInCache))
+
+        if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
+        else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
+        java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
+    }
+
     // 处理 novels 列表
     u.handNovels = function(novels) {
+        let likeNovels = [], watchedSeries = []
+        novels = util.authorFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
             // novel.title = novel.title
@@ -257,6 +363,8 @@ function publicFunc() {
                 novel.total = 1
                 if (novel.bookmarkData) {
                     novel.isBookmark = true
+                    cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                    likeNovels.push(Number(novel.id))
                 } else {
                     novel.isBookmark = false
                 }
@@ -276,6 +384,9 @@ function publicFunc() {
                 novel.updateDate = series.updateDate
                 novel.total = series.publishedContentCount
                 novel.isWatched = series.isWatched
+                if (novel.isWatched === true) {
+                    watchedSeries.push(Number(novel.seriesId))
+                }
 
                 // 防止系列首篇无权限获取
                 // 发送请求获取第一章 获取标签与简介
@@ -294,6 +405,9 @@ function publicFunc() {
                 }
             }
         })
+        // 收藏小说/追更系列 写入缓存
+        util.saveNovels("likeNovels", likeNovels)
+        util.saveNovels("watchedSeries", watchedSeries)
         util.debugFunc(() => {
             java.log(`处理小说完成`)
         })
@@ -302,6 +416,7 @@ function publicFunc() {
 
     // 小说信息格式化
     u.formatNovels = function(novels) {
+        novels = util.novelFilter(novels)
         novels.forEach(novel => {
             novel.title = novel.title.trim()
             if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
@@ -323,9 +438,9 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
             if (novel.seriesId) {
-                collectMsg = `追更：${util.checkStatus(novel.isWatched)}追更系列`
+                collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
             } else {
-                collectMsg = `收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
+                collectMsg = `❤️ 收藏：${util.checkStatus(novel.isBookmark)}加入收藏`
             }
 
             if (util.settings.MORE_INFORMATION) {
@@ -339,6 +454,7 @@ function publicFunc() {
                 简介：${novel.description}`
             }
         })
+        novels = util.novelFilter2(novels)
         return novels
     }
 
@@ -465,9 +581,32 @@ function getPixivUid() {
     }
 }
 
+function getHeaders() {
+    let headers = {
+        "accept": "application/json",
+        "accept-encoding": "gzip, deflate, br, zstd",
+        "accept-language": "zh-CN",
+        // "content-type": "application/json; charset=utf-8",
+        // "content-type": "application/x-www-form-urlencoded; charset=utf-8",
+        "origin": "https//www.pixiv.net",
+        "Referer": "https://www.pixiv.net/",
+        // "sec-ch-ua": `"Not/A)Brand";v="8", "Chromium";v="132", "Google Chrome";v="132"`,
+        // "sec-ch-ua-mobile": "?0",
+        // "sec-ch-ua-platform": "Windows",
+        // "sec-fetch-dest": "empty",
+        // "sec-fetch-mode": "cors",
+        // "sec-fetch-site": "same-origin",
+        "user-agent": cache.get("userAgent"),
+        "x-csrf-token": cache.get("pixivCsrfToken"),
+        "Cookie": cache.get("pixivCookie")
+    }
+    putInCache("headers", headers)
+    return headers
+}
+
 publicFunc()
 if (result.code() === 200) {
-    getPixivUid(); util.getCookie(); util.getCsrfToken()
+    getPixivUid(); getWebViewUA(); util.getCookie(); util.getCsrfToken(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 java.getStrResponse(null, null)

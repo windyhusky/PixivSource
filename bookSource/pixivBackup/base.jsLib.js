@@ -35,6 +35,47 @@ function getFromCache(objectName) {
     return JSON.parse(object)
 }
 
+function putInCacheMap(mapName, mapObject, saveSeconds) {
+    const {java, cache} = this
+    let orderedArray = []
+    mapObject.forEach((value, key) => {
+        const item = {}
+        item[key] = value
+        orderedArray.push(item)
+    })
+    // [{'key1': 'value1'}, {'key2': 'value2'}]
+    if (saveSeconds === undefined) saveSeconds = 0
+    cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
+}
+function getFromCacheMap(mapName) {
+    const {java, cache} = this
+    let cached = cache.get(mapName)
+    let newMap = new Map()
+    if (cached === null || cached === undefined) {
+        return newMap
+    }
+
+    let parsedData
+    try {
+        parsedData = JSON.parse(cached)
+    } catch (e) {
+        return newMap
+    }
+
+    if (Array.isArray(parsedData)) {
+        parsedData.forEach(item => {
+            for (let key in item) {
+                newMap.set(key, item[key])
+            }
+        })
+    } else {
+        for (let key in parsedData) {
+            newMap.set(key, parsedData[key])
+        }
+    }
+    return newMap
+}
+
 function isHtmlString(str) {
     return str.startsWith("<!DOCTYPE html>")
 }
@@ -43,6 +84,32 @@ function isJsonString(str) {
         if (typeof JSON.parse(str) === "object") return true
     } catch(e) {}
     return false
+}
+
+function getWebViewUA() {
+    const {java, cache} = this
+    let userAgent = String(java.getWebViewUA())
+    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
+        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+    }
+    // java.log(`userAgent=${userAgent}`)
+    cache.put("userAgent", userAgent)
+    return String(userAgent)
+}
+function startBrowser(url, title) {
+    const {java, cache} = this
+    if (!title) title = url
+    let msg = "", headers = `{"headers": {"User-Agent":"${this.getWebViewUA()}"}}`
+    if (url.includes("https://www.pixiv.net")) {
+        if (url.includes("settings")) msg += "⚙️ 账号设置"
+        else msg += "⤴️ 分享小说"
+        msg += "\n\n即将打开 Pixiv\n请确认已开启代理/梯子/VPN等"
+    } else if (url.includes("github.com") || url.includes("github.io")) {
+        if (url.includes("issues")) msg += "🐞 反馈问题"
+        msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
+    }
+    this.sleepToast(msg, 0.01)
+    java.startBrowser(`${url}, ${headers}`, title)
 }
 
 function isLogin() {
@@ -81,32 +148,6 @@ function getWebviewJson(url, parseFunc) {
     })
 }
 
-function getWebViewUA() {
-    const {java, cache} = this
-    let userAgent = String(java.getWebViewUA())
-    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
-        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-    }
-    // java.log(`userAgent=${userAgent}`)
-    cache.put("userAgent", userAgent)
-    return String(userAgent)
-}
-function startBrowser(url, title) {
-    const {java, cache} = this
-    if (!title) title = url
-    let msg = "", headers = `{"headers": {"User-Agent":"${this.getWebViewUA()}"}}`
-    if (url.includes("https://www.pixiv.net")) {
-        if (url.includes("settings")) msg += "⚙️ 账号设置"
-        else msg += "⤴️ 分享小说"
-        msg += "\n\n即将打开 Pixiv\n请确认已开启代理/梯子/VPN等"
-    } else if (url.includes("github.com") || url.includes("github.io")) {
-        if (url.includes("issues")) msg += "🐞 反馈问题"
-        msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
-    }
-    this.sleepToast(msg, 0.01)
-    java.startBrowser(`${url}, ${headers}`, title)
-}
-
 function urlIP(url) {
     const {java, cache} = this
     let settings = this.getFromCache("pixivSettings")
@@ -117,7 +158,8 @@ function urlIP(url) {
             "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
             "X-Requested-With": "XMLHttpRequest",
             "Host": "www.pixiv.net",
-            "x-csrf-token": cache.get("pixivCsrfToken") || "",
+            "Referer": "https://www.pixiv.net/",
+            "X-csrf-token": cache.get("pixivCsrfToken") || "",
             "Cookie": cache.get("pixivCookie") || ""
         }
         return `${url}, ${JSON.stringify({headers: headers})}`
@@ -200,6 +242,8 @@ function urlSearchUser(userName, full) {
 
 function urlCoverUrl(url) {
     const {java, cache} = this
+    if (!url.trim()) return ""
+
     let settings = this.getFromCache("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
 
@@ -215,16 +259,30 @@ function urlCoverUrl(url) {
     }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
+function urlIllustUrl(illustId) {
+    return `https://www.pixiv.net/artworks/${illustId}`
+}
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
-    if (order <= 1) order = 1
+    if (!order || order <= 1) order = 1
+    let illustOriginal
     let url = this.urlIP(urlIllustDetailed(illustId))
-    let illustOriginal = this.cacheGetAndSet(url, () => {
-        return JSON.parse(java.ajax(url))
-    }).body.urls.original || ""
+    try {
+        illustOriginal = this.cacheGetAndSet(url, () => {
+            return JSON.parse(java.ajax(url))
+        }).body.urls.original
+        if (!illustOriginal) throw Error("e")
+    } catch (e) {
+        let illustThumb = this.cacheGetAndSet(url, () => {
+            return JSON.parse(java.ajax(url))
+        }).body.userIllusts[illustId].url
+        let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
+        illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
+    }
+    // java.log(illustOriginal)
     return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 function urlEmojiUrl(emojiId) {
@@ -398,7 +456,7 @@ function updateSource() {
             <td>📆 更新：${timeFormat(source.lastUpdateTime)}</td>
         </tr> 
         <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 10).join("<br>")}</td></tr>
-        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-2, comment.length).join("<br>")}</td></tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-3, comment.length).join("<br>")}</td></tr>
     </table>
     
     <table border="0" cellspacing="20">

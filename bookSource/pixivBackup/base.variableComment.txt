@@ -1,49 +1,19 @@
-⚙️ 自定义书源设置：
-⚙️ 自定义设置：请在基本-变量说明处修改代码
+⚙️ 书源设置：
+设置1️⃣：打开小说 - 菜单 - 登录 - 点击下方按钮
+▶️ 搜索任意小说，同步设置数据
+
+设置2️⃣：编辑书源 - 基本 - 变量说明 - 修改并保存
 ⚙️ 自定义设置：将 true 改为 false，或相反
 ⚠️ 设置源变量【无法】更改书源自定义设置
 ⚠️ 注意不要添加或删除尾随逗号","
 ⚠️ 更新发现页需要长按"Pixiv"，手动刷新
 以下内容为书源设置：
 {
-"CONVERT_CHINESE":true,
-"MORE_INFORMATION": false,
-"SHOW_ORIGINAL_LINK": true,
-
-"REPLACE_TITLE_MARKS": true,
-"SHOW_CAPTIONS": true,
-"SHOW_COMMENTS": true,
-
-"IPDirect": false,
-"FAST": false,
-"DEBUG": false,
-
 "SHOW_GENERAL_NEW": false,
 "SHOW_GENERAL_RANK": false,
 "SHOW_R18_GENRE": false,
 "SHOW_GENERAL_GENRE": false
 }
-
-// CONVERT_CHINESE
-// 搜索：搜索时进行繁简转换，但搜索会变慢
-// MORE_INFORMATION
-// 详情：书籍简介显示更多信息
-// SHOW_ORIGINAL_LINK
-// 目录：显示源链接，但会增加请求次数
-
-// REPLACE_TITLE_MARKS
-// 正文：注音内容为汉字时，替换为书名号
-// SHOW_CAPTIONS
-// 正文：章首显示小说描述
-// SHOW_COMMENTS
-// 正文：章尾显示小说评论
-
-// IPDirect
-// 直连模式
-// FAST
-// 快速模式
-// DEBUG
-// 调试模式
 
 // SHOW_GENERAL_NEW
 // 发现：最新、企划、约稿显示一般小说

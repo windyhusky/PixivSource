@@ -18,6 +18,9 @@ function novelHandler(novel){
         book.bookUrl = novel.detailedUrl = urlSeriesUrl(novel.seriesId)
         book.tocUrl = novel.catalogUrl = urlIP(urlSeriesDetailed(novel.seriesId))
     }
+    // 放入信息以便登陆界面使用
+    source.putLoginInfo(JSON.stringify(novel))
+    cache.put("novel", JSON.stringify(novel))
     return novel
 }
 

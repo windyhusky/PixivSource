@@ -1,0 +1,397 @@
+[
+    {
+        "name": "\uD83C\uDD7F️ 登录账号",
+        "type": "button",
+        "action": "login()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⚙️ 账号设置",
+        "type": "button",
+        "action": "startPixivSettings()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD19 退出账号",
+        "type": "button",
+        "action": "logout()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🆙 更新书源",
+        "type": "button",
+        "action": "updateSource()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD30 使用指南",
+        "type": "button",
+        "action": "startGithubReadme()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "✈\uFE0F 直连模式",
+        "type": "button",
+        "action": "editSettings('IPDirect')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "章节名称",
+        "type": "text"
+    },
+    {
+        "name": "❤️ 公开收藏",
+        "type": "button",
+        "action": "novelBookmarkFactory(1)",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCC3 追更系列",
+        "type": "button",
+        "action": "seriesWatchFactory()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "❤️ 收藏系列",
+        "type": "button",
+        "action": "novelsBookmarkAdd()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDA4 取消收藏",
+        "type": "button",
+        "action": "novelsBookmarkDelete()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⭐️ 关注作者",
+        "type": "button",
+        "action": "userFollowFactory()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDEAB 屏蔽作者",
+        "type": "button",
+        "action": "userBlock()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
+        "name": "输入内容",
+        "type": "text"
+    },
+    {
+        "name": "✅ 发送评论",
+        "type": "button",
+        "action": "novelCommentAdd()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDD1 删除评论",
+        "type": "button",
+        "action": "novelCommentDelete()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83E\uDDF9 清除缓存",
+        "type": "button",
+        "action": "cleanCache()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
+        "name": "\uD83D\uDEAB 添加屏蔽",
+        "type": "button",
+        "action": "blockAddFactory()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⭕️ 删除屏蔽",
+        "type": "button",
+        "action": "blockDeleteFactory()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC40 查看屏蔽",
+        "type": "button",
+        "action": "blockShowFactory()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
+        "name": "\uD83D\uDCCC 喜欢标签",
+        "type": "button",
+        "action": "likeTagsAdd()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDD1 删除标签",
+        "type": "button",
+        "action": "likeTagsDelete()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC40 查看标签",
+        "type": "button",
+        "action": "likeTagsShow()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
+        "name": "❤️ 他人收藏",
+        "type": "button",
+        "action": "likeAuthorsAdd()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDA4 取消收藏",
+        "type": "button",
+        "action": "likeAuthorsDelete()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC40 查看收藏",
+        "type": "button",
+        "action": "likeAuthorsShow()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
+        "name": "书源设置",
+        "type": "text"
+    },
+    {
+        "name": "⚙️ 当前设置",
+        "type": "button",
+        "action": "showSettings()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD27 默认设置",
+        "type": "button",
+        "action": "setDefaultSettingsLoginUrl()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC64 搜索作者",
+        "type": "button",
+        "action": "editSettings('SEARCH_AUTHOR')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83C\uDC04 繁简通搜",
+        "type": "button",
+        "action": "editSettings('CONVERT_CHINESE')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCD6 更多简介",
+        "type": "button",
+        "action": "editSettings('MORE_INFORMATION')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCC5 更新时间",
+        "type": "button",
+        "action": "editSettings('SHOW_UPDATE_TIME')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD17 原始链接",
+        "type": "button",
+        "action": "editSettings('SHOW_ORIGINAL_LINK')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCDA 恢复《》",
+        "type": "button",
+        "action": "editSettings('REPLACE_TITLE_MARKS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDDBC️ 显示描述",
+        "type": "button",
+        "action": "editSettings('SHOW_CAPTIONS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCAC 显示评论",
+        "type": "button",
+        "action": "editSettings('SHOW_COMMENTS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "❤️ 显示收藏",
+        "type": "button",
+        "action": "editSettings('SHOW_LIKE_NOVELS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCC3 显示追更",
+        "type": "button",
+        "action": "editSettings('SHOW_WATCHED_SERIES')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⏩ 快速模式",
+        "type": "button",
+        "action": "editSettings('FAST')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDC1E 调试模式",
+        "type": "button",
+        "action": "editSettings('DEBUG')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDD0D 搜索说明",
+        "type": "button",
+        "action": "readMeSearch()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "\uD83D\uDCC4 搜索页码",
+        "type": "button",
+        "action": "showMaxPages()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⏫ 增加页码",
+        "type": "button",
+        "action": "editMaxPages('add')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⏬ 减少页码",
+        "type": "button",
+        "action": "editMaxPages('minus')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    }
+]

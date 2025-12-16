@@ -129,6 +129,31 @@ li = li.concat(r18Rank)
 if (SHOW_GENERAL_RANK) li = li.concat(generalRank)
 if (SHOW_R18_GENRE) li = li.concat(r18Genre)
 if (SHOW_GENERAL_GENRE) li = li.concat(generalGenre)
+sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
+
+// 收藏标签
+let likeTags = getFromCache("likeTags")
+if (likeTags && likeTags.length >= 1) {
+    likeTags.forEach(tag => {
+        let tagLink = {}
+        tagLink[tag] = `${urlSearchNovel(tag, "{{page}}")}`
+        likeTagLinks.push(tagLink)
+    })
+    li = li.concat(likeTagLinks)
+}
+
+// 他人收藏
+let likeAuthors = getFromCacheMap("likeAuthors")
+if (likeAuthors.size > 0) {
+    likeAuthors.forEach((authorName, authorId) => {
+        let bookmark = {}
+        bookmark[authorName] = urlUserBookmarks(authorId)
+        othersBookmarks.push(bookmark)
+    })
+    li = li.concat(othersBookmarks)
+}
+
+// 书源相关
 li = li.concat(source)
 
 // 添加格式
