@@ -140,12 +140,15 @@ function replaceJumpUrl(content) {
             let matchedText = matched2[0]
             let urlName = matched2[1].trim()
             let urlLink = matched2[2].trim()
-            // 阅读不支持超链接
-            //content = content.replace(`${matchedText}`, `<a href=${urlLink}>${urlName}</a>`)
-            if (urlLink === urlName) {
-                content = content.replace(`${matchedText}`, `${urlName}`)
+
+            if (util.environment.IS_LEGADO) {
+                content = content.replace(`${matchedText}`, `<a href=${urlLink}> ${urlName}</a>`)
             } else {
-                content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
+                if (urlLink === urlName) {
+                    content = content.replace(`${matchedText}`, `${urlName}`)
+                } else {
+                    content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
+                }
             }
         }
     }
