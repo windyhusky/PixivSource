@@ -48,7 +48,7 @@
             "author": "userName",
             "bookList": "<JS CODE>",
             "bookUrl": "detailedUrl",
-            "checkKeyWord": "测试页面",
+            "checkKeyWord": "#测试页面",
             "coverUrl": "coverUrl",
             "intro": "description",
             "kind": "tags",
