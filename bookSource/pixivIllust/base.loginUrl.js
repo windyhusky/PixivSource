@@ -195,6 +195,13 @@ function editSettings(settingName) {
             checkSettings()
             msg = `\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         }
+
+    } else if (settingName === "QUALITY_REGULAR") {
+        msg = `\n${statusMsg(status)}　${settingsName[settingName]}\n\n`
+        if (settings.QUALITY_REGULAR)
+             msg += "图片质量设置为 regular "
+        else msg += "图片质量设置为 original"
+
     } else {
         msg = `\n${statusMsg(status)}　${settingsName[settingName]}`
     }
