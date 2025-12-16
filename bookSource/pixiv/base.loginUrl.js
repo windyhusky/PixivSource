@@ -406,27 +406,6 @@ function userFollowFactory(code) {
     else if (code === 1) userFollow()
 }
 
-function userBlackList() {
-    let action = "block"  // 拉黑作者，非屏蔽作者作品
-    let novel = getNovel()
-    let lastStatus = getFromCache(`block${novel.userId}`)
-    if (lastStatus === true) action = "unblock"
-
-    let resp = getPostBody(
-        `https://www.pixiv.net/ajax/block/save`,
-        JSON.stringify({"user_id": novel.userId, "action": action})
-    )
-    // java.log(JSON.stringify({"user_id": novel.userId, "action": action}))
-    if (resp.error === true) sleepToast("⚠️ 操作失败", 1)
-    else if (lastStatus === true) {
-        cache.put(`block${novel.userId}`, false)
-        sleepToast(`✅ 已取消拉黑【${novel.userName}】\n\n已允许其点赞、评论、收藏、关注、私信等`)
-    } else {
-        cache.put(`block${novel.userId}`, true)
-        sleepToast(`✅ 已拉黑【${novel.userName}】(Pixiv)\n\n已禁止其点赞、评论、收藏、关注、私信等`)
-    }
-}
-
 function userBlock() {
     let authors = getFromCache("blockAuthorList")
     if (!authors) authors = []
@@ -832,9 +811,6 @@ function shareFactory(type) {
 function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
-function startGithubIssue() {
-    startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
-}
 function startGithubReadme() {
     startBrowser("https://downeyrem.github.io/PixivSource/Pixiv", "使用指南")
 }
@@ -842,14 +818,6 @@ function startGithubReadme() {
 function checkStatus(status) {
     if (eval(String(status)) === true) return "❤️"
     else return "🖤"
-}
-
-function charpterReading() {
-    let novel = getNovel()
-    // let novel = source.getLoginInfoMap()
-    let msg = `📌 当前章节\n\n${checkStatus(novel.isWatched)} 系列：${novel.seriesTitle}\n${checkStatus(novel.isBookmark)} 章节：${novel.title}\n👤 作者：${novel.userName}\n\n如非当前章节，请刷新正文`
-    msg = msg.replace("🖤 系列：\n", "")
-    sleepToast(msg, 2)
 }
 
 function readMeLogin() {

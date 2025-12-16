@@ -400,27 +400,6 @@ function userFollowFactory(code) {
     else if (code === 1) userFollow()
 }
 
-function userBlackList() {
-    let action = "block"  // 拉黑作者，非屏蔽作者作品
-    let novel = getNovel()
-    let lastStatus = getFromCache(`block${novel.userId}`)
-    if (lastStatus === true) action = "unblock"
-
-    let resp = getPostBody(
-        `https://www.pixiv.net/ajax/block/save`,
-        JSON.stringify({"user_id": novel.userId, "action": action})
-    )
-    // java.log(JSON.stringify({"user_id": novel.userId, "action": action}))
-    if (resp.error === true) sleepToast("⚠️ 操作失败", 1)
-    else if (lastStatus === true) {
-        cache.put(`block${novel.userId}`, false)
-        sleepToast(`✅ 已取消拉黑【${novel.userName}】\n\n已允许其点赞、评论、收藏、关注、私信等`)
-    } else {
-        cache.put(`block${novel.userId}`, true)
-        sleepToast(`✅ 已拉黑【${novel.userName}】(Pixiv)\n\n已禁止其点赞、评论、收藏、关注、私信等`)
-    }
-}
-
 function userBlock() {
     let authors = getFromCache("blockAuthorList")
     if (!authors) authors = []
@@ -826,9 +805,6 @@ function shareFactory(type) {
 function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
-function startGithubIssue() {
-    startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
-}
 function startGithubReadme() {
     startBrowser("https://downeyrem.github.io/PixivSource/Pixiv", "使用指南")
 }
@@ -836,14 +812,6 @@ function startGithubReadme() {
 function checkStatus(status) {
     if (eval(String(status)) === true) return "❤️"
     else return "🖤"
-}
-
-function charpterReading() {
-    let novel = getNovel()
-    // let novel = source.getLoginInfoMap()
-    let msg = `📌 当前章节\n\n${checkStatus(novel.isWatched)} 系列：${novel.seriesTitle}\n${checkStatus(novel.isBookmark)} 章节：${novel.title}\n👤 作者：${novel.userName}\n\n如非当前章节，请刷新正文`
-    msg = msg.replace("🖤 系列：\n", "")
-    sleepToast(msg, 2)
 }
 
 function readMeLogin() {
@@ -877,81 +845,7 @@ let settingsName = {
     "IPDirect": "✈️ 直连模式",
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
-    // "":"Pixiv 设置",
-    // "HIDE_AI_WORKS":"隐藏AI作品",
-    // "SENSITIVE_VIEW":"敏感作品",
-    // "USER_X_RESTRICT":"成人设置",
-    // "READING_STATUS":"阅读进度",
 }
-
-// function getPixivSettings() {
-//     let settings = getFromCache("pixivSettings")
-//     let resp = getAjaxJson("https://www.pixiv.net/ajax/settings/self")
-//     if (resp.error !== true) {
-//         let siteSettings = resp.body.user_status
-//         settings.HIDE_AI_WORKS = siteSettings.hide_ai_works
-//         settings.SENSITIVE_VIEW = siteSettings.sensitive_view_setting
-//         settings.USER_X_RESTRICT = siteSettings.user_x_restrict
-//         settings.READING_STATUS = siteSettings.reading_status_enabled
-//     } else {
-//         settings.HIDE_AI_WORKS = false
-//         settings.SENSITIVE_VIEW = 0
-//         settings.USER_X_RESTRICT = 0
-//         settings.READING_STATUS = false
-//     }
-//     putInCache("pixivSettings", settings)
-//     return settings
-// }
-//
-// function editPixivSettingsHideAI() {
-//     let settings = getPixivSettings()
-//     // let settings = getFromCache("pixivSettings")
-//     let hideAiWorks = Number(!settings.HIDE_AI_WORKS)
-//     let resp = getPostBody(
-//         "https://www.pixiv.net/ajax/settings/self?lang=zh",
-//         {"hideAiWorks": hideAiWorks}
-//     )
-//
-//     if (resp.error === true) sleepToast(`⚠️ 隐藏AI作品 失败`, 1)
-//     else if (hideAiWorks === 1) sleepToast(`⚠️ 隐藏AI作品\n\n✅ 已 隐藏AI作品`)
-//     else sleepToast(`⚠️ 隐藏AI作品\n\n✅ 已取消 隐藏AI作品`)
-//     settings.HIDE_AI_WORKS = Boolean(hideAiWorks)
-//     putInCache("pixivSettings", settings)
-// }
-//
-// function editPixivSettingsXRestrict() {
-//     let settings = getPixivSettings()
-//     // let settings = getFromCache("pixivSettings")
-//     let userXRestrict = settings.USER_X_RESTRICT + 1
-//     if (userXRestrict === 3) userXRestrict = 0
-//     let resp = getPostBody(
-//         "https://www.pixiv.net/ajax/settings/user_x_restrict",
-//         {"userXRestrict": userXRestrict}
-//     )
-//
-//     if (resp.error === true) sleepToast(`⚠️ 成人作品 失败`, 1)
-//     else if (hideAiWorks === 0) sleepToast(`⚠️ 成人作品\n\n✅ 已关闭 成人作品`)
-//     else if (hideAiWorks === 1) sleepToast(`⚠️ 成人作品\n\n✅ 已开启 R-18作品`)
-//     else sleepToast(`⚠️ 成人作品\n\n✅ 已开启 R-18G作品`)
-//     settings.HIDE_AI_WORKS = userXRestrict
-//     putInCache("pixivSettings", settings)
-// }
-//
-// function editPixivSettingsSensitiveView() {
-//     let settings = getPixivSettings()
-//     // let settings = getFromCache("pixivSettings")
-//     let sensitiveView = Number(!settings.SENSITIVE_VIEW)
-//     let resp = getPostBody(
-//         "https://www.pixiv.net/ajax/settings/sensitive_view_setting",
-//         {"sensitiveViewSetting": sensitiveView}
-//     )
-//
-//     if (resp.error === true) sleepToast(`⚠️ 敏感作品 失败`, 1)
-//     else if (sensitiveView === 0) {sleepToast(`⚠️ 敏感作品\n\n✅ 已隐藏 敏感作品`)}
-//     else sleepToast(`⚠️ 敏感作品\n\n✅ 已显示 敏感作品`)
-//     settings.SENSITIVE_VIEW = sensitiveView
-//     putInCache("pixivSettings", settings)
-// }
 
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
