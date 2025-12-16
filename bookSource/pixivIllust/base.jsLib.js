@@ -46,7 +46,7 @@ function isJsonString(str) {
 
 function isLogin() {
     const {java, cache} = this
-    return !!cache.get("csfrToken")
+    return !!cache.get("pixivCsrfToken")
 }
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
@@ -115,7 +115,7 @@ function urlIP(url) {
             // "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
             // "X-Requested-With": "XMLHttpRequest",
             "Host": "www.pixiv.net",
-            // "x-csrf-token": cache.get("csfrToken") || "",
+            // "x-csrf-token": cache.get("pixivCsrfToken") || "",
             // "Cookie": cache.get("pixivCookie") || ""
         }
         return `${url}, ${JSON.stringify({headers: headers})}`
