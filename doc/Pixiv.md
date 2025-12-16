@@ -309,7 +309,6 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
   - 仅搜索标签、小说名称；多个标签空格间隔，【默认】进行繁简转换
   - `#` 为标记符，打出1个即可，例如：`#校园` `#校园 纯爱` `#校园 纯爱 BG`
   - 可与【排除标签】【字数过滤】同时使用
-  - 可与【作者专搜】同时使用，格式：`#标签 @作者`，搜索 `#标签` 并筛选出 `@作者` 的小说【不是很推荐使用】
 
   ![img](./pic/SearchViaLegadoHashtag.jpg)
   </details>
@@ -336,10 +335,9 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
     - 格式：`@作者 #标签1 or 标签2 -标签3 字数3k`
     - 推荐使用
 
-  - 搜索 `#标签1`或`标签2`，排除`标签3`，指定`@作者`，筛选字数 3k 及以上的小说：
-    - 格式：`#标签1 or 标签2 -标签3 @作者 字数3k`
-    - 使用此功能预先设置 单次搜索的最大页面数，否则无法获取数据
-    - 不是很推荐使用这个搜索方法
+  - 搜索 `#标签1`或`标签2`，排除`标签3`，筛选字数 3k 及以上的小说：
+    - 格式：`#标签1 or 标签2 -标签3 字数3k`
+    - 推荐使用
   </details>
 </details>
 
