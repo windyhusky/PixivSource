@@ -5,7 +5,7 @@
 # ⚡️ 快速开始 ⚡️
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ☕ [书源项目打赏名单](./Sponsor.md)
+#### ☕ [书源项目打赏名单](Sponsor.md)
 </div>
 
 
@@ -15,9 +15,10 @@
 > [✨臻享阅读](BetterExperience.md)
 
 
-## 使用流程：[下载阅读](https://miaogongzi.lanzout.com/b01rgkhhe) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](./QuickStart#LoginAccount) => [开始使用](./QuickStart#AddNovel)
+## ⚡️ 快速开始：[下载阅读](QuickStart#DownloadLegado) => [导入书源](QuickStart#ImportSources) => [书源配置](QuickStart#LoginAccount) => [阅读设置](QuickStart#LegadoSettings) => [畅享阅读](QuickStart#AddNovel) {#QuickStart}
 
-### 1.下载软件
+
+## 下载软件 {#DownloadAPP}
 > [!TIP]
 >
 > **Android 设备：阅读 + Pixiv 书源**
@@ -26,7 +27,7 @@
 > **，详见：[下载阅读](Download.md)**
 
 
-#### 1.1 下载阅读
+### ⬇️ A.下载阅读 {#DownloadLegado}
 > [!IMPORTANT]
 >
 > 点击链接，下载 **【新共存版】** 安装包并安装软件
@@ -34,8 +35,8 @@
 > https://miaogongzi.lanzout.com/b01rgkhhe
 
 
-#### 1.2 兼容软件
-<details><summary> 🉑 兼容软件 </summary>
+### ✅ B.兼容软件 {#CompatibleAPP}
+<details><summary><strong>🉑 兼容软件 </strong></summary>
 
 - [Pixiv 小说书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
 
@@ -45,7 +46,7 @@
 | 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
 </details>
 
-<details><summary> 🈶 更多软件 </summary>
+<details><summary><strong> 🈶 更多软件 </strong></summary>
 
 - [Pixiv 小说备用书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
 
@@ -55,61 +56,58 @@
 | 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
 | 🎀【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3/releases) | | 3.26     | 
 | 🍎【兼容】[源阅](https://github.com/kaich/SourceReadSite)      | TestFlight | 1.0 (112) |
-- 详见：[下载阅读](./Download.md)
+- 详见：[下载阅读](Download.md)
 </details>
 
 
-### 2.导入书源
-> [!TIP]
-> 更多方法详见：[导入书源](./ImportBookSource.md) & [导入订阅源](./ImportRssSource.md)
+## 导入书源 {#ImportSources}
+> [!NOTE]
+> **使用 Pixiv 书源阅读小说，建议导入：**
+> - **🅿️ Pixiv 书源**
+> - **🐲 BTSRK 订阅源**
+> 
+> **使用 Linpx 书源阅读小说，建议导入：**
+> - **🦊 Linpx 书源**
+> - **🐲 BTSRK 订阅源**
 
-<details><summary> ➡️ A.一键导入 </summary>
 
-#### A.一键导入 => [登录账号](./Pixiv.md#login-account) => 开始使用
+### 🚀 A.一键导入 {#OneClickImport}
+| 源名称    | jsDelivr | Github |
+|--------| -------- | ------ |
+| 🅿️ Pixiv 书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| 🦊 Linpx 书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| 🐲 BTSRK 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
+| | | |
+| 🌌 通用书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/normal.json) |
+| 📚 Books 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json) |
+| 📃 Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixivToc.json) |
+
+
+### 🔗 B.规则订阅 {#Subscription}
+<details><summary><strong> 🔗 B.规则订阅 </strong></summary>
+
+**订阅 - 规则订阅 - 添加 - 复制链接，添加订阅**
+
+详见：[导入书源](ImportBookSource.md)
+
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
-| Pixiv 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
-| Linpx 书源   | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
-| BTSRK 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
-
-
-<details><summary> 🔗 更多资源 </summary>
-
-| 源名称 | jsDelivr | Github |
-| ----- | -------- | ------ |
-| 通用书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/normal.json) |
-| 书源分享 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json) |
-| Import 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json) |
-| Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixivToc.json) |
-</details>
+| 🅿️ Pixiv 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| 🦊 Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| 🐲 BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
 </details>
 
 
-<details><summary> 🔗 B.规则订阅 </summary>
+### 💾 C.文件导入 {#FileImport}
+<details><summary><strong> 💾 C.文件导入 </strong></summary>
 
-#### B.规则订阅 => [登录账号](./Pixiv.md#login-account) => 开始使用
-订阅 - 规则订阅 - 添加 - 复制链接，添加订阅
-详见：[导入书源](./ImportBookSource.md)
-
-| 源名称 | jsDelivr | Github |
-| ----- | -------- | ------ |
-| Pixiv 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
-| Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
-| BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
-| Books 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json) |
-</details>
-
-
-<details><summary> 💾 C.文件导入 </summary>
-
-#### C.文件导入
-##### 1.下载书源/订阅源文件
+#### 1.下载书源/订阅源文件
 如果你下载了书源文件，可以使用本地文件导入
 
-![img](./pic/DownloadResource.png)
+![img](pic/DownloadResource.png)
 
 
-##### 2.使用阅读打开
+#### 2.使用阅读打开
 点击下载完成的书源文件，选择【用其他应用打开】
 ![img](pic/OpenInQQ.png)
 
@@ -117,45 +115,43 @@
 ![img](pic/OpenInLegado.png)
 
 
-##### 3.导入完成并启用书源/订阅源
-![img](./pic/InportBookSourcePixiv.jpg)
+#### 3.导入完成并启用书源/订阅源
+![img](pic/InportBookSourcePixiv.jpg)
 </details>
 
 
-### 3.登录账号
-#### 3.1 [Pixiv 账号登录](./Pixiv#LoginAccount) {#LoginAccount}
+## 书源配置 {#BookSourceSet}
+### 🅿️ [Pixiv 账号登录](Pixiv#LoginAccount) {#LoginAccount}
 > [!NOTE]
 >
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 
-<details><summary> 🅿️ 登录 Pixiv 账号 </summary>
 
-##### 3.1.1 开启代理工具
+#### 1.开启代理工具
 此处略过，请自行学习，**最好开启【全局代理】**
 
 
-##### 3.1.2 登录 Pixiv 账号
+#### 2. 登录 Pixiv 账号
 **我的 - 书源管理 - 菜单 - 登录 - 登录账号**
 
-![img](./pic/PixivLogin1.png)
+![img](pic/PixivLogin1.png)
 
-![img](./pic/PixivLoginUIAccount.png)
+![img](pic/PixivLoginUIAccount.png)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 
-![img](./pic/PixivLogin2.jpg)
+![img](pic/PixivLogin2.jpg)
 > [!TIP]
 >
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
-</details>
+- **登录成功后，就可以使用 Pixiv 书源查看小说了**
 
-
-#### 3.2. Linpx 与 兽人控小说站
+### 🦊 Linpx 与 兽人控小说站 {#CheckAccess}
 > [!NOTE]
 > 
 > **Linpx & 兽人控小说站 暂无账号体系，无需登录即可使用**
 
-<details><summary> ☑️ 检查网站能否访问 </summary>
+<details><summary><strong> ☑️ 检查网站能否访问 </strong></summary>
 
 订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
 - 如果可以直接打开，那么一切大功告成！
@@ -168,8 +164,8 @@
 </details>
 
 
-### 4.配置阅读
-#### 💾 [备份与恢复](WebdavBackup.md)
+## 阅读设置 {#LegadoSettings}
+### 💾 [备份恢复](WebdavBackup.md) {#WebdavBackup}
 > [!IMPORTANT]
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
@@ -178,7 +174,7 @@
 >
 > **详见：[备份与恢复](WebdavBackup.md)**
 
-#### 🔄 关闭自动刷新
+### 🔄 关闭刷新 {#TurnOffAutoRefresh}
 > [!IMPORTANT]
 >
 > **使用时，请在设置里，关闭自动刷新**
@@ -186,39 +182,31 @@
 > **否则很容易触发触发请求限制，甚至封号**
 
 我的 - 其他设置 - 自动刷新
-![img](./pic/LegadoSettingsAutoRefreash.png)
+![img](pic/LegadoSettingsAutoRefreash.png)
 > [!NOTE]
 >
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
 >
 > **可以像是使用常规阅读软件一样，使用开源阅读了**
 
-
-### 5.[使用书源，畅享阅读](./Pixiv.md#AddNovel) {#AddNovel}
-<details><summary> 📖 畅享阅读 </summary>
-
-- ✅ 搜索：书架页面，搜索小说，添加小说到书架
-- ✅ 发现：发现页面，查看小说，添加小说到书架
-- ✅ 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
-- ✅ 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
-</details>
-
-<details><summary> 📌 更多教程 </summary>
-
-> #### 0. [阅读是什么软件？阅读简介](./ReadMe.md)
-> #### 0. [下载 开源阅读 Legado](./Download.md)
-> #### 1. [快速开始](./QuickStart.md)【你在这里】
->> ##### 1.1 [Pixiv 书源的导入与使用](./Pixiv.md)
->> ##### 1.2 [Linpx 书源的导入与使用](./Linpx.md)
->> ##### 1.3 [兽人控小说站 书源的导入与使用](./FurryNovel.md)
->> ##### 1.4 搜索小说、查看订阅，畅享阅读
-> #### 2. [添加远程书籍](./RemoteBooks.md)，畅享阅读
-> #### 3. [设置 Webdav 备份](./WebdavBackup.md)
-> #### 4. [故障排查与处理](./TroubleShoot.md)
-</details>
+### ☁️ [远程书籍](RemoteBooks.md)（可选）{#RemoteBooks}
+> [!TIP]
+> 使用支持 Webdav 的网盘，阅读网盘上的书籍
+>
+> **详见：[远程书籍](RemoteBooks.md)**
 
 
-## ☕️ [支持开发](./Sponsor.md)
+## 📖 [畅享阅读](Pixiv.md#AddNovel) {#AddNovel}
+- 🔍 搜索小说：书架页面，搜索小说，添加小说到书架
+- ⭐️ 发现小说：发现页面，查看小说，添加小说到书架
+- 🔗 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
+- 🌐 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架 
+
+
+## 🐞 [故障处理](TroubleShoot.md) {#TroubleShoot}
+
+
+## ☕️ [支持开发](Sponsor.md) {#Sponsor}
 > [!NOTE]
 >
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
