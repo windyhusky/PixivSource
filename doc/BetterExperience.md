@@ -3,6 +3,7 @@
 <br>
 
 # ✨ 臻享阅读 ✨
+## 最好的 Pixiv 的小说阅读器
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)
@@ -68,6 +69,9 @@
 > [!NOTE]
 >
 > **我们的目标：做最好的 Pixiv 的小说阅读器**
+> 
+> **经过充分的调研，此目标已在 2025.12 实现**
+
 
 ### ⬇️ 下载阅读
 > [!IMPORTANT]
@@ -94,7 +98,7 @@
 添加书源后如图：
 ![img](./pic/SearchViaLegado.png)
 
-### 🌟 发现页面
+### ⭐️ 发现页面
 添加书源后如图：
 
 ![img](./pic/LegadoDiscover.png)
@@ -176,7 +180,7 @@
 
 
 ## 阅读设置
-### 💾 [备份与恢复](WebdavBackup.md)
+### 💾 [备份恢复](WebdavBackup.md)
 > [!IMPORTANT]
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
@@ -185,7 +189,7 @@
 > 
 > **详见：[备份与恢复](WebdavBackup.md)**
 
-### 🔄 关闭自动刷新
+### 🔄 关闭刷新
 > [!IMPORTANT]
 > 
 > **使用时，请在设置里，关闭自动刷新**
@@ -227,9 +231,9 @@
 
 
 ### ✈ 直连模式
-<details><summary> ✈ 直连模式 </summary>
+![img](./pic/PixivLoginUISource.png)
 
-登录账号后，可在登录界面打开直连模式
+**登录账号后，可在登录界面打开直连模式**
 
 ![img](pic/PixivIPDirect0.png)
 
@@ -243,7 +247,6 @@
 - 发现 书签 
 - 发现 首页 
 - 发现 排行榜
-</details>
 
 
 ### ⏺ 互动功能
