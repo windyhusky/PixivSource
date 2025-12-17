@@ -102,6 +102,10 @@ function urlIllustUrl(illustId) {
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
+// 直连功能参考自 洛娅橙的阅读仓库
+// https://github.com/Luoyacheng/yuedu
+// 其直连功能参考自 PixEz Flutter
+// https://github.com/Notsfsssf/pixez-flutter
 function urlIP(url) {
     const {java, cache} = this
     url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")

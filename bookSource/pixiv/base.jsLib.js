@@ -148,6 +148,10 @@ function getWebviewJson(url, parseFunc) {
     })
 }
 
+// 直连功能参考自 洛娅橙的阅读仓库
+// https://github.com/Luoyacheng/yuedu
+// 其直连功能参考自 PixEz Flutter
+// https://github.com/Notsfsssf/pixez-flutter
 function urlIP(url) {
     const {java, cache} = this
     let settings = this.getFromCache("pixivSettings")
@@ -240,6 +244,10 @@ function urlSearchUser(userName, full) {
     }
 }
 
+// 直连功能参考自 洛娅橙的阅读仓库
+// https://github.com/Luoyacheng/yuedu
+// 其直连功能参考自 PixEz Flutter
+// https://github.com/Notsfsssf/pixez-flutter
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (!url.trim()) return ""

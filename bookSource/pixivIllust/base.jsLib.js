@@ -105,6 +105,10 @@ function startBrowser(url, title) {
     java.startBrowser(`${url}, ${headers}`, title)
 }
 
+// 直连功能参考自 洛娅橙的阅读仓库
+// https://github.com/Luoyacheng/yuedu
+// 其直连功能参考自 PixEz Flutter
+// https://github.com/Notsfsssf/pixez-flutter
 function urlIP(url) {
     const {java, cache} = this
     let settings = this.getFromCache("pixivIllustSettings")
@@ -161,6 +165,10 @@ function urlSearchUser(name) {
     return `https://www.pixiv.net/search/users?nick=${encodeURI(name)}&s_mode=s_usr&nick_mf=1`
 }
 
+// 直连功能参考自 洛娅橙的阅读仓库
+// https://github.com/Luoyacheng/yuedu
+// 其直连功能参考自 PixEz Flutter
+// https://github.com/Notsfsssf/pixez-flutter
 function urlCoverUrl(url) {
     const {java, cache} = this
     let settings = this.getFromCache("pixivIllustSettings")
