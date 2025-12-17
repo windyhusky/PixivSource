@@ -19,6 +19,7 @@
 <SponsorTable :data="
 [
 { name: '噬空', time: '2025', channel: '支付宝', amount: 30 },
+{ name: '星之墨辰', time: '2025-10-05', channel: 'QQ', amount: 53 },
 { name: '迅迅龙龙', time: '2025-11-19', channel: '微信', amount: 100 },
 { name: '咸鱼家的凡人', time: '2025-11-19', channel: 'QQ', amount: 30 },
 { name: '噬空', time: '2025-11-19', channel: 'QQ', amount: 50 },
@@ -37,20 +38,37 @@
 { name: '天意618A03', time: '2025-12-02', channel: '微信', amount: 50 },
 { name: '龙牙虎', time: '2025-12-03', channel: '微信', amount: 15 },
 { name: '缘落碎羽', time: '2025-12-03', channel: '微信', amount: 15 },
+{ name: '*奎', time: '2025-12-08', channel: '微信', amount: 5 },
 ]
 "/>
 
-
-## 💶 定期赞助
+## 💶 项目赞助
 > [!TIP]
-> **本项目的定期赞助项目**
-
+> **本项目的赞助项目**
+### 📅 定期赞助
 - [Linpx](https://www.furrynovel.ink) 每年 ￥100 （2023年起）
 <SponsorTable :data="
 [
 { name: '唐尼瑞姆', time: '2025-02-04', channel: '支付宝', amount: 100 },
-{ name: '唐尼瑞姆', time: '2024', channel: 'QQ', amount: 100 },
+{ name: '唐尼瑞姆', time: '2024-02-15', channel: 'QQ', amount: 100 },
 { name: '唐尼瑞姆', time: '2023-02-15', channel: 'QQ', amount: 100 },
+]
+"/>
+
+### 🔀 不定期赞助
+- [阅读 Sigma](https://loyc.xyz/c/legado.html) （洛娅橙）
+
+<SponsorTable :data="
+[
+{ name: '唐尼瑞姆', time: '2025-12-17', channel: '支付宝', amount: 30 },
+]
+"/>
+
+- [阅读 Beta](https://beta.miaogongzi.cc) （喵公子）
+
+<SponsorTable :data="
+[
+{ name: '唐尼瑞姆', time: '2025-12-17', channel: '支付宝', amount: 10 },
 ]
 "/>
 
