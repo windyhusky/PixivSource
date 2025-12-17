@@ -2,40 +2,22 @@
 <img width="150" height="150" src="doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 ## 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
-### 🏠 [书源官网 & 使用指南](https://downeyrem.github.io/PixivSource)
+### 🏠 [书源官网](https://downeyrem.github.io/PixivSource) & [使用指南](https://downeyrem.github.io/PixivSource/BetterExperience) 
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-### ❤️ [Pixiv 书源项目 打赏名单](/https://downeyrem.github.io/PixivSource/Sponsor)
+### ☕️ [Pixiv 书源项目 打赏名单](https://downeyrem.github.io/PixivSource/Sponsor)
 </div>
 
 
 ## ✨ [臻享阅读：最好的 Pixiv 小说阅读器——开源阅读 + Pixiv 书源](https://downeyrem.github.io/PixivSource/BetterExperience)
-## ⚡️ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：[下载阅读](https://downeyrem.github.io/PixivSource/Download) => [导入书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) => [登录账号](https://downeyrem.github.io/PixivSource/Pixiv#LoginAccount) => [开始使用](https://downeyrem.github.io/PixivSource/./#AddNovel)
-
-<details><summary> ©️ 版权问题 </summary>
-
-#### 版权问题
-1. 开源阅读 Legado 是一个做了很多阅读功能的浏览器
-2. 书源(及订阅源)是浏览器向网站请求数据、处理数据的一套方法
-3. 使用开源阅读 Legado 阅读小说，相当于访问相关网页阅读小说
-4. 开源阅读 Legado 内的作品数据均来自书源内的网站，作品版权归原作者或站方所有
-5. 如有版权问题，请找到书源内的网站，向站方投诉
-</details>
-
-
-<details><summary> 📌 免责声明 </summary>
-
-#### 免责声明
-1. 本书源仅用于【交流书源代码】和【学习分享 JS 技术】
-2. 使用书源造成的一切损失均由【书源使用者】自行承担
-</details>
+## ⚡️ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：➡️[下载阅读](https://downeyrem.github.io/PixivSource/QuickStart#DownloadLegado)➡️[导入书源](https://downeyrem.github.io/PixivSource/QuickStart#ImportSources)➡️[登录账号](https://downeyrem.github.io/PixivSource/QuickStart#LoginAccount)➡️[阅读设置](https://downeyrem.github.io/PixivSource/QuickStart#LegadoSettings)➡️[开始使用](https://downeyrem.github.io/PixivSource/Pixiv#AddNovel)
 
 
 ## 📖 书源功能
 | 书源    | 状态 | 直连 | 支持 Ｐ站 特性 | 实现 阅读 功能 |
 | ------ | --- | --- |------------ | ----------- |
-| Pixiv  | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
-| Linpx  | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
-| 兽人小说 | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
+| Pixiv  | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 |
+| Linpx  | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 |
+| 兽人小说 | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 |
 
 <details><summary> 📖 书源功能 </summary>
 
@@ -458,8 +440,27 @@
 
 
 ## 🗃 杂类
-### 🌱 [项目源起：为了更好的阅读体验](https://downeyrem.github.io/PixivSource/Beginning)
+### 🌱 [项目起源：为了更好的阅读体验](https://downeyrem.github.io/PixivSource/Beginning)
 ### ☕️ [支持开发](https://downeyrem.github.io/PixivSource/Sponsor)
+
+<details><summary> ©️ 版权问题 </summary>
+
+### 版权问题
+1. 开源阅读 Legado 是一个做了很多阅读功能的浏览器
+2. 书源(及订阅源)是浏览器向网站请求数据、处理数据的一套方法
+3. 使用开源阅读 Legado 阅读小说，相当于访问相关网页阅读小说
+4. 开源阅读 Legado 内的作品数据均来自书源内的网站，作品版权归原作者或站方所有
+5. 如有版权问题，请找到书源内的网站，向站方投诉
+</details>
+
+
+<details><summary> 📌 免责声明 </summary>
+
+### 免责声明
+1. 本书源仅用于【交流书源代码】和【学习分享 JS 技术】
+2. 使用书源造成的一切损失均由【书源使用者】自行承担
+</details>
+
 <details><summary> ✈ 社群链接 </summary>
 
 ### Telegram 频道 & 群组

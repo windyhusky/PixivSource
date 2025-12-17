@@ -41,23 +41,23 @@ hero:
       text: 📙 使用指南
       link: Linpx
       
-#    - theme: alt
-#      text: 🏠 项目
-#      link: "https://github.com/DowneyRem/PixivSource"
+    - theme: alt
+      text: 🏠 项目
+      link: https://github.com/DowneyRem/PixivSource
 
     - theme: alt
       text: ✈️ 频道 
-      link: "https://t.me/PixivSource"
+      link: https://t.me/PixivSource
 
     - theme: alt
-      text: ☕ 支持开发
-      link: "Sponsor"
+      text: ☕ 打赏
+      link: Sponsor
       
 
 features:
   - icon: 📖
     title: 书源功能全面
-    details: 🔍搜索小说 🌟发现小说<br>🔗添加网址 🌐订阅源
+    details: 🔍搜索小说 ⭐️发现小说<br>🔗添加网址 🌐订阅源
     link: Pixiv#AddNovel
     
   - icon: 📚
@@ -68,12 +68,12 @@ features:
   - icon: ⭐️
     title: 互动功能齐全
     details: ❤️收藏小说📃追更系列<br>✅发送评论⭐️关注作者
-    link: BetterExperience#⏺-互动功能
+    link: BetterExperience#InteractiveFunction
     
   - icon: ✈️
     title: 直连无需代理
     details: 🅿️ 登录账号，开启直连<br>✈️ 无需代理，直接访问
-    link: BetterExperience#✈-直连模式
+    link: BetterExperience#IPDirect
     
 #  - icon: 🔍
 #    title: 高级搜索
