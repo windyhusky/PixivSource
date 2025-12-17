@@ -6,7 +6,7 @@
 ## 最好的 Pixiv 的小说阅读器
 ### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ☕ [书源项目打赏名单](./Sponsor.md)
+#### ☕ [书源项目打赏名单](Sponsor.md)
 </div>
 
 
@@ -16,8 +16,8 @@
 > [⚡️ 快速开始](QuickStart.md)
 
 
-## 你是否被下面的问题所困扰？
-### 官方 APP 的小说阅读体验堪忧
+## 你是否被下面的问题所困扰？ {#Trouble}
+### 官方 APP 的小说阅读体验堪忧 {#OfficialAPPTrouble}
 <details><summary><strong> 👎 阅读体验堪忧 </strong></summary>
 
 - 小说功能缺陷
@@ -35,7 +35,7 @@
 </details>
 
 
-### 第三方 APP 的小说阅读体验不佳
+### 第三方 APP 的小说阅读体验不佳 {#UnOfficialAPPTrouble}
 <details><summary><strong> 😞 阅读体验不佳 </strong></summary>
 
 - <details><summary> 🈚️ 无小说功能 </summary>
@@ -64,8 +64,8 @@
 **迄今为止（2025.12），上述软件的小说阅读体验，依然没有一个超过了 Pixiv**
 
 
-## 你是否想改善阅读体验呢？<br>如果你的回答是“是的”<br>那么你可能需要：
-## 开源阅读 + Pixiv 书源
+## 你是否想改善阅读体验呢？<br>如果你的回答是“是的”<br>那么你可能需要：{#Question}
+## 开源阅读 + Pixiv 书源 {#RepoIntroduction}
 > [!NOTE]
 >
 > **我们的目标：做最好的 Pixiv 的小说阅读器**
@@ -73,7 +73,7 @@
 > **经过充分的调研，此目标已在 2025.12 实现**
 
 
-### ⬇️ 下载阅读
+### ⬇️ 下载阅读 {#DownloadLegado}
 > [!IMPORTANT]
 >
 > 点击链接，下载 **【新共存版】** 安装包并安装软件
@@ -88,22 +88,22 @@
 > **，详见：[下载阅读](Download.md)**
 
 
-## 软件介绍
+## 软件介绍 {#LegadoIntroduction}
 像常规阅读软件一样，也有：书架、搜索、发现、我的 等页面
-### 📚 书架页面
+### 📚 书架页面 {#Shelf}
 添加小说后如图：
-![img](./pic/LegadoBookShelf.png)
+![img](pic/LegadoBookShelf.png)
 
-### 🔎 搜索页面
+### 🔎 搜索页面 {#Search}
 添加书源后如图：
-![img](./pic/SearchViaLegado.png)
+![img](pic/SearchViaLegado.png)
 
-### ⭐️ 发现页面
+### ⭐️ 发现页面 {#discover}
 添加书源后如图：
 
-![img](./pic/LegadoDiscover.png)
+![img](pic/LegadoDiscover.png)
 
-### 👤 我的页面
+### 👤 我的页面 {#Mine}
 多数阅读软件的我的页面都有登录账号
 
 与常规阅读软件不同，【开源阅读】的我的页面，最上面却是【书源管理】
@@ -113,8 +113,8 @@
 **【书源管理】和【备份与恢复】这两项非常重要**，稍后讲解
 
 
-## 概念介绍
-### 📖 书源
+## 概念介绍 {#SourceIntroduction}
+### 📖 书源 {#BookSource}
 > [!NOTE]
 > **【开源阅读】没有账号体系，软件本身并不提供小说资源**
 > 
@@ -125,7 +125,7 @@
 - 有【番茄】书源，就可以看 番茄小说
 - 有【Pixiv】书源，就可以看 Pixiv 的小说
 
-### 🌐 订阅源
+### 🌐 订阅源 {#RssSource}
 > [!NOTE]
 > 
 > 「订阅源类似于RSS，甚至可以听音乐看视频」
@@ -133,7 +133,7 @@
 > **这里提供的订阅源类似于浏览器书签，可以在阅读软件内快速访问相关网站**
 
 
-### 🚀 导入书源 & 订阅源
+### 🚀 导入书源 & 订阅源 {#ImportSources}
 - **书源、订阅源的内部数据不同，添加源（网络导入、规则订阅）的时候需要区分**
 - 这里使用的是**一键导入，不需要区分二者**
 > [!IMPORTANT]
@@ -147,14 +147,14 @@
 - **这样才能保证最佳的使用体验**
 
 
-## 书源配置
-### ⚙️ 书源管理
+## 书源配置 {#BookSourceSet}
+### ⚙️ 书源管理 {#BookSourceManagement}
 打开书源管理，有书源的话，点击书源菜单后，应该是这样的：
 ![img.png](pic/PixivLogin1.png)
 注意**这里的【登录】和【调试】，这两个功能很重要**，我们稍后讲解
 
 
-### 🅿️ 登录账号
+### 🅿️ 登录账号 {#LoginAccount}
 > [!NOTE]
 > 
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
@@ -165,13 +165,13 @@
 #### 2. 登录 Pixiv 账号
 **我的 - 书源管理 - 菜单 - 登录 - 登录账号**
 
-![img](./pic/PixivLogin1.png)
+![img](pic/PixivLogin1.png)
 
-![img](./pic/PixivLoginUIAccount.png)
+![img](pic/PixivLoginUIAccount.png)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 
-![img](./pic/PixivLogin2.jpg)
+![img](pic/PixivLogin2.jpg)
 > [!TIP]
 >
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
@@ -179,8 +179,8 @@
 - 但还请注意，**此时阅读的配置还没有全部完成**
 
 
-## 阅读设置
-### 💾 [备份恢复](WebdavBackup.md)
+## 阅读设置 {#LegadoSettings}
+### 💾 [备份恢复](WebdavBackup.md) {#WebdavBackup}
 > [!IMPORTANT]
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
@@ -189,7 +189,7 @@
 > 
 > **详见：[备份与恢复](WebdavBackup.md)**
 
-### 🔄 关闭刷新
+### 🔄 关闭刷新 {#TurnOffAutoRefresh}
 > [!IMPORTANT]
 > 
 > **使用时，请在设置里，关闭自动刷新**
@@ -197,22 +197,22 @@
 > **否则很容易触发触发请求限制，甚至封号**
 
 **我的 - 其他设置 - 自动刷新**
-![img](./pic/LegadoSettingsAutoRefreash.png)
+![img](pic/LegadoSettingsAutoRefreash.png)
 > [!NOTE]
 > 
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
 > 
 > **可以像是使用常规阅读软件一样，使用开源阅读了**
 
-### ☁️ [远程书籍](RemoteBooks.md)（可选）
+### ☁️ [远程书籍](RemoteBooks.md)（可选） {#RemoteBooks}
 > [!TIP]
 > 使用支持 Webdav 的网盘，阅读网盘上的书籍
 > 
 > **详见：[远程书籍](RemoteBooks.md)**
 
 
-## 书源功能
-### 🖼 登陆界面
+## 书源功能 {#BookSourceFunction}
+### 🖼 登陆界面 {#LoginUI}
 > [!TIP]
 > 
 > **书源众多功能均在登陆页面内**
@@ -228,17 +228,17 @@
 
 - 两种方式都可以打开登陆界面
 
-![img](./pic/PixivLoginUI.png)
+![img](pic/PixivLoginUI.png)
 
 
-### ✈ 直连模式
+### ✈ 直连模式 {#IPDirect}
 > [!NOTE]
 > 
 > **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
 > 
 > **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
 
-![img](./pic/PixivLoginUISource.png)
+![img](pic/PixivLoginUISource.png)
 
 **登录账号后，可在登录界面打开直连模式**
 
@@ -256,10 +256,10 @@
 - 发现 排行榜
 
 
-### ⏺ 互动功能
+### ⏺ 互动功能 {#InteractiveFunction}
 <details><summary> ⏺ 互动功能 </summary>
 
-![img](./pic/PixivLoginUINovels.png)
+![img](pic/PixivLoginUINovels.png)
 - ❤️ 公开收藏：公开收藏、取消收藏
 - 📃 追更系列：追更系列、取消追更
 - **❤️ 收藏系列：公开收藏系列内的每篇小说（可追加收藏）**
@@ -274,10 +274,10 @@
 </details>
 
 
-### ⚙️ 书源设置
+### ⚙️ 书源设置 {#BookSourceSettings}
 <details><summary> ⚙️ 书源设置 </summary>
 
-![img](./pic/PixivLoginUISettings.png)
+![img](pic/PixivLoginUISettings.png)
 - ⚙️ 当前设置：显示当前设置
 - ⚙️ 默认设置：恢复默认设置
 - 👤 搜索作者：默认搜索作者
@@ -299,11 +299,15 @@
 - 🔍 搜索说明：显示搜索说明
 </details>
 
-### ▶️ 更多内容
-> 详见：[Pixiv 书源指南](./Pixiv.md#AddNovel)
+
+## 📖 [畅享阅读](Pixiv.md#AddNovel) {#AddNovel}
+- 🔍 搜索小说：书架页面，搜索小说，添加小说到书架
+- ⭐️ 发现小说：发现页面，查看小说，添加小说到书架
+- 🔗 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
+- 🌐 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
 
 
-## ☕️ [支持开发](./Sponsor.md)
+## ☕️ [支持开发](Sponsor.md) {#Sponsor}
 > [!NOTE]
 >
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
