@@ -74,17 +74,6 @@
         }
     },
     {
-        "name": "更新时间",
-        "type": "toggle",
-        "chars": ["📅 ", "🚫 "],
-        "default": "📅 ",
-        "action": "editSettings('SHOW_UPDATE_TIME')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "原始链接",
         "type": "toggle",
         "chars": ["🔗 ", "🚫 "],
@@ -118,64 +107,11 @@
         }
     },
     {
-        "name": "显示评论",
-        "type": "toggle",
-        "chars": ["💬 ", "🚫 "],
-        "default": "💬 ",
-        "action": "editSettings('SHOW_COMMENTS')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "显示收藏",
-        "type": "toggle",
-        "chars": ["❤️ ", "🚫 "],
-        "default": "❤️ ",
-        "action": "editSettings('SHOW_LIKE_NOVELS')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "显示追更",
-        "type": "toggle",
-        "chars": ["📃 ", "🚫 "],
-        "default": "📃 ",
-        "action": "editSettings('SHOW_WATCHED_SERIES')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "快速模式",
-        "type": "toggle",
-        "chars": ["⏩ ", "🚫 "],
-        "default": "🚫 ",
-        "action": "editSettings('FAST')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "调试模式",
         "type": "toggle",
         "chars": ["🐞 ", "🚫 "],
         "default": "🚫 ",
         "action": "editSettings('DEBUG')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "🔍 搜索说明",
-        "type": "button",
-        "action": "readMeSearch()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1

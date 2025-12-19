@@ -18,7 +18,7 @@ function shareFactory(type) {
 }
 
 function startGithubReadme() {
-    startBrowser("https://downeyrem.github.io/PixivSource/Pixiv", "使用指南")
+    startBrowser("https://downeyrem.github.io/PixivSource/Linpx", "使用指南")
 }
 
 function checkStatus(status) {
@@ -28,17 +28,11 @@ function checkStatus(status) {
 
 let settingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
-    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
-    "SHOW_UPDATE_TIME": "📅 更新时间",
-    "SHOW_COMMENTS": "💬 显示评论",
     "MORE_INFORMATION": "📖 更多简介",
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
     "SHOW_CAPTIONS": "🖼️ 显示描述",
-    "SHOW_LIKE_NOVELS" :"❤️ 显示收藏",
-    "SHOW_WATCHED_SERIES" :"📃 显示追更",
-    "IPDirect": "✈️ 直连模式",
-    "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
 }
 
@@ -52,7 +46,7 @@ function statusMsg(status) {
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
     let keys = [], msgList = []
-    let settings = getFromCache("pixivSettings")
+    let settings = getFromCache("linpxSettings")
     keys = Object.keys(settingsName)
     for (let i in keys) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
@@ -61,7 +55,7 @@ function getSettingStatus(mode) {
 }
 
 function showSettings() {
-    sleepToast(`⚙️ 当前设置\n\n${getSettingStatus()}`)
+    sleepToast(`\n⚙️ 当前设置\n\n${getSettingStatus()}`)
 }
 
 function setDefaultSettingsLoginUrl() {
@@ -71,14 +65,14 @@ function setDefaultSettingsLoginUrl() {
 
 function editSettings(settingName) {
     let msg, status
-    let settings = getFromCache("pixivSettings")
+    let settings = getFromCache("linpxSettings")
     if (!settings) settings = setDefaultSettings()
     if (!!settings[settingName]) {
         status = settings[settingName] = !settings[settingName]
     } else {
         status = settings[settingName] = true
     }
-    putInCache("pixivSettings", settings)
+    putInCache("linpxSettings", settings)
     msg = `\n${statusMsg(status)}　${settingsName[settingName]}`
     sleepToast(msg)
 }
