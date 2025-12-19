@@ -1,0 +1,184 @@
+[
+    {
+        "name": "🆙 更新书源",
+        "type": "button",
+        "action": "updateSource()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🔰 使用指南",
+        "type": "button",
+        "action": "startGithubReadme()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
+    {
+        "name": "书源设置",
+        "type": "text"
+    },
+    {
+        "name": "⚙️ 当前设置",
+        "type": "button",
+        "action": "showSettings()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🔧 默认设置",
+        "type": "button",
+        "action": "setDefaultSettingsLoginUrl()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "搜索作者",
+        "type": "toggle",
+        "chars": ["👤 ", "🚫 "],
+        "default": "👤 ",
+        "action": "editSettings('SEARCH_AUTHOR')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "繁简通搜",
+        "type": "toggle",
+        "chars": ["🀄 ", "🚫 "],
+        "default": "🀄 ",
+        "action": "editSettings('CONVERT_CHINESE')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "更多简介",
+        "type": "toggle",
+        "chars": ["📖 ", "🚫 "],
+        "default": "🚫 ",
+        "action": "editSettings('MORE_INFORMATION')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "更新时间",
+        "type": "toggle",
+        "chars": ["📅 ", "🚫 "],
+        "default": "📅 ",
+        "action": "editSettings('SHOW_UPDATE_TIME')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "原始链接",
+        "type": "toggle",
+        "chars": ["🔗 ", "🚫 "],
+        "default": "🔗 ",
+        "action": "editSettings('SHOW_ORIGINAL_LINK')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "恢复《》",
+        "type": "toggle",
+        "chars": ["📚 ", "🚫 "],
+        "default": "📚 ",
+        "action": "editSettings('REPLACE_TITLE_MARKS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "显示描述",
+        "type": "toggle",
+        "chars": ["🖼️ ", "🚫 "],
+        "default": "🖼️ ",
+        "action": "editSettings('SHOW_CAPTIONS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "显示评论",
+        "type": "toggle",
+        "chars": ["💬 ", "🚫 "],
+        "default": "💬 ",
+        "action": "editSettings('SHOW_COMMENTS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "显示收藏",
+        "type": "toggle",
+        "chars": ["❤️ ", "🚫 "],
+        "default": "❤️ ",
+        "action": "editSettings('SHOW_LIKE_NOVELS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "显示追更",
+        "type": "toggle",
+        "chars": ["📃 ", "🚫 "],
+        "default": "📃 ",
+        "action": "editSettings('SHOW_WATCHED_SERIES')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "快速模式",
+        "type": "toggle",
+        "chars": ["⏩ ", "🚫 "],
+        "default": "🚫 ",
+        "action": "editSettings('FAST')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "调试模式",
+        "type": "toggle",
+        "chars": ["🐞 ", "🚫 "],
+        "default": "🚫 ",
+        "action": "editSettings('DEBUG')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🔍 搜索说明",
+        "type": "button",
+        "action": "readMeSearch()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    }
+]
