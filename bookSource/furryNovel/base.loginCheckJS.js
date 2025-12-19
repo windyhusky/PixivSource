@@ -8,6 +8,44 @@ function objStringify(obj) {
     });
 }
 
+// 检测 源阅
+// 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
+// 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
+// 可用 java.startBrowser() 不可用 java.startBrowserAwaitAwait
+// 可用 source.bookSourceName source.getVariable() source.setVariable()等
+// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+function isSourceRead() {
+    let isSourceReadStatus = java.getUserAgent() === java.getWebViewUA()
+    cache.put("isSourceRead", isSourceReadStatus)
+    return isSourceReadStatus
+}
+// 正式版 不支持在 JSlib 的函数直接设置默认参数
+// 正式版 不支持 a?.b 的写法
+// 检测 阅读 正式版 与 Beta 版本
+function isLegadoOfficial() {
+    let isLegadoOfficialStatus
+    try {
+        eval('({})?.value')
+        isLegadoOfficialStatus = false
+    } catch (e) {
+        isLegadoOfficialStatus = true
+    }
+    cache.put("isLegadoOfficial", isLegadoOfficialStatus)
+    return isLegadoOfficialStatus
+}
+// 检测 阅读 Beta 版本 与 LYC 版本
+// LYC 版本新增函数
+// java.ajaxTestAll()
+// java.openVideoPlayer(url: String, title: String, float: Boolean)
+// cookie.setWebCookie(url,cookie)
+// source.refreshExplore()
+// source.refreshJSLib()
+function isLegadoLYC() {
+    let isLegadoLYCStatus = (typeof java.ajaxTestAll === "function")
+    cache.put("isLegadoLYCStatus", isLegadoLYCStatus)
+    return isLegadoLYCStatus
+}
+
 function publicFunc() {
     let u = {}
     // 输出书源信息
