@@ -78,6 +78,11 @@ function publicFunc() {
     u.settings = settings
     putInCache("linpxSettings", settings)  // 设置写入缓存
 
+    u.environment = {}
+    u.environment.IS_SOURCEREAD = isSourceRead()
+    u.environment.IS_LEGADO = !isSourceRead()
+    u.environment.IS_LYC_BRUNCH = isLegadoLYC()
+    putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.DEBUG) {
@@ -281,4 +286,5 @@ function publicFunc() {
 }
 
 publicFunc()
+if (result.code() === 200) getWebViewUA()
 java.getStrResponse(null, null)
