@@ -130,6 +130,7 @@ function publicFunc() {
                     novel.seriesId = novel.series.id
                     novel.seriesTitle = novel.series.title
                 }
+                novel.description = novel.desc
                 novel.textCount = novel.length = novel.content.length
             }
 
@@ -143,34 +144,29 @@ function publicFunc() {
             }
 
             // 优化 未缓存系列目录的情况
-            // let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))   // 兼容详情
-            let series = this.getSeriesData(novel.seriesId)                  // 兼容搜索
-            if (novel.seriesId && series.error) {
-                novel.seriesId =novel.series.id
-                novel.title = novel.series.title
+            let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))   // 兼容详情
+            // let series = this.getSeriesData(novel.seriesId)            // 兼容搜索
+            if (novel.seriesId) {
+                novel.latestChapter = novel.title
+                novel.title = novel.seriesTitle
                 novel.tags.unshift("长篇")
-                novel.textCount = null  // 无数据
-                novel.createDate = null  // 无数据
+                // novel.createDate = novel.createDate
+                novel.description = novel.desc
+                novel.detailedUrl = urlNovelDetailed(novel.id)
             }
 
             if (novel.seriesId && !series.error) {
                 java.log(`正在获取系列小说：${novel.seriesId}`)
-                // let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
-                let series = this.getSeriesData(novel.seriesId)
                 novel.id = series.novels[0].id
-                novel.title = series.title
+                // novel.title = series.title
                 if (series.tags) {
                     novel.tags = novel.tags.concat(series.tags)
                 }
-                novel.tags.unshift("长篇")
-                novel.textCount = null  // 无数据
-                novel.createDate = null  // 无数据
                 novel.latestChapter = series.novels.reverse()[0].title
                 novel.description = series.caption
                 // 后端目前没有系列的 coverUrl 字段
                 // novel.coverUrl = series.coverUrl
                 novel.coverUrl = series.novels[0].coverUrl
-                novel.detailedUrl = urlNovelDetailed(novel.id)
 
                 let firstNovel = getAjaxJson(urlNovelDetailed(novel.id))
                 if (firstNovel.error !== true) {
