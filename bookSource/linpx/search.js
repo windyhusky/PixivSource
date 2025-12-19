@@ -101,7 +101,7 @@ function findUserNovels() {
         list.forEach(user => {
             // 按id降序排序-相当于按时间降序排序
             user.novels.reverse().forEach(nid => nidList.push(nid))
-            // series 数据写入缓存
+            // 优化 未缓存系列目录的情况：series 数据写入缓存
             user.series.forEach(series => {
                 series.novels = []
                 putInCache(`LSeries${series.id}`, series)
@@ -113,7 +113,7 @@ function findUserNovels() {
         })
     }
 
-    // series 数据写入缓存
+    // 优化 未缓存系列目录的情况：series 数据写入缓存
     novelList.forEach(novel =>{
         if (novel.seriesId) {
             let series = getFromCache(`LSeries${novel.seriesId}`)

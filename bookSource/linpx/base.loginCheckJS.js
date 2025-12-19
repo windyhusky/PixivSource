@@ -106,7 +106,7 @@ function publicFunc() {
         })
     }
 
-    // 获取 模拟系列数据
+    // 优化 未缓存系列目录的情况；模拟系列数据
     u.getSeriesData = function (seriesId) {
         let series = getAjaxJson(urlSeriesDetailed(seriesId))
         if (series.error) series = getFromCache(`LSeries${seriesId}`)
@@ -284,6 +284,7 @@ function publicFunc() {
         }
         if (seriesId) {
             java.log(`系列ID：${seriesId}`)
+            // 优化 未缓存系列目录的情况
             // res = getAjaxJson(urlSeriesDetailed(seriesId))
             res = this.getSeriesData(seriesId)
         }

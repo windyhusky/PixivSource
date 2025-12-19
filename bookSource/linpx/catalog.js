@@ -41,6 +41,7 @@ function seriesHandler(resp) {
     return resp.novels
 }
 
+// 优化 未缓存系列目录的情况：从章节数据中，获取系列目录
 function seriesContentHandler(resp) {
     let novels = [], prevNovels = [], nextNovels = []
     while (resp.series.prev !== null && resp.series.prev !== undefined) {
@@ -69,9 +70,10 @@ function seriesContentHandler(resp) {
 
 (() => {
     let resp = util.getNovelResSeries(result)
-    if (resp.novels !== undefined) {
+    if (resp.novels) {
         return seriesHandler(resp)
     } else if (resp.series) {
+        // 优化 未缓存系列目录的情况
         return seriesContentHandler(resp)
     } else {
         return oneShotHandler(resp)
