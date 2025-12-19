@@ -112,6 +112,10 @@ function urlNovelComments(novelId) {
     return `https://api.furrynovel.ink/pixiv/novel/${novelId}/comments`
 }
 
+function urlSourceUrl(novelId) {
+    return `https://www.pixiv.net/novel/show.php?id=${novelId}`
+}
+
 function urlSeriesUrl(seriesId) {
     return `https://www.pixiv.net/novel/series/${seriesId}`
 }

@@ -96,6 +96,18 @@ function urlNovelChapterDetail(novelId, chapterId) {
     return `https://api.furrynovel.com/api/zh/novel/${novelId}/chapter/${chapterId}`
 }
 
+function urlSourceUrl(source, oneShot, sourceId) {
+    if (source === "bilibili") {
+        return `https://www.bilibili.com/read/readlist/rl${sourceId}/`
+    }
+    if (source === "pixiv" && oneShot === true) {
+        return `https://www.pixiv.net/novel/show.php?id=${sourceId}`
+    }
+    if (source === "pixiv" && oneShot === false) {
+        return `https://www.pixiv.net/novel/series/${sourceId}`
+    }
+}
+
 function urlSearchNovel(name, page) {
     return `https://api.furrynovel.com/api/zh/novel?page=${page}&order_by=popular&keyword=${name}`
 }
@@ -178,18 +190,6 @@ function urlIllustOriginal(illustId, order) {
     // java.log(illustOriginal)
     // return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
     return this.urlLinpxCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
-}
-
-function urlSourceUrl(source, oneShot, sourceId) {
-    if (source === "bilibili") {
-        return `https://www.bilibili.com/read/readlist/rl${sourceId}/`
-    }
-    if (source === "pixiv" && oneShot === true) {
-        return `https://www.pixiv.net/novel/show.php?id=${sourceId}`
-    }
-    if (source === "pixiv" && oneShot === false) {
-        return `https://www.pixiv.net/novel/series/${sourceId}`
-    }
 }
 
 function dateFormat(text) {
