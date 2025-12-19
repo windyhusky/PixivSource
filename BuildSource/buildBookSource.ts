@@ -112,7 +112,6 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     // 读取各个构建后文件内容
     let bookSourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
-    const loginUrlContent = readTextFile(path.join(sourcePath, "base.loginUrl.txt"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
     const loginUIJs = readTextFile(path.join(sourcePath, "base.loginUI.js"))
     const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
@@ -150,7 +149,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
 
     // 更新书源
     BookSource.bookSourceComment = bookSourceComment
-    BookSource.loginUrl = loginUrl? loginUrl: loginUrlContent
+    BookSource.loginUrl = loginUrl
     BookSource.loginUi = loginUI? loginUI: loginUIJs
     BookSource.loginCheckJs = loginCheckJsContent
 
