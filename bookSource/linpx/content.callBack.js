@@ -16,6 +16,12 @@ if (event === "clickShareBook") {
     java.copyText(text)
 }
 
+// 保存阅读，更新登录界面的章节名称
+if (event === "saveRead") {
+    // sleepToast(book.durChapterTitle)
+    source.putLoginInfo(JSON.stringify({"章节名称": book.durChapterTitle}))
+}
+
 // 开始书架刷新
 if (event === "startShelfRefresh") {
     source.putConcurrent("1/2000")
