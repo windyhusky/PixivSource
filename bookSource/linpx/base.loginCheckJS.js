@@ -140,7 +140,20 @@ function publicFunc() {
                 novel.description = novel.desc
                 // novel.coverUrl = novel.coverUrl
                 novel.detailedUrl = urlNovelDetailed(novel.id)
-            } else {
+            }
+
+            // 优化 未缓存系列目录的情况
+            // let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))   // 兼容详情
+            let series = this.getSeriesData(novel.seriesId)                  // 兼容搜索
+            if (novel.seriesId && series.error) {
+                novel.seriesId =novel.series.id
+                novel.title = novel.series.title
+                novel.tags.unshift("长篇")
+                novel.textCount = null  // 无数据
+                novel.createDate = null  // 无数据
+            }
+
+            if (novel.seriesId && !series.error) {
                 java.log(`正在获取系列小说：${novel.seriesId}`)
                 // let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
                 let series = this.getSeriesData(novel.seriesId)
@@ -213,8 +226,9 @@ function publicFunc() {
             let isSeries = baseUrl.match(new RegExp(pattern))
             if (isSeries) {
                 java.log(`系列ID：${id}`)
-                res = getAjaxJson(urlSeriesDetailed(id))
-                // res = this.getSeriesData(id)
+                // 优化 未缓存系列目录的情况
+                // res = getAjaxJson(urlSeriesDetailed(id))
+                res = this.getSeriesData(id)
             } else {
                 let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
                 let isNovel = baseUrl.match(new RegExp(pattern))
