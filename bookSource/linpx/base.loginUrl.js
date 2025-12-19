@@ -106,6 +106,6 @@ function editSettings(settingName) {
         status = settings[settingName] = true
     }
     putInCache("linpxSettings", settings)
-    msg = `\n${statusMsg(status)}　${settingsName[settingName]}`
+    msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     sleepToast(msg)
 }
