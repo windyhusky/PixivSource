@@ -113,7 +113,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     let bookSourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
-    const loginUIJs = readTextFile(path.join(sourcePath, "base.loginUI.js"))
+    const loginUIJS = readTextFile(path.join(sourcePath, "base.loginUI.js"))
     const loginCheckJsContent = readTextFile(path.join(sourcePath, "base.loginCheckJs.js"))
 
     const bookUrlPattern = readTextFile(path.join(sourcePath, "base.bookUrlPattern.txt"))
@@ -130,7 +130,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     const detailContent = readTextFile(path.join(sourcePath, "detail.js"))
     const catalogContent = readTextFile(path.join(sourcePath, "catalog.js"))
     const contentContent = readTextFile(path.join(sourcePath, "content.js"))
-    const callBackJs = readTextFile(path.join(sourcePath, "content.callBack.js"))
+    const callBackJS = readTextFile(path.join(sourcePath, "content.callBack.js"))
 
     // 更新书源更新时间
     let options = { year: "numeric", month: "2-digit", day: "2-digit"}
@@ -150,7 +150,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     // 更新书源
     BookSource.bookSourceComment = bookSourceComment
     BookSource.loginUrl = loginUrl
-    BookSource.loginUi = loginUI? loginUI: loginUIJs
+    BookSource.loginUi = loginUI? loginUI: `@js:\n${loginUIJS}`
     BookSource.loginCheckJs = loginCheckJsContent
 
     BookSource.bookUrlPattern = bookUrlPattern.split("\n")[1]
@@ -169,7 +169,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     BookSource.ruleToc.chapterList = `@js:\n${catalogContent}`
 
     BookSource.ruleContent.content = `@js:\n${contentContent}`
-    BookSource.ruleContent.callBackJs = callBackJs
+    BookSource.ruleContent.callBackJs = callBackJS
 
     BookSource.lastUpdateTime = lastUpdateTime
     // console.log(lastUpdateTime)

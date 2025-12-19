@@ -1,4 +1,3 @@
-@js:
 let source = [
     {"🆙 更新书源": "updateSource()" },
     {"🔰 使用指南": "startGithubReadme()" },
