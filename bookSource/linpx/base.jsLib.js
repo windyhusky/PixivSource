@@ -115,6 +115,12 @@ function urlSeriesDetailed(seriesId) {
     return `https://api.furrynovel.ink/pixiv/series/${seriesId}/cache`
 }
 
+function urlUserUrl(userId) {
+    return `https://furrynovel.ink/pixiv/user/${userId}/cache`
+}
+function urlUserDetailed(userId) {
+    return `https://api.furrynovel.ink/pixiv/user/${userId}/cache`
+}
 function urlUsersDetailed(uidList) {
     return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
 }
