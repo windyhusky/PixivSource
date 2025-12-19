@@ -32,7 +32,7 @@ function getConvertNovels() {
 (() => {
     let novels = []
     novels = novels.concat(util.getNovels())
-    if (util.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
+    if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     novels = novels.sort((a, b) => a.source_id > b.source_id ? 1 : -1)
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程

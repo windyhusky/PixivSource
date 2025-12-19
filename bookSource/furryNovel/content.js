@@ -108,7 +108,7 @@ function replaceRb(content) {
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
 
-            if (!util.REPLACE_TITLE_MARKS) {
+            if (!util.settings.REPLACE_TITLE_MARKS) {
                 // 默认替换成（括号）
                 content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
             } else {

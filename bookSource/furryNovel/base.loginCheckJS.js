@@ -89,7 +89,7 @@ function publicFunc() {
         java.log(`DEBUG = ${u.DEBUG}`)
     }
     u.debugFunc = (func) => {
-        if (util.DEBUG) {
+        if (util.settings.DEBUG) {
             func()
         }
     }
@@ -156,7 +156,7 @@ function publicFunc() {
             novel.createDate = dateFormat(novel.createDate)
             novel.updateDate = dateFormat(novel.updateDate)
             novel.syncDate = dateFormat(novel.syncDate)
-            if (util.MORE_INFORMATION) {
+            if (util.settings.MORE_INFORMATION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n同步：${novel.syncDate}\n简介：${novel.description}`
             } else {
                 novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}\n同步时间：${novel.syncDate}`
