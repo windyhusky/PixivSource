@@ -952,7 +952,7 @@ function getSettingStatus(mode) {
 }
 
 function showSettings() {
-    sleepToast(`⚙️ 当前设置\n\n${getSettingStatus()}`)
+    sleepToast(`\n⚙️ 当前设置\n\n${getSettingStatus()}`)
 }
 
 function setDefaultSettingsLoginUrl() {
@@ -979,10 +979,10 @@ function editSettings(settingName) {
             putInCache("pixivSettings", settings)
         } else {
             checkSettings()
-            msg = `\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
+            msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         }
     } else {
-        msg = `\n${statusMsg(status)}　${settingsName[settingName]}`
+        msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     }
     sleepToast(msg)
 }
