@@ -8,9 +8,6 @@ function objStringify(obj) {
     });
 }
 
-function isBackupSource() {
-    return source.bookSourceName.includes("备用")
-}
 // 检测 源阅
 // 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
@@ -90,7 +87,6 @@ function publicFunc() {
     u.environment.IS_SOURCEREAD = isSourceRead()
     u.environment.IS_LEGADO = !isSourceRead()
     u.environment.IS_LYC_BRUNCH = isLegadoLYC()
-    u.environment.IS_BACKUP_SOURCE = isBackupSource()
     putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
