@@ -13,7 +13,13 @@ function getNovel() {
             novel.seriesId = 0
             novel.seriesTitle = ""
         }
-        novel.userId = getAjaxJson(urlNovelDetailed(novel.id)).userId
+
+        let resp = getAjaxJson(urlNovelDetailed(novel.id))
+        novel.userId = resp.userId
+        if (!novel.seriesId) {
+            novel.seriesId = resp.series.id
+            novel.seriesTitle = resp.series.title
+        }
         return novel
     } catch (e) {
         // 无法阻止后续函数在日志中报错
