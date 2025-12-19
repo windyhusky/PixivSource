@@ -6,9 +6,9 @@ function getNovel() {
         novel.bookId = book.bookUrl.match(/\d+/)[0]
         novel.bookName = book.name
         novel.userName = book.author.replace("@", "")
-        novel.chapterId = chapter.url.match(/\d+/)[1]
-        novel.chapterName = chapter.title
 
+        let resp = getAjaxJson(urlNovelDetail(novel.bookId)).data
+        novel.sourceUrl = urlSourceUrl(resp.source, resp.ext_data.oneshot, resp.source_id)
         sleepToast(JSON.stringify(novel, null, 4))
         return novel
     } catch(e) {
@@ -21,19 +21,19 @@ function shareFactory(type) {
     let novel = getNovel()
     if (!novel) return sleepToast("⚠️ 请在小说阅读页面，使用本功能")
     if (type.includes("author")) {
-        sleepToast("\n已复制当前作者链接", 1)
+        sleepToast("\n\n已复制当前作者链接", 1)
         java.copyText(urlUserUrl(novel.userName))
         startBrowser(urlUserUrl(novel.userName), novel.userName)
     }
     else if (type.includes("novel")) {
-        sleepToast("\n已复制当前小说详情链接", 1)
+        sleepToast("\n\n已复制当前小说详情链接", 1)
         java.copyText(urlNovelUrl(novel.bookId))
         startBrowser(urlNovelUrl(novel.bookId), novel.bookName)
     }
-    else if (type.includes("series") && novel.seriesId) {
-        sleepToast("已复制当前小说系列Pixiv链接", 1)
-        java.copyText(urlSeriesUrl(novel.seriesId))
-        // startBrowser(urlSeriesUrl(novel.seriesId), novel.seriesTitle)
+    else if (type.includes("pixiv")) {
+        sleepToast("\n\n已复制当前小说 Pixiv 链接", 1)
+        java.copyText(novel.sourceUrl)
+        startBrowser(novel.sourceUrl, novel.bookName)
     }
 }
 
