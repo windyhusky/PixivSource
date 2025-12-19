@@ -1,13 +1,10 @@
-let pixiv =[
+let source = [
     {"🅿️ 登录账号": "login()" },
     {"⚙️ 账号设置": "startPixivSettings()" },
     {"🔙 退出账号": "logout()" },
-]
-
-let source = [
     {"🆙 更新书源": "updateSource()" },
     {"🔰 使用指南": "startGithubReadme()" },
-    {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
+    {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 ]
 
 let novel = [
@@ -58,17 +55,19 @@ let settings = [
     {"❤️ 🚫 显示收藏": "editSettings('SHOW_LIKE_NOVELS')" },
     {"📃 🚫 显示追更": "editSettings('SHOW_WATCHED_SERIES')" },
 
-    {"⏩ 🚫 快速模式": "editSettings('FAST')" },
-    {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
+    {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
+    {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
     {"🔍 搜索说明": "readMeSearch()" },
 ]
 
-let li = pixiv.concat(source)
+let li = []
 try {
-    if (book) li = li.concat(novel)
-    if (book) li = li.concat(comment)
+    if (book) {
+        li = novel.concat(comment)
+    } else {
+        li = source.concat(settings)
+    }
 } catch (e) {}
-li = li.concat(settings)
 
 // 处理按钮
 li.forEach(item => {
