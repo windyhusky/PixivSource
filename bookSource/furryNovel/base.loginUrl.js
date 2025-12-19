@@ -19,7 +19,7 @@ function getNovel() {
 
 function shareFactory(type) {
     let novel = getNovel()
-    if (!novel) return sleepToast("⚠️ 请在小说阅读页面，使用本功能")
+    if (!novel) return sleepToast("🔰 功能提示\n\n⚠️ 请在小说阅读页面，使用本功能")
     if (type.includes("author")) {
         sleepToast("\n\n已复制当前作者链接", 1)
         java.copyText(urlUserUrl(novel.userName))
