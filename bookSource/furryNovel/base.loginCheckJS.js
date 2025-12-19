@@ -119,11 +119,7 @@ function publicFunc() {
             }
             novel.description = novel.desc
             novel.coverUrl = novel.cover
-
-            // novel.source = novel.source
-            novel.oneShot = novel.ext_data.oneShot
-            novel.sourceId = novel.source_id
-            novel.sourceUrl = urlSourceUrl(novel.source, novel.oneShot, novel.sourceId)
+            novel.sourceUrl = urlSourceUrl(novel.source, novel.ext_data.oneshot, novel.source_id)
 
             novel.createDate = novel.created_at
             novel.updateDate = novel.updated_at
