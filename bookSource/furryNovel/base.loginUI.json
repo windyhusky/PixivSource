@@ -50,7 +50,7 @@
         }
     },
     {
-        "name": "🅿️ 分享章节",
+        "name": "🅿️ 分享小说",
         "type": "button",
         "action": "shareFactory('pixiv')",
         "style": {

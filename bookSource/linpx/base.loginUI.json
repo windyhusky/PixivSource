@@ -50,9 +50,9 @@
         }
     },
     {
-        "name": "🅿️ 分享系列",
+        "name": "🅿️ 分享小说",
         "type": "button",
-        "action": "shareFactory('series')",
+        "action": "shareFactory('pixiv')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
