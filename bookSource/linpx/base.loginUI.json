@@ -27,6 +27,37 @@
         }
     },
 
+    {
+        "name": "章节名称",
+        "type": "text"
+    },
+    {
+        "name": "⤴️ 分享章节",
+        "type": "button",
+        "action": "shareFactory('novel')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⤴️ 分享系列",
+        "type": "button",
+        "action": "shareFactory('series')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "⤴️ 分享作者",
+        "type": "button",
+        "action": "shareFactory('author')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
 
     {
         "name": "书源设置",
