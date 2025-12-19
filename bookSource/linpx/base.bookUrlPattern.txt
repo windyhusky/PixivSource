@@ -1,3 +1,6 @@
+Linpx：小说 + 作者
+(https?://)?(api\.|www\.)?(furrynovel\.(ink|xyz))/(pn|pixiv/(novel|user))/\d+(/cache)?
+
 Linpx：小说
 (https?://)?(api\.|www\.)?(furrynovel\.(ink|xyz))/(pn|pixiv/novel)/\d+(/cache)?
 
