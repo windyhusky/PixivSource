@@ -20,6 +20,9 @@ function shareFactory(type) {
 function startGithubReadme() {
     startBrowser("https://downeyrem.github.io/PixivSource/Linpx", "使用指南")
 }
+function startGithubIssue() {
+    startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
+}
 
 function checkStatus(status) {
     if (eval(String(status)) === true) return "❤️"

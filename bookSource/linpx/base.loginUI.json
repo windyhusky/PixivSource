@@ -17,6 +17,16 @@
             "layout_flexBasisPercent": -1
         }
     },
+    {
+        "name": "🐞 反馈问题",
+        "type": "button",
+        "action": "startGithubIssue()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+
 
     {
         "name": "书源设置",
