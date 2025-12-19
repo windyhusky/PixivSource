@@ -208,7 +208,7 @@ function publicFunc() {
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
         if (!isJson && isHtml) {
-            let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
+            let pattern = "(https?://)?(api\\.|www\\.)?(furrynovel\\.(ink|xyz))/(pn|pixiv/novel)/\\d+(/cache)?"
             let isNovel = baseUrl.match(new RegExp(pattern))
             if (isNovel) {
                 novelId = baseUrl.match(new RegExp("\\d+"))[0]
