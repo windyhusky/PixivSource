@@ -69,7 +69,7 @@ function seriesContentHandler(resp) {
 }
 
 (() => {
-    let resp = util.getNovelResSeries(result)
+    let resp = util.getNovelRes(result)
     if (resp.novels) {
         return seriesHandler(resp)
     } else if (resp.series) {
