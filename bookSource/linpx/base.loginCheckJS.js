@@ -8,12 +8,65 @@ function objStringify(obj) {
     });
 }
 
+// 检测 源阅
+// 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
+// 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
+// 可用 java.startBrowser() 不可用 java.startBrowserAwaitAwait
+// 可用 source.bookSourceName source.getVariable() source.setVariable()等
+// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+function isSourceRead() {
+    let isSourceReadStatus = java.getUserAgent() === java.getWebViewUA()
+    cache.put("isSourceRead", isSourceReadStatus)
+    return isSourceReadStatus
+}
+// 正式版 不支持在 JSlib 的函数直接设置默认参数
+// 正式版 不支持 a?.b 的写法
+// 检测 阅读 正式版 与 Beta 版本
+function isLegadoOfficial() {
+    let isLegadoOfficialStatus
+    try {
+        eval('({})?.value')
+        isLegadoOfficialStatus = false
+    } catch (e) {
+        isLegadoOfficialStatus = true
+    }
+    cache.put("isLegadoOfficial", isLegadoOfficialStatus)
+    return isLegadoOfficialStatus
+}
+// 检测 阅读 Beta 版本 与 LYC 版本
+// LYC 版本新增函数
+// java.ajaxTestAll()
+// java.openVideoPlayer(url: String, title: String, float: Boolean)
+// cookie.setWebCookie(url,cookie)
+// source.refreshExplore()
+// source.refreshJSLib()
+function isLegadoLYC() {
+    let isLegadoLYCStatus = (typeof java.ajaxTestAll === "function")
+    cache.put("isLegadoLYCStatus", isLegadoLYCStatus)
+    return isLegadoLYCStatus
+}
+
 function publicFunc() {
     let u = {}
     // 输出书源信息
     java.log(`${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
-    java.log(`📆 更新时间：${timeFormat(source.lastUpdateTime)}`)
+    java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+
+    if (isSourceRead()) {
+        java.log("📱 软件平台：🍎 源阅 SourceRead")
+    } else if (isLegadoOfficial()) {
+        java.log("📱 软件平台：🤖 开源阅读 【正式版】")
+        java.log("当前软件为：阅读【正式版】\n\n【正式版】已年久失修，不推荐继续使用\n推荐使用【Beta版】【共存/新共存版】\n\nBeta版本下载链接：\nhttps://miaogongzi.lanzout.com/b01rgkhhe\n如需更新，可去书源调试界面\n打开下载链接切换阅读版本\n")
+    } else {
+        if (isLegadoLYC()) {
+            java.log("📱 软件平台：🤖 开源阅读 Beta/LYC 版")
+        } else {
+            java.log("📱 软件平台：🤖 开源阅读 Beta 版（未合入 LYC 功能）")
+        }
+    }
+
+
     settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
     if (settings !== null) {
         java.log("⚙️ 使用自定义设置")
