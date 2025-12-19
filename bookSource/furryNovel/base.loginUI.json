@@ -41,18 +41,18 @@
         }
     },
     {
-        "name": "⤴️ 分享系列",
+        "name": "⤴️ 分享作者",
         "type": "button",
-        "action": "shareFactory('series')",
+        "action": "shareFactory('author')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "⤴️ 分享作者",
+        "name": "🅿️ 分享章节",
         "type": "button",
-        "action": "shareFactory('author')",
+        "action": "shareFactory('pixiv')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
