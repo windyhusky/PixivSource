@@ -208,13 +208,22 @@ function publicFunc() {
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
         if (!isJson && isHtml) {
-            let pattern = "(https?://)?(api\\.|www\\.)?(furrynovel\\.(ink|xyz))/(pn|pixiv/novel)/\\d+(/cache)?"
+            let id = baseUrl.match(new RegExp("\\d+"))[0]
+            let pattern = "(https?://)?(api\\.|www\\.)?(furrynovel\\.(ink|xyz))/pixiv/user/\\d+(/cache)?"
+            let isAuthor = baseUrl.match(new RegExp(pattern))
+            if (isAuthor) {
+                java.log(`作者ID：${id}`)
+                novelId = getAjaxJson(urlUserDetailed(id)).novels.reverse()[0]
+                java.log(`最新一篇小说ID：${novelId}`)
+            }
+
+            pattern = "(https?://)?(api\\.|www\\.)?(furrynovel\\.(ink|xyz))/(pn|pixiv/novel)/\\d+(/cache)?"
             let isNovel = baseUrl.match(new RegExp(pattern))
             if (isNovel) {
-                novelId = baseUrl.match(new RegExp("\\d+"))[0]
-                java.log(`匹配小说ID：${novelId}`)
-                res = getAjaxJson(urlNovelDetailed(novelId))
+                novelId = id
+                java.log(`匹配小说ID：${id}`)
             }
+            res = getAjaxJson(urlNovelDetailed(novelId))
         }
 
         if (isJson) {
