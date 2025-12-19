@@ -53,6 +53,19 @@ function publicFunc() {
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
     java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
+    if (isSourceRead()) {
+        java.log("📱 软件平台：🍎 源阅 SourceRead")
+    } else if (isLegadoOfficial()) {
+        java.log("📱 软件平台：🤖 开源阅读 【正式版】")
+        java.log("当前软件为：阅读【正式版】\n\n【正式版】已年久失修，不推荐继续使用\n推荐使用【Beta版】【共存/新共存版】\n\nBeta版本下载链接：\nhttps://miaogongzi.lanzout.com/b01rgkhhe\n如需更新，可去书源调试界面\n打开下载链接切换阅读版本\n")
+    } else {
+        if (isLegadoLYC()) {
+            java.log("📱 软件平台：🤖 开源阅读 Beta/LYC 版")
+        } else {
+            java.log("📱 软件平台：🤖 开源阅读 Beta 版（未合入 LYC 功能）")
+        }
+    }
+
     // 设置初始化
     // cache.delete("linpxSettings")
     settings = getFromCache("linpxSettings")
@@ -64,6 +77,12 @@ function publicFunc() {
     }
     u.settings = settings
     putInCache("FNSettings", settings)  // 设置写入缓存
+
+    u.environment = {}
+    u.environment.IS_SOURCEREAD = isSourceRead()
+    u.environment.IS_LEGADO = !isSourceRead()
+    u.environment.IS_LYC_BRUNCH = isLegadoLYC()
+    putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
 
     if (u.DEBUG === true) {
         java.log(JSON.stringify(settings, null, 4))
