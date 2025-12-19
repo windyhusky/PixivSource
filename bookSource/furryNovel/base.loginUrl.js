@@ -54,12 +54,10 @@ function checkStatus(status) {
 }
 
 let settingsName = {
-    "SEARCH_AUTHOR": "🔍 搜索作者",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
     "MORE_INFORMATION": "📖 更多简介",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
-    "SHOW_CAPTIONS": "🖼️ 显示描述",
     "DEBUG": "🐞 调试模式",
 }
 

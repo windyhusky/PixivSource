@@ -82,17 +82,6 @@
         }
     },
     {
-        "name": "搜索作者",
-        "type": "toggle",
-        "chars": ["👤 ", "🚫 "],
-        "default": "👤 ",
-        "action": "editSettings('SEARCH_AUTHOR')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
         "name": "繁简通搜",
         "type": "toggle",
         "chars": ["🀄 ", "🚫 "],
@@ -131,28 +120,6 @@
         "chars": ["📚 ", "🚫 "],
         "default": "📚 ",
         "action": "editSettings('REPLACE_TITLE_MARKS')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "显示描述",
-        "type": "toggle",
-        "chars": ["🖼️ ", "🚫 "],
-        "default": "🖼️ ",
-        "action": "editSettings('SHOW_CAPTIONS')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "调试模式",
-        "type": "toggle",
-        "chars": ["🐞 ", "🚫 "],
-        "default": "🚫 ",
-        "action": "editSettings('DEBUG')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
