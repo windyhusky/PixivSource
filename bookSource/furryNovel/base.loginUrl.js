@@ -1,20 +1,15 @@
 function login() {}
 
 function getNovel() {
-    try {
-        let novel = {}
-        novel.bookId = book.bookUrl.match(/\d+/)[0]
-        novel.bookName = book.name
-        novel.userName = book.author.replace("@", "")
+    let novel = {}
+    novel.bookId = book.bookUrl.match(/\d+/)[0]
+    novel.bookName = book.name
+    novel.userName = book.author.replace("@", "")
 
-        let resp = getAjaxJson(urlNovelDetail(novel.bookId)).data
-        novel.sourceUrl = urlSourceUrl(resp.source, resp.ext_data.oneshot, resp.source_id)
-        sleepToast(JSON.stringify(novel, null, 4))
-        return novel
-    } catch(e) {
-        // 无法阻止后续函数在日志中报错
-        return sleepToast("🔰 功能提示\n\n⚠️ 请在【小说正文】使用该功能")
-    }
+    let resp = getAjaxJson(urlNovelDetail(novel.bookId)).data
+    novel.sourceUrl = urlSourceUrl(resp.source, resp.ext_data.oneshot, resp.source_id)
+    sleepToast(JSON.stringify(novel, null, 4))
+    return novel
 }
 
 function shareFactory(type) {

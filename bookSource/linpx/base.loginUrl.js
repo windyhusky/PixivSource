@@ -1,30 +1,25 @@
 function login() {}
 
 function getNovel() {
-    try {
-        let novel = {}
-        novel.id = chapter.url.match(/\d+/)[0]
-        novel.title = chapter.title
-        novel.userName = book.author.replace("@", "")
-        if (book.tocUrl.includes("series")) {
-            novel.seriesId = book.tocUrl.match(/\d+/)[0]
-            novel.seriesTitle = book.name
-        } else {
-            novel.seriesId = 0
-            novel.seriesTitle = ""
-        }
-
-        let resp = getAjaxJson(urlNovelDetailed(novel.id))
-        novel.userId = resp.userId
-        if (!novel.seriesId && resp.series) {
-            novel.seriesId = resp.series.id
-            novel.seriesTitle = resp.series.title
-        }
-        return novel
-    } catch (e) {
-        // 无法阻止后续函数在日志中报错
-        return sleepToast("🔰 功能提示\n\n⚠️ 请在【小说正文】使用该功能")
+    let novel = {}
+    novel.id = chapter.url.match(/\d+/)[0]
+    novel.title = chapter.title
+    novel.userName = book.author.replace("@", "")
+    if (book.tocUrl.includes("series")) {
+        novel.seriesId = book.tocUrl.match(/\d+/)[0]
+        novel.seriesTitle = book.name
+    } else {
+        novel.seriesId = 0
+        novel.seriesTitle = ""
     }
+
+    let resp = getAjaxJson(urlNovelDetailed(novel.id))
+    novel.userId = resp.userId
+    if (!novel.seriesId && resp.series) {
+        novel.seriesId = resp.series.id
+        novel.seriesTitle = resp.series.title
+    }
+    return novel
 }
 
 function shareFactory(type) {
