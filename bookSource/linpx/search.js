@@ -161,11 +161,11 @@ function getConvertNovels() {
     } else if (key.startsWith("#")) {
         java.put("key", key.slice(1))
         novels = novels.concat(getNovels())
-        if (util.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
+        if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     } else {
         novels = novels.concat(getNovels())
-        novels = novels.concat(findUserNovels())
-        if (util.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
+        if (util.settings.SEARCH_AUTHOR) novels = novels.concat(findUserNovels())
+        if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
     // 返回空列表中止流程

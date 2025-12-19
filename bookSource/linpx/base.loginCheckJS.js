@@ -85,7 +85,7 @@ function publicFunc() {
     putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
-        if (util.DEBUG) {
+        if (util.settings.DEBUG) {
             func()
         }
     }
@@ -193,7 +193,7 @@ function publicFunc() {
             novel.tags = Array.from(new Set(novel.tags2))
             novel.tags = novel.tags.join(",")
 
-            if (util.MORE_INFORMATION) {
+            if (util.settings.MORE_INFORMATION) {
                 novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
             } else {
                 novel.description = `\n${novel.description}\n上传时间：${novel.createDate}`

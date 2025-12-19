@@ -243,9 +243,13 @@ function setDefaultSettings() {
     let settings = {}
     settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
     settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+
     settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
     settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
+
     settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
+    settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
+
     settings.DEBUG = false              // 全局：调试模式
 
     this.putInCache("linpxSettings", settings)
