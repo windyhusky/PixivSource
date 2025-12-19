@@ -11,10 +11,12 @@ function objParse(obj) {
 
 function novelHandler(novel) {
     novel = util.formatNovels(util.handNovels([novel]))[0]
-    book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
-    if (!novel.seriesId) {
+    let result = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+    if (!novel.seriesId || novel.seriesId && result.error) {
+        book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
         book.tocUrl = novel.catalogUrl = urlNovelDetailed(novel.id)
     } else {
+        book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
         book.tocUrl = novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
     }
     return novel
