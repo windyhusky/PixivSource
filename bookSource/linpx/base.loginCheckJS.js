@@ -257,7 +257,7 @@ function publicFunc() {
 
     // 从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
     u.getNovelResSeries = function (result) {
-        let seriesId = 0, res = []
+        let seriesId = 0, novelId =0, res = []
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
         if (!isJson && isHtml) {
@@ -270,8 +270,9 @@ function publicFunc() {
                 let pattern = "((furrynovel\\.(ink|xyz))|pixiv\\.net)/(pn|(pixiv/)?novel)/(show\\.php\\?id=)?\\d+"
                 let isNovel = baseUrl.match(new RegExp(pattern))
                 if (isNovel) {
-                    java.log(`匹配小说ID：${id}`)
-                    res = getAjaxJson(urlNovelDetailed(id))
+                    novelId = id
+                    java.log(`匹配小说ID：${novelId}`)
+                    res = getAjaxJson(urlNovelDetailed(novelId))
                 }
             }
         }
@@ -284,14 +285,13 @@ function publicFunc() {
         }
         if (seriesId) {
             java.log(`系列ID：${seriesId}`)
-            // 优化 未缓存系列目录的情况
-            // res = getAjaxJson(urlSeriesDetailed(seriesId))
-            res = this.getSeriesData(seriesId)
+            res = getAjaxJson(urlSeriesDetailed(seriesId))
         }
         if (res.error) {
-            java.log(`无法从 Linpx 获取当前小说`)
+            java.log(`无法从 Linpx 获取当前系列小说，以小说为准`)
             java.log(JSON.stringify(res))
-            return []
+            // 优化 未缓存系列目录的情况
+            res = getAjaxJson(urlNovelDetailed(novelId))
         }
         return res
     }
