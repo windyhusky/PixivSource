@@ -47,7 +47,7 @@ function isLegadoLYC() {
 }
 
 function publicFunc() {
-    let u = {}
+    let u = {}, settings 
     // 输出书源信息
     java.log(`${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
@@ -66,34 +66,19 @@ function publicFunc() {
         }
     }
 
-
-    settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
-    if (settings !== null) {
+    // 设置初始化
+    // cache.delete("linpxSettings")
+    settings = getFromCache("linpxSettings")
+    if (settings) {
         java.log("⚙️ 使用自定义设置")
     } else {
-        settings = {}
-        settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
-        settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
-        settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
-        settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
-        // settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
-        // settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
-        settings.DEBUG = false   // 全局：调试模式
-        java.log("⚙️ 使用默认设置（无自定义设置 或 自定义设置有误）")
+        java.log("⚙️ 使用默认设置")
+        settings = setDefaultSettings()
     }
-    u.CONVERT_CHINESE = settings.CONVERT_CHINESE
-    u.MORE_INFORMATION = settings.MORE_INFORMATION
-    u.SHOW_UPDATE_TIME = settings.SHOW_UPDATE_TIME
-    u.SHOW_ORIGINAL_LINK = settings.SHOW_ORIGINAL_LINK
-    u.REPLACE_TITLE_MARKS = settings.REPLACE_TITLE_MARKS
-    // u.SHOW_CAPTIONS = settings.SHOW_CAPTIONS
-    // u.SHOW_COMMENTS = settings.SHOW_COMMENTS
-    u.DEBUG = settings.DEBUG
+    u.settings = settings
+    putInCache("linpxSettings", settings)  // 设置写入缓存
 
-    if (u.DEBUG === true) {
-        java.log(JSON.stringify(settings, null, 4))
-        java.log(`DEBUG = ${u.DEBUG}`)
-    }
+
     u.debugFunc = (func) => {
         if (util.DEBUG) {
             func()
