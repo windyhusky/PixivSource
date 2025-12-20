@@ -13,7 +13,7 @@
 > 
 > **从未使用过【开源阅读】的读者可以看这篇指南：**
 > [✨臻享阅读](BetterExperience.md)
-### 🅿️ [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
+## [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 
 
 ### ⚠️ 使用须知 {#Notice}
@@ -46,7 +46,7 @@
 > #### 否则手动刷新时，可能会触发请求限制，严重的甚至封号
 
 
-## 一、下载阅读 {#DownloadApp}
+### ⬇️ 下载阅读 {#DownloadApp}
 > [!IMPORTANT]
 > 
 > 点击链接，下载 **【新共存版】** 安装包并安装软件
@@ -56,7 +56,7 @@
 > **苹果设备及更多兼容软件详见：** [下载阅读](./Download.md)
 
 
-## 二、导入书源 & 订阅源 {#ImportSource}
+### 🚀 导入书源 & 订阅源 {#ImportSource}
 > [!IMPORTANT]
 >
 > **点击下方链接，一键导入书源、订阅源**
@@ -68,20 +68,19 @@
 > **更多导入方法详见：** [如何导入书源](./ImportBookSource.md)
 
 
-## 三、登录账号 {#LoginAccount}
+## 书源配置 {#BookSourceSet}
 > [!NOTE]
 >
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 
-### 1. 登录 Pixiv 账号
 
-<details><summary> 🅿️ 登录 Pixiv 账号 </summary>
+### 📡 开启代理
+> [!TIP]
+> 
+> 此处略过，**最好开启【全局代理】，确保阅读可用访问代理**
 
-#### 1.1 开启代理工具
-此处略过，请自行学习，**最好开启【全局代理】**
 
-
-#### 1.2 登录 Pixiv 账号
+### 🅿️ 登录账号 {#LoginAccount}
 **我的 - 书源管理 - 菜单 - 登录 - 登录账号**
 
 ![img](./pic/PixivLogin1.png)
@@ -94,14 +93,13 @@
 > [!TIP]
 > 
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
-</details>
 
 
-### 2. 开启 Pixiv 的 R18 设置
+
+### 🔞 开启 R18 设置
 #### 如果你已经开启了，则可以跳过这一步
-<details><summary> 📆 编辑出生年份 </summary>
+<details><summary><strong>📆 编辑出生年份 </strong></summary>
 
-#### 2.1 编辑出生年份
 **再次点击登录，滑动屏幕，点击头像，再次点击头像，编辑个人资料**
 
 [Pixiv 个人资料](https://www.pixiv.net/settings/profile) - 编辑个人资料 - 出生年份
@@ -112,9 +110,8 @@
 
 </details>
 
-<details><summary> 🔞 修改 Pixiv 浏览范围 </summary>
+<details><summary><strong> 🔞 修改 Pixiv 浏览范围 </strong></summary>
 
-#### 2.2 修改作品浏览范围
 **我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录-账号设置**
 ![img](./pic/PixivLoginUIAccount.png)
 
@@ -128,7 +125,7 @@
 </details>
 
 
-## 四、配置阅读
+## 配置阅读
 ### 💾 [备份与恢复](WebdavBackup.md)
 > [!IMPORTANT]
 >
@@ -154,7 +151,7 @@
 > **可以像是使用常规阅读软件一样，使用开源阅读了**
 
 
-## 五、添加小说，尽情使用 {#AddNovel}
+## 畅享阅读 {#AddNovel}
 ### 1.阅读内部搜索 {#Search}
 <details><summary> 🔍 搜索小说 </summary>
 
@@ -616,8 +613,7 @@
 </details>
 
 
-## 六、故障排查 {#troubleshoot}
-> 详见：[故障排查与处理](./TroubleShoot.md)
+## 🐞 [故障处理](./TroubleShoot.md) {#troubleshoot}
 
 
 ## ☕️ [支持开发](./Sponsor.md)
@@ -626,5 +622,3 @@
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
 >
 > **你的鼓励是持续更新的动力～**
-
-## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
