@@ -166,16 +166,10 @@
 >
 > **否则很容易触发触发请求限制，甚至封号**
 
+**我的 - 其他设置 - 自动刷新**
 
-### ☁️ [远程书籍](RemoteBooks.md)（可选） {#RemoteBooks}
-> [!TIP]
-> 使用支持 Webdav 的网盘，阅读网盘上的书籍
->
-> **详见：[远程书籍](RemoteBooks.md)**
-
-
-我的 - 其他设置 - 自动刷新
 ![img](./pic/LegadoSettingsAutoRefreash.png)
+
 > [!NOTE]
 >
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
@@ -183,8 +177,16 @@
 > **可以像是使用常规阅读软件一样，使用开源阅读了**
 
 
+### ☁️ [远程书籍](RemoteBooks.md)（可选） {#RemoteBooks}
+> [!TIP]
+> 
+> **使用支持 Webdav 的网盘，阅读网盘上的书籍**
+>
+> **详见：[远程书籍](RemoteBooks.md)**
+
+
 ## 畅享阅读 {#AddNovel}
-### 1.阅读内部搜索 {#Search}
+### 🔍 搜索小说 {#Search}
 <details><summary> 🔍 搜索小说 </summary>
 
 **书架页面 - 放大镜 - 输入关键词 - 搜索小说**
@@ -279,7 +281,7 @@
 </details>
 
 
-### 2.发现更多小说
+### ⭐️ 发现小说
 <details><summary> ⭐️ 发现小说 </summary>
 
 **发现页面 - 点击各按钮**
@@ -377,7 +379,7 @@
 </details>
 
 
-### 3.添加网址 {#AddUrl}
+### 🔗 添加网址 {#AddUrl}
 <details><summary> 🔗 添加网址 </summary>
 
 - **书架 - 菜单 - 添加网址 - 粘贴小说链接** 
@@ -413,8 +415,8 @@
 </details>
 
 
-### 4.订阅源
-<details><summary> 🏠 订阅源 </summary>
+### 🌐 订阅源
+<details><summary> 🌐 订阅源 </summary>
 
 - <details><summary> ⬇️ 导入书源 </summary>
   
@@ -449,47 +451,12 @@
 
   - 系列目录页，添加系列到书架
   ![img](./pic/AddBookViaPixiv2.png)
-  </details>  
-
-
-### 4.订阅源 登录界面
-- <details><summary> 🅿️ 账号功能（同下） </summary>
-
-  #### 4.4 账号功能
-  - ⚠️ 登录/退出账号都要使用按钮
-  - ⚠️ 订阅源登账号录后，书源最好也登录一次
-
-  ![img](./pic/PixivLoginUIAccount.png)
-
-  - 🅿️ 登录账号：登录 Pixiv 账号，并获取 cookie 和 csfrToken
-  - ⚙️ 账号设置：Pixiv 的浏览范围设置
-  - 🔙 退出账号：退出 Pixiv 账号，并清理 cookie 和 csfrToken
   </details>
-
-- <details><summary> 📢 书源帮助（同下） </summary>
-
-  #### 4.5 书源帮助
-  ![img](./pic/PixivLoginUISource2.jpg)
-  - ⭐️ 收藏项目：打开 Github 项目首页
-  - 🔰 使用指南：打开 Github 文档(本页)
-  - 🐞 反馈问题：打开 Github Issue
-  </details>
-
-- <details><summary> 🆙 更新书源（同上）</summary>
-
-  ![img](./pic/UpdateSource.png)
-  > [!NOTE]
-  > 
-  > 点击按钮【🆙 更新】以更新书源/更新订阅
-  > - Jsdelivr CDN 更新有延迟
-  > - Github 更新需代理
-  > - Godeberg 更新免代理
-  </details> 
 </details>
 
 
-### 5.书源 登录界面
-<details><summary> 🅿️ 登录界面 </summary>
+### ▶️ 登录界面
+<details><summary> ▶️ 登录界面 </summary>
 
 
 - <details><summary> 🅿️ 打开登录界面 </summary>
@@ -503,7 +470,7 @@
   ![img](./pic/PixivLogin0.png)
   </details>
 
-- <details><summary> 🅿️ 账号功能（同上） </summary>
+- <details><summary> 🅿️ 账号功能 </summary>
 
   #### 5.0 账号功能
   - ⚠️ 登录/退出账号都要使用按钮
@@ -567,8 +534,7 @@
 </details>
 
 
-### 6.书源 自定义功能
-[//]: # ({$Custom})
+### 📃 自定功能
 <details><summary> 📃 自定义功能 </summary>
 
 - <details><summary> 📃 功能说明 </summary>
@@ -654,3 +620,5 @@
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
 >
 > **你的鼓励是持续更新的动力～**
+
+## 🐲 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
