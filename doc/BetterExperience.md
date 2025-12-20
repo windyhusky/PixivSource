@@ -179,6 +179,32 @@
 - 但还请注意，**此时阅读的配置还没有全部完成**
 
 
+### ✈️ 直连模式（可选） {#IPDirect}
+> [!TIP]
+> 
+> **登录账号后，可在登录界面开启【直连模式】**
+
+![img](./pic/PixivLoginUISource.png)
+
+![img](./pic/PixivIPDirect0.png)
+
+**直连模式，无需代理，即可获取小说**
+
+![img](./pic/PixivIPDirect.png)
+
+**🚫 直连模式不可用功能：**
+- 搜索：搜索作者
+- 发现：书签、首页、排行榜
+- 目录：显示原始链接
+
+
+> [!NOTE]
+>
+> **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
+>
+> **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
+
+
 ## 阅读设置 {#LegadoSettings}
 ### 💾 [备份恢复](WebdavBackup.md) {#WebdavBackup}
 > [!IMPORTANT]
@@ -189,6 +215,7 @@
 > 
 > **详见：[备份与恢复](WebdavBackup.md)**
 
+
 ### 🔄 关闭刷新 {#TurnOffAutoRefresh}
 > [!IMPORTANT]
 > 
@@ -197,17 +224,21 @@
 > **否则很容易触发触发请求限制，甚至封号**
 
 **我的 - 其他设置 - 自动刷新**
+
 ![img](./pic/LegadoSettingsAutoRefreash.png)
+
 > [!NOTE]
 > 
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
 > 
 > **可以像是使用常规阅读软件一样，使用开源阅读了**
 
+
 ### ☁️ [远程书籍](RemoteBooks.md)（可选） {#RemoteBooks}
 > [!TIP]
-> 使用支持 Webdav 的网盘，阅读网盘上的书籍
-> 
+>
+> **使用支持 Webdav 的网盘，阅读网盘上的书籍**
+>
 > **详见：[远程书籍](RemoteBooks.md)**
 
 
@@ -229,31 +260,6 @@
 - 两种方式都可以打开登陆界面
 
 ![img](./pic/PixivLoginUI.png)
-
-
-### ✈ 直连模式 {#IPDirect}
-> [!NOTE]
-> 
-> **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
-> 
-> **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
-
-![img](./pic/PixivLoginUISource.png)
-
-**登录账号后，可在登录界面打开直连模式**
-
-![img](./pic/PixivIPDirect0.png)
-
-**直连模式，无需代理，即可获取小说**
-
-![img](./pic/PixivIPDirect.png)
-
-**🚫 直连模式不可用功能**：
-- 搜索作者 
-- 原始链接 
-- 发现 书签 
-- 发现 首页 
-- 发现 排行榜
 
 
 ### ⏺ 互动功能 {#InteractiveFunction}
