@@ -16,18 +16,16 @@
 
 
 ## 下载阅读
-### ✅ 书源兼容性
-<details><summary><strong> ✅ 书源兼容性 </strong></summary>
-
-| 阅读版本           | 版本号      | 兼容书源      | 书源版本 |
-|-------------------|-----------|-------------|--------|
-| 👍【推荐】阅读 Sigma | 3.25.0927 | Pixiv 小说　　 | 最新版 | 
-| 🏛️【官方】阅读 Beta | 3.25.0527 | Pixiv 小说　　 | 最新版 | 
+### ✅ 阅读兼容性
+| 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
+| ------ | ----- | ------ | -------|
+| **👍【推荐】阅读 Sigma** | **3.25.0927** | **Pixiv 小说**　　 | **最新版** | 
+| **🏛️【官方】阅读 Beta** | **3.25.0527** | **Pixiv 小说**　　 | **最新版** |
 | 🎀【兼容】阅读 MD3   | 3.26      | Pixiv 小说备用 | 最新版 | 
 | 🍎【兼容】源阅       | 1.0 (112) | Pixiv 小说备用 | 最新版 |
-| 👎【官方】阅读 正式版  | 3.25     | Pixiv 小说备用 | 最新版 | 
 
 
+### 📚 书源兼容性
 <details><summary> 🅿️ Pixiv 书源 </summary>
 
 | Pixiv | 更新时间 | 阅读 Beta | 导入链接 |
@@ -47,51 +45,45 @@
 | 253 | 2025.12.16 | 3.23.0503 - 3.25.1107 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/linpx.json) |
 | 174 | 2025.02.20 | 3.22.0103 - 3.23.0404 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/linpx.json) | 
 </details>
-</details>
 
 
-### 🤖 安卓版
-#### 3.1.0 👍【推荐】[洛娅橙 Fork 版](https://github.com/Luoyacheng/legado)
-**可覆盖下方 Beta 版本（原包名/共存），推荐使用【共存版/ReleaseA版】**
-
-| 下载站点 | 推荐版本 | 备注 |
-| ------- | ------ | --- |
-| [Github Release](https://github.com/Luoyacheng/legado/releases) | 共存版 | 需要代理，无需登录 |
-| [Github Action](https://github.com/Luoyacheng/legado/actions)   | 共存版 | 需要代理，需要登录 |
-
-
-<details><summary><strong> 🏛️ 阅读 Beta 版（喵公子等）</strong></summary>
-
-#### 3.1.1 【官方】喵公子等的 Beta 版
-**点击链接，下载安装包并安装，推荐使用【新共存版】**
-https://miaogongzi.lanzout.com/b01rgkhhe
+## 安卓版
+### 👍 【推荐】[阅读 Sigma](https://loyc.xyz/c/legado.html)
+> 项目地址：https://github.com/Luoyacheng/legado
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------ | --- |
-| [阅读Beta版 蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)   | 新共存版 | 无需代理，无需登录 |
-| [Github Action](https://github.com/gedoor/legado/actions)    | 新共存版 | 需要代理，需要登录 |
+| [Github Release](https://github.com/Luoyacheng/legado/releases) | Plus | 需要代理，无需登录 |
+| [Github Action](https://github.com/Luoyacheng/legado/actions)   | Plus | 需要代理，需要登录 |
+
+
+### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc)
+> 项目地址：https://github.com/legadoteam/legado
+
+| 下载站点 | 推荐版本 | 备注 |
+| ------- | ------ | --- |
+| [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)   | 新共存版 | 无需代理，无需登录 |
+| [Github Release](https://github.com/legadoteam/legado/releases) | 新共存版 | 需要代理，需要登录 |
+| [Github Action](https://github.com/legadoteam/legado/actions)   | 新共存版 | 需要代理，需要登录 |
 | [Telegram 频道](https://t.me/Legado_Channels)                 | 新共存版 | 需要代理，需要登录 |
 | [Telegram 频道(Beta版)](https://t.me/Legado_Beta)             | 新共存版 | 需要代理，需要登录 |
-</details>
 
 
-<details><summary> 🎀 阅读 MD3 版（HapeLee）</summary>
+### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3)
+> 项目地址：https://github.com/HapeLee/legado-with-MD3
 
-#### 3.1.2 【兼容】HapeLee 的 MD3 版
-**点击链接，下载安装包并安装，推荐使用【共存版/新共存版】**
-https://miaogongzi.lanzout.com/b01rgkhhe
-
-| 下载站点 | 版本 | 备注 |
-| ------- | ---- | --- |
-| [Github Release](https://github.com/HapeLee/legado-with-MD3/releases) | 测试版 | 需要代理，无需登录 |
-| [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 测试版 | 需要代理，需要登录 |
-</details>
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/HapeLee/legado-with-MD3/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 需要代理，需要登录 |
 
 
+### 🚮 其他版本
 <details><summary> 👎 阅读 正式版（已停更）</summary>
 
-#### ~~3.1.3 【官方】Android 正式版~~
-**Android 正式版已经停止更新，不推荐继续使用**
+> 项目地址：https://github.com/gedoor/legado
+
+**正式版已经停止更新，不推荐继续使用**
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------ | ---- |
@@ -103,29 +95,14 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 
 <details><summary> 🚮 阅读 Pro 版（已下架）</summary>
 
-#### ~~3.1.4 【官方】阅读 Pro 版~~
 - 阅读 Pro 版于2023年被Google下架
 - 现已经停止更新，不推荐继续使用
 - 所有 Pro 版限定功能已经移植到普通版（2023.11.01）
 </details>
 
 
-### 🍎 苹果版
-<details><summary> ❌ 阅读官方 iOS 版 </summary>
-
-#### ~~3.2.1 【官方】 iOS 版~~【已停止开发】
-- 官方 iOS 版已经停止开发
-
-| 下载站点 | 备注 |
-| ------ | --- |
-| ~~[GitHub](https://github.com/gedoor/YueDuFlutter)~~ | 已经停止开发 |
-| ~~[Telegram 频道(iOS版)](https://t.me/legado_ios)~~   | 已经停止开发 |
-</details>
-
-
-#### 3.2.2 非官方 iOS 版
-兼容阅读书源的 **【非官方】软件**：
-
+## 苹果版
+### 🍎 【非官方】苹果版
 | 软件名称 | 收费方式 | 备注 |
 | ------ | ------ | ---- |
 | [源阅](https://github.com/kaich/SourceReadSite)    | TestFlight 付费 ￥128      | 兼容书源，【源阅读】的后续版本 |
@@ -134,23 +111,10 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 | [阅读阅多](https://apps.apple.com/app/id6747099551) | 订阅制 & 永久 ￥399 ~ ￥788 ~ ￥1488 | 不完全兼容书源，内置浏览器支持不佳 |
 
 
-<details><summary> 🚮 iOS 已下架软件 </summary>
+### 🔀 替代软件
+<details><summary> 🔀 替代软件 </summary>
 
-#### 3.2.2 iOS 已下架软件
-| 软件名称     | AppStore                                           | Github                                 | 备注            |
-|------------ | ------------------------------------------------- | --------------------------------------- | -------------- |
-| 源阅读       | [源阅读](https://apps.apple.com/app/id1561787704 ) | [源阅读](https://github.com/kaich/Yuedu) | 停止维护，现已下架 |
-| ~~青果阅读~~ | [青果阅读](https://apps.apple.com/app/id1142490639) | 无                                      | 停止维护，现已下架 |
-| ~~花火阅读~~ | [花火阅读](https://apps.apple.com/app/id1546631588) | 无                                      | 停止维护，现已下架 |
-| ~~星文阅读~~ | [星文阅读](https://apps.apple.com/app/id1662197753) | 无                                      | 停止维护，现已下架 |
-</details>
-
-
-<details><summary> 🔀 iOS 替代软件 </summary>
-
-#### 3.2.3 iOS 替代软件
 不兼容阅读书源的，其他换源阅读软件
-
 | 软件名称 | 备注                        |
 | ------------------------------------------------------ | -------------- |
 | [益达](https://github.com/xiaohucode/yidaRule/releases) | 开源（苹果&安卓） |
@@ -160,7 +124,29 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 </details>
 
 
-### 🖥️ 服务器版【非官方】
+### 🚮 其他版本
+<details><summary> 🚮 已下架软件 </summary>
+
+| 软件名称     | AppStore                                           | Github                                 | 备注            |
+|------------ | ------------------------------------------------- | --------------------------------------- | -------------- |
+| 源阅读       | [源阅读](https://apps.apple.com/app/id1561787704 ) | [源阅读](https://github.com/kaich/Yuedu) | 停止维护，现已下架 |
+| ~~青果阅读~~ | [青果阅读](https://apps.apple.com/app/id1142490639) | 无                                      | 停止维护，现已下架 |
+| ~~花火阅读~~ | [花火阅读](https://apps.apple.com/app/id1546631588) | 无                                      | 停止维护，现已下架 |
+| ~~星文阅读~~ | [星文阅读](https://apps.apple.com/app/id1662197753) | 无                                      | 停止维护，现已下架 |
+</details>
+
+<details><summary> ❌ 阅读官方苹果版 </summary>
+
+- 官方苹果版 已经停止开发
+
+| 下载站点 | 备注 |
+| ------ | --- |
+| ~~[GitHub](https://github.com/gedoor/YueDuFlutter)~~ | 已经停止开发 |
+| ~~[Telegram 频道(iOS版)](https://t.me/legado_ios)~~   | 已经停止开发 |
+</details>
+
+
+## 🖥️ 【非官方】[服务器版](https://github.com/hectorqin/reader)
 > 项目地址：https://github.com/hectorqin/reader
 
 | 下载站点                                                 | 备注            |
@@ -170,7 +156,7 @@ https://miaogongzi.lanzout.com/b01rgkhhe
 | 微信公众号【假装大佬】                                      |                |
 
 
-### 🌸 鸿蒙版【官方】
+## 🌸 【官方】[鸿蒙版](https://github.com/mgz0227/legado-Harmony)
 > 项目地址：https://github.com/mgz0227/legado-Harmony
 
 | 下载站点                                                        | 备注   |
