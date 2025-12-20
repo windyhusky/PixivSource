@@ -69,11 +69,6 @@
 
 
 ## 书源配置 {#BookSourceSet}
-> [!NOTE]
->
-> **有账号的网站，在书源里登录账号才能阅读相关小说**
-
-
 ### 📡 开启代理
 > [!TIP]
 > 
@@ -81,6 +76,10 @@
 
 
 ### 🅿️ 登录账号 {#LoginAccount}
+> [!NOTE]
+>
+> **有账号的网站，在书源里登录账号才能阅读相关小说**
+
 **我的 - 书源管理 - 菜单 - 登录 - 登录账号**
 
 ![img](./pic/PixivLogin1.png)
@@ -95,9 +94,33 @@
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
 
 
+### ✈️ 直连模式（可选） {#IPDirect}
+> [!TIP]
+>
+> **登录账号后，可在登录界面开启【直连模式】**
 
-### 🔞 开启 R18 设置
-#### 如果你已经开启了，则可以跳过这一步
+![img](./pic/PixivLoginUISource.png)
+
+![img](./pic/PixivIPDirect0.png)
+
+**直连模式，无需代理，即可获取小说**
+
+![img](./pic/PixivIPDirect.png)
+
+**🚫 直连模式不可用功能：**
+- 搜索：搜索作者
+- 发现：书签、首页、排行榜
+- 目录：显示原始链接
+
+> [!NOTE]
+>
+> **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
+>
+> **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
+
+
+### 🔞 浏览范围（可选）
+#### 如果你已经开启了 R18 设置，则可以跳过这一步
 <details><summary><strong>📆 编辑出生年份 </strong></summary>
 
 **再次点击登录，滑动屏幕，点击头像，再次点击头像，编辑个人资料**
@@ -123,6 +146,7 @@
 
 ![img](./pic/PixivSettingsView.png)
 </details>
+
 
 
 ## 配置阅读
