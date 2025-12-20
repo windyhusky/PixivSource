@@ -423,19 +423,19 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
   #### 2.6 他人收藏
   - 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
 
-  ![img](pic/PixivLoginUILikeAuthors.png)
+  ![img](./pic/PixivLoginUILikeAuthors.png)
   - 输入作者/用户ID，则会添加【指定作者/用户】
 
-  ![img](pic/DiscoverPixivLikeAuthors1.png)
+  ![img](./pic/DiscoverPixivLikeAuthors1.png)
   - 若未输入作者/用户ID，则会添加【当前小说的作者】
 
-  ![img](pic/DiscoverPixivLikeAuthors2.png)
+  ![img](./pic/DiscoverPixivLikeAuthors2.png)
   - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
 
-  ![img](pic/DiscoverRefresh.png)
+  ![img](./pic/DiscoverRefresh.png)
   - 3️⃣ 点击按钮，查看内容
 
-  ![img](pic/DiscoverPixivLikeAuthors.jpg)
+  ![img](./pic/DiscoverPixivLikeAuthors.jpg)
   </details>
 </details>
 
@@ -691,13 +691,13 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
   #### 6.5 他人收藏
   - 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
   
-  ![img](pic/PixivLoginUILikeAuthors.png)
+  ![img](./pic/PixivLoginUILikeAuthors.png)
   - 输入作者/用户ID，则会添加【指定作者/用户】
   
-  ![img](pic/DiscoverPixivLikeAuthors1.png)
+  ![img](./pic/DiscoverPixivLikeAuthors1.png)
   - 若未输入作者/用户ID，则会添加【当前小说的作者】
   
-  ![img](pic/DiscoverPixivLikeAuthors2.png)
+  ![img](./pic/DiscoverPixivLikeAuthors2.png)
   - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
   
   ![img](./pic/DiscoverRefresh.png)

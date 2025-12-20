@@ -64,7 +64,7 @@
 
 > “今天的库尔札斯……好冷啊……”
 
-![img](pic/ArchivedNotice1.jpg)
+![img](./pic/ArchivedNotice1.jpg)
 
 &emsp;&emsp;刚写好250版本书源的我，像是个250一样在各个群苦苦推广着。
 
@@ -108,7 +108,7 @@
 
 >&emsp;&emsp;“今天的库尔札斯……好冷啊……”
 
-![img](pic/ArchivedNotice2.png)
+![img](./pic/ArchivedNotice2.png)
 </details>
 
 

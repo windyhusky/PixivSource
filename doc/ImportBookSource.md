@@ -55,7 +55,7 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/DowneyRem/Pixi
 #### 2.使用阅读打开
 点击书源，选择用阅读打开
 
-![img](pic/OpenInLegado.png)
+![img](./pic/OpenInLegado.png)
 
 
 #### 3.导入完成并启用书源/订阅源
@@ -140,7 +140,7 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 ```
 
 点击链接，跳转阅读
-![img](pic/OpenInLegado.png)
+![img](./pic/OpenInLegado.png)
 
 #### 2.导入完成并启用书源
 ![img](./pic/InportBookSourcePixiv.jpg)

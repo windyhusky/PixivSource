@@ -92,23 +92,23 @@
 像常规阅读软件一样，也有：书架、搜索、发现、我的 等页面
 ### 📚 书架页面 {#Shelf}
 添加小说后如图：
-![img](pic/LegadoBookShelf.png)
+![img](./pic/LegadoBookShelf.png)
 
 ### 🔎 搜索页面 {#Search}
 添加书源后如图：
-![img](pic/SearchViaLegado.png)
+![img](./pic/SearchViaLegado.png)
 
 ### ⭐️ 发现页面 {#discover}
 添加书源后如图：
 
-![img](pic/LegadoDiscover.png)
+![img](./pic/LegadoDiscover.png)
 
 ### 👤 我的页面 {#Mine}
 多数阅读软件的我的页面都有登录账号
 
 与常规阅读软件不同，【开源阅读】的我的页面，最上面却是【书源管理】
 
-![img.png](pic/LegadoProfile.png)
+![img.png](./pic/LegadoProfile.png)
 
 **【书源管理】和【备份与恢复】这两项非常重要**，稍后讲解
 
@@ -150,7 +150,7 @@
 ## 书源配置 {#BookSourceSet}
 ### ⚙️ 书源管理 {#BookSourceManagement}
 打开书源管理，有书源的话，点击书源菜单后，应该是这样的：
-![img.png](pic/PixivLogin1.png)
+![img.png](./pic/PixivLogin1.png)
 注意**这里的【登录】和【调试】，这两个功能很重要**，我们稍后讲解
 
 
@@ -165,13 +165,13 @@
 #### 2. 登录 Pixiv 账号
 **我的 - 书源管理 - 菜单 - 登录 - 登录账号**
 
-![img](pic/PixivLogin1.png)
+![img](./pic/PixivLogin1.png)
 
-![img](pic/PixivLoginUIAccount.png)
+![img](./pic/PixivLoginUIAccount.png)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 
-![img](pic/PixivLogin2.jpg)
+![img](./pic/PixivLogin2.jpg)
 > [!TIP]
 >
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
@@ -197,7 +197,7 @@
 > **否则很容易触发触发请求限制，甚至封号**
 
 **我的 - 其他设置 - 自动刷新**
-![img](pic/LegadoSettingsAutoRefreash.png)
+![img](./pic/LegadoSettingsAutoRefreash.png)
 > [!NOTE]
 > 
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
@@ -220,15 +220,15 @@
 打开登录界面：
 - **①我的 - 书源管理 - Pixiv 小说 - 登录**
 
-![img.png](pic/PixivLogin1.png)
+![img.png](./pic/PixivLogin1.png)
 
 - **②小说阅读界面 - Pixiv 小说 - 登录**
 
-![img.png](pic/PixivLogin0.png)
+![img.png](./pic/PixivLogin0.png)
 
 - 两种方式都可以打开登陆界面
 
-![img](pic/PixivLoginUI.png)
+![img](./pic/PixivLoginUI.png)
 
 
 ### ✈ 直连模式 {#IPDirect}
@@ -238,15 +238,15 @@
 > 
 > **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
 
-![img](pic/PixivLoginUISource.png)
+![img](./pic/PixivLoginUISource.png)
 
 **登录账号后，可在登录界面打开直连模式**
 
-![img](pic/PixivIPDirect0.png)
+![img](./pic/PixivIPDirect0.png)
 
 **直连模式，无需代理，即可获取小说**
 
-![img](pic/PixivIPDirect.png)
+![img](./pic/PixivIPDirect.png)
 
 **🚫 直连模式不可用功能**：
 - 搜索作者 
@@ -259,7 +259,7 @@
 ### ⏺ 互动功能 {#InteractiveFunction}
 <details><summary> ⏺ 互动功能 </summary>
 
-![img](pic/PixivLoginUINovels.png)
+![img](./pic/PixivLoginUINovels.png)
 - ❤️ 公开收藏：公开收藏、取消收藏
 - 📃 追更系列：追更系列、取消追更
 - **❤️ 收藏系列：公开收藏系列内的每篇小说（可追加收藏）**
@@ -277,7 +277,7 @@
 ### ⚙️ 书源设置 {#BookSourceSettings}
 <details><summary> ⚙️ 书源设置 </summary>
 
-![img](pic/PixivLoginUISettings.png)
+![img](./pic/PixivLoginUISettings.png)
 - ⚙️ 当前设置：显示当前设置
 - ⚙️ 默认设置：恢复默认设置
 - 👤 搜索作者：默认搜索作者

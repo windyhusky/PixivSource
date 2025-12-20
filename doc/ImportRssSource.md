@@ -55,7 +55,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 #### 2.使用阅读打开
 点击书源，选择用阅读打开
 
-![img](pic/OpenInLegado.png)
+![img](./pic/OpenInLegado.png)
 
 #### 3.导入完成并启用书源/订阅源
 ![img](./pic/InportRssSourceBtsrk.png)
@@ -106,18 +106,18 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 ```
 
 #### 1.打开【订阅】页面，点击右上角【设置】
-![img](pic/ImportOnlineRssSource1.png)
+![img](./pic/ImportOnlineRssSource1.png)
 
 #### 2.点击右上角的三点菜单，选择【网络导入】
-![img](pic/ImportOnlineRssSource2.png)
+![img](./pic/ImportOnlineRssSource2.png)
 
 #### 3.粘贴订阅源链接，点击确定
-![img](pic/ImportOnlineRssSource3.jpg)
+![img](./pic/ImportOnlineRssSource3.jpg)
 
 #### 4.导入完成并启用订阅源
 ![img](./pic/InportRssSourceBtsrk.png)
 
-![img](pic/ImportOnlineRssSource4.jpg)
+![img](./pic/ImportOnlineRssSource4.jpg)
 
 **无法网络导入时，请尝试开启代理，或过段时间重试**
 </details>
@@ -154,7 +154,7 @@ legado://import/rssSource?src=https://raw.githubusercontent.com/DowneyRem/PixivS
 yuedu://rsssource/importonline?src=http://yuedu.miaogongzi.net/shuyuan/miaogongziDY.json
 ```
 点击链接，跳转阅读
-![img](pic/OpenInLegado.png)
+![img](./pic/OpenInLegado.png)
 
 #### 2.选择订阅源并导入
 

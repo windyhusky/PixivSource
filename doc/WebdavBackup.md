@@ -46,11 +46,11 @@
 #### 2.1 进入备份与恢复
 主界面 - 我的 - 设置 - 备份与恢复
 
-![img](pic/WebdavBackup0.png)
+![img](./pic/WebdavBackup0.png)
 
 
 #### 2.2 设置 WebDav 备份信息
-![img](pic/WebdavBackup1.png)
+![img](./pic/WebdavBackup1.png)
 
 在 WebDav 设置里填入服务器地址、账户、应用密码，保存即可
 </details>
@@ -71,7 +71,7 @@
 <details><summary> 🔜 备份数据 </summary>
 
 ### 3.1 手动备份数据
-![img.png](pic/WebdavBackup2.png)
+![img.png](./pic/WebdavBackup2.png)
 
 **备份与恢复 - 备份，即可备份数据**
 
@@ -86,8 +86,8 @@
 ### 3.2 [恢复数据](https://www.yuque.com/legado/wiki/nxs89y)
 **备份与恢复 - 恢复**
 
-![img](pic/WebdavBackup2.png)
+![img](./pic/WebdavBackup2.png)
 
 **选择需要恢复的备份文件**，即可恢复数据
-![img](pic/WebdavBackup3.png)
+![img](./pic/WebdavBackup3.png)
 </details>

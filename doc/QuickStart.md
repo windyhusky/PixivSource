@@ -104,19 +104,19 @@
 #### 1.下载书源/订阅源文件
 如果你下载了书源文件，可以使用本地文件导入
 
-![img](pic/DownloadResource.png)
+![img](./pic/DownloadResource.png)
 
 
 #### 2.使用阅读打开
 点击下载完成的书源文件，选择【用其他应用打开】
-![img](pic/OpenInQQ.png)
+![img](./pic/OpenInQQ.png)
 
 打开方式选择阅读
-![img](pic/OpenInLegado.png)
+![img](./pic/OpenInLegado.png)
 
 
 #### 3.导入完成并启用书源/订阅源
-![img](pic/InportBookSourcePixiv.jpg)
+![img](./pic/InportBookSourcePixiv.jpg)
 </details>
 
 
@@ -134,13 +134,13 @@
 #### 2. 登录 Pixiv 账号
 **我的 - 书源管理 - 菜单 - 登录 - 登录账号**
 
-![img](pic/PixivLogin1.png)
+![img](./pic/PixivLogin1.png)
 
-![img](pic/PixivLoginUIAccount.png)
+![img](./pic/PixivLoginUIAccount.png)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 
-![img](pic/PixivLogin2.jpg)
+![img](./pic/PixivLogin2.jpg)
 > [!TIP]
 >
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
@@ -182,7 +182,7 @@
 > **否则很容易触发触发请求限制，甚至封号**
 
 我的 - 其他设置 - 自动刷新
-![img](pic/LegadoSettingsAutoRefreash.png)
+![img](./pic/LegadoSettingsAutoRefreash.png)
 > [!NOTE]
 >
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
