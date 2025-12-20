@@ -22,29 +22,14 @@
 3. 导入 兽人控小说站 的书源、订阅源
 
 
-## 一、下载并安装阅读 {#DownloadApp}
-> [!TIP]
->
-> **Android 设备：阅读 + Pixiv 书源**
->
-> **苹果设备可用：源阅 + Pixiv 书源**
-> **，详见：[下载阅读](Download.md)**
-
-
-### 1.下载阅读 3.0 版本
-<details><summary> ⬇️ 下载阅读 </summary>
-
+## 一、下载阅读 {#DownloadApp}
 > [!IMPORTANT]
+>
 > 点击链接，下载 **【新共存版】** 安装包并安装软件
 >
 > https://miaogongzi.lanzout.com/b01rgkhhe
 >
-> 最新下载链接请查看 [下载阅读](./Download.md)
-
-
-### 2.了解阅读功能与用法
-> 请查看[阅读是什么软件？阅读简介](./ReadMe.md)
-</details>
+> **苹果设备及更多兼容软件详见：** [下载阅读](./Download.md)
 
 
 ## 二、导入书源 & 订阅源 {#ImportSource}
