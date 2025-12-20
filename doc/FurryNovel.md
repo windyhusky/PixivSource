@@ -13,16 +13,10 @@
 >
 > **从未使用过【开源阅读】的读者可以看这篇指南：**
 > [✨臻享阅读](BetterExperience.md)
-### [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
+## [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
 
 
-## 本书源使用前提
-1. 使用阅读 3.0 版本
-2. ⚠️ 部分区域需要代理（建议先准备好）
-3. 导入 兽人控小说站 的书源、订阅源
-
-
-## 一、下载阅读 {#DownloadApp}
+### ⬇️ 下载阅读 {#DownloadApp}
 > [!IMPORTANT]
 >
 > 点击链接，下载 **【新共存版】** 安装包并安装软件
@@ -32,7 +26,7 @@
 > **苹果设备及更多兼容软件详见：** [下载阅读](./Download.md)
 
 
-## 二、导入书源 & 订阅源 {#ImportSource}
+### 🚀 导入书源 & 订阅源 {#ImportSource}
 > [!IMPORTANT]
 >
 > **点击下方链接，一键导入书源、订阅源**
@@ -44,16 +38,16 @@
 > **更多导入方法详见：** [如何导入书源](./ImportBookSource.md)
 
 
-## 三、确保网站可以访问 {#CheckAccess}
+## 书源配置 {#BookSourceSet}
+### ✅ 确保网站可以访问 {#CheckAccess}
 > [!NOTE]
 >
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 >
 > **Linpx & 兽人控小说站 暂无账号体系，无需登录即可使用**
 
-<details><summary> ☑️ 检查网站能否访问 </summary>
+**订阅 - 点击 Linpx / 兽人控小说站 - 打开网站**
 
-订阅 - 点击 Linpx / 兽人控小说站 - 打开网站
 - 如果可以直接打开，那么一切大功告成！
   - **多数网络下，Linpx & 兽人控小说站 无需代理即可访问**
   - Linpx & 兽人控小说站 没有账号体系，**无需登录即可使用**，不必做过多的操作
@@ -61,11 +55,10 @@
 - 如果 **无法直接打开** 则可以：
   - 切换至其他网络（**更换网络运营商、使用流量或 WIFI**）后再尝试
   - 开启代理后再尝试
-</details>
 
 
-## 四、配置阅读
-### 💾 [备份与恢复](WebdavBackup.md)
+## 阅读设置
+### 💾 [备份恢复](WebdavBackup.md)
 > [!IMPORTANT]
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
@@ -74,15 +67,18 @@
 >
 > **详见：[备份与恢复](WebdavBackup.md)**
 
-### 🔄 关闭自动刷新
+
+### 🔄 关闭刷新
 > [!IMPORTANT]
 >
 > **使用时，请在设置里，关闭自动刷新**
 >
 > **否则很容易触发触发请求限制，甚至封号**
 
-我的 - 其他设置 - 自动刷新
+**我的 - 其他设置 - 自动刷新**
+
 ![img](./pic/LegadoSettingsAutoRefreash.png)
+
 > [!NOTE]
 >
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
@@ -90,8 +86,16 @@
 > **可以像是使用常规阅读软件一样，使用开源阅读了**
 
 
-## 五、添加小说，尽情使用 {#add-novel}
-### 1.阅读内部搜索
+### ☁️ [远程书籍](RemoteBooks.md)（可选） {#RemoteBooks}
+> [!TIP]
+>
+> **使用支持 Webdav 的网盘，阅读网盘上的书籍**
+>
+> **详见：[远程书籍](RemoteBooks.md)**
+
+
+## 畅享阅读 {#AddNovel}
+### 🔍 搜索小说 {#Search}
 <details><summary> 🔎 搜索小说 </summary>
 
 ✅ 支持搜索：小说名称、系列小说名称、作者名称、小说标签
@@ -100,7 +104,7 @@
 </details>
 
 
-### 2.发现更多小说
+### ⭐️ 发现小说
 <details><summary> ⭐️ 发现小说 </summary>
 
 发现：热门小说、最新小说、随便来点
@@ -131,7 +135,7 @@
 </details>
 
 
-### 3.添加网址 {#AddUrl}
+### 🔗 添加网址 {#AddUrl}
 <details><summary> 🔗 添加网址 </summary>
 
 - 书架 - 菜单 - 添加网址 - 粘贴小说链接
@@ -139,7 +143,7 @@
 
 - <details><summary> 🔗 操作流程 </summary>
 
-  ### 3.1 操作流程
+  #### 3.1 操作流程
   ![img](./pic/AddBookViaUrl1.png)
   ![img](./pic/AddBookViaUrl2.png)
   ![img](./pic/AddBookViaUrl3.png)
@@ -147,7 +151,7 @@
 
 - <details><summary> 🔗 支持链接 </summary>
 
-  ### 3.2 支持链接
+  #### 3.2 支持链接
   - 兽人控小说站 目录链接
   ```
   https://furrynovel.com/zh/novel/8312
@@ -156,16 +160,12 @@
   ```
   https://furrynovel.com/zh/novel/8312/chapter/33116
   ```
-  - 兽人控小说站 API链接
-  ```
-  https://api.furrynovel.com/api/zh/novel/8312
-  ```
   </details>
 </details>
 
 
-### 4.订阅源
-<details><summary> 🏠 订阅源 </summary>
+### 🌐 订阅源
+<details><summary> 🌐 订阅源 </summary>
 
 - <details><summary> ⬇️ 导入书源 </summary>
 
@@ -204,8 +204,7 @@
 </details>
 
 
-## 六、故障排查 {#troubleshoot}
-> 详见：[故障排查与处理](./TroubleShoot.md)
+## 🐞 [故障处理](./TroubleShoot.md) {#troubleshoot}
 
 
 ## ☕️ [支持开发](./Sponsor.md)
@@ -215,4 +214,4 @@
 >
 > **你的鼓励是持续更新的动力～**
 
-## 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
+## 🐲 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
