@@ -157,6 +157,14 @@ export default defineConfig({
                 permalink: false   // 显示锚点符号
             })
 
+            // 新增：自动为所有图片添加懒加载属性，解决加载竞争导致的跳转慢问题
+            md.renderer.rules.image = (tokens, idx, options, env, self) => {
+                const token = tokens[idx]
+                token.attrSet('loading', 'lazy')    // 开启懒加载
+                token.attrSet('decoding', 'async')  // 异步渲染图片
+                return self.renderToken(tokens, idx, options)
+            }
+
             // // 优化导入链接，站内使用 legado:// 链接，github 使用原始链接
             const defaultRender = md.renderer.rules.link_open || ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options))
             md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
