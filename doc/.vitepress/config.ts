@@ -172,5 +172,14 @@ export default defineConfig({
                 return defaultRender(tokens, idx, options, env, self);
             };
         }
+    },
+    sitemap: {
+        hostname: 'https://downeyrem.github.io/PixivSource/',
+        lastmodDateOnly: true,  // print date not time
+        xmlns: { // trim the xml namespace
+            news: true, // flip to false to omit the xml namespace for news
+            xhtml: true,
+            image: true,
+        }
     }
 })
