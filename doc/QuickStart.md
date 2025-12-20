@@ -42,7 +42,7 @@
 
 | 阅读版本 | 推荐 | 版本号 |
 | ------ | --- | ----- |
-| 👍【推荐】[阅读 Σ](https://github.com/Luoyacheng/legado/releases) | Plus  | 3.25.0927 |
+| 👍【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado/releases) | Plus  | 3.25.0927 |
 | 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
 </details>
 
@@ -52,7 +52,7 @@
 
 | 阅读版本 | 推荐 | 版本号 |
 | ------ | --- | ----- |
-| 👍【推荐】[阅读 Σ](https://github.com/Luoyacheng/legado/releases) | Plus  | 3.25.0927 |
+| 👍【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado/releases) | Plus  | 3.25.0927 |
 | 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
 | 🎀【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3/releases) | | 3.26     | 
 | 🍎【兼容】[源阅](https://github.com/kaich/SourceReadSite)      | TestFlight | 1.0 (112) |
