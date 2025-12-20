@@ -154,7 +154,7 @@ export default defineConfig({
     },
     markdown: {
         config: (md) => {
-            // // 优化中文锚点，但无法兼容 Github
+            // 优化中文锚点，但无法兼容 Github
             md.use(markdownItAnchor, {
                 slugify: (s:string) => s,
                 // slugify: (s:string) => s.replace(/[，。、？！《》—…]/gm, ""),
@@ -175,7 +175,7 @@ export default defineConfig({
             md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
                 const hrefIndex = tokens[idx].attrIndex("href")
                 if (hrefIndex >= 0) {
-                    const hrefAttr = tokens[idx].attrs[hrefIndex]
+                    const hrefAttr = tokens[idx].attrs![hrefIndex] // 添加了非空断言
                     let href = hrefAttr[1]
                     // @ts-ignore
                     if (href.startsWith("https://loyc.xyz/b/cdx.html?src=")) {
