@@ -13,53 +13,37 @@
 > 
 > **从未使用过【开源阅读】的读者可以看这篇指南：**
 > [✨臻享阅读](BetterExperience.md)
-### [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
+### 🅿️ [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 
 
-## 本书源使用前提
-1. 使用阅读 3.0 版本
-2. 开启代理【必须】
-3. 导入 Pixiv 的书源、订阅源
-4. 登录 Pixiv 的账号【必须】
-5. 开启 Pixiv R18 设置
-
-
-## 〇、使用须知 {#Notice}
+### ⚠️ 使用须知 {#Notice}
 > [!CAUTION]
-> ### 使用本书源造成的一切损失均由【使用者】自行承担
+> #### ⚠️ 使用本书源造成的一切损失均由【使用者】自行承担
 
 > [!WARNING]
-> ### 1. 请勿在 Pixiv 平台宣传本书源
-<details><summary> 📄 包括但不限于以下内容 </summary>
-
-- 项目名称：
-  - Pixiv 书源
-  - PixivSource
-- 项目链接：
-  - https://github.com/DowneyRem/PixivSource
-  - https://github.com/windyhusky/PixivSource
-  - https://github.com/eigeen/PixivSourceProject
-  - https://downeyrem.github.io/PixivSource
-- 项目参与者链接：
-  - https://github.com/DowneyRem
-  - https://github.com/windyhusky
-  - https://github.com/eigeen
-</details>
-可能会触发 Shadow ban 限制（大）部分功能，严重的会封号
-
-> [!IMPORTANT] 
-> ### 2. 使用时，请在设置里，关闭自动刷新
+> #### ⚠️ 请勿在 Pixiv 平台宣传本项目（书源）
+> <details><summary><strong> 📄 包括但不限于以下内容 </strong></summary>
 >
-> **否则很容易触发触发请求限制，甚至封号**
-<details><summary> 🔄 关闭自动刷新 </summary>
+>  - 项目名称：
+>    - **Pixiv 书源**
+>    - **PixivSource**
+>  - 项目链接：
+>    - https://github.com/DowneyRem/PixivSource
+>    - https://github.com/windyhusky/PixivSource
+>    - https://github.com/eigeen/PixivSourceProject
+>    - https://downeyrem.github.io/PixivSource
+>  - 项目参与者链接：
+>    - https://github.com/DowneyRem
+>    - https://github.com/windyhusky
+>    - https://github.com/eigeen
+> </details>
+> 
+> #### 可能会触发 shadow ban 限制（大）部分功能，严重的甚至会封号
 
-我的 - 其他设置 - 自动刷新
-![img](./pic/LegadoSettingsAutoRefreash.png)
-</details>
 
 > [!IMPORTANT]  
-> ### 3. 不建议在书架上添加过多（超过100篇）小说 
-否则手动刷新时，也可能触发请求限制，甚至封号
+> #### ⚠️ 不建议在书架上添加过多小说（超过100篇）
+> #### 否则手动刷新时，可能会触发请求限制，严重的甚至封号
 
 
 ## 一、下载阅读 {#DownloadApp}
