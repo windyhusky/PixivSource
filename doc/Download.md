@@ -31,23 +31,24 @@
 | 👎【官方】阅读 正式版  | 3.25     | Pixiv 小说备用 | 最新版 | 
 
 
-
 <details><summary> 🅿️ Pixiv 书源 </summary>
 
-| 阅读 Beta | Pixiv 书源 | 更新时间 | 导入链接 |
-| -------- | --------- | ------ | ------- |
-|　3.25.0527 - 最新版本    | 最新 |           | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
-|　3.23.0503 - 3.25.0526 | 194 | 2025.05.28 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/194/pixiv.json) |
-|　3.22.0103 - 3.23.0404 | 174 | 2025.02.20 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/pixiv.json) |
+| Pixiv | 更新时间 | 阅读 Beta | 导入链接 |
+| ----- | ------- | -------- | ------- |
+| 最新 |           | 新包名 3.25.1107 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| 254 |            | 3.23.0503 - 3.25.1107 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/254/pixiv.json) |
+| 194 | 2025.05.28 | 3.23.0503 - 3.25.1107 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/pixiv.json) |
+| 174 | 2025.02.20 | 3.22.0103 - 3.23.0404 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/pixiv.json) |
 </details>
 
 
 <details><summary> 🦊 Linpx 书源 </summary>
 
-| 阅读 Beta | Linpx 书源 | 更新时间 | 导入链接 |
-| -------- | --------- | ------ | ------- |
-|　3.23.0503 - 最新版本    | 最新 |           | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
-|　3.22.0103 - 3.23.0404 | 174 | 2025.02.20 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/pixiv.json)  |
+| Linpx | 更新时间 | 阅读 Beta | 导入链接 |
+| ----- | ------ | --------- | ------- |
+| 最新 |           | 新包名 3.25.1107 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| 253 | 2025.12.16 | 3.23.0503 - 3.25.1107 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/linpx.json) |
+| 174 | 2025.02.20 | 3.22.0103 - 3.23.0404 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/linpx.json) | 
 </details>
 </details>
 
