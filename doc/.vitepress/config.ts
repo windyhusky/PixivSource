@@ -15,8 +15,13 @@ export default defineConfig({
         ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon.png' }],
         ["link", { rel: "apple-touch-icon", sizes: '180x180', href: "/PixivSource/favicon-180x180.png" }],
         ['link', { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/PixivSource/favicon-192x192.png' }],
+
+        // 优化：预连接到 Google 统计，减少代理环境下的连接延迟
+        ["link", { rel: "preconnect", href: "https://www.googletagmanager.com" }],
+        ["link", { rel: "preconnect", href: "https://www.google-analytics.com", crossorigin: "" }],
+
         // ["link", { rel: "manifest", href: "/manifest.json" }]
-        ["script", { 
+        ["script", {
             async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-MJW9QDKTDH" }],
         ["script", {},
             `window.dataLayer = window.dataLayer || [];
