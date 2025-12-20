@@ -13,9 +13,9 @@
 >
 > **从未使用过【开源阅读】的读者可以看这篇指南：**
 > [✨臻享阅读](BetterExperience.md)
+
+
 ## [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
-
-
 ### ⬇️ 下载阅读 {#DownloadApp}
 > [!IMPORTANT]
 >
@@ -26,7 +26,7 @@
 > **苹果设备及更多兼容软件详见：** [下载阅读](./Download.md)
 
 
-### 🚀 导入书源 & 订阅源 {#ImportSource}
+### 🚀 导入书源 & 订阅源 {#ImportSources}
 > [!IMPORTANT]
 >
 > **点击下方链接，一键导入书源、订阅源**
@@ -57,8 +57,8 @@
   - 开启代理后再尝试
 
 
-## 阅读设置
-### 💾 [备份恢复](WebdavBackup.md)
+## 阅读设置 {#LegadoSettings}
+### 💾 [备份恢复](WebdavBackup.md) {#WebdavBackup}
 > [!IMPORTANT]
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
@@ -68,7 +68,7 @@
 > **详见：[备份与恢复](WebdavBackup.md)**
 
 
-### 🔄 关闭刷新
+### 🔄 关闭刷新 {#TurnOffAutoRefresh}
 > [!IMPORTANT]
 >
 > **使用时，请在设置里，关闭自动刷新**
@@ -95,7 +95,7 @@
 
 
 ## 畅享阅读 {#AddNovel}
-### 🔍 搜索小说 {#Search}
+### 🔍 搜索小说 {#SearchNovel}
 <details><summary> 🔎 搜索小说 </summary>
 
 ✅ 支持搜索：小说名称、系列小说名称、作者名称、小说标签
@@ -104,7 +104,7 @@
 </details>
 
 
-### ⭐️ 发现小说
+### ⭐️ 发现小说 {#DiscoverNovel}
 <details><summary> ⭐️ 发现小说 </summary>
 
 发现：热门小说、最新小说、随便来点
@@ -164,7 +164,7 @@
 </details>
 
 
-### 🌐 订阅源
+### 🌐 订阅源 {#RssSource}
 <details><summary> 🌐 订阅源 </summary>
 
 - <details><summary> ⬇️ 导入书源 </summary>
@@ -204,10 +204,10 @@
 </details>
 
 
-## 🐞 [故障处理](./TroubleShoot.md) {#troubleshoot}
+## 🐞 [故障处理](./TroubleShoot.md) {#TroubleShoot}
 
 
-## ☕️ [支持开发](./Sponsor.md)
+## ☕️ [支持开发](./Sponsor.md) {#Sponsor}
 > [!NOTE]
 >
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**

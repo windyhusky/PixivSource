@@ -69,7 +69,6 @@ export default defineConfig({
                 text: "快速开始",
                 collapsed: false,
                 items: [
-                    { text: "🏠 书源主页", link: "/" },
                     { text: "✨ 臻享阅读", link: "/BetterExperience" },
                     { text: "⚡️️️ 快速开始", link: "/QuickStart" },
                 ]

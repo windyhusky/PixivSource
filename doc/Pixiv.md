@@ -13,9 +13,9 @@
 > 
 > **从未使用过【开源阅读】的读者可以看这篇指南：**
 > [✨臻享阅读](BetterExperience.md)
+ 
+
 ## [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
-
-
 ### ⚠️ 使用须知 {#Notice}
 > [!CAUTION]
 > #### ⚠️ 使用本书源造成的一切损失均由【使用者】自行承担
@@ -56,7 +56,7 @@
 > **苹果设备及更多兼容软件详见：** [下载阅读](./Download.md)
 
 
-### 🚀 导入书源 & 订阅源 {#ImportSource}
+### 🚀 导入书源 & 订阅源 {#ImportSources}
 > [!IMPORTANT]
 >
 > **点击下方链接，一键导入书源、订阅源**
@@ -69,7 +69,7 @@
 
 
 ## 书源配置 {#BookSourceSet}
-### 📡 开启代理
+### 📡 开启代理 {#SetProxy}
 > [!TIP]
 > 
 > 此处略过，**最好开启【全局代理】，确保阅读可用访问代理**
@@ -94,7 +94,7 @@
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
 
 
-### ✈️ 直连模式（可选） {#IPDirect}
+### ✈️ 直连模式（可选）{#IPDirect}
 > [!TIP]
 >
 > **登录账号后，可在登录界面开启【直连模式】**
@@ -119,7 +119,7 @@
 > **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
 
 
-### 🔞 浏览范围（可选）
+### 🔞 浏览范围（可选）{R18Settings}
 #### 如果你已经开启了 R18 设置，则可以跳过这一步
 <details><summary><strong>📆 编辑出生年份 </strong></summary>
 
@@ -148,8 +148,8 @@
 </details>
 
 
-## 阅读设置
-### 💾 [备份恢复](WebdavBackup.md)
+## 阅读设置 {#LegadoSettings}
+### 💾 [备份恢复](WebdavBackup.md) {#WebdavBackup}
 > [!IMPORTANT]
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
@@ -159,7 +159,7 @@
 > **详见：[备份与恢复](WebdavBackup.md)**
 
 
-### 🔄 关闭刷新
+### 🔄 关闭刷新 {#TurnOffAutoRefresh}
 > [!IMPORTANT]
 >
 > **使用时，请在设置里，关闭自动刷新**
@@ -177,7 +177,7 @@
 > **可以像是使用常规阅读软件一样，使用开源阅读了**
 
 
-### ☁️ [远程书籍](RemoteBooks.md)（可选） {#RemoteBooks}
+### ☁️ [远程书籍](RemoteBooks.md)（可选）{#RemoteBooks}
 > [!TIP]
 > 
 > **使用支持 Webdav 的网盘，阅读网盘上的书籍**
@@ -186,7 +186,7 @@
 
 
 ## 畅享阅读 {#AddNovel}
-### 🔍 搜索小说 {#Search}
+### 🔍 搜索小说 {#SearchNovel}
 <details><summary> 🔍 搜索小说 </summary>
 
 **书架页面 - 放大镜 - 输入关键词 - 搜索小说**
@@ -281,7 +281,7 @@
 </details>
 
 
-### ⭐️ 发现小说
+### ⭐️ 发现小说 {#DiscoverNovel}
 <details><summary> ⭐️ 发现小说 </summary>
 
 **发现页面 - 点击各按钮**
@@ -415,7 +415,7 @@
 </details>
 
 
-### 🌐 订阅源
+### 🌐 订阅源 {#RssSource}
 <details><summary> 🌐 订阅源 </summary>
 
 - <details><summary> ⬇️ 导入书源 </summary>
@@ -455,7 +455,7 @@
 </details>
 
 
-### ▶️ 登录界面
+### ▶️ 登录界面 {#LoginUI}
 <details><summary> ▶️ 登录界面 </summary>
 
 
@@ -534,7 +534,7 @@
 </details>
 
 
-### 📃 自定功能
+### 📃 自定功能 {#Customization}
 <details><summary> 📃 自定义功能 </summary>
 
 - <details><summary> 📃 功能说明 </summary>
@@ -611,10 +611,10 @@
 </details>
 
 
-## 🐞 [故障处理](./TroubleShoot.md) {#troubleshoot}
+## 🐞 [故障处理](./TroubleShoot.md) {#TroubleShoot}
 
 
-## ☕️ [支持开发](./Sponsor.md)
+## ☕️ [支持开发](./Sponsor.md) {#Sponsor}
 > [!NOTE]
 >
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
