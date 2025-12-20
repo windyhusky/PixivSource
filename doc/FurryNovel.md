@@ -33,69 +33,15 @@
 
 
 ## 二、导入书源 & 订阅源 {#ImportSource}
-- 🐯 [一键导入 兽人控小说站 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
-- 🐲 [一键导入 兽人控小说站 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
-
-
-<details><summary> ➕ 导入书源 & 订阅源（旧） </summary>
-
-### 1.导入 兽人控小说站 书源
-<details><summary> ➕ 导入书源 </summary>
-
-复制下方【免代理】书源链接
-```
-https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json
-```
-#### 1.1 打开【订阅】页面，点击【规则订阅】
-![img](./pic/SubscribeEntry.png)
-
-
-#### 1.2 点击加号，粘贴链接，保存订阅
-![img](./pic/SubscribeBoookSourceLinpx.jpg)
-
-
-#### 1.3 点击相应订阅规则，导入并启用/更新书源
-![img](./pic/SubscribeHomePage.jpg)
-
-**首次点击【订阅规则】 即可导入**
-
-![img](./pic/InportBookSourceLinpx.png)
-
-**导入之后，再次点击则会检查更新**
-
-> 更多导入方法请查看[如何获取书源？导入书源？](./ImportBookSource.md)
-</details>
-
-
-### 2.导入 兽人控小说站 订阅源
-<details><summary> ➕ 导入订阅源 </summary>
-
-复制下方【免代理】订阅源链接
-```
-https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
-```
-#### 2.1 打开【订阅】页面，点击【规则订阅】
-![img](./pic/SubscribeEntry.png)
-
-
-#### 2.2 点击加号，更改规则类型，粘贴链接，保存订阅
-**注意这里要把【书源】改成【订阅源】**
-
-![img](./pic/SubscribeRssSourceBtsrk.jpg)
-
-
-#### 2.3 点击相应订阅规则，导入并启用/更新书源
-![img](./pic/SubscribeHomePage.jpg)
-
-**首次点击【订阅规则】 即可导入**
-
-![img](./pic/InportRssSourceBtsrk.png)
-
-**导入之后，再次点击则会检查更新**
-
-> 更多导入方法请查看[如何导入订阅源](./ImportRssSource.md)
-</details>
-</details>
+> [!IMPORTANT]
+>
+> **点击下方链接，一键导入书源、订阅源**
+>
+> 🦊 [一键导入 兽人控小说站 书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)
+>
+> 🐲 [一键导入 兽人控小说站 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
+>
+> **更多导入方法详见：** [如何导入书源](./ImportBookSource.md)
 
 
 ## 三、确保网站可以访问 {#CheckAccess}
