@@ -188,10 +188,10 @@ export default defineConfig({
     sitemap: {
         hostname: 'https://downeyrem.github.io/PixivSource/',
         lastmodDateOnly: true,  // print date not time
-        xmlns: { // trim the xml namespace
-            news: true, // flip to false to omit the xml namespace for news
-            xhtml: true,
-            image: true,
+        xmlns: {   //精简 xmlns
+            news: false, // flip to false to omit the xml namespace for news
+            xhtml: false,
+            image: false,
         }
     }
 })
