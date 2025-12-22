@@ -269,7 +269,7 @@ function publicFunc() {
 
         listInCache = listInCache.concat(list)
         listInCache = Array.from(new Set(listInCache))
-        cache.put(listInCacheName, JSON.stringify(listInCache))
+        putInCache(listInCacheName, listInCache)
 
         if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
         else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
