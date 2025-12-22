@@ -120,7 +120,7 @@ function isLogin() {
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
     let v = cache.get(url)
-    if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
+    if (forceUpdate || !!v || new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
         cache.delete(url)
     }
     return this.cacheGetAndSet(url, () => {
@@ -130,7 +130,7 @@ function getAjaxJson(url, forceUpdate) {
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
     let v = cache.get(urls)
-    if (forceUpdate || v && new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
+    if (forceUpdate || !!v || new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
         cache.delete(urls)
     }
     return this.cacheGetAndSet(urls, () => {
