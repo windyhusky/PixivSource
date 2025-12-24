@@ -19,8 +19,8 @@
 ### ✅ 阅读兼容性
 | 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
 | ------ | ----- | ------ | -------|
-| **👍【推荐】阅读 Sigma** | **3.25.0927** | **Pixiv 小说**　　 | **最新版** | 
-| **🏛️【官方】阅读 Beta** | **3.25.0527** | **Pixiv 小说**　　 | **最新版** |
+| **👍【推荐】阅读 Sigma** | **3.25.1224** | **Pixiv 小说**　　 | **最新版** | 
+| **🏛️【官方】阅读 Beta** | **3.25.1224** | **Pixiv 小说**　　 | **最新版** |
 | 🎀【兼容】阅读 MD3   | 3.26      | Pixiv 小说备用 | 最新版 | 
 | 🍎【兼容】源阅       | 1.0 (112) | Pixiv 小说备用 | 最新版 |
 
@@ -30,8 +30,8 @@
 
 | Pixiv | 更新时间 | 阅读 Beta | 导入链接 |
 | ----- | ------- | -------- | ------- |
-| 最新 |           | 新包名 3.25.1107 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
-| 254 |            | 3.23.0503 - 3.25.1107 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/254/pixiv.json) |
+| 最新 |           | 新包名 3.25.1224 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| 254 | 2025.12.16 | 3.23.0503 - 3.25.1107 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/254/pixiv.json) |
 | 194 | 2025.05.28 | 3.23.0503 - 3.25.1107 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/pixiv.json) |
 | 174 | 2025.02.20 | 3.22.0103 - 3.23.0404 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/pixiv.json) |
 </details>
@@ -41,7 +41,8 @@
 
 | Linpx | 更新时间 | 阅读 Beta | 导入链接 |
 | ----- | ------ | --------- | ------- |
-| 最新 |           | 新包名 3.25.1107 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| 最新 |           | 新包名 3.25.1224 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| 254 | 2025.12.16 | 3.25.1107 - 3.25.1224 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/linpx.json) |
 | 253 | 2025.12.16 | 3.23.0503 - 3.25.1107 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/linpx.json) |
 | 174 | 2025.02.20 | 3.22.0103 - 3.23.0404 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/linpx.json) | 
 </details>
