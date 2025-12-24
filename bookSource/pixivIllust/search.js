@@ -10,12 +10,15 @@ function objParse(obj) {
 }
 
 function getArtwork() {
-    if (JSON.parse(result).error !== true) {
-        cache.put(urlIP(urlSearchArtwork(java.get("key"), java.get("page"))), result, cacheSaveSeconds)  // 加入缓存
-        return JSON.parse(result).body.illustManga.data
-    } else {
+    let resp = JSON.parse(result)
+    if (resp.error === true) {
         return []
     }
+    let name = String(java.get("key"))
+    let page = Number(java.get("page"))
+    java.log(urlIP(urlSearchArtwork(name, page)))
+    putInCacheObject(urlIP(urlSearchArtwork(name, page)), resp, cacheSaveSeconds)  // 加入缓存
+    return resp.body.illustManga.data
 }
 
 function search(name, page) {
