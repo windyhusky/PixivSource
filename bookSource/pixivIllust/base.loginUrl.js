@@ -36,7 +36,7 @@ function removeCookie() {
 
 function getCookie() {
     let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (isLogin()) cache.put("pixivCookie", pixivCookie, 60*60)
+    if (isLogin()) putInCache("pixivCookie", pixivCookie, 60*60)
 }
 
 // 获取 Csrf Token，以便进行收藏等请求
@@ -44,12 +44,12 @@ function getCookie() {
 // https://github.com/Ocrosoft/PixivPreviewer
 // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
 function getCsrfToken() {
-    let pixivCsrfToken = cache.get("pixivCsrfToken")
+    let pixivCsrfToken = getFromCache("pixivCsrfToken")
     if (!pixivCsrfToken) {
         let html = java.webView(null, "https://www.pixiv.net/", null)
         try {
             pixivCsrfToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
-            cache.put("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
+            putInCache("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
         } catch (e) {
             pixivCsrfToken = null
             cache.delete("pixivCsrfToken")  // 与登录设备有关，无法存储 nul
@@ -96,7 +96,7 @@ function userFollow(restrict) {
         shareFactory("author")
     } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
-        cache.put(`follow${novel.userId}`, true)
+        putInCache(`follow${novel.userId}`, true)
     }
 }
 

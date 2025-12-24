@@ -28,7 +28,6 @@ function isLegadoOfficial() {
     } catch (e) {
         isLegadoOfficialStatus = true
     }
-    cache.put("isLegadoOfficial", isLegadoOfficialStatus)
     return isLegadoOfficialStatus
 }
 // 检测 阅读 Beta 版本 与 LYC 版本
@@ -39,9 +38,7 @@ function isLegadoOfficial() {
 // source.refreshExplore()
 // source.refreshJSLib()
 function isLegadoLYC() {
-    let isLegadoLYCStatus = (typeof java.ajaxTestAll === "function")
-    cache.put("isLegadoLYCStatus", isLegadoLYCStatus)
-    return isLegadoLYCStatus
+    return typeof java.ajaxTestAll === "function"
 }
 
 function publicFunc() {
@@ -118,7 +115,7 @@ function publicFunc() {
 
     u.getCookie = function() {
         let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-        if (isLogin()) cache.put("pixivCookie", pixivCookie, 60*60)  // 缓存1h
+        if (isLogin()) putInCache("pixivCookie", pixivCookie, 60*60)  // 缓存1h
     }
 
     u.removeCookie = function() {
@@ -137,12 +134,12 @@ function publicFunc() {
     // https://github.com/Ocrosoft/PixivPreviewer
     // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
     u.getCsrfToken = function() {
-        let pixivCsrfToken = cache.get("pixivCsrfToken")
+        let pixivCsrfToken = getFromCache("pixivCsrfToken")
         if (!pixivCsrfToken) {
             let html = java.webView(null, "https://www.pixiv.net/", null)
             try {
                 pixivCsrfToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
-                cache.put("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
+                putInCache("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
             } catch (e) {
                 pixivCsrfToken = null
                 cache.delete("pixivCsrfToken")  // 与登录设备有关，无法存储 nul
@@ -258,7 +255,7 @@ function publicFunc() {
 
 // 获取请求的user id方便其他ajax请求构造
 function getPixivUid() {
-    let uid = cache.get("pixiv:uid")
+    let uid = getFromCache("pixiv:uid")
     if (!uid || String(uid) === "null") {
         let html = java.webView(null, "https://www.pixiv.net/", null)
         try {
@@ -266,7 +263,7 @@ function getPixivUid() {
         } catch (e) {
             uid = null
         }
-        cache.put("pixiv:uid", String(uid))
+        putInCache("pixiv:uid", String(uid))
     }
 }
 
