@@ -60,8 +60,9 @@ function isJsonString(str) {
 
 function isLogin() {
     const {java, cache} = this
-    return !!cache.get("pixivCsrfToken")
+    return !!this.getFromCache("pixivCsrfToken")
 }
+
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
     let v = this.getFromCacheObject(url)
