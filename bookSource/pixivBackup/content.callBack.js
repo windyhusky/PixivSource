@@ -1,5 +1,21 @@
-// java.log(event)
-// java.log(typeof event)
+function getNovel() {
+    let novel = {}
+    novel.userName = book.author.replace("@", "")
+    if (book.bookUrl.includes("series")) {
+        novel.seriesId = book.bookUrl.match(/\d+/)[0]
+        novel.seriesTitle = book.name
+
+        let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
+        novel.id = novelIds[book.durChapterIndex]
+        novel.title = book.durChapterTitle
+    } else {
+        novel.seriesId = 0
+        novel.seriesTitle = ""
+        novel.id = book.bookUrl.match(/\d+/)[0]
+        novel.title = book.name
+    }
+    return novel
+}
 
 // 恢复阅读搜索书名
 if (event === "clickBookName") {
@@ -19,9 +35,15 @@ if (event === "clickShareBook") {
     java.copyText(text)
 }
 
+// 清理缓存
+if (event === "clickClearCache") {
+    let book = getNovel()
+    cache.delete(urlNovelDetailed(book.id))
+    if (book.seriesId) cache.delete(urlSeriesDetailed(book.seriesId))
+}
+
 // 保存阅读，更新登录界面的章节名称
 if (event === "saveRead") {
-    // sleepToast(book.durChapterTitle)
     source.putLoginInfo(JSON.stringify({"章节名称": book.durChapterTitle}))
 }
 
