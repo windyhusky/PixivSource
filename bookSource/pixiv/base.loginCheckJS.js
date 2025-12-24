@@ -120,7 +120,7 @@ function publicFunc() {
 
     u.getCookie = function() {
         let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-        if (isLogin()) cache.put("pixivCookie", pixivCookie, 60*60)  // 缓存1h
+        if (isLogin()) putInCache("pixivCookie", pixivCookie, 60*60)  // 缓存1h
     }
 
     u.removeCookie = function() {
@@ -139,12 +139,12 @@ function publicFunc() {
     // https://github.com/Ocrosoft/PixivPreviewer
     // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
     u.getCsrfToken = function() {
-        let pixivCsrfToken = cache.get("pixivCsrfToken")
+        let pixivCsrfToken = getFromCache("pixivCsrfToken")
         if (!pixivCsrfToken) {
             let html = java.webView(null, "https://www.pixiv.net/", null)
             try {
                 pixivCsrfToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
-                cache.put("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
+                putInCache("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
             } catch (e) {
                 pixivCsrfToken = null
                 cache.delete("pixivCsrfToken")  // 与登录设备有关，无法存储 nul
@@ -286,7 +286,7 @@ function publicFunc() {
             // novel.userName = novel.userName
             // novel.userId = novel.userId
             // novel.tags = novel.tags
-            cache.put(`${novel.userName}`, novel.userId)  // 加入缓存，便于搜索作者
+            putInCache(`${novel.userName}`, novel.userId)  // 加入缓存，便于搜索作者
             if (novel.tags === undefined || novel.tags === null) {
                 novel.tags = []
             }
@@ -354,7 +354,7 @@ function publicFunc() {
                 novel.total = 1
                 if (novel.bookmarkData) {
                     novel.isBookmark = true
-                    cache.put(`collect${novel.id}`, novel.bookmarkData.id)
+                    putInCache(`collect${novel.id}`, novel.bookmarkData.id)
                     likeNovels.push(Number(novel.id))
                 } else {
                     novel.isBookmark = false
@@ -538,7 +538,7 @@ function publicFunc() {
 
 function checkMessageThread(checkTimes) {
     if (checkTimes === undefined) {
-        checkTimes = Number(cache.get("checkTimes"))
+        checkTimes = Number(getFromCache("checkTimes"))
     }
     if (checkTimes === 0 && isLogin()) {
         let latestMsg = getAjaxJson(urlIP(urlMessageThreadLatest(5)))
@@ -553,14 +553,14 @@ function checkMessageThread(checkTimes) {
             }
         }
     }
-    cache.put("checkTimes", checkTimes + 1, 4*60*60)  // 缓存4h，每4h提醒一次
-    // cache.put("checkTimes", checkTimes + 1, 60)  // 测试用，缓存60s，每分钟提醒一次
+    putInCache("checkTimes", checkTimes + 1, 4*60*60)  // 缓存4h，每4h提醒一次
+    // putInCache("checkTimes", checkTimes + 1, 60)  // 测试用，缓存60s，每分钟提醒一次
     // java.log(checkTimes + 1)
 }
 
 // 获取请求的user id方便其他ajax请求构造
 function getPixivUid() {
-    let uid = cache.get("pixiv:uid")
+    let uid = getFromCache("pixiv:uid")
     if (!uid || String(uid) === "null") {
         let html = java.webView(null, "https://www.pixiv.net/", null)
         try {
@@ -568,7 +568,7 @@ function getPixivUid() {
         } catch (e) {
             uid = null
         }
-        cache.put("pixiv:uid", String(uid))
+        putInCache("pixiv:uid", String(uid))
     }
 }
 
@@ -587,9 +587,9 @@ function getHeaders() {
         // "sec-fetch-dest": "empty",
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
-        "user-agent": cache.get("userAgent"),
-        "x-csrf-token": cache.get("pixivCsrfToken"),
-        "Cookie": cache.get("pixivCookie")
+        "user-agent": getFromCache("userAgent"),
+        "x-csrf-token": getFromCache("pixivCsrfToken"),
+        "Cookie": getFromCache("pixivCookie")
     }
     putInCacheObject("headers", headers)
     return headers
@@ -605,9 +605,9 @@ util.debugFunc(() => {
     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
     java.log(JSON.stringify(util.settings, null, 4))
     java.log(`${getWebViewUA()}\n`)
-    java.log(`${cache.get("pixivCsrfToken")}\n`)
-    java.log(`${cache.get("pixivCookie")}\n`)
-    java.log(`${cache.get("headers")}\n`)
+    java.log(`${getFromCache("pixivCsrfToken")}\n`)
+    java.log(`${getFromCache("pixivCookie")}\n`)
+    java.log(`${getFromCache("headers")}\n`)
 })
 
 java.getStrResponse(null, null)
