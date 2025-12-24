@@ -22,7 +22,7 @@ function objParse(obj) {
 function getNovelInfo(res) {
     // 放入小说信息以便登陆界面使用
     let novel = source.getLoginInfoMap()
-    if (novel === undefined) novel = JSON.parse(cache.get("novel"))
+    if (!novel) novel = getFromCacheObject("novel")
     if (res && res.error === true) return
     novel.id = Number(res.id)
     novel.title = res.title
@@ -50,10 +50,10 @@ function getNovelInfo(res) {
 
     // 系列 + 阅读，使用当前章节名称
     if (novel.seriesId && util.environment.IS_LEGADO) {
-        let novelIds = JSON.parse(cache.get(`novelIds${novel.seriesId}`))
+        let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
         novel.id = novelIds[book.durChapterIndex]
         novel.title = book.durChapterTitle
-        let bookmarkId = JSON.parse(cache.get(`collect${novel.id}`))
+        let bookmarkId = getFromCacheObject(`collect${novel.id}`)
         novel.isBookmark = !!bookmarkId
     }
 
@@ -255,7 +255,7 @@ function getComment(res) {
             comment.emojiId = emoji[comment.comment.slice(1, -1)]
             comment.comment = `<img src="${urlEmojiUrl(comment.emojiId)}">`
         }
-        if (comment.userId === String(cache.get("pixiv:uid"))) {
+        if (comment.userId === String(getFromCache("pixiv:uid"))) {
             comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})(${comment.id})\n`
         } else {
             comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})\n`
@@ -274,7 +274,7 @@ function getComment(res) {
                     reply.emojiId = emoji[reply.comment.slice(1, -1)]
                     reply.comment = `<img src="${urlEmojiUrl(reply.emojiId)}">`
                 }
-                if (comment.userId === String(cache.get("pixiv:uid"))) {
+                if (comment.userId === String(getFromCache("pixiv:uid"))) {
                     comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})(${reply.id})\n`
                 } else {
                     comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})\n`

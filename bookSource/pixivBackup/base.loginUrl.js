@@ -55,7 +55,7 @@ function removeSettingsCache() {
 
 function getCookie() {
     let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (isLogin()) cache.put("pixivCookie", pixivCookie, 60*60)
+    if (isLogin()) putInCache("pixivCookie", pixivCookie, 60*60)
 }
 
 // 获取 Csrf Token，以便进行收藏等请求
@@ -63,12 +63,12 @@ function getCookie() {
 // https://github.com/Ocrosoft/PixivPreviewer
 // https://greasyfork.org/zh-CN/scripts/30766-pixiv-previewer/code
 function getCsrfToken() {
-    let pixivCsrfToken = cache.get("pixivCsrfToken")
+    let pixivCsrfToken = getFromCache("pixivCsrfToken")
     if (!pixivCsrfToken) {
         let html = java.webView(null, "https://www.pixiv.net/", null)
         try {
             pixivCsrfToken = html.match(/token\\":\\"([a-z0-9]{32})/)[1]
-            cache.put("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
+            putInCache("pixivCsrfToken", pixivCsrfToken)  // 与登录设备有关，无法存储 nul
         } catch (e) {
             pixivCsrfToken = null
             cache.delete("pixivCsrfToken")  // 与登录设备有关，无法存储 nul
@@ -149,7 +149,7 @@ function novelBookmarkAdd(restrict) {
     } else if (resp.body === null) {
         sleepToast(`❤️ 收藏小说\n\n✅ 已经收藏【${novel.title}】了`)
     } else {
-        cache.put(`collect${novel.id}`, resp.body)
+        putInCacheObject(`collect${novel.id}`, resp.body)
         sleepToast(`❤️ 收藏小说\n\n✅ 已收藏【${novel.title}】`)
 
         let likeNovels = getFromCacheObject("likeNovels")
@@ -254,7 +254,7 @@ function novelsBookmarkAdd() {
             } else if (resp.body === null) {
                 // sleepToast(`❤️ 收藏小说\n\n✅ 已经收藏【${novel.title}】了`)
             } else {
-                cache.put(`collect${novelId}`, resp.body)
+                putInCacheObject(`collect${novelId}`, resp.body)
                 likeNovels.push(Number(novelId))
 
                 let novelObj = getAjaxJson(urlNovelDetailed(novelId))
@@ -292,10 +292,10 @@ function novelMarker(page) {
         sleepToast("🏷️ 添加书签\n\n⚠️ 操作失败", 1)
         shareFactory("novel")
     } else if (lastMarker === true) {
-        cache.put(`marker${novel.id}`, false)
+        putInCache(`marker${novel.id}`, false)
         sleepToast(`🏷️ 添加书签\n\n✅ 已删除书签`)
     } else {
-        cache.put(`marker${novel.id}`, true)
+        putInCache(`marker${novel.id}`, true)
         sleepToast(`🏷️ 添加书签\n\n✅ 已加入书签`)
     }
 }
@@ -310,7 +310,7 @@ function seriesWatch() {
         sleepToast(`📃 追更系列\n\n⚠️ 追更【${novel.seriesTitle}】失败`, 1)
         shareFactory("series")
     } else {
-        cache.put(`watch${novel.seriesId}`, true)
+        putInCache(`watch${novel.seriesId}`, true)
         sleepToast(`📃 追更系列\n\n✅ 已追更【${novel.seriesTitle}】`)
 
         let watchedSeries = getFromCacheObject("watchedSeries")
@@ -371,7 +371,7 @@ function userFollow(restrict) {
         shareFactory("author")
     } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
-        cache.put(`follow${novel.userId}`, true)
+        putInCache(`follow${novel.userId}`, true)
     }
 }
 

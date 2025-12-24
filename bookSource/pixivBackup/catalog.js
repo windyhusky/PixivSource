@@ -78,12 +78,12 @@ function seriesHandler(res) {
     }
     // 放入小说信息以便登陆界面使用
     let novel = source.getLoginInfoMap()
-    if (novel === undefined) novel = JSON.parse(cache.get("novel"))
+    if (novel === undefined) novel = getFromCacheObject("novel")
     novel.novelIds = novelIds
-    cache.put(`novelIds${seriesID}`, JSON.stringify(novelIds), cacheSaveSeconds)
+    putInCacheObject(`novelIds${seriesID}`, novelIds, cacheSaveSeconds)
     // java.log(JSON.stringify(returnList))
     source.putLoginInfo(JSON.stringify(novel))
-    cache.put("novel", JSON.stringify(novel))
+    putInCacheObject("novel", novel)
     return returnList
 }
 
