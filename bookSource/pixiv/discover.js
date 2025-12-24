@@ -176,7 +176,7 @@ function handlerRankingWebview() {
         }
         // java.log(JSON.stringify(novelIds))
         let userNovels = getWebviewJson(
-            urlNovelsDetailed(`${cache.get("pixiv:uid")}`, novelIds), html => {
+            urlNovelsDetailed(`${getFromCache("pixiv:uid")}`, novelIds), html => {
                 return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
             }).body
         return util.formatNovels(util.handNovels(util.combineNovels(Object.values(userNovels))))
