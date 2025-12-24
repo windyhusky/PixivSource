@@ -100,38 +100,6 @@ function isJsonString(str) {
     return false
 }
 
-function getWebViewUA() {
-    const {java, cache} = this
-    let userAgent = this.getFromCache("userAgent")
-    if (userAgent) return String(userAgent)
-
-    userAgent = String(java.getWebViewUA())
-    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
-        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-    }
-    // java.log(`userAgent=${userAgent}`)
-    this.putInCache("userAgent", userAgent, cacheSaveSeconds/7)
-    return String(userAgent)
-}
-function startBrowser(url, title) {
-    const {java, cache} = this
-    if (!title) title = url
-    let msg = ""
-    let headers = {}
-    headers["User-Agent"] = this.getWebViewUA()
-
-    if (url.includes("https://www.pixiv.net")) {
-        if (url.includes("settings")) msg += "⚙️ 账号设置"
-        else msg += "⤴️ 分享小说"
-        msg += "\n\n即将打开 Pixiv\n请确认已开启代理/梯子/VPN等"
-    } else if (url.includes("github.com") || url.includes("github.io")) {
-        if (url.includes("issues")) msg += "🐞 反馈问题"
-        msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
-    }
-    this.sleepToast(msg, 0.01)
-    java.startBrowser(`${url}, ${JSON.stringify({headers: headers})}`, title)
-}
-
 function isLogin() {
     const {java, cache} = this
     return !!this.getFromCache("pixivCsrfToken")
@@ -166,6 +134,38 @@ function getWebviewJson(url, parseFunc) {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
     })
+}
+
+function getWebViewUA() {
+    const {java, cache} = this
+    let userAgent = this.getFromCache("userAgent")
+    if (userAgent) return String(userAgent)
+
+    userAgent = String(java.getWebViewUA())
+    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
+        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
+    }
+    // java.log(`userAgent=${userAgent}`)
+    this.putInCache("userAgent", userAgent, cacheSaveSeconds/7)
+    return String(userAgent)
+}
+function startBrowser(url, title) {
+    const {java, cache} = this
+    if (!title) title = url
+    let msg = ""
+    let headers = {}
+    headers["User-Agent"] = this.getWebViewUA()
+
+    if (url.includes("https://www.pixiv.net")) {
+        if (url.includes("settings")) msg += "⚙️ 账号设置"
+        else msg += "⤴️ 分享小说"
+        msg += "\n\n即将打开 Pixiv\n请确认已开启代理/梯子/VPN等"
+    } else if (url.includes("github.com") || url.includes("github.io")) {
+        if (url.includes("issues")) msg += "🐞 反馈问题"
+        msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
+    }
+    this.sleepToast(msg, 0.01)
+    java.startBrowser(`${url}, ${JSON.stringify({headers: headers})}`, title)
 }
 
 // 直连功能参考自 洛娅橙的阅读仓库
