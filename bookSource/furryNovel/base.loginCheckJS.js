@@ -15,9 +15,7 @@ function objStringify(obj) {
 // 可用 source.bookSourceName source.getVariable() source.setVariable()等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 function isSourceRead() {
-    let isSourceReadStatus = java.getUserAgent() === java.getWebViewUA()
-    cache.put("isSourceRead", isSourceReadStatus)
-    return isSourceReadStatus
+    return java.getUserAgent() === java.getWebViewUA()
 }
 // 正式版 不支持在 JSlib 的函数直接设置默认参数
 // 正式版 不支持 a?.b 的写法
@@ -30,7 +28,6 @@ function isLegadoOfficial() {
     } catch (e) {
         isLegadoOfficialStatus = true
     }
-    cache.put("isLegadoOfficial", isLegadoOfficialStatus)
     return isLegadoOfficialStatus
 }
 // 检测 阅读 Beta 版本 与 LYC 版本
@@ -41,9 +38,7 @@ function isLegadoOfficial() {
 // source.refreshExplore()
 // source.refreshJSLib()
 function isLegadoLYC() {
-    let isLegadoLYCStatus = (typeof java.ajaxTestAll === "function")
-    cache.put("isLegadoLYCStatus", isLegadoLYCStatus)
-    return isLegadoLYCStatus
+    return typeof java.ajaxTestAll === "function"
 }
 
 function publicFunc() {
