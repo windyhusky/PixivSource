@@ -340,7 +340,7 @@ function updateSource() {
             <td>📥 本地版本：${source.bookSourceComment.split("\n")[2].replace("书源版本：", "")}</td>
             <td>📆 更新：${timeFormat(source.lastUpdateTime)}</td>
         </tr> 
-        <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 8).join("<br>")}</td></tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 9).join("<br>")}</td></tr>
         <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-3, comment.length).join("<br>")}</td></tr>
     </table>
     
