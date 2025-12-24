@@ -131,7 +131,7 @@ function startBrowser(url, title) {
 
 function isLogin() {
     const {java, cache} = this
-    return !!cache.get("pixivCsrfToken")
+    return !!this.getFromCache("pixivCsrfToken")
 }
 
 function getAjaxJson(url, forceUpdate) {
@@ -180,8 +180,8 @@ function urlIP(url) {
             "X-Requested-With": "XMLHttpRequest",
             "Host": "www.pixiv.net",
             "Referer": "https://www.pixiv.net/",
-            "X-csrf-token": cache.get("pixivCsrfToken") || "",
-            "Cookie": cache.get("pixivCookie") || ""
+            "X-csrf-token": this.getFromCache("pixivCsrfToken") || "",
+            "Cookie": this.getFromCache("pixivCookie") || ""
         }
         return `${url}, ${JSON.stringify({headers: headers})}`
     }
