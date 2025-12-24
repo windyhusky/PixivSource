@@ -81,13 +81,13 @@ function publicFunc() {
         java.log("✈️ 直连模式：❌ 已关闭")
     }
     u.settings = settings
-    putInCache("pixivIllustSettings", settings)  // 设置写入缓存
+    putInCacheObject("pixivIllustSettings", settings)  // 设置写入缓存
 
     u.environment = {}
     u.environment.IS_SOURCEREAD = isSourceRead()
     u.environment.IS_LEGADO = !isSourceRead()
     u.environment.IS_LYC_BRUNCH = isLegadoLYC()
-    putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
+    putInCacheObject("pixivEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {

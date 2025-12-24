@@ -16,12 +16,12 @@ function cacheGetAndSet(key, supplyFunc) {
     if (v === undefined || v === null) {
         v = supplyFunc()
         v.timestamp = new Date().getTime()
-        this.putInCache(key, v)
+        this.putInCacheObject(key, v)
     }
     return v
 }
 
-function putInCache(objectName, object, saveSeconds) {
+function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
     if (saveSeconds === undefined) saveSeconds = 0
@@ -134,8 +134,8 @@ function getAjaxAllJson(urls, forceUpdate) {
     }
     return this.cacheGetAndSet(urls, () => {
         let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
-        this.putInCache(urls, result, cacheSaveSeconds)
-        for (let i in urls) this.putInCache(urls[i], result[i], cacheSaveSeconds)
+        this.putInCacheObject(urls, result, cacheSaveSeconds)
+        for (let i in urls) this.putInCacheObject(urls[i], result[i], cacheSaveSeconds)
         return result
     })
 }
@@ -376,7 +376,7 @@ function setDefaultSettings() {
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
 
-    this.putInCache("pixivSettings", settings)
+    this.putInCacheObject("pixivSettings", settings)
     return settings
 }
 function checkSettings() {
@@ -397,7 +397,7 @@ function checkSettings() {
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_COMMENTS = false        // 正文：显示评论
     }
-    this.putInCache("pixivSettings", settings)
+    this.putInCacheObject("pixivSettings", settings)
     return settings
 }
 

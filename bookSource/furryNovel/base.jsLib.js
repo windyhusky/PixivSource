@@ -21,7 +21,7 @@ function cacheGetAndSet(key, supplyFunc) {
     return JSON.parse(v)
 }
 
-function putInCache(objectName, object, saveSeconds) {
+function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
     if (saveSeconds === undefined) saveSeconds = 0
@@ -243,7 +243,7 @@ function setDefaultSettings() {
 
     settings.DEBUG = false              // 全局：调试模式
 
-    this.putInCache("FNSettings", settings)
+    this.putInCacheObject("FNSettings", settings)
     return settings
 }
 

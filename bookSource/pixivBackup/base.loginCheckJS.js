@@ -81,13 +81,13 @@ function publicFunc() {
         java.log("✈️ 直连模式：❌ 已关闭")
     }
     u.settings = settings
-    putInCache("pixivSettings", settings)  // 设置写入缓存
+    putInCacheObject("pixivSettings", settings)  // 设置写入缓存
 
     u.environment = {}
     u.environment.IS_SOURCEREAD = isSourceRead()
     u.environment.IS_LEGADO = !isSourceRead()
     u.environment.IS_LYC_BRUNCH = isLegadoLYC()
-    putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
+    putInCacheObject("pixivEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
@@ -269,7 +269,7 @@ function publicFunc() {
 
         listInCache = listInCache.concat(list)
         listInCache = Array.from(new Set(listInCache))
-        putInCache(listInCacheName, listInCache)
+        putInCacheObject(listInCacheName, listInCache)
 
         if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
         else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
@@ -591,7 +591,7 @@ function getHeaders() {
         "x-csrf-token": cache.get("pixivCsrfToken"),
         "Cookie": cache.get("pixivCookie")
     }
-    putInCache("headers", headers)
+    putInCacheObject("headers", headers)
     return headers
 }
 

@@ -154,11 +154,11 @@ function novelBookmarkAdd(restrict) {
 
         let likeNovels = getFromCacheObject("likeNovels")
         likeNovels.push(Number(novel.id))
-        putInCache("likeNovels", likeNovels)
+        putInCacheObject("likeNovels", likeNovels)
 
         let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
         novelObj.body.isBookmark = true
-        putInCache(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
+        putInCacheObject(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
     }
 }
 
@@ -185,11 +185,11 @@ function novelBookmarkDelete() {
 
         let likeNovels = getFromCacheObject("likeNovels")
         likeNovels = likeNovels.filter(item => item !== Number(novel.id))
-        putInCache("likeNovels", likeNovels)
+        putInCacheObject("likeNovels", likeNovels)
 
         let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
         novelObj.body.isBookmark = false
-        putInCache(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
+        putInCacheObject(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
     }
 }
 
@@ -218,12 +218,12 @@ function novelsBookmarkDelete() {
 
         let likeNovels = getFromCacheObject("likeNovels")
         likeNovels = likeNovels.filter(item => !novelIds.includes(Number(item)))
-        putInCache("likeNovels", likeNovels)
+        putInCacheObject("likeNovels", likeNovels)
 
         novelIds.forEach(novelId => {
             let novelObj = getAjaxJson(urlNovelDetailed(novelId))
             novelObj.body.isBookmark = false
-            putInCache(urlNovelDetailed(novelId), novelObj, cacheSaveSeconds)
+            putInCacheObject(urlNovelDetailed(novelId), novelObj, cacheSaveSeconds)
         })
     }
 }
@@ -259,11 +259,11 @@ function novelsBookmarkAdd() {
 
                 let novelObj = getAjaxJson(urlNovelDetailed(novelId))
                 novelObj.body.isBookmark = true
-                putInCache(urlNovelDetailed(novelId), novelObj, cacheSaveSeconds)
+                putInCacheObject(urlNovelDetailed(novelId), novelObj, cacheSaveSeconds)
             }
         }
     })
-    putInCache("likeNovels", likeNovels)
+    putInCacheObject("likeNovels", likeNovels)
     sleepToast(`❤️ 收藏系列\n\n✅ 已经收藏【${novel.seriesTitle}】全部章节`)
 }
 
@@ -315,11 +315,11 @@ function seriesWatch() {
 
         let watchedSeries = getFromCacheObject("watchedSeries")
         watchedSeries.push(Number(novel.seriesId))
-        putInCache("watchedSeries", watchedSeries)
+        putInCacheObject("watchedSeries", watchedSeries)
 
         let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
         novelObj.body.isWatched = true
-        putInCache(urlSeriesDetailed(novel.seriesId), novelObj, cacheSaveSeconds)
+        putInCacheObject(urlSeriesDetailed(novel.seriesId), novelObj, cacheSaveSeconds)
     }
 }
 
@@ -338,11 +338,11 @@ function seriesUnWatch() {
 
         let watchedSeries = getFromCacheObject("watchedSeries")
         watchedSeries = watchedSeries.filter(item => item !== Number(novel.seriesId))
-        putInCache("watchedSeries", watchedSeries)
+        putInCacheObject("watchedSeries", watchedSeries)
 
         let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
         novelObj.body.isWatched = false
-        putInCache(urlSeriesDetailed(novel.seriesId), novelObj, cacheSaveSeconds)
+        putInCacheObject(urlSeriesDetailed(novel.seriesId), novelObj, cacheSaveSeconds)
     }
 }
 
@@ -421,7 +421,7 @@ function userBlock() {
     }
 
     authors = Array.from(authorsMap.keys())
-    putInCache("blockAuthorList", authors)
+    putInCacheObject("blockAuthorList", authors)
     putInCacheMap("blockAuthorMap", authorsMap)
     // source.setVariable(authors.toString())
     // sleepToast(JSON.stringify(authors))
@@ -562,7 +562,7 @@ function blockShowFactory() {
     let index = keys.indexOf(key) + 1
     if (index === keys.length) index = 0
     key = keys[index]
-    putInCache("wordsType", key)
+    putInCacheObject("wordsType", key)
 
     if (key === "authors") {
         let words = printAuthorMap(getFromCacheMap("blockAuthorMap"))
@@ -587,7 +587,7 @@ function blockWordAdd() {
         sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 【${word}】已经加入屏蔽列表了`)
     } else {
         blockWords.push(word)
-        putInCache(`${method}BlockWords`, blockWords)
+        putInCacheObject(`${method}BlockWords`, blockWords)
         sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 已将【${word}】加入屏蔽列表中`)
     }
 }
@@ -604,7 +604,7 @@ function blockWordDelete() {
         sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 【${word}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
     } else {
         blockWords = blockWords.filter(item => item !== word)
-        putInCache(`${method}BlockWords`, blockWords)
+        putInCacheObject(`${method}BlockWords`, blockWords)
         sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n✅ 已删除屏蔽词【${word}】`)
     }
 }
@@ -693,7 +693,7 @@ function likeTagsAdd() {
         sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 【${word}】已经加入喜欢标签了\n请于发现页刷新后查看`)
     } else {
         likeTags.push(word)
-        putInCache(`likeTags`, likeTags)
+        putInCacheObject(`likeTags`, likeTags)
         sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 已将【${word}】加入喜欢标签了\n请于发现页刷新后查看`)
     }
 }
@@ -709,7 +709,7 @@ function likeTagsDelete() {
         sleepToast(`🗑 删除标签\n\n⚠️ 【${word}】不在喜欢标签\n请检查是否有错别字`)
     } else {
         likeTags = likeTags.filter(item => item !== word)
-        putInCache(`likeTags`, likeTags)
+        putInCacheObject(`likeTags`, likeTags)
         sleepToast(`🗑 删除标签\n\n✅ 已删除该标签【${word}】`)
     }
 }
@@ -889,14 +889,14 @@ function editSettings(settingName) {
     } else {
         status = settings[settingName] = true
     }
-    putInCache("pixivSettings", settings)
+    putInCacheObject("pixivSettings", settings)
 
     if (settingName === "FAST" || (settingName === "IPDirect")) {
         if (settings.IPDirect && !isLogin()) {
             msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
             settings.IPDirect = false
             checkSettings()
-            putInCache("pixivSettings", settings)
+            putInCacheObject("pixivSettings", settings)
         } else {
             checkSettings()
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`

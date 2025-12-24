@@ -88,7 +88,7 @@ function editSettings(settingName) {
     } else {
         status = settings[settingName] = true
     }
-    putInCache("FNSettings", settings)
+    putInCacheObject("FNSettings", settings)
     msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     sleepToast(msg)
 }

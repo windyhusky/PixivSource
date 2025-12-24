@@ -104,7 +104,7 @@ function findUserNovels() {
             // 优化 未缓存系列目录的情况：series 数据写入缓存
             user.series.forEach(series => {
                 series.novels = []
-                putInCache(`LSeries${series.id}`, series)
+                putInCacheObject(`LSeries${series.id}`, series)
             })
         })
         // java.log(JSON.stringify(nidList))
@@ -118,7 +118,7 @@ function findUserNovels() {
         if (novel.seriesId) {
             let series = getFromCacheObject(`LSeries${novel.seriesId}`)
             series.novels.push(novel)
-            putInCache(`LSeries${novel.seriesId}`, series)
+            putInCacheObject(`LSeries${novel.seriesId}`, series)
         }
     })
     return novelList.reverse()  // 新小说前置

@@ -183,14 +183,14 @@ function editSettings(settingName) {
     } else {
         status = settings[settingName] = true
     }
-    putInCache("pixivIllustSettings", settings)
+    putInCacheObject("pixivIllustSettings", settings)
 
     if (settingName === "IPDirect") {
         if (settings.IPDirect && !isLogin()) {
             msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
             settings.IPDirect = false
             checkSettings()
-            putInCache("pixivIllustSettings", settings)
+            putInCacheObject("pixivIllustSettings", settings)
         } else {
             checkSettings()
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`

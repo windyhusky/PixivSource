@@ -76,13 +76,13 @@ function publicFunc() {
         settings = setDefaultSettings()
     }
     u.settings = settings
-    putInCache("FNSettings", settings)  // 设置写入缓存
+    putInCacheObject("FNSettings", settings)  // 设置写入缓存
 
     u.environment = {}
     u.environment.IS_SOURCEREAD = isSourceRead()
     u.environment.IS_LEGADO = !isSourceRead()
     u.environment.IS_LYC_BRUNCH = isLegadoLYC()
-    putInCache("pixivEnvironment", u.environment)  // 设置写入缓存
+    putInCacheObject("pixivEnvironment", u.environment)  // 设置写入缓存
 
     if (u.DEBUG === true) {
         java.log(JSON.stringify(settings, null, 4))
