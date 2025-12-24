@@ -1,5 +1,21 @@
-// java.log(event)
-// java.log(typeof event)
+function getNovel() {
+    let novel = {}
+    novel.userName = book.author.replace("@", "")
+    if (book.bookUrl.includes("series")) {
+        novel.seriesId = book.bookUrl.match(/\d+/)[0]
+        novel.seriesTitle = book.name
+
+        let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
+        novel.id = novelIds[book.durChapterIndex]
+        novel.title = book.durChapterTitle
+    } else {
+        novel.seriesId = 0
+        novel.seriesTitle = ""
+        novel.id = book.bookUrl.match(/\d+/)[0]
+        novel.title = book.name
+    }
+    return novel
+}
 
 // 恢复阅读搜索书名
 if (event === "clickBookName") {
