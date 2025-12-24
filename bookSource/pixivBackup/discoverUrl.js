@@ -132,7 +132,7 @@ if (SHOW_GENERAL_GENRE) li = li.concat(generalGenre)
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
 // 收藏标签
-let likeTags = getFromCache("likeTags")
+let likeTags = getFromCacheObject("likeTags")
 if (likeTags && likeTags.length >= 1) {
     likeTags.forEach(tag => {
         let tagLink = {}

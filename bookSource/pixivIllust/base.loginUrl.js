@@ -63,7 +63,7 @@ function getCsrfToken() {
 function getIllust() {}
 
 function getPostBody(url, body, headers) {
-    if (headers === undefined) headers = getFromCache("headers")
+    if (headers === undefined) headers = getFromCacheObject("headers")
     if (isJsonString(body)) {
         headers["content-type"] = "application/json; charset=utf-8"
     } else if (typeof body === "string") {
@@ -118,7 +118,7 @@ function userUnFollow() {
 function userFollowFactory(code) {
     if (code === undefined) code = 1
     let novel = getNovel()
-    let lastStatus = getFromCache(`follow${novel.userId}`)
+    let lastStatus = getFromCacheObject(`follow${novel.userId}`)
     if (lastStatus === true) code = 0
 
     if (code === 0) userUnFollow()
@@ -150,7 +150,7 @@ function statusMsg(status) {
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
     let keys = [], msgList = []
-    let settings = getFromCache("pixivIllustSettings")
+    let settings = getFromCacheObject("pixivIllustSettings")
     // if (mode === "FAST") {
     //     keys = Object.keys(settingsName).slice(0, 5)
     // }
@@ -176,7 +176,7 @@ function setDefaultSettingsLoginUrl() {
 
 function editSettings(settingName) {
     let msg, status
-    let settings = getFromCache("pixivIllustSettings")
+    let settings = getFromCacheObject("pixivIllustSettings")
     if (!settings) settings = setDefaultSettings()
     if (!!settings[settingName]) {
         status = settings[settingName] = !settings[settingName]

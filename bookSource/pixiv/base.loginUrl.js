@@ -35,7 +35,7 @@ function removeCookie() {
 }
 
 function removeCacheList(listName) {
-    let list = getFromCache(listName)
+    let list = getFromCacheObject(listName)
     list.forEach(item => cache.delete(`collect${item}`))
     if (listName !== "blockAuthorList") cache.delete(listName)
 }
@@ -86,7 +86,7 @@ function getCsrfToken() {
 }
 
 function getNovel() {
-    let environment = getFromCache("pixivEnvironment")
+    let environment = getFromCacheObject("pixivEnvironment")
     if (environment.IS_LYC_BRUNCH) {
         try {
             let novel = {}
@@ -115,13 +115,13 @@ function getNovel() {
         }
     } else {  // 兼容用
         let novel = source.getLoginInfoMap()
-        if (!novel) novel = getFromCache("novel")
+        if (!novel) novel = getFromCacheObject("novel")
         return novel
     }
 }
 
 function getPostBody(url, body, headers) {
-    if (headers === undefined) headers = getFromCache("headers")
+    if (headers === undefined) headers = getFromCacheObject("headers")
     if (isJsonString(body)) {
         headers["content-type"] = "application/json; charset=utf-8"
     } else if (typeof body === "string") {
@@ -158,7 +158,7 @@ function novelBookmarkAdd(restrict) {
         cache.put(`collect${novel.id}`, resp.body)
         sleepToast(`❤️ 收藏小说\n\n✅ 已收藏【${novel.title}】`)
 
-        let likeNovels = getFromCache("likeNovels")
+        let likeNovels = getFromCacheObject("likeNovels")
         likeNovels.push(Number(novel.id))
         putInCache("likeNovels", likeNovels)
 
@@ -169,7 +169,7 @@ function novelBookmarkAdd(restrict) {
 }
 
 function getNovelBookmarkId(novelId) {
-    let bookmarkId = getFromCache(`collect${novelId}`)
+    let bookmarkId = getFromCacheObject(`collect${novelId}`)
     if (bookmarkId === null) {
         bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
     }
@@ -189,7 +189,7 @@ function novelBookmarkDelete() {
         cache.delete(`collect${novel.id}`)
         sleepToast(`❤️ 收藏小说\n\n✅ 已取消收藏【${novel.title}】`)
 
-        let likeNovels = getFromCache("likeNovels")
+        let likeNovels = getFromCacheObject("likeNovels")
         likeNovels = likeNovels.filter(item => item !== Number(novel.id))
         putInCache("likeNovels", likeNovels)
 
@@ -209,7 +209,7 @@ function novelsBookmarkDelete() {
     }
 
     let bookmarkIds = []
-    let novelIds = getFromCache(`novelIds${novel.seriesId}`)
+    let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
     novelIds.forEach(novelId => {bookmarkIds.push(getNovelBookmarkId(novelId))})
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/remove",
@@ -222,7 +222,7 @@ function novelsBookmarkDelete() {
         sleepToast(`🖤 取消收藏系列\n\n✅ 已取消收藏【${novel.seriesTitle}】的全部篇目`)
         novelIds.forEach(novelId => {cache.delete(`collect${novelId}`)})
 
-        let likeNovels = getFromCache("likeNovels")
+        let likeNovels = getFromCacheObject("likeNovels")
         likeNovels = likeNovels.filter(item => !novelIds.includes(Number(item)))
         putInCache("likeNovels", likeNovels)
 
@@ -243,8 +243,8 @@ function novelsBookmarkAdd() {
         sleepToast(`❤️ 收藏系列\n\n🔄 正在收藏系列【${novel.seriesTitle}】，请稍后……`, 2)
     }
 
-    let novelIds = getFromCache(`novelIds${novel.seriesId}`)
-    let likeNovels = getFromCache("likeNovels")
+    let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
+    let likeNovels = getFromCacheObject("likeNovels")
     if (likeNovels === null) likeNovels = []
     novelIds.forEach(novelId => {
         if (likeNovels && !likeNovels.includes(Number(novelId))) {
@@ -275,7 +275,7 @@ function novelsBookmarkAdd() {
 
 function novelBookmarkFactory(code) {
     let novel = getNovel()
-    let collectId = getFromCache(`collect${novel.id}`)
+    let collectId = getFromCacheObject(`collect${novel.id}`)
     if (collectId >= 1) code = 0
 
     if (code === 0) novelBookmarkDelete()
@@ -286,14 +286,14 @@ function novelBookmarkFactory(code) {
 function novelMarker(page) {
     if (page === undefined) page = 1
     let novel = getNovel()
-    let lastMarker = getFromCache(`marker${novel.id}`)
+    let lastMarker = getFromCacheObject(`marker${novel.id}`)
     if (lastMarker === true) page = 0
 
     let resp = getPostBody(
         "https://www.pixiv.net/novel/rpc_marker.php",
-        `mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`
+        `mode=save&i_id=${novel.id}&u_id=${getFromCacheObject("pixiv:uid")}&page=${page}`
     )
-    java.log(`mode=save&i_id=${novel.id}&u_id=${getFromCache("pixiv:uid")}&page=${page}`)
+    java.log(`mode=save&i_id=${novel.id}&u_id=${getFromCacheObject("pixiv:uid")}&page=${page}`)
     if (resp.error === true) {
         sleepToast("🏷️ 添加书签\n\n⚠️ 操作失败", 1)
         shareFactory("novel")
@@ -319,7 +319,7 @@ function seriesWatch() {
         cache.put(`watch${novel.seriesId}`, true)
         sleepToast(`📃 追更系列\n\n✅ 已追更【${novel.seriesTitle}】`)
 
-        let watchedSeries = getFromCache("watchedSeries")
+        let watchedSeries = getFromCacheObject("watchedSeries")
         watchedSeries.push(Number(novel.seriesId))
         putInCache("watchedSeries", watchedSeries)
 
@@ -342,7 +342,7 @@ function seriesUnWatch() {
         cache.delete(`watch${novel.seriesId}`)
         sleepToast(`📃 追更系列\n\n✅ 已取消追更【${novel.seriesTitle}】`)
 
-        let watchedSeries = getFromCache("watchedSeries")
+        let watchedSeries = getFromCacheObject("watchedSeries")
         watchedSeries = watchedSeries.filter(item => item !== Number(novel.seriesId))
         putInCache("watchedSeries", watchedSeries)
 
@@ -359,7 +359,7 @@ function seriesWatchFactory(code) {
         return sleepToast(`📃 追更系列\n\n⚠️ 【${novel.title}】非系列小说，无法加入追更列表`)
     }
 
-    let lastStatus = getFromCache(`watch${novel.seriesId}`)
+    let lastStatus = getFromCacheObject(`watch${novel.seriesId}`)
     if (lastStatus === true) code = 0
     if (code === 0) seriesUnWatch()
     else if (code === 1) seriesWatch()
@@ -399,7 +399,7 @@ function userUnFollow() {
 function userFollowFactory(code) {
     if (code === undefined) code = 1
     let novel = getNovel()
-    let lastStatus = getFromCache(`follow${novel.userId}`)
+    let lastStatus = getFromCacheObject(`follow${novel.userId}`)
     if (lastStatus === true) code = 0
 
     if (code === 0) userUnFollow()
@@ -407,7 +407,7 @@ function userFollowFactory(code) {
 }
 
 function userBlock() {
-    let authors = getFromCache("blockAuthorList")
+    let authors = getFromCacheObject("blockAuthorList")
     if (!authors) authors = []
     let authorsMap = getFromCacheMap("blockAuthorMap")
     if (!authorsMap || authorsMap.size === 0) {
@@ -435,7 +435,7 @@ function userBlock() {
 
 function novelCommentAdd() {
     let resp, novel = getNovel()
-    let userId = getFromCache("pixiv:uid")
+    let userId = getFromCacheObject("pixiv:uid")
     let comment = String(result.get("输入内容")).trim()
     if (comment === "") {
         return sleepToast(`✅ 发送评论\n⚠️ 请在【输入内容】输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
@@ -464,7 +464,7 @@ function novelCommentAdd() {
 }
 
 function getNovelCommentID(novelId, commentText) {
-    let list = [], uid = String(getFromCache("pixiv:uid"))
+    let list = [], uid = String(getFromCacheObject("pixiv:uid"))
     let resp = getAjaxJson(urlNovelComments(novelId, 0, 50), true)
     resp.body.comments.forEach(comment => {
         if (comment.userId === uid && comment.comment === commentText) list.push(comment.id)
@@ -562,7 +562,7 @@ function printAuthorMap(map) {
 
 function blockShowFactory() {
     let keys = Object.keys(wordsType)
-    let key = getFromCache("wordsType")
+    let key = getFromCacheObject("wordsType")
 
     // 切换屏蔽列表
     let index = keys.indexOf(key) + 1
@@ -575,15 +575,15 @@ function blockShowFactory() {
         if (!words) words = ""
         sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words}`, 2)
     } else {
-        let words = getFromCache(`${key}BlockWords`)
+        let words = getFromCacheObject(`${key}BlockWords`)
         if (!words) words = []
         sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words.join("\n")}`, 2)
     }
 }
 
 function blockWordAdd() {
-    let method = getFromCache("wordsType")
-    let blockWords = getFromCache(`${method}BlockWords`)
+    let method = getFromCacheObject("wordsType")
+    let blockWords = getFromCacheObject(`${method}BlockWords`)
     if (blockWords === null) blockWords = []
 
     let word = String(result.get("输入内容")).trim()
@@ -599,8 +599,8 @@ function blockWordAdd() {
 }
 
 function blockWordDelete() {
-    let method = getFromCache("wordsType")
-    let blockWords = getFromCache(`${method}BlockWords`)
+    let method = getFromCacheObject("wordsType")
+    let blockWords = getFromCacheObject(`${method}BlockWords`)
     if (blockWords === null) blockWords = []
 
     let word = String(result.get("输入内容")).trim()
@@ -616,7 +616,7 @@ function blockWordDelete() {
 }
 
 function blockAuthorAdd() {
-    let method = getFromCache("wordsType")
+    let method = getFromCacheObject("wordsType")
     let blockAuthors = getFromCacheMap(`blockAuthorMap`)
 
     let word = String(result.get("输入内容")).trim()
@@ -640,7 +640,7 @@ function blockAuthorAdd() {
 }
 
 function blockAuthorDelete() {
-    let method = getFromCache("wordsType")
+    let method = getFromCacheObject("wordsType")
     let blockAuthors = getFromCacheMap(`blockAuthorMap`)
 
     let word = String(result.get("输入内容")).trim()
@@ -668,24 +668,24 @@ function blockAuthorDelete() {
 }
 
 function blockAddFactory() {
-    if (getFromCache("wordsType") === "authors") return blockAuthorAdd()
+    if (getFromCacheObject("wordsType") === "authors") return blockAuthorAdd()
     else return blockWordAdd()
 }
 
 function blockDeleteFactory() {
-    if (getFromCache("wordsType") === "authors") return blockAuthorDelete()
+    if (getFromCacheObject("wordsType") === "authors") return blockAuthorDelete()
     else return blockWordDelete()
 }
 
 
 function likeTagsShow() {
-    let likeTags = getFromCache(`likeTags`)
+    let likeTags = getFromCacheObject(`likeTags`)
     if (likeTags === null) likeTags = []
     sleepToast(`👀 查看标签\n📌 喜欢标签\n\n${likeTags.join("、")}`, 5)
 }
 
 function likeTagsAdd() {
-    let likeTags = getFromCache(`likeTags`)
+    let likeTags = getFromCacheObject(`likeTags`)
     if (likeTags === null) likeTags = []
 
     let word = String(result.get("输入内容")).trim()
@@ -705,7 +705,7 @@ function likeTagsAdd() {
 }
 
 function likeTagsDelete() {
-    let likeTags = getFromCache(`likeTags`)
+    let likeTags = getFromCacheObject(`likeTags`)
     if (likeTags === null) likeTags = []
 
     let word = String(result.get("输入内容")).trim()
@@ -859,7 +859,7 @@ let settingsName = {
 }
 
 // function getPixivSettings() {
-//     let settings = getFromCache("pixivSettings")
+//     let settings = getFromCacheObject("pixivSettings")
 //     let resp = getAjaxJson("https://www.pixiv.net/ajax/settings/self")
 //     if (resp.error !== true) {
 //         let siteSettings = resp.body.user_status
@@ -879,7 +879,7 @@ let settingsName = {
 //
 // function editPixivSettingsHideAI() {
 //     let settings = getPixivSettings()
-//     // let settings = getFromCache("pixivSettings")
+//     // let settings = getFromCacheObject("pixivSettings")
 //     let hideAiWorks = Number(!settings.HIDE_AI_WORKS)
 //     let resp = getPostBody(
 //         "https://www.pixiv.net/ajax/settings/self?lang=zh",
@@ -895,7 +895,7 @@ let settingsName = {
 //
 // function editPixivSettingsXRestrict() {
 //     let settings = getPixivSettings()
-//     // let settings = getFromCache("pixivSettings")
+//     // let settings = getFromCacheObject("pixivSettings")
 //     let userXRestrict = settings.USER_X_RESTRICT + 1
 //     if (userXRestrict === 3) userXRestrict = 0
 //     let resp = getPostBody(
@@ -913,7 +913,7 @@ let settingsName = {
 //
 // function editPixivSettingsSensitiveView() {
 //     let settings = getPixivSettings()
-//     // let settings = getFromCache("pixivSettings")
+//     // let settings = getFromCacheObject("pixivSettings")
 //     let sensitiveView = Number(!settings.SENSITIVE_VIEW)
 //     let resp = getPostBody(
 //         "https://www.pixiv.net/ajax/settings/sensitive_view_setting",
@@ -937,7 +937,7 @@ function statusMsg(status) {
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
     let keys = [], msgList = []
-    let settings = getFromCache("pixivSettings")
+    let settings = getFromCacheObject("pixivSettings")
     if (mode === "FAST") {
         keys = Object.keys(settingsName).slice(0, 5)
     } else if (mode === "IPDirect") {
@@ -962,7 +962,7 @@ function setDefaultSettingsLoginUrl() {
 
 function editSettings(settingName) {
     let msg, status
-    let settings = getFromCache("pixivSettings")
+    let settings = getFromCacheObject("pixivSettings")
     if (!settings) settings = setDefaultSettings()
     if (!!settings[settingName]) {
         status = settings[settingName] = !settings[settingName]

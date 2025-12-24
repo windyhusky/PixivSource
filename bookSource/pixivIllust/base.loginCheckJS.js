@@ -67,7 +67,7 @@ function publicFunc() {
 
     // 设置初始化
     // cache.delete("pixivIllustSettings")
-    settings = getFromCache("pixivIllustSettings")
+    settings = getFromCacheObject("pixivIllustSettings")
     if (settings) {
         java.log("⚙️ 使用自定义设置")
     } else {

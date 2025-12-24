@@ -68,7 +68,7 @@ function publicFunc() {
 
     // 设置初始化
     // cache.delete("linpxSettings")
-    settings = getFromCache("linpxSettings")
+    settings = getFromCacheObject("linpxSettings")
     if (settings) {
         java.log("⚙️ 使用自定义设置")
     } else {

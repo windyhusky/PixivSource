@@ -67,7 +67,7 @@ function publicFunc() {
 
     // 设置初始化
     // cache.delete("pixivSettings")
-    settings = getFromCache("pixivSettings")
+    settings = getFromCacheObject("pixivSettings")
     if (settings) {
         java.log("⚙️ 使用自定义设置")
     } else {
@@ -173,7 +173,7 @@ function publicFunc() {
 
     // 屏蔽作者
     u.authorFilter = function(novels) {
-        let authors = getFromCache("blockAuthorList")
+        let authors = getFromCacheObject("blockAuthorList")
         if (authors !== null && authors.length >= 0) {
             java.log(`🚫 屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
@@ -187,8 +187,8 @@ function publicFunc() {
     // 过滤收藏与追更
     u.novelFilter = function(novels) {
         let novels1 = [], novels2 = [], msg
-        let likeNovels = getFromCache("likeNovels")
-        let watchedSeries = getFromCache("watchedSeries")
+        let likeNovels = getFromCacheObject("likeNovels")
+        let watchedSeries = getFromCacheObject("watchedSeries")
         let novels0 = novels.map(novel => novel.id)
 
         msg = util.checkStatus(util.settings.SHOW_LIKE_NOVELS).replace("未","不")
@@ -230,7 +230,7 @@ function publicFunc() {
     // 过滤描述与标签（屏蔽标签/屏蔽描述）
     u.novelFilter2 = function(novels) {
         let novels0 = novels.map(novel => novel.id)
-        let captionBlockWords = getFromCache("captionBlockWords")
+        let captionBlockWords = getFromCacheObject("captionBlockWords")
         if (captionBlockWords === null) captionBlockWords = []
         if (captionBlockWords) {
             // 仅保留没有任何屏蔽词的小说
@@ -245,7 +245,7 @@ function publicFunc() {
             java.log(`🚫 屏蔽描述：过滤前${novels0.length}；过滤后${novels2.length}`)
         }
 
-        let tagsBlockWords = getFromCache("tagsBlockWords")
+        let tagsBlockWords = getFromCacheObject("tagsBlockWords")
         if (tagsBlockWords === null) tagsBlockWords = []
         if (tagsBlockWords) {
             // 仅保留没有任何屏蔽词的小说
@@ -264,7 +264,7 @@ function publicFunc() {
 
     // 收藏小说/追更系列 写入缓存
     u.saveNovels = function(listInCacheName, list) {
-        let listInCache = getFromCache(listInCacheName)
+        let listInCache = getFromCacheObject(listInCacheName)
         if (listInCache === null) listInCache = []
 
         listInCache = listInCache.concat(list)

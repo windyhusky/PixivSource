@@ -4,12 +4,12 @@ var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
 
 function cacheGetAndSet(key, supplyFunc) {
     const {java, cache} = this
-    let v = this.getFromCache(key)
+    let v = this.getFromCacheObject(key)
     // 缓存信息错误时，保存 10min 后重新请求
     if (v && v.error === true) {
         if (new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
             cache.delete(key)
-            v = this.getFromCache(key)
+            v = this.getFromCacheObject(key)
         }
     }
     // 无缓存信息时，进行请求
@@ -27,7 +27,7 @@ function putInCache(objectName, object, saveSeconds) {
     if (saveSeconds === undefined) saveSeconds = 0
     cache.put(objectName, JSON.stringify(object), saveSeconds)
 }
-function getFromCache(objectName) {
+function getFromCacheObject(objectName) {
     const {java, cache} = this
     let object = cache.get(objectName)
     if (object === undefined) return null  // 兼容源阅
@@ -118,7 +118,7 @@ function isLogin() {
 
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
-    let v = this.getFromCache(url)
+    let v = this.getFromCacheObject(url)
     if (forceUpdate || !v || new Date().getTime() >= v.timestamp + cacheTempSeconds) {
         cache.delete(url)
     }
@@ -128,7 +128,7 @@ function getAjaxJson(url, forceUpdate) {
 }
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
-    let v = this.getFromCache(urls)
+    let v = this.getFromCacheObject(urls)
     if (forceUpdate || !v || new Date().getTime() >= v.timestamp + cacheTempSeconds) {
         cache.delete(urls)
     }
@@ -153,7 +153,7 @@ function getWebviewJson(url, parseFunc) {
 // https://github.com/Notsfsssf/pixez-flutter
 function urlIP(url) {
     const {java, cache} = this
-    let settings = this.getFromCache("pixivSettings")
+    let settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
     if (settings.IPDirect) {
         url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
@@ -251,7 +251,7 @@ function urlCoverUrl(url) {
     const {java, cache} = this
     if (!url.trim()) return ""
 
-    let settings = this.getFromCache("pixivSettings")
+    let settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
 
     let headers = {"Referer": "https://www.pixiv.net/"}
@@ -381,7 +381,7 @@ function setDefaultSettings() {
 }
 function checkSettings() {
     const {java, cache} = this
-    let settings = this.getFromCache("pixivSettings")
+    let settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
     if (settings.FAST || settings.IPDirect) {
         settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称

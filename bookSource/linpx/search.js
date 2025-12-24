@@ -116,7 +116,7 @@ function findUserNovels() {
     // 优化 未缓存系列目录的情况：series 数据写入缓存
     novelList.forEach(novel =>{
         if (novel.seriesId) {
-            let series = getFromCache(`LSeries${novel.seriesId}`)
+            let series = getFromCacheObject(`LSeries${novel.seriesId}`)
             series.novels.push(novel)
             putInCache(`LSeries${novel.seriesId}`, series)
         }

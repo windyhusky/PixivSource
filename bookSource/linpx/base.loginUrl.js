@@ -79,7 +79,7 @@ function statusMsg(status) {
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
     let keys = [], msgList = []
-    let settings = getFromCache("linpxSettings")
+    let settings = getFromCacheObject("linpxSettings")
     keys = Object.keys(settingsName)
     for (let i in keys) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
@@ -98,7 +98,7 @@ function setDefaultSettingsLoginUrl() {
 
 function editSettings(settingName) {
     let msg, status
-    let settings = getFromCache("linpxSettings")
+    let settings = getFromCacheObject("linpxSettings")
     if (!settings) settings = setDefaultSettings()
     if (!!settings[settingName]) {
         status = settings[settingName] = !settings[settingName]

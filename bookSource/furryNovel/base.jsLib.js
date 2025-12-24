@@ -27,7 +27,7 @@ function putInCache(objectName, object, saveSeconds) {
     if (saveSeconds === undefined) saveSeconds = 0
     cache.put(objectName, JSON.stringify(object), saveSeconds)
 }
-function getFromCache(objectName) {
+function getFromCacheObject(objectName) {
     const {java, cache} = this
     let object = cache.get(objectName)
     if (object === undefined) return null  // 兼容源阅
