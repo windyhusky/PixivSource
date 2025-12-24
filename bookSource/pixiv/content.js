@@ -147,7 +147,7 @@ function replaceJumpUrl(content) {
             let urlLink = matched2[2].trim()
 
             if (util.environment.IS_LYC_BRUNCH) {
-                content = content.replace(`${matchedText}`, `<usehtml><a href=${urlLink}> ${urlName}</a></usehtml>`)
+                content = content.replace(`${matchedText}`, `<usehtml><p>　　<a href=${urlLink}>${urlName}</a></p></usehtml>`)
             } else {
                 if (urlLink === urlName) {
                     content = content.replace(`${matchedText}`, `${urlName}`)
