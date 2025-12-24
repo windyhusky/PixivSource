@@ -124,7 +124,7 @@ function buildBookSource(sourceName:string, test:boolean|number =undefined): Boo
     const searchUrlContent = readTextFile(path.join(sourcePath, "searchUrl.js"))
     const searchContent = readTextFile(path.join(sourcePath, "search.js"))
 
-    const discoverAddressContent = readTextFile(path.join(sourcePath, "discover_address.js"))
+    const discoverAddressContent = readTextFile(path.join(sourcePath, "discoverUrl.js"))
     const discoverContent = readTextFile(path.join(sourcePath, "discover.js"))
 
     const detailContent = readTextFile(path.join(sourcePath, "detail.js"))
