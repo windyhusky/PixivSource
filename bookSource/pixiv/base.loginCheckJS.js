@@ -33,7 +33,6 @@ function isLegadoOfficial() {
     } catch (e) {
         isLegadoOfficialStatus = true
     }
-    cache.put("isLegadoOfficial", isLegadoOfficialStatus)
     return isLegadoOfficialStatus
 }
 // 检测 阅读 Beta 版本 与 LYC 版本
@@ -44,9 +43,7 @@ function isLegadoOfficial() {
 // source.refreshExplore()
 // source.refreshJSLib()
 function isLegadoLYC() {
-    let isLegadoLYCStatus = (typeof java.ajaxTestAll === "function")
-    cache.put("isLegadoLYCStatus", isLegadoLYCStatus)
-    return isLegadoLYCStatus
+    return typeof java.ajaxTestAll === "function"
 }
 
 function publicFunc() {
