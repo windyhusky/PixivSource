@@ -19,6 +19,13 @@ if (event === "clickShareBook") {
     java.copyText(text)
 }
 
+// 清理缓存
+if (event === "clickClearCache") {
+    let book = getNovel()
+    cache.delete(urlNovelDetailed(book.id))
+    if (book.seriesId) cache.delete(urlSeriesDetailed(book.seriesId))
+}
+
 // 保存阅读，更新登录界面的章节名称
 if (event === "saveRead") {
     source.putLoginInfo(JSON.stringify({"章节名称": book.durChapterTitle}))
