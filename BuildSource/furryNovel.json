@@ -35,7 +35,7 @@
         },
         "ruleContent": {
             "content": "@js:\n<JS CODE>",
-            "imageStyle": "DEFAULT"
+            "imageStyle": "FULL"
         },
         "ruleExplore": {
             "author": "userName",

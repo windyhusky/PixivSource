@@ -36,7 +36,7 @@
         "ruleContent": {
             "content": "@js:\n<JS CODE>",
             "title": "@js:\nJSON.parse(result).body.title",
-            "imageStyle": "DEFAULT",
+            "imageStyle": "FULL",
             "callBackJs": "<JS CODE>"
         },
         "ruleExplore": {
