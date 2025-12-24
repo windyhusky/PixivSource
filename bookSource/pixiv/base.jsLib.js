@@ -116,7 +116,10 @@ function getWebViewUA() {
 function startBrowser(url, title) {
     const {java, cache} = this
     if (!title) title = url
-    let msg = "", headers = `{"headers": {"User-Agent":"${this.getWebViewUA()}"}}`
+    let msg = ""
+    let headers = {}
+    headers["User-Agent"] = this.getWebViewUA()
+
     if (url.includes("https://www.pixiv.net")) {
         if (url.includes("settings")) msg += "⚙️ 账号设置"
         else msg += "⤴️ 分享小说"
@@ -126,7 +129,7 @@ function startBrowser(url, title) {
         msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
     }
     this.sleepToast(msg, 0.01)
-    java.startBrowser(`${url}, ${headers}`, title)
+    java.startBrowser(`${url}, ${JSON.stringify({headers: headers})}`, title)
 }
 
 function isLogin() {
