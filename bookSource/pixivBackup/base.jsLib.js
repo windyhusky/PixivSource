@@ -4,22 +4,21 @@ var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
 
 function cacheGetAndSet(key, supplyFunc) {
     const {java, cache} = this
-    let v = cache.get(key)
+    let v = this.getFromCache(key)
     // 缓存信息错误时，保存 10min 后重新请求
-    if (v && JSON.parse(v).error === true) {
+    if (v && v.error === true) {
         if (new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
             cache.delete(key)
-            v = cache.get(key)
+            v = this.getFromCache(key)
         }
     }
     // 无缓存信息时，进行请求
     if (v === undefined || v === null) {
         v = supplyFunc()
         v.timestamp = new Date().getTime()
-        v = JSON.stringify(v)
-        cache.put(key, v, cacheSaveSeconds)
+        this.putInCache(key, v)
     }
-    return JSON.parse(v)
+    return v
 }
 
 function putInCache(objectName, object, saveSeconds) {
