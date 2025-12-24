@@ -146,15 +146,15 @@ function replaceJumpUrl(content) {
             let urlName = matched2[1].trim()
             let urlLink = matched2[2].trim()
 
-            // if (!util.environment.IS_LYC_BRUNCH) {
-            //     content = content.replace(`${matchedText}`, `<a href=${urlLink}> ${urlName}</a>`)
-            // } else {
-            if (urlLink === urlName) {
-                content = content.replace(`${matchedText}`, `${urlName}`)
+            if (util.environment.IS_LYC_BRUNCH) {
+                content = content.replace(`${matchedText}`, `<usehtml><a href=${urlLink}> ${urlName}</a></usehtml>`)
             } else {
-                content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
+                if (urlLink === urlName) {
+                    content = content.replace(`${matchedText}`, `${urlName}`)
+                } else {
+                    content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
+                }
             }
-            // }
         }
     }
     return content
