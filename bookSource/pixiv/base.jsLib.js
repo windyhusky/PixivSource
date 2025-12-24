@@ -21,6 +21,21 @@ function cacheGetAndSet(key, supplyFunc) {
     return v
 }
 
+function putInCache(name, object, saveSeconds) {
+    const {java, cache} = this
+    if (saveSeconds === undefined) saveSeconds = 0
+    if (object) {
+        cache.put(name, object, saveSeconds)
+    }
+    // else {
+    //     cache.delete(name, object, saveSeconds)
+    // }
+}
+function getFromCache(name) {
+    const {java, cache} = this
+    return cache.get(name)
+}
+
 function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
