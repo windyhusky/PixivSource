@@ -15,9 +15,7 @@ function objStringify(obj) {
 // 可用 source.bookSourceName source.getVariable() source.setVariable()等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 function isSourceRead() {
-    let isSourceReadStatus = java.getUserAgent() === java.getWebViewUA()
-    cache.put("isSourceRead", isSourceReadStatus)
-    return isSourceReadStatus
+    return java.getUserAgent() === java.getWebViewUA()
 }
 // 正式版 不支持在 JSlib 的函数直接设置默认参数
 // 正式版 不支持 a?.b 的写法
