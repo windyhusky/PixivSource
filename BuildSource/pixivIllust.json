@@ -13,19 +13,19 @@
         "enabledCookieJar": true,
         "enabledExplore": true,
         "eventListener": false,
-        "exploreUrl": "<JS CODE>",
+        "exploreUrl": "@js:\n<JS CODE>",
         "header": "{\"Referer\":\"https://www.pixiv.net\"}",
         "jsLib": "<JS CODE>",
         "lastUpdateTime": 1750694400251,
         "loginCheckJs": "<JS CODE>",
-        "loginUi": "<JS CODE>",
+        "loginUi": "@js:\n<JS CODE>",
         "loginUrl": "<JS CODE>",
         "respondTime": 180000,
         "ruleBookInfo": {
             "author": "userName",
             "canReName": "true",
             "coverUrl": "coverUrl",
-            "init": "<JS CODE>",
+            "init": "@js:\n<JS CODE>",
             "intro": "description",
             "kind": "tags",
             "lastChapter": "latestChapter",
@@ -33,13 +33,13 @@
             "tocUrl": "catalogUrl"
         },
         "ruleContent": {
-            "content": "<JS CODE>",
+            "content": "@js:\n<JS CODE>",
             "title": "@js:\nJSON.parse(result).body.title",
             "imageStyle": "FULL"
         },
         "ruleExplore": {
             "author": "userName",
-            "bookList": "@js:<JS CODE>",
+            "bookList": "@js:\n<JS CODE>",
             "bookUrl": "detailedUrl",
             "coverUrl": "coverUrl",
             "intro": "description",
@@ -50,7 +50,7 @@
         },
         "ruleSearch": {
             "author": "userName",
-            "bookList": "<JS CODE>",
+            "bookList": "@js:\n<JS CODE>",
             "bookUrl": "detailedUrl",
             "checkKeyWord": "测试",
             "coverUrl": "coverUrl",
@@ -61,12 +61,12 @@
             "wordCount": ""
         },
         "ruleToc": {
-            "chapterList": "<JS CODE>",
+            "chapterList": "@js:\n<JS CODE>",
             "chapterName": "title",
             "chapterUrl": "chapterUrl",
             "updateTime": "chapterInfo"
         },
-        "searchUrl": "<JS CODE>",
+        "searchUrl": "@js:\n<JS CODE>",
         "variableComment": "<base.variableComment.txt>",
         "weight": 0
     }

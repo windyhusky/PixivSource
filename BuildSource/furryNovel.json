@@ -13,19 +13,19 @@
         "enabledCookieJar": true,
         "enabledExplore": true,
         "eventListener": true,
-        "exploreUrl": "<JS CODE>",
+        "exploreUrl": "@js:\n<JS CODE>",
         "header": "",
         "jsLib": "<JS CODE>",
         "lastUpdateTime": 1750694400251,
         "loginCheckJs": "<JS CODE>",
-        "loginUi": "<JS CODE>",
+        "loginUi": "@js:\n<JS CODE>",
         "loginUrl": "<JS CODE>",
         "respondTime": 180000,
         "ruleBookInfo": {
             "author": "userName",
             "canReName": "true",
             "coverUrl": "coverUrl",
-            "init": "<JS CODE>",
+            "init": "@js:\n<JS CODE>",
             "intro": "description",
             "kind": "tags",
             "lastChapter": "latestChapter",
@@ -34,12 +34,12 @@
             "wordCount": "textCount"
         },
         "ruleContent": {
-            "content": "<JS CODE>",
+            "content": "@js:\n<JS CODE>",
             "imageStyle": "DEFAULT"
         },
         "ruleExplore": {
             "author": "userName",
-            "bookList": "@js:<JS CODE>",
+            "bookList": "@js:\n<JS CODE>",
             "bookUrl": "detailedUrl",
             "coverUrl": "coverUrl",
             "intro": "description",
@@ -50,7 +50,7 @@
         },
         "ruleSearch": {
             "author": "userName",
-            "bookList": "<JS CODE>",
+            "bookList": "@js:\n<JS CODE>",
             "bookUrl": "detailedUrl",
             "checkKeyWord": "#测试页面",
             "coverUrl": "coverUrl",
@@ -61,12 +61,12 @@
             "wordCount": "textCount"
         },
         "ruleToc": {
-            "chapterList": "<JS CODE>",
+            "chapterList": "@js:\n<JS CODE>",
             "chapterName": "title",
             "chapterUrl": "chapterUrl",
             "updateTime": "chapterInfo"
         },
-        "searchUrl": "<JS CODE>",
+        "searchUrl": "@js:\n<JS CODE>",
         "variableComment": "<base.variableComment.txt>",
         "weight": 0
     }
