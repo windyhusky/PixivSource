@@ -115,7 +115,12 @@ function replaceChapter(content) {
         for (let i in matched) {
             let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
             let chapter = matched2[1].trim()
-            content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
+            // 替换 Pixiv 分页标记符号 [newpage]
+            if (util.environment.IS_LYC_BRUNCH) {
+                content = content.replace(`${matched[i]}`, `<usehtml><h3>${chapter}</h3></usehtml>`)
+            } else {
+                content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
+            }
         }
     }
     return content
@@ -141,15 +146,15 @@ function replaceJumpUrl(content) {
             let urlName = matched2[1].trim()
             let urlLink = matched2[2].trim()
 
-            // if (!util.environment.IS_LYC_BRUNCH) {
-            //     content = content.replace(`${matchedText}`, `<a href=${urlLink}> ${urlName}</a>`)
-            // } else {
-            if (urlLink === urlName) {
-                content = content.replace(`${matchedText}`, `${urlName}`)
+            if (util.environment.IS_LYC_BRUNCH) {
+                content = content.replace(`${matchedText}`, `<usehtml><p>　　<a href=${urlLink}>${urlName}</a></p></usehtml>`)
             } else {
-                content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
+                if (urlLink === urlName) {
+                    content = content.replace(`${matchedText}`, `${urlName}`)
+                } else {
+                    content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
+                }
             }
-            // }
         }
     }
     return content
