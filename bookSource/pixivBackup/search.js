@@ -58,7 +58,7 @@ function getUserNovels() {
     let page = Number(java.get("page"))
 
     // cache.delete(username)
-    let userid = cache.get(username)
+    let userid = getFromCache(username)
     if (userid !== undefined && userid !== null) {
         uidList = [userid]
         java.log(`👤 缓存作者ID：${userid}`)
@@ -173,13 +173,14 @@ function search(name, type, page) {
 }
 
 function getSeries() {
-    if (JSON.parse(result).error === true) {
+    let resp = JSON.parse(result)
+    if (resp.error === true) {
         return []
     }
     let name = String(java.get("keyword"))
     java.log(urlIP(urlSearchSeries(name, 1)))
-    cache.put(urlIP(urlSearchSeries(name, 1)), result, cacheSaveSeconds)  // 加入缓存
-    return JSON.parse(result).body.novel.data
+    putInCacheObject(urlIP(urlSearchSeries(name, 1)), resp, cacheSaveSeconds)  // 加入缓存
+    return resp.body.novel.data
 }
 
 function getNovels() {

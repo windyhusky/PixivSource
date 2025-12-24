@@ -31,7 +31,7 @@ function getNovelInfo(res) {
 
     if (res.bookmarkData) {
         novel.isBookmark = true
-        cache.put(`collect${novel.id}`, res.bookmarkData.id)
+        putInCache(`collect${novel.id}`, res.bookmarkData.id)
         util.saveNovels("likeNovels", [Number(novel.id)])
     } else {
         novel.isBookmark = false
@@ -62,7 +62,7 @@ function getNovelInfo(res) {
     else novel.pollChoicesCount = 0
     novel["章节名称"] = novel.title
     source.putLoginInfo(JSON.stringify(novel))
-    cache.put("novel", JSON.stringify(novel))
+    putInCacheObject("novel", novel)
 }
 
 function replaceUploadedImage(res, content) {

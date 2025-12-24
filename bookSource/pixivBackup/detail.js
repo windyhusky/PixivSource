@@ -20,7 +20,7 @@ function novelHandler(novel){
     }
     // 放入信息以便登陆界面使用
     source.putLoginInfo(JSON.stringify(novel))
-    cache.put("novel", JSON.stringify(novel))
+    putInCacheObject("novel", novel)
     return novel
 }
 

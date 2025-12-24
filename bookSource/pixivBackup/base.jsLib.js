@@ -21,6 +21,21 @@ function cacheGetAndSet(key, supplyFunc) {
     return v
 }
 
+function putInCache(name, object, saveSeconds) {
+    const {java, cache} = this
+    if (saveSeconds === undefined) saveSeconds = 0
+    if (object) {
+        cache.put(name, object, saveSeconds)
+    }
+    // else {
+    //     cache.delete(name, object, saveSeconds)
+    // }
+}
+function getFromCache(name) {
+    const {java, cache} = this
+    return cache.get(name)
+}
+
 function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
@@ -30,7 +45,7 @@ function putInCacheObject(objectName, object, saveSeconds) {
 function getFromCacheObject(objectName) {
     const {java, cache} = this
     let object = cache.get(objectName)
-    if (object === undefined) return null  // 兼容源阅
+    if (object === undefined) return null  // 兼容源阅，避免 parse 报错
     return JSON.parse(object)
 }
 
@@ -87,18 +102,24 @@ function isJsonString(str) {
 
 function getWebViewUA() {
     const {java, cache} = this
-    let userAgent = String(java.getWebViewUA())
+    let userAgent = this.getFromCache("userAgent")
+    if (userAgent) return String(userAgent)
+
+    userAgent = String(java.getWebViewUA())
     if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
         userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
     }
     // java.log(`userAgent=${userAgent}`)
-    cache.put("userAgent", userAgent)
+    this.putInCache("userAgent", userAgent, cacheSaveSeconds/7)
     return String(userAgent)
 }
 function startBrowser(url, title) {
     const {java, cache} = this
     if (!title) title = url
-    let msg = "", headers = `{"headers": {"User-Agent":"${this.getWebViewUA()}"}}`
+    let msg = ""
+    let headers = {}
+    headers["User-Agent"] = this.getWebViewUA()
+
     if (url.includes("https://www.pixiv.net")) {
         if (url.includes("settings")) msg += "⚙️ 账号设置"
         else msg += "⤴️ 分享小说"
@@ -108,12 +129,12 @@ function startBrowser(url, title) {
         msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
     }
     this.sleepToast(msg, 0.01)
-    java.startBrowser(`${url}, ${headers}`, title)
+    java.startBrowser(`${url}, ${JSON.stringify({headers: headers})}`, title)
 }
 
 function isLogin() {
     const {java, cache} = this
-    return !!cache.get("pixivCsrfToken")
+    return !!this.getFromCache("pixivCsrfToken")
 }
 
 function getAjaxJson(url, forceUpdate) {
@@ -162,8 +183,8 @@ function urlIP(url) {
             "X-Requested-With": "XMLHttpRequest",
             "Host": "www.pixiv.net",
             "Referer": "https://www.pixiv.net/",
-            "X-csrf-token": cache.get("pixivCsrfToken") || "",
-            "Cookie": cache.get("pixivCookie") || ""
+            "X-csrf-token": this.getFromCache("pixivCsrfToken") || "",
+            "Cookie": this.getFromCache("pixivCookie") || ""
         }
         return `${url}, ${JSON.stringify({headers: headers})}`
     }
