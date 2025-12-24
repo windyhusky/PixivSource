@@ -40,6 +40,18 @@ function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
     if (saveSeconds === undefined) saveSeconds = 0
+    if (typeof objectName === "string" ) {
+        if (objectName.startsWith("https://210.140.139.155")) {
+            let url = objectName.split(",")[0]
+            url = url.replace("210.140.139.155", "www.pixiv.net")
+            this.putInCacheObject(url, object, saveSeconds)
+
+        } else if (objectName.startsWith("https://210.140.139.133")) {
+            let url = objectName.split(",")[0]
+            url = url.replace("210.140.139.133", "i.pximg.net")
+            this.putInCacheObject(url, object, saveSeconds)
+        }
+    }
     cache.put(objectName, JSON.stringify(object), saveSeconds)
 }
 function getFromCacheObject(objectName) {
