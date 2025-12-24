@@ -178,8 +178,9 @@ function getSeries() {
         return []
     }
     let name = String(java.get("keyword"))
-    java.log(urlIP(urlSearchSeries(name, 1)))
-    putInCacheObject(urlIP(urlSearchSeries(name, 1)), resp, cacheSaveSeconds)  // 加入缓存
+    let page = Number(java.get("page"))
+    java.log(urlIP(urlSearchSeries(name, page)))
+    putInCacheObject(urlIP(urlSearchSeries(name, page)), resp, cacheSaveSeconds)  // 加入缓存
     return resp.body.novel.data
 }
 
