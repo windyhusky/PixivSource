@@ -15,7 +15,7 @@
 > [✨臻享阅读](BetterExperience.md)
 
 
-## 下载阅读
+## 下载阅读 {#DownloadAPP}
 ### ✅ 阅读兼容性
 | 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
 | ------ | ----- | ------ | -------|
@@ -48,8 +48,8 @@
 </details>
 
 
-## 安卓版
-### 👍 【推荐】[阅读 Sigma](https://loyc.xyz/c/legado.html)
+## 安卓版 {#Android}
+### 👍 【推荐】[阅读 Sigma](https://loyc.xyz/c/legado.html) {#LegadoSigma}
 > [!TIP]
 > 
 > **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
@@ -63,7 +63,7 @@
 | [Telegram 频道](https://t.me/readsigma)                          | Plus | 需要代理，需要登录 |
 
 
-### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc)
+### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
 > [!TIP]
 >
 > **这是 喵公子 用于同步上游代码的仓库，是【阅读 Beta】的仓库**
@@ -81,7 +81,7 @@
 | [Telegram 频道(Beta版)](https://t.me/Legado_Beta)             | 新共存版 | 需要代理，需要登录 |
 
 
-### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3)
+### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
 > [!TIP]
 >
 > **这是 HapeLee 的阅读改版仓库，软件界面采用 MD3 风格**
@@ -94,7 +94,7 @@
 | [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 需要代理，需要登录 |
 
 
-### 🚮 其他版本
+### 🚮 其他版本 {#AndroidOthers}
 <details><summary> 👎 阅读 正式版（已停更）</summary>
 
 > [!TIP]
@@ -123,7 +123,7 @@
 </details>
 
 
-## 苹果版
+## 苹果版 {#AppleiOS}
 ### 🍎 【非官方】苹果版
 | 软件名称 | 收费方式 | 备注 |
 | ------ | ------ | ---- |
@@ -133,7 +133,7 @@
 | [阅读阅多](https://apps.apple.com/app/id6747099551) | 订阅制 & 永久 ￥399 ~ ￥788 ~ ￥1488 | 不完全兼容书源，内置浏览器支持不佳 |
 
 
-### 🔀 替代软件
+### 🔀 替代软件 {#AlternativeAPP}
 <details><summary> 🔀 替代软件 </summary>
 
 不兼容阅读书源的，其他换源阅读软件
@@ -146,7 +146,7 @@
 </details>
 
 
-### 🚮 其他版本
+### 🚮 其他版本 {#AppleiOSOthers}
 <details><summary> 🚮 已下架软件 </summary>
 
 | 软件名称     | AppStore                                           | Github                                 | 备注            |
@@ -168,7 +168,7 @@
 </details>
 
 
-## 🖥️ 【非官方】[服务器版](https://github.com/hectorqin/reader)
+## 🖥️ 【非官方】[服务器版](https://github.com/hectorqin/reader) {#LegadoServer}
 > [!TIP]
 >
 > **这是 hectorqin 的阅读3服务器版。桌面端，iOS可用**
@@ -182,7 +182,7 @@
 | 微信公众号【假装大佬】                                      |                |
 
 
-## 🌸 【官方】[鸿蒙版](https://github.com/mgz0227/legado-Harmony)
+## 🌸 【官方】[鸿蒙版](https://github.com/mgz0227/legado-Harmony) {#LegadoHarmony}
 > [!TIP]
 >
 > **这是 阅读官方 的阅读鸿蒙版，目前可以本地阅读**
