@@ -234,21 +234,21 @@ function timeFormat(str) {
 function timeTextFormat(text) {
     return `${text.slice(0, 10)} ${text.slice(11, 19)}`
 }
-function sleep(time) {
-    let endTime = new Date().getTime() + time
-    while(true) {
-        if (new Date().getTime() > endTime) {
+function sleep(seconds) {
+    let endTime = new Date().getTime() + 1000*seconds
+    while(true){
+        if (new Date().getTime() > endTime){
             return;
         }
     }
 }
-function sleepToast(text, second) {
-    const {java} = this
+
+function sleepToast(text, seconds) {
+    let {java} = this
     java.log(text)
-    // java.toast(text)
     java.longToast(text)
-    if (second === undefined) second = 0.01
-    this.sleep(1000*second)
+    if (seconds === undefined) {seconds = 0.01}
+    this.sleep(seconds)
 }
 
 function setDefaultSettings() {
