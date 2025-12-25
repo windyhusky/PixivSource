@@ -44,7 +44,7 @@ function isLegadoLYC() {
 function publicFunc() {
     let u = {}, settings
     // 输出书源信息
-    java.log(`🅿️ ${source.bookSourceComment.split("\n")[0]}`)
+    java.log(`${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
     java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
