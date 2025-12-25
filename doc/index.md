@@ -13,24 +13,24 @@ hero:
 #    src: "/favicon-512x512.png"
 #    alt: Pixiv Source Logo
   actions:
-#    - theme: brand
-#      text: ⬇️ 下载阅读 新共存版
-#      link: "https://miaogongzi.lanzout.com/b01rgkhhe"
-      
     - theme: brand
+      text: ⬇️ 下载 阅读 Plus
+      link: "https://loyc.xyz/c/legado.html#download"
+      
+    - theme: alt
       text: ✨ 臻享阅读
       link: BetterExperience
       
-    - theme: alt
-      text: ⚡️ 快速开始
-      link: QuickStart
+#    - theme: alt
+#      text: ⚡️ 快速开始
+#      link: QuickStart
       
     - theme: brand
       text: 🚀 导入 Pixiv 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
     - theme: alt
-      text: 📘 使用指南
+      text: 📘 书源指南
       link: Pixiv
       
     - theme: brand
@@ -38,7 +38,7 @@ hero:
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"
       
     - theme: alt
-      text: 📙 使用指南
+      text: 📙 书源指南
       link: Linpx
       
     - theme: alt
@@ -74,32 +74,4 @@ features:
     title: 直连无需代理
     details: 🅿️ 登录账号，开启直连<br>✈️ 无需代理，直接访问
     link: BetterExperience#IPDirect
-    
-#  - icon: 🔍
-#    title: 高级搜索
-#    details: 🀄️繁简通搜👤作者专搜<br>#️⃣标签专搜⏬字数过滤
-#    link: Pixiv#Search
-#    
-#  - icon: 🌟
-#    title: 定制发现
-#    details: ⭐️关注📃追更💯推荐<br>❤️收藏👑排行🔥原创
-#    link: Pixiv#_2-发现更多小说
-#
-#  - icon: 🔗
-#    title: 添加网址
-#    details: 📄单篇📚系列👤作者<br>✅多条网址相继处理
-#    link: Pixiv#AddUrl
-#    
-#  - icon: 🌐
-#    title: 订阅源
-#    details: ✅添加小说<br>⏫导入/更新书源
-#    link: Pixiv#_4-订阅源
-
-#  - icon: 🚫
-#    title: 屏蔽功能
-#    details: 🚫屏蔽作者🚫屏蔽标签<br>🚫隐藏收藏🚫隐藏追更
-#
-#  - icon: ⚙️
-#    title: 设置灵活
-#    details: ✈️直连模式⚡️️快速模式<br>🐞调试模式🔧默认设置
 ---
