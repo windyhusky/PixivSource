@@ -58,6 +58,7 @@
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------ | --- |
+| [阅读 Sigma](https://loyc.xyz/c/legado.html#download) | Plus | 无需代理，无需登录 |
 | [Github Release](https://github.com/Luoyacheng/legado/releases) | Plus | 需要代理，无需登录 |
 | [Github Action](https://github.com/Luoyacheng/legado/actions)   | Plus | 需要代理，需要登录 |
 | [Telegram 频道](https://t.me/readsigma)                          | Plus | 需要代理，需要登录 |
