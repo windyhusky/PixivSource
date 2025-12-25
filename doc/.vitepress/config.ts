@@ -52,6 +52,16 @@ export default defineConfig({
                 ],
             },
             {
+                text: "📖 阅读指南",
+                items: [
+                    { text: "⬇️ 下载阅读", link: "/Download" },
+                    { text: "🚀 导入书源", link: "/ImportBookSource" },
+                    { text: "💾 备份恢复", link: "/WebdavBackup" },
+                    { text: "☁️ 远程书籍", link: "/RemoteBooks" },
+                    { text: "🛠️ 故障排查", link: "/TroubleShoot" }
+                ],
+            },
+            {
                 text: "🚧 开发动态",
                 items: [
                     { text: "🤝 开发团队", link: "/Team" , activeMatch: '/' },
@@ -60,7 +70,6 @@ export default defineConfig({
                     { text: "☕ 支持开发", link: "/Sponsor" , activeMatch: '/' },
                 ],
             },
-            { text: "☕ 打赏名单", link: "/Sponsor" },
         ],
         lightModeSwitchTitle: "",
         sidebarMenuLabel: "菜单",
