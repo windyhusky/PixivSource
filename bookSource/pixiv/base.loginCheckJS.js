@@ -50,13 +50,17 @@ function publicFunc() {
     if (isSourceRead()) {
         java.log("📱 软件平台：🍎 源阅 SourceRead")
     } else if (isLegadoOfficial()) {
-        java.log("📱 软件平台：🤖 开源阅读 【正式版】")
-        java.log("当前软件为：阅读【正式版】\n\n【正式版】已年久失修，不推荐继续使用\n推荐使用【Beta版】【共存/新共存版】\n\nBeta版本下载链接：\nhttps://miaogongzi.lanzout.com/b01rgkhhe\n如需更新，可去书源调试界面\n打开下载链接切换阅读版本\n")
+        java.log("📱 软件平台：🤖 阅读 正式版")
+        sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n如需更新，可去书源调试界面\n打开下载链接切换阅读版本")
+        java.log("阅读 Plus 下载链接：\nhttps://loyc.xyz/c/legado.html#download\n")
+
     } else {
         if (isLegadoLYC()) {
-            java.log("📱 软件平台：🤖 开源阅读 Beta/LYC 版")
+            java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
         } else {
-            java.log("📱 软件平台：🤖 开源阅读 Beta 版（未合入 LYC 功能）")
+            java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
+            sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n如需更新，可去书源调试界面\n打开下载链接切换阅读版本")
+            java.log("阅读 Plus 下载链接：\nhttps://loyc.xyz/c/legado.html#download\n")
         }
     }
 
