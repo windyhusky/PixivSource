@@ -47,22 +47,24 @@ function publicFunc() {
     java.log(`${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
     java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+
     if (isSourceRead()) {
         java.log("📱 软件平台：🍎 源阅 SourceRead")
     } else if (isLegadoOfficial()) {
         java.log("📱 软件平台：🤖 阅读 正式版")
-        sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n如需更新，可去书源调试界面\n打开下载链接切换阅读版本")
-        java.log("阅读 Plus 下载链接：\nhttps://loyc.xyz/c/legado.html#download\n")
+        sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
+        sleep(3); startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
 
     } else {
         if (isLegadoLYC()) {
             java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
         } else {
             java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
-            sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n如需更新，可去书源调试界面\n打开下载链接切换阅读版本")
-            java.log("阅读 Plus 下载链接：\nhttps://loyc.xyz/c/legado.html#download\n")
+            sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
+            sleep(3); startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
         }
     }
+
     // 设置初始化
     // cache.delete("pixivIllustSettings")
     settings = getFromCacheObject("pixivIllustSettings")
