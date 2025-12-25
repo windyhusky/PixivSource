@@ -16,12 +16,12 @@
  
 
 ## [Linpx](http://www.furrynovel.ink) 是第三方 Pixiv 小说镜像站，主要内容为【兽人小说】
-### ⬇️ 下载阅读 {#DownloadApp}
+### ⬇️ 下载阅读 {#DownloadLegado}
 > [!IMPORTANT]
 >
-> 点击链接，下载 **【新共存版】** 安装包并安装软件
+> 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
 >
-> https://miaogongzi.lanzout.com/b01rgkhhe
+> https://loyc.xyz/c/legado.html#download
 >
 > **苹果设备及更多兼容软件详见：** [下载阅读](./Download.md)
 

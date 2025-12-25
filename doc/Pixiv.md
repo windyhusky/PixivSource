@@ -46,13 +46,13 @@
 > #### 否则手动刷新时，可能会触发请求限制，严重的甚至封号
 
 
-### ⬇️ 下载阅读 {#DownloadApp}
+### ⬇️ 下载阅读 {#DownloadLegado}
 > [!IMPORTANT]
-> 
-> 点击链接，下载 **【新共存版】** 安装包并安装软件
-> 
-> https://miaogongzi.lanzout.com/b01rgkhhe
-> 
+>
+> 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
+>
+> https://loyc.xyz/c/legado.html#download
+>
 > **苹果设备及更多兼容软件详见：** [下载阅读](./Download.md)
 
 
