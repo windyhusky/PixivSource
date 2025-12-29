@@ -11,14 +11,13 @@
     "url": "git+https://github.com/DowneyRem/PixivSource.git"
   },
   "license": "ISC",
-  "author": "",
+  "author": "DowneyRem",
   "type": "module",
   "main": "index.js",
   "directories": {
     "doc": "doc"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsx BuildSource/buildBookSource.ts",
     "docs:dev": "vitepress dev doc --host",
     "docs:build": "vitepress build doc",

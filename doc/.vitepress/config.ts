@@ -39,6 +39,7 @@ export default defineConfig({
         },
         returnToTopLabel: "回到顶部",
         nav: [
+            { text: "✍️ 博客", link: "https://downeyrem.github.io" },
             { text: "🏠 主页", link: "/" },
             {
                 text: "📌 使用指南",
