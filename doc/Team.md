@@ -18,8 +18,8 @@ const members = [
         actionText: "打赏",
         sponsor: "/Sponsor",
         links: [
+            { icon: "vitepress", link: "https://downeyrem.github.io" },
             { icon: "github", link: "https://github.com/DowneyRem" },
-            { icon: "codeberg", link: "https://codeberg.org/DowneyRem" },
             { icon: "telegram", link: "https://t.me/DowneyRem" },
             { icon: "twitter", link: "https://x.com/DowneyRemDragon" },
         ]

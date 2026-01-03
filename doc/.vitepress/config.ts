@@ -69,6 +69,7 @@ export default defineConfig({
                     { text: "📜 更新日志", link: "/UpdateLog" },
                     { text: "🌱 项目起源", link: "/Beginning" },
                     { text: "☕ 支持开发", link: "/Sponsor" , activeMatch: '/' },
+                    { text: "✍️ 作者博客", link: "https://downeyrem.github.io" },
                 ],
             },
         ],
