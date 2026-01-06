@@ -14,6 +14,6 @@ export default {
         }),
     enhanceApp({ app }) {
         app.component('SponsorTable', SponsorTable)
-        // ... 如果您有其他 enhanceApp 逻辑，放在这里
+        app.component('DragonChat', DragonChat)
     }
 };

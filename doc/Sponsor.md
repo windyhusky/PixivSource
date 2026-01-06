@@ -3,9 +3,6 @@
 <br>
 
 # ☕ 打赏名单 ☕
-### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
-#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
 
@@ -17,11 +14,19 @@
 > [✨臻享阅读](BetterExperience.md)、
 > [⚡️快速开始](QuickStart.md) **将有助于你的分享**
 
-> [!NOTE]
->
-> **当然，也可以请开发者喝杯咖啡**
-> 
-> **你的鼓励是持续更新的动力～**
+<DragonChat avatar="/DowneyRem.png"
+name="唐尼瑞姆" badge="🐲" icon="🐲">
+<strong>如果书源帮到了你，欢迎投喂本龙（开发者）。</strong><br>
+<strong>你的鼓励是持续更新的动力～</strong>
+<div class="quote-area">
+你将获得：<br>
+· <strong>加入感谢名单，公开鸣谢</strong><br>
+· <strong>加入专属社区，书源反馈群</strong><br>
+· <strong>赞助书源项目的上游开发者</strong><br>
+· <strong>解锁幕后内容，了解开发书源的点滴</strong><br>
+· <strong>新功能投票权，新功能参考你的意见</strong><br>
+</div>
+</DragonChat>
 
 - 💜 [爱发电 打赏 & 指导](https://afdian.com/a/DowneyRem)
 - ☕️ [Buy me a Coffee](https://ko-fi.com/downeyrem)
@@ -45,7 +50,7 @@
 ## 💵 打赏名单
 > [!TIP]
 > 
-> **按打赏本项目的先后顺序排名**
+> **按打赏本项目的先后顺序排名，[打赏详情](https://downeyrem.github.io/Sponsor/PixivSource)**
 >
 > 本表手动更新，数据更新会有少许延迟，还请见谅
 
@@ -91,7 +96,7 @@
 > [!TIP]
 > **本项目的赞助项目**
 ### 📅 定期赞助
-- [Linpx](https://www.furrynovel.ink) （2023年起）
+- [Linpx](https://www.furrynovel.ink) （2023年起，每年 ￥100）
 ### 🔀 不定期赞助
 - [阅读 Sigma](https://loyc.xyz/c/legado.html) （洛娅橙）
 - [阅读 Beta](https://beta.miaogongzi.cc) （喵公子）
