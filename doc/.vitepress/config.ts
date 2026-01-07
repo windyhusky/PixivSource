@@ -139,7 +139,7 @@ export default defineConfig({
         },
         footer: {
             // message: 'Released under the <a href="https://github.com/vuejs/vitepress/blob/main/LICENSE">MIT License</a>.',
-            copyright: 'Copyright © 2021-2025 <a href="https://github.com/DowneyRem/PixivSource">PixivSource</a> All rights reserved.'
+            copyright: `Copyright © 2025-${new Date().getFullYear()} <a href="https://github.com/DowneyRem/PixivSource">PixivSource</a> All rights reserved.`
         },
         search: {
             provider: "local",
