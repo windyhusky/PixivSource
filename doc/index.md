@@ -5,13 +5,13 @@ title: Pixiv 书源
 description: 最好的 Pixiv 小说阅读器。——开源阅读 + Pixiv 书源。开源阅读 Legado 3.0 的 Pixiv 小说书源。开源阅读 Pixiv 书源。Legado with Pixiv BookSource, A Best Novel Reader for Pixiv. Pixiv BookSource for Legado 3.0.
 
 hero:
-  name: PixivSource
-  text: 最好的 Pixiv 小说软件<br>开源阅读 + Pixiv 书源
-  tagline: 你值得拥有，更好的小说阅读体验<br>⬇️ 点击【✨ 臻享阅读】改善你的阅读体验吧
+  name: 开源阅读 + Pixiv 书源
+  text: 最好的 Pixiv 小说软件
+  tagline: <br>你值得拥有，更好的小说阅读体验<br>⬇️ 点击【✨ 臻享阅读】改善你的阅读体验吧
 
-#  image:
-#    src: "/favicon-512x512.png"
-#    alt: Pixiv Source Logo
+  image:
+    src: "/favicon-512x512.png"
+    alt: Pixiv Source Logo
   actions:
     - theme: brand
       text: ⬇️ 下载 阅读 Plus
@@ -75,3 +75,4 @@ features:
     details: 🅿️ 登录账号，开启直连<br>✈️ 无需代理，直接访问
     link: BetterExperience#IPDirect
 ---
+<HomeUnderline />
