@@ -27,5 +27,8 @@
     "markdown-it-anchor": "^9.2.0",
     "tsx": "^4.20.6",
     "vitepress": "^1.6.4"
+  },
+  "devDependencies": {
+    "vitepress-markdown-timeline": "^1.2.2"
   }
 }

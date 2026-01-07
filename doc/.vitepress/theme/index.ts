@@ -1,5 +1,6 @@
 // .vitepress/theme/index.ts
 import DefaultTheme from "vitepress/theme";
+import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
 
 import { h } from "vue";
 import SponsorTable from "./components/SponsorTable.vue";

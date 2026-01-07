@@ -1,5 +1,6 @@
 import { defineConfig } from "vitepress"
 import markdownItAnchor from 'markdown-it-anchor'
+import timeline from "vitepress-markdown-timeline";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -173,6 +174,7 @@ export default defineConfig({
                 // slugify: (s:string) => s.replace("、", ""),
                 permalink: false   // 显示锚点符号
             })
+            md.use(timeline);
 
             // 2. 图片渲染规则：懒加载 & 异步解码
             md.renderer.rules.image = (tokens, idx, options, env, self) => {
