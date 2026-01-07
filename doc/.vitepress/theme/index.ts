@@ -7,6 +7,7 @@ import DragonChat from './components/DragonChat.vue'
 import NotFound from "./components/404.vue";
 import HomeUnderline from "./components/HomeUnderline.vue"
 import UpdateTime from "./components/UpdateTime.vue"
+import BackToTop from "./components/BackToTop.vue";
 import './style/index.css'
 
 export default {
@@ -15,6 +16,7 @@ export default {
         h(DefaultTheme.Layout, null, {
             "not-found": () => h(NotFound),
             "doc-before": () => h(UpdateTime),
+            "doc-footer-before": () => h(BackToTop),
         }),
     enhanceApp({ app }) {
         app.component('SponsorTable', SponsorTable)
