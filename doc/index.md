@@ -10,7 +10,7 @@ hero:
   tagline: <br>你值得拥有，更好的小说阅读体验<br>⬇️ 点击【✨ 臻享阅读】改善你的阅读体验吧
 
   image:
-    src: "/favicon-512x512.png"
+    src: "/favicon-180x180.png"
     alt: Pixiv Source Logo
   actions:
     - theme: brand
@@ -45,9 +45,9 @@ hero:
       text: 🏠 项目
       link: https://github.com/DowneyRem/PixivSource
 
-    - theme: alt
-      text: ✈️ 频道 
-      link: https://t.me/PixivSource
+#    - theme: alt
+#      text: ✈️ 频道 
+#      link: https://t.me/PixivSource
 
     - theme: alt
       text: ☕ 打赏
