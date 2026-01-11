@@ -10,7 +10,7 @@
 </div>
 
 
-> [!TIP]
+> [!TIP] 建议
 >
 > **熟练使用【开源阅读】的读者可以看这篇指南：**
 > [⚡️ 快速开始](QuickStart.md)
@@ -66,7 +66,7 @@
 
 ## 你是否想改善阅读体验呢？<br>如果你的回答是“是的”<br>那么你可能需要：{#Question}
 ## 开源阅读 + Pixiv 书源 {#RepoIntroduction}
-> [!NOTE]
+> [!NOTE] 提示
 >
 > **我们的目标：做最好的 Pixiv 的小说阅读器**
 > 
@@ -74,13 +74,13 @@
 
 
 ### ⬇️ 下载阅读 {#DownloadLegado}
-> [!IMPORTANT]
+> [!IMPORTANT] 重要
 >
 > 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
 >
 > https://loyc.xyz/c/legado.html#download
 
-> [!TIP]
+> [!TIP] 建议
 >
 > **Android 设备：阅读 + Pixiv 书源**
 >
@@ -115,7 +115,7 @@
 
 ## 概念介绍 {#SourceIntroduction}
 ### 📖 书源 {#BookSource}
-> [!NOTE]
+> [!NOTE] 提示
 > **【开源阅读】没有账号体系，软件本身并不提供小说资源**
 > 
 > **提供小说资源的是【书源】，准确来说是书源内部的网站**
@@ -126,7 +126,7 @@
 - 有【Pixiv】书源，就可以看 Pixiv 的小说
 
 ### 🌐 订阅源 {#RssSource}
-> [!NOTE]
+> [!NOTE] 提示
 > 
 > 「订阅源类似于RSS，甚至可以听音乐看视频」
 > 
@@ -136,7 +136,7 @@
 ### 🚀 导入书源 & 订阅源 {#ImportSources}
 - **书源、订阅源的内部数据不同，添加源（网络导入、规则订阅）的时候需要区分**
 - 这里使用的是**一键导入，不需要区分二者**
-> [!IMPORTANT]
+> [!IMPORTANT] 重要
 > 
 > **点击下方链接，一键导入书源、订阅源**
 > 
@@ -155,7 +155,7 @@
 
 
 ### 🅿️ 登录账号 {#LoginAccount}
-> [!NOTE]
+> [!NOTE] 提示
 > 
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 
@@ -172,7 +172,7 @@
 **登录你的账号，登录成功后，点击右上角的对勾**
 
 ![img](./pic/PixivLogin2.jpg)
-> [!TIP]
+> [!TIP] 建议
 >
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
 - **登录成功后，就可以使用 Pixiv 书源查看小说了**
@@ -180,7 +180,7 @@
 
 
 ### ✈️ 直连模式（可选） {#IPDirect}
-> [!TIP]
+> [!TIP] 建议
 > 
 > **登录账号后，可在登录界面开启【直连模式】**
 
@@ -198,7 +198,7 @@
 - 目录：显示原始链接
 
 
-> [!NOTE]
+> [!NOTE] 提示
 >
 > **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
 >
@@ -207,7 +207,7 @@
 
 ## 阅读设置 {#LegadoSettings}
 ### 💾 [备份恢复](WebdavBackup.md) {#WebdavBackup}
-> [!IMPORTANT]
+> [!IMPORTANT] 重要
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
 >
@@ -217,7 +217,7 @@
 
 
 ### 🔄 关闭刷新 {#TurnOffAutoRefresh}
-> [!IMPORTANT]
+> [!IMPORTANT] 重要
 > 
 > **使用时，请在设置里，关闭自动刷新**
 > 
@@ -227,7 +227,7 @@
 
 ![img](./pic/LegadoSettingsAutoRefreash.png)
 
-> [!NOTE]
+> [!NOTE] 提示
 > 
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
 > 
@@ -235,7 +235,7 @@
 
 
 ### ☁️ [远程书籍](RemoteBooks.md)（可选） {#RemoteBooks}
-> [!TIP]
+> [!TIP] 建议
 >
 > **使用支持 Webdav 的网盘，阅读网盘上的书籍**
 >
@@ -244,7 +244,7 @@
 
 ## 书源功能 {#BookSourceFunction}
 ### 🖼 登陆界面 {#LoginUI}
-> [!TIP]
+> [!TIP] 建议
 > 
 > **书源众多功能均在登陆页面内**
 
@@ -314,7 +314,7 @@
 
 
 ## ☕️ [支持开发](Sponsor.md) {#Sponsor}
-> [!NOTE]
+> [!NOTE] 提示
 >
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
 > 

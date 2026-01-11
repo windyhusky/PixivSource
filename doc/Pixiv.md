@@ -9,7 +9,7 @@
 </div>
 
 
-> [!TIP]
+> [!TIP] 建议
 > 
 > **从未使用过【开源阅读】的读者可以看这篇指南：**
 > [✨臻享阅读](BetterExperience.md)
@@ -17,10 +17,10 @@
 
 ## [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 ### ⚠️ 使用须知 {#Notice}
-> [!CAUTION]
+> [!CAUTION] 危险！
 > #### ⚠️ 使用本书源造成的一切损失均由【使用者】自行承担
 
-> [!WARNING]
+> [!WARNING] 警告！
 > #### ⚠️ 请勿在 Pixiv 平台宣传本项目（书源）
 > <details><summary><strong> 📄 包括但不限于以下内容 </strong></summary>
 >
@@ -41,13 +41,13 @@
 > #### 可能会触发 shadow ban 限制（大）部分功能，严重的甚至会封号
 
 
-> [!IMPORTANT]  
+> [!IMPORTANT] 重要  
 > #### ⚠️ 不建议在书架上添加过多小说（超过100篇）
 > #### 否则手动刷新时，可能会触发请求限制，严重的甚至封号
 
 
 ### ⬇️ 下载阅读 {#DownloadLegado}
-> [!IMPORTANT]
+> [!IMPORTANT] 重要
 >
 > 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
 >
@@ -57,7 +57,7 @@
 
 
 ### 🚀 导入书源 & 订阅源 {#ImportSources}
-> [!IMPORTANT]
+> [!IMPORTANT] 重要
 >
 > **点击下方链接，一键导入书源、订阅源**
 >
@@ -70,13 +70,13 @@
 
 ## 书源配置 {#BookSourceSet}
 ### 📡 开启代理 {#SetProxy}
-> [!TIP]
+> [!TIP] 建议
 > 
 > 此处略过，**最好开启【全局代理】，确保阅读可用访问代理**
 
 
 ### 🅿️ 登录账号 {#LoginAccount}
-> [!NOTE]
+> [!NOTE] 提示
 >
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 
@@ -89,13 +89,13 @@
 **登录你的账号，登录成功后，点击右上角的对勾**
 
 ![img](./pic/PixivLogin2.jpg)
-> [!TIP]
+> [!TIP] 建议
 > 
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
 
 
 ### ✈️ 直连模式（可选）{#IPDirect}
-> [!TIP]
+> [!TIP] 建议
 >
 > **登录账号后，可在登录界面开启【直连模式】**
 
@@ -112,7 +112,7 @@
 - 发现：书签、首页、排行榜
 - 目录：显示原始链接
 
-> [!NOTE]
+> [!NOTE] 提示
 >
 > **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
 >
@@ -150,7 +150,7 @@
 
 ## 阅读设置 {#LegadoSettings}
 ### 💾 [备份恢复](WebdavBackup.md) {#WebdavBackup}
-> [!IMPORTANT]
+> [!IMPORTANT] 重要
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
 >
@@ -160,7 +160,7 @@
 
 
 ### 🔄 关闭刷新 {#TurnOffAutoRefresh}
-> [!IMPORTANT]
+> [!IMPORTANT] 重要
 >
 > **使用时，请在设置里，关闭自动刷新**
 >
@@ -170,7 +170,7 @@
 
 ![img](./pic/LegadoSettingsAutoRefreash.png)
 
-> [!NOTE]
+> [!NOTE] 提示
 >
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
 >
@@ -178,7 +178,7 @@
 
 
 ### ☁️ [远程书籍](RemoteBooks.md)（可选）{#RemoteBooks}
-> [!TIP]
+> [!TIP] 建议
 > 
 > **使用支持 Webdav 的网盘，阅读网盘上的书籍**
 >
@@ -296,7 +296,7 @@
 
   #### 2.1 最新 企划 约稿
   ![img](./pic/DiscoverPixivNew.png)
-  > [!TIP]
+  > [!TIP] 建议
   >
   > - ✅ R18 小说 (🆕 最新 企划 约稿 💰，默认显示)
   > - ☑️ 一般小说 (✅ 最新 企划 约稿 ✅，默认隐藏)
@@ -309,7 +309,7 @@
 
   #### 2.2 小说排行
   ![img](./pic/DiscoverPixivRanking.png)
-  > [!TIP]
+  > [!TIP] 建议
   > 
   > - ✅ R18 小说 (👑 排行榜单 👑，默认显示)
   > - ☑️ 一般小说 (🏆 排行榜单 🏆，默认隐藏)
@@ -321,7 +321,7 @@
 
   #### 2.3 原创热门（默认隐藏）
   ![img](./pic/DiscoverPixivHot.png)
-  > [!TIP]
+  > [!TIP] 建议
   > 
   > - ☑️ R18 小说 (🔥 原创热门 🔥，默认隐藏)
   > 
@@ -335,7 +335,7 @@
 
   #### 2.4 更新书源
   ![img](./pic/UpdateSource.png)
-  > [!NOTE]
+  > [!NOTE] 提示
   > 
   > 点击按钮【🆙 更新】以更新书源/更新订阅
   > - Jsdelivr CDN 更新有延迟
@@ -615,7 +615,7 @@
 
 
 ## ☕️ [支持开发](./Sponsor.md) {#Sponsor}
-> [!NOTE]
+> [!NOTE] 提示
 >
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
 >
