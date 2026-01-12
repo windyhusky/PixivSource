@@ -9,7 +9,7 @@
 </div>
 
 
-> [!TIP] 建议
+> [!TIP]
 >
 > **从未使用过【开源阅读】的读者可以看这篇指南：**
 > [✨臻享阅读](BetterExperience.md)
@@ -40,7 +40,7 @@
 
 ## 书源配置 {#BookSourceSet}
 ### ✅ 检查网站能否访问 {#CheckAccess}
-> [!NOTE] 提示
+> [!NOTE]
 >
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 > 
@@ -79,7 +79,7 @@
 
 ![img](./pic/LegadoSettingsAutoRefreash.png)
 
-> [!NOTE] 提示
+> [!NOTE]
 >
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
 >
@@ -87,7 +87,7 @@
 
 
 ### ☁️ [远程书籍](RemoteBooks.md)（可选）{#RemoteBooks}
-> [!TIP] 建议
+> [!TIP]
 >
 > **使用支持 Webdav 的网盘，阅读网盘上的书籍**
 >
@@ -194,7 +194,7 @@
 
 
 ## ☕️ [支持开发](./Sponsor.md) {#Sponsor}
-> [!NOTE] 提示
+> [!NOTE]
 >
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
 >

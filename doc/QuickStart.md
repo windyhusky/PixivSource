@@ -9,7 +9,7 @@
 </div>
 
 
-> [!TIP] 建议
+> [!TIP]
 >
 > **从未使用过【开源阅读】的读者可以看这篇指南：**
 > [✨臻享阅读](BetterExperience.md)
@@ -19,7 +19,7 @@
 
 
 ## 下载软件 {#DownloadAPP}
-> [!TIP] 建议
+> [!TIP]
 >
 > **Android 设备：阅读 + Pixiv 书源**
 >
@@ -63,7 +63,7 @@
 
 
 ## 导入书源 {#ImportSources}
-> [!NOTE] 提示
+> [!NOTE]
 > **使用 Pixiv 书源阅读小说，建议导入：**
 > - **🅿️ Pixiv 书源**
 > - **🐲 BTSRK 订阅源**
@@ -124,19 +124,19 @@
 
 ## 书源配置 {#BookSourceSet}
 ### 🅿️ [Pixiv 账号登录](Pixiv#LoginAccount) {#LoginAccount}
-> [!NOTE] 提示
+> [!NOTE]
 >
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 
 <details><summary><strong> 🅿️ 登录账号 </strong></summary>
 
 #### 📡 开启代理
-> [!TIP] 建议
+> [!TIP]
 >
 > 此处略过，**最好开启【全局代理】，确保阅读可用访问代理**
 
 #### 🅿️ 登录账号
-> [!NOTE] 提示
+> [!NOTE]
 >
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 
@@ -149,14 +149,14 @@
 **登录你的账号，登录成功后，点击右上角的对勾**
 
 ![img](./pic/PixivLogin2.jpg)
-> [!TIP] 建议
+> [!TIP]
 >
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
 </details>
 
 
 ### 🦊 Linpx 与 兽人控小说站 {#CheckAccess}
-> [!NOTE] 提示
+> [!NOTE]
 > 
 > **Linpx & 兽人控小说站 暂无账号体系，无需登录即可使用**
 
@@ -196,7 +196,7 @@
 
 ![img](./pic/LegadoSettingsAutoRefreash.png)
 
-> [!NOTE] 提示
+> [!NOTE]
 >
 > **截止到这里，你基本上就拥有了完整的阅读体验了**
 >
@@ -204,7 +204,7 @@
 
 
 ### ☁️ [远程书籍](RemoteBooks.md)（可选）{#RemoteBooks}
-> [!TIP] 建议
+> [!TIP]
 >
 > **使用支持 Webdav 的网盘，阅读网盘上的书籍**
 >
@@ -222,7 +222,7 @@
 
 
 ## ☕️ [支持开发](Sponsor.md) {#Sponsor}
-> [!NOTE] 提示
+> [!NOTE]
 >
 > **如果书源帮到了你，欢迎请开发者喝杯咖啡**
 >
