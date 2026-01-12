@@ -9,6 +9,7 @@ import NotFound from "./components/404.vue";
 import HomeUnderline from "./components/HomeUnderline.vue"
 import UpdateTime from "./components/UpdateTime.vue"
 import BackToTop from "./components/BackToTop.vue";
+import Sponsor from "./components/Sponsor.vue";
 import './style/index.css'
 
 // 彩虹背景动画样式
@@ -28,6 +29,7 @@ export default {
         app.component('DragonChat', DragonChat)
         app.component('HomeUnderline', HomeUnderline)
         // app.component('UpdateTime', UpdateTime)
+        app.component('Sponsor', Sponsor)
 
         // 彩虹背景动画样式
         if (typeof window !== 'undefined') {
