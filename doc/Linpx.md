@@ -94,7 +94,7 @@
 > **详见：[远程书籍](RemoteBooks.md)**
 
 
-## 畅享阅读 {#AddNovel}
+## 高级功能 {#AddNovel}
 ### 🔍 搜索小说 {#SearchNovel}
 <details><summary> 🔎 搜索小说 </summary>
 
