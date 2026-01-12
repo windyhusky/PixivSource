@@ -16,6 +16,24 @@
 
 
 ## 远程书籍
+### 📂 设置保存目录
+**打开软件，点击书架右上角菜单，点击远程书籍**
+
+![img](./pic/RemoteBooksSettings0.png)
+
+**此时则会弹出下面的弹窗**
+
+![img](./pic/SaveFileSettings0.png)
+
+**点击确定，这里可以任选其中一个**
+
+![img](./pic/SaveFileSettings1.png)
+
+**来到你想保存书籍的文件夹时，点击确认**
+
+![img](./pic/SaveFileSettings2.png)
+
+
 ### ☁️ 远程书籍配置
 **书架菜单 - 远程书籍 - 右上角三点菜单 - 服务器配置 - 加号 - 添加服务器配置信息**
 
