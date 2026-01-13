@@ -20,7 +20,7 @@
           class="qr-card"
       >
         <div class="qr-header">
-          <img v-if="qr.logo" :src="qr.logo" class="qr-logo" />
+          <img v-if="qr.logo" :src="withBase(qr.logo)" class="qr-logo" />
           <span class="qr-title">{{ qr.name }}</span>
         </div>
         <div class="qr-body">
@@ -33,6 +33,8 @@
 </template>
 
 <script setup>
+// 1. 引入 withBase
+import { withBase } from 'vitepress'
 const props = defineProps({
   // 独立定义的链接按钮
   links: {
@@ -49,13 +51,13 @@ const props = defineProps({
     default: () => [
       {
         name: '支付宝转账',
-        image: './pic/SponsorAlipay.png',
-        logo: './pic/Alipay.svg',
+        image: './img/SponsorAlipay.png',
+        logo: './img/Alipay.svg',
       },
       {
         name: '微信赞赏',
-        image: './pic/SponsorWechatReward.png',
-        logo: './pic/WechatPay.svg',
+        image: './img/SponsorWechatReward.png',
+        logo: './img/WechatPay.svg',
       }
     ]
   }
