@@ -120,8 +120,8 @@ export default defineConfig({
                 text: "打赏记录",
                 collapsed: false,
                 items: [
-                    { text: "☕ 打赏名单", link: "/Sponsor" },
-                    { text: "💵 打赏记录", link: "https://downeyrem.github.io/Sponsor/PixivSource" },
+                    { text: "☕ 支持开发", link: "/Sponsor" },
+                    { text: "💵 打赏记录", link: "https://downeyrem.github.io/Sponsor/Source" },
                 ]
             },
         ],

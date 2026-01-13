@@ -33,13 +33,13 @@ name="唐尼瑞姆" badge="🐲" icon="🐲">
 > [!IMPORTANT] 重要 
 > 
 > **可在【留言】中留下【书源】和【你的ID/昵称】，以便统计打赏名单，
-> 详见：[打赏详情](https://downeyrem.github.io/Sponsor/PixivSource)**
+> 详见：[打赏详情](https://downeyrem.github.io/Sponsor/Source)**
 
 
 ## 💶 项目赞助
 > [!TIP]
 > 
-> **本项目的赞助项目，赞助记录详见：[打赏详情](https://downeyrem.github.io/Sponsor/PixivSource)**
+> **本项目的赞助项目，赞助记录详见：[打赏详情](https://downeyrem.github.io/Sponsor/Source)**
 
 
 ### 📅 定期赞助
@@ -49,4 +49,18 @@ name="唐尼瑞姆" badge="🐲" icon="🐲">
 - [阅读 Beta](https://beta.miaogongzi.cc) （喵公子）
 
 
-## 🙏 感谢上方诸位的支持，让这个项目变得更好
+## ⌨️ 帮助名单
+> [!TIP]
+>
+> **按帮助本项目的先后顺序排名**
+
+- 狗子 [@windyhusky](https://github.com/windyhusky)
+- 不世玄奇 [@bushixuanqi](https://github.com/bushixuanqi)
+- 洛娅橙 [@Luoyacheng](https://github.com/Luoyacheng)
+- 本征 [@Eigeen](https://github.com/eigeen)
+- [@SuCan127](https://github.com/SuCan127)
+- Melaton [@HundSimon](https://github.com/HundSimon)
+- 阅读书源开发群的诸位开发者
+
+
+## 🙏 感谢上方诸位的帮助
