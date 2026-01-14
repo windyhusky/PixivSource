@@ -3,11 +3,13 @@ layout: page
 ---
 
 <script setup>
-import {
-    VPTeamPage,
-    VPTeamPageTitle,
-    VPTeamMembers
-} from "vitepress/theme";
+// 动态设置博客网址
+import { useData } from 'vitepress';
+const { site } = useData();
+const isCF = site.value.base === "/";
+const BLOG = isCF ? 'https://downeyrem.pages.dev' : 'https://downeyrem.github.io'
+
+import { VPTeamPage, VPTeamPageTitle, VPTeamMembers} from "vitepress/theme";
 
 const members = [
     {
@@ -18,7 +20,7 @@ const members = [
         actionText: "打赏",
         sponsor: "/Sponsor",
         links: [
-            { icon: "vitepress", link: "https://downeyrem.github.io" },
+            { icon: "vitepress", link: BLOG },
             { icon: "github", link: "https://github.com/DowneyRem" },
             { icon: "telegram", link: "https://t.me/DowneyRem" },
             { icon: "twitter", link: "https://x.com/DowneyRemDragon" },
