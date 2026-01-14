@@ -58,11 +58,11 @@
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------ | --- |
-| [阅读 Sigma](https://loyc.xyz/c/legado.html#download) | Plus | 无需代理，无需登录 |
-| [Gitee Release](https://gitee.com/lyc486/legado/releases/tag/beta) | Plus | 无需代理，无需登录 |
-| [Github Release](https://github.com/Luoyacheng/legado/releases) | Plus | 需要代理，无需登录 |
-| [Github Action](https://github.com/Luoyacheng/legado/actions)   | Plus | 需要代理，需要登录 |
-| [Telegram 频道](https://t.me/readsigma)                          | Plus | 需要代理，需要登录 |
+| [阅读 Sigma](https://loyc.xyz/c/legado.html#download)            | Plus  | 无需代理，无需登录 |
+| [Gitee Release](https://gitee.com/lyc486/legado/releases)       | 正式版 | 无需代理，无需登录 |
+| [Github Release](https://github.com/Luoyacheng/legado/releases) | legado_plus_releaseS.apk | 需要代理，无需登录 |
+| [Github Action](https://github.com/Luoyacheng/legado/actions)   |     | 需要代理，需要登录 |
+| [Telegram 频道](https://t.me/readsigma)                         | 正式版 | 需要代理，需要登录 |
 
 
 ### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
@@ -72,15 +72,19 @@
 > 
 > **阅读 Beta 【新包名】是当前主流版本**
 >
-> 项目地址：https://github.com/LegadoTeam/legado
+> 【新包名】项目地址：https://github.com/LegadoTeam/legado
+> 
+> 【原包名】项目地址：https://github.com/mgz0227/legado
 
-| 下载站点 | 推荐版本 | 备注 |
-| ------- | ------ | --- |
-| [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)   | 新共存版 | 无需代理，无需登录 |
-| [Github Release](https://github.com/legadoteam/legado/releases) | 新共存版 | 需要代理，需要登录 |
-| [Github Action](https://github.com/legadoteam/legado/actions)   | 新共存版 | 需要代理，需要登录 |
-| [Telegram 频道](https://t.me/Legado_Channels)                 | 新共存版 | 需要代理，需要登录 |
-| [Telegram 频道(Beta版)](https://t.me/Legado_Beta)             | 新共存版 | 需要代理，需要登录 |
+
+| 下载站点                                                         | 推荐版本  | 备注 | 
+| --------------------------------------------------------------- | -------- | --- |
+| [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)               | 新共存版 | 无需代理，无需登录 |
+| [喵公子阅读资源](https://yd.mgz6.com)                             |         | 无需代理，无需登录 |
+| [Github Release](https://github.com/legadoteam/legado/releases) | legado.app.releaseA | 需要代理，无需登录 |
+| [Github Action](https://github.com/legadoteam/legado/actions)   | legado.app.releaseA | 需要代理，需要登录 |
+| [Legado 频道](https://t.me/Legado_Channels)                     | 新共存版  | 需要代理，需要登录 |
+| [Legado Beta 频道](https://t.me/Legado_Beta)                    | 新共存版  | 需要代理，需要登录 |
 
 
 ### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
@@ -111,7 +115,6 @@
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------ | ---- |
-| [喵公子阅读资源](https://yuedu.miaogongzi.net)                | 不推荐 | 无需代理，无需登录 |
 | [Github Release](https://github.com/gedoor/legado/releases) | 不推荐 | 需要代理，无需登录 |
 | [Telegram 频道](https://t.me/Legado_Channels)               | 不推荐 | 需要代理，需要登录 |
 </details>
@@ -127,6 +130,7 @@
 
 ## 苹果版 {#AppleiOS}
 ### 🍎 【非官方】苹果版
+
 | 软件名称 | 收费方式 | 备注 |
 | ------ | ------ | ---- |
 | [源阅](https://github.com/kaich/SourceReadSite)    | TestFlight 付费 ￥128      | 兼容书源，【源阅读】的后续版本 |
