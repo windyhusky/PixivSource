@@ -2,22 +2,31 @@ import { defineConfig } from "vitepress"
 import markdownItAnchor from 'markdown-it-anchor'
 import timeline from "vitepress-markdown-timeline";
 
+// 动态判断环境
+// Cloudflare Pages 默认提供 CF_PAGES 环境变量
+const isCF = process.env.CF_PAGES === '1' || process.env.PLATFORM === 'cloudflare'
+// GitHub 部署在 /PixivSource/，Cloudflare 通常部署在根目录 /
+const BASE = isCF ? '/' : '/PixivSource/'
+const HOSTNAME = isCF ? 'https://pixivsource.pages.dev' : 'https://downeyrem.github.io/PixivSource'
+const BLOG = isCF ? 'https://downeyrem.pages.dev' : 'https://downeyrem.github.io'
+
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     lang: "zh-CN",
     title: "Pixiv 书源",
     description: "适配 开源阅读 Legado 3.0 的 Pixiv 书源",
-    base: "/PixivSource/",  // 项目名称
+    base: BASE,  // 项目名称
     cleanUrls: true,        // 简洁URL
     ignoreDeadLinks: true,  // 忽略死链
     appearance: true,       // 默认主题由用户配色方案决定
     lastUpdated: true,      // 获取页面最后更新的时间戳
     head: [
-        ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: '/favicon.png' }],
-        ["link", { rel: "apple-touch-icon", sizes: '180x180', href: "/PixivSource/favicon-180x180.png" }],
-        ['link', { rel: 'icon', type: 'image/png', sizes: '192x192', href: '/PixivSource/favicon-192x192.png' }],
+        // 使用相对路径或动态 Base 确保图标加载正确
+        ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: `${BASE}favicon.png` }],
+        ["link", { rel: "apple-touch-icon", sizes: '180x180', href: `${BASE}favicon-180x180.png` }],
+        ['link', { rel: 'icon', type: 'image/png', sizes: '192x192', href: `${BASE}favicon-192x192.png` }],
 
-        // 优化：预连接到 Google 统计，减少代理环境下的连接延迟
         ["link", { rel: "preconnect", href: "https://www.googletagmanager.com" }],
         ["link", { rel: "preconnect", href: "https://www.google-analytics.com", crossorigin: "" }],
 
@@ -32,7 +41,7 @@ export default defineConfig({
         ],
     ],
     themeConfig: {
-        logo: "/favicon.png",
+        logo: `${BASE}favicon.png`,
         // siteTitle: false,   // 隐藏站点标题
         outline: {
             level: [2, 3],     // H2 H3 标题
@@ -40,7 +49,7 @@ export default defineConfig({
         },
         returnToTopLabel: "回到顶部",
         nav: [
-            { text: "✍️ 博客", link: "https://downeyrem.github.io" },
+            { text: "✍️ 博客", link: BLOG },
             { text: "🏠 主页", link: "/" },
             {
                 text: "📌 使用指南",
@@ -70,7 +79,7 @@ export default defineConfig({
                     { text: "📜 更新日志", link: "/UpdateLog" },
                     { text: "🌱 项目起源", link: "/Beginning" },
                     { text: "☕ 支持开发", link: "/Sponsor" , activeMatch: '/' },
-                    { text: "✍️ 作者博客", link: "https://downeyrem.github.io" },
+                    { text: "✍️ 作者博客", link: BLOG },
                 ],
             },
         ],
@@ -121,7 +130,7 @@ export default defineConfig({
                 collapsed: false,
                 items: [
                     { text: "☕ 支持开发", link: "/Sponsor" },
-                    { text: "💵 打赏记录", link: "https://downeyrem.github.io/Sponsor/Source" },
+                    { text: "💵 打赏记录", link: `${BLOG}/Sponsor/Source` },
                 ]
             },
         ],
@@ -202,7 +211,7 @@ export default defineConfig({
         }
     },
     sitemap: {
-        hostname: 'https://downeyrem.github.io/PixivSource/',
+        hostname: HOSTNAME,
         lastmodDateOnly: true,  // print date not time
         xmlns: {   //精简 xmlns
             news: false, // flip to false to omit the xml namespace for news
