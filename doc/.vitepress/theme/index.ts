@@ -3,7 +3,6 @@ import DefaultTheme from "vitepress/theme";
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
 
 import { h, watch } from "vue";
-import SponsorTable from "./components/SponsorTable.vue";
 import DragonChat from './components/DragonChat.vue'
 import NotFound from "./components/404.vue";
 import HomeUnderline from "./components/HomeUnderline.vue"
@@ -25,7 +24,6 @@ export default {
         }),
 
     enhanceApp({app , router }) {
-        app.component('SponsorTable', SponsorTable)
         app.component('DragonChat', DragonChat)
         app.component('HomeUnderline', HomeUnderline)
         // app.component('UpdateTime', UpdateTime)
