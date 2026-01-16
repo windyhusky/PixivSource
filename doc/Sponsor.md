@@ -2,18 +2,19 @@
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
-# ☕ 打赏名单 ☕
+# ☕ 支持开发 ☕
 </div>
 
 
-## ☕ 支持开发
-> [!TIP]
+## ⤴️ 分享书源
+> [!NOTE]
 > **最简单的方法**
 > **——向你的亲朋好友分享 Pixiv 书源**
 > 
 > [✨臻享阅读](BetterExperience.md)、
 > [⚡️快速开始](QuickStart.md) **将有助于你的分享**
 
+## 🍖 投喂打赏
 <DragonChat avatar="/DowneyRem.png"
 name="唐尼瑞姆" badge="🐲" icon="🐲">
 <strong>如果书源帮到了你，欢迎投喂本龙（开发者）。</strong><br>
