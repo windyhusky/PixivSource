@@ -28,7 +28,7 @@ export default defineConfig({
         ['link', { rel: 'icon', type: 'image/png', sizes: '192x192', href: `${BASE}favicon-192x192.png` }],
 
         ["link", { rel: "preconnect", href: "https://www.googletagmanager.com" }],
-        ["link", { rel: "preconnect", href: "https://www.google-analytics.com", crossorigin: "" }],
+        ["link", { rel: "preconnect", href: "https://www.google-analytics.com" }],
 
         // ["link", { rel: "manifest", href: "/manifest.json" }]
         ["script", {

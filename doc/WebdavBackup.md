@@ -8,6 +8,10 @@
 #### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
+> [!NOTE]
+>
+> 本教程修改自 开源阅读官方教程：[坚果云注册与配置](https://www.yuque.com/legado/wiki/fkx510)
+
 
 ## 备份与恢复 {#WebdavBackup}
 > [!IMPORTANT] 重要
@@ -16,7 +20,7 @@
 >
 > **需要配置 Webdav 服务，才能从云端恢复数据**
 
-> [!NOTE]
+> [!TIP]
 > 
 > 所有 **支持 WebDav 的云盘** 都可以备份数据。**建议使用【坚果云】**
 > 
@@ -25,23 +29,27 @@
 
 ## 配置坚果云
 ### 🌰 注册坚果云
+打开 [坚果云 创建账号](https://www.jianguoyun.com/d/signup) ，输入 **你的邮箱，设置密码，注册账号**
 
-### ☁️ [登录坚果云](https://www.jianguoyun.com/d/signup)
+![img](./pic/JianGuoYun0.png)
 
-### 🛠 [配置坚果云](https://www.yuque.com/legado/wiki/fkx510)
-
+### 🛠 配置坚果云
 #### 1. 在右上角点击【用户名】，选择【账户信息】
-
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/12737724/1614782003487-6ec8950c-6d47-462b-b350-8f7d490d8cd1.png?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_55%2Ctext_TGVnYWRvIMK3IOW8gOa6kOmYheivuw%3D%3D%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10)
+![img](./pic/JianGuoYun1.png)
 
 #### 2. 点击【安全选项】后，在第三方管理里【添加应用】
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/12737724/1614782472368-aa50fe7e-ae13-4fd2-ac9e-3a0957b0bd29.png?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_55%2Ctext_TGVnYWRvIMK3IOW8gOa6kOmYheivuw%3D%3D%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10)
+![img](./pic/JianGuoYun2.png)
 
 #### 3. 输入名称，点击【生成密码】，最后点击完成
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/12737724/1614782954299-0dd59ade-5bc4-4dc6-9abd-3b696237ebc8.png?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_16%2Ctext_TGVnYWRvIMK3IOW8gOa6kOmYheivuw%3D%3D%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10)
+![img](./pic/JianGuoYun3.png)
 
 #### 4. 到此 WebDav 账户设置完成
-![image.png](https://cdn.nlark.com/yuque/0/2021/png/12737724/1614783363300-d74cf960-ddf4-4a04-aee2-df1f21565b0f.png?x-oss-process=image%2Fwatermark%2Ctype_d3F5LW1pY3JvaGVp%2Csize_23%2Ctext_TGVnYWRvIMK3IOW8gOa6kOmYheivuw%3D%3D%2Ccolor_FFFFFF%2Cshadow_50%2Ct_80%2Cg_se%2Cx_10%2Cy_10)
+![img](./pic/JianGuoYun4.png)
+
+#### 4. 你的 WebDav 账户信息 {$YourData}
+- WebDav 服务器地址： `https://dav.jianguoyun.com/dav/`
+- WebDav 账户：（你的坚果云注册邮箱）
+- WebDav 密码：（刚刚生成的应用密码）
 
 
 ## 设置备份信息
@@ -55,12 +63,17 @@
 #### 2. 设置 WebDav 备份信息
 ![img](./pic/WebdavBackup1.png)
 
-在 WebDav 设置里，填入服务器地址、账户、应用密码，保存。
-> [!IMPORTANT] 重要
+**在 WebDav 设置里，填入服务器地址、账户、应用密码，保存**。
+
+
+#### 3. WebDav 账户信息提示
+- WebDav 服务器地址： `https://dav.jianguoyun.com/dav/`
+- WebDav 账户：（你的坚果云注册邮箱）
+- WebDav 密码：（刚刚生成的应用密码）
+
+> [!CAUTION] 危险！
 >  
-> **请填入【自己的】 Webdav 服务器地址、账户、应用密码，**
-> 
-> **不然会导致个人数据泄露**
+> **请一定要填入【你自己的】 Webdav 账户信息，不然会导致数据泄露（并且还是你亲手造成的）**
 
 
 ### 📂 设置备份目录
@@ -103,7 +116,7 @@
 
  
 ### ⬇️ 恢复数据
-**备份与恢复，点击【恢复】即可恢复数据**
+**备份与恢复，点击【恢复】**
 
 ![img](./pic/WebdavBackup3.png)
 

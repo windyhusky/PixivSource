@@ -6,12 +6,13 @@ import { useData, useRoute } from 'vitepress';
 
 
 import { h, watch } from "vue";
-import DragonChat from './components/DragonChat.vue'
-import NotFound from "./components/404.vue";
-import HomeUnderline from "./components/HomeUnderline.vue"
-import UpdateTime from "./components/UpdateTime.vue"
 import BackToTop from "./components/BackToTop.vue";
+import Discuss from "./components/Discuss.vue";
+import DragonChat from './components/DragonChat.vue'
+import HomeUnderline from "./components/HomeUnderline.vue"
+import NotFound from "./components/404.vue";
 import Sponsor from "./components/Sponsor.vue";
+import UpdateTime from "./components/UpdateTime.vue"
 import './style/index.css'
 
 // 彩虹背景动画样式
@@ -23,7 +24,12 @@ export default {
         h(DefaultTheme.Layout, null, {
             "not-found": () => h(NotFound),
             "doc-before": () => h(UpdateTime),
-            "doc-footer-before": () => h(BackToTop),
+            // 将“回到顶部”和“直达评论”都挂载在文档页面的合适位置
+            "doc-footer-before": () => h(
+                h('div', null, [
+                    h(BackToTop), h(Discuss)
+                ]
+            )),
         }),
 
     setup() {

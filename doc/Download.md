@@ -80,7 +80,7 @@
 | 下载站点                                                         | 推荐版本  | 备注 | 
 | --------------------------------------------------------------- | -------- | --- |
 | [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)               | 新共存版 | 无需代理，无需登录 |
-| [喵公子阅读资源](https://yd.mgz6.com)                             |         | 无需代理，无需登录 |
+| [喵公子阅读资源](https://yd.mgz6.com)                             | (新包名) | 无需代理，无需登录 |
 | [Github Release](https://github.com/legadoteam/legado/releases) | legado.app.releaseA | 需要代理，无需登录 |
 | [Github Action](https://github.com/legadoteam/legado/actions)   | legado.app.releaseA | 需要代理，需要登录 |
 | [Legado 频道](https://t.me/Legado_Channels)                     | 新共存版  | 需要代理，需要登录 |
