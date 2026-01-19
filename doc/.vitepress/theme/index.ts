@@ -1,6 +1,9 @@
 // .vitepress/theme/index.ts
 import DefaultTheme from "vitepress/theme";
 import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
+import giscusTalk from 'vitepress-plugin-comment-with-giscus';
+import { useData, useRoute } from 'vitepress';
+
 
 import { h, watch } from "vue";
 import DragonChat from './components/DragonChat.vue'
@@ -23,6 +26,27 @@ export default {
             "doc-footer-before": () => h(BackToTop),
         }),
 
+    setup() {
+        // Get frontmatter and route
+        const { frontmatter } = useData();
+        const route = useRoute();
+
+        // giscus配置
+        giscusTalk({
+                repo: 'DowneyRem/PixivSource', //仓库
+                repoId: 'MDEwOlJlcG9zaXRvcnkzNTQyNDk4OTc=', //仓库ID
+                category: 'General', // 讨论分类
+                categoryId: 'DIC_kwDOFR1sqc4C0ryo', //讨论分类ID
+                mapping: 'pathname',
+                inputPosition: 'bottom',
+                lang: 'zh-CN',
+            },
+            {
+                frontmatter, route
+            },
+            true
+        );
+    },
     enhanceApp({app , router }) {
         app.component('DragonChat', DragonChat)
         app.component('HomeUnderline', HomeUnderline)

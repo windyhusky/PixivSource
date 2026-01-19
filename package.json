@@ -29,6 +29,7 @@
     "vitepress": "^1.6.4"
   },
   "devDependencies": {
-    "vitepress-markdown-timeline": "^1.2.2"
+    "vitepress-markdown-timeline": "^1.2.2",
+    "vitepress-plugin-comment-with-giscus": "^1.1.15"
   }
 }
