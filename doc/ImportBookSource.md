@@ -15,7 +15,6 @@
 > [✨臻享阅读](BetterExperience.md)
 
 
-## 2.导入书源
 ## 2.0 获取书源（订阅源）
 - [Legado | 开源阅读 | 频道](https://t.me/legado_channels)
 - [源仓库](https://www.yckceo.com/yuedu/shuyuan/index.html)
@@ -35,7 +34,7 @@
 - ➕ [一键导入 Import 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
 
 
-<details><summary> ➕ 更多方法 </summary>
+<details><summary><strong> ➕ 更多方法</strong></summary>
 
 请【**开启代理**】后，复制下面的【书源】链接
 ```
@@ -44,8 +43,17 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json
 ```
 https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json
 ```
+
+或使用以下链接：
+```
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json
+```
+```
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json
+```
+
 以下导入方法任选其一亦可
-<details><summary> A. 文件导入 </summary>
+<details><summary><strong> A. 文件导入</strong></summary>
 
 ### A.文件导入更简单
 #### 1.下载书源/订阅源文件
@@ -63,7 +71,7 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/DowneyRem/Pixi
 </details>
 
 
-<details><summary> B. 规则订阅 </summary>
+<details><summary><strong> B. 规则订阅</strong></summary>
 
 ### B.规则订阅易更新
 #### 1. 打开【订阅】页面，点击【规则订阅】
@@ -85,7 +93,7 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/DowneyRem/Pixi
 </details>
 
 
-<details><summary> C. 网络导入 </summary>
+<details><summary><strong> C. 网络导入</strong></summary>
 
 ### C.网络导入也方便
 #### 1.打开【我的】页面，点击【书源管理】
@@ -107,9 +115,9 @@ Chrome 等浏览器可以打开 [这个网址](https://github.com/DowneyRem/Pixi
 </details>
 
 
-<details><summary> D. Schema 链接导入 </summary>
+<details><summary><strong> D. 一键导入</strong></summary>
 
-### D.Schema 链接导入最方便【适用于书源提供方】
+### D.一键导入最方便
 大多点击链接一键导入书源/订阅源，都是是采用了这种方式，如：**[喵公子书源管理](http://yuedu.miaogongzi.net/gx.html)**
 
 #### 0.【书源提供方】为按钮等添加链接
@@ -145,37 +153,11 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 #### 2.导入完成并启用书源
 ![img](./pic/InportBookSourcePixiv.jpg)
 </details>
-
-
-<details><summary> E. 书源订阅（ import 订阅源） </summary>
-
-### E.书源订阅（ import 订阅源）
-如果你已经导入了【书源订阅】（ import 订阅源），则可以用其导入书源
-
-#### 1.打开“书源订阅”
-点击 “书源订阅”（ import 订阅源）
-
-![img](./pic/RssSourceImportLogo.png)
-
-点击相应书源/订阅源，导入该源
- 
-![img](./pic/RssSourceImportWebpage.png)
-
-
-#### 2.导入相关资源
-点击书源，导入书源
-
-![img](./pic/InportBookSourceLinpx.png)
-
-点击订阅源，导入订阅源
-
-![img](./pic/InportRssSourceBtsrk.png)
-</details>
 </details>
 
 
 ## 2.2 启用书源
-<details><summary> ✅ 启用书源 </summary>
+<details><summary><strong> ✅ 启用书源</strong></summary>
 
 ![img](https://telegra.ph/file/7b866f92fa9b556818206.png)
 
@@ -185,7 +167,7 @@ yuedu://booksource/importonline?src=https://cdn05042023.gitlink.org.cn/api/v1/re
 </details>
 
 ## 2.3 登录账号
-<details><summary> ➡️ 登录账号 </summary>
+<details><summary><strong> ➡️ 登录账号</strong></summary>
 
 ### 0.【根据需要】开启代理工具
 此处略过，请自行学习，**最好开启【全局代理】**

@@ -36,12 +36,11 @@
 - ➕ [一键导入 Import 订阅源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
 
 
-<details><summary> ➕ 更多方法 </summary>
+<details><summary><strong> ➕ 更多方法</strong></summary>
 
 以下导入方法任选其一亦可
 
-<details>
-<summary> A. 文件导入 </summary>
+<details><summary><strong> A. 文件导入</strong></summary>
 
 ### A.文件导入更简单
 #### 1.下载书源/订阅源文件
@@ -62,8 +61,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 </details>
 
 
-<details>
-<summary> B. 规则订阅 </summary>
+<details><summary><strong> B. 规则订阅</strong></summary>
 
 ### B.规则订阅易更新
 【**开启代理**】后，复制下方的订阅源链接
@@ -73,6 +71,15 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json
 ```
 https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 ```
+
+或使用以下链接：
+```
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
+```
+```
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json
+```
+
 #### 1. 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
 
@@ -91,8 +98,7 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 </details>
 
 
-<details>
-<summary> C. 网络导入 </summary>
+<details><summary><strong> C. 网络导入</strong></summary>
 
 ### C.网络导入也方便
 请【**开启代理**】后，复制下面的【订阅书源】链接
@@ -123,10 +129,9 @@ https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json
 </details>
 
 
-<details>
-<summary> D. Schema 链接导入 </summary>
+<details><summary><strong> D. 一键导入</strong></summary>
 
-### D.Schema 链接导入
+### D.一键导入
 大多一键导入书源/订阅源，都是采用了这种方式
 
 #### 0.【书源提供方】为按钮等添加链接
@@ -157,33 +162,6 @@ yuedu://rsssource/importonline?src=http://yuedu.miaogongzi.net/shuyuan/miaogongz
 ![img](./pic/OpenInLegado.png)
 
 #### 2.选择订阅源并导入
-
-![img](./pic/InportRssSourceBtsrk.png)
-</details>
-
-
-<details>
-<summary> E. 书源订阅（ import 订阅源） </summary>
-
-### E.书源订阅（ import 订阅源）
-如果你已经导入了【书源订阅】（ import 订阅源），则可以用其导入书源
-
-#### 1.打开“书源订阅”
-点击 “书源订阅”（ import 订阅源）
-
-![img](./pic/RssSourceImportLogo.png)
-
-点击相应书源/订阅源，导入该源
-
-![img](./pic/RssSourceImportWebpage.png)
-
-
-#### 2.导入相关资源
-点击书源，导入书源
-
-![img](./pic/InportBookSourceLinpx.png)
-
-点击订阅源，导入订阅源
 
 ![img](./pic/InportRssSourceBtsrk.png)
 </details>

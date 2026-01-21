@@ -64,6 +64,13 @@
 
 ## 导入书源 {#ImportSources}
 > [!NOTE]
+> 以下两种方式任选：
+> 
+> **🚀 A.一键导入【操作简便】，后续需要【手动更新】书源**
+> 
+> **🔗 B.规则订阅【更新方便】，后续可以【自动更新】书源**
+
+> [!TIP]
 > **使用 Pixiv 书源阅读小说，建议导入：**
 > - **🅿️ Pixiv 书源**
 > - **🐲 BTSRK 订阅源**
@@ -73,7 +80,7 @@
 > - **🐲 BTSRK 订阅源**
 
 
-### 🚀 A.一键导入 {#OneClickImport}
+### 🚀 A.一键导入【最简单】 {#OneClickImport}
 | 源名称    | jsDelivr | Github |
 |--------| -------- | ------ |
 | 🅿️ Pixiv 书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
@@ -85,7 +92,7 @@
 | 📃 Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixivToc.json) |
 
 
-### 🔗 B.规则订阅 {#Subscription}
+### 🔗 B.规则订阅【易更新】 {#Subscription}
 <details><summary><strong> 🔗 B.规则订阅 </strong></summary>
 
 **订阅 - 规则订阅 - 添加 - 复制链接，添加订阅**
@@ -97,28 +104,24 @@
 | 🅿️ Pixiv 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
 | 🦊 Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
 | 🐲 BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
-</details>
 
 
-### 💾 C.文件导入 {#FileImport}
-<details><summary><strong> 💾 C.文件导入 </strong></summary>
-
-#### 1.下载书源/订阅源文件
-如果你下载了书源文件，可以使用本地文件导入
-
-![img](./pic/DownloadResource.png)
+#### 1. 打开【订阅】页面，点击【规则订阅】
+![img](./pic/SubscribeEntry.png)
 
 
-#### 2.使用阅读打开
-点击下载完成的书源文件，选择【用其他应用打开】
-![img](./pic/OpenInQQ.png)
-
-打开方式选择阅读
-![img](./pic/OpenInLegado.png)
+#### 2. 点击加号，粘贴链接，保存订阅
+![img](./pic/SubscribeBoookSourcePixiv.jpg)
 
 
-#### 3.导入完成并启用书源/订阅源
+#### 3. 点击相应订阅规则，导入并启用/更新书源
+![img](./pic/SubscribeHomePage.jpg)
+
+**首次点击【订阅规则】 即可导入**
+
 ![img](./pic/InportBookSourcePixiv.jpg)
+
+**导入之后，再次点击则会检查更新**
 </details>
 
 
