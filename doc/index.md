@@ -41,13 +41,21 @@ hero:
       text: 📙 书源指南
       link: Linpx
       
+    - theme: brand
+      text: 🚀 导入 相关订阅源
+      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
+      
+    - theme: alt
+      text: 📗 快速开始
+      link: QuickStart
+      
     - theme: alt
       text: 🏠 项目
       link: https://github.com/DowneyRem/PixivSource
 
-#    - theme: alt
-#      text: ✈️ 频道 
-#      link: https://t.me/PixivSource
+    - theme: alt
+      text: ✈️ 频道 
+      link: https://t.me/PixivSource
 
     - theme: alt
       text: ☕ 打赏
