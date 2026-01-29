@@ -270,7 +270,7 @@ function urlSearchUser(userName, full) {
 // https://github.com/Notsfsssf/pixez-flutter
 function urlCoverUrl(url) {
     const {java, cache} = this
-    if (!url.trim()) return ""
+    if (url && !url.trim()) return ""
 
     let settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()

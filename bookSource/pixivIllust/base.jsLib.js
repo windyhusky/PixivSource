@@ -193,6 +193,8 @@ function urlSearchUser(name) {
 // https://github.com/Notsfsssf/pixez-flutter
 function urlCoverUrl(url) {
     const {java, cache} = this
+    if (url && !url.trim()) return ""
+
     let settings = this.getFromCacheObject("pixivIllustSettings")
     if (!settings) settings = this.setDefaultSettings()
 
