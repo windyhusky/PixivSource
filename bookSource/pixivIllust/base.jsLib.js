@@ -237,15 +237,8 @@ function timeFormat(str) {
 function timeTextFormat(text) {
     return `${text.slice(0, 10)} ${text.slice(11, 19)}`
 }
-function sleep(seconds) {
-    let endTime = new Date().getTime() + 1000*seconds
-    while(true){
-        if (new Date().getTime() > endTime){
-            return;
-        }
-    }
-}
 
+sleep = Packages.java.lang.Thread.sleep
 function sleepToast(text, seconds) {
     let {java} = this
     java.log(text)
