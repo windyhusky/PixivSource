@@ -129,6 +129,7 @@ function getPostBody(url, body, headers) {
     }
     try {
         java.log(`getPostBody(${url}, ${body}, ${headers})`)
+        // java.log(`getPostBody(${url}, ${body}, ${JSON.stringify(headers)})`)
         return JSON.parse(java.post(url, body, headers).body())
     } catch (e) {
         e = String(e)
@@ -377,7 +378,7 @@ function userFollow(restrict) {
         shareFactory("author")
     } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
-        putInCache(`follow${novel.userId}`, true)
+        // putInCache(`follow${novel.userId}`, true)
     }
 }
 
@@ -392,18 +393,17 @@ function userUnFollow() {
         shareFactory("author")
     } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已取消关注【${novel.userName}】`)
-        cache.delete(`follow${novel.userId}`)
+        // cache.delete(`follow${novel.userId}`)
     }
 }
 
 function userFollowFactory(code) {
     if (code === undefined) code = 1
     let novel = getNovel()
-    let lastStatus = getFromCacheObject(`follow${novel.userId}`)
-    if (lastStatus === true) code = 0
 
-    if (code === 0) userUnFollow()
-    else if (code === 1) userFollow()
+    let lastStatus = getAjaxJson(urlIP(urlUserDetailed(novel.userId))).body.isFollowed
+    if (lastStatus) userUnFollow()
+    else userFollow()
 }
 
 function userBlock() {
