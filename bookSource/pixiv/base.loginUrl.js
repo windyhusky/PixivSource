@@ -193,16 +193,19 @@ function getNovelBookmarkId(novelId) {
 
 function novelBookmarkDelete() {
     let novel = getNovel()
+    let bookmarkId = getNovelBookmarkId(novel.id)
+    if (bookmarkId === 0) return sleepToast(`🖤 取消收藏\n\n✅ 已经取消收藏\n${novel.title}`)
+
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/delete",
-        `del=1&book_id=${getNovelBookmarkId(novel.id)}`
+        `del=1&book_id=${bookmarkId}`
     )
     if (resp.error === true) {
-        sleepToast(`❤️ 收藏小说\n\n⚠️ 取消收藏【${novel.title}】失败`)
+        sleepToast(`🖤 取消收藏\n\n⚠️ 取消收藏失败\n${novel.title}`)
         shareFactory("novel")
     } else {
         cache.delete(`collect${novel.id}`)
-        sleepToast(`❤️ 收藏小说\n\n✅ 已取消收藏【${novel.title}】`)
+        sleepToast(`🖤 取消收藏\n\n✅ 已经取消收藏\n${novel.title}`)
 
         let likeNovels = getFromCacheObject("likeNovels")
         likeNovels = likeNovels.filter(item => item !== Number(novel.id))
