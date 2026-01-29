@@ -135,7 +135,7 @@
         }
     },
     {
-        "name": "🧹 清除缓存",
+        "name": "🔄 刷新本章",
         "type": "button",
         "action": "cleanCache()",
         "style": {
