@@ -144,15 +144,10 @@ function getPostBody(url, body, headers) {
 }
 
 function novelBookmarkAdd() {
-    let restrict
+    let restrict = 0
     let novel = getNovel()
     let novelObj = getAjaxJson(urlNovelDetailed(novel.id), true)
-    if (novelObj.body.bookmarkData.private === false) {
-        restrict = 1
-    } else {
-        restrict = 0
-    }
-
+    if (novelObj.body.bookmarkData && novelObj.body.bookmarkData.private === false) restrict = 1
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
@@ -168,7 +163,6 @@ function novelBookmarkAdd() {
 
         let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
         novelObj.body.isBookmark = true
-        novelObj.body.bookmarkData.private = (restrict === 1)
         putInCacheObject(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
     }
 
