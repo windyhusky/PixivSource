@@ -190,7 +190,7 @@ function urlIP(url) {
 }
 function urlPixivCoverUrl(url) {
     const {java, cache} = this
-    if (!url.trim()) return ""
+    if (url && !url.trim()) return ""
 
     let headers = {"Referer": "https://www.pixiv.net/"}
     if (url.trim()) {
