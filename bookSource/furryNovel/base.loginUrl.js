@@ -33,7 +33,7 @@ function shareFactory(type) {
 }
 
 function startGithubReadme() {
-    startBrowser("https://downeyrem.github.io/PixivSource/FurryNovel", "使用指南")
+    startBrowser("https://pixivsource.pages.dev/FurryNovel", "使用指南")
 }
 function startGithubIssue() {
     startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")

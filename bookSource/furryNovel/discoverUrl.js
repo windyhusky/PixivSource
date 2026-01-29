@@ -17,9 +17,9 @@ let li = [
     {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"},
     {"📙 书源相关 📙": ""},
     {"🏠 主页": "https://downeyrem.github.io/PixivSource"},
-    {"🔰 指南": "https://downeyrem.github.io/PixivSource/FurryNovel"},
+    {"🔰 指南": "https://pixivsource.pages.dev/FurryNovel"},
     {"🐞 反馈": "https://github.com/DowneyRem/PixivSource/issues"},
-    {"💰 打赏": "https://downeyrem.github.io/PixivSource/Sponsor"},
+    {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
 ]
 
 // 格式化发现地址

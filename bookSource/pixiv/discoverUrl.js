@@ -114,9 +114,9 @@ let generalGenre = [
 let source = [
     {"📘 书源相关 📘": ""},
     {"🏠 主页": "https://downeyrem.github.io/PixivSource"},
-    {"🔰 指南": "https://downeyrem.github.io/PixivSource/Pixiv"},
+    {"🔰 指南": "https://pixivsource.pages.dev/Pixiv"},
     {"🐞 反馈": "https://github.com/DowneyRem/PixivSource/issues"},
-    {"💰 打赏": "https://downeyrem.github.io/PixivSource/Sponsor"},
+    {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
 ]
 
 let likeTagLinks = [{"📌 喜欢标签 📌":""}]

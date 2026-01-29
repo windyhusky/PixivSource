@@ -11,7 +11,7 @@
 
 书源发布：Pixiv 书源频道 https://t.me/PixivSource
 项目地址：https://github.com/DowneyRem/PixivSource
-使用教程：https://downeyrem.github.io/PixivSource/Pixiv
+使用教程：https://pixivsource.pages.dev/Pixiv
 
 旧版书源：
 https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@191/pixiv.json

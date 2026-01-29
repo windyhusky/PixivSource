@@ -11,7 +11,7 @@
 书源发布：Pixiv 书源频道 https://t.me/PixivSource
 兽人阅读频道 https://t.me/FurryReading
 项目地址：https://github.com/DowneyRem/PixivSource
-使用教程：https://downeyrem.github.io/PixivSource/FurryNovel
+使用教程：https://pixivsource.pages.dev/FurryNovel
 
 规则订阅：Import 订阅源
 https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json

@@ -822,7 +822,7 @@ function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
 function startGithubReadme() {
-    startBrowser("https://downeyrem.github.io/PixivSource/Pixiv", "使用指南")
+    startBrowser("https://pixivsource.pages.dev/Pixiv", "使用指南")
 }
 
 function checkStatus(status) {
