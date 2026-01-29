@@ -375,10 +375,14 @@ function userFollow(restrict) {
     )
     if (resp.error === true) {
         sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败`, 1)
-        shareFactory("author")
+
+        java.startBrowserAwait(`${urlUserUrl(novel.userId)},
+    {"headers": {"User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36" }}`, `关注${novel.userName}`, false)
+        let lastStatus = getAjaxJson(urlUserDetailed(novel.userId), true).body.isFollowed
+        if (lastStatus) sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
+
     } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
-        // putInCache(`follow${novel.userId}`, true)
     }
 }
 
@@ -393,7 +397,6 @@ function userUnFollow() {
         shareFactory("author")
     } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已取消关注【${novel.userName}】`)
-        // cache.delete(`follow${novel.userId}`)
     }
 }
 
@@ -401,7 +404,7 @@ function userFollowFactory(code) {
     if (code === undefined) code = 1
     let novel = getNovel()
 
-    let lastStatus = getAjaxJson(urlIP(urlUserDetailed(novel.userId))).body.isFollowed
+    let lastStatus = getAjaxJson(urlUserDetailed(novel.userId), true).body.isFollowed
     if (lastStatus) userUnFollow()
     else userFollow()
 }
