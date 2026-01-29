@@ -123,6 +123,7 @@ function getPostBody(url, body, headers) {
     }
     try {
         java.log(`getPostBody(${url}, ${body}, ${headers})`)
+        // java.log(`getPostBody(${url}, ${body}, ${JSON.stringify(headers)})`)
         return JSON.parse(java.post(url, body, headers).body())
     } catch (e) {
         e = String(e)
@@ -136,9 +137,11 @@ function getPostBody(url, body, headers) {
     }
 }
 
-function novelBookmarkAdd(restrict) {
-    if (restrict === undefined) restrict = 0
+function novelBookmarkAdd() {
+    let restrict = 0
     let novel = getNovel()
+    let novelObj = getAjaxJson(urlNovelDetailed(novel.id), true)
+    if (novelObj.body.bookmarkData && novelObj.body.bookmarkData.private === false) restrict = 1
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
@@ -146,12 +149,8 @@ function novelBookmarkAdd(restrict) {
     if (resp.error === true) {
         sleepToast(`❤️ 收藏小说\n\n⚠️ 收藏【${novel.title}】失败`)
         shareFactory("novel")
-    } else if (resp.body === null) {
-        sleepToast(`❤️ 收藏小说\n\n✅ 已经收藏【${novel.title}】了`)
     } else {
         putInCacheObject(`collect${novel.id}`, resp.body)
-        sleepToast(`❤️ 收藏小说\n\n✅ 已收藏【${novel.title}】`)
-
         let likeNovels = getFromCacheObject("likeNovels")
         likeNovels.push(Number(novel.id))
         putInCacheObject("likeNovels", likeNovels)
@@ -160,28 +159,41 @@ function novelBookmarkAdd(restrict) {
         novelObj.body.isBookmark = true
         putInCacheObject(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
     }
+
+    if (restrict === 1) {
+        sleepToast(`㊙️ 私密收藏\n\n✅ 已私密收藏\n${novel.title}`)
+    } else {
+        sleepToast(`❤️ 公开收藏\n\n✅ 已公开收藏\n${novel.title}`)
+    }
 }
 
 function getNovelBookmarkId(novelId) {
     let bookmarkId = getFromCacheObject(`collect${novelId}`)
     if (bookmarkId === null) {
-        bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
+        try {
+            bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
+        } catch (e) {
+            bookmarkId = 0
+        }
     }
     return bookmarkId
 }
 
 function novelBookmarkDelete() {
     let novel = getNovel()
+    let bookmarkId = getNovelBookmarkId(novel.id)
+    if (bookmarkId === 0) return sleepToast(`🖤 取消收藏\n\n✅ 已经取消收藏\n${novel.title}`)
+
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/delete",
-        `del=1&book_id=${getNovelBookmarkId(novel.id)}`
+        `del=1&book_id=${bookmarkId}`
     )
     if (resp.error === true) {
-        sleepToast(`❤️ 收藏小说\n\n⚠️ 取消收藏【${novel.title}】失败`)
+        sleepToast(`🖤 取消收藏\n\n⚠️ 取消收藏失败\n${novel.title}`)
         shareFactory("novel")
     } else {
         cache.delete(`collect${novel.id}`)
-        sleepToast(`❤️ 收藏小说\n\n✅ 已取消收藏【${novel.title}】`)
+        sleepToast(`🖤 取消收藏\n\n✅ 已经取消收藏\n${novel.title}`)
 
         let likeNovels = getFromCacheObject("likeNovels")
         likeNovels = likeNovels.filter(item => item !== Number(novel.id))
@@ -195,16 +207,22 @@ function novelBookmarkDelete() {
 
 function novelsBookmarkDelete() {
     let novel = getNovel()
-    if (!novel.seriesId) {
-        sleepToast(`🖤 取消收藏系列\n\n⚠️ 【${novel.title}】非系列小说，现已取消收藏本篇小说`)
+    if (!isLongClick) {
+        if (!novel.seriesId) sleepToast(`🖤 取消收藏\n\n正在取消收藏【本章】`)
+        else sleepToast(`🖤 取消收藏\n\n正在取消收藏【本章】\n长按可取消收藏【整个系列】`)
         return novelBookmarkDelete(0)
-    } else {
-        sleepToast(`🖤 取消收藏系列\n\n🔄 正在取消收藏系列【${novel.seriesTitle}】，请稍后……`, 2)
     }
+    if (isLongClick && !novel.seriesId) {
+        return (`🖤 取消收藏系列\n\n⚠️ 【${novel.title}】非系列小说`)
+    }
+    sleepToast(`🖤 取消收藏系列\n\n🔄 正在取消收藏系列，请稍后……`, 2)
 
     let bookmarkIds = []
     let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
-    novelIds.forEach(novelId => {bookmarkIds.push(getNovelBookmarkId(novelId))})
+    novelIds.forEach(novelId => {
+        let bookmarkId = getNovelBookmarkId(novelId)
+        if (bookmarkId) bookmarkIds.push(getNovelBookmarkId(novelId))
+    })
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/remove",
         JSON.stringify({"bookmarkIds": bookmarkIds})
@@ -265,16 +283,6 @@ function novelsBookmarkAdd() {
     })
     putInCacheObject("likeNovels", likeNovels)
     sleepToast(`❤️ 收藏系列\n\n✅ 已经收藏【${novel.seriesTitle}】全部章节`)
-}
-
-function novelBookmarkFactory(code) {
-    let novel = getNovel()
-    let collectId = getFromCacheObject(`collect${novel.id}`)
-    if (collectId >= 1) code = 0
-
-    if (code === 0) novelBookmarkDelete()
-    else if (code === 1) novelBookmarkAdd(0)
-    else if (code === 2) novelBookmarkAdd(1)
 }
 
 function novelMarker(page) {
@@ -368,10 +376,14 @@ function userFollow(restrict) {
     )
     if (resp.error === true) {
         sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败`, 1)
-        shareFactory("author")
+
+        java.startBrowserAwait(`${urlUserUrl(novel.userId)},
+    {"headers": {"User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36" }}`, `关注${novel.userName}`, false)
+        let lastStatus = getAjaxJson(urlUserDetailed(novel.userId), true).body.isFollowed
+        if (lastStatus) sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
+
     } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
-        putInCache(`follow${novel.userId}`, true)
     }
 }
 
@@ -386,18 +398,16 @@ function userUnFollow() {
         shareFactory("author")
     } else {
         sleepToast(`⭐️ 关注作者\n\n✅ 已取消关注【${novel.userName}】`)
-        cache.delete(`follow${novel.userId}`)
     }
 }
 
 function userFollowFactory(code) {
     if (code === undefined) code = 1
     let novel = getNovel()
-    let lastStatus = getFromCacheObject(`follow${novel.userId}`)
-    if (lastStatus === true) code = 0
 
-    if (code === 0) userUnFollow()
-    else if (code === 1) userFollow()
+    let lastStatus = getAjaxJson(urlUserDetailed(novel.userId), true).body.isFollowed
+    if (lastStatus) userUnFollow()
+    else userFollow()
 }
 
 function userBlock() {

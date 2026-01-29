@@ -9,7 +9,7 @@ let source = [
 
 let novel = [
     {"章节名称": "text" },
-    {"❤️ ㊙️ 公开收藏": "novelBookmarkFactory(1)" },
+    {"❤️ ㊙️ 收藏本章": "novelBookmarkAdd()" },
     {"📃 🚫 追更系列": "seriesWatchFactory()" },
     {"❤️ 收藏系列": "novelsBookmarkAdd()" },
 

@@ -58,7 +58,7 @@
         "type": "text"
     },
     {
-        "name": "❤️ 公开收藏",
+        "name": "❤️ 收藏本章",
         "type": "button",
         "action": "novelBookmarkFactory(1)",
         "style": {
