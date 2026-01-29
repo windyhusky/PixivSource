@@ -182,7 +182,11 @@ function novelBookmarkAdd() {
 function getNovelBookmarkId(novelId) {
     let bookmarkId = getFromCacheObject(`collect${novelId}`)
     if (bookmarkId === null) {
-        bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
+        try {
+            bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
+        } catch (e) {
+            bookmarkId = 0
+        }
     }
     return bookmarkId
 }
@@ -212,16 +216,22 @@ function novelBookmarkDelete() {
 
 function novelsBookmarkDelete() {
     let novel = getNovel()
-    if (!novel.seriesId) {
-        sleepToast(`🖤 取消收藏系列\n\n⚠️ 【${novel.title}】非系列小说，现已取消收藏本篇小说`)
+    if (!isLongClick) {
+        if (!novel.seriesId) sleepToast(`🖤 取消收藏\n\n正在取消收藏【本章】`)
+        else sleepToast(`🖤 取消收藏\n\n正在取消收藏【本章】\n长按可取消收藏【整个系列】`)
         return novelBookmarkDelete(0)
-    } else {
-        sleepToast(`🖤 取消收藏系列\n\n🔄 正在取消收藏系列【${novel.seriesTitle}】，请稍后……`, 2)
     }
+    if (isLongClick && !novel.seriesId) {
+        return (`🖤 取消收藏系列\n\n⚠️ 【${novel.title}】非系列小说`)
+    }
+    sleepToast(`🖤 取消收藏系列\n\n🔄 正在取消收藏系列，请稍后……`, 2)
 
     let bookmarkIds = []
     let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
-    novelIds.forEach(novelId => {bookmarkIds.push(getNovelBookmarkId(novelId))})
+    novelIds.forEach(novelId => {
+        let bookmarkId = getNovelBookmarkId(novelId)
+        if (bookmarkId) bookmarkIds.push(getNovelBookmarkId(novelId))
+    })
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/remove",
         JSON.stringify({"bookmarkIds": bookmarkIds})
