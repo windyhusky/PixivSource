@@ -2,14 +2,14 @@
 <img width="150" height="150" src="doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 ## 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
-### 🏠 [书源官网](https://downeyrem.github.io/PixivSource) & [使用指南](https://downeyrem.github.io/PixivSource/BetterExperience) 
+### 🏠 [书源官网](https://downeyrem.github.io/PixivSource) & [使用指南](https://pixivsource.pages.dev/BetterExperience) 
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-### ☕️ [Pixiv 书源项目 打赏名单](https://downeyrem.github.io/PixivSource/Sponsor)
+### ☕️ [Pixiv 书源项目 打赏名单](https://pixivsource.pages.dev/Sponsor)
 </div>
 
 
-## ✨ [臻享阅读：最好的 Pixiv 小说阅读器——开源阅读 + Pixiv 书源](https://downeyrem.github.io/PixivSource/BetterExperience)
-## ⚡️ [快速开始](https://downeyrem.github.io/PixivSource/QuickStart)：➡️[下载阅读](https://downeyrem.github.io/PixivSource/QuickStart#DownloadLegado)➡️[导入书源](https://downeyrem.github.io/PixivSource/QuickStart#ImportSources)➡️[登录账号](https://downeyrem.github.io/PixivSource/QuickStart#LoginAccount)➡️[阅读设置](https://downeyrem.github.io/PixivSource/QuickStart#LegadoSettings)➡️[开始使用](https://downeyrem.github.io/PixivSource/Pixiv#AddNovel)
+## ✨ [臻享阅读：最好的 Pixiv 小说阅读器——开源阅读 + Pixiv 书源](https://pixivsource.pages.dev/BetterExperience)
+## ⚡️ [快速开始](https://pixivsource.pages.dev/QuickStart)：➡️[下载阅读](https://pixivsource.pages.dev/QuickStart#DownloadLegado)➡️[导入书源](https://pixivsource.pages.dev/QuickStart#ImportSources)➡️[登录账号](https://pixivsource.pages.dev/QuickStart#LoginAccount)➡️[阅读设置](https://pixivsource.pages.dev/QuickStart#LegadoSettings)➡️[开始使用](https://pixivsource.pages.dev/Pixiv#AddNovel)
 
 
 ## 📖 书源功能
@@ -440,8 +440,8 @@
 
 
 ## 🗃 杂类
-### 🌱 [项目起源：为了更好的阅读体验](https://downeyrem.github.io/PixivSource/Beginning)
-### ☕️ [支持开发](https://downeyrem.github.io/PixivSource/Sponsor)
+### 🌱 [项目起源：为了更好的阅读体验](https://pixivsource.pages.dev/Beginning)
+### ☕️ [支持开发](https://pixivsource.pages.dev/Sponsor)
 
 <details><summary> ©️ 版权问题 </summary>
 
