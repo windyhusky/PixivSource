@@ -143,9 +143,16 @@ function getPostBody(url, body, headers) {
     }
 }
 
-function novelBookmarkAdd(restrict) {
-    if (restrict === undefined) restrict = 0
+function novelBookmarkAdd() {
+    let restrict
     let novel = getNovel()
+    let novelObj = getAjaxJson(urlNovelDetailed(novel.id), true)
+    if (novelObj.body.bookmarkData.private === false) {
+        restrict = 1
+    } else {
+        restrict = 0
+    }
+
     let resp = getPostBody(
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
@@ -153,19 +160,22 @@ function novelBookmarkAdd(restrict) {
     if (resp.error === true) {
         sleepToast(`❤️ 收藏小说\n\n⚠️ 收藏【${novel.title}】失败`)
         shareFactory("novel")
-    } else if (resp.body === null) {
-        sleepToast(`❤️ 收藏小说\n\n✅ 已经收藏【${novel.title}】了`)
     } else {
         putInCacheObject(`collect${novel.id}`, resp.body)
-        sleepToast(`❤️ 收藏小说\n\n✅ 已收藏【${novel.title}】`)
-
         let likeNovels = getFromCacheObject("likeNovels")
         likeNovels.push(Number(novel.id))
         putInCacheObject("likeNovels", likeNovels)
 
         let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
         novelObj.body.isBookmark = true
+        novelObj.body.bookmarkData.private = (restrict === 1)
         putInCacheObject(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
+    }
+
+    if (restrict === 1) {
+        sleepToast(`㊙️ 私密收藏\n\n✅ 已私密收藏\n${novel.title}`)
+    } else {
+        sleepToast(`❤️ 公开收藏\n\n✅ 已公开收藏\n${novel.title}`)
     }
 }
 
@@ -272,16 +282,6 @@ function novelsBookmarkAdd() {
     })
     putInCacheObject("likeNovels", likeNovels)
     sleepToast(`❤️ 收藏系列\n\n✅ 已经收藏【${novel.seriesTitle}】全部章节`)
-}
-
-function novelBookmarkFactory(code) {
-    let novel = getNovel()
-    let collectId = getFromCacheObject(`collect${novel.id}`)
-    if (collectId >= 1) code = 0
-
-    if (code === 0) novelBookmarkDelete()
-    else if (code === 1) novelBookmarkAdd(0)
-    else if (code === 2) novelBookmarkAdd(1)
 }
 
 function novelMarker(page) {
