@@ -14,10 +14,10 @@ function startBrowser(url, title) {
 }
 
 function startGithubIntroduction() {
-    startBrowser("https://downeyrem.github.io/PixivSource/BetterExperience", "阅读指南")
+    startBrowser("https://pixivsource.pages.dev/BetterExperience", "阅读指南")
 }
 function startGithubReadme() {
-    startBrowser("https://downeyrem.github.io/PixivSource/Linpx", "书源指南")
+    startBrowser("https://pixivsource.pages.dev/Linpx", "书源指南")
 }
 function startGithubIssue() {
     startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
@@ -26,13 +26,13 @@ function startGithub() {
     startBrowser("https://github.com/DowneyRem/PixivSource", "书源介绍")
 }
 function startGithubWebdavBackup() {
-    startBrowser("https://downeyrem.github.io/PixivSource/WebdavBackup", "远程书籍")
+    startBrowser("https://pixivsource.pages.dev/WebdavBackup", "远程书籍")
 }
 function startGithubRemoteBooks() {
-    startBrowser("https://downeyrem.github.io/PixivSource/RemoteBooks", "远程书籍")
+    startBrowser("https://pixivsource.pages.dev/RemoteBooks", "远程书籍")
 }
 function startGithubSponsor() {
-    startBrowser("https://downeyrem.github.io/PixivSource/Sponsor", "支持开发")
+    startBrowser("https://pixivsource.pages.dev/Sponsor", "支持开发")
 }
 
 function startTelegram() {
