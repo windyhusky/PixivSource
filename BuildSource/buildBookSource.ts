@@ -210,17 +210,17 @@ function buildLinpxSource(test:boolean|number =undefined) {
 
 function main(test:boolean|number =undefined) {
     // 输出当前时间
-    let options = { year: "numeric", month: "2-digit", day: "2-digit"}
-    console.log(new Date(Date.now()).toLocaleString("zh"))
+    let options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}
+    console.log(new Date(Date.now()).toLocaleString("zh", options))
     console.log("——".repeat(11))
     if (!test) {
-        let updateTimeNew = new Date(Date.now() + delayTime).toLocaleDateString("zh", options)
-        console.log(`书源更新时间：${updateTimeNew}`)
+        let updateTimeNew = new Date(Date.now() + delayTime).toLocaleDateString("zh", options).slice(0, 10)
+        console.log(`书源更新时间：\n${updateTimeNew}`)
     }
     buildPixivSource(test)
     buildLinpxSource(test)
 }
 
 let delayTime = 2 * 24 * 60 * 60 * 1000
-// main(0)
-main(1)
+main(0)
+// main(1)

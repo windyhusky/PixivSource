@@ -133,7 +133,8 @@ function buildNovelSource(name:string): RssSource {
     RssSource.injectJs = injectJs
 
     // 更新订阅更新时间
-    let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString().slice(0, 10)
+    let options = { year: "numeric", month: "2-digit", day: "2-digit"}
+    let updateTimeNew = new Date(Date.now() + delayTime).toLocaleDateString("zh", options)
     RssSource.lastUpdateTime = Number(`${String(Date.parse(updateTimeNew)).slice(0, 10)}251`)
 
     // 去除空键
@@ -247,10 +248,11 @@ function buildImportSource() {
 
 function main() {
     // 输出当前时间
-    console.log(new Date(Date.now()).toLocaleString())
+    let options = { year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit"}
+    console.log(new Date(Date.now()).toLocaleString("zh", options))
     console.log("——".repeat(11))
-    let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString().slice(0, 10)
-    console.log(`订阅更新时间：${updateTimeNew}`)
+    let updateTimeNew = new Date(Date.now() + delayTime).toLocaleString("zh", options).slice(0, 10)
+    console.log(`订阅更新时间：\n${updateTimeNew}`)
     buildBTSRKSource()
     // buildBooksSources()
     // buildImportSource()
