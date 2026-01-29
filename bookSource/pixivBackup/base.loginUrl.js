@@ -917,5 +917,6 @@ function cleanCache() {
     //     cache.delete(`${urlSeriesDetailed(novel.seriesId)}`)
     //     cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
     // }
-    sleepToast(`🧹 清除缓存\n\n📌 当前章节：${novel.title}\n\n已清除本章正文缓存，刷新正文以更新`, 5)
+    try {java.refreshContent()} catch(err) {}
+    sleepToast(`🔄 刷新本章\n\n若正文未更新，请手动刷新`, 5)
 }
