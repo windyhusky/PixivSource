@@ -148,9 +148,11 @@
 
 
 ## 书源配置 {#BookSourceSet}
-### ⚙️ 书源管理 {#BookSourceManagement}
+### 🔧 书源管理 {#BookSourceManagement}
 打开书源管理，有书源的话，点击书源菜单后，应该是这样的：
+
 ![img.png](./pic/PixivLogin1.png)
+
 注意**这里的【登录】和【调试】，这两个功能很重要**，我们稍后讲解
 
 
@@ -183,6 +185,8 @@
 > [!TIP]
 > 
 > **登录账号后，可在登录界面开启【直连模式】**
+> 
+> **✈️ 直连模式 => 我的 - 书源管理 - Pixiv 小说 - 登录**
 
 ![img](./pic/PixivLoginUISource.png)
 
@@ -243,34 +247,26 @@
 
 
 ## 书源功能 {#BookSourceFunction}
-### 🖼 登陆界面 {#LoginUI}
+> [!NOTE]
+>
+> **书源众多功能均在登陆页面内，进入登录页面有以下两种方式：**
+>
+> **⏺ 互动功能 => 书架 - 阅读界面 - Pixiv 小说 - 登录**
+>
+> **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
+
+
+### ⏺ 互动功能 {#InteractiveFunction}
 > [!TIP]
-> 
-> **书源众多功能均在登陆页面内**
-
-打开登录界面：
-- **①我的 - 书源管理 - Pixiv 小说 - 登录**
-
-#### ①我的 - 书源管理 - Pixiv 小说 - 登录
-![img.png](./pic/PixivLogin1.png)
-
-此处打开登录界面，可以显示**书源设置等功能**
-
-![img](./pic/PixivLoginUI1.png)
-
-此处的**按钮图标，基本上会和实际的设置同步**
-<br>
-
-
-#### ②小说阅读界面 - Pixiv 小说 - 登录
+>
+> **⏺ 互动功能 => 书架 - 阅读界面 - Pixiv 小说 - 登录**
 
 ![img.png](./pic/PixivLogin0.png)
 
 此处打开登录界面，可以显示 **互动功能**
 
-![img](./pic/PixivLoginUI2.png)
+![img](./pic/PixivLoginUINovels.png)
 
-### ⏺ 互动功能 {#InteractiveFunction}
 - **❤️ 收藏本章：添加公开收藏、切换私密收藏**
 - 📃 追更系列：追更系列、取消追更
 - **❤️ 收藏系列：公开收藏系列内的每篇小说（可追加）**
@@ -285,11 +281,19 @@
 
 
 ### ⚙️ 书源设置 {#BookSourceSettings}
-<details><summary> ⚙️ 书源设置 </summary>
+> [!TIP]
+>
+> **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
 
-![img](./pic/PixivLoginUISettings.png)
+![img.png](./pic/PixivLogin1.png)
+
+此处打开登录界面，可以显示 **书源设置**
+
+![img](./pic/PixivLoginUI1.png)
+此处的**按钮图标，基本上会和实际的设置同步**
+
 - ⚙️ 当前设置：显示当前设置
-- ⚙️ 默认设置：恢复默认设置
+- 🔧 默认设置：恢复默认设置
 - 👤 搜索作者：默认搜索作者
 -
 - 🀄 繁简通搜：搜索进行繁简转换（搜索作者不转换）
@@ -307,7 +311,6 @@
 - ⏩ 快速模式：开启快速模式（关闭**默认搜索作者等**影响搜索速度的功能）
 - 🐞 调试模式：开启调试模式
 - 🔍 搜索说明：显示搜索说明
-</details>
 
 
 ## 📖 [畅享阅读](Pixiv.md#AddNovel) {#AddNovel}
@@ -315,6 +318,7 @@
 - ⭐️ 发现小说：发现页面，查看小说，添加小说到书架
 - 🔗 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
 - 🌐 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
+- 🖼️ 全部功能：详见 [全部功能](Pixiv.md#AddNovel)
 
 
 ## ☕️ [支持开发](Sponsor.md) {#Sponsor}
