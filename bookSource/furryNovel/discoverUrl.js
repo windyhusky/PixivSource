@@ -16,7 +16,7 @@ let li = [
     {"🔄 随便": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=random&${key.map(v => "tags[]=" + v).join("&")}`},
     {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"},
     {"📙 书源相关 📙": ""},
-    {"🏠 主页": "https://downeyrem.github.io/PixivSource"},
+    {"🏠 主页": "https://pixivsource.pages.dev"},
     {"🔰 指南": "https://pixivsource.pages.dev/FurryNovel"},
     {"🐞 反馈": "https://github.com/DowneyRem/PixivSource/issues"},
     {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},

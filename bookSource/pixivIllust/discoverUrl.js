@@ -56,7 +56,7 @@ generalRank = [
 
 let source = [
     {"📘 书源相关 📘": ""},
-    {"🏠 主页": "https://downeyrem.github.io/PixivSource"},
+    {"🏠 主页": "https://pixivsource.pages.dev"},
     {"🔰 指南": "https://pixivsource.pages.dev/Pixiv"},
     {"🐞 反馈": "https://github.com/DowneyRem/PixivSource/issues"},
     {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
