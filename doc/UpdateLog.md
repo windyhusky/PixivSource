@@ -10,6 +10,61 @@
 
 
 ## ⏱️ 近期更新
+### 📚 更新 256
+🅿️ Pixiv、🦊 Linpx & FN 书源：
+- **此版本起仅支持 阅读 Plus、阅读 Beta 新包名**
+  - 登录检测：检测版本，添加弹窗
+  - 检测阅读版本，跳转阅读 Plus 下载界面
+
+
+### ⬆️ 更新 255
+- Pixiv 小说、小说备用、漫画：
+  - JSLib：
+    - 使用 getFromCacheObject putInCacheObject 统一读写缓存 object
+      - getAjaxJson 使用 getFromCacheObject 读写缓存
+      - getAjaxAllJson 使用 getFromCacheObject putInCacheObject 读写缓存
+      - cacheGetAndSet 使用 getFromCacheObject putInCacheObject 读写缓存
+    - putInCacheObject 直连时，同时缓存常规 url
+    - 使用 putInCacheObject 替换 cache.put("name", JSON.stringify(obj), second)
+      - 搜索: 优化 getSeries，搜索结果写入缓存
+      - 详情: 使用 putInCacheObject
+      - 正文: 使用 putInCacheObject
+      - 登录界面：使用 putInCacheObject
+    - 优化 getAjaxJson
+    - 使用 getFromCache putInCache 统一读写缓存 object
+    - 使用 getFromCache 替换 cache.get("name")
+    - 使用 putInCache 替换 cache.put("name", obj, second)
+      - 登录检测: 使用 putInCache 与 getFromCache
+      - 登录检测：优化 saveNovels
+      - JSLib: getWebViewUA 加入缓存
+      - JSLib: 使用 getFromCache
+      - 发现: 使用 getFromCache
+  - 登录检测：
+    - 优化 startBrowser
+    - 简化 isSourceRead
+    - 简化 isLegadoOfficial
+  - 搜索发现 
+    - 发现：优化 handlerRegexIllusts
+    - 小说搜索：优化 getSeries 
+    - 漫画搜索：优化 getArtwork
+
+
+- Pixiv 小说、小说备用、漫画、Linpx、FN：
+  - 适配阅读 Plus 新特性：
+    - 登陆界面
+      - 使用 JS 生成登录界面
+    - 正文
+      - 使用三级标题替换 [chapter:]
+      - 不再替换 [newpage]
+      - 超链接
+    - 回调:
+      - 使用 book 对象获取数据
+      - 删除小说，清理缓存
+  - 其他变动：
+    - 发现地址: 重命名为 discoverUrl.js
+    - 正文：图片规则改为 FULL
+    
+
 ### 📚 更新 254 
 - 🦊 Linpx、FN
   - 可用软件：
