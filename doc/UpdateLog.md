@@ -174,6 +174,7 @@
   - Pixiv 书源
 - 🌐 新增书源发布页 
   - https://downeyrem.github.io/PixivSource
+  - https://pixivsource.pages.dev
 - 🔗 替换指南、赞助链接：
   - Pixiv 书源
   - Linpx 书源

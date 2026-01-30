@@ -31,7 +31,9 @@
 >    - https://github.com/DowneyRem/PixivSource
 >    - https://github.com/windyhusky/PixivSource
 >    - https://github.com/eigeen/PixivSourceProject
+>  - 书源主页：
 >    - https://downeyrem.github.io/PixivSource
+>    - https://pixivsource.pages.dev
 >  - 项目参与者链接：
 >    - https://github.com/DowneyRem
 >    - https://github.com/windyhusky
