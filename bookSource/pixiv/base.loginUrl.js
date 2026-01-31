@@ -801,7 +801,8 @@ function likeTagsAdd() {
     } else {
         likeTags.push(word)
         putInCacheObject(`likeTags`, likeTags)
-        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 已将【${word}】加入喜欢标签了\n请于发现页刷新后查看`)
+        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 已将【${word}】加入喜欢标签了`)
+        try {source.refreshExplore()} catch (e) {}
     }
 }
 
@@ -818,6 +819,7 @@ function likeTagsDelete() {
         likeTags = likeTags.filter(item => item !== word)
         putInCacheObject(`likeTags`, likeTags)
         sleepToast(`🗑 删除标签\n\n✅ 已删除该标签【${word}】`)
+        try {source.refreshExplore()} catch (e) {}
     }
 }
 
@@ -836,7 +838,7 @@ function likeAuthorsAdd() {
         return sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 #标签名称`)
     } else if (likeAuthors.has(word)) {
         let text = `${likeAuthors.get(word)} ${word}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 【${text}】已经加入收藏列表了，请于发现页刷新后查看`)
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 【${text}】已经加入收藏列表了，请于发现页查看`)
     }
 
     // 无输入内容，添加当前小说的作者
@@ -844,20 +846,21 @@ function likeAuthorsAdd() {
         let novel = getNovel()
         likeAuthors.set(String(novel.userId), novel.userName)
         let text = `@${novel.userName} ${novel.userId}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页刷新后查看\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`)
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页查看\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`)
     }
     // 输入纯数字，添加对应ID的作者
     else if (!isNaN(word)) {
         let user = getAjaxJson(urlUserDetailed(word)).body
         likeAuthors.set(user.userId, user.name)
         let text = `@${user.name} ${user.userId}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页刷新后查看`)
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页查看`)
     }
 
     else if (word) {
         sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可关注其他用户的收藏`)
     }
     putInCacheMap(`likeAuthors`, likeAuthors)
+    try {source.refreshExplore()} catch (e) {}
 }
 
 function likeAuthorsDelete() {
@@ -893,6 +896,7 @@ function likeAuthorsDelete() {
         sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可取关其他用户的收藏`)
     }
     putInCacheMap(`likeAuthors`, likeAuthors)
+    try {source.refreshExplore()} catch (e) {}
 }
 
 function shareFactory(type) {
