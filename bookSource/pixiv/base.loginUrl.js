@@ -443,6 +443,81 @@ function userBlock() {
     // sleepToast(JSON.stringify(authors))
 }
 
+// 拆分长评论
+function splitComments(text) {
+    if (!text) return []
+    let limit = 140
+
+    // 1. 预留序号空间（例如 " (10/10)" 占 8 个字符，预留 10 个以防万一）
+    const reservedSpace = 10
+    const safeLimit = limit - reservedSpace
+
+    // 2. 核心拆分逻辑
+    let chars = Array.from(text.trim())
+    let tempSegments = []
+
+    const strongPunc = /[。！？…\uff0e\uff01\uff1f!?.…]/ // 强断句标点
+    const weakPunc = /[\uff0c\uff1b,;]/                // 弱断句标点
+
+    while (chars.length > 0) {
+        if (chars.length <= safeLimit) {
+            tempSegments.push(chars.join('').trim())
+            break
+        }
+
+        let chunk = chars.slice(0, safeLimit)
+        let splitIndex = -1
+
+        // 优先级 1: 换行符
+        for (let i = chunk.length - 1; i >= 0; i--) {
+            if (chunk[i] === '\n') {
+                splitIndex = i
+                break
+            }
+        }
+
+        // 优先级 2: 强标点（。！？等）
+        if (splitIndex === -1) {
+            for (let i = chunk.length - 1; i >= 0; i--) {
+                if (strongPunc.test(chunk[i])) {
+                    splitIndex = i
+                    break
+                }
+            }
+        }
+
+        // 优先级 3: 弱标点（仅在没找到强标点时使用逗号）
+        if (splitIndex === -1) {
+            for (let i = chunk.length - 1; i >= 0; i--) {
+                if (weakPunc.test(chunk[i])) {
+                    splitIndex = i
+                    break
+                }
+            }
+        }
+
+        // 兜底: 硬截断
+        if (splitIndex === -1) {
+            splitIndex = safeLimit - 1
+        }
+
+        // 截取并清理
+        let segment = chars.slice(0, splitIndex + 1).join('').trim();
+        if (segment) tempSegments.push(segment)
+
+        // 移除已处理字符并跳过开头的空白
+        chars = chars.slice(splitIndex + 1);
+        while (chars.length > 0 && (chars[0] === '\n' || chars[0] === ' ')) {
+            chars.shift()
+        }
+    }
+
+    // 3. 注入序号
+    const total = tempSegments.length;
+    if (total <= 1) return tempSegments;
+    return tempSegments.map((content, i) => `${content} (${i + 1}/${total})`).reverse();
+}
+
 function novelCommentAdd() {
     let resp, novel = getNovel()
     let userId = getFromCacheObject("pixiv:uid")
