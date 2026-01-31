@@ -470,6 +470,7 @@ function novelCommentAdd() {
         shareFactory("novel")
     } else {
         sleepToast(`✅ 发送评论\n\n✅ 已在【${novel.title}】发布评论：\n${comment}`)
+        try {java.refreshContent()} catch(err) {}
     }
 }
 
@@ -519,8 +520,10 @@ function novelCommentDelete() {
             shareFactory("novel")
         } else {
             sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${comment}`)
+            try {java.refreshContent()} catch(err) {}
         }
     })
+    try {java.refreshContent()} catch(err) {}
 }
 
 function novelPollAnswer() {
