@@ -605,7 +605,9 @@ function novelCommentDelete() {
             sleepToast("🗑 删除评论\n\n⚠️ 评论删除失败", 1)
             shareFactory("novel")
         } else {
-            sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${commentID}`)
+            let isCommentText = !RegExp(/[；;]/).test(comment) && !RegExp(/\d{8,}/).test(comment)
+            let toastComment = isCommentText ? comment : commentID
+            sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${toastComment}`, 1)
         }
     })
     try {java.refreshContent()} catch(err) {}
