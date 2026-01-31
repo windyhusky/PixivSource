@@ -549,9 +549,9 @@ function novelCommentAdd() {
             shareFactory("novel")
         } else {
             sleepToast(`✅ 发送评论\n\n✅ 已在【${novel.title}】发布评论：\n${comment}`, 1)
-            try {java.refreshContent()} catch(err) {}
         }
     })
+    try {java.refreshContent()} catch(err) {}
     if (comments.length >= 2) sleepToast("✅ 发送评论\n\n✅ 长评论已发送完毕", 1)
 }
 
@@ -611,6 +611,7 @@ function novelCommentDelete() {
         }
     })
     try {java.refreshContent()} catch(err) {}
+    if (comments.length >= 2) sleepToast("🗑 删除评论\n\n✅ 评论已删除完毕", 1)
 }
 
 function novelPollAnswer() {
