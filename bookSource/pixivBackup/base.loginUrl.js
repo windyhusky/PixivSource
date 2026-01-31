@@ -84,7 +84,7 @@ function getNovel() {
     if (environment.IS_LYC_BRUNCH) {
         try {
             let novel = {}
-            novel.id = chapter.url.match(/\d+/)[0]
+            novel.id = chapter.bookUrl.match(/\d+/)[0]
             novel.title = chapter.title
             novel.userName = book.author.replace("@", "")
             if (book.bookUrl.includes("series")) {
@@ -437,34 +437,116 @@ function userBlock() {
     // sleepToast(JSON.stringify(authors))
 }
 
+// 拆分长评论
+function splitComments(text) {
+    if (!text) return []
+    let limit = 140
+
+    // 1. 预留序号空间（例如 " (10/10)" 占 8 个字符，预留 10 个以防万一）
+    const reservedSpace = 10
+    const safeLimit = limit - reservedSpace
+
+    // 2. 核心拆分逻辑
+    let chars = Array.from(text.trim())
+    let tempSegments = []
+
+    const strongPunc = /[。！？…\uff0e\uff01\uff1f!?.…]/ // 强断句标点
+    const weakPunc = /[\uff0c\uff1b,;]/                // 弱断句标点
+
+    while (chars.length > 0) {
+        if (chars.length <= safeLimit) {
+            tempSegments.push(chars.join('').trim())
+            break
+        }
+
+        let chunk = chars.slice(0, safeLimit)
+        let splitIndex = -1
+
+        // 优先级 1: 换行符
+        for (let i = chunk.length - 1; i >= 0; i--) {
+            if (chunk[i] === '\n') {
+                splitIndex = i
+                break
+            }
+        }
+
+        // 优先级 2: 强标点（。！？等）
+        if (splitIndex === -1) {
+            for (let i = chunk.length - 1; i >= 0; i--) {
+                if (strongPunc.test(chunk[i])) {
+                    splitIndex = i
+                    break
+                }
+            }
+        }
+
+        // 优先级 3: 弱标点（仅在没找到强标点时使用逗号）
+        if (splitIndex === -1) {
+            for (let i = chunk.length - 1; i >= 0; i--) {
+                if (weakPunc.test(chunk[i])) {
+                    splitIndex = i
+                    break
+                }
+            }
+        }
+
+        // 兜底: 硬截断
+        if (splitIndex === -1) {
+            splitIndex = safeLimit - 1
+        }
+
+        // 截取并清理
+        let segment = chars.slice(0, splitIndex + 1).join('').trim();
+        if (segment) tempSegments.push(segment)
+
+        // 移除已处理字符并跳过开头的空白
+        chars = chars.slice(splitIndex + 1);
+        while (chars.length > 0 && (chars[0] === '\n' || chars[0] === ' ')) {
+            chars.shift()
+        }
+    }
+
+    // 3. 注入序号
+    const total = tempSegments.length;
+    if (total <= 1) return tempSegments;
+    return tempSegments.map((content, i) => `${content} (${i + 1}/${total})`).reverse();
+}
+
 function novelCommentAdd() {
     let resp, novel = getNovel()
     let userId = getFromCacheObject("pixiv:uid")
     let comment = String(result.get("输入内容")).trim()
     if (comment === "") {
-        return sleepToast(`✅ 发送评论\n⚠️ 请在【输入内容】输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
+        return sleepToast(`✅ 发送评论\n⚠️ 请在【输入内容（上方横线）】输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
     }
 
-    let matched = comment.match(RegExp(/(；|;\s*)\d{8,}/))
-    if (matched) {
-        let commentId = comment.match(new RegExp(/；(\d{8,})/))[1]
-        comment = comment.replace(new RegExp(`(；|;\s*)${commentId}`), "")
-        resp = getPostBody(
-            "https://www.pixiv.net/novel/rpc/post_comment.php",
-            `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(comment)}&parent_id=${commentId}`)
-    } else {
-        resp = getPostBody(
-            "https://www.pixiv.net/novel/rpc/post_comment.php",
-            `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(comment)}`
-        )
-    }
+    let comments = splitComments(comment)
+    if (comments.length >= 2) sleepToast("✅ 发送评论\n\n正在拆分长评论，即将逐条发送")
+    comments.forEach(comment => {
+        sleep(0.5 * 1000 * Math.random())
+        let matched = comment.match(RegExp(/(；|;\s*)\d{8,}/))
+        if (matched) {
+            let commentId = comment.match(new RegExp(/；(\d{8,})/))[1]
+            comment = comment.replace(new RegExp(`(；|;\s*)${commentId}`), "")
+            resp = getPostBody(
+                "https://www.pixiv.net/novel/rpc/post_comment.php",
+                `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(comment)}&parent_id=${commentId}`)
+        } else {
+            resp = getPostBody(
+                "https://www.pixiv.net/novel/rpc/post_comment.php",
+                `type=comment&novel_id=${novel.id}&author_user_id=${userId}&comment=${encodeURI(comment)}`
+            )
+        }
 
-    if (resp.error === true) {
-        sleepToast("✅ 发送评论\n\n⚠️ 评论失败", 1)
-        shareFactory("novel")
-    } else {
-        sleepToast(`✅ 发送评论\n\n✅ 已在【${novel.title}】发布评论：\n${comment}`)
-    }
+        if (resp.error === true) {
+            sleepToast("✅ 发送评论\n\n⚠️ 评论失败", 1)
+            shareFactory("novel")
+        } else {
+            sleepToast(`✅ 发送评论\n\n✅ 已在【${novel.title}】发布评论：\n${comment}`, 1)
+        }
+    })
+    try {java.refreshContent()} catch(err) {}
+    if (comments.length >= 2) sleepToast("✅ 发送评论\n\n✅ 长评论已发送完毕", 1)
 }
 
 function getNovelCommentID(novelId, commentText) {
@@ -488,21 +570,26 @@ function novelCommentDelete() {
     let commentIDs, novel = getNovel()
     let comment = String(result.get("输入内容")).trim()
     if (comment === "") {
-        return sleepToast(`🗑 删除评论\n⚠️ 请在【输入内容】输入需要删除的【评论ID】\n或输入需要删除的【评论内容】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
+        return sleepToast(`🗑 删除评论\n⚠️ 请在【输入内容（上方横线）】输入需要删除的【评论ID】\n或输入需要删除的【评论内容】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
     }
 
-    let matched = comment.match(RegExp(/\d{8,}/))
-    if (matched) {
-        commentIDs = [matched[0]]
+    if (RegExp(/[；;]/).test(comment)) {
+        commentIDs = comment.split(/[；;]/)
+            .map(item => item.trim())         // 去除每个元素前后的空格
+            .filter(item => item !== "")     // 过滤掉因为末尾分号产生的空项
+    } else if (RegExp(/\d{8,}/).test(comment)) {
+        let matched = comment.match(/\d{8,}/g)
+        commentIDs = Array.from(matched || [])
     } else {
         commentIDs = getNovelCommentID(novel.id, comment)
-        java.log(JSON.stringify(commentIDs))
+        // java.log(JSON.stringify(commentIDs))
         if (commentIDs.length === 0) {
             return sleepToast(`🗑 删除评论\n\n⚠️ 未能找到这条评论\n请检查是否有错别字或标点符号是否一致`)
         }
     }
 
     commentIDs.forEach(commentID =>{
+        sleep(0.5 * 1000 * Math.random())
         let resp = getPostBody(
             "https://www.pixiv.net/novel/rpc_delete_comment.php",
             `i_id=${novel.id}&del_id=${commentID}`
@@ -512,9 +599,13 @@ function novelCommentDelete() {
             sleepToast("🗑 删除评论\n\n⚠️ 评论删除失败", 1)
             shareFactory("novel")
         } else {
-            sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${comment}`)
+            let isCommentText = !RegExp(/[；;]/).test(comment) && !RegExp(/\d{8,}/).test(comment)
+            let toastComment = isCommentText ? comment : commentID
+            sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${toastComment}`, 1)
         }
     })
+    try {java.refreshContent()} catch(err) {}
+    if (comments.length >= 2) sleepToast("🗑 删除评论\n\n✅ 评论已删除完毕", 1)
 }
 
 function novelPollAnswer() {
@@ -704,7 +795,8 @@ function likeTagsAdd() {
     } else {
         likeTags.push(word)
         putInCacheObject(`likeTags`, likeTags)
-        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 已将【${word}】加入喜欢标签了\n请于发现页刷新后查看`)
+        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 已将【${word}】加入喜欢标签了`)
+        try {source.refreshExplore()} catch (e) {}
     }
 }
 
@@ -721,6 +813,7 @@ function likeTagsDelete() {
         likeTags = likeTags.filter(item => item !== word)
         putInCacheObject(`likeTags`, likeTags)
         sleepToast(`🗑 删除标签\n\n✅ 已删除该标签【${word}】`)
+        try {source.refreshExplore()} catch (e) {}
     }
 }
 
@@ -739,7 +832,7 @@ function likeAuthorsAdd() {
         return sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 #标签名称`)
     } else if (likeAuthors.has(word)) {
         let text = `${likeAuthors.get(word)} ${word}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 【${text}】已经加入收藏列表了，请于发现页刷新后查看`)
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 【${text}】已经加入收藏列表了，请于发现页查看`)
     }
 
     // 无输入内容，添加当前小说的作者
@@ -747,20 +840,21 @@ function likeAuthorsAdd() {
         let novel = getNovel()
         likeAuthors.set(String(novel.userId), novel.userName)
         let text = `@${novel.userName} ${novel.userId}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页刷新后查看\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`)
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页查看\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`)
     }
     // 输入纯数字，添加对应ID的作者
     else if (!isNaN(word)) {
         let user = getAjaxJson(urlUserDetailed(word)).body
         likeAuthors.set(user.userId, user.name)
         let text = `@${user.name} ${user.userId}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页刷新后查看`)
+        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页查看`)
     }
 
     else if (word) {
         sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可关注其他用户的收藏`)
     }
     putInCacheMap(`likeAuthors`, likeAuthors)
+    try {source.refreshExplore()} catch (e) {}
 }
 
 function likeAuthorsDelete() {
@@ -778,13 +872,13 @@ function likeAuthorsDelete() {
         let text = `@${novel.userName} ${novel.userId}`
         sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${text}】\n\n输入【用户ID】可取关其他用户\n默认取关当前作者(用户)`)
 
-    // 输入纯数字，删除对应ID的作者
+        // 输入纯数字，删除对应ID的作者
     } else if (!isNaN(word) && likeAuthors.has(word)) {
         let text = `@${likeAuthors.get(word)} ${word}`
         likeAuthors.delete(word)
         sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${text}】`)
 
-    //作者名称
+        //作者名称
     } else if (Array.from(likeAuthors.values()).includes(word)) {
         let index = Array.from(likeAuthors.values()).indexOf(word)
         let key = Array.from(likeAuthors.keys())[index]
@@ -796,6 +890,7 @@ function likeAuthorsDelete() {
         sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可取关其他用户的收藏`)
     }
     putInCacheMap(`likeAuthors`, likeAuthors)
+    try {source.refreshExplore()} catch (e) {}
 }
 
 function shareFactory(type) {
