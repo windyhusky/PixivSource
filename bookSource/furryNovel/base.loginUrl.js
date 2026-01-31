@@ -18,17 +18,17 @@ function shareFactory(type) {
     if (type.includes("author")) {
         sleepToast("\n\n已复制当前作者链接", 1)
         java.copyText(urlUserUrl(novel.userName))
-        startBrowser(urlUserUrl(novel.userName), novel.userName)
+        // startBrowser(urlUserUrl(novel.userName), novel.userName)
     }
     else if (type.includes("novel")) {
         sleepToast("\n\n已复制当前小说详情链接", 1)
         java.copyText(urlNovelUrl(novel.bookId))
-        startBrowser(urlNovelUrl(novel.bookId), novel.bookName)
+        // startBrowser(urlNovelUrl(novel.bookId), novel.bookName)
     }
     else if (type.includes("pixiv")) {
         sleepToast("\n\n已复制当前小说 Pixiv 链接", 1)
         java.copyText(novel.sourceUrl)
-        startBrowser(novel.sourceUrl, novel.bookName)
+        // startBrowser(novel.sourceUrl, novel.bookName)
     }
 }
 
