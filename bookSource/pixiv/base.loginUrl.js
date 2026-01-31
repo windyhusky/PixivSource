@@ -523,7 +523,7 @@ function novelCommentAdd() {
     let userId = getFromCacheObject("pixiv:uid")
     let comment = String(result.get("输入内容")).trim()
     if (comment === "") {
-        return sleepToast(`✅ 发送评论\n⚠️ 请在【输入内容（横线上）】输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
+        return sleepToast(`✅ 发送评论\n⚠️ 请在【输入内容（上方横线）】输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
     }
 
     let comments = splitComments(comment)
@@ -576,21 +576,26 @@ function novelCommentDelete() {
     let commentIDs, novel = getNovel()
     let comment = String(result.get("输入内容")).trim()
     if (comment === "") {
-        return sleepToast(`🗑 删除评论\n⚠️ 请在【输入内容】输入需要删除的【评论ID】\n或输入需要删除的【评论内容】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
+        return sleepToast(`🗑 删除评论\n⚠️ 请在【输入内容（上方横线）】输入需要删除的【评论ID】\n或输入需要删除的【评论内容】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
     }
 
-    let matched = comment.match(RegExp(/\d{8,}/))
-    if (matched) {
-        commentIDs = [matched[0]]
+    if (RegExp(/[；;]/).test(comment)) {
+        commentIDs = comment.split(/[；;]/)
+            .map(item => item.trim())         // 去除每个元素前后的空格
+            .filter(item => item !== "")     // 过滤掉因为末尾分号产生的空项
+    } else if (RegExp(/\d{8,}/).test(comment)) {
+        let matched = comment.match(/\d{8,}/g)
+        commentIDs = Array.from(matched || [])
     } else {
         commentIDs = getNovelCommentID(novel.id, comment)
-        java.log(JSON.stringify(commentIDs))
+        // java.log(JSON.stringify(commentIDs))
         if (commentIDs.length === 0) {
             return sleepToast(`🗑 删除评论\n\n⚠️ 未能找到这条评论\n请检查是否有错别字或标点符号是否一致`)
         }
     }
 
     commentIDs.forEach(commentID =>{
+        sleep(0.5 * 1000 * Math.random())
         let resp = getPostBody(
             "https://www.pixiv.net/novel/rpc_delete_comment.php",
             `i_id=${novel.id}&del_id=${commentID}`
@@ -600,8 +605,7 @@ function novelCommentDelete() {
             sleepToast("🗑 删除评论\n\n⚠️ 评论删除失败", 1)
             shareFactory("novel")
         } else {
-            sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${comment}`)
-            try {java.refreshContent()} catch(err) {}
+            sleepToast(`🗑 删除评论\n\n✅ 已在【${novel.title}】删除评论：\n${commentID}`)
         }
     })
     try {java.refreshContent()} catch(err) {}
