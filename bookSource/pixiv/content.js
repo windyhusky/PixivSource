@@ -196,6 +196,18 @@ function replaceRb(content) {
     return content
 }
 
+function getPollData(res, content) {
+    // 添加投票
+    if (res.pollData) {
+        let poll = `📃 投票(✅${res.pollData.total}已投)：\n${res.pollData.question}\n`
+        res.pollData.choices.forEach(choice => {
+            poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
+        })
+        content += "\n" + "——————————\n".repeat(2) + poll
+    }
+    return content
+}
+
 function getContent(res) {
     getNovelInfo(res)  // 放入信息以便登陆界面使用
     let content = String(res.content)
@@ -212,15 +224,7 @@ function getContent(res) {
     content = replaceJumpPage(content)
     content = replaceJumpUrl(content)
     content = replaceRb(content)
-
-    // 添加投票
-    if (res.pollData) {
-        let poll = `📃 投票(✅${res.pollData.total}已投)：\n${res.pollData.question}\n`
-        res.pollData.choices.forEach(choice => {
-            poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
-        })
-        content += "\n" + "——————————\n".repeat(2) + poll
-    }
+    content = getPollData(res, content)
 
     // 添加评论
     if (util.settings.SHOW_COMMENTS) {
