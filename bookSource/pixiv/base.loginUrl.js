@@ -523,7 +523,7 @@ function novelCommentAdd() {
     let userId = getFromCacheObject("pixiv:uid")
     let comment = String(result.get("输入内容")).trim()
     if (comment === "") {
-        return sleepToast(`✅ 发送评论\n⚠️ 请在【输入内容（上方横线）】输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
+        return sleepToast(`✅ 发送评论\n⚠️ 请在【（上方）输入内容】输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】`)
     }
 
     let comments = splitComments(comment)
@@ -576,7 +576,7 @@ function novelCommentDelete() {
     let commentIDs, novel = getNovel()
     let comment = String(result.get("输入内容")).trim()
     if (comment === "") {
-        return sleepToast(`🗑 删除评论\n⚠️ 请在【输入内容（上方横线）】输入需要删除的【评论ID】\n或输入需要删除的【评论内容】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
+        return sleepToast(`🗑 删除评论\n⚠️ 请在【输入内容（上方）】输入需要删除的【评论ID】以分号；间隔\n或输入需要删除的【评论内容】\n\n如：【123；456；789】\n或【模拟评论内容】`)
     }
 
     if (RegExp(/[；;]/).test(comment)) {
