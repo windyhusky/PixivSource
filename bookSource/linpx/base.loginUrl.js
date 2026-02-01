@@ -2,10 +2,10 @@ function login() {}
 
 function getNovel() {
     let novel = {}
-    novel.id = chapter.bookUrl.match(/\d+/)[0]
+    novel.id = chapter.url.match(/\d+/)[0]
     novel.title = chapter.title
     novel.userName = book.author.replace("@", "")
-    if (book.bookUrl.includes("series")) {
+    if (book.tocUrl.includes("series")) {
         novel.seriesId = book.tocUrl.match(/\d+/)[0]
         novel.seriesTitle = book.name
     } else {
