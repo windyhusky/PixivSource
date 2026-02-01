@@ -90,7 +90,11 @@ function getNovel() {
     if (environment.IS_LYC_BRUNCH) {
         try {
             let novel = {}
-            novel.id = chapter.url.match(/\d+/)[0]
+            try {
+                novel.id = chapter.url.match(/\d+/)[0]
+            } catch(e){
+                novel.id = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
+            }
             novel.title = chapter.title
             novel.userName = book.author.replace("@", "")
             if (book.bookUrl.includes("series")) {
@@ -108,6 +112,7 @@ function getNovel() {
             } else {
                 novel.pollChoicesCount = 0
             }
+            // java.log(JSON.stringify(novel))
             return novel
         } catch (e) {
             // 无法阻止后续函数在日志中报错
