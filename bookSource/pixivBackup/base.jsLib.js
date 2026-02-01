@@ -314,10 +314,10 @@ function urlIllustOriginal(illustId, order) {
     return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 function urlEmojiUrl(emojiId) {
-    return this.urlCoverUrl(`https://s.pximg.net/common/images/emoji/${emojiId}.png`)
+    return `https://s.pximg.net/common/images/emoji/${emojiId}.png, {'style': 'text'}`
 }
 function urlStampUrl(stampId) {
-    return this.urlCoverUrl(`https://s.pximg.net/common/images/stamp/generated-stamps/${stampId}_s.jpg`)
+    return `https://s.pximg.net/common/images/stamp/generated-stamps/${stampId}_s.jpg, {'style': 'text'}`
 }
 
 function urlMessageThreadLatest(max) {
