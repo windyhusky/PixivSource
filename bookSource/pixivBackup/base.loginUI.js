@@ -19,7 +19,7 @@ let novel = [
 ]
 
 let comment = [
-    {"输入内容": "text" },
+    {"文本框": "text" },
     {"✅ 发送评论": "novelCommentAdd()" },
     {"🗑️ 删除评论": "novelCommentDelete()" },
     {"🔄 刷新本章": "cleanCache()" },

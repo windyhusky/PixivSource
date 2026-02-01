@@ -84,7 +84,9 @@ function getNovel() {
     if (environment.IS_LYC_BRUNCH) {
         try {
             let novel = {}
-            novel.id = chapter.bookUrl.match(/\d+/)[0]
+            // let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
+            // novel.id = novelIds[book.durChapterIndex]
+            novel.id = chapter.url.match(/novel\/(\d+)/)[1] // 兼容 直连模式
             novel.title = chapter.title
             novel.userName = book.author.replace("@", "")
             if (book.bookUrl.includes("series")) {
@@ -102,6 +104,7 @@ function getNovel() {
             } else {
                 novel.pollChoicesCount = 0
             }
+            // java.log(JSON.stringify(novel))
             return novel
         } catch (e) {
             // 无法阻止后续函数在日志中报错
@@ -515,9 +518,9 @@ function splitComments(text) {
 function novelCommentAdd() {
     let resp, novel = getNovel()
     let userId = getFromCacheObject("pixiv:uid")
-    let comment = String(result.get("输入内容")).trim()
+    let comment = String(result.get("文本框")).trim()
     if (comment === "") {
-        return sleepToast(`✅ 发送评论\n⚠️ 请在【输入内容（上方横线）】输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
+        return sleepToast(`✅ 发送评论\n⚠️ 请在【文本框】内输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】`)
     }
 
     let comments = splitComments(comment)
@@ -568,9 +571,9 @@ function getNovelCommentID(novelId, commentText) {
 
 function novelCommentDelete() {
     let commentIDs, novel = getNovel()
-    let comment = String(result.get("输入内容")).trim()
+    let comment = String(result.get("文本框")).trim()
     if (comment === "") {
-        return sleepToast(`🗑 删除评论\n⚠️ 请在【输入内容（上方横线）】输入需要删除的【评论ID】\n或输入需要删除的【评论内容】\n\n📌 当前章节：${novel.title}\n如非当前章节，请刷新正文`)
+        return sleepToast(`🗑 删除评论\n⚠️ 请在【文本框】内输入需要删除的【评论ID】，以分号间隔\n或输入需要删除的【评论内容】\n\n如：【123；456；789】\n或【模拟评论内容】`)
     }
 
     if (RegExp(/[；;]/).test(comment)) {
@@ -615,9 +618,9 @@ function novelPollAnswer() {
         return sleepToast(`📃 小说投票\n\n⚠️ 该小说【${novel.title}】无投票信息，建议【清除缓存】【刷新】后重试`)
     }
 
-    let choiceId = String(result.get("输入内容")).trim()
+    let choiceId = String(result.get("文本框")).trim()
     if (!choiceId) {
-        return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：请在【输入内容】输入投票选项(数字)`)
+        return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：请在【文本框】内输入投票选项(数字)`)
     } else if (Number(choiceId) > novel.pollData.selectedValue) {
         return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：选项${choiceId}超出范围`)
     } else if (Number(choiceId) <= 0 || Number(choiceId) > novel.pollChoicesCount) {
@@ -681,9 +684,9 @@ function blockWordAdd() {
     let blockWords = getFromCacheObject(`${method}BlockWords`)
     if (blockWords === null) blockWords = []
 
-    let word = String(result.get("输入内容")).trim()
+    let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 输入内容不能为空`)
+        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
     } else if (blockWords.includes(word)) {
         sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 【${word}】已经加入屏蔽列表了`)
     } else {
@@ -698,9 +701,9 @@ function blockWordDelete() {
     let blockWords = getFromCacheObject(`${method}BlockWords`)
     if (blockWords === null) blockWords = []
 
-    let word = String(result.get("输入内容")).trim()
+    let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 输入内容不能为空`)
+        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
     } else if (!blockWords.includes(word)) {
         sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 【${word}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
     } else {
@@ -714,9 +717,9 @@ function blockAuthorAdd() {
     let method = getFromCacheObject("wordsType")
     let blockAuthors = getFromCacheMap(`blockAuthorMap`)
 
-    let word = String(result.get("输入内容")).trim()
+    let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 输入内容不能为空\n⚠️ 输入【用户ID】可屏蔽该作者`)
+        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
     } else if (blockAuthors.has(word)) {
         let text = `${blockAuthors.get(word)} ${word}`
         sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 【${text}】已经加入屏蔽列表了`)
@@ -738,9 +741,9 @@ function blockAuthorDelete() {
     let method = getFromCacheObject("wordsType")
     let blockAuthors = getFromCacheMap(`blockAuthorMap`)
 
-    let word = String(result.get("输入内容")).trim()
+    let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 输入内容不能为空\n⚠️ 输入【用户ID】可屏蔽该作者`)
+        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
     }
     // 输入纯数字，删除对应ID的作者
     else if (!isNaN(word) && blockAuthors.has(word)) {
@@ -783,19 +786,19 @@ function likeTagsAdd() {
     let likeTags = getFromCacheObject(`likeTags`)
     if (likeTags === null) likeTags = []
 
-    let word = String(result.get("输入内容")).trim()
+    let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n⚠️ 输入内容不能为空\n请直接输入标签内容`)
+        sleepToast(`📌 喜欢标签\n📌 添加标签\n\n⚠️ 请在【文本框】内直接输入标签内容`)
     } else if (word.startsWith("@") || word.startsWith("＠")) {
-        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 @作者名称`)
+        sleepToast(`📌 喜欢标签\n📌 添加标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 @作者名称`)
     } else if (word.startsWith("#") || word.startsWith("＃")) {
-        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 #标签名称`)
+        sleepToast(`📌 喜欢标签\n📌 添加标签\n\n⚠️ 仅支持添加【标签】\n不支持添加 #标签名称`)
     } else if (likeTags.includes(word)) {
-        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 【${word}】已经加入喜欢标签了\n请于发现页刷新后查看`)
+        sleepToast(`📌 喜欢标签\n📌 添加标签\n\n✅ 【${word}】已经加入喜欢标签了\n请于发现页刷新后查看`)
     } else {
         likeTags.push(word)
         putInCacheObject(`likeTags`, likeTags)
-        sleepToast(`📌 添加标签\n📌 喜欢标签\n\n✅ 已将【${word}】加入喜欢标签了`)
+        sleepToast(`📌 喜欢标签\n📌 添加标签\n\n✅ 已将【${word}】加入喜欢标签了`)
         try {source.refreshExplore()} catch (e) {}
     }
 }
@@ -804,15 +807,15 @@ function likeTagsDelete() {
     let likeTags = getFromCacheObject(`likeTags`)
     if (likeTags === null) likeTags = []
 
-    let word = String(result.get("输入内容")).trim()
+    let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`🗑 删除标签\n\n⚠️ 输入内容不能为空`)
+        sleepToast(`📌 喜欢标签\n🗑 删除标签\n\n⚠️ 请在【文本框】内直接输入标签内容`)
     } else if (!likeTags.includes(word)) {
-        sleepToast(`🗑 删除标签\n\n⚠️ 【${word}】不在喜欢标签\n请检查是否有错别字`)
+        sleepToast(`📌 喜欢标签\n🗑 删除标签\n\n⚠️ 【${word}】不在喜欢标签\n请检查是否有错别字`)
     } else {
         likeTags = likeTags.filter(item => item !== word)
         putInCacheObject(`likeTags`, likeTags)
-        sleepToast(`🗑 删除标签\n\n✅ 已删除该标签【${word}】`)
+        sleepToast(`📌 喜欢标签\n🗑 删除标签\n\n✅ 已删除该标签【${word}】`)
         try {source.refreshExplore()} catch (e) {}
     }
 }
@@ -825,14 +828,14 @@ function likeAuthorsShow() {
 
 function likeAuthorsAdd() {
     let likeAuthors = getFromCacheMap(`likeAuthors`)
-    let word = String(result.get("输入内容")).trim()
+    let word = String(result.get("文本框")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
-        return sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 @作者名称`)
+        return sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 @作者名称`)
     } else if (word.startsWith("#") || word.startsWith("＃")) {
-        return sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 #标签名称`)
+        return sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 #标签名称`)
     } else if (likeAuthors.has(word)) {
         let text = `${likeAuthors.get(word)} ${word}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 【${text}】已经加入收藏列表了，请于发现页查看`)
+        sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n✅ 【${text}】已经加入收藏列表了，请于发现页查看`)
     }
 
     // 无输入内容，添加当前小说的作者
@@ -840,18 +843,18 @@ function likeAuthorsAdd() {
         let novel = getNovel()
         likeAuthors.set(String(novel.userId), novel.userName)
         let text = `@${novel.userName} ${novel.userId}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页查看\n\n⚠️ 输入【用户ID】可关注其他用户的收藏\n默认关注当前作者(用户)`)
+        sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n✅ 已将【${text}】加入他人收藏列表了，请于发现页查看\n\n📌 【文本框】内输入【用户ID】可关注其他用户的收藏`)
     }
     // 输入纯数字，添加对应ID的作者
     else if (!isNaN(word)) {
         let user = getAjaxJson(urlUserDetailed(word)).body
         likeAuthors.set(user.userId, user.name)
         let text = `@${user.name} ${user.userId}`
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n✅ 已将【${text}】加入收藏列表了，请于发现页查看`)
+        sleepToast(`❤️ 他人收藏\n️ 添加收藏\n\n✅ 已将【${text}】加入他人收藏列表了，请于发现页查看`)
     }
 
     else if (word) {
-        sleepToast(`❤️ 添加收藏\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可关注其他用户的收藏`)
+        sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n📌 【文本框】内输入【用户ID】可关注其他用户的收藏`)
     }
     putInCacheMap(`likeAuthors`, likeAuthors)
     try {source.refreshExplore()} catch (e) {}
@@ -859,35 +862,35 @@ function likeAuthorsAdd() {
 
 function likeAuthorsDelete() {
     let likeAuthors = getFromCacheMap(`likeAuthors`)
-    let word = String(result.get("输入内容")).trim()
+    let word = String(result.get("文本框")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
-        return sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID/作者名称】取关\n不支持输入 @作者名称`)
+        return sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n⚠️ 仅支持通过【作者ID/作者名称】取关\n不支持输入 @作者名称`)
     } else if (word.startsWith("#") || word.startsWith("＃")) {
-        return sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 仅支持通过【作者ID/作者名称】取关\n不支持输入 #标签名称`)
+        return sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n⚠️ 仅支持通过【作者ID/作者名称】取关\n不支持输入 #标签名称`)
     }
 
     if (word === "") {
         let novel = getNovel()
         likeAuthors.delete(novel.userId)
         let text = `@${novel.userName} ${novel.userId}`
-        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${text}】\n\n输入【用户ID】可取关其他用户\n默认取关当前作者(用户)`)
+        sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n✅ 已将【${text}】移出他人收藏列表了\n\n📌 【文本框】内输入【用户ID】可取消关注其他用户的收藏`)
 
-        // 输入纯数字，删除对应ID的作者
+    // 输入纯数字，删除对应ID的作者
     } else if (!isNaN(word) && likeAuthors.has(word)) {
         let text = `@${likeAuthors.get(word)} ${word}`
         likeAuthors.delete(word)
-        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${text}】`)
+        sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n✅ 已取关【${text}】`)
 
-        //作者名称
+    //作者名称
     } else if (Array.from(likeAuthors.values()).includes(word)) {
         let index = Array.from(likeAuthors.values()).indexOf(word)
         let key = Array.from(likeAuthors.keys())[index]
         let text = `@${likeAuthors.get(key)} ${key}`
         likeAuthors.delete(key)
-        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n✅ 已取关【${text}】`)
+        sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n✅ 已取关【${text}】`)
     }
     else if (word) {
-        sleepToast(`🖤 取消收藏\n❤️ 他人收藏\n\n⚠️ 输入【用户ID】可取关其他用户的收藏`)
+        sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n📌 【文本框】内输入【用户ID】可取关其他用户的收藏`)
     }
     putInCacheMap(`likeAuthors`, likeAuthors)
     try {source.refreshExplore()} catch (e) {}
