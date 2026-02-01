@@ -90,7 +90,7 @@ function getNovel() {
     if (environment.IS_LYC_BRUNCH) {
         try {
             let novel = {}
-            novel.id = chapter.bookUrl.match(/\d+/)[0]
+            novel.id = chapter.url.match(/\d+/)[0]
             novel.title = chapter.title
             novel.userName = book.author.replace("@", "")
             if (book.bookUrl.includes("series")) {
