@@ -82,6 +82,7 @@ function replaceUploadedImage(res, content) {
     }
     return content
 }
+
 function replacePixivImage(content) {
     // 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
     let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
@@ -104,6 +105,7 @@ function replacePixivImage(content) {
     }
     return content
 }
+
 function replaceNewPage(content) {
     // 替换 Pixiv 分页标记符号 [newpage]
     if (!util.environment.IS_LYC_BRUNCH) {
@@ -116,6 +118,7 @@ function replaceNewPage(content) {
     }
     return content
 }
+
 function replaceChapter(content) {
     // 替换 Pixiv 章节标记符号 [chapter:]
     let matched = content.match(RegExp(/\[chapter:(.*?)]/gm))
@@ -133,6 +136,7 @@ function replaceChapter(content) {
     }
     return content
 }
+
 function replaceJumpPage(content) {
     // 替换 Pixiv 跳转页面标记符号 [[jump:]]
     let matched = content.match(RegExp(/\[jump:(\d+)]/gm))
@@ -144,6 +148,7 @@ function replaceJumpPage(content) {
     }
     return content
 }
+
 function replaceJumpUrl(content) {
     // 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
     let matched = content.match(RegExp(/\[\[jumpuri:(.*?)>(.*?)]]/gm))
@@ -167,6 +172,7 @@ function replaceJumpUrl(content) {
     }
     return content
 }
+
 function replaceRb(content) {
     // 替换 Pixiv 注音标记符号 [[rb: > ]]
     let matched = content.match(RegExp(/\[\[rb:(.*?)>(.*?)]]/gm))
@@ -208,6 +214,57 @@ function getPollData(res, content) {
     return content
 }
 
+function processComment(item) {
+    let text = item.comment || ""
+    if (text === "" && item.stampId) {
+        return `<img src="${urlStampUrl(item.stampId)}">`
+    }
+    return text.replace(/\(([^)]+)\)/g, (match, key) => {
+        if (emoji.hasOwnProperty(key)) {
+            return `<img src="${urlEmojiUrl(emoji[key])}" >`
+        }
+        return match
+    })
+}
+
+function formatComment(item, replyToName = null) {
+    const content = processComment(item)
+    const isMyComment = item.userId === String(getFromCache("pixiv:uid"))
+    const commentId = isMyComment ? `(${item.id})` : ""
+    const name = replyToName ? `@${item.userName}(⤴️@${replyToName})` : `@${item.userName}`
+    return `${name}：${content}(${item.commentDate})${commentId}\n`
+}
+
+function getComment(res, content) {
+    if (!util.settings.SHOW_COMMENTS || res.commentCount === 0) return content
+
+    const limit = 50
+    let comments = []
+    let maxPage = Math.ceil(res.commentCount / limit)
+
+    for (let i = 0; i < maxPage; i++) {
+        let result = getAjaxJson(urlIP(urlNovelComments(res.id, i * limit, limit)), true)
+        if (result && !result.error && result.body && result.body.comments) {
+            comments = comments.concat(result.body.comments)
+        }
+    }
+
+    let commentText = `💬 评论(共计${comments.length}条)：\n`
+    comments.forEach(comment => {
+        commentText += formatComment(comment)
+        if (comment.hasReplies) {
+            let resp = getAjaxJson(urlIP(urlNovelCommentsReply(comment.id, 1)), true)
+            if (resp && !resp.error && resp.body && resp.body.comments) {
+                resp.body.comments.reverse().forEach(reply => {
+                    commentText += formatComment(reply, reply.replyToUserName)
+                })
+            }
+            commentText += "——————————\n"
+        }
+    })
+    return content + "\n" + "——————————\n".repeat(2) + commentText
+}
+
 function getContent(res) {
     getNovelInfo(res)  // 放入信息以便登陆界面使用
     let content = String(res.content)
@@ -225,75 +282,8 @@ function getContent(res) {
     content = replaceJumpUrl(content)
     content = replaceRb(content)
     content = getPollData(res, content)
-
-    // 添加评论
-    if (util.settings.SHOW_COMMENTS) {
-        return content + getComment(res)
-    } else {
-        return content
-    }
-}
-
-function getComment(res) {
-    // let resp = getAjaxJson(urlIP(urlNovelComments(res.id, 0, res.commentCount)), true)
-    const limit = 50  // 模拟 Pixiv 请求
-    let resp = {"error": false, "message": "", "body": {comments:[]} }
-    let maxPage = (res.commentCount / limit) + 1
-    for (let i = 0; i < maxPage; i++) {
-        let result = getAjaxJson(urlIP(urlNovelComments(res.id, i*limit, 50)), true)
-        if (result.error !== true && result.body.comments !== null) {
-            resp.body.comments = resp.body.comments.concat(result.body.comments)
-        }
-    }
-
-    // 刷新时，刷新评论，不更新正文
-    let commentCount = resp.body.comments.length
-    java.log(`【${res.title}】(${res.id})，共有${commentCount}条评论，${res.commentCount - commentCount}条回复`)
-    if (commentCount === 0) {
-        return ""
-    }
-
-    let comments = `💬 评论(共计${commentCount}条)：\n`
-    resp.body.comments.forEach(comment => {
-        if (comment.comment === "") {
-            comment.comment = `<img src="${urlStampUrl(comment.stampId)}">`
-        }
-        if (Object.keys(emoji).includes(comment.comment.slice(1, -1))) {
-            comment.emojiId = emoji[comment.comment.slice(1, -1)]
-            comment.comment = `<img src="${urlEmojiUrl(comment.emojiId)}">`
-        }
-        if (comment.userId === String(getFromCache("pixiv:uid"))) {
-            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})(${comment.id})\n`
-        } else {
-            comments += `@${comment.userName}：${comment.comment}(${comment.commentDate})\n`
-        }
-
-        // 获取评论回复
-        if (comment.hasReplies === true) {
-            let resp = getAjaxJson(urlIP(urlNovelCommentsReply(comment.id, 1)), true)
-            if (resp.error === true) return comments
-
-            resp.body.comments.reverse().forEach(reply => {
-                if (reply.comment === "") {
-                    reply.comment = `<img src="${urlStampUrl(reply.stampId)}">`
-                }
-                if (Object.keys(emoji).includes(reply.comment.slice(1, -1))) {
-                    reply.emojiId = emoji[reply.comment.slice(1, -1)]
-                    reply.comment = `<img src="${urlEmojiUrl(reply.emojiId)}">`
-                }
-                if (comment.userId === String(getFromCache("pixiv:uid"))) {
-                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})(${reply.id})\n`
-                } else {
-                    comments += `@${reply.userName}(⤴️@${reply.replyToUserName})：${reply.comment}(${reply.commentDate})\n`
-                }
-            })
-            comments += "——————————\n"
-        }
-    })
-    if (comments) {
-        comments = "\n" + "——————————\n".repeat(2) + comments
-    }
-    return comments
+    content = getComment(res, content)
+    return content
 }
 
 function checkContent() {
