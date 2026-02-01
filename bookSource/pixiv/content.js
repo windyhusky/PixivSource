@@ -65,6 +65,14 @@ function getNovelInfo(res) {
     putInCacheObject("novel", novel)
 }
 
+function getCaptions(res, content)　{
+    // 在正文内部添加小说描述
+    if (util.settings.SHOW_CAPTIONS && res.description !== "") {
+        content = res.description + "\n" + "——————————\n".repeat(2) + content
+    }
+    return content
+}
+
 function replaceUploadedImage(res, content) {
     // 获取 [uploadedimage:] 的图片链接
     if (res.textEmbeddedImages) {
@@ -196,12 +204,7 @@ function getContent(res) {
         return checkContent()
     }
 
-    // 在正文内部添加小说描述
-    if (util.settings.SHOW_CAPTIONS && res.description !== "") {
-        content = res.description + "\n" + "——————————\n".repeat(2) + content
-    }
-
-    // 替换 Pixiv 标记符
+    content = getCaptions(res, content)
     content = replaceUploadedImage(res, content)
     content = replacePixivImage(content)
     content = replaceNewPage(content)
