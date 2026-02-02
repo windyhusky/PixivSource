@@ -40,19 +40,21 @@ function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
     if (saveSeconds === undefined) saveSeconds = 0
+    let objectText = JSON.stringify(object)
+
     if (typeof objectName === "string" ) {
         if (objectName.startsWith("https://210.140.139.155")) {
             let url = objectName.split(",")[0]
             url = url.replace("210.140.139.155", "www.pixiv.net")
-            this.putInCacheObject(url, object, saveSeconds)
+            cache.put(url, objectText, saveSeconds)
 
         } else if (objectName.startsWith("https://210.140.139.133")) {
             let url = objectName.split(",")[0]
             url = url.replace("210.140.139.133", "i.pximg.net")
-            this.putInCacheObject(url, object, saveSeconds)
+            cache.put(url, objectText, saveSeconds)
         }
     }
-    cache.put(objectName, JSON.stringify(object), saveSeconds)
+    cache.put(objectName, objectText, saveSeconds)
 }
 function getFromCacheObject(objectName) {
     const {java, cache} = this
@@ -63,6 +65,7 @@ function getFromCacheObject(objectName) {
 
 function putInCacheMap(mapName, mapObject, saveSeconds) {
     const {java, cache} = this
+    if (saveSeconds === undefined) saveSeconds = 0
     let orderedArray = []
     mapObject.forEach((value, key) => {
         const item = {}
@@ -70,7 +73,6 @@ function putInCacheMap(mapName, mapObject, saveSeconds) {
         orderedArray.push(item)
     })
     // [{'key1': 'value1'}, {'key2': 'value2'}]
-    if (saveSeconds === undefined) saveSeconds = 0
     cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
 }
 function getFromCacheMap(mapName) {
