@@ -1,6 +1,6 @@
 var checkTimes = 0
-var cacheSaveSeconds = 7*24*60*60  // 长期缓存时间 7天
-var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
+var cacheSaveSeconds = 30*24*60*60  // 物理缓存 30 天
+var cacheTempSeconds = 10*60*1000   // 错误数据冷却时间 10 分钟
 
 function cacheGetAndSet(key, supplyFunc, forceUpdate) {
     const {java, cache} = this
