@@ -121,33 +121,25 @@ function isLogin() {
 
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
-    let v = this.getFromCacheObject(url)
-    if (forceUpdate || !v || new Date().getTime() >= v.timestamp + cacheTempSeconds) {
-        cache.delete(url)
-    }
     return this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
-    })
+    }, forceUpdate)
 }
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
-    let v = this.getFromCacheObject(urls)
-    if (forceUpdate || !v || new Date().getTime() >= v.timestamp + cacheTempSeconds) {
-        cache.delete(urls)
-    }
     return this.cacheGetAndSet(urls, () => {
-        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
-        this.putInCacheObject(urls, result, cacheSaveSeconds)
-        for (let i in urls) this.putInCacheObject(urls[i], result[i], cacheSaveSeconds)
-        return result
-    })
+        let results = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
+        this.putInCacheObject(JSON.stringify(urls), results, cacheSaveSeconds)
+        for (let i in urls) this.putInCacheObject(urls[i], results[i], cacheSaveSeconds)
+        return results
+    }, forceUpdate)
 }
-function getWebviewJson(url, parseFunc) {
+function getWebviewJson(url, parseFunc, forceUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
-    })
+    }, forceUpdate)
 }
 
 function getWebViewUA() {
