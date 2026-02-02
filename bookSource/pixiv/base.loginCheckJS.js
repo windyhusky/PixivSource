@@ -284,7 +284,8 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function(novels) {
+    u.handNovels = function(novels, isDetail) {
+        if (!isDetail) isDetail = false
         let likeNovels = [], watchedSeries = []
         novels = util.authorFilter(novels)
         novels.forEach(novel => {
@@ -367,8 +368,14 @@ function publicFunc() {
                     novel.isBookmark = false
                 }
             }
+
+            if (novel.seriesId && !isDetail) {
+                novel.title = novel.seriesTitle
+                novel.tags.unshift("长篇")
+                novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
+            }
             // 系列添加更多信息
-            if (novel.seriesId) {
+            if (novel.seriesId && isDetail) {
                 let series = getAjaxJson(urlIP(urlSeriesDetailed(novel.seriesId))).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
