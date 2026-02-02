@@ -239,13 +239,19 @@ function getComment(res, content) {
     if (!util.settings.SHOW_COMMENTS || res.commentCount === 0) return content
 
     const limit = 50
-    let comments = []
+    let comments = [], commentUrls = [];
     let maxPage = Math.ceil(res.commentCount / limit)
-
-    for (let i = 0; i < maxPage; i++) {
-        let result = getAjaxJson(urlIP(urlNovelComments(res.id, i * limit, limit)), true)
-        if (result && !result.error && result.body && result.body.comments) {
-            comments = comments.concat(result.body.comments)
+    if (maxPage >= 2 && util.environment.IS_LEGADO) {
+        for (let i = 0; i < maxPage; i++) {
+            commentUrls.push(urlIP(urlNovelComments(res.id, i * limit, limit)))
+        }
+        comments = getAjaxAllJson(commentUrls).map(resp => resp.body.comments).flat()
+    } else {
+        for (let i = 0; i < maxPage; i++) {
+            let result = getAjaxJson(urlIP(urlNovelComments(res.id, i * limit, limit)), true)
+            if (result && !result.error && result.body && result.body.comments) {
+                comments = comments.concat(result.body.comments)
+            }
         }
     }
 
