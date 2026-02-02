@@ -42,38 +42,45 @@ function isLegadoLYC() {
 }
 
 function publicFunc() {
-    let u = {}, settings
-    // 输出书源信息
-    java.log(`${source.bookSourceComment.split("\n")[0]}`)
-    java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
-    java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+    let u = {}
 
-    if (isSourceRead()) {
-        java.log("📱 软件平台：🍎 源阅 SourceRead")
-    } else if (isLegadoOfficial()) {
-        java.log("📱 软件平台：🤖 阅读 正式版")
-        sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-        sleep(3); startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
+    let isFirstInit = false;
+    if (!globalThis.ALREADY_LOGGED_INFO) {
+        globalThis.ALREADY_LOGGED_INFO = true;
+        isFirstInit = true;
+    }
 
-    } else {
-        if (isLegadoLYC()) {
-            java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
+    // 只有第一次初始化时才输出日志
+    if (isFirstInit) {
+        // 输出书源信息
+        java.log(`${source.bookSourceComment.split("\n")[0]}`)
+        java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
+        java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+
+        if (isSourceRead()) {
+            java.log("📱 软件平台：🍎 源阅 SourceRead")
+        } else if (isLegadoOfficial()) {
+            java.log("📱 软件平台：🤖 阅读 正式版")
+            sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
+            sleep(3);
+            startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
+
         } else {
-            java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
-            sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-            sleep(3); startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
+            if (isLegadoLYC()) {
+                java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
+            } else {
+                java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
+                sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
+                sleep(3);
+                startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
+            }
         }
     }
 
     // 设置初始化
     // cache.delete("pixivSettings")
-    settings = getFromCacheObject("pixivSettings")
-    if (settings) {
-        java.log("⚙️ 使用自定义设置")
-    } else {
-        java.log("⚙️ 使用默认设置")
-        settings = setDefaultSettings()
-    }
+    let settings = getFromCacheObject("pixivSettings")
+    if (!settings) settings = setDefaultSettings()
     settings = checkSettings()
     if (settings.IPDirect) {
         java.log("✈️ 直连模式：✅ 已开启")
