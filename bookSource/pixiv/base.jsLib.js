@@ -42,10 +42,16 @@ function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
     if (saveSeconds === undefined) saveSeconds = 0
+    if (objectName === "pixivSettings") {
+        this._settings = object
+    }
     cache.put(this.normalizeUrl(objectName), JSON.stringify(object), saveSeconds)
 }
 function getFromCacheObject(objectName) {
     const {java, cache} = this
+    if (objectName === "pixivSettings" && this._settings) {
+        return this._settings
+    }
     let object = cache.get(this.normalizeUrl(objectName))
     if (object === undefined) return null  // 兼容源阅，避免 parse 报错
     return JSON.parse(object)
