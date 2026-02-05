@@ -258,10 +258,10 @@ function novelFilter(novels) {
 (() => {
     let novels = []
     let keyword = String(java.get("keyword"))
-    if (keyword.startsWith("@") || keyword.startsWith("＠")) {
+    if (keyword.startsWith("@")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getUserNovels())
-    } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
+    } else if (keyword.startsWith("#")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
