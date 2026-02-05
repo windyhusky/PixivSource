@@ -4,14 +4,21 @@ var cacheTempSeconds = 10*60*1000   // 错误数据冷却时间 10 分钟
 
 function cacheGetAndSet(key, supplyFunc, forceUpdate) {
     const {java, cache} = this
+    let timestamp
     let v = this.getFromCacheObject(key)
-    const isExpired = v && (new Date().getTime() >= v.timestamp + cacheTempSeconds)
+    if (Array.isArray(v)) timestamp = v[0].timestamp || 1
+    else if (v) timestamp = v.timestamp
+
+    const isExpired = v && (new Date().getTime() >= timestamp + cacheTempSeconds)
     const isError = v && (v.error === true) && isExpired
     forceUpdate = forceUpdate && isExpired
 
     if (!v || forceUpdate || isError) {
         v = supplyFunc()
-        v.timestamp = new Date().getTime()
+        let now = new Date().getTime()
+        if (!Array.isArray(v) && v.length >= 1) {
+            v = Object.assign({timestamp: now}, v)
+        }
         this.putInCacheObject(key, v, cacheSaveSeconds)
     }
     return v
