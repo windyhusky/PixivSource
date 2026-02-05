@@ -375,7 +375,7 @@ function sleepToast(text, seconds) {
 function setDefaultSettings() {
     const {java, cache} = this
     let settings = {}
-    settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
+    settings.SEARCH_AUTHOR = false      // 搜索：默认不搜索作者名称
     settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
     settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示收藏小说
     settings.SHOW_WATCHED_SERIES = true // 搜索：搜索结果显示追整系列小说
@@ -386,7 +386,7 @@ function setDefaultSettings() {
 
     settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
     settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
-    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
+    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论，但会增加大量请求
 
     settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
@@ -400,18 +400,24 @@ function checkSettings() {
     let settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
     if (settings.FAST || settings.IPDirect) {
-        settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称
+        settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
     }
     if (!settings.FAST && !settings.IPDirect) {
-        settings.SEARCH_AUTHOR = true         // 搜索：默认搜索作者名称
+        // settings.SEARCH_AUTHOR = true         // 搜索：默认不搜索作者名称
         settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
     }
 
-    if (settings.FAST === true) {
+    if (settings.FAST) {
+        settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_COMMENTS = false        // 正文：显示评论
+    } else {
+        // settings.SEARCH_AUTHOR = true         // 搜索：默认不搜索作者名称
+        settings.CONVERT_CHINESE = true       // 搜索：繁简通搜
+        settings.SHOW_UPDATE_TIME = true      // 目录：显示章节更新时间
+        settings.SHOW_COMMENTS = true         // 正文：显示评论
     }
     this.putInCacheObject("pixivSettings", settings)
     return settings

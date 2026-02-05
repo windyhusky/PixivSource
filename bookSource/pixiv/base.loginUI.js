@@ -41,7 +41,7 @@ let settings = [
     {"书源设置": "text" },
     {"⚙️ 当前设置": "showSettings()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
-    {"👤 🚫 搜索作者": "editSettings('SEARCH_AUTHOR')" },
+    {"🚫 👤 搜索作者": "editSettings('SEARCH_AUTHOR')" },
 
     {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
     {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
