@@ -538,3 +538,42 @@ function updateSource() {
     java.startBrowser(`data:text/html;charset=utf-8;base64, ${java.base64Encode(htm)}`, '更新书源')
     return []
 }
+
+// 测速
+function profile(funcName, func) {
+    return function() {
+        var start = Packages.java.lang.System.currentTimeMillis()
+        try {
+            return result = func.apply(this, arguments)
+        } finally {
+            const {java, cache} = this
+            var end = Packages.java.lang.System.currentTimeMillis()
+            var duration = end - start
+            if (duration >= 5) {
+                java.log("⏱️ [" + funcName + "] 耗时: " + duration + "ms")
+            }
+        }
+    }
+}
+
+cacheGetAndSet = profile("cacheGetAndSet", cacheGetAndSet)
+getAjaxJson = profile("getAjaxJson", getAjaxJson)
+getAjaxAllJson = profile("getAjaxAllJson", getAjaxAllJson)
+getWebviewJson = profile("getWebviewJson", getWebviewJson)
+
+putInCacheObject = profile("putInCacheObject", putInCacheObject)
+getFromCacheObject = profile("getFromCacheObject", getFromCacheObject)
+putInCache = profile("putInCache", putInCache)
+getFromCache = profile("getFromCache", getFromCache)
+putInCacheMap= profile("putInCacheMap", putInCacheMap)
+getFromCacheMap = profile("getFromCacheMap", getFromCacheMap)
+
+urlIP = profile("urlIP", urlIP)
+urlCoverUrl = profile("urlCoverUrl", urlCoverUrl)
+urlIllustOriginal = profile("urlIllustOriginal", urlIllustOriginal)
+
+urlSearchNovel = profile("urlSearchNovel", urlSearchNovel)
+urlSearchUser = profile("urlSearchUser", urlSearchUser)
+
+checkSettings = profile("checkSettings", checkSettings)
+getWebViewUA = profile("getWebViewUA", getWebViewUA)
