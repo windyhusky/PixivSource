@@ -600,9 +600,9 @@ function getHeaders() {
         // "sec-fetch-dest": "empty",
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
-        "user-agent": getFromCache("userAgent"),
-        "x-csrf-token": getFromCache("pixivCsrfToken"),
-        "Cookie": getFromCache("pixivCookie")
+        "user-agent": getFromCache("userAgent") || "",
+        "x-csrf-token": getFromCache("pixivCsrfToken") || "",
+        "Cookie": getFromCache("pixivCookie") || ""
     }
     putInCacheObject("headers", headers)
     return headers
