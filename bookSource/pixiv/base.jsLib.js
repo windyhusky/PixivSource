@@ -23,13 +23,12 @@ function putInCache(name, object, saveSeconds) {
     if (object) {
         cache.put(name, object, saveSeconds)
     }
-    // else {
-    //     cache.delete(name, object, saveSeconds)
-    // }
 }
 function getFromCache(name) {
     const {java, cache} = this
-    return cache.get(name)
+    let object = cache.get(name)
+    if (object === undefined) return null  // 兼容源阅
+    return object
 }
 
 function normalizeUrl(url) {
