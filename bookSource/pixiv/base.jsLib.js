@@ -168,9 +168,9 @@ function startBrowser(url, title) {
 // https://github.com/Notsfsssf/pixez-flutter
 function urlIP(url) {
     const {java, cache} = this
-    let settings = this.getFromCacheObject("pixivSettings")
-    if (!settings) settings = this.setDefaultSettings()
-    if (settings.IPDirect) {
+    this._settings = this.getFromCacheObject("pixivSettings")
+    if (!this._settings) this._settings = this.setDefaultSettings()
+    if (this._settings.IPDirect) {
         url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
         let headers = {
             "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
@@ -265,12 +265,11 @@ function urlSearchUser(userName, full) {
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (url && !url.trim()) return ""
-
-    let settings = this.getFromCacheObject("pixivSettings")
-    if (!settings) settings = this.setDefaultSettings()
-
     let headers = {"Referer": "https://www.pixiv.net/"}
-    if (settings.IPDirect && url.trim()) {
+
+    this._settings = this.getFromCacheObject("pixivSettings")
+    if (!this._settings) this._settings = this.setDefaultSettings()
+    if (this._settings.IPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
             headers.host = "i.pximg.net"
