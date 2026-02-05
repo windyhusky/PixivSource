@@ -377,8 +377,8 @@ function setDefaultSettings() {
     let settings = {}
     settings.SEARCH_AUTHOR = false      // 搜索：默认不搜索作者名称
     settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
-    settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示收藏小说
-    settings.SHOW_WATCHED_SERIES = true // 搜索：搜索结果显示追整系列小说
+    settings.HIDE_LIKE_NOVELS = false   // 搜索：搜索结果 隐藏收藏小说
+    settings.HIDE_WATCHED_SERIES = false// 搜索：搜索结果 隐藏追整系列
 
     settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
     settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求

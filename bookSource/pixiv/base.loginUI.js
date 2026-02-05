@@ -52,8 +52,8 @@ let settings = [
     {"🖼️ 🚫 显示描述": "editSettings('SHOW_CAPTIONS')" },
 
     {"💬 🚫 显示评论": "editSettings('SHOW_COMMENTS')" },
-    {"❤️ 🚫 显示收藏": "editSettings('SHOW_LIKE_NOVELS')" },
-    {"📃 🚫 显示追更": "editSettings('SHOW_WATCHED_SERIES')" },
+    {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
+    {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
 
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },

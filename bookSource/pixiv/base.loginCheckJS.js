@@ -198,17 +198,17 @@ function publicFunc() {
         let watchedSeries = getFromCacheObject("watchedSeries")
         let novels0 = novels.map(novel => novel.id)
 
-        msg = util.checkStatus(util.settings.SHOW_LIKE_NOVELS).replace("未","不")
+        msg = util.checkStatus(!util.settings.HIDE_LIKE_NOVELS).replace("未","不")
         java.log(`${msg}显示收藏小说`)
-        if (util.settings.SHOW_LIKE_NOVELS === false) {
+        if (util.settings.HIDE_LIKE_NOVELS) {
             novels = novels.filter(novel => !likeNovels.includes(Number(novel.id)))
             novels1 = novels.map(novel => novel.id)
             java.log(`⏬ 过滤收藏：过滤前${novels0.length}；过滤后${novels1.length}`)
         }
 
-        msg = util.checkStatus(util.settings.SHOW_WATCHED_SERIES).replace("未","不")
+        msg = util.checkStatus(!util.settings.HIDE_WATCHED_SERIES).replace("未","不")
         java.log(`${msg}显示追更系列`)
-        if (util.settings.SHOW_WATCHED_SERIES === false) {
+        if (util.settings.HIDE_WATCHED_SERIES) {
             novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
             novels2 = novels.map(novel => novel.id)
             if (novels1.length >= 1) novels0 = novels1
@@ -218,8 +218,8 @@ function publicFunc() {
         let novels3 = novels.map(novel => novel.id)
         if (novels0.length >= 1 && novels3.length === 0) {
             let msg = `⏬ 过滤小说\n⚠️ 过滤后无结果\n\n请根据需要\n`
-            if (util.settings.SHOW_LIKE_NOVELS === false) msg += "开启显示收藏小说\n"
-            if (util.settings.SHOW_WATCHED_SERIES === false) msg += "开启显示追更系列"
+            if (!util.settings.HIDE_LIKE_NOVELS) msg += "开启显示收藏小说\n"
+            if (!util.settings.HIDE_WATCHED_SERIES) msg += "开启显示追更系列"
             sleepToast(msg, 1)
         }
 
