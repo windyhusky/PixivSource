@@ -32,29 +32,21 @@ function getFromCache(name) {
     return cache.get(name)
 }
 
+function normalizeUrl(url) {
+    if (!url.startsWith("https://210.140")) return url
+    return url.replace("210.140.139.155", "www.pixiv.net")
+        .replace("210.140.139.133", "i.pximg.net")
+        .split(",")[0]
+}
 function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
     if (saveSeconds === undefined) saveSeconds = 0
-    let objectText = JSON.stringify(object)
-
-    if (typeof objectName === "string" ) {
-        if (objectName.startsWith("https://210.140.139.155")) {
-            let url = objectName.split(",")[0]
-            url = url.replace("210.140.139.155", "www.pixiv.net")
-            cache.put(url, objectText, saveSeconds)
-
-        } else if (objectName.startsWith("https://210.140.139.133")) {
-            let url = objectName.split(",")[0]
-            url = url.replace("210.140.139.133", "i.pximg.net")
-            cache.put(url, objectText, saveSeconds)
-        }
-    }
-    cache.put(objectName, objectText, saveSeconds)
+    cache.put(this.normalizeUrl(objectName), JSON.stringify(object), saveSeconds)
 }
 function getFromCacheObject(objectName) {
     const {java, cache} = this
-    let object = cache.get(objectName)
+    let object = cache.get(this.normalizeUrl(objectName))
     if (object === undefined) return null  // 兼容源阅，避免 parse 报错
     return JSON.parse(object)
 }
