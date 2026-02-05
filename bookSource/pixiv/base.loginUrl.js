@@ -87,7 +87,7 @@ function getCsrfToken() {
 
 function getNovel() {
     let environment = getFromCacheObject("pixivEnvironment")
-    if (environment.IS_LYC_BRUNCH) {
+    if (environment.IS_LEGADO_SIGMA) {
         try {
             let novel = {}
             try {

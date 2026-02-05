@@ -37,7 +37,7 @@ function isLegadoOfficial() {
 // cookie.setWebCookie(url,cookie)
 // source.refreshExplore()
 // source.refreshJSLib()
-function isLegadoLYC() {
+function isLegadoSigma() {
     return typeof java.ajaxTestAll === "function"
 }
 
@@ -60,8 +60,8 @@ function publicFunc() {
         globalThis.environment = {}
         globalThis.environment.IS_SOURCEREAD = isSourceRead()
         globalThis.environment.IS_LEGADO = !isSourceRead()
-        globalThis.environment.IS_LEGADO_OFFICIAL = !isLegadoOfficial()
-        globalThis.environment.IS_LYC_BRUNCH = isLegadoLYC()
+        globalThis.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
+        globalThis.environment.IS_LEGADO_SIGMA = isLegadoSigma()
     }
     u.settings = globalThis.settings
     u.environment = globalThis.environment
@@ -81,7 +81,7 @@ function publicFunc() {
             startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
 
         } else {
-            if (globalThis.environment.IS_LYC_BRUNCH) {
+            if (globalThis.environment.IS_LEGADO_SIGMA) {
                 java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
             } else {
                 java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
