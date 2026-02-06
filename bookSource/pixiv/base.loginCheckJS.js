@@ -371,7 +371,7 @@ function publicFunc() {
             if (novel.seriesId && !isDetail) {
                 novel.title = novel.seriesTitle
                 novel.tags.unshift("长篇")
-                novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
+                novel.detailedUrl = urlIP(urlSeriesDetailed(novel.seriesId))
             }
             // 系列添加更多信息
             if (novel.seriesId && isDetail) {
