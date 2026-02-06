@@ -22,7 +22,7 @@ if (keyword.startsWith("@") || keyword.startsWith("＠")) {
         java.log(`👤 搜索作者：${author} #️⃣ 过滤标签：${tags.replace(" ", "、")}`)
     } else {
         java.put("keyword", `@${keyword}`)
-        java.log(`👤 搜索作者：${keyword.slice(1)}`)
+        java.log(`👤 搜索作者：${keyword}`)
     }
 
 } else if (keyword.startsWith("#") || keyword.startsWith("＃")) {
