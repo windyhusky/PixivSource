@@ -1101,12 +1101,6 @@ function cleanCache() {
     let novel = getNovel()
     cache.delete(`${urlNovelUrl(novel.id)}`)
     cache.delete(`${urlNovelDetailed(novel.id)}`)
-    // cache.delete(`${urlSearchNovel(novel.title, 1)}`)
-    // if (novel.seriesId) {
-    //     cache.delete(`${urlSeriesUrl(novel.seriesId)}`)
-    //     cache.delete(`${urlSeriesDetailed(novel.seriesId)}`)
-    //     cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
-    // }
     try {java.refreshContent()} catch(err) {}
     sleepToast(`🔄 刷新本章\n\n若正文未更新，请手动刷新`, 5)
 }
