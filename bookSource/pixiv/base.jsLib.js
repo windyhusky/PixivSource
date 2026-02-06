@@ -541,7 +541,6 @@ function updateSource() {
     return []
 }
 
-// 测速
 function profile(funcName, func) {
     return function() {
         var start = Packages.java.lang.System.currentTimeMillis()
@@ -558,24 +557,24 @@ function profile(funcName, func) {
     }
 }
 
-cacheGetAndSet = profile("cacheGetAndSet", cacheGetAndSet)
-getAjaxJson = profile("getAjaxJson", getAjaxJson)
-getAjaxAllJson = profile("getAjaxAllJson", getAjaxAllJson)
-getWebviewJson = profile("getWebviewJson", getWebviewJson)
-
-putInCacheObject = profile("putInCacheObject", putInCacheObject)
-getFromCacheObject = profile("getFromCacheObject", getFromCacheObject)
-putInCache = profile("putInCache", putInCache)
-getFromCache = profile("getFromCache", getFromCache)
-putInCacheMap= profile("putInCacheMap", putInCacheMap)
-getFromCacheMap = profile("getFromCacheMap", getFromCacheMap)
-
-urlIP = profile("urlIP", urlIP)
-urlCoverUrl = profile("urlCoverUrl", urlCoverUrl)
-urlIllustOriginal = profile("urlIllustOriginal", urlIllustOriginal)
-
-urlSearchNovel = profile("urlSearchNovel", urlSearchNovel)
-urlSearchUser = profile("urlSearchUser", urlSearchUser)
-
-checkSettings = profile("checkSettings", checkSettings)
-getWebViewUA = profile("getWebViewUA", getWebViewUA)
+// cacheGetAndSet = profile("cacheGetAndSet", cacheGetAndSet)
+// getAjaxJson = profile("getAjaxJson", getAjaxJson)
+// getAjaxAllJson = profile("getAjaxAllJson", getAjaxAllJson)
+// getWebviewJson = profile("getWebviewJson", getWebviewJson)
+//
+// putInCacheObject = profile("putInCacheObject", putInCacheObject)
+// getFromCacheObject = profile("getFromCacheObject", getFromCacheObject)
+// putInCache = profile("putInCache", putInCache)
+// getFromCache = profile("getFromCache", getFromCache)
+// putInCacheMap= profile("putInCacheMap", putInCacheMap)
+// getFromCacheMap = profile("getFromCacheMap", getFromCacheMap)
+//
+// urlIP = profile("urlIP", urlIP)
+// urlCoverUrl = profile("urlCoverUrl", urlCoverUrl)
+// urlIllustOriginal = profile("urlIllustOriginal", urlIllustOriginal)
+//
+// urlSearchNovel = profile("urlSearchNovel", urlSearchNovel)
+// urlSearchUser = profile("urlSearchUser", urlSearchUser)
+//
+// checkSettings = profile("checkSettings", checkSettings)
+// getWebViewUA = profile("getWebViewUA", getWebViewUA)
