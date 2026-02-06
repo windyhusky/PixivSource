@@ -42,7 +42,7 @@ function isLegadoSigma() {
 }
 
 function publicFunc() {
-    let u = {}
+    let u = {}, settings = {}
 
     let isFirstInit = false;
     if (!globalThis.ALREADY_LOGGED_INFO) {
@@ -52,10 +52,11 @@ function publicFunc() {
 
     if (!globalThis.settings) {
         // cache.delete("pixivSettings")
-        let settings = getFromCacheObject("pixivSettings")
+        settings = getFromCacheObject("pixivSettings")
         if (!settings) settings = setDefaultSettings()
         globalThis.settings = checkSettings(settings)
     }
+    // 环境信息不会改变，可以使用 globalThis.environment
     if (!globalThis.environment) {
         globalThis.environment = {}
         globalThis.environment.IS_SOURCEREAD = isSourceRead()
@@ -63,8 +64,6 @@ function publicFunc() {
         globalThis.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
         globalThis.environment.IS_LEGADO_SIGMA = isLegadoSigma()
     }
-    u.settings = globalThis.settings
-    u.environment = globalThis.environment
 
     // 只有第一次初始化时才输出日志
     if (isFirstInit) {
@@ -94,6 +93,14 @@ function publicFunc() {
             java.log("✈️ 直连模式：❌ 已关闭")
         }
     }
+
+    // 使用 globalThis.settings 无法获取最新的设置
+    // 使用 globalThis.environment 可能无法写入 environment
+    // cache.delete("pixivSettings")
+    settings = getFromCacheObject("pixivSettings")
+    if (!settings) settings = setDefaultSettings()
+    u.settings = checkSettings(settings)
+    putInCacheObject("pixivEnvironment", globalThis.environment)
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
