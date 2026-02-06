@@ -110,8 +110,9 @@ function isHtmlString(str) {
 function isJsonString(str) {
     try {
         if (typeof JSON.parse(str) === "object") return true
-    } catch(e) {}
-    return false
+    } catch(e) {
+        return false
+    }
 }
 
 function isLogin() {
