@@ -1081,16 +1081,19 @@ function editSettings(settingName) {
     }
     putInCacheObject("pixivSettings", settings)
 
-    if (settingName === "FAST" || (settingName === "IPDirect")) {
+    if (settingName === "FAST") {
+        checkSettings(settings)
+        msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
+    } else if (settingName === "IPDirect") {
         if (settings.IPDirect && !isLogin()) {
             msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
             settings.IPDirect = false
-            checkSettings()
-            putInCacheObject("pixivSettings", settings)
+            checkSettings(settings)
         } else {
-            checkSettings()
+            checkSettings(settings)
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         }
+        try {source.refreshExplore()} catch (e) {}
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     }
