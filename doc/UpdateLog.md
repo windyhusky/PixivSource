@@ -10,6 +10,60 @@
 
 
 ## ⏱️ 近期更新
+### 📚 更新 260
+- 🅿️ Pixiv 小说、小说备用
+  - ⚡️ 减少请求次数，加快搜索速度
+    - 👤 默认不再搜索作者
+    - 📃 优化目录获取
+    - 💬 正文评论优先使用 getAjaxAllJson 请求
+  - 💾 优化缓存逻辑
+    - ⬆️ 延长缓存保存时间
+    - 🚫 缓存有效期内不发起请求
+    - 🚫 缓存 10min 内不发起强制请求
+  - ⚙️ 设置更改
+    - 👤 默认不再搜索作者
+    - 🔄 直连模式自动刷新发现
+    - 👁 显示收藏、显示追更 改为：隐藏收藏、隐藏追更
+    - ⚙️ 减少 urlIP urlCoverUrl 直接读取设置缓存
+  - ⤴️ 回调
+    - 🧹 全面清理缓存
+    - 💾 复制目录链接
+
+
+### ⬆️ 更新 260
+- 🅿️ Pixiv 小说、小说备用
+  - JSLib
+    - putInCacheObject 不再循环调用
+    - 优化 getAjaxJson　getAjaxAllJson　getWebviewJson
+    - 优化 cacheGetAndSet
+    - getAjaxAllJson 整体加入缓存
+    - getAjaxAllJson 每条链接加入请求时间
+    - cacheGetAndSet 处理 getAjaxAllJson 请求时间时，使用 v[0].timestamp
+    - 优化 cacheGetAndSet 获取时间戳
+    - 延长 cacheSaveSeconds 缓存保存时间
+    - putInCacheObject getFromCacheObject 读写缓存前，使用 normalizeUrl 规范化 key
+    - 减少 urlIP urlCoverUrl 直接读取设置缓存
+  - 常规
+    - 登录检测：
+      - 环境信息仅输出一次
+      - 将 LegadoLYC 改为 LegadoSigma
+      - 优化 getHeaders
+    - 搜索：搜索作者时，去除关键字中的@
+    - 目录：优化目录获取
+    - 正文：获取评论优先使用 getAjaxAllJson
+    - 回调：全面清理缓存；复制目录链接
+    - 设置：
+      - 优化设置逻辑
+      - 优化 checkSettings
+      - 默认关闭搜索作者
+      - 显示收藏、显示追更 改为：隐藏收藏、隐藏追更
+      - 使用 globalThis 获取环境信息
+      - 直连模式自动刷新发现
+  - 制作工具
+    - 删除 正文标题规则
+    - 优化 版本发布
+
+
 ### 📚 更新 259
 - ✅ 修复无法获取小说 ID 的 bug
 - 🅿️ Pixiv 小说、小说备用
