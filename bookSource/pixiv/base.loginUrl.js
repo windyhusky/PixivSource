@@ -47,11 +47,6 @@ function removeLikeDataCache() {
 }
 
 function removeSettingsCache() {
-    // 删除 自动翻页的最大页码
-    cache.delete("maxPagesKey")
-    cache.delete("novelsMaxPages")
-    cache.delete("seriesMaxPages")
-
     // 删除 屏蔽作者名单
     // removeCacheList("blockAuthorList")
     // 删除  屏蔽关键词
