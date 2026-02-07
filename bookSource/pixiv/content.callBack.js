@@ -50,7 +50,10 @@ function copyBookUrl() {
     java.copyText(book.bookUrl)
     return true
 }
-copyTocUrl = copyBookUrl
+function copyTocUrl() {
+    java.copyText(book.tocUrl)
+    return true
+}
 
 // 保存阅读，更新登录界面的章节名称
 function saveRead() {
