@@ -137,9 +137,9 @@ function handlerWatchList() {
 
 // 排行榜，书签，首页，编辑部推荐，顺序相同
 function handlerRanking() {
-    if (util.environment.IS_LEGADO) return handlerRankingAjaxAll()
-    // else if (util.environment.IS_SOURCE_READ) return handlerRankingWebview()
-    else if (util.environment.IS_SOURCE_READ) return handlerRankingAjax()
+    if (globalThis.environment.IS_LEGADO) return handlerRankingAjaxAll()
+    // else if (globalThis.environment.IS_SOURCE_READ) return handlerRankingWebview()
+    else if (globalThis.environment.IS_SOURCE_READ) return handlerRankingAjax()
     else return []
 }
 

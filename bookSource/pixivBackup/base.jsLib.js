@@ -1,22 +1,26 @@
 var checkTimes = 0
-var cacheSaveSeconds = 7*24*60*60  // 长期缓存时间 7天
-var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
+var cacheSaveSeconds = 30*24*60*60  // 物理缓存 30 天
+var cacheTempSeconds = 10*60*1000   // 错误数据冷却时间 10 分钟
 
-function cacheGetAndSet(key, supplyFunc) {
+function cacheGetAndSet(key, supplyFunc, forceUpdate) {
     const {java, cache} = this
+    let timestamp = 0
     let v = this.getFromCacheObject(key)
-    // 缓存信息错误时，保存 10min 后重新请求
-    if (v && v.error === true) {
-        if (new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
-            cache.delete(key)
-            v = this.getFromCacheObject(key)
-        }
-    }
-    // 无缓存信息时，进行请求
-    if (v === undefined || v === null) {
+    if (Array.isArray(v)) {
+        timestamp = v[0].timestamp
+    } else if (v) timestamp = v.timestamp
+
+    const isExpired = v && (new Date().getTime() >= timestamp + cacheTempSeconds)
+    const isError = v && (v.error === true) && isExpired
+    forceUpdate = forceUpdate && isExpired
+
+    if (!v || forceUpdate || isError) {
         v = supplyFunc()
-        v.timestamp = new Date().getTime()
-        this.putInCacheObject(key, v)
+        let now = new Date().getTime()
+        if (!Array.isArray(v) && v.length >= 1) {
+            v = Object.assign({timestamp: now}, v)
+        }
+        this.putInCacheObject(key, v, cacheSaveSeconds)
     }
     return v
 }
@@ -27,30 +31,42 @@ function putInCache(name, object, saveSeconds) {
     if (object) {
         cache.put(name, object, saveSeconds)
     }
-    // else {
-    //     cache.delete(name, object, saveSeconds)
-    // }
 }
 function getFromCache(name) {
     const {java, cache} = this
-    return cache.get(name)
+    let object = cache.get(name)
+    if (object === undefined) return null  // 兼容源阅
+    return object
 }
 
+function normalizeUrl(url) {
+    if (!url.startsWith("https://210.140")) return url
+    return url.replace("210.140.139.155", "www.pixiv.net")
+        .replace("210.140.139.133", "i.pximg.net")
+        .split(",")[0]
+}
 function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
     if (saveSeconds === undefined) saveSeconds = 0
-    cache.put(objectName, JSON.stringify(object), saveSeconds)
+    if (objectName === "pixivSettings") {
+        this._settings = object
+    }
+    cache.put(this.normalizeUrl(objectName), JSON.stringify(object), saveSeconds)
 }
 function getFromCacheObject(objectName) {
     const {java, cache} = this
-    let object = cache.get(objectName)
+    if (objectName === "pixivSettings" && this._settings) {
+        return this._settings
+    }
+    let object = cache.get(this.normalizeUrl(objectName))
     if (object === undefined) return null  // 兼容源阅，避免 parse 报错
     return JSON.parse(object)
 }
 
 function putInCacheMap(mapName, mapObject, saveSeconds) {
     const {java, cache} = this
+    if (saveSeconds === undefined) saveSeconds = 0
     let orderedArray = []
     mapObject.forEach((value, key) => {
         const item = {}
@@ -58,7 +74,6 @@ function putInCacheMap(mapName, mapObject, saveSeconds) {
         orderedArray.push(item)
     })
     // [{'key1': 'value1'}, {'key2': 'value2'}]
-    if (saveSeconds === undefined) saveSeconds = 0
     cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
 }
 function getFromCacheMap(mapName) {
@@ -96,8 +111,9 @@ function isHtmlString(str) {
 function isJsonString(str) {
     try {
         if (typeof JSON.parse(str) === "object") return true
-    } catch(e) {}
-    return false
+    } catch(e) {
+        return false
+    }
 }
 
 function isLogin() {
@@ -107,33 +123,32 @@ function isLogin() {
 
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
-    let v = this.getFromCacheObject(url)
-    if (forceUpdate || !v || new Date().getTime() >= v.timestamp + cacheTempSeconds) {
-        cache.delete(url)
-    }
     return this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
-    })
+    }, forceUpdate)
 }
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
-    let v = this.getFromCacheObject(urls)
-    if (forceUpdate || !v || new Date().getTime() >= v.timestamp + cacheTempSeconds) {
-        cache.delete(urls)
-    }
-    return this.cacheGetAndSet(urls, () => {
-        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
-        this.putInCacheObject(urls, result, cacheSaveSeconds)
-        for (let i in urls) this.putInCacheObject(urls[i], result[i], cacheSaveSeconds)
-        return result
-    })
+    let batchKey = JSON.stringify(urls)
+    return this.cacheGetAndSet(batchKey, () => {
+        let results = []
+        let now = new Date().getTime()
+        let responses = java.ajaxAll(urls)
+        for (let i in urls) {
+            let data = JSON.parse(responses[i].body())
+            data = Object.assign({timestamp: now}, data)
+            results.push(data)
+            this.putInCacheObject(urls[i], data, cacheSaveSeconds)
+        }
+        return results
+    }, forceUpdate)
 }
-function getWebviewJson(url, parseFunc) {
+function getWebviewJson(url, parseFunc, forceUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
-    })
+    }, forceUpdate)
 }
 
 function getWebViewUA() {
@@ -174,9 +189,9 @@ function startBrowser(url, title) {
 // https://github.com/Notsfsssf/pixez-flutter
 function urlIP(url) {
     const {java, cache} = this
-    let settings = this.getFromCacheObject("pixivSettings")
-    if (!settings) settings = this.setDefaultSettings()
-    if (settings.IPDirect) {
+    this._settings = this.getFromCacheObject("pixivSettings")
+    if (!this._settings) this._settings = this.setDefaultSettings()
+    if (this._settings.IPDirect) {
         url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
         let headers = {
             "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
@@ -271,12 +286,11 @@ function urlSearchUser(userName, full) {
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (url && !url.trim()) return ""
-
-    let settings = this.getFromCacheObject("pixivSettings")
-    if (!settings) settings = this.setDefaultSettings()
-
     let headers = {"Referer": "https://www.pixiv.net/"}
-    if (settings.IPDirect && url.trim()) {
+
+    this._settings = this.getFromCacheObject("pixivSettings")
+    if (!this._settings) this._settings = this.setDefaultSettings()
+    if (this._settings.IPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
             headers.host = "i.pximg.net"
@@ -373,10 +387,10 @@ function sleepToast(text, seconds) {
 function setDefaultSettings() {
     const {java, cache} = this
     let settings = {}
-    settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
+    settings.SEARCH_AUTHOR = false      // 搜索：默认不搜索作者名称
     settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
-    settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示收藏小说
-    settings.SHOW_WATCHED_SERIES = true // 搜索：搜索结果显示追整系列小说
+    settings.HIDE_LIKE_NOVELS = false   // 搜索：搜索结果 隐藏收藏小说
+    settings.HIDE_WATCHED_SERIES = false// 搜索：搜索结果 隐藏追整系列
 
     settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
     settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
@@ -384,7 +398,7 @@ function setDefaultSettings() {
 
     settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
     settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
-    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
+    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论，但会增加大量请求
 
     settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
@@ -393,20 +407,21 @@ function setDefaultSettings() {
     this.putInCacheObject("pixivSettings", settings)
     return settings
 }
-function checkSettings() {
+function checkSettings(settings) {
     const {java, cache} = this
-    let settings = this.getFromCacheObject("pixivSettings")
+    if (!settings) settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
     if (settings.FAST || settings.IPDirect) {
-        settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称
+        settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
     }
     if (!settings.FAST && !settings.IPDirect) {
-        settings.SEARCH_AUTHOR = true         // 搜索：默认搜索作者名称
+        // settings.SEARCH_AUTHOR = true         // 搜索：默认不搜索作者名称
         settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
     }
 
-    if (settings.FAST === true) {
+    if (settings.FAST) {
+        settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_COMMENTS = false        // 正文：显示评论

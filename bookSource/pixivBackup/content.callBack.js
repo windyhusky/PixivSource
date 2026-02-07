@@ -29,8 +29,20 @@ function shareBook() {
 
 function clearCache() {
     let novel = getNovel()
-    cache.delete(urlNovelDetailed(novel.id))
-    if (novel.seriesId) cache.delete(urlSeriesDetailed(novel.seriesId))
+    cache.delete(`${urlNovelUrl(novel.id)}`)
+    cache.delete(`${urlNovelDetailed(novel.id)}`)
+    cache.delete(`${urlSearchNovel(novel.title, 1)}`)
+    if (novel.seriesId) {
+        cache.delete(`${urlSeriesUrl(novel.seriesId)}`)
+        cache.delete(`${urlSeriesDetailed(novel.seriesId)}`)
+        cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
+
+        let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
+        novelIds.forEach(novelId => {
+            cache.delete(`${urlNovelUrl(novelId)}`)
+            cache.delete(`${urlNovelDetailed(novelId)}`)
+        })
+    }
     return true
 }
 
@@ -38,7 +50,10 @@ function copyBookUrl() {
     java.copyText(book.bookUrl)
     return true
 }
-copyTocUrl = copyBookUrl
+function copyTocUrl() {
+    java.copyText(book.tocUrl)
+    return true
+}
 
 // 保存阅读，更新登录界面的章节名称
 function saveRead() {
