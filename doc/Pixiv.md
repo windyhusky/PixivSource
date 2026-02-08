@@ -187,7 +187,7 @@
 > **详见：[远程书籍](RemoteBooks.md)**
 
 
-## 高级功能 {#AddNovel}
+## 全部功能 {#AddNovel}
 ### 🔍 搜索小说 {#SearchNovel}
 <details><summary> 🔍 搜索小说 </summary>
 
@@ -196,15 +196,16 @@
 - <details><summary> 🔍 搜索小说 </summary>
 
   #### 1.0 搜索小说
-  ✅ 默认搜索：同时搜索小说名称、系列小说名称、标签、作者
+  ✅ 默认搜索：同时搜索小说名称、系列小说名称、标签
   ![img](./pic/SearchViaLegado.png)
   </details>
 
 - <details><summary> 🀄️ 繁简通搜 </summary>
 
   #### 1.1 繁简通搜
-  - 搜索【名称】和【标签】时，【默认】进行繁简转换，同时返回繁体简体小说内容（可在书源设置中修改）
-  - 【搜索作者】不转换
+  - 【搜索】默认进行繁简转换，同时返回繁体简体小说内容（可在书源设置中关闭）
+  - 【搜索作者 `@作者名称`】不转换
+  - 【搜索标签 `#标签名称`】不转换
   - 返回小说内容不转换
 
   ![img](./pic/SearchViaLegadoConvert.jpg)
@@ -216,7 +217,7 @@
   - 使用减号 `-` 在搜索结果中，排除不想看的的标签
   - **每个排除的标签前都需要添加减号**`-`
   - **减号前需加空格，减号后无需空格**
-  - 由 Pixiv 官方提供支持
+  - **由 Pixiv 官方提供支持**
   - 仅适用于单次搜索
 
   ![img](./pic/SearchViaLegadoExclude.jpg)
@@ -226,8 +227,8 @@
 
   #### 1.3 多选标签（格式：`标签1 or 标签2` `标签1 or 标签2 or 标签3`）
   - 使用 `or` 同时搜索多个标签（满足其一即可，也就是取并集）
-  -  **可相互替换的标签间添加` or `，前后需要空格间隔**
-  - 由 Pixiv 官方提供支持
+  - **可相互替换的标签间添加` or `，前后需要空格间隔**
+  - **由 Pixiv 官方提供支持**
   - 仅适用于单次搜索
 
   ![img](./pic/SearchViaLegadoUnion.jpg)
@@ -235,11 +236,11 @@
 
 - <details><summary> 👤 作者专搜 </summary>
 
-  #### 1.4 作者专搜（格式：`@作者`）
+  #### 1.4 作者专搜（格式：`@作者名称`）
   - 仅搜索作者；不进行繁简转换
   - `@` 为标记符，打出1个即可，例如：`@pixiv事務局`
-  - 可与【字数过滤】同时使用，格式：`@作者 字数3k`
-  - 可与【标签专搜】同时使用，格式：`@作者 #标签`，筛选 `@作者` 的具有 `#标签` 的小说
+  - 可与【字数过滤】同时使用，格式：`@作者名称 字数3k`
+  - 可与【标签专搜】同时使用，格式：`@作者名称 #标签`，筛选 `@作者` 的具有 `#标签` 的小说
 
   ![img](./pic/SearchViaLegadoAuthor.jpg)
   </details>
@@ -247,7 +248,7 @@
 - <details><summary> #️⃣ 标签专搜 </summary>
 
   #### 1.5 标签专搜（格式：`#标签1` `#标签1 标签2 `）
-  - 仅搜索标签、小说名称；多个标签空格间隔，【默认】进行繁简转换
+  - 仅搜索标签、小说名称；多个标签空格间隔，【默认】不进行繁简转换
   - `#` 为标记符，打出1个即可，例如：`#校园` `#校园 纯爱` `#校园 纯爱 BG`
   - 可与【排除标签】【字数过滤】同时使用
 
@@ -274,11 +275,9 @@
 
   - 搜索`@作者`指定`#标签1`或`标签2`，排除`标签3`，筛选字数 3k 及以上的小说：
     - 格式：`@作者 #标签1 or 标签2 -标签3 字数3k`
-    - 推荐使用
 
   - 搜索 `#标签1`或`标签2`，排除`标签3`，筛选字数 3k 及以上的小说：
     - 格式：`#标签1 or 标签2 -标签3 字数3k`
-    - 推荐使用
   </details>
 </details>
 
@@ -332,52 +331,47 @@
   > 
   > 可在书源设置中修改`SHOW_GENERAL_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
   </details>
+</details>
 
-- <details><summary> 🆙 更新书源 </summary>
 
-  #### 2.4 更新书源
-  ![img](./pic/UpdateSource.png)
-  > [!NOTE]
-  > 
-  > 点击按钮【🆙 更新】以更新书源/更新订阅
-  > - Jsdelivr CDN 更新有延迟
-  > - Github 更新需代理
-  > - Godeberg 更新免代理
-  </details>
+<details><summary> 🆙 更新书源 </summary>
 
-- <details><summary> 📌 喜欢标签 </summary>
+#### 2.4 更新书源
+![img](./pic/UpdateSource.png)
+> [!NOTE]
+>
+> 点击按钮【🆙 更新】以更新书源/更新订阅
 
-  #### 2.5 喜欢标签
-  - 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
+- Jsdelivr CDN 更新有延迟
+- Github 更新需代理
+- Godeberg 更新免代理
+</details>
 
-  ![img](./pic/PixivLoginUILikeTags.png)
-  - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
+<details><summary> 📌 喜欢标签 </summary>
 
-  ![img](./pic/DiscoverRefresh.png)
-  - 3️⃣ 点击按钮，查看内容
+#### 2.5 喜欢标签
+- 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
+![img](./pic/PixivLoginUILikeTags.png)
+- 2️⃣ 打开发现页面，点击按钮，查看内容
+![img](./pic/DiscoverPixivLikeTags.png)
+- ▶️ 如未更新，请手动更新发现：发现 - 长按"Pixiv" - 刷新
+</details>
 
-  ![img](./pic/DiscoverPixivLikeTags.png)
-  </details>
+<details><summary> ❤️ 他人收藏 </summary>
 
-- <details><summary> ❤️ 他人收藏 </summary>
+#### 2.6 他人收藏
+- 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
 
-  #### 2.6 他人收藏
-  - 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
+![img](./pic/PixivLoginUILikeAuthors.png)
+- 输入作者/用户ID，则会添加【指定作者/用户】
+![img](./pic/DiscoverPixivLikeAuthors1.png)
+- 若未输入作者/用户ID，则会添加【当前小说的作者】
 
-  ![img](./pic/PixivLoginUILikeAuthors.png)
-  - 输入作者/用户ID，则会添加【指定作者/用户】
+![img](./pic/DiscoverPixivLikeAuthors2.png)
+- 2️⃣ 打开发现页面，点击按钮，查看内容
 
-  ![img](./pic/DiscoverPixivLikeAuthors1.png)
-  - 若未输入作者/用户ID，则会添加【当前小说的作者】
-
-  ![img](./pic/DiscoverPixivLikeAuthors2.png)
-  - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新
-
-  ![img](./pic/DiscoverRefresh.png)
-  - 3️⃣ 点击按钮，查看内容
-
-  ![img](./pic/DiscoverPixivLikeAuthors.jpg)
-  </details>
+![img](./pic/DiscoverPixivLikeAuthors.jpg)
+- ▶️ 如未更新，请手动更新发现：发现 - 长按"Pixiv" - 刷新
 </details>
 
 
@@ -465,20 +459,18 @@
 ![img](./pic/PixivLogin1.png)
 
 
-#### 5.0 账号功能
+#### 5.1 基础功能
 > [!IMPORTANT]
 > 
-> **⚠️ 登录账号/退出账号都要使用按钮**
+> **⚠️ 登录账号/退出账号 都要使用按钮**
 
-![img](./pic/PixivLoginUIAccount.png)
-- 🅿️ 登录账号：登录 Pixiv 账号
+![img](./pic/PixivLoginUIBase.png)
+
+- **🅿️ 登录账号：登录 Pixiv 账号**
 - ⚙️ 账号设置：设置 Pixiv 账号的浏览范围
-- 🔙 退出账号：退出 Pixiv 账号，并清理缓存
-
-
-#### 5.1 书源功能
-![img](./pic/PixivLoginUISource.png)
-- 🆙 更新书源：更新书源/更新订阅
+- **🔙 退出账号：退出 Pixiv 账号，并清理缓存**
+- 
+- **🆙 更新书源：更新书源/更新订阅**
 - 🔰 使用指南：打开 Github 文档(本页)
 - **✈️ 直连模式：直连模式（需登录账号）**
 
@@ -497,8 +489,8 @@
 #### 5.2 书源设置
 ![img](./pic/PixivLoginUISettings.png)
 - ⚙️ 当前设置：显示当前设置
-- ⚙️ 默认设置：恢复默认设置
-- 👤 搜索作者：默认搜索作者
+- 🔧 默认设置：恢复默认设置
+- 👤 搜索作者：搜索作者（默认关闭）
 -
 - 🀄 繁简通搜：搜索进行繁简转换（搜索作者不转换）
 - 📖 更多简介：详情显示更多简介
@@ -509,10 +501,10 @@
 - 🖼️ 显示描述：章首显示描述
 -
 - 💬 显示评论：章尾显示评论
-- ❤️ 显示收藏：搜索发现 显示/屏蔽 收藏单篇小说
-- 📃 显示追更：搜索发现 显示/屏蔽 追更系列小说
+- ❤️ 隐藏收藏：搜索发现 显示/隐藏 收藏单篇小说
+- 📃 隐藏追更：搜索发现 显示/隐藏 追更系列小说
 -
-- ⏩ 快速模式：开启快速模式（关闭**默认搜索作者等**影响搜索速度的功能）
+- ⏩ 快速模式：开启快速模式（关闭影响搜索速度的功能）
 - 🐞 调试模式：开启调试模式
 - 🔍 搜索说明：显示搜索说明
 
@@ -542,80 +534,41 @@
 </details>
 
 
-### 📃 自定功能 {#Customization}
-<details><summary> 📃 自定义功能 </summary>
+### 🚫 屏蔽功能 {#Customization}
+<details><summary>  📃 功能说明 </summary>
 
-- <details><summary> 📃 功能说明 </summary>
-
-  #### 6.0 功能说明
-  - 此处功能都是书源本地实现功能，不会向 Pixiv 提交数据
-  - 屏蔽作者、屏蔽标签、屏蔽描述，均为全局屏蔽
-    - 搜索、发现、添加链接、订阅源添加链接 全部屏蔽
-  - 显示/屏蔽收藏小说、显示/屏蔽追更系列，均为全局
-    - 搜索、发现、添加链接、订阅源添加链接 全部屏蔽
-  </details>
-
-- <details><summary> 🚫 屏蔽作者 </summary>
-
-  #### 6.1 屏蔽作者
-  ![img](./pic/PixivLoginUINovels.png)
-  - 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
-  </details>
-
-- <details><summary> 🚫 屏蔽收藏 & 屏蔽追更 </summary>
-
-  #### 6.2 屏蔽收藏 & 屏蔽追更
-  - ❤️ 显示收藏：搜索发现 显示/屏蔽 收藏单篇小说
-  - 📃 显示追更：搜索发现 显示/屏蔽 追更系列小说
-  </details>
-
-- <details><summary> 🚫 屏蔽标签 & 屏蔽描述 </summary>
-
-  #### 6.3 屏蔽标签 & 屏蔽描述
-  - 1️⃣ 在登陆页面的【输入内容】输入内容（不需要`#`），点击【添加屏蔽】，添加至【标签屏蔽列表】或【描述屏蔽列表】
-
-  ![img](./pic/PixivLoginUIBlockWords.png)
-  - 2️⃣ 添加屏蔽内容时，会提示具体的屏蔽列表
-
-  ![img](./pic/PixivLoginUIBlockWords1.png)
-  - 3️⃣ 点击【查看屏蔽】按钮，会切换屏蔽列表，并显示屏蔽内容
+- **屏蔽功能为书源本地功能，不会向 Pixiv 提交数据**
+- **屏蔽功能均为全局屏蔽（搜索、发现、添加链接、订阅源添加链接）**
+  - 屏蔽作者（互动功能）
+  - 屏蔽标签、屏蔽描述（自定义功能）
+  - 隐藏收藏、隐藏追更（书源设置）
+</details>
   
-  ![img](./pic/PixivLoginUIBlockWords2.png)
-  </details>
+<details><summary><strong> 🚫 屏蔽作者 </strong></summary>
 
-- <details><summary> 📌 喜欢标签 </summary>
+#### 6.1 屏蔽作者
+![img](./pic/PixivLoginUINovels.png)
+- 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
+</details>
 
-  #### 6.4 喜欢标签
-  - 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
-  
-  ![img](./pic/PixivLoginUILikeTags.png)
-  - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新（258起可自动刷新）
-  
-  ![img](./pic/DiscoverRefresh.png)
-  - 3️⃣ 点击按钮，查看内容
-  
-  ![img](./pic/DiscoverPixivLikeTags.png)
-  </details>
+<details><summary><strong> 🚫 屏蔽标签 & 屏蔽描述 </strong></summary>
 
-- <details><summary> ❤️ 他人收藏 </summary>
+#### 6.2 屏蔽标签 & 屏蔽描述
+- 1️⃣ 在登陆页面的【输入内容】输入内容（不需要`#`），点击【添加屏蔽】，添加至【标签屏蔽列表】或【描述屏蔽列表】
+![img](./pic/PixivLoginUIBlockWords.png)
+- 2️⃣ 添加屏蔽内容时，会提示具体的屏蔽列表
 
-  #### 6.5 他人收藏
-  - 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
+![img](./pic/PixivLoginUIBlockWords1.png)
+- 3️⃣ 点击【查看屏蔽】按钮，会切换屏蔽列表，并显示屏蔽内容
   
-  ![img](./pic/PixivLoginUILikeAuthors.png)
-  - 输入作者/用户ID，则会添加【指定作者/用户】
-  
-  ![img](./pic/DiscoverPixivLikeAuthors1.png)
-  - 若未输入作者/用户ID，则会添加【当前小说的作者】
-  
-  ![img](./pic/DiscoverPixivLikeAuthors2.png)
-  - 2️⃣ 更新发现：发现 - 长按"Pixiv" - 刷新（258起可自动刷新）
-  
-  ![img](./pic/DiscoverRefresh.png)
-  - 3️⃣ 点击按钮，查看内容
-  
-  ![img](./pic/DiscoverPixivLikeAuthors.jpg)
-  </details>
+![img](./pic/PixivLoginUIBlockWords2.png)
+</details>
+
+<details><summary><strong> 🚫 隐藏收藏 & 隐藏追更 </strong></summary>
+
+#### 6.2 隐藏收藏 & 隐藏追更
+- ❤️ 隐藏收藏：搜索发现 显示/隐藏 收藏单篇小说
+- 📃 隐藏追更：搜索发现 显示/隐藏 追更系列小说
 </details>
 
 
