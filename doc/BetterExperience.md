@@ -169,7 +169,7 @@
 
 ![img](./pic/PixivLogin1.png)
 
-![img](./pic/PixivLoginUIAccount.png)
+![img](./pic/PixivLoginUIBase.png)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 
@@ -188,7 +188,7 @@
 > 
 > **✈️ 直连模式 => 我的 - 书源管理 - Pixiv 小说 - 登录**
 
-![img](./pic/PixivLoginUISource.png)
+![img](./pic/PixivLoginUIBase.png)
 
 ![img](./pic/PixivIPDirect0.png)
 

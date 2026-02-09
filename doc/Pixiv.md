@@ -86,7 +86,7 @@
 
 ![img](./pic/PixivLogin1.png)
 
-![img](./pic/PixivLoginUIAccount.png)
+![img](./pic/PixivLoginUIBase.png)
 
 **登录你的账号，登录成功后，点击右上角的对勾**
 
@@ -101,7 +101,7 @@
 >
 > **登录账号后，可在登录界面开启【直连模式】**
 
-![img](./pic/PixivLoginUISource.png)
+![img](./pic/PixivLoginUIBase.png)
 
 ![img](./pic/PixivIPDirect0.png)
 
@@ -138,7 +138,7 @@
 <details><summary><strong> 🔞 修改 Pixiv 浏览范围 </strong></summary>
 
 **我的-书源管理-点击 Pixiv 书源右侧三点菜单-登录-账号设置**
-![img](./pic/PixivLoginUIAccount.png)
+![img](./pic/PixivLoginUIBase.png)
 
 [Pixiv 设置](https://www.pixiv.net/settings/viewing) - 浏览与显示 - 年龄限制作品
 
