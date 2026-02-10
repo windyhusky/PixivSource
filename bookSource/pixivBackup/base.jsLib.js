@@ -286,11 +286,10 @@ function urlSearchUser(userName, full) {
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (url && !url.trim()) return ""
+    let headers = {"Referer": "https://www.pixiv.net/"}
 
     let settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
-
-    let headers = {"Referer": "https://www.pixiv.net/"}
     if (settings.IPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
@@ -388,10 +387,10 @@ function sleepToast(text, seconds) {
 function setDefaultSettings() {
     const {java, cache} = this
     let settings = {}
-    settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
+    settings.SEARCH_AUTHOR = false      // 搜索：默认不搜索作者名称
     settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
-    settings.SHOW_LIKE_NOVELS = true    // 搜索：搜索结果显示收藏小说
-    settings.SHOW_WATCHED_SERIES = true // 搜索：搜索结果显示追整系列小说
+    settings.HIDE_LIKE_NOVELS = false   // 搜索：搜索结果 隐藏收藏小说
+    settings.HIDE_WATCHED_SERIES = false// 搜索：搜索结果 隐藏追整系列
 
     settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
     settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
@@ -399,7 +398,7 @@ function setDefaultSettings() {
 
     settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
     settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
-    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论
+    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论，但会增加大量请求
 
     settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
