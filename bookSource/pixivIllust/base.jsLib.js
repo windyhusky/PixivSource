@@ -1,21 +1,26 @@
-var cacheSaveSeconds = 7*24*60*60  // 长期缓存时间 7天
-var cacheTempSeconds = 10*60*1000  // 短期缓存 10min
+var cacheSaveSeconds = 30*24*60*60  // 长期缓存 30 天
+var cacheTempSeconds = 10*60*1000   // 冷却时间 10 分钟
 
-function cacheGetAndSet(key, supplyFunc) {
+
+function cacheGetAndSet(key, supplyFunc, forceUpdate) {
     const {java, cache} = this
+    let timestamp = 0
     let v = this.getFromCacheObject(key)
-    // 缓存信息错误时，保存 10min 后重新请求
-    if (v && v.error === true) {
-        if (new Date().getTime() >= JSON.parse(v).timestamp + cacheTempSeconds) {
-            cache.delete(key)
-            v = this.getFromCacheObject(key)
-        }
-    }
-    // 无缓存信息时，进行请求
-    if (v === undefined || v === null) {
+    if (Array.isArray(v)) {
+        timestamp = v[0].timestamp
+    } else if (v) timestamp = v.timestamp
+
+    const isExpired = v && (new Date().getTime() >= timestamp + cacheTempSeconds)
+    const isError = v && (v.error === true) && isExpired
+    forceUpdate = forceUpdate && isExpired
+
+    if (!v || forceUpdate || isError) {
         v = supplyFunc()
-        v.timestamp = new Date().getTime()
-        this.putInCacheObject(key, v)
+        let now = new Date().getTime()
+        if (!Array.isArray(v) && v.length >= 1) {
+            v = Object.assign({timestamp: now}, v)
+        }
+        this.putInCacheObject(key, v, cacheSaveSeconds)
     }
     return v
 }
@@ -26,9 +31,6 @@ function putInCache(name, object, saveSeconds) {
     if (object) {
         cache.put(name, object, saveSeconds)
     }
-    // else {
-    //     cache.delete(name, object, saveSeconds)
-    // }
 }
 function getFromCache(name) {
     const {java, cache} = this
@@ -65,33 +67,32 @@ function isLogin() {
 
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
-    let v = this.getFromCacheObject(url)
-    if (forceUpdate || !v || new Date().getTime() >= v.timestamp + cacheTempSeconds) {
-        cache.delete(url)
-    }
     return this.cacheGetAndSet(url, () => {
         return JSON.parse(java.ajax(url))
-    })
+    }, forceUpdate)
 }
 function getAjaxAllJson(urls, forceUpdate) {
     const {java, cache} = this
-    let v = this.getFromCacheObject(urls)
-    if (forceUpdate || !v || new Date().getTime() >= v.timestamp + cacheTempSeconds) {
-        cache.delete(urls)
-    }
-    return this.cacheGetAndSet(urls, () => {
-        let result = java.ajaxAll(urls).map(resp => JSON.parse(resp.body()))
-        this.putInCacheObject(urls, result, cacheSaveSeconds)
-        for (let i in urls) this.putInCacheObject(urls[i], result[i], cacheSaveSeconds)
-        return result
-    })
+    let batchKey = JSON.stringify(urls)
+    return this.cacheGetAndSet(batchKey, () => {
+        let results = []
+        let now = new Date().getTime()
+        let responses = java.ajaxAll(urls)
+        for (let i in urls) {
+            let data = JSON.parse(responses[i].body())
+            data = Object.assign({timestamp: now}, data)
+            results.push(data)
+            this.putInCacheObject(urls[i], data, cacheSaveSeconds)
+        }
+        return results
+    }, forceUpdate)
 }
-function getWebviewJson(url, parseFunc) {
+function getWebviewJson(url, parseFunc, forceUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {
         let html = java.webView(null, url, null)
         return JSON.parse(parseFunc(html))
-    })
+    }, forceUpdate)
 }
 
 function getWebViewUA() {
