@@ -323,18 +323,18 @@
         }
     },
     {
-        "name": "❤️ 显示收藏",
+        "name": "❤️ 隐藏收藏",
         "type": "button",
-        "action": "editSettings('SHOW_LIKE_NOVELS')",
+        "action": "editSettings('HIDE_LIKE_NOVELS')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "📃 显示追更",
+        "name": "📃 隐藏追更",
         "type": "button",
-        "action": "editSettings('SHOW_WATCHED_SERIES')",
+        "action": "editSettings('HIDE_WATCHED_SERIES')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
