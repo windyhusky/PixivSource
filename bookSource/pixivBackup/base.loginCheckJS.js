@@ -37,7 +37,7 @@ function isLegadoOfficial() {
 // cookie.setWebCookie(url,cookie)
 // source.refreshExplore()
 // source.refreshJSLib()
-function isLegadoLYC() {
+function isLegadoSigma() {
     return typeof java.ajaxTestAll === "function"
 }
 
@@ -48,46 +48,40 @@ function publicFunc() {
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
     java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
-    if (isSourceRead()) {
+    // 设置写入缓存
+    u.settings = getFromCacheObject("pixivSettings")
+    if (!u.settings) u.settings = setDefaultSettings()
+    u.settings = checkSettings()
+    putInCacheObject("pixivSettings", u.settings)
+
+    // 环境写入缓存
+    u.environment = {}
+    u.environment.IS_SOURCEREAD = isSourceRead()
+    u.environment.IS_LEGADO = !isSourceRead()
+    u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
+    putInCacheObject("pixivEnvironment", u.environment)
+
+    // 输出环境信息
+    if (u.environment.IS_SOURCEREAD) {
         java.log("📱 软件平台：🍎 源阅 SourceRead")
-    } else if (isLegadoOfficial()) {
+    } else if (u.environment.IS_LEGADO_SIGMA) {
+        java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
+    } else if (u.environment.IS_LEGADO_OFFICIAL) {
         java.log("📱 软件平台：🤖 阅读 正式版")
         // sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-        // sleep(3); startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
-
+        // sleep(3);
+        // startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
     } else {
-        if (isLegadoLYC()) {
-            java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
-        } else {
-            java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
-            // sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-            // sleep(3); startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
-        }
+        java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
+        // sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
+        // sleep(3);
+        // startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
     }
-
-    // 设置初始化
-    // cache.delete("pixivSettings")
-    settings = getFromCacheObject("pixivSettings")
-    if (settings) {
-        java.log("⚙️ 使用自定义设置")
-    } else {
-        java.log("⚙️ 使用默认设置")
-        settings = setDefaultSettings()
-    }
-    settings = checkSettings()
-    if (settings.IPDirect) {
+    if (u.settings.IPDirect) {
         java.log("✈️ 直连模式：✅ 已开启")
     } else {
         java.log("✈️ 直连模式：❌ 已关闭")
     }
-    u.settings = settings
-    putInCacheObject("pixivSettings", settings)  // 设置写入缓存
-
-    u.environment = {}
-    u.environment.IS_SOURCEREAD = isSourceRead()
-    u.environment.IS_LEGADO = !isSourceRead()
-    u.environment.IS_LYC_BRUNCH = isLegadoLYC()
-    putInCacheObject("pixivEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
