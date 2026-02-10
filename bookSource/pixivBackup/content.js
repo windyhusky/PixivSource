@@ -108,7 +108,7 @@ function replacePixivImage(content) {
 
 function replaceNewPage(content) {
     // 替换 Pixiv 分页标记符号 [newpage]
-    if (!util.environment.IS_LYC_BRUNCH) {
+    if (!util.environment.IS_LEGADO_SIGMA) {
         let matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
         if (matched) {
             for (let i in matched) {
@@ -127,7 +127,7 @@ function replaceChapter(content) {
             let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
             let chapter = matched2[1].trim()
             // 替换 Pixiv 分页标记符号 [newpage]
-            if (util.environment.IS_LYC_BRUNCH) {
+            if (util.environment.IS_LEGADO_SIGMA) {
                 content = content.replace(`${matched[i]}`, `<usehtml><h3>${chapter}</h3></usehtml>`)
             } else {
                 content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
@@ -159,7 +159,7 @@ function replaceJumpUrl(content) {
             let urlName = matched2[1].trim()
             let urlLink = matched2[2].trim()
 
-            if (util.environment.IS_LYC_BRUNCH) {
+            if (util.environment.IS_LEGADO_SIGMA) {
                 content = content.replace(`${matchedText}`, `<usehtml><p>　　<a href=${urlLink}>${urlName}</a></p></usehtml>`)
             } else {
                 if (urlLink === urlName) {
@@ -239,13 +239,19 @@ function getComment(res, content) {
     if (!util.settings.SHOW_COMMENTS || res.commentCount === 0) return content
 
     const limit = 50
-    let comments = []
+    let comments = [], commentUrls = [];
     let maxPage = Math.ceil(res.commentCount / limit)
-
-    for (let i = 0; i < maxPage; i++) {
-        let result = getAjaxJson(urlIP(urlNovelComments(res.id, i * limit, limit)), true)
-        if (result && !result.error && result.body && result.body.comments) {
-            comments = comments.concat(result.body.comments)
+    if (maxPage >= 2 && util.environment.IS_LEGADO) {
+        for (let i = 0; i < maxPage; i++) {
+            commentUrls.push(urlIP(urlNovelComments(res.id, i * limit, limit)))
+        }
+        comments = getAjaxAllJson(commentUrls).map(resp => resp.body.comments).flat()
+    } else {
+        for (let i = 0; i < maxPage; i++) {
+            let result = getAjaxJson(urlIP(urlNovelComments(res.id, i * limit, limit)), true)
+            if (result && !result.error && result.body && result.body.comments) {
+                comments = comments.concat(result.body.comments)
+            }
         }
     }
 
