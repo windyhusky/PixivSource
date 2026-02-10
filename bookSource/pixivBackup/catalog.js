@@ -68,7 +68,7 @@ function seriesHandler(res) {
     } else {
         //逻辑控制者 也就是使用上面定义的两个函数来做对应功能
         //要爬取的总次数
-        let max = (allChaptersCount / limit) + 1
+        let max = Math.ceil(allChaptersCount / limit)
         for (let i = 0; i < max; i++) {
             //java.log("i的值:"+i)
             let list = sendAjaxForGetChapters(i * limit);
