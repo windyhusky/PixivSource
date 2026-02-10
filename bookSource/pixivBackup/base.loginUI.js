@@ -41,7 +41,7 @@ let settings = [
     {"书源设置": "text" },
     {"⚙️ 当前设置": "showSettings()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
-    {"🚫 👤 搜索作者": "editSettings('SEARCH_AUTHOR')" },
+    {"👤 🚫 搜索作者": "editSettings('SEARCH_AUTHOR')" },
 
     {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
     {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
@@ -52,8 +52,8 @@ let settings = [
     {"🖼️ 🚫 显示描述": "editSettings('SHOW_CAPTIONS')" },
 
     {"💬 🚫 显示评论": "editSettings('SHOW_COMMENTS')" },
-    {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
-    {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
+    {"❤️ 🚫 显示收藏": "editSettings('SHOW_LIKE_NOVELS')" },
+    {"📃 🚫 显示追更": "editSettings('SHOW_WATCHED_SERIES')" },
 
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },

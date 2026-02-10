@@ -41,6 +41,11 @@ function removeLikeDataCache() {
 }
 
 function removeSettingsCache() {
+    // 删除 自动翻页的最大页码
+    cache.delete("maxPagesKey")
+    cache.delete("novelsMaxPages")
+    cache.delete("seriesMaxPages")
+
     // 删除 屏蔽作者名单
     // removeCacheList("blockAuthorList")
     // 删除  屏蔽关键词
@@ -76,7 +81,7 @@ function getCsrfToken() {
 
 function getNovel() {
     let environment = getFromCacheObject("pixivEnvironment")
-    if (environment.IS_LEGADO_SIGMA) {
+    if (environment.IS_LYC_BRUNCH) {
         try {
             let novel = {}
             try {
@@ -945,8 +950,8 @@ let settingsName = {
     "MORE_INFORMATION": "📖 更多简介",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
     "SHOW_CAPTIONS": "🖼️ 显示描述",
-    "HIDE_LIKE_NOVELS" :"❤️ 隐藏收藏",
-    "HIDE_WATCHED_SERIES" :"📃 隐藏追更",
+    "SHOW_LIKE_NOVELS" :"❤️ 显示收藏",
+    "SHOW_WATCHED_SERIES" :"📃 显示追更",
     "IPDirect": "✈️ 直连模式",
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
@@ -996,19 +1001,16 @@ function editSettings(settingName) {
     }
     putInCacheObject("pixivSettings", settings)
 
-    if (settingName === "FAST") {
-        checkSettings(settings)
-        msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
-    } else if (settingName === "IPDirect") {
+    if (settingName === "FAST" || (settingName === "IPDirect")) {
         if (settings.IPDirect && !isLogin()) {
             msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
             settings.IPDirect = false
-            checkSettings(settings)
+            checkSettings()
+            putInCacheObject("pixivSettings", settings)
         } else {
-            checkSettings(settings)
+            checkSettings()
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         }
-        try {source.refreshExplore()} catch (e) {}
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     }
@@ -1019,6 +1021,12 @@ function cleanCache() {
     let novel = getNovel()
     cache.delete(`${urlNovelUrl(novel.id)}`)
     cache.delete(`${urlNovelDetailed(novel.id)}`)
+    // cache.delete(`${urlSearchNovel(novel.title, 1)}`)
+    // if (novel.seriesId) {
+    //     cache.delete(`${urlSeriesUrl(novel.seriesId)}`)
+    //     cache.delete(`${urlSeriesDetailed(novel.seriesId)}`)
+    //     cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
+    // }
     try {java.refreshContent()} catch(err) {}
     sleepToast(`🔄 刷新本章\n\n若正文未更新，请手动刷新`, 5)
 }

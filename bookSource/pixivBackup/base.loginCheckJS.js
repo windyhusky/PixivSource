@@ -37,70 +37,57 @@ function isLegadoOfficial() {
 // cookie.setWebCookie(url,cookie)
 // source.refreshExplore()
 // source.refreshJSLib()
-function isLegadoSigma() {
+function isLegadoLYC() {
     return typeof java.ajaxTestAll === "function"
 }
 
 function publicFunc() {
-    let u = {}, settings = {}
+    let u = {}, settings
+    // 输出书源信息
+    java.log(`${source.bookSourceComment.split("\n")[0]}`)
+    java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
+    java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
-    let isFirstInit = false;
-    if (!globalThis.ALREADY_LOGGED_INFO) {
-        globalThis.ALREADY_LOGGED_INFO = true
-        isFirstInit = true
-    }
+    if (isSourceRead()) {
+        java.log("📱 软件平台：🍎 源阅 SourceRead")
+    } else if (isLegadoOfficial()) {
+        java.log("📱 软件平台：🤖 阅读 正式版")
+        // sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
+        // sleep(3); startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
 
-    if (!globalThis.settings) {
-        // cache.delete("pixivSettings")
-        settings = getFromCacheObject("pixivSettings")
-        if (!settings) settings = setDefaultSettings()
-        globalThis.settings = checkSettings(settings)
-    }
-    // 环境信息不会改变，可以使用 globalThis.environment
-    if (!globalThis.environment) {
-        globalThis.environment = {}
-        globalThis.environment.IS_SOURCEREAD = isSourceRead()
-        globalThis.environment.IS_LEGADO = !isSourceRead()
-        globalThis.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
-        globalThis.environment.IS_LEGADO_SIGMA = isLegadoSigma()
-    }
-
-    // 只有第一次初始化时才输出日志
-    if (isFirstInit) {
-        java.log(`${source.bookSourceComment.split("\n")[0]}`)
-        java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
-        java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
-
-        if (globalThis.environment.IS_SOURCEREAD) {
-            java.log("📱 软件平台：🍎 源阅 SourceRead")
-        } else if (globalThis.environment.IS_LEGADO_SIGMA) {
+    } else {
+        if (isLegadoLYC()) {
             java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
-        } else if (globalThis.environment.IS_LEGADO_OFFICIAL) {
-            java.log("📱 软件平台：🤖 阅读 正式版")
-            // sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-            // sleep(3);
-            // startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
         } else {
             java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
             // sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-            // sleep(3);
-            // startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
-            }
-
-        if (globalThis.settings.IPDirect) {
-            java.log("✈️ 直连模式：✅ 已开启")
-        } else {
-            java.log("✈️ 直连模式：❌ 已关闭")
+            // sleep(3); startBrowser("https://loyc.xyz/c/legado.html#download", "下载阅读 Plus")
         }
     }
 
-    // 使用 globalThis.settings 无法获取最新的设置
-    // 使用 globalThis.environment 可能无法写入 environment
+    // 设置初始化
     // cache.delete("pixivSettings")
     settings = getFromCacheObject("pixivSettings")
-    if (!settings) settings = setDefaultSettings()
-    u.settings = checkSettings(settings)
-    putInCacheObject("pixivEnvironment", globalThis.environment)
+    if (settings) {
+        java.log("⚙️ 使用自定义设置")
+    } else {
+        java.log("⚙️ 使用默认设置")
+        settings = setDefaultSettings()
+    }
+    settings = checkSettings()
+    if (settings.IPDirect) {
+        java.log("✈️ 直连模式：✅ 已开启")
+    } else {
+        java.log("✈️ 直连模式：❌ 已关闭")
+    }
+    u.settings = settings
+    putInCacheObject("pixivSettings", settings)  // 设置写入缓存
+
+    u.environment = {}
+    u.environment.IS_SOURCEREAD = isSourceRead()
+    u.environment.IS_LEGADO = !isSourceRead()
+    u.environment.IS_LYC_BRUNCH = isLegadoLYC()
+    putInCacheObject("pixivEnvironment", u.environment)  // 设置写入缓存
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG === true) {
@@ -204,17 +191,17 @@ function publicFunc() {
         let watchedSeries = getFromCacheObject("watchedSeries")
         let novels0 = novels.map(novel => novel.id)
 
-        msg = util.checkStatus(!util.settings.HIDE_LIKE_NOVELS).replace("未","不")
+        msg = util.checkStatus(util.settings.SHOW_LIKE_NOVELS).replace("未","不")
         java.log(`${msg}显示收藏小说`)
-        if (util.settings.HIDE_LIKE_NOVELS) {
+        if (util.settings.SHOW_LIKE_NOVELS === false) {
             novels = novels.filter(novel => !likeNovels.includes(Number(novel.id)))
             novels1 = novels.map(novel => novel.id)
             java.log(`⏬ 过滤收藏：过滤前${novels0.length}；过滤后${novels1.length}`)
         }
 
-        msg = util.checkStatus(!util.settings.HIDE_WATCHED_SERIES).replace("未","不")
+        msg = util.checkStatus(util.settings.SHOW_WATCHED_SERIES).replace("未","不")
         java.log(`${msg}显示追更系列`)
-        if (util.settings.HIDE_WATCHED_SERIES) {
+        if (util.settings.SHOW_WATCHED_SERIES === false) {
             novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
             novels2 = novels.map(novel => novel.id)
             if (novels1.length >= 1) novels0 = novels1
@@ -224,8 +211,8 @@ function publicFunc() {
         let novels3 = novels.map(novel => novel.id)
         if (novels0.length >= 1 && novels3.length === 0) {
             let msg = `⏬ 过滤小说\n⚠️ 过滤后无结果\n\n请根据需要\n`
-            if (!util.settings.HIDE_LIKE_NOVELS) msg += "开启显示收藏小说\n"
-            if (!util.settings.HIDE_WATCHED_SERIES) msg += "开启显示追更系列"
+            if (util.settings.SHOW_LIKE_NOVELS === false) msg += "开启显示收藏小说\n"
+            if (util.settings.SHOW_WATCHED_SERIES === false) msg += "开启显示追更系列"
             sleepToast(msg, 1)
         }
 
@@ -290,8 +277,7 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function(novels, isDetail) {
-        if (!isDetail) isDetail = false
+    u.handNovels = function(novels) {
         let likeNovels = [], watchedSeries = []
         novels = util.authorFilter(novels)
         novels.forEach(novel => {
@@ -374,14 +360,8 @@ function publicFunc() {
                     novel.isBookmark = false
                 }
             }
-
-            if (novel.seriesId && !isDetail) {
-                novel.title = novel.seriesTitle
-                novel.tags.unshift("长篇")
-                novel.detailedUrl = urlIP(urlSeriesDetailed(novel.seriesId))
-            }
             // 系列添加更多信息
-            if (novel.seriesId && isDetail) {
+            if (novel.seriesId) {
                 let series = getAjaxJson(urlIP(urlSeriesDetailed(novel.seriesId))).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
@@ -607,9 +587,9 @@ function getHeaders() {
         // "sec-fetch-dest": "empty",
         // "sec-fetch-mode": "cors",
         // "sec-fetch-site": "same-origin",
-        "user-agent": getFromCache("userAgent") || "",
-        "x-csrf-token": getFromCache("pixivCsrfToken") || "",
-        "Cookie": getFromCache("pixivCookie") || ""
+        "user-agent": getFromCache("userAgent"),
+        "x-csrf-token": getFromCache("pixivCsrfToken"),
+        "Cookie": getFromCache("pixivCookie")
     }
     putInCacheObject("headers", headers)
     return headers
