@@ -31,24 +31,35 @@ function putInCache(name, object, saveSeconds) {
     if (object) {
         cache.put(name, object, saveSeconds)
     }
-    // else {
-    //     cache.delete(name, object, saveSeconds)
-    // }
 }
 function getFromCache(name) {
     const {java, cache} = this
-    return cache.get(name)
+    let object = cache.get(name)
+    if (object === undefined) return null  // 兼容源阅
+    return object
 }
 
+function normalizeUrl(url) {
+    if (!url.startsWith("https://210.140")) return url
+    return url.replace("210.140.139.155", "www.pixiv.net")
+        .replace("210.140.139.133", "i.pximg.net")
+        .split(",")[0]
+}
 function putInCacheObject(objectName, object, saveSeconds) {
     const {java, cache} = this
     if (object === undefined) object = null
     if (saveSeconds === undefined) saveSeconds = 0
-    cache.put(objectName, JSON.stringify(object), saveSeconds)
+    // if (objectName === "pixivSettings") {
+    //     this._settings = object
+    // }
+    cache.put(this.normalizeUrl(objectName), JSON.stringify(object), saveSeconds)
 }
 function getFromCacheObject(objectName) {
     const {java, cache} = this
-    let object = cache.get(objectName)
+    // if (objectName === "pixivSettings" && this._settings) {
+    //     return this._settings
+    // }
+    let object = cache.get(this.normalizeUrl(objectName))
     if (object === undefined) return null  // 兼容源阅，避免 parse 报错
     return JSON.parse(object)
 }
