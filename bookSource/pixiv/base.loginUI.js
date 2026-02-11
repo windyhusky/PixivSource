@@ -57,7 +57,25 @@ let settings = [
 
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
+    // {"🔍 🚫 显示发现": "editSettings('SHOW_DISCOVER')" },
     {"🔍 搜索说明": "readMeSearch()" },
+]
+
+let discoverSettings = [
+    {"发现设置": "text" },
+    {"🔍 当前发现": "showSettingsDiscover()" },
+    {"🆗 常规小说": "editSettings('SHOW_GENERAL')" },
+
+    {"🔞 最新企划": "editSettings('SHOW_NEW_ADULT')" },
+    {"🆗 最新企划": "editSettings('SHOW_NEW_GENERAL')" },
+
+    {"🔞 排行榜单": "editSettings('SHOW_RANK_ADULT')" },
+    {"🆗 排行榜单": "editSettings('SHOW_RANK_GENERAL')" },
+
+    {"🔞 原创热门": "editSettings('SHOW_GENRE_ADULT')" },
+    {"🆗 原创热门": "editSettings('SHOW_GENRE_GENERAL')" },
+
+    {"🐺 兽人小说": "editSettings('SHOW_FURRY')" },
 ]
 
 let li = []
@@ -65,7 +83,7 @@ try {
     if (book) {
         li = novel.concat(comment)
     } else {
-        li = source.concat(settings)
+        li = source.concat(settings).concat(discoverSettings)
     }
 } catch (e) {}
 
