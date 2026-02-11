@@ -1055,6 +1055,8 @@ function getSettingStatus(mode) {
         keys = Object.keys(settingsName).slice(0, 5)
     } else if (mode === "IPDirect") {
         keys = Object.keys(settingsName).slice(0, 2)
+    } else if (mode.includes("DISCOVER")) {
+        keys = Object.keys(settingsName).slice(13, 21)
     } else {
         keys = Object.keys(settingsName).slice(0, 13)
     }
@@ -1066,6 +1068,9 @@ function getSettingStatus(mode) {
 
 function showSettings() {
     sleepToast(`\n⚙️ 当前设置\n\n${getSettingStatus()}`)
+}
+function showSettingsDiscover() {
+    sleepToast(`\n⚙️ 当前发现设置\n\n${getSettingStatus("DISCOVER")}`)
 }
 
 function setDefaultSettingsLoginUrl() {
