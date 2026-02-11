@@ -956,6 +956,14 @@ let settingsName = {
     "IPDirect": "✈️ 直连模式",
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
+    "SHOW_GENERAL": "🆗 常规小说",
+    "SHOW_NEW_ADULT": "🔞 最新企划",
+    "SHOW_NEW_GENERAL": "🆗 最新企划",
+    "SHOW_RANK_ADULT": "🔞 排行榜单",
+    "SHOW_RANK_GENERAL": "🆗 排行榜单",
+    "SHOW_GENRE_ADULT": "🔞 原创热门",
+    "SHOW_GENRE_GENERAL": "🆗 原创热门",
+    "SHOW_FURRY": "🐺 兽人小说",
     // "":"Pixiv 设置",
     // "HIDE_AI_WORKS":"隐藏AI作品",
     // "SENSITIVE_VIEW":"敏感作品",
@@ -1048,7 +1056,7 @@ function getSettingStatus(mode) {
     } else if (mode === "IPDirect") {
         keys = Object.keys(settingsName).slice(0, 2)
     } else {
-        keys = Object.keys(settingsName)
+        keys = Object.keys(settingsName).slice(0, 13)
     }
     for (let i in keys) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
@@ -1091,6 +1099,7 @@ function editSettings(settingName) {
         try {source.refreshExplore()} catch (e) {}
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
+        if (settingName.startsWith("SHOW")) try {source.refreshExplore()} catch (e) {}
     }
     sleepToast(msg)
 }
