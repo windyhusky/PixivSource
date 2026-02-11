@@ -1,16 +1,5 @@
-let SHOW_R18_GENRE, SHOW_GENERAL_NEW, SHOW_GENERAL_RANK, SHOW_GENERAL_GENRE
-try {
-    settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
-    SHOW_R18_GENRE = settings.SHOW_R18_GENRE         // 发现：热门分类显示R18小说
-    SHOW_GENERAL_NEW = settings.SHOW_GENERAL_NEW     // 发现：最新、企划、约稿显示一般小说
-    SHOW_GENERAL_RANK = settings.SHOW_GENERAL_RANK   // 发现：排行榜显示一般小说
-    SHOW_GENERAL_GENRE = settings.SHOW_GENERAL_GENRE // 发现：热门分类显示一般小说
-} catch (e) {
-    SHOW_R18_GENRE = false
-    SHOW_GENERAL_NEW = false
-    SHOW_GENERAL_RANK = false
-    SHOW_GENERAL_GENRE = false
-}
+let settings = getFromCacheObject("pixivSettings")
+if (!settings) settings = setDefaultSettings()
 
 let li = [
     {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/novel?p={{page}}&mode=r18&lang=zh"},
@@ -122,13 +111,13 @@ let source = [
 let likeTagLinks = [{"📌 喜欢标签 📌":""}]
 let othersBookmarks = [{"❤️ 他人收藏 ❤️": ""}]
 
-li = li.concat(normal)
-li = li.concat(r18New)
-if (SHOW_GENERAL_NEW) li = li.concat(generalNew)
-li = li.concat(r18Rank)
-if (SHOW_GENERAL_RANK) li = li.concat(generalRank)
-if (SHOW_R18_GENRE) li = li.concat(r18Genre)
-if (SHOW_GENERAL_GENRE) li = li.concat(generalGenre)
+if (settings.SHOW_GENERAL) li = li.concat(normal)
+if (settings.SHOW_NEW_ADULT) li = li.concat(r18New)
+if (settings.SHOW_NEW_GENERAL) li = li.concat(generalNew)
+if (settings.SHOW_RANK_ADULT)li = li.concat(r18Rank)
+if (settings.SHOW_RANK_GENERAL) li = li.concat(generalRank)
+if (settings.SHOW_GENRE_ADULT) li = li.concat(r18Genre)
+if (settings.SHOW_GENRE_GENERAL) li = li.concat(generalGenre)
 sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
 
 // 收藏标签
