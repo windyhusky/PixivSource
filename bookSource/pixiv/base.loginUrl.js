@@ -919,6 +919,9 @@ function startPixivSettings() {
 function startGithubReadme() {
     startBrowser("https://pixivsource.pages.dev/Pixiv", "使用指南")
 }
+function startGithubIssue() {
+    startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
+}
 
 function checkStatus(status) {
     if (eval(String(status)) === true) return "❤️"
@@ -964,6 +967,8 @@ let settingsName = {
     "SHOW_GENRE_ADULT": "🔞 原创热门",
     "SHOW_GENRE_GENERAL": "🆗 原创热门",
     "SHOW_FURRY": "🐺 兽人小说",
+    "SHOW_DISCOVER": "⚙️ 发现设置",
+    "SHOW_SETTINGS": "⚙️ 书源设置",
     // "":"Pixiv 设置",
     // "HIDE_AI_WORKS":"隐藏AI作品",
     // "SENSITIVE_VIEW":"敏感作品",

@@ -403,7 +403,6 @@ function setDefaultSettings() {
     settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
-    settings.SHOW_DISCOVER = true       // 设置：显示 发现设置
 
     settings.SHOW_GENERAL = true        // 发现：显示 常规小说
     settings.SHOW_NEW_ADULT = true      // 发现：显示 最新企划约稿 R18
@@ -413,6 +412,9 @@ function setDefaultSettings() {
     settings.SHOW_GENRE_ADULT = false   // 发现：显示 原创热门 R18
     settings.SHOW_GENRE_GENERAL = false // 发现：显示 原创热门 常规
     settings.SHOW_FURRY = false         // 发现：显示 兽人小说推荐作者
+
+    settings.SHOW_SETTINGS = true       // 设置：显示 书源设置
+    settings.SHOW_DISCOVER = true       // 设置：显示 发现设置
     this.putInCacheObject("pixivSettings", settings)
     return settings
 }
