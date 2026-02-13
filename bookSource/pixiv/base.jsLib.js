@@ -313,16 +313,11 @@ function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
     let illustOriginal = ""
-    let url = this.urlIP(urlIllustDetailed(illustId))
     try {
         if (this.isLogin()) {
-            illustOriginal = this.cacheGetAndSet(url, () => {
-                return JSON.parse(java.ajax(url))
-            }).body.urls.original
+            illustOriginal = getAjaxJson(this.urlIP(urlIllustDetailed(illustId))).body.urls.original
         } else {
-            let illustThumb = this.cacheGetAndSet(url, () => {
-                return JSON.parse(java.ajax(url))
-            }).body.userIllusts[illustId].url
+            let illustThumb = getAjaxJson(this.urlIP(urlIllustDetailed(illustId))).body.userIllusts[illustId].url
             let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
             illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
         }
