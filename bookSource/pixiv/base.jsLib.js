@@ -416,6 +416,8 @@ function setDefaultSettings() {
 
     settings.SHOW_SETTINGS = true       // 设置：显示 书源设置
     settings.SHOW_DISCOVER = true       // 设置：显示 发现设置
+    settings.SHOW_SETTINGS2 = false     // 设置：显示 书源设置
+    settings.SHOW_DISCOVER2 = false     // 设置：显示 发现设置
     this.putInCacheObject("pixivSettings", settings)
     return settings
 }

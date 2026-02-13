@@ -9,9 +9,13 @@ let source = [
     {"🆙 更新书源": "updateSource()" },
     {"🔰 使用指南": "startGithubReadme()" },
     {"🐞 反馈问题": "startGithubIssue()" },
+]
 
-    {"👁 书源设置": "editSettings('SHOW_SETTINGS')" },
-    {"👁 发现设置": "editSettings('SHOW_DISCOVER')" },
+let methord = ""
+if (book) methord = 2
+let settingsBase = [
+    {"👀 书源设置": `editSettings('SHOW_SETTINGS${methord}')` },
+    {"👀 发现设置": `editSettings('SHOW_DISCOVER${methord}')` },
     {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 ]
 
@@ -87,9 +91,11 @@ let discoverSettings = [
 let li = []
 try {
     if (book) {
-        li = novel.concat(comment)
+        li = settingsBase.concat(novel).concat(comment)
+        if (pixivSettings.SHOW_SETTINGS2) li = li.concat(settings)
+        if (pixivSettings.SHOW_DISCOVER2) li = li.concat(discoverSettings)
     } else {
-        li = source
+        li = source.concat(settingsBase)
         if (pixivSettings.SHOW_SETTINGS) li = li.concat(settings)
         if (pixivSettings.SHOW_DISCOVER) li = li.concat(discoverSettings)
     }
