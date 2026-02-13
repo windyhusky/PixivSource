@@ -75,9 +75,9 @@ export default defineConfig({
             {
                 text: "🚧 开发动态",
                 items: [
-                    { text: "🤝 开发团队", link: "/Team" , activeMatch: '/' },
                     { text: "📜 更新日志", link: "/UpdateLog" },
-                    { text: "🌱 项目起源", link: "/Beginning" },
+                    { text: "👥 开发团队", link: "/Team" },
+                    { text: "🤝 友情链接", link: "/FriendLink" },
                     { text: "☕ 支持开发", link: "/Sponsor" , activeMatch: '/' },
                     { text: "✍️ 作者博客", link: BLOG },
                 ],
@@ -120,9 +120,10 @@ export default defineConfig({
                 text: "开发动态",
                 collapsed: false,
                 items: [
-                    { text: "🤝 开发团队", link: "/Team" },
                     { text: "📜 更新日志", link: "/UpdateLog" },
                     { text: "🌱 项目起源", link: "/Beginning" },
+                    { text: "👥 开发团队", link: "/Team" },
+                    { text: "🤝 友情链接", link: "/FriendLink" },
                 ]
             },
             {

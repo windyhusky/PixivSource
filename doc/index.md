@@ -46,7 +46,7 @@ hero:
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
       
     - theme: alt
-      text: 📗 快速开始
+      text: ⚡️ 快速开始
       link: QuickStart
       
     - theme: alt
@@ -60,6 +60,10 @@ hero:
     - theme: alt
       text: ☕ 打赏
       link: Sponsor
+      
+    - theme: alt
+      text: 🤝 友情链接
+      link: FriendLink
       
 
 features:
