@@ -1,19 +1,25 @@
 <template>
-    <div class="friends-container">
-        <a
-            v-for="friend in friends"
-            :key="friend.link"
-            :href="friend.link"
-            target="_blank"
-            rel="noopener"
-            class="friend-card"
-        >
-            <img :src="friend.avatar" :alt="friend.name" class="avatar" />
-            <div class="info">
-                <span class="name">{{ friend.name }}</span>
-                <p class="desc">{{ friend.desc || '这个小伙伴很神秘，什么都没写' }}</p>
+    <div class="friends-wrapper">
+        <div v-for="group in friendGroups" :key="group.title" class="friend-group">
+            <h3 :id="group.title" class="group-title">{{ group.title }}</h3>
+
+            <div class="friends-container">
+                <a
+                    v-for="friend in group.items"
+                    :key="friend.link"
+                    :href="friend.link"
+                    target="_blank"
+                    rel="noopener"
+                    class="friend-card"
+                >
+                    <img :src="friend.icon" :alt="friend.name" class="icon" />
+                    <div class="info">
+                        <span class="name">{{ friend.name }}</span>
+                        <p class="desc">{{ friend.desc || '这个伙伴很神秘，什么都没写' }}</p>
+                    </div>
+                </a>
             </div>
-        </a>
+        </div>
     </div>
 </template>
 
@@ -22,25 +28,46 @@ import { computed } from 'vue'
 import { useData } from 'vitepress'
 
 const { frontmatter } = useData()
-
-// 使用 computed 确保数据是响应式的，并从 frontmatter 中读取 friends 字段
-const friends = computed(() => frontmatter.value.friends || [])
+const friendGroups = computed(() => frontmatter.value.friendGroups || [])
 </script>
 
 <style scoped>
+.friend-group {
+    margin-bottom: 32px;
+}
+
+/* 调整 h3 样式，使其更贴合 VitePress 默认风格 */
+.group-title {
+    display: flex;
+    align-items: center;
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--vp-c-divider);
+    font-size: 1.15rem; /* 略小于 h2 */
+    font-weight: 600;
+    color: var(--vp-c-text-1);
+}
+
+/* 装饰性小圆点，让三级标题更有设计感 */
+.group-title::before {
+    content: "";
+    width: 4px;
+    height: 16px;
+    background-color: var(--vp-c-brand-1);
+    border-radius: 2px;
+    margin-right: 8px;
+}
+
 .friends-container {
     display: grid;
-    /* 自动填充，最小宽度 240px，间距 16px */
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 16px;
-    margin-top: 24px;
 }
 
 .friend-card {
     display: flex;
     align-items: center;
     padding: 16px;
-    /* 使用 VitePress 变量以适配深色模式 */
     border: 1px solid var(--vp-c-bg-soft);
     border-radius: 12px;
     background-color: var(--vp-c-bg-soft);
@@ -56,7 +83,7 @@ const friends = computed(() => frontmatter.value.friends || [])
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.avatar {
+.icon {
     width: 54px;
     height: 54px;
     border-radius: 50%;
@@ -85,14 +112,12 @@ const friends = computed(() => frontmatter.value.friends || [])
     color: var(--vp-c-text-2);
     margin: 4px 0 0;
     line-height: 1.4;
-    /* 文本超过两行时显示省略号 */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
 
-/* 适配移动端 */
 @media (max-width: 640px) {
     .friends-container {
         grid-template-columns: 1fr;
