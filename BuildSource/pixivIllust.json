@@ -6,7 +6,7 @@
         "bookSourceType": 2,
         "bookSourceUrl": "https://www.pixiv.net/manga",
         "bookUrlPattern": "(https?://)?(www\\.)?pixiv\\.net/((artworks|user/\\d+/series)|ajax/(illust|series))/\\d+",
-        "concurrentRate": "3/2000",
+        "concurrentRate": "5/2000",
         "customButton": false,
         "customOrder": 2,
         "enabled": true,

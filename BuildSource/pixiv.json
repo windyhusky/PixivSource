@@ -6,7 +6,7 @@
         "bookSourceType": 0,
         "bookSourceUrl": "https://www.pixiv.net/novel",
         "bookUrlPattern": "(https?://)?(www\\.)?pixiv\\.net(/ajax)?/(novel/(show\\.php\\?id=|series/)?|users?/)\\d+.*",
-        "concurrentRate": "3/2000",
+        "concurrentRate": "5/2000",
         "customButton": false,
         "customOrder": 0,
         "enabled": true,

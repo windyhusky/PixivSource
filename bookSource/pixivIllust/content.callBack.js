@@ -27,11 +27,11 @@ if (event === "saveRead") {
 
 // 开始书架刷新
 if (event === "startShelfRefresh") {
-    source.putConcurrent("1/2000")
+    source.putConcurrent("2/2000")
 }
 // 结束书架刷新
 if (event === "endShelfRefresh") {
-    source.putConcurrent("3/2000")
+    source.putConcurrent("4/2000")
 }
 
 // // 开始阅读，登录界面添加当前章节名称

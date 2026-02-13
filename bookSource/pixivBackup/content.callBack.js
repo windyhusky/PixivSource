@@ -61,11 +61,11 @@ function saveRead() {
 }
 
 function startShelfRefresh() {
-    source.putConcurrent("1/2000")
+    source.putConcurrent("2/2000")
 }
 
 function endShelfRefresh() {
-    source.putConcurrent("3/2000")
+    source.putConcurrent("4/2000")
 }
 
 function callBackFactory(event) {

@@ -6,7 +6,7 @@
         "bookSourceType": 0,
         "bookSourceUrl": "https://furrynovel.ink",
         "bookUrlPattern": "(https?://)?(api\\.|www\\.)?(furrynovel\\.(ink|xyz))/(pn|pixiv/novel)/\\d+(/cache)?",
-        "concurrentRate": "3/2000",
+        "concurrentRate": "6/2000",
         "customButton": false,
         "customOrder": 3,
         "enabled": true,

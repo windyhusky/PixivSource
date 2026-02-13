@@ -6,7 +6,7 @@
         "bookSourceType": 0,
         "bookSourceUrl": "https://furrynovel.com",
         "bookUrlPattern": "(https?://)?(www\\.|api\\.)?furrynovel\\.com(/api)?/(zh|en|ja)/novel/\\d+(/chapter/d+)?",
-        "concurrentRate": "3/2000",
+        "concurrentRate": "6/2000",
         "customButton": false,
         "customOrder": 4,
         "enabled": true,
