@@ -66,6 +66,7 @@ function getFromCacheObject(objectName) {
 
 function putInCacheMap(mapName, mapObject, saveSeconds) {
     const {java, cache} = this
+    if (saveSeconds === undefined) saveSeconds = 0
     let orderedArray = []
     mapObject.forEach((value, key) => {
         const item = {}
@@ -73,7 +74,6 @@ function putInCacheMap(mapName, mapObject, saveSeconds) {
         orderedArray.push(item)
     })
     // [{'key1': 'value1'}, {'key2': 'value2'}]
-    if (saveSeconds === undefined) saveSeconds = 0
     cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
 }
 function getFromCacheMap(mapName) {
@@ -111,15 +111,15 @@ function isHtmlString(str) {
 function isJsonString(str) {
     try {
         if (typeof JSON.parse(str) === "object") return true
-    } catch(e) {}
-    return false
+    } catch(e) {
+        return false
+    }
 }
 
 function isLogin() {
     const {java, cache} = this
     return !!this.getFromCache("pixivCsrfToken")
 }
-
 
 function getAjaxJson(url, forceUpdate) {
     const {java, cache} = this
@@ -405,23 +405,37 @@ function setDefaultSettings() {
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
 
+    settings.SHOW_GENERAL = true        // 发现：显示 常规小说
+    settings.SHOW_NEW_ADULT = true      // 发现：显示 最新企划约稿 R18
+    settings.SHOW_NEW_GENERAL = false   // 发现：显示 最新企划约稿 常规
+    settings.SHOW_RANK_ADULT = true     // 发现：显示 排行榜单 R18
+    settings.SHOW_RANK_GENERAL = false  // 发现：显示 排行榜单 常规
+    settings.SHOW_GENRE_ADULT = false   // 发现：显示 原创热门 R18
+    settings.SHOW_GENRE_GENERAL = false // 发现：显示 原创热门 常规
+    settings.SHOW_FURRY = false         // 发现：显示 兽人小说推荐作者
+
+    settings.SHOW_SETTINGS = true       // 设置：显示 书源设置
+    settings.SHOW_DISCOVER = true       // 设置：显示 发现设置
+    settings.SHOW_SETTINGS2 = false     // 设置：显示 书源设置
+    settings.SHOW_DISCOVER2 = false     // 设置：显示 发现设置
     this.putInCacheObject("pixivSettings", settings)
     return settings
 }
-function checkSettings() {
+function checkSettings(settings) {
     const {java, cache} = this
-    let settings = this.getFromCacheObject("pixivSettings")
+    if (!settings) settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
     if (settings.FAST || settings.IPDirect) {
-        settings.SEARCH_AUTHOR = false        // 搜索：默认搜索作者名称
+        settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
     }
     if (!settings.FAST && !settings.IPDirect) {
-        settings.SEARCH_AUTHOR = true         // 搜索：默认搜索作者名称
+        // settings.SEARCH_AUTHOR = true         // 搜索：默认不搜索作者名称
         settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
     }
 
-    if (settings.FAST === true) {
+    if (settings.FAST) {
+        settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_COMMENTS = false        // 正文：显示评论

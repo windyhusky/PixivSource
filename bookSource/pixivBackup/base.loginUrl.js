@@ -41,11 +41,6 @@ function removeLikeDataCache() {
 }
 
 function removeSettingsCache() {
-    // 删除 自动翻页的最大页码
-    cache.delete("maxPagesKey")
-    cache.delete("novelsMaxPages")
-    cache.delete("seriesMaxPages")
-
     // 删除 屏蔽作者名单
     // removeCacheList("blockAuthorList")
     // 删除  屏蔽关键词
@@ -81,7 +76,7 @@ function getCsrfToken() {
 
 function getNovel() {
     let environment = getFromCacheObject("pixivEnvironment")
-    if (environment.IS_LYC_BRUNCH) {
+    if (environment.IS_LEGADO_SIGMA) {
         try {
             let novel = {}
             try {
@@ -918,17 +913,13 @@ function startPixivSettings() {
 function startGithubReadme() {
     startBrowser("https://pixivsource.pages.dev/Pixiv", "使用指南")
 }
+function startGithubIssue() {
+    startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
+}
 
 function checkStatus(status) {
     if (eval(String(status)) === true) return "❤️"
     else return "🖤"
-}
-
-function readMeLogin() {
-    return sleepToast(`🅿️ 登录界面功能\n
-    使用收藏、追更、关注作者、评论等功能时，需要登录
-    使用前请先刷新正文，获取当前章节信息\n
-    点击【📌 当前章节】查看书源内部章节信息`.replace("    ",""), 5)
 }
 
 function readMeSearch() {
@@ -950,11 +941,23 @@ let settingsName = {
     "MORE_INFORMATION": "📖 更多简介",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
     "SHOW_CAPTIONS": "🖼️ 显示描述",
-    "SHOW_LIKE_NOVELS" :"❤️ 显示收藏",
-    "SHOW_WATCHED_SERIES" :"📃 显示追更",
+    "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
+    "HIDE_WATCHED_SERIES": "📃 隐藏追更",
     "IPDirect": "✈️ 直连模式",
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
+    "SHOW_GENERAL": "🆗 常规小说",
+    "SHOW_NEW_ADULT": "🔞 最新企划",
+    "SHOW_NEW_GENERAL": "🆗 最新企划",
+    "SHOW_RANK_ADULT": "🔞 排行榜单",
+    "SHOW_RANK_GENERAL": "🆗 排行榜单",
+    "SHOW_GENRE_ADULT": "🔞 原创热门",
+    "SHOW_GENRE_GENERAL": "🆗 原创热门",
+    "SHOW_FURRY": "🐺 兽人小说",
+    "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",
+    "SHOW_SETTINGS": "⚙️ 书源设置\n（书源编辑界面）",
+    "SHOW_DISCOVER2": "⚙️ 发现设置\n（小说阅读界面）",
+    "SHOW_SETTINGS2": "⚙️ 书源设置\n（小说阅读界面）",
 }
 
 function statusMsg(status) {
@@ -972,8 +975,10 @@ function getSettingStatus(mode) {
         keys = Object.keys(settingsName).slice(0, 5)
     } else if (mode === "IPDirect") {
         keys = Object.keys(settingsName).slice(0, 2)
+    } else if (mode.includes("DISCOVER")) {
+        keys = Object.keys(settingsName).slice(13, 21)
     } else {
-        keys = Object.keys(settingsName)
+        keys = Object.keys(settingsName).slice(0, 13)
     }
     for (let i in keys) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
@@ -983,6 +988,9 @@ function getSettingStatus(mode) {
 
 function showSettings() {
     sleepToast(`\n⚙️ 当前设置\n\n${getSettingStatus()}`)
+}
+function showSettingsDiscover() {
+    sleepToast(`\n⚙️ 当前发现设置\n\n${getSettingStatus("DISCOVER")}`)
 }
 
 function setDefaultSettingsLoginUrl() {
@@ -1001,18 +1009,22 @@ function editSettings(settingName) {
     }
     putInCacheObject("pixivSettings", settings)
 
-    if (settingName === "FAST" || (settingName === "IPDirect")) {
+    if (settingName === "FAST") {
+        checkSettings(settings)
+        msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
+    } else if (settingName === "IPDirect") {
         if (settings.IPDirect && !isLogin()) {
             msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
             settings.IPDirect = false
-            checkSettings()
-            putInCacheObject("pixivSettings", settings)
+            checkSettings(settings)
         } else {
-            checkSettings()
+            checkSettings(settings)
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         }
+        try {source.refreshExplore()} catch (e) {}
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
+        if (settingName.startsWith("SHOW")) try {source.refreshExplore()} catch (e) {}
     }
     sleepToast(msg)
 }
@@ -1021,12 +1033,6 @@ function cleanCache() {
     let novel = getNovel()
     cache.delete(`${urlNovelUrl(novel.id)}`)
     cache.delete(`${urlNovelDetailed(novel.id)}`)
-    // cache.delete(`${urlSearchNovel(novel.title, 1)}`)
-    // if (novel.seriesId) {
-    //     cache.delete(`${urlSeriesUrl(novel.seriesId)}`)
-    //     cache.delete(`${urlSeriesDetailed(novel.seriesId)}`)
-    //     cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
-    // }
     try {java.refreshContent()} catch(err) {}
     sleepToast(`🔄 刷新本章\n\n若正文未更新，请手动刷新`, 5)
 }
