@@ -9,6 +9,7 @@ import { h, watch } from "vue";
 import BackToTop from "./components/BackToTop.vue";
 import Discuss from "./components/Discuss.vue";
 import DragonChat from './components/DragonChat.vue'
+import FriendLink from "./components/FriendLink.vue"
 import HomeUnderline from "./components/HomeUnderline.vue"
 import NotFound from "./components/404.vue";
 import Sponsor from "./components/Sponsor.vue";
@@ -55,6 +56,7 @@ export default {
     },
     enhanceApp({app , router }) {
         app.component('DragonChat', DragonChat)
+        app.component('FriendLink', FriendLink)
         app.component('HomeUnderline', HomeUnderline)
         // app.component('UpdateTime', UpdateTime)
         app.component('Sponsor', Sponsor)
