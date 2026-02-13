@@ -290,6 +290,8 @@ function urlCoverUrl(url) {
 
     this._settings = this.getFromCacheObject("pixivSettings")
     if (!this._settings) this._settings = this.setDefaultSettings()
+    if (!this._settings.IPDirect) return url
+
     if (this._settings.IPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
@@ -310,21 +312,22 @@ function urlIllustDetailed(illustId) {
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
-    let illustOriginal
+    let illustOriginal = ""
     let url = this.urlIP(urlIllustDetailed(illustId))
     try {
-        illustOriginal = this.cacheGetAndSet(url, () => {
-            return JSON.parse(java.ajax(url))
-        }).body.urls.original
-        if (!illustOriginal) throw Error("e")
-    } catch (e) {
-        let illustThumb = this.cacheGetAndSet(url, () => {
-            return JSON.parse(java.ajax(url))
-        }).body.userIllusts[illustId].url
-        let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
-        illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
-    }
-    // java.log(illustOriginal)
+        if (this.isLogin()) {
+            illustOriginal = this.cacheGetAndSet(url, () => {
+                return JSON.parse(java.ajax(url))
+            }).body.urls.original
+        } else {
+            let illustThumb = this.cacheGetAndSet(url, () => {
+                return JSON.parse(java.ajax(url))
+            }).body.userIllusts[illustId].url
+            let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
+            illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
+        }
+    } catch (e) {}
+    if (illustOriginal.split(",")[0] === "") return ""
     return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 function urlEmojiUrl(emojiId) {
