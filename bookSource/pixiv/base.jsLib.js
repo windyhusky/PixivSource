@@ -313,15 +313,18 @@ function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
     let illustOriginal = ""
+
+    let resp = this.getAjaxJson(this.urlIP(urlIllustDetailed(illustId)))
     try {
-        if (this.isLogin()) {
-            illustOriginal = getAjaxJson(this.urlIP(urlIllustDetailed(illustId))).body.urls.original
-        } else {
-            let illustThumb = getAjaxJson(this.urlIP(urlIllustDetailed(illustId))).body.userIllusts[illustId].url
+        illustOriginal = resp.body.urls.original
+    } catch (e) {
+        try {
+            let illustThumb = resp.body.userIllusts[illustId].url
             let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
-            illustOriginal =`https://i.pximg.net/img-original/img/${date}/${illustId}_p0.png`
-        }
-    } catch (e) {}
+            illustOriginal = `https://i.pximg.net/img-master/img/${date}/${illustId}_p0_master1200.jpg`
+        } catch (e) {}
+    }
+
     if (illustOriginal.split(",")[0] === "") return ""
     return this.urlCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
