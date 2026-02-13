@@ -275,7 +275,7 @@ function sleepToast(text, seconds) {
 function setDefaultSettings() {
     const {java, cache} = this
     let settings = {}
-    settings.SEARCH_AUTHOR = true       // 搜索：默认搜索作者名称
+    settings.SEARCH_AUTHOR = false      // 搜索：默认搜索作者名称
     settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
 
     settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
