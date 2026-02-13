@@ -212,6 +212,7 @@ function urlCoverUrl(url) {
 
     let settings = this.getFromCacheObject("pixivIllustSettings")
     if (!settings) settings = this.setDefaultSettings()
+    if (!settings.IPDirect) return url
 
     let headers = {"Referer": "https://www.pixiv.net/"}
     if (settings.IPDirect && url.trim()) {
