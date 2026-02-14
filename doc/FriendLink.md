@@ -18,12 +18,27 @@ friendGroups:
 #        icon: ./pic/Legado.png
 #        desc: 开源阅读 Legado
 
-  - title: 📚 书源分享
+
+  - title: 📚 阅读资源
     items:
       - name: Pixiv 书源
         link: https://pixivsource.pages.dev/
         icon: https://pixivsource.pages.dev/favicon-512x512.png
         desc: 最好的 Pixiv 小说阅读器
+
+      - name: 明月书阁
+        link: https://skybook.pages.dev
+        icon: https://skybook.qzz.io/img/favicon.ico
+        desc: 开源阅读相关资源分享站
+        
+
+  - title: 🤝 博客分享
+    items:
+      - name: 唐尼瑞姆的博客
+        link: https://downeyrem.pages.dev
+        icon: https://www.github.com/DowneyRem.png
+        desc: 这头龙很懒，什么都没写
+
 
   - title: ⚡️ VitePress
     items:
@@ -52,4 +67,17 @@ friendGroups:
   link: https://pixivsource.pages.dev/
   icon: https://pixivsource.pages.dev/favicon-512x512.png
   desc: 最好的 Pixiv 小说阅读器
+```
+
+### ➕ 添加友链
+> [!NOTE]
+> 目前仅接受 **开源阅读相关资源站点** 添加友情链接
+> 
+> 请仿照上方内容，填写信息，发送至下方至评论区
+
+```yaml
+- name: 
+  link: 
+  icon: 
+  desc: 
 ```
