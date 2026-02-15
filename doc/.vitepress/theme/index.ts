@@ -7,7 +7,7 @@ import { useData, useRoute } from 'vitepress';
 
 import { h, watch } from "vue";
 import BackToTop from "./components/BackToTop.vue";
-import Discuss from "./components/Discuss.vue";
+import DownToDiscuss from "./components/DownToDiscuss.vue";
 import DragonChat from './components/DragonChat.vue'
 import FriendLink from "./components/FriendLink.vue"
 import HomeUnderline from "./components/HomeUnderline.vue"
@@ -28,7 +28,8 @@ export default {
             // 将“回到顶部”和“直达评论”都挂载在文档页面的合适位置
             "doc-footer-before": () => h(
                 h('div', null, [
-                    h(BackToTop), h(Discuss)
+                    h(BackToTop),
+                    h(DownToDiscuss)
                 ]
             )),
         }),
