@@ -14,7 +14,7 @@ friendGroups:
         desc: 开源阅读 Material Design 3 风格重构版
         
 #      - name: 阅读 
-#        link: https://github.com/HapeLee/legado-with-MD3
+#        link: https://github.com/gedoor/legado
 #        icon: ./pic/Legado.png
 #        desc: 开源阅读 Legado
 
@@ -38,6 +38,11 @@ friendGroups:
         link: https://downeyrem.pages.dev
         icon: https://www.github.com/DowneyRem.png
         desc: 这头龙很懒，什么都没写
+        
+      - name: Melaton's Blog
+        link: https://www.melaton.dev
+        icon: https://github.com/HundSimon.png
+        desc: Melaton 的博客
 
 
   - title: ⚡️ VitePress
