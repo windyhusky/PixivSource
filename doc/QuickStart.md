@@ -15,7 +15,7 @@
 > [✨臻享阅读](BetterExperience.md)
 
 
-## ⚡️ 快速开始：[下载阅读](QuickStart#DownloadLegado) => [导入书源](QuickStart#ImportSources) => [书源配置](QuickStart#LoginAccount) => [阅读设置](QuickStart#LegadoSettings) => [畅享阅读](QuickStart#AddNovel) {#QuickStart}
+## ⚡️ 快速开始：[下载阅读](QuickStart#DownloadLegado) => [导入书源](QuickStart#ImportSources) => [书源配置](QuickStart#LoginAccount) => [阅读设置](QuickStart#LegadoSettings) {#QuickStart}
 
 
 ## 下载软件 {#DownloadAPP}
@@ -63,13 +63,6 @@
 
 
 ## 导入书源 {#ImportSources}
-> [!NOTE]
-> 以下两种方式任选：
-> 
-> **🚀 A.一键导入【操作简便】，后续需要【手动更新】书源**
-> 
-> **🔗 B.规则订阅【更新方便】，后续可以【自动更新】书源**
-
 > [!TIP]
 > **使用 Pixiv 书源阅读小说，建议导入：**
 > - **🅿️ Pixiv 书源**
@@ -79,8 +72,16 @@
 > - **🦊 Linpx 书源**
 > - **🐲 BTSRK 订阅源**
 
+> [!NOTE]
+> 以下两种方式任选：
+>
+> **🚀 A.一键导入【操作简便】，后续需要【手动更新】书源**
+>
+> **🔗 B.规则订阅【更新方便】，后续可以【自动更新】书源**
+
 
 ### 🚀 A.一键导入【最简单】 {#OneClickImport}
+**点击链接，一键导入 书源、订阅源**
 | 源名称    | jsDelivr | Github |
 |--------| -------- | ------ |
 | 🅿️ Pixiv 书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
@@ -93,11 +94,7 @@
 
 
 ### 🔗 B.规则订阅【易更新】 {#Subscription}
-<details><summary><strong> 🔗 B.规则订阅 </strong></summary>
-
 **订阅 - 规则订阅 - 添加 - 复制链接，添加订阅**
-
-详见：[导入书源](ImportBookSource.md)
 
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
@@ -105,6 +102,8 @@
 | 🦊 Linpx 书源   | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
 | 🐲 BTSRK 订阅源 | [订阅链接](https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)  | [订阅链接](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
 
+
+<details><summary><strong> 详见：规则订阅 </strong></summary>
 
 #### 1. 打开【订阅】页面，点击【规则订阅】
 ![img](./pic/SubscribeEntry.png)
