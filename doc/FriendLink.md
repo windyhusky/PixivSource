@@ -5,17 +5,17 @@ friendGroups:
     items:
       - name: 阅读 Sigma
         link: https://loyc.xyz/c/legado.html
-        icon: ./pic/LegadoSigma.png
+        icon: /img/LegadoSigma.png
         desc: 极致阅读体验 免费开源电子书阅读器
 
       - name: 阅读 MD3
         link: https://github.com/HapeLee/legado-with-MD3
-        icon: ./pic/LegadoMD3.png
+        icon: /img/LegadoMD3.png
         desc: 开源阅读 Material Design 3 风格重构版
         
 #      - name: 阅读 
 #        link: https://github.com/gedoor/legado
-#        icon: ./pic/Legado.png
+#        icon: /img/Legado.png
 #        desc: 开源阅读 Legado
 
 
@@ -23,7 +23,7 @@ friendGroups:
     items:
       - name: Pixiv 书源
         link: https://pixivsource.pages.dev/
-        icon: https://pixivsource.pages.dev/favicon-512x512.png
+        icon: favicon-512x512.png
         desc: 最好的 Pixiv 小说阅读器
 
       - name: 明月书阁
