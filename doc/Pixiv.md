@@ -96,31 +96,6 @@
 > **如果需要验证码，请更换代理，或过段时间再次尝试**
 
 
-### ✈️ 直连模式（可选）{#IPDirect}
-> [!TIP]
->
-> **登录账号后，可在登录界面开启【直连模式】**
-
-![img](./pic/PixivLoginUIBase.png)
-
-![img](./pic/PixivIPDirect0.png)
-
-**直连模式，无需代理，即可获取小说**
-
-![img](./pic/PixivIPDirect.png)
-
-**🚫 直连模式不可用功能：**
-- 搜索：搜索作者
-- 发现：书签、首页、排行榜
-- 目录：显示原始链接
-
-> [!NOTE]
->
-> **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
->
-> **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
-
-
 ### 🔞 浏览范围（可选）{R18Settings}
 #### 如果你已经开启了 R18 设置，则可以跳过这一步
 <details><summary><strong>📆 编辑出生年份 </strong></summary>
@@ -148,6 +123,35 @@
 
 ![img](./pic/PixivSettingsView.png)
 </details>
+
+
+### ✈️ 直连模式（可选） {#IPDirect}
+> [!TIP]
+>
+> **完成【登录账号】后，可在登录界面开启【直连模式】**
+>
+> **开启【直连模式】后，无需代理，即可阅读小说**
+>
+> **✈️ 直连模式 => 我的 - 书源管理 - Pixiv 小说 - 登录**
+
+![img](./pic/PixivLoginUIBase.png)
+
+> [!TIP]
+>
+> **切换直连模式后，搜索、发现会自动启用直连链接**
+
+![img](./pic/PixivIPDirect.png)
+> [!IMPORTANT] 重要
+> **🚫 直连模式下，以下功能不可用：**
+>  - **搜索：搜索作者**
+>  - **发现：书签、首页、排行榜**
+>  - **目录：显示原始链接**
+
+> [!NOTE]
+>
+> **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
+>
+> **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
 
 
 ## 阅读设置 {#LegadoSettings}
@@ -289,8 +293,13 @@
 - <details><summary> ⭐️ 常规发现 </summary>
 
   #### 2.0 常规发现
-  发现默认显示的内容
   ![img](./pic/DiscoverPixiv.jpg)
+  > [!TIP]
+  >
+  >  - 🔞 默认发现 => ✅ 默认显示，不可隐藏
+  >  - 💼 常规小说 => ✅ 默认显示，可以隐藏
+  >
+  > 可在 **发现设置** 中修改【💼 常规小说】
   </details>
 
 - <details><summary> 🆕 最新企划约稿 </summary>
@@ -298,24 +307,23 @@
   #### 2.1 最新 企划 约稿
   ![img](./pic/DiscoverPixivNew.png)
   > [!TIP]
-  >
-  > - ✅ R18 小说 (🆕 最新 企划 约稿 💰，默认显示)
-  > - ☑️ 一般小说 (✅ 最新 企划 约稿 ✅，默认隐藏)
   > 
-  > 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+  >  - 🔞 最新 企划 约稿 => ✅ 默认显示
+  >  - 💼 最新 企划 约稿 => ❌ 默认隐藏
+  > 
+  > 可在 **发现设置** 中修改【🔞 最新企划】【💼 最新企划】
   </details>
-
 
 - <details><summary> 👑 小说排行 </summary>
 
   #### 2.2 小说排行
   ![img](./pic/DiscoverPixivRanking.png)
   > [!TIP]
-  > 
-  > - ✅ R18 小说 (👑 排行榜单 👑，默认显示)
-  > - ☑️ 一般小说 (🏆 排行榜单 🏆，默认隐藏)
-  > 
-  > 可在书源设置中修改`SHOW_GENERAL_RANK`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+  >
+  >  - 🔞 排行榜单 => ✅ 默认显示
+  >  - 💼 排行榜单 => ❌ 默认隐藏
+  >
+  >  可在 **发现设置** 中修改【🔞 排行榜单】【💼 排行榜单】
   </details>
 
 - <details><summary> 🔥 原创热门（默认隐藏） </summary>
@@ -323,13 +331,11 @@
   #### 2.3 原创热门（默认隐藏）
   ![img](./pic/DiscoverPixivHot.png)
   > [!TIP]
-  > 
-  > - ☑️ R18 小说 (🔥 原创热门 🔥，默认隐藏)
-  > 
-  > 可在书源设置中修改`SHOW_R18_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
-  > - ☑️ 一般小说 (❤️‍🔥 原创热门 ❤️‍🔥，默认隐藏)
-  > 
-  > 可在书源设置中修改`SHOW_GENERAL_GENRE`，更改后需要在发现页面刷新分类（发现，长按"Pixiv"，刷新）
+  >
+  >  - 🔞 原创热门 => ❌ 默认隐藏
+  >  - 💼 原创热门 => ❌ 默认隐藏
+  >
+  >  可在 **发现设置** 中修改【🔞 原创热门】【💼 原创热门】
   </details>
 </details>
 
@@ -337,41 +343,17 @@
 <details><summary> 🆙 更新书源 </summary>
 
 #### 2.4 更新书源
-![img](./pic/UpdateSource.png)
+![img](./pic/DiscoverPixiv.jpg)
 > [!NOTE]
 >
-> 点击按钮【🆙 更新】以更新书源/更新订阅
+> 点击按钮【🆙 更新】进入书源更新界面
 
-- Jsdelivr CDN 更新有延迟
-- Github 更新需代理
-- Godeberg 更新免代理
-</details>
+![img](./pic/UpdateSource.png)
 
-<details><summary> 📌 喜欢标签 </summary>
-
-#### 2.5 喜欢标签
-- 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
-![img](./pic/PixivLoginUILikeTags.png)
-- 2️⃣ 打开发现页面，点击按钮，查看内容
-![img](./pic/DiscoverPixivLikeTags.png)
-- ▶️ 如未更新，请手动更新发现：发现 - 长按"Pixiv" - 刷新
-</details>
-
-<details><summary> ❤️ 他人收藏 </summary>
-
-#### 2.6 他人收藏
-- 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
-
-![img](./pic/PixivLoginUILikeAuthors.png)
-- 输入作者/用户ID，则会添加【指定作者/用户】
-![img](./pic/DiscoverPixivLikeAuthors1.png)
-- 若未输入作者/用户ID，则会添加【当前小说的作者】
-
-![img](./pic/DiscoverPixivLikeAuthors2.png)
-- 2️⃣ 打开发现页面，点击按钮，查看内容
-
-![img](./pic/DiscoverPixivLikeAuthors.jpg)
-- ▶️ 如未更新，请手动更新发现：发现 - 长按"Pixiv" - 刷新
+> [!TIP]
+>  - Jsdelivr CDN 更新有延迟
+>  - Github 更新需代理
+>  - Godeberg 更新免代理
 </details>
 
 
@@ -451,15 +433,15 @@
 </details>
 
 
-### ▶️ 登录界面 {#LoginUI}
+## 登录界面 {#LoginUI}
+### ⚙️ 设置功能
 <details><summary> ▶️ 基础功能 </summary>
 
 **我的 - 书源管理 - Pixiv 小说 - 登录**
 
 ![img](./pic/PixivLogin1.png)
 
-
-#### 5.1 基础功能
+#### 1. 基础设置
 > [!IMPORTANT]
 > 
 > **⚠️ 登录账号/退出账号 都要使用按钮**
@@ -472,6 +454,10 @@
 - 
 - **🆙 更新书源：更新书源/更新订阅**
 - 🔰 使用指南：打开 Github 文档(本页)
+- 🐞 反馈问题：打开 Github Issues
+- 
+- **👀 书源设置：显示/隐藏 书源设置按钮**
+- **👀 发现设置：显示/隐藏 发现设置按钮**
 - **✈️ 直连模式：直连模式（需登录账号）**
 
 </details>
@@ -486,7 +472,7 @@
 此处打开登录界面，可以显示 **书源设置**
 
 
-#### 5.2 书源设置
+#### 2. 书源设置
 ![img](./pic/PixivLoginUISettings.png)
 - ⚙️ 当前设置：显示当前设置
 - 🔧 默认设置：恢复默认设置
@@ -510,13 +496,27 @@
 
 </details>
 
+
+<details><summary> 🔍 发现设置 </summary>
+
+#### 3. 发现设置
+**🔍 发现设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
+
+![img](./pic/PixivLoginUIDiscover.png)
+
+- 🔍 当前发现：显示当前发现设置
+- ⏺️ 其他按钮：发现 显示/隐藏 对应功能
+- 🐺 兽人小说：发现 显示/隐藏 兽人小说；优化兽人小说搜索作者
+</details>
+
+
+### ⏺ 互动功能
 <details><summary> ⏺ 互动功能 </summary>
 
 - **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 
 ![img](./pic/PixivLogin0.png)
 
-#### 5.3 互动功能
 ![img](./pic/PixivLoginUINovels.png)
 
 - **❤️ 收藏本章：添加公开收藏、切换私密收藏**
@@ -530,11 +530,10 @@
 - **✅ 发送评论：当前章节下发送评论（自动拆分超长评论）**
 - **🗑 删除评论：当前章节下删除评论（支持批量删除评论）**
 - **🔄 刷新本章：刷新章节正文（以及评论）**
-
 </details>
 
 
-### 🚫 屏蔽功能 {#Customization}
+### 🚫 屏蔽功能 {#CustomizationBan}
 <details><summary>  📃 功能说明 </summary>
 
 - **屏蔽功能为书源本地功能，不会向 Pixiv 提交数据**
@@ -546,14 +545,14 @@
   
 <details><summary><strong> 🚫 屏蔽作者 </strong></summary>
 
-#### 6.1 屏蔽作者
+#### 1. 屏蔽作者
 ![img](./pic/PixivLoginUINovels.png)
 - 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
 </details>
 
 <details><summary><strong> 🚫 屏蔽标签 & 屏蔽描述 </strong></summary>
 
-#### 6.2 屏蔽标签 & 屏蔽描述
+#### 2. 屏蔽标签 & 屏蔽描述
 - 1️⃣ 在登陆页面的【输入内容】输入内容（不需要`#`），点击【添加屏蔽】，添加至【标签屏蔽列表】或【描述屏蔽列表】
 ![img](./pic/PixivLoginUIBlockWords.png)
 - 2️⃣ 添加屏蔽内容时，会提示具体的屏蔽列表
@@ -566,9 +565,38 @@
 
 <details><summary><strong> 🚫 隐藏收藏 & 隐藏追更 </strong></summary>
 
-#### 6.2 隐藏收藏 & 隐藏追更
+#### 3. 隐藏收藏 & 隐藏追更
 - ❤️ 隐藏收藏：搜索发现 显示/隐藏 收藏单篇小说
 - 📃 隐藏追更：搜索发现 显示/隐藏 追更系列小说
+</details>
+
+
+### ▶️ 自定义发现 {#CustomizationDiscover}
+<details><summary> 📌 喜欢标签 </summary>
+
+#### 1. 喜欢标签
+- 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
+  ![img](./pic/PixivLoginUILikeTags.png)
+- 2️⃣ 打开发现页面，点击按钮，查看内容
+  ![img](./pic/DiscoverPixivLikeTags.png)
+- ▶️ 如未更新，请手动更新发现：发现 - 长按"Pixiv" - 刷新
+</details>
+
+<details><summary> ❤️ 他人收藏 </summary>
+
+#### 2. 他人收藏
+- 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
+
+![img](./pic/PixivLoginUILikeAuthors.png)
+- 输入作者/用户ID，则会添加【指定作者/用户】
+  ![img](./pic/DiscoverPixivLikeAuthors1.png)
+- 若未输入作者/用户ID，则会添加【当前小说的作者】
+
+![img](./pic/DiscoverPixivLikeAuthors2.png)
+- 2️⃣ 打开发现页面，点击按钮，查看内容
+
+![img](./pic/DiscoverPixivLikeAuthors.jpg)
+- ▶️ 如未更新，请手动更新发现：发现 - 长按"Pixiv" - 刷新
 </details>
 
 
