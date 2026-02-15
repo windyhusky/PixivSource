@@ -13,10 +13,9 @@
                     class="friend-card"
                 >
                     <img
-                        :src="friend.icon || defaultIcon"
+                        :src="resolveIcon(friend.icon)"
                         :alt="friend.name"
                         class="icon"
-                        @error="handleImgError"
                     />
                     <div class="info">
                         <span class="name">{{ friend.name }}</span>
@@ -30,21 +29,20 @@
 
 <script setup>
 import { computed } from 'vue'
-import { useData } from 'vitepress'
+import { useData, withBase } from 'vitepress'
 
 const { frontmatter } = useData()
 
-// 响应式获取 Markdown 中的 friendGroups 数据
+// 响应式获取 Markdown 中的数据
 const friendGroups = computed(() => frontmatter.value.friendGroups || [])
 
-// 默认头像地址
-const defaultIcon = './pic/Blog.png'
-// 处理图片加载失败的情况（如对方网站挂了或防盗链）
-const handleImgError = (e) => {
-    const target = e.target
-    if (target.src !== defaultIcon) {
-        target.src = defaultIcon
-    }
+/**
+ * 解析图标路径
+ * 如果是网络链接直接返回，如果是本地路径则通过 withBase 补全前缀
+ */
+const resolveIcon = (icon) => {
+    if (!icon) return ''
+    return icon.startsWith('http') ? icon : withBase(icon)
 }
 </script>
 
@@ -53,7 +51,6 @@ const handleImgError = (e) => {
     margin-bottom: 32px;
 }
 
-/* 三级标题样式适配 VitePress 风格 */
 .group-title {
     display: flex;
     align-items: center;
@@ -125,7 +122,6 @@ const handleImgError = (e) => {
     overflow: hidden;
 }
 
-/* 移动端适配：单列显示 */
 @media (max-width: 640px) {
     .friends-container {
         grid-template-columns: 1fr;
