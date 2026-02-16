@@ -366,5 +366,91 @@
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
+    },
+
+    {
+        "name": "书源设置",
+        "type": "text"
+    },
+    {
+        "name": "🔍 当前发现",
+        "type": "button",
+        "action": "showSettingsDiscover()",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🆗 常规小说",
+        "type": "button",
+        "action": "editSettings('SHOW_GENERAL')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🔞 最新企划",
+        "type": "button",
+        "action": "editSettings('SHOW_NEW_ADULT')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🆗 最新企划",
+        "type": "button",
+        "action": "editSettings('SHOW_NEW_GENERAL')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🔞 排行榜单",
+        "type": "button",
+        "action": "editSettings('SHOW_RANK_ADULT')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🆗 排行榜单",
+        "type": "button",
+        "action": "editSettings('SHOW_RANK_GENERAL')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🔞 原创热门",
+        "type": "button",
+        "action": "editSettings('SHOW_GENRE_ADULT')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🆗 原创热门",
+        "type": "button",
+        "action": "editSettings('SHOW_GENRE_GENERAL')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🐺 兽人小说",
+        "type": "button",
+        "action": "editSettings('SHOW_FURRY')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
     }
 ]
