@@ -117,29 +117,26 @@ function getUserNovels() {
         let seriesNovelIds = []
         seriesIds.forEach(seriesId => {
             let returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
-            returnList.map(novel => {return seriesNovelIds.push(novel.id)})
+            returnList.map(novel => seriesNovelIds.push(novel.id))
         })
         // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
         // java.log(JSON.stringify(seriesNovelIds.length))
 
         // 获取单篇小说
-        if (novelIds.length >= 1 && globalThis.environment.IS_LEGADO) {
-            novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
-            novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
-            // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
-            // java.log(JSON.stringify(novelIds.length))
-            let novelUrls = novelIds.map(novelId => {return urlNovelDetailed(novelId)})
+        let novelIds = Object.keys(resp.body.novels)
+        novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
+        novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
+        // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
+        // java.log(JSON.stringify(novelIds.length))
+
+        if (globalThis.environment.IS_LEGADO) {
+            let novelUrls = novelIds.map(novelId => urlIP(urlNovelDetailed(novelId)))
             // java.log(JSON.stringify(novelUrls))
             // cache.delete(novelUrls)
             novels = novels.concat(getAjaxAllJson(novelUrls).map(resp => resp.body))
         }
 
-        // // 获取单篇小说
-        if (novelIds.length >= 1 && globalThis.environment.IS_SOURCE_READ) {
-            novelIds = novelIds.filter(novelid => (!seriesNovelIds.includes(novelid)))
-            // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
-            // java.log(JSON.stringify(novelIds.length))
-            novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
+        if (globalThis.environment.IS_SOURCE_READ) {
             novelIds.forEach(novelId => {
                 // java.log(urlIP(urlNovelDetailed(novelId)))
                 let res = getAjaxJson(urlIP(urlNovelDetailed(novelId)))
