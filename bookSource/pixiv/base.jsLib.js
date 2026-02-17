@@ -143,6 +143,13 @@ function getAjaxAllJson(urls, forceUpdate) {
         return results
     }, forceUpdate)
 }
+function getAjaxParseJson(url, parseFunc, forceUpdate) {
+    const {java, cache} = this
+    return this.cacheGetAndSet(url, () => {
+        let html = java.ajax(url)
+        return JSON.parse(parseFunc(html))
+    }, forceUpdate)
+}
 function getWebviewJson(url, parseFunc, forceUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {

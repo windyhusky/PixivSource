@@ -193,14 +193,15 @@ function getNovels() {
 
 function getConvertNovels() {
     let novels = []
-    let novelName = String(java.get("keyword"))
-    let name1 = String(java.s2t(novelName))
-    let name2 = String(java.t2s(novelName))
-    if (name1 !== novelName) novels = novels.concat(search(name1, "novel", 1).data)
-    if (name2 !== novelName) novels = novels.concat(search(name2, "novel", 1).data)
+    let name = String(java.get("keyword"))
+    let page = Number(java.get("page"))
+    let name1 = String(java.s2t(name))
+    let name2 = String(java.t2s(name))
+    if (name1 !== name) novels = novels.concat(search(name1, "novel", page).data)
+    if (name2 !== name) novels = novels.concat(search(name2, "novel", page).data)
     novels = util.combineNovels(novels)
-    if (name1 !== novelName) novels = novels.concat(search(name1, "series", 1).data)
-    if (name2 !== novelName) novels = novels.concat(search(name2, "series", 1).data)
+    if (name1 !== name) novels = novels.concat(search(name1, "series", page).data)
+    if (name2 !== name) novels = novels.concat(search(name2, "series", page).data)
     return novels
 }
 
