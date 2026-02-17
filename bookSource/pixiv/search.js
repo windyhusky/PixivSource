@@ -83,7 +83,6 @@ function getUserIdOnline(full) {
     return tempUids
 }
 
-
 function getUserNovels() {
     if (!isLogin()) {
         sleepToast("👤 搜索作者\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
@@ -92,52 +91,16 @@ function getUserNovels() {
         return []
     }
 
-    let uidList = [], novels = []
-    let username = String(java.get("keyword"))
     let page = Number(java.get("page"))
+    let uidList = getUserIdCache()
+    if (!uidList) uidList = getUserIdOnline()
+    // if (!uidList) uidList = getUserIdOnline(true)
 
-    // cache.delete(username)
-    let userid = getFromCache(username)
-    if (userid !== undefined && userid !== null) {
-        uidList = [userid]
-        java.log(`👤 缓存作者ID：${userid}`)
-    } else {
-        html = java.ajax(urlSearchUser(username))
-        // java.log(html)
-        // 仅匹配有投稿作品的用户
-        let match = html.match(new RegExp(`"userIds":\\[(?:(?:\\d+,?)+)]`))
-        // java.log(JSON.stringify(match))
-        if (match === null || match.length === 0) {
-            return []
-        }
-
-        match = JSON.stringify(match).replace("\\","").split(",")
-        // java.log(JSON.stringify(match))
-        let regNumber = new RegExp("\\d+")
-        uidList = match.map(v => {
-            return v.match(regNumber)[0]
-        })
-        java.log(`👤 获取作者ID：${JSON.stringify(uidList)}`)
-    }
-
-    let tempUids = []
+    let novels = []
     for (let i in uidList) {
         let uid = uidList[i]
-        let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)), true)
-        // java.log(urlIP(urlIP(urlUserAllWorks(id))))
-        // java.log(JSON.stringify(resp))
-        if (resp.error === true) {
-            return []
-        }
-
-        // 仅获取前3个有小说的作者
-        let novelIds = Object.keys(resp.body.novels)
-        // java.log(`${uid}-${novelIds.length}`)
-        if (novelIds.length >= 1) tempUids.push(uid)
-        if (tempUids.length === 3) {
-            java.log(`👤 显示作者ID：${JSON.stringify(tempUids)}`)
-            break
-        }
+        let resp = getAjaxJson(urlIP(urlUserAllWorks(uid)))
+        // java.log(urlIP(urlUserAllWorks(id)))
 
         // 获取系列小说，与 util.handnovels 系列详情兼容
         let seriesIds = []
