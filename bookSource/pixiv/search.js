@@ -186,7 +186,8 @@ function getSeries() {
 
 function getNovels() {
     let name = String(java.get("keyword"))
-    let resp = search(name, "novel", 1)
+    let page = Number(java.get("page"))
+    let resp = search(name, "novel", page)
     return util.combineNovels(resp.data)
 }
 
