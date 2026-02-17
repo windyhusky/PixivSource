@@ -224,8 +224,8 @@ function publicFunc() {
         let novels3 = novels.map(novel => novel.id)
         if (novels0.length >= 1 && novels3.length === 0) {
             let msg = `⏬ 过滤小说\n⚠️ 过滤后无结果\n\n请根据需要\n`
-            if (!util.settings.HIDE_LIKE_NOVELS) msg += "开启显示收藏小说\n"
-            if (!util.settings.HIDE_WATCHED_SERIES) msg += "开启显示追更系列"
+            if (util.settings.HIDE_LIKE_NOVELS) msg += "开启显示收藏小说\n"
+            if (util.settings.HIDE_WATCHED_SERIES) msg += "开启显示追更系列"
             sleepToast(msg, 1)
         }
 
