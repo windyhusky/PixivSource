@@ -289,10 +289,18 @@ function publicFunc() {
         java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
     }
 
+    u.saveAuthors = function(authors) {
+        let pixivAuthors = getFromCacheObject("pixivAuthors")
+        if (!pixivAuthors) pixivAuthors = {}
+
+        pixivAuthors = Object.assign(pixivAuthors, authors)
+        putInCacheObject("pixivAuthors", pixivAuthors)
+    }
+
     // 处理 novels 列表
     u.handNovels = function(novels, isDetail) {
         if (!isDetail) isDetail = false
-        let likeNovels = [], watchedSeries = []
+        let likeNovels = [], watchedSeries = [], authors = {}
         novels = util.authorFilter(novels)
         novels.forEach(novel => {
             // novel.id = novel.id
@@ -300,7 +308,7 @@ function publicFunc() {
             // novel.userName = novel.userName
             // novel.userId = novel.userId
             // novel.tags = novel.tags
-            putInCache(`${novel.userName}`, novel.userId)  // 加入缓存，便于搜索作者
+            authors[novel.userName] = novel.userId  // 加入缓存，便于搜索作者
             if (novel.tags === undefined || novel.tags === null) {
                 novel.tags = []
             }
@@ -419,6 +427,7 @@ function publicFunc() {
         // 收藏小说/追更系列 写入缓存
         util.saveNovels("likeNovels", likeNovels)
         util.saveNovels("watchedSeries", watchedSeries)
+        util.saveAuthors(authors)
         util.debugFunc(() => {
             java.log(`处理小说完成`)
         })
