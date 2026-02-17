@@ -58,6 +58,32 @@ function getUserIdCache() {
     }
 }
 
+function getUserIdOnline(full) {
+    let userName = String(java.get("keyword"))
+    let page = Number(java.get("page"))
+    let userIds = getAjaxParseJson(urlSearchUser(userName, page, full), html => {
+            let resp = JSON.parse(html.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)[1])
+            return JSON.stringify(resp.props.pageProps.userIds)
+        }
+    )
+
+    let tempUids = []
+    for (let i in userIds) {
+        let userId = userIds[i]
+        let resp = getAjaxJson(urlIP(urlUserAllWorks(userId)), true)
+        // java.log(urlIP(urlUserAllWorks(userId)))
+        if (resp.error === false) {
+            // 仅获取有小说的作者
+            let novelIds = Object.keys(resp.body.novels)
+            // java.log(`${userId}-${novelIds.length}`)
+            if (novelIds.length >= 1) tempUids.push(userId)
+        }
+    }
+    java.log(`👤 获取作者ID：${JSON.stringify(tempUids)}`)
+    return tempUids
+}
+
+
 function getUserNovels() {
     if (!isLogin()) {
         sleepToast("👤 搜索作者\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
