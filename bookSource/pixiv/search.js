@@ -45,6 +45,19 @@ var seriesSet = {
     },
 };
 
+function getUserIdCache() {
+    let userId
+    let userName = String(java.get("keyword"))
+    //cache.delete("pixivAuthors")
+    let pixivAuthors = getFromCacheObject("pixivAuthors")
+    // java.log(JSON.stringify(pixivAuthors))
+    if (pixivAuthors) userId = pixivAuthors[userName]
+    if (userId) {
+        java.log(`👤 缓存作者ID：${userId}`)
+        return [userId]
+    }
+}
+
 function getUserNovels() {
     if (!isLogin()) {
         sleepToast("👤 搜索作者\n\n⚠️ 当前未登录账号\n请登录 Pixiv 账号", 1.5)
