@@ -204,16 +204,14 @@ function publicFunc() {
         let watchedSeries = getFromCacheObject("watchedSeries")
         let novels0 = novels.map(novel => novel.id)
 
-        msg = util.checkStatus(!util.settings.HIDE_LIKE_NOVELS).replace("未","不")
-        java.log(`${msg}显示收藏小说`)
+        java.log(`${util.checkStatus(!util.settings.HIDE_LIKE_NOVELS)}显示收藏小说`)
         if (util.settings.HIDE_LIKE_NOVELS) {
             novels = novels.filter(novel => !likeNovels.includes(Number(novel.id)))
             novels1 = novels.map(novel => novel.id)
             java.log(`⏬ 过滤收藏：过滤前${novels0.length}；过滤后${novels1.length}`)
         }
 
-        msg = util.checkStatus(!util.settings.HIDE_WATCHED_SERIES).replace("未","不")
-        java.log(`${msg}显示追更系列`)
+        java.log(`${util.checkStatus(!util.settings.HIDE_WATCHED_SERIES)}显示追更系列`)
         if (util.settings.HIDE_WATCHED_SERIES) {
             novels = novels.filter(novel => !watchedSeries.includes(Number(novel.seriesId)))
             novels2 = novels.map(novel => novel.id)
@@ -244,8 +242,8 @@ function publicFunc() {
     u.novelFilter2 = function(novels) {
         let novels0 = novels.map(novel => novel.id)
         let captionBlockWords = getFromCacheObject("captionBlockWords")
-        if (captionBlockWords === null) captionBlockWords = []
-        if (captionBlockWords) {
+        if (!captionBlockWords) captionBlockWords = []
+        else {
             // 仅保留没有任何屏蔽词的小说
             // novels = novels.filter(novel => {
             //     return !captionBlockWords.some(item => {
@@ -259,8 +257,8 @@ function publicFunc() {
         }
 
         let tagsBlockWords = getFromCacheObject("tagsBlockWords")
-        if (tagsBlockWords === null) tagsBlockWords = []
-        if (tagsBlockWords) {
+        if (!tagsBlockWords) tagsBlockWords = []
+        else {
             // 仅保留没有任何屏蔽词的小说
             // novels = novels.filter(novel => {
             //     return !tagsBlockWords.some(item => {
@@ -278,7 +276,7 @@ function publicFunc() {
     // 收藏小说/追更系列 写入缓存
     u.saveNovels = function(listInCacheName, list) {
         let listInCache = getFromCacheObject(listInCacheName)
-        if (listInCache === null) listInCache = []
+        if (!listInCache) listInCache = []
 
         listInCache = listInCache.concat(list)
         listInCache = Array.from(new Set(listInCache))
@@ -286,7 +284,9 @@ function publicFunc() {
 
         if (listInCacheName === "likeNovels") listInCacheName = "❤️ 收藏小说ID"
         else if (listInCacheName === "watchedSeries") listInCacheName = "📃 追更系列ID"
-        java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
+        util.debugFunc(() => {
+            java.log(`${listInCacheName}：${JSON.stringify(listInCache)}`)
+        })
     }
 
     u.saveAuthors = function(authors) {
