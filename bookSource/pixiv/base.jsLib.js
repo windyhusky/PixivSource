@@ -7,8 +7,14 @@ function cacheGetAndSet(key, supplyFunc, forceUpdate) {
     let timestamp = 0
     let v = this.getFromCacheObject(key)
     if (Array.isArray(v)) {
-        timestamp = v[0].timestamp
-    } else if (v) timestamp = v.timestamp
+        try {
+            timestamp = v[0].timestamp
+        } catch (e) {
+            timestamp = 0
+        }
+    } else if (v) {
+        timestamp = v.timestamp
+    }
 
     const isExpired = v && (new Date().getTime() >= timestamp + cacheTempSeconds)
     const isError = v && (v.error === true) && isExpired
