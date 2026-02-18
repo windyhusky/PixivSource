@@ -362,7 +362,7 @@ function urlMessageThreadDetail(threadId) {
     return `https://www.pixiv.net/rpc/index.php?mode=message_thread&thread_id=${threadId}`
 }
 function urlNotification() {
-    return `https://www.pixiv.net/ajax/notification&lang=zh`
+    return `https://www.pixiv.net/ajax/notification?lang=zh`
 }
 
 function dateFormat(str) {
