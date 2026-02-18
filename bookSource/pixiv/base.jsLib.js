@@ -23,9 +23,14 @@ function cacheGetAndSet(key, supplyFunc, forceUpdate) {
     if (!v || forceUpdate || isError) {
         v = supplyFunc()
         let now = new Date().getTime()
-        if (!Array.isArray(v) && v.length >= 1) {
+        // getAjaxJson getWebviewJson 时间戳写入对象本身
+        if (!Array.isArray(v)) {
             v = Object.assign({timestamp: now}, v)
         }
+        // else {
+        //     // getAjaxAllJson 时间戳写入第一个元素（读取时 v[0].timestamp）// 不重复写入
+        //     if (v.length > 0) v[0] = Object.assign({timestamp: now}, v[0])
+        // }
         this.putInCacheObject(key, v, cacheSaveSeconds)
     }
     return v
