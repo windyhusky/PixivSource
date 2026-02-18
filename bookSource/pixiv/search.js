@@ -115,10 +115,19 @@ function getUserNovels() {
 
         // 获取所有系列内部的小说 ID
         let seriesNovelIds = []
-        seriesIds.forEach(seriesId => {
-            let returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
-            returnList.map(novel => seriesNovelIds.push(novel.id))
-        })
+        if (globalThis.environment.IS_LEGADO) {
+            let seriesUrls = seriesIds.map(seriesId => urlIP(urlSeriesNovelsTitles(seriesId)))
+            // let resp = getAjaxAllJson(seriesUrls).map(resp => resp.body)
+            // seriesNovelIds = resp.flat().map(item => item.id)
+            seriesNovelIds = getAjaxAllJson(seriesUrls).flatMap(resp => resp.body.map(item => item.id))
+        }
+
+        if (globalThis.environment.IS_SOURCE_READ) {
+            seriesIds.forEach(seriesId => {
+                let novels = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId))).body
+                seriesNovelIds.push.apply(seriesNovelIds, novels.map(novel => novel.id))
+            })
+        }
         // java.log(`有系列的小说ID：${JSON.stringify(seriesNovelIds)}`)
         // java.log(JSON.stringify(seriesNovelIds.length))
 
