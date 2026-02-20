@@ -607,7 +607,7 @@ function getHeaders() {
         "accept-language": "zh-CN",
         // "content-type": "application/json; charset=utf-8",
         // "content-type": "application/x-www-form-urlencoded; charset=utf-8",
-        "origin": "https//www.pixiv.net",
+        "origin": "https://www.pixiv.net",
         "Referer": "https://www.pixiv.net/",
         // "sec-ch-ua": `"Not/A)Brand";v="8", "Chromium";v="132", "Google Chrome";v="132"`,
         // "sec-ch-ua-mobile": "?0",
