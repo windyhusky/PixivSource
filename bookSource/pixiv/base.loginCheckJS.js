@@ -187,12 +187,10 @@ function publicFunc() {
     // 屏蔽作者
     u.authorFilter = function(novels) {
         let authors = getFromCacheObject("blockAuthorList")
-        if (Array.isArray(authors) && authors.length >= 0) {
+        if (Array.isArray(authors)) {
             java.log(`🚫 屏蔽作者ID：${JSON.stringify(authors)}`)
             authors.forEach(author => {
-                novels = novels.filter(novel => {
-                    novel.userId !== String(author)
-                })
+                novels = novels.filter(novel => novel.userId !== String(author))
             })
         }
         return novels
