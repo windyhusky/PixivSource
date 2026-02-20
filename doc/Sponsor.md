@@ -15,7 +15,7 @@
 > [⚡️快速开始](QuickStart.md) **将有助于你的分享**
 
 ## 🍖 投喂打赏
-<DragonChat avatar="/DowneyRem.png"
+<DragonChat avatar="https://www.github.com/DowneyRem.png"
 name="唐尼瑞姆" badge="🐲" icon="🐲">
 <strong>如果书源帮到了你，欢迎投喂本龙（开发者）。</strong><br>
 <strong>你的鼓励是持续更新的动力～</strong>
