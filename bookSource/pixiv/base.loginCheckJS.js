@@ -239,6 +239,7 @@ function publicFunc() {
 
     // 过滤描述与标签（屏蔽标签/屏蔽描述）
     u.novelFilter2 = function(novels) {
+        const length = novels.length
         let novels0 = novels.map(novel => novel.id)
         let captionBlockWords = getFromCacheObject("captionBlockWords")
         if (!captionBlockWords) captionBlockWords = []
@@ -264,7 +265,7 @@ function publicFunc() {
             //         if (novel.tags !== undefined) return novel.tags.includes(item)
             //     })
             // })
-            novels = novels.filter(novel => !tagsBlockWords.some(item => novel.tags.includes(item)))
+            novels = novels.filter(novel => !tagsBlockWords.some(item => novel.tagsList.includes(item)))
             let novels2 = novels.map(novel => novel.id)
             java.log(`🚫 屏蔽标签：${tagsBlockWords.join("、")}`)
             java.log(`🚫 屏蔽标签：过滤前${novels0.length}；过滤后${novels2.length}`)
@@ -444,17 +445,17 @@ function publicFunc() {
             novel.createDate = dateFormat(novel.createDate)
             novel.updateDate = dateFormat(novel.updateDate)
 
-            novel.tags2 = []
+            novel.tagsList = []
             for (let i in novel.tags) {
                 let tag = novel.tags[i]
                 if (tag.includes("/")) {
                     let tags = tag.split("/")
-                    novel.tags2 = novel.tags2.concat(tags)
+                    novel.tagsList = novel.tagsList.concat(tags)
                 } else {
-                    novel.tags2.push(tag)
+                    novel.tagsList.push(tag)
                 }
             }
-            novel.tags = Array.from(new Set(novel.tags2))
+            novel.tags = Array.from(new Set(novel.tagsList))
             novel.tags = novel.tags.join(",")
             if (novel.seriesId) {
                 collectMsg = `📃 追更：${util.checkStatus(novel.isWatched)}追更系列`
