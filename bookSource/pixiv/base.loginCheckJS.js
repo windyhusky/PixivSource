@@ -590,6 +590,10 @@ function checkMessageThread(checkTimes) {
 function getPixivUid() {
     let uid = getFromCache("pixiv:uid")
     if (!uid || String(uid) === "null") {
+        // uid = getWebviewJson("https://www.pixiv.net/", html => {
+        //     return html.match(/user_id:'(\d+)'/)[1]
+        // })
+
         let html = java.webView(null, "https://www.pixiv.net/", null)
         try {
             uid = html.match(/user_id:'(\d+)'/)[1]
