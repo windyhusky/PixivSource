@@ -79,18 +79,16 @@ function isHtmlString(str) {
 }
 function isJsonString(str) {
     try {
-        if (typeof JSON.parse(str) === "object") return true
-    } catch(e) {}
-    return false
-}
-
-function isJsonString(str) {
-    try {
         let result = JSON.parse(str)
         return typeof result === "object" && result !== null
     } catch(e) {
         return false
     }
+}
+
+function isLogin() {
+    const {java, cache} = this
+    return !!this.getFromCache("pixivCsrfToken")
 }
 
 function getAjaxJson(url, requestUpdate) {
