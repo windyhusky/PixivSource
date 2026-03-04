@@ -30,8 +30,8 @@ function isLegadoOfficial() {
     }
     return isLegadoOfficialStatus
 }
-// 检测 阅读 Beta 版本 与 LYC 版本
-// LYC 版本新增函数
+// 检测 阅读 Beta 版本 与 Sigma 版本
+// Sigma 版本新增函数
 // java.ajaxTestAll()
 // java.openVideoPlayer(url: String, title: String, float: Boolean)
 // cookie.setWebCookie(url,cookie)
@@ -39,6 +39,10 @@ function isLegadoOfficial() {
 // source.refreshJSLib()
 function isLegadoSigma() {
     return typeof java.ajaxTestAll === "function"
+}
+// 检测 阅读 T 版本
+function isLegadoT() {
+    return typeof java.ocr === "function"
 }
 
 function publicFunc() {
@@ -63,6 +67,7 @@ function publicFunc() {
         globalThis.environment.IS_LEGADO = !isSourceRead()
         globalThis.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
         globalThis.environment.IS_LEGADO_SIGMA = isLegadoSigma()
+        globalThis.environment.IS_LEGADO_T = isLegadoT()
     }
 
     // 只有第一次初始化时才输出日志
@@ -75,6 +80,9 @@ function publicFunc() {
             java.log("📱 软件平台：🍎 源阅 SourceRead")
         } else if (globalThis.environment.IS_LEGADO_SIGMA) {
             java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
+        } else if (globalThis.environment.IS_LEGADO_T) {
+            java.log("📱 软件平台：🤖 阅读 T")
+            java.log("\n⚠️当前软件为：阅读 T】\n目前不确定兼容性如何")
         } else if (globalThis.environment.IS_LEGADO_OFFICIAL) {
             java.log("📱 软件平台：🤖 阅读 正式版")
             sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
