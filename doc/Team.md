@@ -1,5 +1,17 @@
 ---
 layout: page
+title: 开发团队 - PixivSource Pixiv 书源项目成员
+description: PixivSource 项目开发团队介绍：核心开发者、站方协助与社区贡献者名单。
+head:
+  - - meta
+    - name: keywords
+      content: PixivSource开发团队, Pixiv书源作者, DowneyRem, PixivSource贡献者
+  - - meta
+    - property: og:title
+      content: 开发团队 - PixivSource Pixiv 书源项目成员
+  - - meta
+    - property: og:description
+      content: PixivSource 项目开发团队介绍：核心开发者、站方协助与社区贡献者名单。
 ---
 
 <script setup>
