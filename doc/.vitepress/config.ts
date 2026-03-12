@@ -1,4 +1,4 @@
-import { defineConfig } from "vitepress"
+import { defineConfig, type HeadConfig } from "vitepress"
 import markdownItAnchor from 'markdown-it-anchor'
 import timeline from "vitepress-markdown-timeline";
 
@@ -9,6 +9,9 @@ const isCF = process.env.CF_PAGES === '1' || process.env.PLATFORM === 'cloudflar
 const BASE = isCF ? '/' : '/PixivSource/'
 const HOSTNAME = isCF ? 'https://pixivsource.pages.dev' : 'https://downeyrem.github.io/PixivSource'
 const BLOG = isCF ? 'https://downeyrem.pages.dev' : 'https://downeyrem.github.io'
+
+// 规范网址始终指向 CF Pages（主站）
+const CANONICAL_BASE = 'https://pixivsource.pages.dev'
 
 
 // https://vitepress.dev/reference/site-config
@@ -40,6 +43,30 @@ export default defineConfig({
             gtag("config", "G-MJW9QDKTDH");`
         ],
     ],
+
+    // 每页动态注入 canonical，GitHub Pages 额外注入跳转
+    transformHead({ pageData }) {
+        const path = pageData.relativePath
+            .replace(/index\.md$/, '')
+            .replace(/\.md$/, '')
+
+        const canonicalUrl = `${CANONICAL_BASE}/${path}`
+
+        const heads: HeadConfig[] = [
+            ['link', { rel: 'canonical', href: canonicalUrl }]
+        ]
+
+        // GitHub Pages 构建时，注入跳转到 CF Pages（主站）
+        if (!isCF) {
+            heads.push(
+                ['meta', { 'http-equiv': 'refresh', content: `0; url=${canonicalUrl}` }],
+                ['script', {}, `window.location.replace("${canonicalUrl}")`]
+            )
+        }
+
+        return heads
+    },
+
     themeConfig: {
         logo: `${BASE}favicon.png`,
         // siteTitle: false,   // 隐藏站点标题
