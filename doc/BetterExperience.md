@@ -1,3 +1,20 @@
+---
+layout: doc
+title: 臻享阅读 - 开源阅读 Legado + Pixiv 书源完整配置指南
+description: 告别 Pixiv 官方 App 的阅读缺陷，用开源阅读 Legado + Pixiv 书源实现书架、搜索、收藏、追更、评论、直连等完整阅读体验。
+
+head:
+  - - meta
+    - name: keywords
+      content: 臻享阅读, 开源阅读 Pixiv, Legado Pixiv 书源配置, Pixiv 直连, Pixiv 小说书架, Legado 登录 Pixiv
+  - - meta
+    - property: og:title
+      content: 臻享阅读 - 开源阅读 Legado + Pixiv 书源完整配置指南
+  - - meta
+    - property: og:description
+      content: 告别 Pixiv 官方 App 的阅读缺陷，用开源阅读 Legado + Pixiv 书源实现书架、搜索、收藏、追更、评论、直连等完整阅读体验。
+---
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
