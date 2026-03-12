@@ -1,3 +1,20 @@
+---
+layout: doc
+title: 更新日志 - PixivSource Pixiv 书源版本历史
+description: PixivSource 书源更新记录：搜索作者、排行榜重写、高并发优化、互动功能新增等历次版本的功能变更与问题修复说明。
+
+head:
+  - - meta
+    - name: keywords
+      content: PixivSource 更新日志, Pixiv 书源更新, PixivSource 版本历史, Pixiv 书源更新记录
+  - - meta
+    - property: og:title
+      content: 更新日志 - PixivSource Pixiv 书源版本历史
+  - - meta
+    - property: og:description
+      content: PixivSource 书源更新记录：搜索作者、排行榜重写、高并发优化、互动功能新增等历次版本的功能变更与问题修复说明。
+---
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
