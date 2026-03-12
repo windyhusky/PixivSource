@@ -1,3 +1,20 @@
+---
+layout: doc
+title: 支持开发 - 赞助 PixivSource Pixiv 书源项目
+description: 喜欢 PixivSource 书源？欢迎打赏支持开发者，赞助者将加入感谢名单、专属社区，并获得新功能投票权。
+
+head:
+  - - meta
+    - name: keywords
+      content: PixivSource打赏, Pixiv书源赞助, 支持书源开发, PixivSource赞助
+  - - meta
+    - property: og:title
+      content: 支持开发 - 赞助 PixivSource Pixiv 书源项目
+  - - meta
+    - property: og:description
+      content: 喜欢 PixivSource 书源？欢迎打赏支持开发者，赞助者将加入感谢名单、专属社区，并获得新功能投票权。
+---
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
