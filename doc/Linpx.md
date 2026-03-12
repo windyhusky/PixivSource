@@ -1,3 +1,20 @@
+---
+layout: doc
+title: Linpx 书源指南 - 在开源阅读中阅读 Pixiv 兽人小说镜像
+description: 用开源阅读 Legado + Linpx 书源，搜索、发现、阅读 Linpx 镜像站的兽人小说，支持 Pixiv 链接转换，无需登录，多数网络无需代理。
+
+head:
+  - - meta
+    - name: keywords
+      content: Linpx 书源, Linpx 阅读, Pixiv 兽人小说, Legado Linpx, 兽人小说镜像
+  - - meta
+    - property: og:title
+      content: Linpx 书源指南 - 在开源阅读中阅读 Pixiv 兽人小说镜像
+  - - meta
+    - property: og:description
+      content: 用开源阅读 Legado + Linpx 书源，搜索、发现、阅读 Linpx 镜像站的兽人小说，支持 Pixiv 链接转换，无需登录，多数网络无需代理。
+---
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourceLinpx.png" alt="Linpx BookSource"/>
 <br>
