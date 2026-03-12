@@ -1,3 +1,20 @@
+---
+layout: doc
+title: FurryNovel 书源指南 - 在开源阅读中阅读兽人小说
+description: 用开源阅读 Legado + FurryNovel 书源，搜索、发现、阅读兽人控小说站收录的 Pixiv、Bilibili 兽人小说，无需登录，无需代理。
+
+head:
+  - - meta
+    - name: keywords
+      content: FurryNovel 书源, 兽人控小说站, 兽人小说阅读, 兽人小说书源
+  - - meta
+    - property: og:title
+      content: FurryNovel 书源指南 - 在开源阅读中阅读兽人小说
+  - - meta
+    - property: og:description
+      content: 用开源阅读 Legado + FurryNovel 书源，搜索、发现、阅读兽人控小说站收录的 Pixiv、Bilibili 兽人小说，无需登录，无需代理。
+---
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourceFurryNovel.png" alt="FurryNovel BookSource"/>
 <br>
