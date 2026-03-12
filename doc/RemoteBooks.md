@@ -1,3 +1,20 @@
+---
+layout: doc
+title: 远程书籍 - 在开源阅读中通过 WebDAV 阅读网盘书籍
+description: 在开源阅读 Legado 中配置 WebDAV 远程书籍：设置本地保存目录、添加网盘服务器、浏览并导入网盘中的小说到书架。
+
+head:
+  - - meta
+    - name: keywords
+      content: 开源阅读远程书籍, Legado WebDAV, 阅读网盘书籍, WebDAV 书源配置, Legado 远程书籍
+  - - meta
+    - property: og:title
+      content: 远程书籍 - 在开源阅读中通过 WebDAV 阅读网盘书籍
+  - - meta
+    - property: og:description
+      content: 在开源阅读 Legado 中配置 WebDAV 远程书籍：设置本地保存目录、添加网盘服务器、浏览并导入网盘中的小说到书架。
+---
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
