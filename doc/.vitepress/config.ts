@@ -26,8 +26,7 @@ export default defineConfig({
     lastUpdated: true,      // 获取页面最后更新的时间戳
     head: [
         ['meta', { name: 'keywords', content: 'Pixiv 小说, Pixiv 阅读, Pixiv 书源, 阅读书源, Legado 书源, 开源阅读 Pixiv 书源, Pixiv 小说阅读器, 阅读3书源, Pixiv Source, Pixiv BookSource' }],
-        // ['meta', { property: 'og:title', content: 'Pixiv 书源 - PixivSource - Legado 开源阅读 Pixiv 小说书源' }],
-        // ['meta', { property: 'og:description', content: '用 Legado 开源阅读 App ，像看网文一样阅读 Pixiv 上的小说' }],
+        // og:title / og:description 已移至 transformHead，由各页面 frontmatter 动态生成
 
         // 使用相对路径或动态 Base 确保图标加载正确
         ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: `${BASE}favicon.png` }],
@@ -48,7 +47,7 @@ export default defineConfig({
         ],
     ],
 
-    // 每页动态注入 canonical，GitHub Pages 额外注入跳转
+    // 每页动态注入 canonical 和 og 标签，GitHub Pages 额外注入跳转
     transformHead({ pageData }) {
         const path = pageData.relativePath
             .replace(/index\.md$/, '')
@@ -56,8 +55,14 @@ export default defineConfig({
 
         const canonicalUrl = `${CANONICAL_BASE}/${path}`
 
+        // 优先使用页面 frontmatter，回退到全局默认值
+        const ogTitle = pageData.frontmatter.title ?? 'Pixiv 书源 - PixivSource'
+        const ogDesc  = pageData.frontmatter.description ?? '用 Legado 开源阅读 App，像看网文一样阅读 Pixiv 上的小说'
+
         const heads: HeadConfig[] = [
-            ['link', { rel: 'canonical', href: canonicalUrl }]
+            ['link',  { rel: 'canonical',         href: canonicalUrl }],
+            ['meta',  { property: 'og:title',       content: ogTitle   }],
+            ['meta',  { property: 'og:description', content: ogDesc    }],
         ]
 
         // GitHub Pages 构建时，注入跳转到 CF Pages（主站）
