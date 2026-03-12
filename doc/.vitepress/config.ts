@@ -25,6 +25,10 @@ export default defineConfig({
     appearance: true,       // 默认主题由用户配色方案决定
     lastUpdated: true,      // 获取页面最后更新的时间戳
     head: [
+        ['meta', { name: 'keywords', content: 'Pixiv 小说, Pixiv 阅读, Pixiv 书源, 阅读书源, Legado 书源, 开源阅读 Pixiv 书源, Pixiv 小说阅读器, 阅读3书源, Pixiv Source, Pixiv BookSource' }],
+        // ['meta', { property: 'og:title', content: 'Pixiv 书源 - PixivSource - Legado 开源阅读 Pixiv 小说书源' }],
+        // ['meta', { property: 'og:description', content: '用 Legado 开源阅读 App ，像看网文一样阅读 Pixiv 上的小说' }],
+
         // 使用相对路径或动态 Base 确保图标加载正确
         ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: `${BASE}favicon.png` }],
         ["link", { rel: "apple-touch-icon", sizes: '180x180', href: `${BASE}favicon-180x180.png` }],
