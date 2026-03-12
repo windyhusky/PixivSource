@@ -7,7 +7,7 @@ import timeline from "vitepress-markdown-timeline";
 const isCF = process.env.CF_PAGES === '1' || process.env.PLATFORM === 'cloudflare'
 // GitHub 部署在 /PixivSource/，Cloudflare 通常部署在根目录 /
 const BASE = isCF ? '/' : '/PixivSource/'
-const HOSTNAME = isCF ? 'https://pixivsource.pages.dev' : 'https://downeyrem.github.io/PixivSource'
+const HOSTNAME = isCF ? 'https://pixivsource.pages.dev/' : 'https://downeyrem.github.io/PixivSource/'
 const BLOG = isCF ? 'https://downeyrem.pages.dev' : 'https://downeyrem.github.io'
 
 // 规范网址始终指向 CF Pages（主站）
