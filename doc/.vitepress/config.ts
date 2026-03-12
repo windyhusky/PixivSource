@@ -1,6 +1,8 @@
 import { defineConfig, type HeadConfig } from "vitepress"
 import markdownItAnchor from 'markdown-it-anchor'
 import timeline from "vitepress-markdown-timeline";
+import { writeFileSync } from 'fs'
+import { resolve } from 'path'
 
 // 动态判断环境
 // Cloudflare Pages 默认提供 CF_PAGES 环境变量
@@ -74,6 +76,17 @@ export default defineConfig({
         }
 
         return heads
+    },
+
+    // 构建结束后自动生成 robots.txt
+    buildEnd(siteConfig) {
+        const robots = isCF
+            // CF Pages（主站）：允许爬虫，声明 sitemap
+            ? `User-agent: *\nAllow: /\n\nSitemap: https://pixivsource.pages.dev/sitemap.xml\n`
+            // GitHub Pages（跳转站）：屏蔽爬虫，避免收录跳转页
+            : `User-agent: *\nDisallow: /\n`
+
+        writeFileSync(resolve(siteConfig.outDir, 'robots.txt'), robots)
     },
 
     themeConfig: {
