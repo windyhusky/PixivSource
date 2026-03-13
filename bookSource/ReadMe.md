@@ -1,7 +1,7 @@
 <div align="center">
 <img width="150" height="150" src="../doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
-### [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+### [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 ### ❤️ [Pixiv 书源项目 赞助名单](../doc/Sponsor.md)
 </div>

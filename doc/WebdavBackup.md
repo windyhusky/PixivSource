@@ -20,7 +20,7 @@ head:
 <br>
 
 # 备份与恢复
-### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>

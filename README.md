@@ -1,7 +1,7 @@
 <div align="center">
 <img width="150" height="150" src="doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
-## 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+## 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 ### 🏠 [书源官网](https://pixivsource.pages.dev) & [使用指南](https://pixivsource.pages.dev/BetterExperience) 
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 ### ☕️ [Pixiv 书源项目 打赏名单](https://pixivsource.pages.dev/Sponsor)
@@ -484,7 +484,8 @@
 
 ### 鸣谢
 - ☕️ [Pixiv 书源项目 打赏名单](./doc/Sponsor.md)
-- 感谢 [阅读 3.0 ](https://github.com/gedoor/legado) 提供的软件平台
+- 感谢 [阅读 3.0](https://github.com/gedoor/legado) 提供的软件平台
+- 感谢 [阅读 Sigma](https://github.com/Luoyacheng/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)
 - 感谢 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend) 提供的 [Pixiv 图片代理功能](https://pixiv.cat)

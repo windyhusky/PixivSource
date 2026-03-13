@@ -3,7 +3,7 @@
 <br>
 
 # 开源阅读简介 & 使用指南
-### 🅿️ [开源阅读](https://github.com/gedoor/legado) Pixiv 书源
+### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
@@ -12,7 +12,7 @@
 ## 开源阅读简介 & 使用指南
 [comment]: <> (![img]&#40;https://telegra.ph/file/baff78c0816cac595ba8a.jpg&#41;)
 ## 1.阅读是什么？
-阅读指 [**Legado / 开源阅读**](https://github.com/gedoor/legado) 这一开源阅读软件。因其源代码公开，为与其他阅读软件区分，称其为**开源阅读**。
+阅读指 [**Legado / 开源阅读**](https://github.com/Luoyacheng/legado) 这一开源阅读软件。因其源代码公开，为与其他阅读软件区分，称其为**开源阅读**。
 
 以下内容转自： [**阅读常见问题解答**](https://mp.weixin.qq.com/s/5EO-TuqYfDrK-bFk78vd3g)
 
