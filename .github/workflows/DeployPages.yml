@@ -1,4 +1,3 @@
-# 构建 VitePress 站点并将其部署到 GitHub Pages 的示例工作流程
 name: Deploy VitePress
 
 on:
@@ -6,14 +5,15 @@ on:
     branches: [main]
   workflow_dispatch:
 
-# 设置 GITHUB_TOKEN 的权限，以允许部署到 GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 只允许同时进行一次部署，跳过正在运行和最新队列之间的运行队列
-# 但是，不要取消正在进行的运行，因为我们希望允许这些生产部署完成
+# 强制所有 job 的 JS actions 使用 Node 24（临时方案，直到各 action 官方升级）
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -26,33 +26,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         with:
-          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
-      - uses: pnpm/action-setup@v4 # 如果使用 pnpm，请取消此区域注释
+          fetch-depth: 0
+      - uses: pnpm/action-setup@v4   # Node 20，靠顶层 env 覆盖
         with:
           version: 9
-      # - uses: oven-sh/setup-bun@v1 # 如果使用 Bun，请取消注释
-
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: pnpm
-
       - name: Setup Pages
-        uses: actions/configure-pages@v4
-
+        uses: actions/configure-pages@v5
       - name: Install dependencies
         run: pnpm install
-
       - name: Build with VitePress
-        run:  pnpm docs:build
-
+        run: pnpm docs:build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: doc/.vitepress/dist
 
-  # 部署工作
   deploy:
     if: ${{ github.repository_owner == 'DowneyRem' }}
     environment:
@@ -64,4 +57,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4  # Node 20，靠顶层 env 覆盖
