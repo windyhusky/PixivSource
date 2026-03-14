@@ -1,5 +1,4 @@
 import { defineConfig, type HeadConfig } from "vitepress"
-import markdownItAnchor from 'markdown-it-anchor'
 import timeline from "vitepress-markdown-timeline";
 import { writeFileSync } from 'fs'
 import { resolve } from 'path'
@@ -199,7 +198,6 @@ export default defineConfig({
             next: '下一页'
         },
         footer: {
-            // message: 'Released under the <a href="https://github.com/vuejs/vitepress/blob/main/LICENSE">MIT License</a>.',
             copyright: `Copyright © 2025-${new Date().getFullYear()} <a href="https://github.com/DowneyRem/PixivSource">PixivSource</a> All rights reserved.`
         },
         search: {
@@ -225,17 +223,15 @@ export default defineConfig({
     },
     markdown: {
         lineNumbers: true, // 行号显示
+        // ✅ 通过 VitePress 原生入口配置锚点，避免与内置插件重复注册
+        anchor: {
+            slugify: (s: string) => s,
+            permalink: false,
+        },
         config: (md) => {
-            // 1. 锚点配置
-            md.use(markdownItAnchor, {
-                slugify: (s:string) => s,
-                // slugify: (s:string) => s.replace(/[，。、？！《》—…]/gm, ""),
-                // slugify: (s:string) => s.replace("、", ""),
-                permalink: false   // 显示锚点符号
-            })
             md.use(timeline);
 
-            // 2. 图片渲染规则：懒加载 & 异步解码
+            // 图片渲染规则：懒加载 & 异步解码
             md.renderer.rules.image = (tokens, idx, options, env, self) => {
                 const token = tokens[idx]
                 token.attrSet('loading', 'lazy')    // 开启懒加载
@@ -243,13 +239,12 @@ export default defineConfig({
                 return self.renderToken(tokens, idx, options)
             }
 
-            // 3. 链接渲染规则：处理站内导入链接
-            // 优化导入链接，站内使用 legado:// 链接，github 使用原始链接
+            // 链接渲染规则：处理站内导入链接
             const defaultRender = md.renderer.rules.link_open || ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options))
             md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
                 const hrefIndex = tokens[idx].attrIndex("href")
                 if (hrefIndex >= 0) {
-                    const hrefAttr = tokens[idx].attrs![hrefIndex] // 添加了非空断言
+                    const hrefAttr = tokens[idx].attrs![hrefIndex]
                     let href = hrefAttr[1]
                     // @ts-ignore
                     if (href.startsWith("https://loyc.xyz/b/cdx.html?src=")) {
@@ -263,8 +258,8 @@ export default defineConfig({
     sitemap: {
         hostname: HOSTNAME,
         lastmodDateOnly: true,  // print date not time
-        xmlns: {   //精简 xmlns
-            news: false, // flip to false to omit the xml namespace for news
+        xmlns: {   // 精简 xmlns
+            news: false,
             xhtml: false,
             image: false,
         }
