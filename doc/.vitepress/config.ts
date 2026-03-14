@@ -5,7 +5,11 @@ import { resolve } from 'path'
 
 // 动态判断环境
 // Cloudflare Pages 默认提供 CF_PAGES 环境变量
+// GitHub Actions 默认提供 GITHUB_ACTIONS 环境变量
+// 本地开发：两者都为 false，不触发跳转
 const isCF = process.env.CF_PAGES === '1' || process.env.PLATFORM === 'cloudflare'
+const isGitHub = process.env.GITHUB_ACTIONS === 'true'
+
 // GitHub 部署在 /PixivSource/，Cloudflare 通常部署在根目录 /
 const BASE = isCF ? '/' : '/PixivSource/'
 const HOSTNAME = isCF ? 'https://pixivsource.pages.dev/' : 'https://downeyrem.github.io/PixivSource/'
@@ -48,7 +52,7 @@ export default defineConfig({
         ],
     ],
 
-    // 每页动态注入 canonical 和 og 标签，GitHub Pages 额外注入跳转
+    // 每页动态注入 canonical 和 og 标签，GitHub Pages 构建时额外注入跳转
     transformHead({ pageData }) {
         const path = pageData.relativePath
             .replace(/index\.md$/, '')
@@ -66,8 +70,8 @@ export default defineConfig({
             ['meta',  { property: 'og:description', content: ogDesc    }],
         ]
 
-        // GitHub Pages 构建时，注入跳转到 CF Pages（主站）
-        if (!isCF) {
+        // 只有 GitHub Pages 构建时才注入跳转，本地开发不跳转
+        if (isGitHub && !isCF) {
             heads.push(
                 ['meta', { 'http-equiv': 'refresh', content: `0; url=${canonicalUrl}` }],
                 ['script', {}, `window.location.replace("${canonicalUrl}")`]
