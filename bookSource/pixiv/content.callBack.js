@@ -71,6 +71,31 @@ function endShelfRefresh() {
 function customButton(){
     java.open("login")
 }
+// function longCustomButton(){
+//     java.open("login")
+// }
+//
+// function clickBookName() {
+//     java.open("search", null, book.name)
+//     return true
+// }
+//
+// function longClickBookName() {
+//     let novel = getNovel()
+//     startBrowser(urlNovelUrl(novel.id), novel.title)
+//     return true
+// }
+//
+// function clickAuthor() {
+//     java.open("search", null, book.author)
+//     return true
+// }
+//
+// function longClickAuthor() {
+//     let novel = getNovel()
+//     startBrowser(urlUserUrl(novel.userId), novel.userName)
+//     return true
+// }
 
 function callBackFactory(event) {
     switch (event) {
@@ -84,8 +109,8 @@ function callBackFactory(event) {
         //     return longClickAuthor()
         case "clickCustomButton":
             return customButton()
-        case "longClickCustomButton":
-            return longcustomButton()
+        // case "longClickCustomButton":
+        //     return longcustomButton()
 
         case "clickShareBook":
             return shareBook()
