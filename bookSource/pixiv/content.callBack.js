@@ -68,6 +68,10 @@ function endShelfRefresh() {
     source.putConcurrent("25/5000")
 }
 
+function customButton(){
+    java.open("login")
+}
+
 function callBackFactory(event) {
     switch (event) {
         // case "clickBookName":
@@ -78,10 +82,10 @@ function callBackFactory(event) {
         //     return clickAuthor()
         // case "longClickAuthor":
         //     return longClickAuthor()
-        // case "clickCustomButton":
-        //     return customButton()
-        // case "longClickCustomButton":
-        //     return longcustomButton()
+        case "clickCustomButton":
+            return customButton()
+        case "longClickCustomButton":
+            return longcustomButton()
 
         case "clickShareBook":
             return shareBook()
