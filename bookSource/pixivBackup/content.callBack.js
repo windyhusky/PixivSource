@@ -14,6 +14,8 @@ function getNovel() {
         novel.id = book.bookUrl.match(/\d+/)[0]
         novel.title = book.name
     }
+    let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
+    novel.authorId = novel.userId = resp.userId
     return novel
 }
 
@@ -68,6 +70,35 @@ function endShelfRefresh() {
     source.putConcurrent("25/5000")
 }
 
+function customButton(){
+    java.open("login")
+}
+// function longCustomButton(){
+//     java.open("login")
+// }
+//
+// function clickBookName() {
+//     java.open("search", null, book.name)
+//     return true
+// }
+//
+// function longClickBookName() {
+//     let novel = getNovel()
+//     startBrowser(urlNovelUrl(novel.id), novel.title)
+//     return true
+// }
+//
+// function clickAuthor() {
+//     java.open("search", null, book.author)
+//     return true
+// }
+//
+// function longClickAuthor() {
+//     let novel = getNovel()
+//     startBrowser(urlUserUrl(novel.userId), novel.userName)
+//     return true
+// }
+
 function callBackFactory(event) {
     switch (event) {
         // case "clickBookName":
@@ -78,8 +109,8 @@ function callBackFactory(event) {
         //     return clickAuthor()
         // case "longClickAuthor":
         //     return longClickAuthor()
-        // case "clickCustomButton":
-        //     return customButton()
+        case "clickCustomButton":
+            return customButton()
         // case "longClickCustomButton":
         //     return longcustomButton()
 
