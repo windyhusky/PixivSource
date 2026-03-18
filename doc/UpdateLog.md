@@ -1,18 +1,18 @@
 ---
 layout: doc
-title: 更新日志 - PixivSource Pixiv 书源版本历史
-description: PixivSource 书源更新记录：搜索作者、排行榜重写、高并发优化、互动功能新增等历次版本的功能变更与问题修复说明。
+title: 更新日志 - Pixiv 书源版本历史
+description: PixivSource 书源更新记录：搜索作者、重写排行榜、高并发优化、新增互动功能等……历次版本的功能变更与问题修复说明。
 
 head:
   - - meta
     - name: keywords
-      content: PixivSource 更新日志, Pixiv 书源更新, PixivSource 版本历史, Pixiv 书源更新记录
+      content: PixivSource 更新日志, Pixiv 书源更新记录, PixivSource 版本历史, Pixiv 书源更新记录, Linpx 书源更新记录
   - - meta
     - property: og:title
-      content: 更新日志 - PixivSource Pixiv 书源版本历史
+      content: 更新日志 - Pixiv 书源版本历史
   - - meta
     - property: og:description
-      content: PixivSource 书源更新记录：搜索作者、排行榜重写、高并发优化、互动功能新增等历次版本的功能变更与问题修复说明。
+      content: PixivSource 书源更新记录：搜索作者、重写排行榜、高并发优化、新增互动功能等……历次版本的功能变更与问题修复说明。
 ---
 
 <div align="center">
@@ -27,6 +27,13 @@ head:
 
 
 ## ⏱️ 近期更新
+### 📚 更新 264
+- 🅿️ Pixiv、🦊 Linpx & FN 书源：
+  - ⤴️ 回调：自定义按钮打开登陆界面
+    - ⏺️ 阅读界面打开互动功能
+    - ⚙️ 详情界面打开书源设置
+
+
 ### 📚 更新 263
 - 🅿️ Pixiv 小说、小说备用：
   - 👤 模糊搜索作者
