@@ -7,13 +7,8 @@ function getWebViewUA() {
     return String(userAgent)
 }
 
-function sleep(time) {
-    let endTime = new Date().getTime() + time
-    while(true){
-        if (new Date().getTime() > endTime){
-            return;
-        }
-    }
+function sleep(seconds) {
+    return Packages.java.lang.Thread.sleep(1000*seconds)
 }
 
 function sleepToast(text, second) {
