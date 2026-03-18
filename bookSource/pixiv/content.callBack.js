@@ -14,6 +14,8 @@ function getNovel() {
         novel.id = book.bookUrl.match(/\d+/)[0]
         novel.title = book.name
     }
+    let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
+    novel.authorId = novel.userId = resp.userId
     return novel
 }
 
