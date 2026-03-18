@@ -74,20 +74,21 @@ function startPixivSettings() {
     startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
 }
 
-function startGithubIntroduction() {
-    startBrowser("https://pixivsource.pages.dev/BetterExperience", "阅读指南")
-}
-function startGithubReadme() {
-    startBrowser("https://pixivsource.pages.dev/Pixiv", "书源指南")
-}
 function startGithubIssue() {
     startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
 }
 function startGithub() {
-    startBrowser("https://github.com/DowneyRem/PixivSource", "书源介绍")
+    startBrowser("https://github.com/DowneyRem/PixivSource", "收藏项目")
+}
+
+function startGithubIntroduction() {
+    startBrowser("https://pixivsource.pages.dev/BetterExperience", "使用指南")
+}
+function startGithubReadme() {
+    startBrowser("https://pixivsource.pages.dev/Pixiv", "书源指南")
 }
 function startGithubWebdavBackup() {
-    startBrowser("https://pixivsource.pages.dev/WebdavBackup", "远程书籍")
+    startBrowser("https://pixivsource.pages.dev/WebdavBackup", "备份恢复")
 }
 function startGithubRemoteBooks() {
     startBrowser("https://pixivsource.pages.dev/RemoteBooks", "远程书籍")
@@ -99,8 +100,8 @@ function startGithubSponsor() {
 function startTelegram() {
     startBrowser("https://t.me/PixivSource", "书源频道")
 }
-function startTelegramLegadoBeta() {
-    startBrowser("https://t.me/Legado_Beta", "阅读频道")
+function startTelegramLegado() {
+    startBrowser("https://t.me/ReadSigma", "阅读频道")
 }
 function startTelegramFurryReading() {
     startBrowser("https://t.me/FurryReading", "兽人阅读频道")
