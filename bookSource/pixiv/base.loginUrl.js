@@ -86,9 +86,9 @@ function getNovel() {
         try {
             let novel = {}
             try {
-                novel.id = chapter.url.match(/\d+/)[0]
-            } catch(e){
                 novel.id = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
+            } catch(e){
+                novel.id = chapter.url.match(/\d+/)[0]
             }
             novel.title = chapter.title
             novel.userName = book.author.replace("@", "")
