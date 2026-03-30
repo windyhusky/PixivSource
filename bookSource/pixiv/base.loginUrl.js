@@ -535,7 +535,7 @@ function novelCommentAdd() {
     let comments = splitComments(comment)
     if (comments.length >= 2) sleepToast("✅ 发送评论\n\n正在拆分长评论，即将逐条发送")
     comments.forEach(comment => {
-        sleep(0.5 * 1000 * Math.random())
+        sleep(0.5 * Math.random())
         let matched = comment.match(RegExp(/(；|;\s*)\d{8,}/))
         if (matched) {
             let commentId = comment.match(new RegExp(/；(\d{8,})/))[1]
