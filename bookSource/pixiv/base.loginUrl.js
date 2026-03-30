@@ -127,6 +127,12 @@ function getPostBody(url, body, headers) {
     } else if (typeof body === "string") {
         headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
     }
+
+    let settings = getFromCacheObject("pixivSettings")
+    if (settings.IPDirect) {
+        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
+        headers["Host"] = "www.pixiv.net"
+    }
     try {
         java.log(`getPostBody(${url}, ${body}, ${headers})`)
         // java.log(`getPostBody(${url}, ${body}, ${JSON.stringify(headers)})`)
