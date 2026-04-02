@@ -80,9 +80,9 @@ function getNovel() {
         try {
             let novel = {}
             try {
-                novel.id = chapter.url.match(/\d+/)[0]
-            } catch(e){
                 novel.id = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
+            } catch(e){
+                novel.id = chapter.url.match(/\d+/)[0]
             }
             novel.title = chapter.title
             novel.userName = book.author.replace("@", "")
@@ -120,6 +120,12 @@ function getPostBody(url, body, headers) {
         headers["content-type"] = "application/json; charset=utf-8"
     } else if (typeof body === "string") {
         headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
+    }
+
+    let settings = getFromCacheObject("pixivSettings")
+    if (settings.IPDirect) {
+        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
+        headers["Host"] = "www.pixiv.net"
     }
     try {
         java.log(`getPostBody(${url}, ${body}, ${headers})`)
@@ -523,7 +529,7 @@ function novelCommentAdd() {
     let comments = splitComments(comment)
     if (comments.length >= 2) sleepToast("✅ 发送评论\n\n正在拆分长评论，即将逐条发送")
     comments.forEach(comment => {
-        sleep(0.5 * 1000 * Math.random())
+        sleep(0.5 * Math.random())
         let matched = comment.match(RegExp(/(；|;\s*)\d{8,}/))
         if (matched) {
             let commentId = comment.match(new RegExp(/；(\d{8,})/))[1]
