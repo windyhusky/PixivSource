@@ -106,46 +106,51 @@ function publicFunc() {
     }
 
     // 处理 novels 列表
-    u.handNovels = function (novels) {
+    u.handNovels = function (novels, isDetail) {
         novels.forEach(novel => {
             if (!novel.id) novel.id = novel._id
             // novel.title = novel.title
             // novel.userName = novel.userName
+            // novel.userId = novel.userId
             // novel.tags = novel.tags
             if (novel.tags === undefined) {
                 novel.tags = []
             }
+            // novel.textCount = novel.length
+            novel.description = novel.desc
+            // novel.coverUrl = novel.coverUrl
+            // novel.createDate = novel.createDate
+            // novel.seriesId = novel.seriesId
+            // novel.seriesTitle = novel.seriesTitle
+
             // 兼容详情页
             if (novel.content) {
                 if (novel.series) {
                     novel.seriesId = novel.series.id
                     novel.seriesTitle = novel.series.title
                 }
-                novel.description = novel.desc
                 novel.textCount = novel.length = novel.content.length
             }
 
+            // 单篇添加更多信息
             if (!novel.seriesId) {
                 novel.tags.unshift("单本")
                 novel.textCount = novel.length
                 novel.latestChapter = novel.title
-                novel.description = novel.desc
-                // novel.coverUrl = novel.coverUrl
                 novel.detailedUrl = urlNovelDetailed(novel.id)
             }
 
-            // 优化 未缓存系列目录的情况
-            let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))   // 兼容详情
-            if (novel.seriesId) {
-                novel.latestChapter = novel.title
+            // 系列添加更多信息
+            if (novel.seriesId && !isDetail) {
                 novel.title = novel.seriesTitle
-                novel.tags.unshift("长篇")
-                // novel.createDate = novel.createDate
-                novel.description = novel.desc
+                novel.tags.unshift("系列")
                 novel.detailedUrl = urlNovelDetailed(novel.id)
+                // novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
             }
 
-            if (novel.seriesId && !series.error) {
+            // 兼容详情
+            if (novel.seriesId && isDetail) {
+                let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
                 java.log(`正在获取系列小说：${novel.seriesId}`)
                 novel.id = series.novels[0].id
                 // novel.title = series.title
