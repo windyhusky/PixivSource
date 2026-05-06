@@ -9,4 +9,5 @@ if (key.startsWith("@") || key.startsWith("＠")) {
 } else {
     java.log(`🔍 搜索内容：${key}`)
 }
-urlSearchNovel(key, page)
+// urlSearchNovel(key, page) // 无法缓存且太慢了
+urlUserFavorite()

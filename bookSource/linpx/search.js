@@ -125,11 +125,11 @@ function findUserNovels() {
 }
 
 function getNovels() {
-    if (result.startsWith("<!DOCTYPE html>") || JSON.parse(result).error) {
-        return []
-    } else {
-        return JSON.parse(result).novels
-    }
+    let name= String(java.get("key"))
+    let page= String(java.get("page"))
+    let resp = getAjaxJson(urlSearchNovel(name, page))
+    if (resp.error || resp.total === 0) return []
+    return resp.novels
 }
 
 function search(name, page=1) {

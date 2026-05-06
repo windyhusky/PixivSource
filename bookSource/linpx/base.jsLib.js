@@ -181,6 +181,9 @@ function urlUserDetailed(userId) {
 function urlUsersDetailed(uidList) {
     return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
 }
+function urlUserFavorite() {
+    return "https://api.furrynovel.ink/fav/user/cache"
+}
 
 function urlSearchNovel(novelName, page) {
     return `https://api.furrynovel.ink/pixiv/search/novel/${novelName}/cache?page=${page}`
