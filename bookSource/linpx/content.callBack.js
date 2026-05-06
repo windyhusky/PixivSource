@@ -1,3 +1,25 @@
+// function getNovel() {
+//     let novel = {}
+//     novel.author = novel.userName = book.author.replace("@", "")
+//     if (book.bookUrl.includes("series")) {
+//         novel.seriesId = book.bookUrl.match(/\d+/)[0]
+//         novel.seriesTitle = book.name
+//
+//         let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
+//         novel.id = novelIds[book.durChapterIndex]
+//         novel.title = book.durChapterTitle
+//     } else {
+//         novel.seriesId = 0
+//         novel.seriesTitle = ""
+//         novel.id = book.bookUrl.match(/\d+/)[0]
+//         novel.title = book.name
+//     }
+//     let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
+//     novel.authorId = novel.userId = resp.userId
+//     return novel
+// }
+
+
 function shareBook() {
     let text = `我正在看：【${book.author.replace("@", "")}】创作的《${book.name}》`
     if (!!book.durChapterTitle && String(book.name) !== String(book.durChapterTitle)) {
@@ -8,12 +30,12 @@ function shareBook() {
     return true
 }
 
-function clearCache() {
-    let novel = getNovel()
-    cache.delete(urlNovelDetailed(novel.id))
-    if (novel.seriesId) cache.delete(urlSeriesDetailed(novel.seriesId))
-    return true
-}
+// function clearCache() {
+//     let novel = getNovel()
+//     cache.delete(urlNovelDetailed(novel.id))
+//     if (novel.seriesId) cache.delete(urlSeriesDetailed(novel.seriesId))
+//     return true
+// }
 
 function copyBookUrl() {
     java.copyText(book.bookUrl)
@@ -55,8 +77,8 @@ function callBackFactory(event) {
 
         case "clickShareBook":
             return shareBook()
-        case "clickClearCache":
-            return clearCache()
+        // case "clickClearCache":
+        //     return clearCache()
         case "clickCopyBookUrl":
             return copyBookUrl()
         case "clickCopyTocUrl":
