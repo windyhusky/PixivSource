@@ -29,10 +29,13 @@ function oneShotHandler(resp) {
 
 function seriesHandler(resp) {
     resp.novels.forEach(novel => {
-        novel.title = novel.title.trim()
+        if (novel.title) novel.title = novel.title.trim()
         novel.chapterUrl = urlNovel(novel.id)
         // novel.updateDate = String(novel.coverUrl.match(RegExp("\\d{4}/\\d{2}/\\d{2}")))  //fake
+
+        // 防止 urlSeriesDetailed 无法返回有全部数据
         novel.detail = getAjaxJson(urlNovelDetailed(novel.id))
+        if (!novel.title) novel.title = novel.detail.title.trim()
         novel.textCount = novel.detail.content.length
         novel.updateDate = timeTextFormat(novel.detail.createDate)
         novel.chapterInfo = `${novel.updateDate}　　${novel.textCount}字`
