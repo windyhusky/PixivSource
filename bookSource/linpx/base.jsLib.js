@@ -252,6 +252,17 @@ function urlIllustOriginal(illustId, order) {
     return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
+// function urlIllustOriginal(illustId, order) {
+//     // 使用 pixiv.cat 获取插图
+//     let illustOriginal = `https://pixiv.re/${illustId}.png`
+//     // let illustOriginal = `https://pixiv.nl/${illustId}.png`
+//     if (order >= 1) {
+//         illustOriginal = `https://pixiv.re/${illustId}-${order}.png`
+//         // illustOriginal = `https://pixiv.nl/${illustId}-${order}.png`
+//     }
+//     return illustOriginal
+// }
+
 function addZero(num) {
     return String(num).padStart(2, '0')
 }
