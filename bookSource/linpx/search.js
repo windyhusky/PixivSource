@@ -124,22 +124,17 @@ function findUserNovels() {
     return novelList.reverse()  // 新小说前置
 }
 
-function getNovels() {
-    let name= String(java.get("key"))
-    let page= String(java.get("page"))
+function search(name, page=1) {
     let resp = getAjaxJson(urlSearchNovel(name, page))
+    java.log(urlSearchNovel(name, page))
     if (resp.error || resp.total === 0) return []
     return resp.novels
 }
 
-function search(name, page=1) {
-    let resp = getAjaxJson(urlSearchNovel(name, page))
-    java.log(urlSearchNovel(name, page))
-    if (resp.error === undefined && resp.total > 0) {
-        return resp.novels
-    } else {
-        return []
-    }
+function getNovels() {
+    let name= String(java.get("key"))
+    let page= String(java.get("page"))
+    return search(name, page)
 }
 
 function getConvertNovels() {
