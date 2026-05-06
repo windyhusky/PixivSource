@@ -150,18 +150,21 @@ function publicFunc() {
 
             // 兼容详情
             if (novel.seriesId && isDetail) {
+                novel.title = novel.seriesTitle
                 let series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
                 java.log(`正在获取系列小说：${novel.seriesId}`)
                 novel.id = series.novels[0].id
                 // novel.title = series.title
                 if (series.tags) {
                     novel.tags = novel.tags.concat(series.tags)
+                    novel.tags.unshift("系列")
                 }
                 novel.latestChapter = series.novels.reverse()[0].title
                 novel.description = series.caption
+
                 // 后端目前没有系列的 coverUrl 字段
                 // novel.coverUrl = series.coverUrl
-                novel.coverUrl = series.novels[0].coverUrl
+                // novel.coverUrl = series.novels[0].coverUrl
 
                 let firstNovel = getAjaxJson(urlNovelDetailed(novel.id))
                 if (firstNovel.error !== true) {
