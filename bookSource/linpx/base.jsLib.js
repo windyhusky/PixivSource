@@ -157,9 +157,6 @@ function urlNovelDetailed(novelId) {
 function urlNovelsDetailed(nidList) {
     return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
 }
-function urlNovelComments(novelId) {
-    return `https://api.furrynovel.ink/pixiv/novel/${novelId}/comments`
-}
 
 function urlSourceUrl(novelId) {
     return `https://www.pixiv.net/novel/show.php?id=${novelId}`
