@@ -197,7 +197,15 @@ function urlCoverUrl(pxImgUrl) {
 
 // 获取直连链接
 function urlPxImgUrl(pxImgUrl) {
-    return urlPxImgUrlLinpx(pxImgUrl)
+    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+    let urlMap = {
+        "Linpx": urlPxImgUrlLinpx,
+        "Pixiv": urlPxImgUrlPixiv,
+        "PixivCat": urlPxImgUrlPixivCat,
+        "CloudFlare": urlPxImgUrlCloudFlare,
+    }
+    let targetFunc = urlMap[settings.PIC_LINK]
+    return targetFunc(pxImgUrl)
 }
 function urlPxImgUrlLinpx(pxImgUrl) {
     return urlCoverUrl(pxImgUrl)
