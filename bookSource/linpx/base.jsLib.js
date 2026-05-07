@@ -73,6 +73,12 @@ function isJsonString(str) {
         return false
     }
 }
+function isFunctionString(v) {
+    return typeof v == "string" && (
+        v.trim().startsWith("function") ||
+        RegExp(/^\s*(\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/).test(v)
+    )
+}
 
 function getAjaxJson(url, requestUpdate) {
     const {java, cache} = this
@@ -231,7 +237,7 @@ function urlPxImgUrlPixivCat(pxImgUrl) {
     // return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.nl`)}`
 }
 function urlPxImgUrlCloudFlare(pxImgUrl) {
-    return `${pxImgUrl.replace(`i.pximg.net`, `https://pixiv.tnt-wwxs-tz.workers.dev`)}`
+    return `${pxImgUrl.replace(`i.pximg.net`, `pixiv.tnt-wwxs-tz.workers.dev`)}`
 }
 
 function urlIllustUrl(illustId) {
