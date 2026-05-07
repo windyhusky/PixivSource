@@ -195,10 +195,31 @@ function urlCoverUrl(pxImgUrl) {
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
+function urlCoverUrlLinpx(pxImgUrl) {
+    return urlCoverUrl(pxImgUrl)
+}
+function urlCoverUrlPixiv(pxImgUrl) {
+    const {java, cache} = this
+    if (pxImgUrl && !pxImgUrl.trim()) return ""
+    let headers = {"Referer": "https://www.pixiv.net/"}
+
+    if (pxImgUrl.trim()) {
+        if (pxImgUrl.includes("i.pximg.net")) {
+            pxImgUrl = pxImgUrl.replace("https://i.pximg.net", "https://210.140.139.133")
+            headers.Host = "i.pximg.net"
+        } else {
+            pxImgUrl = pxImgUrl.replace("https://s.pximg.net", "https://210.140.139.133")
+            headers.Host = "s.pximg.net"
+        }
+    }
+    return `${pxImgUrl}, ${JSON.stringify({headers: headers})}`
+}
 function urlCoverUrlPixivCat(pxImgUrl) {
-    // return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.cat`)}`
     return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.re`)}`
     // return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.nl`)}`
+}
+function urlCoverUrlCloudFlare(pxImgUrl) {
+    return `${pxImgUrl.replace(`i.pximg.net`, `https://pixiv.tnt-wwxs-tz.workers.dev`)}`
 }
 
 function urlIllustUrl(illustId) {
@@ -222,22 +243,7 @@ function urlIP(url) {
     }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
-function urlPixivCoverUrl(url) {
-    const {java, cache} = this
-    if (url && !url.trim()) return ""
-    let headers = {"Referer": "https://www.pixiv.net/"}
 
-    if (url.trim()) {
-        if (url.includes("i.pximg.net")) {
-            url = url.replace("https://i.pximg.net", "https://210.140.139.133")
-            headers.Host = "i.pximg.net"
-        } else {
-            url = url.replace("https://s.pximg.net", "https://210.140.139.133")
-            headers.Host = "s.pximg.net"
-        }
-    }
-    return `${url}, ${JSON.stringify({headers: headers})}`
-}
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
@@ -261,7 +267,6 @@ function urlIllustOriginal(illustId, order) {
 // 获取 Pixiv 插画直链
 function urlIllustOriginalPixivCat(illustId, order){
     const {java, cache} = this
-    // let targetUrl = `https://pixiv.cat/${illustId}-${order}.jpg`
     let targetUrl = `https://pixiv.re/${illustId}-${order}.jpg`
     // let targetUrl = `https://pixiv.nl/${illustId}-${order}.jpg`
 
