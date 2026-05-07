@@ -40,20 +40,43 @@ head:
 
 
 ## ⏱️ [近期更新](https://github.com/DowneyRem/PixivSource/releases/latest) {#Latest}
+### 📚 更新 267 {#267}
+- 🦊 Linpx：
+  - **添加设置：设置图片参数**
+    - ⏳ 图片解析：
+      - 📄 PixivShojo　🅿️ Pixiv 直连　🐱 PixivCat
+    - 🔗 图片链接：
+      - 📄 PixivShojo　🅿️ Pixiv 直连　🐱 PixivCat
+      - 🦊 Linpx 网站　☁️ CloudFlare
+    - ↔️ 图片大小：
+      - 🔶 大 Original　🀄️ 中 Regular　🔸 小 Small
+
+
+### ⬆️ 更新 267
+- **优化 objParse 逻辑**
+  - **设置 Settings 的 Value 可为 字符串**
+- 添加 Pixiv 图片代理站
+  - 📄 [pixiv.shojo.cn](https://github.com/lrhtony/pixiv)
+  - 🐱 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend)
+- 拆分图片直链获取与直链生成
+- 添加设置：⏳ 图片解析 🔗 图片链接 ↔️ 图片大小
+
+## 📆 2026上半年 {#2026H1}
+[//]: # (## 📃 更新 260-270 {#260+})
+
+
 ### 📚 更新 266 {#266}
 - 🦊 Linpx：
-  - 🔍 搜索：
+  - **🔍 搜索：加快请求速度**
     - 不再使用阅读搜索
     - 优化搜索代码
-  - 登陆检测：优化 handNovels
+  - **登陆检测：优化 handNovels**
     - 搜索时不再获取系列信息
     - 优化已删除系列的小说处理逻辑
   - 目录：防止 urlSeriesDetailed 无法返回有全部数据
   - 回调：注释 clearCache 相关代码
 
 
-## 📆 2026上半年 {#2026H1}
-[//]: # (## 📃 更新 260-270 {#260+})
 ### 📚 更新 265 {#265}
 - 🅿️ Pixiv、Pixiv 备用书源：
   - ✈️ 直连：互动功能支持直连
