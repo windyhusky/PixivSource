@@ -271,21 +271,21 @@ function urlIP(url) {
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
+    let link = this.getFromCache(urlIllustDetailed(illustId))
 
-    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
-    let urlMap = {
-        "Pixiv": (illustId, order) => this.urlIllustOriginalPixiv(illustId, order),
-        "PixivCat": (illustId, order) => this.urlIllustOriginalPixivCat(illustId, order),
-        "PixivShojo": (illustId, order) => this.urlIllustOriginalPixivShojo(illustId, order),
+    if (!link) {
+        let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+        let urlMap = {
             "Pixiv": (illustId) => this.urlIllustOriginalPixiv(illustId),
             "PixivCat": (illustId) => this.urlIllustOriginalPixivCat(illustId),
             "PixivShojo": (illustId) => this.urlIllustOriginalPixivShojo(illustId),
         }
+        let targetFunc = urlMap[settings.PIC_SOURCE]
+        link = targetFunc(illustId).trim()
+        if (link) this.putInCache(urlIllustDetailed(illustId), link, cacheSaveSeconds)
     }
-    let targetFunc = urlMap[settings.PIC_SOURCE]
-    return this.urlPxImgUrl(targetFunc(illustId, order))
+    return this.urlPxImgUrl(link.replace(`_p0`, `_p${order - 1}`))
 }
-
 function urlIllustOriginalPixiv(illustId) {
     const {java, cache} = this
     let illustOriginal
