@@ -195,6 +195,12 @@ function urlCoverUrl(pxImgUrl) {
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
+function urlCoverUrlPixivCat(pxImgUrl) {
+    // return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.cat`)}`
+    return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.re`)}`
+    // return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.nl`)}`
+}
+
 function urlIllustUrl(illustId) {
     return `https://www.pixiv.net/artworks/${illustId}`
 }
@@ -252,7 +258,30 @@ function urlIllustOriginal(illustId, order) {
     return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
-// function urlIllustOriginal(illustId, order) {
+// 获取 Pixiv 插画直链
+function urlIllustOriginalPixivCat(illustId, order){
+    const {java, cache} = this
+    // let targetUrl = `https://pixiv.cat/${illustId}-${order}.jpg`
+    let targetUrl = `https://pixiv.re/${illustId}-${order}.jpg`
+    // let targetUrl = `https://pixiv.nl/${illustId}-${order}.jpg`
+
+    let headers = {
+        "User-Agent": this.getWebViewUA(),
+        "X-Requested-With": "XMLHttpRequest",
+    }
+    try {
+        let resHeaders = java.head(targetUrl, headers).headers()
+        let originalUrl = resHeaders["x-origin-url"] || resHeaders["X-Origin-Url"]
+        // java.log(originalUrl)
+        return originalUrl ? originalUrl : "";
+    } catch (e) {
+        // e = String(e)
+        // this.sleepToast(e)
+        return ""
+    }
+}
+
+// function urlIllustOriginal2(illustId, order) {
 //     // 使用 pixiv.cat 获取插图
 //     let illustOriginal = `https://pixiv.re/${illustId}.png`
 //     // let illustOriginal = `https://pixiv.nl/${illustId}.png`
