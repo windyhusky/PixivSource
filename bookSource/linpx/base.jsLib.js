@@ -199,10 +199,10 @@ function urlCoverUrl(pxImgUrl) {
 function urlPxImgUrl(pxImgUrl) {
     let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
     let urlMap = {
-        "Linpx": urlPxImgUrlLinpx,
-        "Pixiv": urlPxImgUrlPixiv,
-        "PixivCat": urlPxImgUrlPixivCat,
-        "CloudFlare": urlPxImgUrlCloudFlare,
+        "Linpx": (url) => this.urlPxImgUrlLinpx(url),
+        "Pixiv": (url) => this.urlPxImgUrlPixiv(url),
+        "PixivCat": (url) => this.urlPxImgUrlPixivCat(url),
+        "CloudFlare": (url) => this.urlPxImgUrlCloudFlare(url),
     }
     let targetFunc = urlMap[settings.PIC_LINK]
     return targetFunc(pxImgUrl)
@@ -264,8 +264,8 @@ function urlIllustOriginal(illustId, order) {
 
     let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
     let urlMap = {
-        "Pixiv": urlIllustOriginalPixiv,
-        "PixivCat": urlIllustOriginalPixivCat,
+        "Pixiv": (illustId, order) => this.urlIllustOriginalPixiv(illustId, order),
+        "PixivCat": (illustId, order) => this.urlIllustOriginalPixivCat(illustId, order),
     }
     let targetFunc = urlMap[settings.PIC_SOURCE]
     return this.urlPxImgUrl(targetFunc(illustId, order))
