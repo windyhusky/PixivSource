@@ -59,14 +59,28 @@ function checkStatus(status) {
     else return "🖤"
 }
 
-let settingsName = {
+let settingsNames = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
     "MORE_INFORMATION": "📖 更多简介",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
-    "SHOW_CAPTIONS": "🖼️ 显示描述",
+    "SHOW_CAPTIONS": "📑 显示描述",
     "DEBUG": "🐞 调试模式",
+    "PIC_SOURCE": "🖼️ 图片解析",
+    "PIC_LINK": "🖼️ 图片链接",
+}
+let settingsOptionsNames = {
+    "PIC_SOURCE": {
+        "Pixiv": "🅿️ Pixiv 直连",
+        "PixivCat": "🐱 PixivCat",
+    },
+    "PIC_LINK": {
+        "Linpx": "🦊 Linpx 网站",
+        "Pixiv": "🅿️ Pixiv 直连",
+        "PixivCat": "🐱 PixivCat",
+        "CloudFlare": "☁️ CloudFlare",
+    }
 }
 
 function statusMsg(status) {
@@ -96,16 +110,32 @@ function setDefaultSettingsLoginUrl() {
     sleepToast(`\n✅ 已恢复　🔧 默认设置\n\n${getSettingStatus()}`)
 }
 
-function editSettings(settingName) {
+function editSettings(settingKey) {
     let msg, status
     let settings = getFromCacheObject("linpxSettings")
     if (!settings) settings = setDefaultSettings()
-    if (!!settings[settingName]) {
-        status = settings[settingName] = !settings[settingName]
+
+    if (settingKey.startsWith("PIC")) {
+        let settingName = settingsNames[settingKey]
+        let optionsKeys = Object.keys(settingsOptionsNames[settingKey])
+
+        let current = settings[settingKey]
+        let currentIndex = optionsKeys.indexOf(current) || 0
+        if (currentIndex === -1) currentIndex = 0
+        let nextIndex =  (currentIndex + 1) % optionsKeys.length
+        let nextKey = settings[settingKey] = optionsKeys[nextIndex]
+        let nextValue = settingsOptionsNames[settingKey][nextKey]
+        msg = `\n${settingName}\n\n${nextValue}`
+        
     } else {
-        status = settings[settingName] = true
+        if (!!settings[settingKey]) {
+            status = settings[settingKey] = !settings[settingKey]
+        } else {
+            status = settings[settingKey] = true
+        }
+        msg = `\n\n${statusMsg(status)}　${settingsNames[settingKey]}`
     }
+
     putInCacheObject("linpxSettings", settings)
-    msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     sleepToast(msg)
 }
