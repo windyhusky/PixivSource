@@ -67,8 +67,9 @@ let settingsNames = {
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
     "SHOW_CAPTIONS": "📑 显示描述",
     "DEBUG": "🐞 调试模式",
-    "PIC_SOURCE": "🖼️ 图片解析",
-    "PIC_LINK": "🖼️ 图片链接",
+    "PIC_SOURCE": "⏳ 图片解析",
+    "PIC_LINK": "🔗 图片链接",
+    "PIC_SIZE": "↔️ 图片大小",
 }
 let settingsOptionsNames = {
     "PIC_SOURCE": {
@@ -82,6 +83,11 @@ let settingsOptionsNames = {
         "Linpx": "🦊 Linpx 网站",
         "PixivCat": "🐱 PixivCat",
         "CloudFlare": "☁️ CloudFlare",
+    },
+    "PIC_SIZE": {
+        "original": "🔶 大 Original",
+        "regular": "🀄️ 中 Regular",
+        "small": "🔸 小 Small",
     }
 }
 
