@@ -195,8 +195,9 @@ function urlCoverUrl(pxImgUrl) {
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
-function urlPxImgUrl() {
-
+// 获取直连链接
+function urlPxImgUrl(pxImgUrl) {
+    return urlPxImgUrlLinpx(pxImgUrl)
 }
 function urlPxImgUrlLinpx(pxImgUrl) {
     return urlCoverUrl(pxImgUrl)
@@ -231,6 +232,7 @@ function urlIllustUrl(illustId) {
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
+
 // 直连功能参考自 洛娅橙的阅读仓库
 // https://github.com/Luoyacheng/yuedu
 // 其直连功能参考自 PixEz Flutter
@@ -247,9 +249,16 @@ function urlIP(url) {
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
+// 获取 Pixiv 插画直链链接
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
+    let link = this.urlIllustOriginalPixiv(illustId, order)
+    return this.urlPxImgUrl(link)
+}
+function urlIllustOriginalPixiv(illustId, order) {
+    const {java, cache} = this
+    // if (!order || order <= 1) order = 1
     let illustOriginal = ""
 
     let resp = this.getAjaxJson(this.urlIP(urlIllustDetailed(illustId)))
@@ -264,10 +273,8 @@ function urlIllustOriginal(illustId, order) {
     }
 
     if (illustOriginal.split(",")[0] === "") return ""
-    return this.urlPxImgUrlPixiv(illustOriginal.replace(`_p0`, `_p${order - 1}`))
+    return illustOriginal.replace(`_p0`, `_p${order - 1}`)
 }
-
-// 获取 Pixiv 插画直链
 function urlIllustOriginalPixivCat(illustId, order){
     const {java, cache} = this
     let targetUrl = `https://pixiv.re/${illustId}-${order}.jpg`
@@ -288,17 +295,6 @@ function urlIllustOriginalPixivCat(illustId, order){
         return ""
     }
 }
-
-// function urlIllustOriginal2(illustId, order) {
-//     // 使用 pixiv.cat 获取插图
-//     let illustOriginal = `https://pixiv.re/${illustId}.png`
-//     // let illustOriginal = `https://pixiv.nl/${illustId}.png`
-//     if (order >= 1) {
-//         illustOriginal = `https://pixiv.re/${illustId}-${order}.png`
-//         // illustOriginal = `https://pixiv.nl/${illustId}-${order}.png`
-//     }
-//     return illustOriginal
-// }
 
 function addZero(num) {
     return String(num).padStart(2, '0')
