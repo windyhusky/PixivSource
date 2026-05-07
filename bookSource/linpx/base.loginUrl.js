@@ -86,18 +86,24 @@ let settingsOptionsNames = {
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
-    else return "🈚️ 未设置"
+    else if (status === undefined) return "🈚️ 未设置"
+    else return status
 }
 
 // 检测快速模式修改的4个设置
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
-    let keys = [], msgList = []
+    let msgList = []
     let settings = getFromCacheObject("linpxSettings")
-    keys = Object.keys(settingsName)
-    for (let i in keys) {
-        msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
-    }
+    Object.keys(settingsNames).forEach(key => {
+        if (key.startsWith("PIC")) {
+            let settingsValue = settings[key]
+            let settingsValueName = settingsOptionsNames[key][settingsValue]
+            msgList.push(`${settingsNames[key]}　${statusMsg(settingsValueName)}`)
+        } else {
+            msgList.push(`${settingsNames[key]}　${statusMsg(settings[key])}`)
+        }
+    })
     return msgList.join("\n").trim()
 }
 
