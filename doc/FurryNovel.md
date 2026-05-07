@@ -126,16 +126,47 @@ head:
 ### 🔍 搜索小说 {#SearchNovel}
 <details><summary> 🔎 搜索小说 </summary>
 
-✅ 支持搜索：小说名称、系列小说名称、作者名称、小说标签
+> [!NOTE]
+>
+> **书架页面 - 放大镜 - 输入关键词 - 搜索小说**
 
-![img](./pic/SearchViaLegado.png)
+- <details><summary> 🔎 搜索小说 </summary>
+  
+  #### 1.0 搜索小说
+  ✅ 支持搜索：小说名称、系列小说名称、作者名称、小说标签
+
+  ![img](./pic/SearchViaLegado.png)
+  </details>
+
+- <details><summary> 🀄️ 繁简通搜 </summary>
+  
+  #### 1.1 繁简通搜
+  - 【搜索】默认进行繁简转换，同时返回繁体简体小说内容（可在书源设置中关闭）
+  - 返回小说内容不转换
+  
+  ![img](./pic/SearchViaLegadoConvert.jpg)
+  </details>
+
+- <details><summary> 👤 搜索作者 </summary>
+  
+  #### 1.2 搜索作者（格式：`@作者名称`）
+  - 兼容搜索格式：`@作者名称`，并无实际功能
+  </details>
+
+- <details><summary> #️⃣ 标签专搜 </summary>
+  
+  #### 1.3 标签专搜（格式：`#标签1` `#标签1 标签2 `）
+  - 兼容搜索格式：`@作者名称`，并无实际功能
+  </details>
 </details>
 
 
 ### ⭐️ 发现小说 {#DiscoverNovel}
 <details><summary> ⭐️ 发现小说 </summary>
 
-发现：热门小说、最新小说、随便来点
+> [!NOTE]
+>
+> **发现页面 - 点击各按钮：热门小说、最新小说、随便来点**
 
 - <details><summary> ⭐️ 发现小说 </summary>
   
@@ -162,12 +193,31 @@ head:
   </details>
 </details>
 
+<details><summary> 🆙 更新书源 </summary>
+
+#### 2.4 更新书源
+![img](./pic/DiscoverPixiv.jpg)
+> [!NOTE]
+>
+> **点击按钮【🆙 更新】进入书源更新界面**
+
+![img](./pic/UpdateSource.png)
+
+> [!TIP]
+>  - Jsdelivr CDN 更新有延迟
+>  - Github 更新需代理
+>  - Godeberg 更新免代理
+</details>
+
 
 ### 🔗 添加网址 {#AddUrl}
 <details><summary> 🔗 添加网址 </summary>
 
-- 书架 - 菜单 - 添加网址 - 粘贴小说链接
-- 可以同时添加多个小说的链接
+> [!NOTE]
+>
+> **书架 - 菜单 - 添加网址 - 粘贴小说链接**
+> 
+> **可以同时添加多个小说的链接**
 
 - <details><summary> 🔗 操作流程 </summary>
 
