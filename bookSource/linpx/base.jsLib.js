@@ -271,7 +271,9 @@ function urlIP(url) {
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
-    let link = this.getFromCache(urlIllustDetailed(illustId))
+    let link
+    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+    if (!settings.DEBUG) link = this.getFromCache(urlIllustDetailed(illustId))
 
     if (!link) {
         let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
@@ -282,7 +284,9 @@ function urlIllustOriginal(illustId, order) {
         }
         let targetFunc = urlMap[settings.PIC_SOURCE]
         link = targetFunc(illustId).trim()
-        if (link) this.putInCache(urlIllustDetailed(illustId), link, cacheSaveSeconds)
+        if (link && !settings.DEBUG) {
+            this.putInCache(urlIllustDetailed(illustId), link, cacheSaveSeconds)
+        }
     }
     return this.urlPxImgUrl(link.replace(`_p0`, `_p${order - 1}`))
 }
