@@ -261,9 +261,16 @@ function urlIP(url) {
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
-    let link = this.urlIllustOriginalPixiv(illustId, order)
-    return this.urlPxImgUrl(link)
+
+    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+    let urlMap = {
+        "Pixiv": urlIllustOriginalPixiv,
+        "PixivCat": urlIllustOriginalPixivCat,
+    }
+    let targetFunc = urlMap[settings.PIC_SOURCE]
+    return this.urlPxImgUrl(targetFunc(illustId, order))
 }
+
 function urlIllustOriginalPixiv(illustId, order) {
     const {java, cache} = this
     // if (!order || order <= 1) order = 1
