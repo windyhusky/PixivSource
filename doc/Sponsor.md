@@ -24,8 +24,16 @@ head:
 </div>
 
 
-## ⤴️ 分享书源
+<div class="github-only-notice">
+
 > [!NOTE]
+>
+> 📖 **你正在 GitHub 上浏览此文档， [网页版](https://pixivsource.pages.dev/Sponsor) 内容更全面，排版更精美**
+</div>
+
+
+## ⤴️ 分享书源
+> [!TIP]
 > **最简单的方法**
 > **——向你的亲朋好友分享 Pixiv 书源**
 > 

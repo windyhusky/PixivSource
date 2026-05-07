@@ -29,6 +29,13 @@ head:
 #### ☕ [书源项目打赏名单](Sponsor.md)
 </div>
 
+<div class="github-only-notice">
+
+> [!NOTE]
+> 
+> 📖 **你正在 GitHub 上浏览此文档， [网页版](https://pixivsource.pages.dev/BetterExperience) 内容更全面，排版更精美**
+</div>
+
 
 > [!TIP]
 > 

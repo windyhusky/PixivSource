@@ -29,6 +29,14 @@ head:
 </div>
 
 
+<div class="github-only-notice">
+
+> [!NOTE]
+>
+> 📖 **你正在 GitHub 上浏览此文档， [网页版](https://pixivsource.pages.dev/QuickStart) 内容更全面，排版更精美**
+</div>
+
+
 > [!TIP]
 > **没有复杂的概念，五分钟即可完成配置。即刻开始，享受极致阅读体验**
 > 

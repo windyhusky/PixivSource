@@ -12,6 +12,14 @@ comment: false
 </div>
 
 
+<div class="github-only-notice">
+
+> [!NOTE]
+>
+> 📖 **你正在 GitHub 上浏览此文档， [网页版](https://pixivsource.pages.dev/QuickStart) 内容更全面，排版更精美**
+</div>
+
+
 ## 🌱 项目起源
 Q1：写书源究竟是为了什么呢？
 
