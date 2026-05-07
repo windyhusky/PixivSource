@@ -156,6 +156,7 @@
 - 感谢 [阅读 Sigma](https://github.com/Luoyacheng/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)
+- 感谢 [pixiv.shojo.cn](https://github.com/lrhtony/pixiv) 提供的 [Pixiv 图片代理功能](https://pixiv.cat)
 - 感谢 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend) 提供的 [Pixiv 图片代理功能](https://pixiv.cat)
 - 感谢 [Jsdelivr](https://www.jsdelivr.com/) 提供的 CDN 加速服务(免代理)
 - 感谢 [通用书源](https://github.com/bushixuanqi/book-source) 及 [聚合搜索](https://legado.cn/thread-3723-1-1.html) 提供的添加书架的方法

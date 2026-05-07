@@ -387,8 +387,8 @@ function setDefaultSettings() {
 
     settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
     settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
-    settings.PIC_SOURCE = "PixivCat"    // 正文：图片解析
-    settings.PIC_LINK = "PixivCat"      // 正文：图片链接
+    settings.PIC_SOURCE = "PixivShojo"  // 正文：图片解析
+    settings.PIC_LINK = "PixivShojo"    // 正文：图片链接
 
     settings.DEBUG = false              // 全局：调试模式
 
