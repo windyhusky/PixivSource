@@ -115,7 +115,7 @@ function showSettings() {
 
 function setDefaultSettingsLoginUrl() {
     setDefaultSettings()
-    sleepToast(`\n✅ 已恢复　🔧 默认设置\n\n${getSettingStatus()}`)
+    sleepToast(`\n🔧 默认设置　✅ 已恢复\n\n${getSettingStatus()}`)
 }
 
 function editSettings(settingKey) {
@@ -141,7 +141,7 @@ function editSettings(settingKey) {
         } else {
             status = settings[settingKey] = true
         }
-        msg = `\n\n${statusMsg(status)}　${settingsNames[settingKey]}`
+        msg = `\n\n${settingsNames[settingKey]}　${statusMsg(status)}`
     }
 
     putInCacheObject("linpxSettings", settings)
