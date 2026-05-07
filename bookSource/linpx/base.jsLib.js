@@ -195,10 +195,13 @@ function urlCoverUrl(pxImgUrl) {
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
-function urlCoverUrlLinpx(pxImgUrl) {
+function urlPxImgUrl() {
+
+}
+function urlPxImgUrlLinpx(pxImgUrl) {
     return urlCoverUrl(pxImgUrl)
 }
-function urlCoverUrlPixiv(pxImgUrl) {
+function urlPxImgUrlPixiv(pxImgUrl) {
     const {java, cache} = this
     if (pxImgUrl && !pxImgUrl.trim()) return ""
     let headers = {"Referer": "https://www.pixiv.net/"}
@@ -214,11 +217,11 @@ function urlCoverUrlPixiv(pxImgUrl) {
     }
     return `${pxImgUrl}, ${JSON.stringify({headers: headers})}`
 }
-function urlCoverUrlPixivCat(pxImgUrl) {
+function urlPxImgUrlPixivCat(pxImgUrl) {
     return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.re`)}`
     // return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.nl`)}`
 }
-function urlCoverUrlCloudFlare(pxImgUrl) {
+function urlPxImgUrlCloudFlare(pxImgUrl) {
     return `${pxImgUrl.replace(`i.pximg.net`, `https://pixiv.tnt-wwxs-tz.workers.dev`)}`
 }
 
@@ -261,7 +264,7 @@ function urlIllustOriginal(illustId, order) {
     }
 
     if (illustOriginal.split(",")[0] === "") return ""
-    return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
+    return this.urlPxImgUrlPixiv(illustOriginal.replace(`_p0`, `_p${order - 1}`))
 }
 
 // 获取 Pixiv 插画直链
