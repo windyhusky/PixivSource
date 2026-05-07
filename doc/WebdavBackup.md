@@ -41,11 +41,8 @@ head:
 > [✨臻享阅读](BetterExperience.md)；
 > **极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)
-
-
-> [!NOTE]
->
-> 本教程修改自 开源阅读官方教程：[坚果云注册与配置](https://www.yuque.com/legado/wiki/fkx510)
+> 
+> 本教程参考自 开源阅读官方教程：[坚果云注册与配置](https://www.yuque.com/legado/wiki/fkx510)
 
 
 ## 备份与恢复 {#WebdavBackup}
@@ -82,9 +79,9 @@ head:
 ![img](./pic/JianGuoYun4.png)
 
 #### 4. 你的 WebDav 账户信息 {$YourData}
-- WebDav 服务器地址： `https://dav.jianguoyun.com/dav/`
-- WebDav 账户：（你的坚果云注册邮箱）
-- WebDav 密码：（刚刚生成的应用密码）
+- WebDav 服务器地址： **`https://dav.jianguoyun.com/dav/`**
+- WebDav 账户：（**你的坚果云注册邮箱**）
+- WebDav 密码：（**刚刚生成的应用密码**）
 
 
 ## 设置备份信息
@@ -142,17 +139,17 @@ head:
 ## 备份与恢复
 ![img.png](./pic/WebdavBackup2.png)
 
+
 ### ⬆️ 备份数据
 **备份与恢复，点击【备份】即可备份数据**
 > [!TIP]
+> 
 > 首次备份，请检查坚果云里是否有备份文件。 
 > 
-> 如果备份失败，请手动在坚果云根目录新建文件夹"legado"，然后再备份
+> **如果备份失败，请手动在坚果云根目录新建文件夹"legado"，然后再备份**
 
- 
+
 ### ⬇️ 恢复数据
-**备份与恢复，点击【恢复】**
+**备份与恢复，点击【恢复】，选择需要恢复的备份文件，即可恢复数据**
 
 ![img](./pic/WebdavBackup3.png)
-
-**选择需要恢复的备份文件，即可恢复数据**

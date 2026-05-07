@@ -237,7 +237,9 @@ head:
 ### 🔍 搜索小说 {#SearchNovel}
 <details><summary> 🔍 搜索小说 </summary>
 
-**书架页面 - 放大镜 - 输入关键词 - 搜索小说**
+> [!NOTE]
+>
+> **书架页面 - 放大镜 - 输入关键词 - 搜索小说**
 
 - <details><summary> 🔍 搜索小说 </summary>
 
@@ -342,15 +344,18 @@ head:
 ### ⭐️ 发现小说 {#DiscoverNovel}
 <details><summary> ⭐️ 发现小说 </summary>
 
-**发现页面 - 点击各按钮**
+> [!NOTE]
+>
+> **发现页面 - 点击各按钮**
+
 - <details><summary> ⭐️ 常规发现 </summary>
 
   #### 2.0 常规发现
   ![img](./pic/DiscoverPixiv.jpg)
   > [!TIP]
   >
-  >  - 🔞 默认发现 => ✅ 默认显示，不可隐藏
-  >  - 💼 常规小说 => ✅ 默认显示，可以隐藏
+  >  - 🔞 默认发现 => **✅ 默认显示，不可隐藏**
+  >  - 💼 常规小说 => **✅ 默认显示，可以隐藏**
   >
   > 可在 **发现设置** 中修改【💼 常规小说】
   </details>
@@ -361,7 +366,7 @@ head:
   ![img](./pic/DiscoverPixivNew.png)
   > [!TIP]
   > 
-  >  - 🔞 最新 企划 约稿 => ✅ 默认显示
+  >  - 🔞 最新 企划 约稿 => **✅ 默认显示**
   >  - 💼 最新 企划 约稿 => ❌ 默认隐藏
   > 
   > 可在 **发现设置** 中修改【🔞 最新企划】【💼 最新企划】
@@ -373,7 +378,7 @@ head:
   ![img](./pic/DiscoverPixivRanking.png)
   > [!TIP]
   >
-  >  - 🔞 排行榜单 => ✅ 默认显示
+  >  - 🔞 排行榜单 => **✅ 默认显示**
   >  - 💼 排行榜单 => ❌ 默认隐藏
   >
   >  可在 **发现设置** 中修改【🔞 排行榜单】【💼 排行榜单】
@@ -399,7 +404,7 @@ head:
 ![img](./pic/DiscoverPixiv.jpg)
 > [!NOTE]
 >
-> 点击按钮【🆙 更新】进入书源更新界面
+> **点击按钮【🆙 更新】进入书源更新界面**
 
 ![img](./pic/UpdateSource.png)
 
@@ -413,8 +418,12 @@ head:
 ### 🔗 添加网址 {#AddUrl}
 <details><summary> 🔗 添加网址 </summary>
 
-- **书架 - 菜单 - 添加网址 - 粘贴小说链接** 
-- 可以同时添加多个小说的链接
+> [!NOTE]
+>
+> **书架 - 菜单 - 添加网址 - 粘贴小说链接**
+> 
+> **可以同时添加多个小说的链接**
+
 - <details><summary> 🔗 实际操作 </summary>
 
   ![img](./pic/AddBookViaUrl1.png)
@@ -448,6 +457,10 @@ head:
 
 ### 🌐 订阅源 {#RssSource}
 <details><summary> 🌐 订阅源 </summary>
+
+> [!NOTE]
+> 
+> 订阅界面，打开 Pixiv 订阅源
 
 - <details><summary> ⬇️ 导入书源 </summary>
   
@@ -490,7 +503,9 @@ head:
 ### ⚙️ 设置功能
 <details><summary> ▶️ 基础功能 </summary>
 
-**我的 - 书源管理 - Pixiv 小说 - 登录**
+> [!NOTE]
+>
+> **我的 - 书源管理 - Pixiv 小说 - 登录**
 
 ![img](./pic/PixivLogin1.png)
 
@@ -518,7 +533,9 @@ head:
 
 <details><summary> ⚙️ 书源设置 </summary>
 
-**⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
+> [!NOTE]
+>
+> **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
 
 ![img.png](./pic/PixivLogin1.png)
 
@@ -553,7 +570,9 @@ head:
 <details><summary> 🔍 发现设置 </summary>
 
 #### 3. 发现设置
-**🔍 发现设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
+> [!NOTE]
+>
+> **🔍 发现设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
 
 ![img](./pic/PixivLoginUIDiscover.png)
 
@@ -566,7 +585,9 @@ head:
 ### ⏺ 互动功能
 <details><summary> ⏺ 互动功能 </summary>
 
-- **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+> [!NOTE]
+>
+> **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 
 ![img](./pic/PixivLogin0.png)
 
@@ -599,17 +620,22 @@ head:
 <details><summary><strong> 🚫 屏蔽作者 </strong></summary>
 
 #### 1. 屏蔽作者
-- **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+> [!NOTE]
+>
+> **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+> 
+> **🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）**
 
 ![img](./pic/PixivLoginUINovels.png)
 
-- 🚫 屏蔽作者：屏蔽作者、取消屏蔽（本地）
 </details>
 
 <details><summary><strong> 🚫 屏蔽标签 & 屏蔽描述 </strong></summary>
 
 #### 2. 屏蔽标签 & 屏蔽描述
-- **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+> [!NOTE]
+>
+> **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 
 - 1️⃣ 在登陆页面的【输入内容】输入内容（不需要`#`），点击【添加屏蔽】，添加至【标签屏蔽列表】或【描述屏蔽列表】
 ![img](./pic/PixivLoginUIBlockWords.png)
@@ -624,10 +650,14 @@ head:
 <details><summary><strong> 🚫 隐藏收藏 & 隐藏追更 </strong></summary>
 
 #### 3. 隐藏收藏 & 隐藏追更（书源设置）
+> [!NOTE]
+>
+> **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
 
-- **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
-- ❤️ 隐藏收藏：搜索发现 显示/隐藏 收藏单篇小说
-- 📃 隐藏追更：搜索发现 显示/隐藏 追更系列小说
+![img](./pic/PixivLoginUISettings.png)
+
+- ❤️ 隐藏收藏：搜索发现 **显示/隐藏 收藏单篇小说**
+- 📃 隐藏追更：搜索发现 **显示/隐藏 追更系列小说**
 </details>
 
 
@@ -635,7 +665,10 @@ head:
 <details><summary> 📌 喜欢标签 </summary>
 
 #### 1. 喜欢标签
-- **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+> [!NOTE]
+>
+> **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+
 - 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
   ![img](./pic/PixivLoginUILikeTags.png)
 - 2️⃣ 打开发现页面，点击按钮，查看内容
@@ -646,7 +679,10 @@ head:
 <details><summary> ❤️ 他人收藏 </summary>
 
 #### 2. 他人收藏
-- **书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+> [!NOTE]
+>
+> **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+
 - 1️⃣ 在登陆页面的【输入内容】输入作者ID（数字），点击【他人收藏】，添加至 发现页面的【他人收藏】列表
 
 ![img](./pic/PixivLoginUILikeAuthors.png)
