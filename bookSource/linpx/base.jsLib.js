@@ -201,8 +201,22 @@ function urlCoverUrl(pxImgUrl) {
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
+function urlPxImgQuality(pxImgUrl) {
+    const {java, cache} = this
+    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+
+    if (settings.PIC_QUALITY !== "original") { // regular
+        pxImgUrl = String(pxImgUrl).replace("img-original", "img-master").replace(/\.(png|jpg|jpeg|gif|webp)$/i, "_master1200.jpg")
+    }
+    if (settings.PIC_QUALITY === "small") {
+        pxImgUrl = pxImgUrl.replace("img-master", "c/540x540_70/img-master")
+    }
+    return String(pxImgUrl)
+}
+
 // 获取直连链接
 function urlPxImgUrl(pxImgUrl) {
+    const {java, cache} = this
     let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
     let urlMap = {
         "Linpx": (url) => this.urlPxImgUrlLinpx(url),
@@ -212,7 +226,7 @@ function urlPxImgUrl(pxImgUrl) {
         "CloudFlare": (url) => this.urlPxImgUrlCloudFlare(url),
     }
     let targetFunc = urlMap[settings.PIC_LINK]
-    return targetFunc(pxImgUrl)
+    return targetFunc(this.urlPxImgQuality(pxImgUrl))
 }
 function urlPxImgUrlLinpx(pxImgUrl) {
     return urlCoverUrl(pxImgUrl)
