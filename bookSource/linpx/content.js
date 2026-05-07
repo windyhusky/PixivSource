@@ -13,8 +13,7 @@ function replaceUploadedImage(res, content) {
     // 获取 [uploadedimage:] 的图片链接
     if (res.images !== undefined && res.images !== null) {
         Object.keys(res.images).forEach((key) => {
-            // content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(res.images[key].origin)}">`)
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlPixivCoverUrl(res.images[key].origin)}">`)
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlPxImgUrl(res.images[key].origin)}">`)
         })
     }
     return content
@@ -32,8 +31,9 @@ function replacePixivImage(content) {
                 matched2 = pixivimage.match(RegExp("\\d+"))
                 illustId = matched2[0];
             }
-            if (urlIllustOriginal(illustId, order)) {
-                content = content.replace(`${pixivimage}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
+            let link =urlIllustOriginal(illustId, order)
+            if (link) {
+                content = content.replace(`${pixivimage}`, `<img src="${link}">`)
             } else {
                 content = content.replace(`${pixivimage}`, ``)
             }
