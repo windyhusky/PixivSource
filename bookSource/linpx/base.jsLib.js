@@ -277,15 +277,18 @@ function urlIllustOriginal(illustId, order) {
         "Pixiv": (illustId, order) => this.urlIllustOriginalPixiv(illustId, order),
         "PixivCat": (illustId, order) => this.urlIllustOriginalPixivCat(illustId, order),
         "PixivShojo": (illustId, order) => this.urlIllustOriginalPixivShojo(illustId, order),
+            "Pixiv": (illustId) => this.urlIllustOriginalPixiv(illustId),
+            "PixivCat": (illustId) => this.urlIllustOriginalPixivCat(illustId),
+            "PixivShojo": (illustId) => this.urlIllustOriginalPixivShojo(illustId),
+        }
     }
     let targetFunc = urlMap[settings.PIC_SOURCE]
     return this.urlPxImgUrl(targetFunc(illustId, order))
 }
 
-function urlIllustOriginalPixiv(illustId, order) {
+function urlIllustOriginalPixiv(illustId) {
     const {java, cache} = this
-    // if (!order || order <= 1) order = 1
-    let illustOriginal = ""
+    let illustOriginal
 
     let resp = this.getAjaxJson(this.urlIP(urlIllustDetailed(illustId)))
     try {
@@ -299,12 +302,12 @@ function urlIllustOriginalPixiv(illustId, order) {
     }
 
     if (illustOriginal.split(",")[0] === "") return ""
-    return illustOriginal.replace(`_p0`, `_p${order - 1}`)
+    return illustOriginal
 }
-function urlIllustOriginalPixivCat(illustId, order){
+function urlIllustOriginalPixivCat(illustId){
     const {java, cache} = this
-    let targetUrl = `https://pixiv.re/${illustId}-${order}.jpg`
-    // let targetUrl = `https://pixiv.nl/${illustId}-${order}.jpg`
+    let targetUrl = `https://pixiv.re/${illustId}.jpg`
+    // let targetUrl = `https://pixiv.nl/${illustId}.jpg`
 
     let headers = {
         "User-Agent": this.getWebViewUA(),
@@ -314,7 +317,7 @@ function urlIllustOriginalPixivCat(illustId, order){
         let resHeaders = java.head(targetUrl, headers).headers()
         let originalUrl = resHeaders["x-origin-url"] || resHeaders["X-Origin-Url"]
         // java.log(originalUrl)
-        return originalUrl ? originalUrl : "";
+        return originalUrl ? originalUrl : ""
     } catch (e) {
         // e = String(e)
         // this.sleepToast(e)
@@ -322,9 +325,9 @@ function urlIllustOriginalPixivCat(illustId, order){
     }
 }
 
-function urlIllustOriginalPixivShojo(illustId, order) {
-    const { java } = this
-    let targetUrl = `https://pixiv.shojo.cn/${illustId}-${order}`
+function urlIllustOriginalPixivShojo(illustId) {
+    const {java, cache} = this
+    let targetUrl = `https://pixiv.shojo.cn/${illustId}`
 
     let headers = {
         "User-Agent": this.getWebViewUA(),
@@ -336,7 +339,7 @@ function urlIllustOriginalPixivShojo(illustId, order) {
         originalUrl = originalUrl.replace("proxy.pixiv.shojo.cn", "i.pximg.net")
         return originalUrl ? originalUrl : ""
     } catch (e) {
-        // java.log("请求失败: " + e);
+        // java.log("请求失败: " + e)
         return ""
     }
 }
