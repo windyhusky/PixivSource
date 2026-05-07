@@ -208,6 +208,7 @@ function urlPxImgUrl(pxImgUrl) {
         "Linpx": (url) => this.urlPxImgUrlLinpx(url),
         "Pixiv": (url) => this.urlPxImgUrlPixiv(url),
         "PixivCat": (url) => this.urlPxImgUrlPixivCat(url),
+        "PixivShojo": (url) => this.urlPxImgUrlPixivShojo(url),
         "CloudFlare": (url) => this.urlPxImgUrlCloudFlare(url),
     }
     let targetFunc = urlMap[settings.PIC_LINK]
@@ -235,6 +236,9 @@ function urlPxImgUrlPixiv(pxImgUrl) {
 function urlPxImgUrlPixivCat(pxImgUrl) {
     return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.re`)}`
     // return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.nl`)}`
+}
+function urlPxImgUrlPixivShojo(pxImgUrl) {
+    return `${pxImgUrl.replace(`i.pximg.net`, `proxy.pixiv.shojo.cn`)}`
 }
 function urlPxImgUrlCloudFlare(pxImgUrl) {
     return `${pxImgUrl.replace(`i.pximg.net`, `pixiv.tnt-wwxs-tz.workers.dev`)}`
@@ -272,6 +276,7 @@ function urlIllustOriginal(illustId, order) {
     let urlMap = {
         "Pixiv": (illustId, order) => this.urlIllustOriginalPixiv(illustId, order),
         "PixivCat": (illustId, order) => this.urlIllustOriginalPixivCat(illustId, order),
+        "PixivShojo": (illustId, order) => this.urlIllustOriginalPixivShojo(illustId, order),
     }
     let targetFunc = urlMap[settings.PIC_SOURCE]
     return this.urlPxImgUrl(targetFunc(illustId, order))
@@ -313,6 +318,25 @@ function urlIllustOriginalPixivCat(illustId, order){
     } catch (e) {
         // e = String(e)
         // this.sleepToast(e)
+        return ""
+    }
+}
+
+function urlIllustOriginalPixivShojo(illustId, order) {
+    const { java } = this
+    let targetUrl = `https://pixiv.shojo.cn/${illustId}-${order}`
+
+    let headers = {
+        "User-Agent": this.getWebViewUA(),
+        "Referer": "https://pixiv.shojo.cn/",
+    }
+    try {
+        let resHeaders = java.head(targetUrl, headers).headers()
+        let originalUrl = resHeaders["Location"] || resHeaders["location"]
+        originalUrl = originalUrl.replace("proxy.pixiv.shojo.cn", "i.pximg.net")
+        return originalUrl ? originalUrl : ""
+    } catch (e) {
+        // java.log("请求失败: " + e);
         return ""
     }
 }
