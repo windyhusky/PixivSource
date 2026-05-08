@@ -167,7 +167,7 @@ function urlUserUrl(name) {
 // 图片大小链接
 function urlPxImgQuality(pxImgUrl) {
     const {java, cache} = this
-    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+    let settings = this.getFromCacheObject("FNSettings") || this.setDefaultSettings()
 
     if (pxImgUrl.includes("novel-cover")) {
         if (settings.PIC_SIZE !== "original" && !pxImgUrl.includes("_master1200.jpg")) { // regular
@@ -193,7 +193,7 @@ function urlPxImgQuality(pxImgUrl) {
 // 获取直连链接
 function urlPxImgUrl(pxImgUrl) {
     const {java, cache} = this
-    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+    let settings = this.getFromCacheObject("FNSettings") || this.setDefaultSettings()
     let urlMap = {
         "Linpx": (url) => this.urlPxImgUrlLinpx(url),
         "FurryNovel": (url) => this.urlPxImgUrFurryNovel(url),
@@ -272,11 +272,11 @@ function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
     let link
-    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+    let settings = this.getFromCacheObject("FNSettings") || this.setDefaultSettings()
     if (!settings.DEBUG) link = this.getFromCache(urlIllustDetailed(illustId))
 
     if (!link) {
-        let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+        let settings = this.getFromCacheObject("FNSettings") || this.setDefaultSettings()
         let urlMap = {
             "Pixiv": (illustId) => this.urlIllustOriginalPixiv(illustId),
             "PixivCat": (illustId) => this.urlIllustOriginalPixivCat(illustId),
