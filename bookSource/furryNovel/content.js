@@ -13,9 +13,9 @@ function replaceUploadedImage(res, content) {
     // 获取 [uploadedimage:] 的图片链接
     let hasEmbeddedImages = content.match(RegExp(/\[uploadedimage:(\d+)-?(\d+)]/gm))
     if (hasEmbeddedImages) {
-        resp = getAjaxJson(urlLinpxNovelDetail(res.source_id))
+        let resp = getAjaxJson(urlNovelDetailLinpx(res.source_id))
         Object.keys(resp.images).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlLinpxCoverUrl(resp.images[key].origin)}">`)
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlPxImgUrl(resp.images[key].origin)}">`)
         })
     }
     return content

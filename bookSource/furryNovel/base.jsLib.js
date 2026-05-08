@@ -126,6 +126,9 @@ function urlNovelUrl(novelId) {
 function urlNovelDetail(novelId) {
     return `https://api.furrynovel.com/api/zh/novel/${novelId}`
 }
+function urlNovelDetailLinpx(sourceId) {
+    return `https://api.furrynovel.ink/pixiv/novel/${sourceId}/cache`
+}
 function urlNovelsDetail(novelIds) {
     return `https://api.furrynovel.com/api/zh/novel?${novelIds.map(v => "ids[]=" + v).join("&")}`
 }
@@ -159,16 +162,6 @@ function urlSearchUser(name, page) {
 }
 function urlUserUrl(name) {
     return `https://furrynovel.com/zh/search?keyword=${name}`
-}
-
-function urlLinpxNovelDetail(sourceId) {
-    return `https://api.furrynovel.ink/pixiv/novel/${sourceId}/cache`
-}
-function urlLinpxCoverUrl(pxImgUrl) {
-    if (!pxImgUrl.trim()) return ""
-    let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
-    let headers = {"Referer": "https://furrynovel.ink/"}
-    return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
 // 图片大小链接
@@ -212,7 +205,10 @@ function urlPxImgUrl(pxImgUrl) {
     return targetFunc(this.urlPxImgQuality(pxImgUrl))
 }
 function urlPxImgUrlLinpx(pxImgUrl) {
-    return urlLinpxCoverUrl(pxImgUrl)
+    if (!pxImgUrl.trim()) return ""
+    let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+    let headers = {"Referer": "https://furrynovel.ink/"}
+    return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlPxImgUrlPixiv(pxImgUrl) {
     const {java, cache} = this
