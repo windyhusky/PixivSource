@@ -41,7 +41,7 @@ head:
 
 ## ⏱️ [近期更新](https://github.com/DowneyRem/PixivSource/releases/latest) {#Latest}
 ### 📚 更新 267 {#267}
-- 🦊 Linpx：
+- 🦊 Linpx & FN 书源：
   - **添加设置：设置图片参数**
     - ⏳ 图片解析：
       - 📄 PixivShojo　🅿️ Pixiv 直连　🐱 PixivCat
@@ -53,13 +53,16 @@ head:
 
 
 ### ⬆️ 更新 267
-- **优化 objParse 逻辑**
-  - **设置 Settings 的 Value 可为 字符串**
-- 添加 Pixiv 图片代理站
-  - 📄 [pixiv.shojo.cn](https://github.com/lrhtony/pixiv)
-  - 🐱 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend)
-- 拆分图片直链获取与直链生成
-- 添加设置：⏳ 图片解析 🔗 图片链接 ↔️ 图片大小
+- 🅿️ Pixiv、🦊 Linpx & FN 书源：
+  - **优化 objParse 逻辑**
+    - **设置 Settings 的 Value 可为 字符串**
+- 🦊 Linpx & FN 书源：
+  - 添加 Pixiv 图片代理站
+    - 📄 [pixiv.shojo.cn](https://github.com/lrhtony/pixiv)
+    - 🐱 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend)
+  - 拆分图片直链获取与直链生成
+  - 添加设置：⏳ 图片解析 🔗 图片链接 ↔️ 图片大小
+
 
 ## 📆 2026上半年 {#2026H1}
 [//]: # (## 📃 更新 260-270 {#260+})
