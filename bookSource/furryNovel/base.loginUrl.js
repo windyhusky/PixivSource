@@ -44,18 +44,41 @@ function checkStatus(status) {
     else return "🖤"
 }
 
-let settingsName = {
+let settingsNames = {
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
     "MORE_INFORMATION": "📖 更多简介",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
     "DEBUG": "🐞 调试模式",
+    "PIC_SOURCE": "⏳ 图片解析",
+    "PIC_LINK": "🔗 图片链接",
+    "PIC_SIZE": "↔️ 图片大小",
+}
+let settingsOptionsNames = {
+    "PIC_SOURCE": {
+        "PixivShojo": "📄 PixivShojo",
+        "Pixiv": "🅿️ Pixiv 直连",
+        "PixivCat": "🐱 PixivCat",
+    },
+    "PIC_LINK": {
+        "PixivShojo": "📄 PixivShojo",
+        "Pixiv": "🅿️ Pixiv 直连",
+        "Linpx": "🦊 Linpx 网站",
+        "PixivCat": "🐱 PixivCat",
+        "CloudFlare": "☁️ CloudFlare",
+    },
+    "PIC_SIZE": {
+        "original": "🔶 大 Original",
+        "regular": "🀄️ 中 Regular",
+        "small": "🔸 小 Small",
+    }
 }
 
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
-    else return "🈚️ 未设置"
+    else if (status === undefined) return "🈚️ 未设置"
+    else return status
 }
 
 // 检测快速模式修改的4个设置

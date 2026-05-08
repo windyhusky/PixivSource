@@ -20,6 +20,10 @@ let settings = [
     {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
     {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
+
+    {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
+    {"🔗 图片链接": "editSettings('PIC_LINK')" },
+    {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
 ]
 
 // 添加按钮

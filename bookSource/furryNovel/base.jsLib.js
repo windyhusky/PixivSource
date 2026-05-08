@@ -271,8 +271,11 @@ function setDefaultSettings() {
 
     settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
     settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
-
     settings.DEBUG = false              // 全局：调试模式
+
+    settings.PIC_SOURCE = "PixivShojo"  // 正文：图片解析
+    settings.PIC_LINK = "PixivShojo"    // 正文：图片链接
+    settings.PIC_SIZE = "original"      // 正文：图片大小
 
     this.putInCacheObject("FNSettings", settings)
     return settings
