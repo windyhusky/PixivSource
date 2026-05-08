@@ -196,9 +196,7 @@ function urlSearchUsers(userName) {
 }
 
 function urlCoverUrl(pxImgUrl) {
-    let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
-    let headers = {"Referer": "https://furrynovel.ink/"}
-    return `${url}, ${JSON.stringify({headers: headers})}`
+    return urlPxImgUrlLinpx(pxImgUrl)
 }
 
 // 图片大小链接
@@ -242,7 +240,10 @@ function urlPxImgUrl(pxImgUrl) {
     return targetFunc(this.urlPxImgQuality(pxImgUrl))
 }
 function urlPxImgUrlLinpx(pxImgUrl) {
-    return urlCoverUrl(pxImgUrl)
+    if (!pxImgUrl.trim()) return ""
+    let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+    let headers = {"Referer": "https://furrynovel.ink/"}
+    return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlPxImgUrlPixiv(pxImgUrl) {
     const {java, cache} = this
