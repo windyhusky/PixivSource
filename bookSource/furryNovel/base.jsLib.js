@@ -221,6 +221,7 @@ function urlIllustUrl(illustId) {
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
 }
+
 // 直连功能参考自 洛娅橙的阅读仓库
 // https://github.com/Luoyacheng/yuedu
 // 其直连功能参考自 PixEz Flutter
@@ -236,26 +237,33 @@ function urlIP(url) {
     }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
-function urlPixivCoverUrl(url) {
-    const {java, cache} = this
-    if (url && !url.trim()) return ""
-    let headers = {"Referer": "https://www.pixiv.net/"}
 
-    if (url.trim()) {
-        if (url.includes("i.pximg.net")) {
-            url = url.replace("https://i.pximg.net", "https://210.140.139.133")
-            headers.Host = "i.pximg.net"
-        } else {
-            url = url.replace("https://s.pximg.net", "https://210.140.139.133")
-            headers.Host = "s.pximg.net"
-        }
-    }
-    return `${url}, ${JSON.stringify({headers: headers})}`
-}
+// 获取 Pixiv 插画直链链接
 function urlIllustOriginal(illustId, order) {
     const {java, cache} = this
     if (!order || order <= 1) order = 1
-    let illustOriginal = ""
+    let link
+    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+    if (!settings.DEBUG) link = this.getFromCache(urlIllustDetailed(illustId))
+
+    if (!link) {
+        let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+        let urlMap = {
+            "Pixiv": (illustId) => this.urlIllustOriginalPixiv(illustId),
+            "PixivCat": (illustId) => this.urlIllustOriginalPixivCat(illustId),
+            "PixivShojo": (illustId) => this.urlIllustOriginalPixivShojo(illustId),
+        }
+        let targetFunc = urlMap[settings.PIC_SOURCE]
+        link = targetFunc(illustId).trim()
+        if (link && !settings.DEBUG) {
+            this.putInCache(urlIllustDetailed(illustId), link, cacheSaveSeconds)
+        }
+    }
+    return this.urlPxImgUrl(link.replace(`_p0`, `_p${order - 1}`))
+}
+function urlIllustOriginalPixiv(illustId) {
+    const {java, cache} = this
+    let illustOriginal
 
     let resp = this.getAjaxJson(this.urlIP(urlIllustDetailed(illustId)))
     try {
@@ -269,7 +277,46 @@ function urlIllustOriginal(illustId, order) {
     }
 
     if (illustOriginal.split(",")[0] === "") return ""
-    return this.urlPixivCoverUrl(illustOriginal.replace(`_p0`, `_p${order - 1}`))
+    return illustOriginal
+}
+function urlIllustOriginalPixivCat(illustId){
+    const {java, cache} = this
+    let targetUrl = `https://pixiv.re/${illustId}.jpg`
+    // let targetUrl = `https://pixiv.nl/${illustId}.jpg`
+
+    let headers = {
+        "User-Agent": this.getWebViewUA(),
+        "X-Requested-With": "XMLHttpRequest",
+    }
+    try {
+        let resHeaders = java.head(targetUrl, headers).headers()
+        let originalUrl = resHeaders["x-origin-url"] || resHeaders["X-Origin-Url"]
+        // java.log(originalUrl)
+        return originalUrl ? originalUrl : ""
+    } catch (e) {
+        // e = String(e)
+        // this.sleepToast(e)
+        return ""
+    }
+}
+
+function urlIllustOriginalPixivShojo(illustId) {
+    const {java, cache} = this
+    let targetUrl = `https://pixiv.shojo.cn/${illustId}`
+
+    let headers = {
+        "User-Agent": this.getWebViewUA(),
+        "Referer": "https://pixiv.shojo.cn/",
+    }
+    try {
+        let resHeaders = java.head(targetUrl, headers).headers()
+        let originalUrl = resHeaders["Location"] || resHeaders["location"]
+        originalUrl = originalUrl.replace("proxy.pixiv.shojo.cn", "i.pximg.net")
+        return originalUrl ? originalUrl : ""
+    } catch (e) {
+        // java.log("请求失败: " + e)
+        return ""
+    }
 }
 
 function addZero(num) {
