@@ -84,12 +84,17 @@ function statusMsg(status) {
 // 检测快速模式修改的4个设置
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
-    let keys = [], msgList = []
+    let msgList = []
     let settings = getFromCacheObject("FNSettings")
-    keys = Object.keys(settingsName)
-    for (let i in keys) {
-        msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
-    }
+    Object.keys(settingsNames).forEach(key => {
+        if (key.startsWith("PIC")) {
+            let settingsValue = settings[key]
+            let settingsValueName = settingsOptionsNames[key][settingsValue]
+            msgList.push(`${settingsNames[key]}　${statusMsg(settingsValueName)}`)
+        } else {
+            msgList.push(`${settingsNames[key]}　${statusMsg(settings[key])}`)
+        }
+    })
     return msgList.join("\n").trim()
 }
 
@@ -99,19 +104,35 @@ function showSettings() {
 
 function setDefaultSettingsLoginUrl() {
     setDefaultSettings()
-    sleepToast(`\n✅ 已恢复　🔧 默认设置\n\n${getSettingStatus()}`)
+    sleepToast(`\n🔧 默认设置　✅ 已恢复\n\n${getSettingStatus()}`)
 }
 
-function editSettings(settingName) {
+function editSettings(settingKey) {
     let msg, status
     let settings = getFromCacheObject("FNSettings")
     if (!settings) settings = setDefaultSettings()
-    if (!!settings[settingName]) {
-        status = settings[settingName] = !settings[settingName]
+
+    if (settingKey.startsWith("PIC")) {
+        let settingName = settingsNames[settingKey]
+        let optionsKeys = Object.keys(settingsOptionsNames[settingKey])
+
+        let current = settings[settingKey]
+        let currentIndex = optionsKeys.indexOf(current) || 0
+        if (currentIndex === -1) currentIndex = 0
+        let nextIndex =  (currentIndex + 1) % optionsKeys.length
+        let nextKey = settings[settingKey] = optionsKeys[nextIndex]
+        let nextValue = settingsOptionsNames[settingKey][nextKey]
+        msg = `\n${settingName}\n\n${nextValue}`
+
     } else {
-        status = settings[settingName] = true
+        if (!!settings[settingKey]) {
+            status = settings[settingKey] = !settings[settingKey]
+        } else {
+            status = settings[settingKey] = true
+        }
+        msg = `\n\n${settingsNames[settingKey]}　${statusMsg(status)}`
     }
+
     putInCacheObject("FNSettings", settings)
-    msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     sleepToast(msg)
 }
