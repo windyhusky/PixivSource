@@ -196,6 +196,7 @@ function urlPxImgUrl(pxImgUrl) {
     let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
     let urlMap = {
         "Linpx": (url) => this.urlPxImgUrlLinpx(url),
+        "FurryNovel": (url) => this.urlPxImgUrFurryNovel(url),
         "Pixiv": (url) => this.urlPxImgUrlPixiv(url),
         "PixivCat": (url) => this.urlPxImgUrlPixivCat(url),
         "PixivShojo": (url) => this.urlPxImgUrlPixivShojo(url),
@@ -208,6 +209,12 @@ function urlPxImgUrlLinpx(pxImgUrl) {
     if (!pxImgUrl.trim()) return ""
     let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
     let headers = {"Referer": "https://furrynovel.ink/"}
+    return `${url}, ${JSON.stringify({headers: headers})}`
+}
+function urlPxImgUrFurryNovel(pxImgUrl) {
+    if (!pxImgUrl.trim()) return ""
+    let url = `https://img.furrynovel.com/?url=${pxImgUrl}`
+    let headers = {"Referer": "https://furrynovel.com/"}
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlPxImgUrlPixiv(pxImgUrl) {

@@ -81,6 +81,7 @@ let settingsOptionsNames = {
         "PixivShojo": "📄 PixivShojo",
         "Pixiv": "🅿️ Pixiv 直连",
         "Linpx": "🦊 Linpx 网站",
+        // "FurryNovel": "🐯 FurryNovel",
         "PixivCat": "🐱 PixivCat",
         "CloudFlare": "☁️ CloudFlare",
     },
