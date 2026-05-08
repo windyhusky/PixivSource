@@ -17,9 +17,10 @@ let settings = [
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
     {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
 
-    {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
+    // {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
     {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
+    {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
 
     {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
     {"🔗 图片链接": "editSettings('PIC_LINK')" },
