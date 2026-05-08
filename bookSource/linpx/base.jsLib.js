@@ -201,6 +201,7 @@ function urlCoverUrl(pxImgUrl) {
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
+// 图片大小链接
 function urlPxImgQuality(pxImgUrl) {
     const {java, cache} = this
     let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()

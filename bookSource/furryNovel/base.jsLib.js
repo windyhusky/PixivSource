@@ -171,6 +171,32 @@ function urlLinpxCoverUrl(pxImgUrl) {
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
+// 图片大小链接
+function urlPxImgQuality(pxImgUrl) {
+    const {java, cache} = this
+    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+
+    if (pxImgUrl.includes("novel-cover")) {
+        if (settings.PIC_SIZE !== "original" && !pxImgUrl.includes("_master1200.jpg")) { // regular
+            pxImgUrl = String(pxImgUrl)
+                .replace("novel-cover-original", "c/1200x1200/novel-cover-master")
+                .replace(/\.(png|jpg|jpeg|gif|webp)$/i, "_master1200.jpg")
+        }
+        if (settings.PIC_SIZE === "small") {
+            pxImgUrl = pxImgUrl.replace("1200x1200", "480x960")
+        }
+    }
+    else if (pxImgUrl.includes("img-original")) {
+        if (settings.PIC_SIZE !== "original" && !pxImgUrl.includes("_master1200.jpg")) { // regular
+            pxImgUrl = String(pxImgUrl).replace("img-original", "img-master").replace(/\.(png|jpg|jpeg|gif|webp)$/i, "_master1200.jpg")
+        }
+        if (settings.PIC_SIZE === "small") {
+            pxImgUrl = pxImgUrl.replace("img-master", "c/540x540_70/img-master")
+        }
+    }
+    return String(pxImgUrl)
+}
+
 // 获取直连链接
 function urlPxImgUrl(pxImgUrl) {
     const {java, cache} = this
