@@ -171,6 +171,50 @@ function urlLinpxCoverUrl(pxImgUrl) {
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
+// 获取直连链接
+function urlPxImgUrl(pxImgUrl) {
+    const {java, cache} = this
+    let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
+    let urlMap = {
+        "Linpx": (url) => this.urlPxImgUrlLinpx(url),
+        "Pixiv": (url) => this.urlPxImgUrlPixiv(url),
+        "PixivCat": (url) => this.urlPxImgUrlPixivCat(url),
+        "PixivShojo": (url) => this.urlPxImgUrlPixivShojo(url),
+        "CloudFlare": (url) => this.urlPxImgUrlCloudFlare(url),
+    }
+    let targetFunc = urlMap[settings.PIC_LINK]
+    return targetFunc(this.urlPxImgQuality(pxImgUrl))
+}
+function urlPxImgUrlLinpx(pxImgUrl) {
+    return urlLinpxCoverUrl(pxImgUrl)
+}
+function urlPxImgUrlPixiv(pxImgUrl) {
+    const {java, cache} = this
+    if (pxImgUrl && !pxImgUrl.trim()) return ""
+    let headers = {"Referer": "https://www.pixiv.net/"}
+
+    if (pxImgUrl.trim()) {
+        if (pxImgUrl.includes("i.pximg.net")) {
+            pxImgUrl = pxImgUrl.replace("https://i.pximg.net", "https://210.140.139.133")
+            headers.Host = "i.pximg.net"
+        } else {
+            pxImgUrl = pxImgUrl.replace("https://s.pximg.net", "https://210.140.139.133")
+            headers.Host = "s.pximg.net"
+        }
+    }
+    return `${pxImgUrl}, ${JSON.stringify({headers: headers})}`
+}
+function urlPxImgUrlPixivCat(pxImgUrl) {
+    return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.re`)}`
+    // return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.nl`)}`
+}
+function urlPxImgUrlPixivShojo(pxImgUrl) {
+    return `${pxImgUrl.replace(`i.pximg.net`, `proxy.pixiv.shojo.cn`)}`
+}
+function urlPxImgUrlCloudFlare(pxImgUrl) {
+    return `${pxImgUrl.replace(`i.pximg.net`, `pixiv.tnt-wwxs-tz.workers.dev`)}`
+}
+
 function urlIllustUrl(illustId) {
     return `https://www.pixiv.net/artworks/${illustId}`
 }
