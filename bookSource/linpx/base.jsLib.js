@@ -73,10 +73,10 @@ function isJsonString(str) {
         return false
     }
 }
-function isFunctionString(v) {
-    return typeof v == "string" && (
-        v.trim().startsWith("function") ||
-        RegExp(/^\s*(\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/).test(v)
+function isFunctionString(str) {
+    return typeof str == "string" && (
+        str.trim().startsWith("function") ||
+        RegExp(/^\s*(\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/).test(str)
     )
 }
 

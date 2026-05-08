@@ -62,6 +62,13 @@ function getFromCacheObject(objectName) {
     return JSON.parse(object)
 }
 
+function isFunctionString(str) {
+    return typeof str == "string" && (
+        str.trim().startsWith("function") ||
+        RegExp(/^\s*(\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/).test(str)
+    )
+}
+
 function getAjaxJson(url, requestUpdate) {
     const {java, cache} = this
     return this.cacheGetAndSet(url, () => {

@@ -127,6 +127,12 @@ function isJsonString(str) {
         return false
     }
 }
+function isFunctionString(str) {
+    return typeof str == "string" && (
+        str.trim().startsWith("function") ||
+        RegExp(/^\s*(\([^)]*\)|[A-Za-z_$][\w$]*)\s*=>/).test(str)
+    )
+}
 
 function isLogin() {
     const {java, cache} = this
