@@ -22,17 +22,18 @@ const typeMap = [
 ]
 
 // ── 顶级极速跳转 ──
+const hasRedirected = ref(false)
 if (typeof window !== 'undefined') {
-  const src = new URLSearchParams(window.location.search).get('src')?.trim() || ''
-  if (src) {
+  const params = new URLSearchParams(window.location.search)
+  const src = params.get('src')?.trim() || ''
+
+  if (src && !hasRedirected.value) {
     isRedirecting.value = true
+    hasRedirected.value = true // 标记已跳转
     const finalUrl = src.startsWith('legado://')
         ? src
         : `legado://import/importonline?src=${encodeURIComponent(src)}`
     window.location.href = finalUrl
-    const a = document.createElement('a')
-    a.href = finalUrl
-    a.click()
     setTimeout(() => { isRedirecting.value = false }, 2800)
   }
 }
