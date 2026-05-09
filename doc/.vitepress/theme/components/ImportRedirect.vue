@@ -1,183 +1,279 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, watch } from 'vue'
+
+const typeMap = [
+  { label: '书源', value: 'bookSource', icon: '📚' },
+  { label: '订阅源', value: 'rssSource', icon: '📡' },
+  { label: '替换规则', value: 'replaceRule', icon: '✂️' },
+  { label: '目录规则', value: 'textTocRule', icon: '📖' },
+  { label: '朗读引擎', value: 'httpTTS', icon: '🗣️' },
+  { label: '主题样式', value: 'theme', icon: '🎨' },
+  { label: '阅读排版', value: 'readConfig', icon: '📝' },
+  { label: '加入书架', value: 'addToBookshelf', icon: '➕' }
+]
 
 const inputUrl = ref('')
-const manual   = ref(false)
+const manual = ref(false)
+const selectedType = ref('bookSource')
+
+function autoDetect(url: string) {
+  const u = url.toLowerCase()
+  if (u.includes('booksource')) return 'bookSource'
+  if (u.includes('rss') || u.includes('subscribe')) return 'rssSource'
+  if (u.includes('replacerule')) return 'replaceRule'
+  if (u.includes('texttocrule')) return 'textTocRule'
+  if (u.includes('tts')) return 'httpTTS'
+  if (u.includes('theme')) return 'theme'
+  if (u.includes('readconfig')) return 'readConfig'
+  if (u.endsWith('.epub') || u.endsWith('.txt') || u.includes('addtobookshelf')) return 'addToBookshelf'
+  return 'bookSource'
+}
 
 onMounted(() => {
   if (typeof window === 'undefined') return
-  const src = new URLSearchParams(location.search).get('src') || ''
+  const params = new URLSearchParams(location.search)
+  const src = params.get('src') || ''
   if (src) {
     inputUrl.value = src
+    selectedType.value = autoDetect(src)
   } else {
     manual.value = true
   }
 })
 
-function guessType(url: string) {
-  if (!url) return '书源'
-  if (url.includes('btsrk') || url.includes('rss') || url.includes('subscribe')) return '订阅源'
-  if (url.includes('textTocRule')) return '目录规则'
-  if (url.includes('replaceRule')) return '替换净化规则'
-  return '书源'
-}
+watch(inputUrl, (val) => {
+  if (manual.value && val.startsWith('http')) {
+    selectedType.value = autoDetect(val)
+  }
+})
 
-function buildLegadoUrl(src: string) {
-  const type = guessType(src)
-  if (type === '订阅源')       return `legado://import/rssSource?src=${src}`
-  if (type === '目录规则')     return `legado://import/textTocRule?src=${src}`
-  if (type === '替换净化规则') return `legado://import/replaceRule?src=${src}`
-  return `legado://import/bookSource?src=${src}`
-}
-
-const src   = computed(() => inputUrl.value.trim())
-const type  = computed(() => guessType(src.value))
-const ready = computed(() => src.value.startsWith('http'))
+const ready = computed(() => inputUrl.value.trim().startsWith('http'))
 
 function doImport() {
   if (!ready.value) return
-  window.location.href = buildLegadoUrl(src.value)
+  const src = encodeURIComponent(inputUrl.value.trim())
+  window.location.href = `legado://import/${selectedType.value}?src=${src}`
 }
 </script>
 
 <template>
-  <div class="ir-wrap">
+  <div class="legado-container">
+    <!-- VP 风格一级标题 -->
+    <h1 class="vp-h1">🚀 一键导入 阅读资源</h1>
 
-    <!-- 输入区：有 src 参数时只读展示，无参数时可编辑 -->
-    <div class="ir-card">
-      <textarea
-          v-model="inputUrl"
-          class="ir-textarea"
-          :readonly="!manual"
-          :placeholder="manual ? 'https://cdn.jsdelivr.net/gh/...' : ''"
-          rows="3"
-          spellcheck="false"
-      />
+    <div class="legado-card">
+      <div class="legado-header">
+        <span class="header-title">请选择导入内容</span>
+        <span class="header-tag" :class="{ 'is-ready': ready }">
+          {{ ready ? '已检测' : '未就绪' }}
+        </span>
+      </div>
+
+      <div class="type-grid">
+        <button
+            v-for="item in typeMap"
+            :key="item.value"
+            class="type-item"
+            :class="{ active: selectedType === item.value }"
+            @click="selectedType = item.value"
+        >
+          <span class="type-icon">{{ item.icon }}</span>
+          <span class="type-label">{{ item.label }}</span>
+        </button>
+      </div>
+
+      <!-- 调整后的粘贴框高度 -->
+      <div class="input-area">
+        <textarea
+            v-model="inputUrl"
+            :readonly="!manual"
+            placeholder="在此粘贴 http(s) 链接..."
+            spellcheck="false"
+        ></textarea>
+      </div>
+
+      <button class="submit-btn" :disabled="!ready" @click="doImport">
+        {{ ready ? '确认导入至阅读' : '等待粘贴有效链接' }}
+      </button>
     </div>
 
-    <!-- 按钮 -->
-    <button
-        class="ir-btn ir-btn-primary"
-        :disabled="!ready"
-        @click="doImport"
-    >
-      🚀 粘贴链接 导入{{ type }}
-    </button>
-
+    <p class="footer-note">支持 开源阅读 3.0 及其分支版本</p>
   </div>
 </template>
 
 <style scoped>
-.ir-wrap {
-  max-width: 520px;
-  margin: 2rem auto;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+.legado-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 0;
+  text-align: center;
 }
 
-.ir-card {
-  background: var(--vp-c-bg-soft);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 12px;
-  padding: 18px 20px;
-}
-
-.ir-label {
-  font-size: 14px;
-  color: var(--vp-c-text-2);
-  margin-bottom: 10px;
-}
-
-.ir-textarea {
-  width: 100%;
-  background: var(--vp-c-bg);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 13px;
-  font-family: 'SF Mono', 'Fira Code', monospace;
+.vp-h1 {
+  letter-spacing: -0.02em;
+  line-height: 40px;
+  font-size: 32px;
+  font-weight: 700;
   color: var(--vp-c-text-1);
-  resize: vertical;
-  line-height: 1.6;
-  transition: border-color 0.2s;
-  box-sizing: border-box;
+  margin-bottom: 32px;
+  padding: 0 16px;
 }
 
-.ir-textarea:focus {
-  outline: none;
-  border-color: var(--vp-c-brand-1);
+@media (min-width: 768px) {
+  .vp-h1 {
+    font-size: 40px;
+    line-height: 48px;
+  }
 }
 
-.ir-textarea[readonly] {
-  cursor: default;
+.legado-card {
+  background: var(--vp-c-bg-soft);
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.legado-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header-title {
+  font-size: 15px;
+  font-weight: 600;
   color: var(--vp-c-text-2);
 }
 
-.ir-badge {
-  display: inline-block;
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
-  font-size: 12px;
-  font-weight: 600;
+.header-tag {
+  font-size: 11px;
   padding: 2px 10px;
   border-radius: 20px;
-  margin-bottom: 12px;
+  background: var(--vp-c-bg-mute);
+  color: var(--vp-c-text-3);
+}
+.header-tag.is-ready {
+  background: var(--vp-c-brand-soft);
+  color: var(--vp-c-brand-1);
 }
 
-.ir-preview-label {
-  font-size: 12px;
-  color: var(--vp-c-text-3);
+.type-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.type-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 2px;
+  background: var(--vp-c-bg);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  border: none;
+}
+
+.type-item.active {
+  background: var(--vp-c-brand-1);
+  box-shadow: 0 4px 12px var(--vp-c-brand-soft);
+}
+
+.type-icon {
+  font-size: 20px;
   margin-bottom: 4px;
 }
 
-.ir-preview-url {
-  font-size: 13px;
-  font-family: 'SF Mono', 'Fira Code', monospace;
-  color: var(--vp-c-text-2);
-  word-break: break-all;
-  line-height: 1.6;
-}
-
-.ir-btn {
-  width: 100%;
-  padding: 13px 20px;
-  border-radius: 10px;
-  font-size: 15px;
+.type-label {
+  font-size: 10px;
   font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  border: none;
-  transition: opacity 0.15s, transform 0.1s;
+  color: var(--vp-c-text-2);
 }
 
-.ir-btn:active:not(:disabled) { transform: scale(0.98); }
-
-.ir-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.ir-btn-primary {
-  background: var(--vp-c-brand-1);
+.type-item.active .type-label,
+.type-item.active .type-icon {
   color: #fff;
 }
 
-.ir-btn-primary:hover:not(:disabled) { opacity: 0.85; }
+/* 粘贴框高度优化：150px (约 3/4) */
+.input-area textarea {
+  width: 100%;
+  height: 150px;
+  background: var(--vp-c-bg);
+  border: none;
+  border-radius: 12px;
+  padding: 16px;
+  font-family: var(--vp-font-family-mono);
+  font-size: 14px;
+  color: var(--vp-c-text-1);
+  margin-bottom: 20px;
+  resize: none;
+  line-height: 1.5;
+}
 
-.ir-note {
-  font-size: 13px;
+.input-area textarea:focus {
+  outline: 2px solid var(--vp-c-brand-soft);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 700;
+  background: var(--vp-c-brand-1);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.1s, opacity 0.2s;
+}
+
+.submit-btn:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submit-btn:disabled {
+  background: var(--vp-c-gray-soft);
   color: var(--vp-c-text-3);
-  text-align: center;
-  line-height: 1.8;
+  cursor: not-allowed;
 }
 
-.ir-note a {
-  color: var(--vp-c-brand-1);
-  text-decoration: none;
+.footer-note {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--vp-c-text-3);
 }
 
-.ir-note a:hover { text-decoration: underline; }
+/* 手机端贴边优化 */
+@media (max-width: 640px) {
+  .legado-container {
+    padding: 24px 8px;
+  }
 
-.ir-note strong { color: var(--vp-c-text-2); }
+  .legado-card {
+    padding: 16px;
+    border-radius: 12px;
+  }
+
+  .type-grid {
+    gap: 6px;
+  }
+
+  .type-label {
+    font-size: 9px;
+  }
+
+  .input-area textarea {
+    height: 150px; /* 保持 3/4 高度比例 */
+    padding: 12px;
+  }
+}
 </style>
