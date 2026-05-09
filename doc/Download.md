@@ -6,7 +6,7 @@ description: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Si
 head:
   - - meta
     - name: keywords
-      content: 开源阅读下载, 阅读 Legado 下载, 阅读 Sigma, 阅读 Plus, 阅读 Beta, 阅读 MD3, 阅读 Max, 阅读 Archive, 源阅 iOS, Legado 鸿蒙, Pixiv 书源兼容版本
+      content: 阅读 app, 阅读 Github, 开源阅读 app, 开源阅读 Github, 开源阅读 下载, 开源阅读 下载, Legado 下载, 阅读 Sigma, 阅读 Plus, 阅读 Beta, 阅读 MD3, 阅读 Max, 阅读 Archive, 开源阅读 iOS, 阅读 iOS, 源阅读, 源阅, 源阅 iOS, 开源阅读 鸿蒙
   - - meta
     - property: og:title
       content: 下载开源阅读 - Android、iOS、鸿蒙 全平台版本
