@@ -45,6 +45,10 @@ head:
 > [✨臻享阅读](BetterExperience.md)；
 > **极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)
+>
+> **另有：**
+> [🦊 Linpx 书源 功能手册](Linpx.md)；
+> [🐯 FurryNovel 书源 功能手册](FurryNovel.md)
  
 
 ## [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站

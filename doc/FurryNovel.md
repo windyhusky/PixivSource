@@ -19,7 +19,7 @@ head:
 <img width="150" height="150" src="./pic/BookSourceFurryNovel.png" alt="FurryNovel BookSource"/>
 <br>
 
-# FurryNovel 书源指南
+# FurryNovel 书源使用指南
 ### 🐯 [开源阅读](https://github.com/Luoyacheng/legado) FurryNovel 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)
@@ -40,7 +40,11 @@ head:
 > **另有：新手配置指南：**
 > [✨臻享阅读](BetterExperience.md)；
 > **极简配置指南：**
-> [⚡️ 快速开始](QuickStart.md)
+> [⚡️ 快速开始](QuickStart.md)；
+> 
+> **另有：**
+> [🅿️ Pixiv 书源 功能手册](Pixiv.md)；
+> [🦊 Linpx 书源 功能手册](Linpx.md)
 
 
 ## [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
