@@ -2,7 +2,7 @@
 layout: doc
 title: 导入书源
 description: 一键导入 阅读资源 到开源阅读 App。
-#sidebar: false
+sidebar: false
 aside: false
 editLink: false
 lastUpdated: false
