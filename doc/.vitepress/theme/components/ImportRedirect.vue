@@ -1,6 +1,37 @@
 <script setup lang="ts">
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, onMounted, computed, watch } from 'vue'
 
+const isRedirecting = ref(false)
+const inputUrl = ref('')
+const selectedType = ref('bookSource')
+
+// --- 1. 顶级极速跳转逻辑 ---
+if (typeof window !== 'undefined') {
+  const params = new URLSearchParams(window.location.search)
+  const src = params.get('src') || ''
+
+  if (src.startsWith('legado://')) {
+    isRedirecting.value = true
+    // 尝试多种跳转方式以绕过浏览器拦截
+    const triggerJump = (url: string) => {
+      // 方式 A: 直接赋值
+      window.location.href = url
+      // 方式 B: 模拟点击 (兼容性更好)
+      const a = document.createElement('a')
+      a.href = url
+      a.click()
+    }
+
+    triggerJump(src)
+
+    // 如果 2.5 秒后还没跳走，说明可能没装 App 或拦截了，切回手动模式
+    setTimeout(() => {
+      isRedirecting.value = false
+    }, 2500)
+  }
+}
+
+// --- 2. 其它逻辑 (与之前一致) ---
 const typeMap = [
   { label: '书源', value: 'bookSource', icon: '📚' },
   { label: '订阅源', value: 'rssSource', icon: '📡' },
@@ -12,96 +43,93 @@ const typeMap = [
   { label: '加入书架', value: 'addToBookshelf', icon: '➕' }
 ]
 
-const inputUrl = ref('')
-const manual = ref(false)
-const selectedType = ref('bookSource')
-
 function autoDetect(url: string) {
   const u = url.toLowerCase()
-  if (u.includes('booksource')) return 'bookSource'
+  if (u.includes('booksource') || u.includes('importonline')) return 'bookSource'
   if (u.includes('rss') || u.includes('subscribe')) return 'rssSource'
   if (u.includes('replacerule')) return 'replaceRule'
   if (u.includes('texttocrule')) return 'textTocRule'
   if (u.includes('tts')) return 'httpTTS'
   if (u.includes('theme')) return 'theme'
   if (u.includes('readconfig')) return 'readConfig'
-  if (u.endsWith('.epub') || u.endsWith('.txt') || u.includes('addtobookshelf')) return 'addToBookshelf'
+  if (u.includes('addtobookshelf')) return 'addToBookshelf'
   return 'bookSource'
 }
 
 onMounted(() => {
-  if (typeof window === 'undefined') return
-  const params = new URLSearchParams(location.search)
+  const params = new URLSearchParams(window.location.search)
   const src = params.get('src') || ''
-  if (src) {
+  if (src && !src.startsWith('legado://')) {
     inputUrl.value = src
     selectedType.value = autoDetect(src)
-  } else {
-    manual.value = true
   }
 })
-
-watch(inputUrl, (val) => {
-  if (manual.value && val.startsWith('http')) {
-    selectedType.value = autoDetect(val)
-  }
-})
-
-const ready = computed(() => inputUrl.value.trim().startsWith('http'))
 
 function doImport() {
-  if (!ready.value) return
-  const src = encodeURIComponent(inputUrl.value.trim())
-  window.location.href = `legado://import/${selectedType.value}?src=${src}`
+  const val = inputUrl.value.trim()
+  if (!val) return
+  const finalUrl = val.startsWith('legado://')
+      ? val
+      : `legado://import/${selectedType.value}?src=${encodeURIComponent(val)}`
+  window.location.href = finalUrl
 }
+
+const ready = computed(() => inputUrl.value.trim().length > 0)
 </script>
 
 <template>
   <div class="legado-container">
-    <!-- VP 风格一级标题 -->
-    <h1 class="vp-h1">🚀 一键导入 阅读资源</h1>
-
-    <div class="legado-card">
-      <div class="legado-header">
-        <span class="header-title">请选择导入内容</span>
-        <span class="header-tag" :class="{ 'is-ready': ready }">
-          {{ ready ? '已检测' : '未就绪' }}
-        </span>
-      </div>
-
-      <div class="type-grid">
-        <button
-            v-for="item in typeMap"
-            :key="item.value"
-            class="type-item"
-            :class="{ active: selectedType === item.value }"
-            @click="selectedType = item.value"
-        >
-          <span class="type-icon">{{ item.icon }}</span>
-          <span class="type-label">{{ item.label }}</span>
-        </button>
-      </div>
-
-      <!-- 调整后的粘贴框高度 -->
-      <div class="input-area">
-        <textarea
-            v-model="inputUrl"
-            :readonly="!manual"
-            placeholder="在此粘贴 http(s) 链接..."
-            spellcheck="false"
-        ></textarea>
-      </div>
-
-      <button class="submit-btn" :disabled="!ready" @click="doImport">
-        {{ ready ? '确认导入至阅读' : '等待粘贴有效链接' }}
-      </button>
+    <!-- 如果在跳转中，显示极简提示和手动重试按钮 -->
+    <div v-if="isRedirecting" class="redirecting-minimal">
+      <div class="spinner-small"></div>
+      <p>正在尝试唤起阅读...</p>
+      <a :href="new URLSearchParams($route?.query).get('src')" class="retry-link">没有反应？点击手动跳转</a>
     </div>
 
-    <p class="footer-note">支持 开源阅读 3.0 及其分支版本</p>
+    <!-- 正常模式 -->
+    <template v-else>
+      <h1 class="vp-h1">🚀 一键导入 阅读资源</h1>
+      <!-- ... 这里保留你之前的卡片 UI ... -->
+      <div class="legado-card">
+        <div class="type-grid">
+          <button v-for="item in typeMap" :key="item.value" @click="selectedType = item.value" :class="{ active: selectedType === item.value }" class="type-item">
+            <span class="type-icon">{{ item.icon }}</span>
+            <span class="type-label">{{ item.label }}</span>
+          </button>
+        </div>
+        <div class="input-area">
+          <textarea v-model="inputUrl" placeholder="粘贴链接或协议..."></textarea>
+        </div>
+        <button class="submit-btn" :disabled="!ready" @click="doImport">确认导入</button>
+      </div>
+    </template>
   </div>
 </template>
 
+
 <style scoped>
+.redirecting-minimal {
+  padding-top: 120px;
+  text-align: center;
+}
+.spinner-small {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto 16px;
+  border: 3px solid var(--vp-c-brand-soft);
+  border-top: 3px solid var(--vp-c-brand-1);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+.retry-link {
+  display: block;
+  margin-top: 24px;
+  font-size: 14px;
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
 .legado-container {
   max-width: 640px;
   margin: 0 auto;
