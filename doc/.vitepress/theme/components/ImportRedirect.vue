@@ -16,49 +16,26 @@ const typeMap = [
   { label: '阅读排版', value: 'readConfig', icon: '📝' }
 ]
 
-/**
- * 核心：顶级极速跳转逻辑
- * 逻辑：只要有 src，无论 legado:// 还是 http://，立即计算最终协议并跳转
- */
+// 顶级极速跳转
 if (typeof window !== 'undefined') {
   const params = new URLSearchParams(window.location.search)
   const src = params.get('src')?.trim() || ''
 
   if (src) {
     isRedirecting.value = true
-    let finalUrl = ''
+    let finalUrl = src.startsWith('legado://')
+        ? src
+        : `legado://import/importonline?src=${encodeURIComponent(src)}`
 
-    if (src.startsWith('legado://')) {
-      // 场景 1：已经是协议，直接使用
-      finalUrl = src
-    } else if (src.startsWith('http')) {
-      // 场景 2：是 HTTP 链接，直接按默认“自动”类型封装协议
-      // 这里不需要解析关键字，因为“自动”模式由阅读 App 内部识别更准确
-      finalUrl = `legado://import/importonline?src=${encodeURIComponent(src)}`
-    }
+    window.location.href = finalUrl
+    const a = document.createElement('a')
+    a.href = finalUrl
+    a.click()
 
-    if (finalUrl) {
-      // 执行跳转
-      window.location.href = finalUrl
-
-      // 兜底：模拟点击（部分移动端浏览器需要）
-      const a = document.createElement('a')
-      a.href = finalUrl
-      a.click()
-
-      // 2.5秒后如果还没跳走（例如没装App），取消遮罩显示 UI 供手动操作
-      setTimeout(() => {
-        isRedirecting.value = false
-      }, 2500)
-    } else {
-      isRedirecting.value = false
-    }
+    setTimeout(() => { isRedirecting.value = false }, 2500)
   }
 }
 
-/**
- * 自动识别逻辑（用于手动粘贴或跳转失败后的 UI 同步）
- */
 function parseUrlLogic(url: string) {
   const u = url.trim()
   if (!u) return
@@ -100,17 +77,21 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 
 <template>
   <div class="legado-container">
-    <!-- 跳转中遮罩：只要 URL 带 src 就会首屏进入此状态 -->
+    <!-- 跳转中遮罩 -->
     <div v-if="isRedirecting" class="redirecting-minimal">
       <div class="spinner-small"></div>
-      <p>正在尝试唤起阅读...</p>
-      <div class="redirect-info" v-if="inputUrl">{{ inputUrl }}</div>
-      <a :href="inputUrl.startsWith('legado://') ? inputUrl : `legado://import/importonline?src=${encodeURIComponent(inputUrl)}`" class="retry-link">
+      <p class="status-text">正在尝试唤起阅读...</p>
+
+      <!-- 按钮化的手动跳转链接 -->
+      <a
+          :href="inputUrl.startsWith('legado://') ? inputUrl : `legado://import/importonline?src=${encodeURIComponent(inputUrl)}`"
+          class="retry-btn"
+      >
         没有反应？点击手动跳转
       </a>
     </div>
 
-    <!-- 正常模式：无参数或跳转失败时可见 -->
+    <!-- 正常模式 -->
     <template v-else>
       <h1 class="vp-h1">🚀 一键导入 阅读资源</h1>
 
