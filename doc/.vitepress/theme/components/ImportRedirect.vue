@@ -16,14 +16,14 @@ const typeMap = [
   { label: '阅读排版', value: 'readConfig', icon: '📝' }
 ]
 
-// 顶级极速跳转
+// 1. 【顶级极速跳转】
 if (typeof window !== 'undefined') {
   const params = new URLSearchParams(window.location.search)
   const src = params.get('src')?.trim() || ''
 
   if (src) {
     isRedirecting.value = true
-    let finalUrl = src.startsWith('legado://')
+    const finalUrl = src.startsWith('legado://')
         ? src
         : `legado://import/importonline?src=${encodeURIComponent(src)}`
 
@@ -32,7 +32,7 @@ if (typeof window !== 'undefined') {
     a.href = finalUrl
     a.click()
 
-    setTimeout(() => { isRedirecting.value = false }, 2500)
+    setTimeout(() => { isRedirecting.value = false }, 2800)
   }
 }
 
@@ -77,30 +77,31 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 
 <template>
   <div class="legado-container">
-    <!-- 跳转中遮罩 -->
-    <div v-if="isRedirecting" class="redirecting-minimal">
-      <div class="spinner-small"></div>
-      <p class="status-text">正在尝试唤起阅读...</p>
+    <!-- 状态 A：加载中卡片（紧凑版） -->
+    <div v-if="isRedirecting" class="legado-card redirect-mode">
+      <div class="loader-wrapper">
+        <div class="loader-ring"></div>
+        <div class="loader-ring-inner"></div>
+        <span class="loader-icon">🚀</span>
+      </div>
+      <h2 class="redirect-title">正在拉起阅读 App</h2>
+      <p class="redirect-desc">如果已安装阅读，应用将立即拉起...</p>
 
-      <!-- 按钮化的手动跳转链接 -->
       <a
           :href="inputUrl.startsWith('legado://') ? inputUrl : `legado://import/importonline?src=${encodeURIComponent(inputUrl)}`"
-          class="retry-btn"
+          class="retry-btn-styled"
       >
         没有反应？点击手动跳转
       </a>
     </div>
 
-    <!-- 正常模式 -->
+    <!-- 状态 B：主交互大卡片（紧凑版） -->
     <template v-else>
       <h1 class="vp-h1">🚀 一键导入 阅读资源</h1>
 
-      <div class="legado-card">
+      <div class="legado-card main-mode">
         <div class="legado-header">
           <span class="header-title">请选择导入类型</span>
-          <span class="header-tag" :class="{ 'is-ready': ready }">
-            {{ selectedType === 'importonline' ? '自动模式' : '手动指定' }}
-          </span>
         </div>
 
         <div class="type-grid">
@@ -119,7 +120,7 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
         <div class="input-area">
           <textarea
               v-model="inputUrl"
-              placeholder="在此粘贴 http(s) 链接或 legado:// 协议..."
+              placeholder="粘贴 http(s) 链接或 legado:// 协议..."
               spellcheck="false"
           ></textarea>
         </div>
@@ -129,164 +130,200 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
         </button>
       </div>
 
-      <p class="footer-note">适配 阅读 3.0+，默认使用 importonline 协议</p>
+      <p class="footer-note">适配 阅读 3.0+ · 纯前端极速版</p>
     </template>
   </div>
 </template>
 
 <style scoped>
+/* 容器 */
 .legado-container {
   max-width: 640px;
   margin: 0 auto;
-  padding: 40px 0;
+  padding: 40px 16px;
   text-align: center;
 }
 
 .vp-h1 {
-  letter-spacing: -0.02em;
-  line-height: 40px;
-  font-size: 32px;
-  font-weight: 700;
+  font-size: 30px;
+  font-weight: 800;
+  margin-bottom: 28px;
   color: var(--vp-c-text-1);
-  margin-bottom: 32px;
-  padding: 0 16px;
 }
 
-@media (min-width: 768px) {
-  .vp-h1 { font-size: 40px; line-height: 48px; }
-}
-
+/* 核心卡片样式 */
 .legado-card {
-  background: var(--vp-c-bg-soft);
-  border-radius: 20px;
-  padding: 24px;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+  background: var(--vp-c-bg-elevated);
+  border: 1px solid var(--vp-c-brand-soft);
+  border-radius: 20px; /* 稍微减小圆角使其看起来更现代 */
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+/* 状态 A：跳转卡片内边距减小 */
+.redirect-mode {
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 状态 B：主卡片内边距减小至 20px */
+.main-mode {
+  padding: 20px;
   text-align: left;
 }
 
+/* 头部紧凑化 */
 .legado-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
-
 .header-title {
   font-size: 15px;
   font-weight: 600;
   color: var(--vp-c-text-2);
 }
 
-.header-tag {
-  font-size: 11px;
-  padding: 2px 10px;
-  border-radius: 20px;
-  background: var(--vp-c-bg-mute);
-  color: var(--vp-c-text-3);
-}
-
-.header-tag.is-ready {
-  background: var(--vp-c-brand-soft);
-  color: var(--vp-c-brand-1);
-}
-
+/* 网格按钮 */
 .type-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 16px;
 }
-
 .type-item {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 12px 2px;
-  background: var(--vp-c-bg);
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-gutter);
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  border: none;
+  transition: all 0.2s;
 }
-
 .type-item.active {
   background: var(--vp-c-brand-1);
-  box-shadow: 0 4px 12px var(--vp-c-brand-soft);
+  border-color: var(--vp-c-brand-1);
+  color: white;
 }
-
 .type-icon {
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 4px;
 }
-
 .type-label {
-  font-size: 14px; /* 调大后的字体 */
+  font-size: 14px;
   font-weight: 700;
-  color: var(--vp-c-text-2);
 }
 
-.type-item.active .type-label,
-.type-item.active .type-icon {
-  color: #fff;
-}
-
+/* 输入框紧凑化 */
 .input-area textarea {
   width: 100%;
-  height: 150px;
-  background: var(--vp-c-bg);
-  border: none;
+  height: 130px; /* 减小高度 */
+  background: var(--vp-c-bg-soft);
+  border: 1px solid var(--vp-c-gutter);
   border-radius: 12px;
-  padding: 16px;
+  padding: 12px;
+  margin-bottom: 16px;
   font-family: var(--vp-font-family-mono);
-  font-size: 14px;
+  font-size: 13px;
   color: var(--vp-c-text-1);
-  margin-bottom: 20px;
   resize: none;
-  line-height: 1.5;
 }
 
-.input-area textarea:focus {
-  outline: 2px solid var(--vp-c-brand-soft);
-}
-
+/* 提交按钮 */
 .submit-btn {
   width: 100%;
-  padding: 16px;
+  padding: 14px;
   border-radius: 12px;
-  font-size: 16px;
-  font-weight: 700;
   background: var(--vp-c-brand-1);
-  color: #fff;
+  color: white;
   border: none;
+  font-size: 15px;
+  font-weight: 700;
   cursor: pointer;
 }
 
-.submit-btn:disabled {
-  background: var(--vp-c-gray-soft);
+/* 加载动画 */
+.loader-wrapper { position: relative; width: 70px; height: 70px; margin-bottom: 20px; }
+.loader-ring {
+  position: absolute; width: 100%; height: 100%;
+  border: 4px solid var(--vp-c-brand-soft);
+  border-top-color: var(--vp-c-brand-1);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+.loader-ring-inner {
+  position: absolute; top: 8px; left: 8px; right: 8px; bottom: 8px;
+  border: 3px solid transparent;
+  border-bottom-color: var(--vp-c-brand-2);
+  border-radius: 50%;
+  animation: spin 1.5s linear reverse infinite;
+  opacity: 0.6;
+}
+.loader-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+}
+
+.redirect-title {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.redirect-desc {
   color: var(--vp-c-text-3);
-  cursor: not-allowed;
+  font-size: 13px;
+  margin-bottom: 24px;
+}
+
+.retry-btn-styled {
+  background: var(--vp-c-brand-1);
+  color: white !important;
+  padding: 10px 30px;
+  border-radius: 40px;
+  font-weight: 700;
+  font-size: 13px;
+  text-decoration: none !important;
 }
 
 .footer-note {
-  margin-top: 24px;
-  font-size: 12px;
+  margin-top: 20px;
+  font-size: 14px;
   color: var(--vp-c-text-3);
 }
 
-.redirecting-minimal { padding-top: 120px; text-align: center; }
-.spinner-small {
-  width: 24px; height: 24px; margin: 0 auto 16px;
-  border: 3px solid var(--vp-c-brand-soft);
-  border-top: 3px solid var(--vp-c-brand-1);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
 }
-@keyframes spin { 100% { transform: rotate(360deg); } }
-.retry-link { display: block; margin-top: 24px; font-size: 14px; color: var(--vp-c-brand-1); text-decoration: underline; }
 
 @media (max-width: 640px) {
-  .legado-container { padding: 24px 8px; }
-  .legado-card { padding: 16px; border-radius: 12px; }
-  .type-grid { gap: 6px; }
+  .legado-container {
+    padding: 00px 10px;
+  }
+  .vp-h1 {
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+  .type-grid {
+    gap: 6px;
+  }
+  .type-icon {
+    font-size: 24px;
+    margin-bottom: 4px;
+  }
+  .type-label {
+    font-size: 14px;
+    font-weight: 700;
+  }
 }
 </style>
