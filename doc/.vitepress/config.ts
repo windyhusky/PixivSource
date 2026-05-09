@@ -104,6 +104,7 @@ export default defineConfig({
         nav: [
             { text: "✍️ 博客", link: BLOG },
             { text: "🏠 主页", link: "/" },
+            { text: "🚀 一键导入", link: "/Import" },
             {
                 text: "📌 书源指南",
                 activeMatch: '/',
@@ -122,7 +123,7 @@ export default defineConfig({
                     { text: "⬇️ 下载阅读", link: "/Download" },
                     { text: "🚀 导入书源", link: "/ImportBookSource" },
                     { text: "🚀 导入订阅", link: "/ImportRssSource" },
-                    { text: "💾 备份恢复", link: "/WebdavBackup" },
+                    { text: "💾 备份恢复", link: "/WebdavBackup" , activeMatch: '/' },
                     { text: "☁️ 远程书籍", link: "/RemoteBooks" },
                     { text: "🛠️ 故障排查", link: "/TroubleShoot" }
                 ],
@@ -142,6 +143,13 @@ export default defineConfig({
         darkModeSwitchLabel: '深色模式',
         sidebarMenuLabel: "菜单",
         sidebar: [
+            {
+                text: "站方功能",
+                collapsed: false,
+                items: [
+                    { text: "🚀 一键导入", link: "/Import" },
+                ]
+            },
             {
                 text: "快速开始",
                 collapsed: false,

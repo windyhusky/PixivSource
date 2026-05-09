@@ -76,9 +76,13 @@ hero:
       text: ⚡️ 快速开始
       link: QuickStart
       
-    - theme: alt
-      text: ⬇️ 阅读软件
-      link: Download   
+    - theme: brand
+      text: 🚀 一键导入
+      link: Import
+      
+#    - theme: alt
+#      text: ⬇️ 阅读软件
+#      link: Download   
 
     - theme: alt
       text: 🏠 项目
