@@ -5,71 +5,80 @@ const isRedirecting = ref(false)
 const inputUrl = ref('')
 const selectedType = ref('importonline')
 
-// --- 1. 顶级极速跳转逻辑 ---
-if (typeof window !== 'undefined') {
-  const params = new URLSearchParams(window.location.search)
-  const src = params.get('src') || ''
-
-  if (src.startsWith('legado://')) {
-    isRedirecting.value = true
-    // 立即执行跳转
-    window.location.href = src
-    // 兼容部分拦截严格的浏览器：模拟点击
-    const a = document.createElement('a')
-    a.href = src
-    a.click()
-
-    // 如果 2.5 秒后还没跳走（可能没装 App），则通过 isRedirecting 切回 UI 界面
-    setTimeout(() => {
-      isRedirecting.value = false
-    }, 2500)
-  }
-}
-
-// 2. 基础配置与逻辑
 const typeMap = [
-  { label: '自动', value: 'importonline', icon: '⚡️' },
+  { label: '自动', value: 'importonline', icon: '⚡' },
   { label: '书源', value: 'bookSource', icon: '📚' },
   { label: '订阅源', value: 'rssSource', icon: '📡' },
   { label: '替换规则', value: 'replaceRule', icon: '✂️' },
   { label: '目录规则', value: 'textTocRule', icon: '📖' },
   { label: '朗读引擎', value: 'httpTTS', icon: '🗣️' },
   { label: '主题样式', value: 'theme', icon: '🎨' },
-  { label: '阅读排版', value: 'readConfig', icon: '📝' },
-  // { label: '加入书架', value: 'addToBookshelf', icon: '➕' }
+  { label: '阅读排版', value: 'readConfig', icon: '📝' }
 ]
 
+/**
+ * 核心：顶级极速跳转逻辑
+ * 逻辑：只要有 src，无论 legado:// 还是 http://，立即计算最终协议并跳转
+ */
+if (typeof window !== 'undefined') {
+  const params = new URLSearchParams(window.location.search)
+  const src = params.get('src')?.trim() || ''
+
+  if (src) {
+    isRedirecting.value = true
+    let finalUrl = ''
+
+    if (src.startsWith('legado://')) {
+      // 场景 1：已经是协议，直接使用
+      finalUrl = src
+    } else if (src.startsWith('http')) {
+      // 场景 2：是 HTTP 链接，直接按默认“自动”类型封装协议
+      // 这里不需要解析关键字，因为“自动”模式由阅读 App 内部识别更准确
+      finalUrl = `legado://import/importonline?src=${encodeURIComponent(src)}`
+    }
+
+    if (finalUrl) {
+      // 执行跳转
+      window.location.href = finalUrl
+
+      // 兜底：模拟点击（部分移动端浏览器需要）
+      const a = document.createElement('a')
+      a.href = finalUrl
+      a.click()
+
+      // 2.5秒后如果还没跳走（例如没装App），取消遮罩显示 UI 供手动操作
+      setTimeout(() => {
+        isRedirecting.value = false
+      }, 2500)
+    } else {
+      isRedirecting.value = false
+    }
+  }
+}
+
+/**
+ * 自动识别逻辑（用于手动粘贴或跳转失败后的 UI 同步）
+ */
 function parseUrlLogic(url: string) {
   const u = url.trim()
   if (!u) return
-
-  // 检测输入框内的 legado 协议路径并自动点亮按钮
   if (u.startsWith('legado://')) {
     const match = u.match(/legado:\/\/import\/([a-zA-Z]+)/)
     if (match && match[1]) {
-      const path = match[1]
-      const found = typeMap.find(item => item.value === path)
+      const found = typeMap.find(item => item.value === match[1])
       selectedType.value = found ? found.value : 'importonline'
     }
     return
   }
-
-  // HTTP 链接关键字识别
   const lowerU = u.toLowerCase()
-  if (lowerU.includes('booksource')) selectedType.value = 'bookSource'
-  else if (lowerU.includes('rss') || lowerU.includes('subscribe')) selectedType.value = 'rssSource'
-  else if (lowerU.includes('replacerule')) selectedType.value = 'replaceRule'
-  else if (lowerU.includes('texttocrule')) selectedType.value = 'textTocRule'
-  else if (lowerU.includes('tts')) selectedType.value = 'httpTTS'
-  else if (lowerU.includes('theme')) selectedType.value = 'theme'
-  else if (lowerU.includes('readconfig')) selectedType.value = 'readConfig'
-  else selectedType.value = 'importonline'
+  const found = typeMap.find(item => item.value !== 'importonline' && lowerU.includes(item.value.toLowerCase()))
+  selectedType.value = found ? found.value : 'importonline'
 }
 
 onMounted(() => {
   const params = new URLSearchParams(window.location.search)
-  const src = params.get('src') || ''
-  if (src && !src.startsWith('legado://')) {
+  const src = params.get('src')?.trim() || ''
+  if (src) {
     inputUrl.value = src
     parseUrlLogic(src)
   }
@@ -91,14 +100,17 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 
 <template>
   <div class="legado-container">
-    <!-- 跳转中遮罩：仅在直接跳转 legado:// 时显示 -->
+    <!-- 跳转中遮罩：只要 URL 带 src 就会首屏进入此状态 -->
     <div v-if="isRedirecting" class="redirecting-minimal">
       <div class="spinner-small"></div>
       <p>正在尝试唤起阅读...</p>
-      <a :href="new URLSearchParams($route?.query).get('src')" class="retry-link">没有反应？点击手动跳转</a>
+      <div class="redirect-info" v-if="inputUrl">{{ inputUrl }}</div>
+      <a :href="inputUrl.startsWith('legado://') ? inputUrl : `legado://import/importonline?src=${encodeURIComponent(inputUrl)}`" class="retry-link">
+        没有反应？点击手动跳转
+      </a>
     </div>
 
-    <!-- 正常模式 -->
+    <!-- 正常模式：无参数或跳转失败时可见 -->
     <template v-else>
       <h1 class="vp-h1">🚀 一键导入 阅读资源</h1>
 
@@ -126,17 +138,17 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
         <div class="input-area">
           <textarea
               v-model="inputUrl"
-              placeholder="粘贴 http(s) 链接或 legado:// 协议..."
+              placeholder="在此粘贴 http(s) 链接或 legado:// 协议..."
               spellcheck="false"
           ></textarea>
         </div>
 
         <button class="submit-btn" :disabled="!ready" @click="doImport">
-          导入至 开源阅读
+          确认导入至阅读
         </button>
       </div>
 
-      <p class="footer-note">适配 开源阅读 3.0 及其分支版本</p>
+      <p class="footer-note">适配 阅读 3.0+，默认使用 importonline 协议</p>
     </template>
   </div>
 </template>
