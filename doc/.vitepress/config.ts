@@ -105,7 +105,7 @@ export default defineConfig({
             { text: "✍️ 博客", link: BLOG },
             { text: "🏠 主页", link: "/" },
             {
-                text: "📌 使用指南",
+                text: "📌 书源指南",
                 activeMatch: '/',
                 items: [
                     { text: "✨ 臻享阅读", link: "/BetterExperience", activeMatch: '/' },
@@ -113,6 +113,7 @@ export default defineConfig({
                     { text: "💾 备份恢复", link: "/WebdavBackup" , activeMatch: '/' },
                     { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
                     { text: "🦊 Linpx 书源", link: "/Linpx" },
+                    { text: "🐯 兽人小说站", link: "/FurryNovel" },
                 ],
             },
             {
@@ -120,6 +121,7 @@ export default defineConfig({
                 items: [
                     { text: "⬇️ 下载阅读", link: "/Download" },
                     { text: "🚀 导入书源", link: "/ImportBookSource" },
+                    { text: "🚀 导入订阅", link: "/ImportRssSource" },
                     { text: "💾 备份恢复", link: "/WebdavBackup" },
                     { text: "☁️ 远程书籍", link: "/RemoteBooks" },
                     { text: "🛠️ 故障排查", link: "/TroubleShoot" }
