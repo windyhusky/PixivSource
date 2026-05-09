@@ -6,7 +6,7 @@ description: 用开源阅读 + Pixiv 书源，像看网文一样阅读 Pixiv 小
 head:
   - - meta
     - name: keywords
-      content: Pixiv 小说, Pixiv 书源, Legado 书源, 开源阅读 Pixiv, Pixiv 小说阅读器, PixivSource, Pixiv BookSource, Legado 3.0, 阅读 Plus Pixiv, Pixiv 书源导入, Linpx 书源, 兽人小说 书源, 开源阅读书源
+      content: Pixiv github, Pixiv 第三方, Pixiv 第三方 app, Pixiv 阅读器, Pixiv 小说, Pixiv 小説, Linpx, 兽人小说, FurryNovel, 书源, Pixiv 书源, Linpx 书源, FurryNovel 书源, PixivSource, Pixiv BookSource, 兽人小说 书源, 开源阅读, 开源阅读 书源, 开源阅读书源
   - - meta
     - property: og:title
       content: Pixiv 书源 - 最好的 Pixiv 第三方小说阅读器
@@ -24,7 +24,7 @@ head:
       content: Pixiv 书源 - 最好的 Pixiv 第三方小说阅读器
   - - meta
     - name: twitter:description
-      content: 用开源阅读 Legado + Pixiv 书源，像刷网文一样看 Pixiv 小说。支持搜索、收藏、追更、评论等功能。
+      content: 用开源阅读 Legado + Pixiv 书源，像看网文一样看 Pixiv 小说。支持搜索、收藏、追更、评论等功能。
 
 
 hero:
@@ -39,7 +39,11 @@ hero:
     - theme: brand
       text: ⬇️ 下载 阅读 Plus
       link: "https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk"
-      
+
+#    - theme: alt
+#      text: ⬇️ 下载 阅读软件
+#      link: Download      
+
     - theme: alt
       text: ✨ 臻享阅读
       link: BetterExperience
@@ -72,6 +76,10 @@ hero:
       text: ⚡️ 快速开始
       link: QuickStart
       
+    - theme: alt
+      text: ⬇️ 阅读软件
+      link: Download   
+
     - theme: alt
       text: 🏠 项目
       link: https://github.com/DowneyRem/PixivSource
