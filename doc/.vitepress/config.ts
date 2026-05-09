@@ -1,7 +1,7 @@
 import { defineConfig, type HeadConfig } from "vitepress"
-import timeline from "vitepress-markdown-timeline";
-import { writeFileSync } from 'fs'
-import { resolve } from 'path'
+import timeline from "vitepress-markdown-timeline"
+import { writeFileSync, readdirSync, statSync } from 'fs'
+import { resolve, relative } from 'path'
 
 // 动态判断环境
 // Cloudflare Pages 默认提供 CF_PAGES 环境变量
@@ -80,17 +80,6 @@ export default defineConfig({
         }
 
         return heads
-    },
-
-    // 构建结束后自动生成 robots.txt
-    buildEnd(siteConfig) {
-        const robots = isCF
-            // CF Pages（主站）：允许爬虫，声明 sitemap
-            ? `User-agent: *\nAllow: /\n\nSitemap: https://pixivsource.pages.dev/sitemap.xml\n`
-            // GitHub Pages（跳转站）：屏蔽爬虫，避免收录跳转页
-            : `User-agent: *\nDisallow: /\n`
-
-        writeFileSync(resolve(siteConfig.outDir, 'robots.txt'), robots)
     },
 
     themeConfig: {
@@ -277,6 +266,50 @@ export default defineConfig({
             news: false,
             xhtml: false,
             image: false,
+        }
+    },
+
+    buildEnd(siteConfig) {
+        // 1. 生成 robots.txt
+        const robots = isCF
+            ? `User-agent: *\nAllow: /\n\nSitemap: https://pixivsource.pages.dev/sitemap.xml\n`
+            : `User-agent: *\nDisallow: /\n`
+        writeFileSync(resolve(siteConfig.outDir, 'robots.txt'), robots)
+
+        // 2. 生成 Cloudflare _redirects (仅在 CF 平台执行)
+        if (isCF) {
+            const rules: string[] = []
+
+            const getFiles = (dir: string) => {
+                const files = readdirSync(dir)
+                for (const file of files) {
+                    const fullPath = resolve(dir, file)
+
+                    if (statSync(fullPath).isDirectory()) {
+                        getFiles(fullPath)
+                    } else if (file.endsWith('.html')) {
+                        let relPath = relative(siteConfig.outDir, fullPath)
+                        relPath = relPath.replace(/\\/g, '/')
+                        relPath = relPath.replace(/index\.html$/, '').replace(/\.html$/, '')
+
+                        let urlPath = relPath.startsWith('/') ? relPath : '/' + relPath
+                        if (urlPath.length > 1 && urlPath.endsWith('/')) {
+                            urlPath = urlPath.slice(0, -1)
+                        }
+
+                        const lowerPath = urlPath.toLowerCase()
+                        if (urlPath !== lowerPath) {
+                            rules.push(`${lowerPath}  ${urlPath}  301`)
+                        }
+                    }
+                }
+            }
+
+            getFiles(siteConfig.outDir)
+            if (rules.length > 0) {
+                writeFileSync(resolve(siteConfig.outDir, '_redirects'), rules.join('\n'))
+                console.log(`\n\x1b[32m✓\x1b[0m 已成功生成 _redirects 文件，包含 ${rules.length} 条大小写重定向规则。`)
+            }
         }
     }
 })
