@@ -3,7 +3,7 @@ import { ref, onMounted, computed, watch } from 'vue'
 
 const isRedirecting = ref(false)
 const inputUrl = ref('')
-const selectedType = ref('bookSource')
+const selectedType = ref('importonline')
 
 // --- 1. 顶级极速跳转逻辑 ---
 if (typeof window !== 'undefined') {
@@ -12,27 +12,23 @@ if (typeof window !== 'undefined') {
 
   if (src.startsWith('legado://')) {
     isRedirecting.value = true
-    // 尝试多种跳转方式以绕过浏览器拦截
-    const triggerJump = (url: string) => {
-      // 方式 A: 直接赋值
-      window.location.href = url
-      // 方式 B: 模拟点击 (兼容性更好)
-      const a = document.createElement('a')
-      a.href = url
-      a.click()
-    }
+    // 立即执行跳转
+    window.location.href = src
+    // 兼容部分拦截严格的浏览器：模拟点击
+    const a = document.createElement('a')
+    a.href = src
+    a.click()
 
-    triggerJump(src)
-
-    // 如果 2.5 秒后还没跳走，说明可能没装 App 或拦截了，切回手动模式
+    // 如果 2.5 秒后还没跳走（可能没装 App），则通过 isRedirecting 切回 UI 界面
     setTimeout(() => {
       isRedirecting.value = false
     }, 2500)
   }
 }
 
-// --- 2. 其它逻辑 (与之前一致) ---
+// 2. 基础配置与逻辑
 const typeMap = [
+  { label: '自动', value: 'importonline', icon: '⚡️' },
   { label: '书源', value: 'bookSource', icon: '📚' },
   { label: '订阅源', value: 'rssSource', icon: '📡' },
   { label: '替换规则', value: 'replaceRule', icon: '✂️' },
@@ -40,20 +36,34 @@ const typeMap = [
   { label: '朗读引擎', value: 'httpTTS', icon: '🗣️' },
   { label: '主题样式', value: 'theme', icon: '🎨' },
   { label: '阅读排版', value: 'readConfig', icon: '📝' },
-  { label: '加入书架', value: 'addToBookshelf', icon: '➕' }
+  // { label: '加入书架', value: 'addToBookshelf', icon: '➕' }
 ]
 
-function autoDetect(url: string) {
-  const u = url.toLowerCase()
-  if (u.includes('booksource') || u.includes('importonline')) return 'bookSource'
-  if (u.includes('rss') || u.includes('subscribe')) return 'rssSource'
-  if (u.includes('replacerule')) return 'replaceRule'
-  if (u.includes('texttocrule')) return 'textTocRule'
-  if (u.includes('tts')) return 'httpTTS'
-  if (u.includes('theme')) return 'theme'
-  if (u.includes('readconfig')) return 'readConfig'
-  if (u.includes('addtobookshelf')) return 'addToBookshelf'
-  return 'bookSource'
+function parseUrlLogic(url: string) {
+  const u = url.trim()
+  if (!u) return
+
+  // 检测输入框内的 legado 协议路径并自动点亮按钮
+  if (u.startsWith('legado://')) {
+    const match = u.match(/legado:\/\/import\/([a-zA-Z]+)/)
+    if (match && match[1]) {
+      const path = match[1]
+      const found = typeMap.find(item => item.value === path)
+      selectedType.value = found ? found.value : 'importonline'
+    }
+    return
+  }
+
+  // HTTP 链接关键字识别
+  const lowerU = u.toLowerCase()
+  if (lowerU.includes('booksource')) selectedType.value = 'bookSource'
+  else if (lowerU.includes('rss') || lowerU.includes('subscribe')) selectedType.value = 'rssSource'
+  else if (lowerU.includes('replacerule')) selectedType.value = 'replaceRule'
+  else if (lowerU.includes('texttocrule')) selectedType.value = 'textTocRule'
+  else if (lowerU.includes('tts')) selectedType.value = 'httpTTS'
+  else if (lowerU.includes('theme')) selectedType.value = 'theme'
+  else if (lowerU.includes('readconfig')) selectedType.value = 'readConfig'
+  else selectedType.value = 'importonline'
 }
 
 onMounted(() => {
@@ -61,9 +71,11 @@ onMounted(() => {
   const src = params.get('src') || ''
   if (src && !src.startsWith('legado://')) {
     inputUrl.value = src
-    selectedType.value = autoDetect(src)
+    parseUrlLogic(src)
   }
 })
+
+watch(inputUrl, (newVal) => parseUrlLogic(newVal))
 
 function doImport() {
   const val = inputUrl.value.trim()
@@ -79,7 +91,7 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 
 <template>
   <div class="legado-container">
-    <!-- 如果在跳转中，显示极简提示和手动重试按钮 -->
+    <!-- 跳转中遮罩：仅在直接跳转 legado:// 时显示 -->
     <div v-if="isRedirecting" class="redirecting-minimal">
       <div class="spinner-small"></div>
       <p>正在尝试唤起阅读...</p>
@@ -89,47 +101,47 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
     <!-- 正常模式 -->
     <template v-else>
       <h1 class="vp-h1">🚀 一键导入 阅读资源</h1>
-      <!-- ... 这里保留你之前的卡片 UI ... -->
+
       <div class="legado-card">
+        <div class="legado-header">
+          <span class="header-title">请选择导入类型</span>
+          <span class="header-tag" :class="{ 'is-ready': ready }">
+            {{ selectedType === 'importonline' ? '自动模式' : '手动指定' }}
+          </span>
+        </div>
+
         <div class="type-grid">
-          <button v-for="item in typeMap" :key="item.value" @click="selectedType = item.value" :class="{ active: selectedType === item.value }" class="type-item">
+          <button
+              v-for="item in typeMap"
+              :key="item.value"
+              @click="selectedType = item.value"
+              :class="{ active: selectedType === item.value }"
+              class="type-item"
+          >
             <span class="type-icon">{{ item.icon }}</span>
             <span class="type-label">{{ item.label }}</span>
           </button>
         </div>
+
         <div class="input-area">
-          <textarea v-model="inputUrl" placeholder="粘贴链接或协议..."></textarea>
+          <textarea
+              v-model="inputUrl"
+              placeholder="粘贴 http(s) 链接或 legado:// 协议..."
+              spellcheck="false"
+          ></textarea>
         </div>
-        <button class="submit-btn" :disabled="!ready" @click="doImport">确认导入</button>
+
+        <button class="submit-btn" :disabled="!ready" @click="doImport">
+          导入至 开源阅读
+        </button>
       </div>
+
+      <p class="footer-note">适配 开源阅读 3.0 及其分支版本</p>
     </template>
   </div>
 </template>
 
-
 <style scoped>
-.redirecting-minimal {
-  padding-top: 120px;
-  text-align: center;
-}
-.spinner-small {
-  width: 24px;
-  height: 24px;
-  margin: 0 auto 16px;
-  border: 3px solid var(--vp-c-brand-soft);
-  border-top: 3px solid var(--vp-c-brand-1);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-.retry-link {
-  display: block;
-  margin-top: 24px;
-  font-size: 14px;
-  color: var(--vp-c-brand-1);
-  text-decoration: underline;
-}
-@keyframes spin { 100% { transform: rotate(360deg); } }
-
 .legado-container {
   max-width: 640px;
   margin: 0 auto;
@@ -148,10 +160,7 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 }
 
 @media (min-width: 768px) {
-  .vp-h1 {
-    font-size: 40px;
-    line-height: 48px;
-  }
+  .vp-h1 { font-size: 40px; line-height: 48px; }
 }
 
 .legado-card {
@@ -182,6 +191,7 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
   background: var(--vp-c-bg-mute);
   color: var(--vp-c-text-3);
 }
+
 .header-tag.is-ready {
   background: var(--vp-c-brand-soft);
   color: var(--vp-c-brand-1);
@@ -217,8 +227,8 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 }
 
 .type-label {
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 14px; /* 调大后的字体 */
+  font-weight: 700;
   color: var(--vp-c-text-2);
 }
 
@@ -227,7 +237,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
   color: #fff;
 }
 
-/* 粘贴框高度优化：150px (约 3/4) */
 .input-area textarea {
   width: 100%;
   height: 150px;
@@ -257,15 +266,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
   color: #fff;
   border: none;
   cursor: pointer;
-  transition: transform 0.1s, opacity 0.2s;
-}
-
-.submit-btn:hover:not(:disabled) {
-  opacity: 0.9;
-}
-
-.submit-btn:active:not(:disabled) {
-  transform: scale(0.98);
 }
 
 .submit-btn:disabled {
@@ -280,28 +280,20 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
   color: var(--vp-c-text-3);
 }
 
-/* 手机端贴边优化 */
+.redirecting-minimal { padding-top: 120px; text-align: center; }
+.spinner-small {
+  width: 24px; height: 24px; margin: 0 auto 16px;
+  border: 3px solid var(--vp-c-brand-soft);
+  border-top: 3px solid var(--vp-c-brand-1);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+@keyframes spin { 100% { transform: rotate(360deg); } }
+.retry-link { display: block; margin-top: 24px; font-size: 14px; color: var(--vp-c-brand-1); text-decoration: underline; }
+
 @media (max-width: 640px) {
-  .legado-container {
-    padding: 24px 8px;
-  }
-
-  .legado-card {
-    padding: 16px;
-    border-radius: 12px;
-  }
-
-  .type-grid {
-    gap: 6px;
-  }
-
-  .type-label {
-    font-size: 9px;
-  }
-
-  .input-area textarea {
-    height: 150px; /* 保持 3/4 高度比例 */
-    padding: 12px;
-  }
+  .legado-container { padding: 24px 8px; }
+  .legado-card { padding: 16px; border-radius: 12px; }
+  .type-grid { gap: 6px; }
 }
 </style>
