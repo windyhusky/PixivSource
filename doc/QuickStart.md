@@ -72,7 +72,7 @@ head:
 ### ✅ B.兼容软件 {#CompatibleAPP}
 <details><summary><strong>🉑 兼容软件 </strong></summary>
 
-- [Pixiv 小说书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
+- [Pixiv 小说书源](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
 
 | 阅读版本 | 推荐 | 版本号 |
 | ------ | --- | ----- |
@@ -82,7 +82,7 @@ head:
 
 <details><summary><strong> 🈶 更多软件 </strong></summary>
 
-- [Pixiv 小说备用书源](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
+- [Pixiv 小说备用书源](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
 
 | 阅读版本 | 推荐 | 版本号 |
 | ------ | --- | ----- |
@@ -116,13 +116,13 @@ head:
 **点击链接，一键导入 书源、订阅源**
 | 源名称    | jsDelivr | Github |
 |--------| -------- | ------ |
-| 🅿️ Pixiv 书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
-| 🦊 Linpx 书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
-| 🐲 BTSRK 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
+| 🅿️ Pixiv 书源 | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| 🦊 Linpx 书源 | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| 🐲 BTSRK 订阅源 | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
 | | | |
-| 🌌 通用书源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/normal.json) |
-| 📚 Books 订阅源 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json)  | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json) |
-| 📃 Pixiv 目录规则 | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json) | [一键导入](https://loyc.xyz/b/cdx.html?src=legado://import/textTocRule?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixivToc.json) |
+| 🌌 通用书源 | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/normal.json) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/normal.json) |
+| 📚 Books 订阅源 | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json)  | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/books.json) |
+| 📃 Pixiv 目录规则 | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixivToc.json) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixivToc.json) |
 
 
 <details><summary><strong> 🚀 一键导入　详细操作 </strong></summary>
