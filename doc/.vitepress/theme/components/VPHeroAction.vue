@@ -23,13 +23,11 @@ const computedActions = computed(() => {
 <template>
   <div v-if="computedActions.length > 0" class="legado-actions-outer">
     <div class="legado-card main-mode">
-      <!-- 头部标题风格完全对齐 -->
       <div class="legado-header">
         <span class="header-title">{{ title }}</span>
       </div>
 
-      <!-- 按钮网格：支持自动换行，居中对齐 -->
-      <div class="actions-grid">
+      <div class="actions-container">
         <a
             v-for="action in computedActions"
             :key="action.link"
@@ -45,10 +43,9 @@ const computedActions = computed(() => {
 </template>
 
 <style scoped>
-/* 容器：与你的 legato-card 逻辑对齐 */
 .legado-actions-outer {
   max-width: 640px;
-  margin: 24px auto;
+  margin: 32px auto; /* 增加上下外边距，拉开与上方组件的距离 */
   width: 100%;
 }
 
@@ -57,14 +54,13 @@ const computedActions = computed(() => {
   border: 1px solid var(--vp-c-brand-soft);
   border-radius: 20px;
   box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  transition: all 0.3s ease;
+  padding: 24px; /* 略微增加卡片内边距 */
+  box-sizing: border-box;
 }
 
 .legado-header {
   display: flex;
-  justify-content: flex-start; /* 改为左对齐，保持与导入框一致 */
-  margin-bottom: 16px;
+  margin-bottom: 20px; /* 标题与按钮组的间距增大 */
 }
 
 .header-title {
@@ -73,56 +69,63 @@ const computedActions = computed(() => {
   color: var(--vp-c-text-2);
 }
 
-/* 按钮网格布局 */
-.actions-grid {
+.actions-container {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  justify-content: flex-start;
+  /* 增大间距：第一个值是行间距 (row)，第二个是列间距 (column) */
+  gap: 14px 16px;
+  justify-content: center;
 }
 
-/* 基础按钮样式：复用你的 type-item 逻辑但宽度自适应 */
 .action-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 10px 20px;
+  /* 略微增加按钮的尺寸 */
+  padding: 12px 22px;
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-gutter);
-  border-radius: 12px; /* 与 type-item 圆角一致 */
+  border-radius: 14px; /* 随尺寸增大圆角，视觉更协调 */
   text-decoration: none !important;
-  transition: all 0.2s ease;
-  min-width: 100px;
+  transition: all 0.25s ease;
+
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .btn-text {
-  font-size: 14px;
+  font-size: 15px; /* 字号略微提升 */
   font-weight: 700;
   color: var(--vp-c-text-1);
 }
 
-/* 主题颜色：复用你的 submit-btn / active 逻辑 */
 .action-btn.brand {
   background: var(--vp-c-brand-1);
   border-color: var(--vp-c-brand-1);
 }
 .action-btn.brand .btn-text {
-  color: white;
+  color: #ffffff;
 }
 
-/* 悬停效果 */
 .action-btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px); /* 悬浮位移感更明显点 */
   border-color: var(--vp-c-brand-1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .action-btn.brand:hover {
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
-/* 窄屏适配：每行两个 */
 @media (max-width: 480px) {
+  .legado-card {
+    padding: 20px 16px;
+  }
+  .actions-container {
+    gap: 12px 12px; /* 移动端保持适中的大间距 */
+  }
   .action-btn {
-    flex: 1 1 calc(50% - 10px);
+    padding: 10px 18px;
+    font-size: 14px;
   }
 }
 </style>
