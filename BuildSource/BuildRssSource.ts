@@ -81,7 +81,7 @@ function buildRssSource(sourceName:string): RssSource[] {
 
     // 填充默认数据
     RssSources.forEach(RssSource => {
-        RssSource.lastUpdateTime = 1763049600251
+        RssSource.lastUpdateTime = 1778342400251
         Object.keys(defaultData).forEach((key) => {
             if (RssSource[key] === undefined) RssSource[key] = defaultData[key]
             if (RssSource[key] === false) delete RssSource[key]
@@ -172,13 +172,14 @@ function buildSearchSource() {
     RssSource.sourceIcon = "https://5b0988e595225.cdn.sohucs.com/q_70,c_zoom,w_640/images/20180118/22271e695f5f48a89795e2b9858f5008.jpeg"
     RssSource.sourceGroup = "🔍 搜索"
     RssSource.singleUrl = false
+    RssSource.customOrder = 10
 
     RssSource.ruleArticles = `@js:\n${ruleArticles}`
     RssSource.ruleTitle = "name"
     RssSource.ruleLink = "url"
     RssSource.injectJs = injectJs
 
-    RssSource.lastUpdateTime = 1763049600251
+    RssSource.lastUpdateTime = 1778342400251
     // RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
     // 去除空键
     Object.keys(RssSource).forEach((key) => {
@@ -223,7 +224,7 @@ function buildImportSource() {
     RssSource.sourceGroup = "🅿️ Pixiv,🐲 Furry,书源"
     RssSource.variableComment = "【刷新分类】【刷新分类】【刷新分类】"
     RssSource.singleUrl = false
-    RssSource.lastUpdateTime = 1763049600251
+    RssSource.lastUpdateTime = 1778342400251
     // RssSource.lastUpdateTime = Number(`${String(Date.now()).slice(0, 10)}251`)
 
     // 基本页面，按顺序排序
