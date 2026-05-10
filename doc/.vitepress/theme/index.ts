@@ -19,6 +19,7 @@ import NotFound from "./components/404.vue";
 import Sponsor from "./components/Sponsor.vue";
 import TeamGroups from "./components/TeamGroups.vue";
 import UpdateTime from "./components/UpdateTime.vue"
+import VPHeroAction from "./components/VPHeroAction.vue"
 import './style/index.css'
 
 // 彩虹背景动画样式
@@ -74,6 +75,7 @@ export default {
         // app.component('UpdateTime', UpdateTime)
         app.component('TeamGroups', TeamGroups)
         app.component('Sponsor', Sponsor)
+        app.component('VPHeroAction', VPHeroAction)
 
         // 彩虹背景动画样式
         if (typeof window !== 'undefined') {
