@@ -1,9 +1,17 @@
 ---
+layout: doc
 title: 开发团队 - PixivSource Pixiv 书源项目成员
 description: PixivSource 项目开发团队介绍：核心开发者、站方协助与社区贡献者名单。
-comment: false
-sidebar: true
+
+#sidebar: false
 aside: false
+editLink: false
+lastUpdated: false
+prev: false
+next: false
+comment: false
+#friendlink: false
+
 head:
   - - meta
     - name: keywords

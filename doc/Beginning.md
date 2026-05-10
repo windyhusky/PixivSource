@@ -1,7 +1,17 @@
 ---
+layout: doc
 title: 项目起源 - Pixiv 书源项目起源
 description: PixivSource 书源项目起源
-comment: false
+
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+prev: false
+next: false
+#comment: false
+#friendlink: false
+
 ---
 
 <div align="center">

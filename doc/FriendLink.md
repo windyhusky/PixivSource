@@ -1,6 +1,16 @@
 ---
+layout: doc
 title: 友情链接 - PixivSource 相关资源推荐
 description: PixivSource 友情链接：开源阅读相关软件、书源资源站、翻译工具、开发者博客推荐，欢迎提交开源阅读相关站点申请添加友链。
+
+#sidebar: false
+#aside: false
+editLink: false
+lastUpdated: false
+prev: false
+next: false
+#comment: false
+#friendlink: false
 
 head:
   - - meta

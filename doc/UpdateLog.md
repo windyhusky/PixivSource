@@ -1,7 +1,16 @@
 ---
+layout: doc
 title: 更新日志 - Pixiv 书源版本历史
 description: PixivSource 书源更新记录：直连互动功能、搜索作者、重写排行榜、高并发优化、收藏追更评论等互动功能……历次版本的功能变更与问题修复说明。
-comment: true
+
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+prev: false
+next: false
+#comment: false
+#friendlink: false
 
 head:
   - - meta
