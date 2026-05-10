@@ -12,7 +12,7 @@ import DownToDiscuss from "./components/DownToDiscuss.vue";
 import DragonChat from './components/DragonChat.vue'
 import FriendLink from "./components/FriendLink.vue"
 import FriendLinkFooter from './components/FriendLinkFooter.vue'
-import FriendLinkHome from './components/FriendLinkHome.vue'
+import FriendLinkFooterHome from './components/FriendLinkFooterHome.vue'
 import HomeUnderline from "./components/HomeUnderline.vue"
 import ImportRedirect from "./components/ImportRedirect.vue"
 import NotFound from "./components/404.vue";
@@ -68,7 +68,7 @@ export default {
     enhanceApp({app , router }) {
         app.component('DragonChat', DragonChat)
         app.component('FriendLink', FriendLink)
-        app.component('FriendLinkHome', FriendLinkHome)
+        app.component('FriendLinkFooterHome', FriendLinkFooterHome)
         app.component('HomeUnderline', HomeUnderline)
         app.component('ImportRedirect', ImportRedirect)
         // app.component('UpdateTime', UpdateTime)
