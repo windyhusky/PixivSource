@@ -46,22 +46,24 @@
 <th> btsrk 订阅源 </th> <th> 订阅源功能 </th>
 <tr>
   <td><a href="https://www.pixiv.net/novel"> 1️⃣ Pixiv 小说</a></td>
-  <td  rowspan="3"> ✅ 添加小说<br>✅ 导入书源<br>✅ 登录界面 <br></td>
+  <td rowspan="3"> ✅ 添加小说<br>✅ 导入书源<br>✅ 登录界面 <br></td>
 </tr>
 <tr><td><a href="https://www.furrynovel.ink"> 2️⃣ Linpx 林匹克斯</a></td></tr>
 <tr><td><a href="https://www.furrynovel.com"> 3️⃣ 兽人控小说站</a></td></tr>
 
-<tr><td><a href="https://github.com/DowneyRem/PixivSource"> 4️⃣ Pixiv 书源项目</a></td>
-  <td> ✅ 快速导入<br>📖 书源订阅</td>
+<tr>
+  <td><a href="https://pixivsource.pages.dev"> 4️⃣ Pixiv 书源 官网</a></td>
+  <td rowspan="2"> ✅ 快速导入<br>📖 阅读资源</td>
 </tr>
+<tr><td><a href="https://pixivsource.pages.dev/Import"> 5️⃣ 一键导入</a></td>
 
 <tr>
-  <td><a href="https://furrygames.top/zh-cn/list.html"> 5️⃣ 兽人控游戏索引</a></td>
+  <td><a href="https://furrygames.top/zh-cn/list.html"> 6️⃣ 兽人控游戏索引</a></td>
   <td  rowspan="4">✅ 快速访问<br>🐺 兽人网站</td>
 </tr>
-<tr><td><a href="https://kemono.games/zh-Hans"> 6️⃣ 兽人控游戏库</a></td></tr>
-<tr><td><a href="https://www.furryeventchina.com"> 7️⃣ 兽展日历</a></td></tr>
-<tr><td><a href="https://www.furryfusion.net"> 8️⃣ 兽聚汇总</a></td></tr>
+<tr><td><a href="https://kemono.games/zh-Hans"> 7️⃣ 兽人控游戏库</a></td></tr>
+<tr><td><a href="https://www.furryeventchina.com"> 8️⃣ 兽展日历</a></td></tr>
+<tr><td><a href="https://www.furryfusion.net"> 9️⃣ 兽聚汇总</a></td></tr>
 </table>
 </details>
 
@@ -69,15 +71,14 @@
 <details><summary> 📚 books 订阅源 </summary>
 
 ### 📚 books 订阅源：快速导入阅读书源、订阅源等资源
-| 名称           | 网址链接                                              |
-| ------------- | ------------------------------------------------------------ |
-| 源仓库　　　　   | https://www.yckceo.com/yuedu/index/index.html                |
-| Yiove 书源仓库　| https://shuyuan.yiove.com                                    |
-| 喵公子书源管理　 | https://yuedu.miaogongzi.net/gx.html                         |
-| 阅读 APP 源　　 | https://legado.aoaostar.com                                  |
-| 阅读合集　 　　  | https://flowus.cn/share/923f5a35-6dcf-47d1-b8eb-b9c5ef3ed39b  |
-| 聚合搜索        | 诸多搜索引擎 |
-| 阅读使用手册    | https://www.yuque.com/legado/wiki |
+| 名称           | 网址链接                                       |
+| ------------- | --------------------------------------------- |
+| 一键导入　　　   | https://pixivsource.pages.dev/Import          |
+| 源仓库　　　　   | https://www.yckceo.com/yuedu/index/index.html |
+| Yiove 书源仓库　| https://shuyuan.yiove.com                     |
+| 喵公子书源管理　 | https://yuedu.miaogongzi.net/gx.html          |
+| 聚合搜索       | 诸多搜索引擎 |
+| 阅读使用说明    | https://www.yuque.com/legado/wiki |
 </details>
 
 
