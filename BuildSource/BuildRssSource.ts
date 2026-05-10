@@ -76,7 +76,7 @@ function buildRssSource(sourceName:string): RssSource[] {
 
     // 读取基础模板
     let RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
-    if (sourceName === "furry") RssSources = RssSources.slice(4, RssSources.length)
+    if (sourceName === "furry") RssSources = RssSources.slice(5, RssSources.length)
     const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
 
     // 填充默认数据
@@ -101,7 +101,9 @@ function buildNovelSource(name:string): RssSource {
     if (name === "pixiv") sourceName = "Pixiv"
     else if (name === "linpx") sourceName = "Linpx"
     else if (name === "furryNovel") sourceName = "兽人小说站"
-    else sourceName = "Pixiv 书源"
+    else if (name === "repo") sourceName = "Pixiv 书源"
+    else if (name === "import2") sourceName = "一键导入"
+    else sourceName = ""
 
     // 读取基础模板
     const RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
@@ -109,13 +111,13 @@ function buildNovelSource(name:string): RssSource {
     const defaultData: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
 
     // 读取各个构建后文件内容
-    const sourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt"))
-    const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js"))
-    const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json"))
+    const sourceComment = readTextFile(path.join(sourcePath, "ReadMe.txt")) || ""
+    const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js")) || ""
+    const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json")) || ""
 
-    const header = readTextFile(path.join("rssSource", "base.header.json"))
-    const jsLib = readTextFile(path.join(sourcePath, "base.jsLib.js"))
-    const injectJs = readTextFile(path.join(sourcePath, "webview.inject.js"))
+    const header = readTextFile(path.join("rssSource", "base.header.json")) || ""
+    const jsLib = readTextFile(path.join(sourcePath, "base.jsLib.js")) || ""
+    const injectJs = readTextFile(path.join(sourcePath, "webview.inject.js")) || ""
 
     // 填充默认数据
     Object.keys(defaultData).forEach((key) => {
@@ -150,8 +152,9 @@ function buildBTSRKSource() {
     const linpx = buildNovelSource("linpx")
     const furryNovel = buildNovelSource("furryNovel")
     const repo = buildNovelSource("repo")
+    const import2 = buildNovelSource("import2")
     const furrySites = buildRssSource("furry")
-    const allSources = [pixiv, linpx, furryNovel, repo, ...furrySites]
+    const allSources = [pixiv, linpx, furryNovel, repo, import2,  ...furrySites]
     saveTextFile("", "btsrk.json", allSources)
 }
 
@@ -259,4 +262,5 @@ function main() {
 }
 
 let delayTime = 2 * 24 * 60 * 60 * 1000
+
 main()

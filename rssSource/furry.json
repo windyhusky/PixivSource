@@ -28,6 +28,13 @@
         "sourceGroup": "🅿️ Pixiv,🐲 Furry"
     },
     {
+        "customOrder": 0,
+        "sourceName":"一键导入",
+        "sourceUrl": "https://pixivsource.pages.dev/Import",
+        "sourceIcon": "https://gitee.com/lyc486/yuedu/raw/master/drtb.gif",
+        "sourceGroup": "🅿️ Pixiv,书源"
+    },
+    {
         "customOrder": 5,
         "sourceName":"兽人控游戏索引",
         "sourceUrl":"https://furrygames.top/zh-cn/list-b.html",
