@@ -10,7 +10,7 @@ const selectedType = ref('importonline')
 const containerRef = ref<HTMLElement | null>(null)
 
 const typeMap = [
-  { label: '自动', value: 'importonline', icon: '⚡' },
+  { label: '自动', value: 'importonline', icon: '⚡️' },
   { label: '书源', value: 'bookSource', icon: '📚' },
   { label: '订阅源', value: 'rssSource', icon: '📡' },
   { label: '替换规则', value: 'replaceRule', icon: '✂️' },
@@ -29,7 +29,7 @@ if (typeof window !== 'undefined') {
 
   if (src && !hasRedirected.value) {
     isRedirecting.value = true
-    hasRedirected.value = true // 标记已跳转
+    hasRedirected.value = true
     const finalUrl = src.startsWith('legado://')
         ? src
         : `legado://import/importonline?src=${encodeURIComponent(src)}`
@@ -55,42 +55,65 @@ function parseUrlLogic(url: string) {
   selectedType.value = found ? found.value : 'importonline'
 }
 
-// ── ResizeObserver 对齐：将卡片居中于「sidebar 右边界」到「aside 左边界」之间的区域 ──
+// ── ResizeObserver 对齐 ──
 //
-// VitePress 布局：  | sidebar |←── 内容区 ──→| aside |
-// 目标：无论 sidebar / aside 是否存在，卡片始终在可用内容区内视觉居中。
+// VitePress 布局（≥960px）：| sidebar(sticky) |←── 内容区 ──→| aside |
+// VitePress 布局（<960px） ：sidebar 为浮层，不占文档流，忽略
+//
+// 策略：只在 ≥960px 时才将 sidebar 计入左边界计算，
+//       aside 始终计入（它在任何断点下都不是浮层）。
 function alignToContent() {
   const container = containerRef.value
   if (!container) return
   const parent = container.parentElement!
   const parentRect = parent.getBoundingClientRect()
 
-  const sidebar = document.querySelector('.VPSidebar') as HTMLElement | null
-  const aside   = document.querySelector('.VPDocAside') as HTMLElement | null
+  // < 960px：sidebar 是浮层，不参与布局计算
+  const isDesktop = window.innerWidth >= 960
+  const hasAside  = window.innerWidth >= 1280
 
-  // 内容区左右边界（相对视口）
+  // < 960px：sidebar 是浮层，不占文档流，忽略
+  const sidebar = isDesktop
+      ? (document.querySelector('.VPSidebar') as HTMLElement | null)
+      : null
+  // < 1280px：aside 是浮层，不占文档流，忽略
+  const aside = hasAside
+      ? (document.querySelector('.VPDocAside') as HTMLElement | null)
+      : null
+
   const contentLeft  = sidebar ? sidebar.getBoundingClientRect().right : parentRect.left
   const contentRight = aside   ? aside.getBoundingClientRect().left    : parentRect.right
 
-  // 转为相对于 parent 的偏移，确保不为负
   container.style.paddingLeft  = `${Math.max(contentLeft  - parentRect.left,  0)}px`
   container.style.paddingRight = `${Math.max(parentRect.right - contentRight, 0)}px`
 }
 
 let ro: ResizeObserver | null = null
 
+function observeLayout() {
+  if (!ro) return
+  // 重新观察：documentElement 负责捕获窗口尺寸变化
+  ro.observe(document.documentElement)
+  // aside 出现 / 消失 / 尺寸变化时立即重算
+  const aside = document.querySelector('.VPDocAside')
+  if (aside) ro.observe(aside)
+}
+
 onMounted(() => {
   const src = new URLSearchParams(window.location.search).get('src')?.trim() || ''
   if (src) { inputUrl.value = src; parseUrlLogic(src) }
 
-  nextTick(alignToContent)
   ro = new ResizeObserver(alignToContent)
-  ro.observe(document.documentElement)
+  nextTick(() => { observeLayout(); alignToContent() })
 })
 
 onUnmounted(() => ro?.disconnect())
 
-watch(() => route.path, () => nextTick(alignToContent))
+watch(() => route.path, () => {
+  // 路由切换后 aside 需要重新渲染，nextTick 后重新绑定观察 + 延迟保底
+  nextTick(() => { observeLayout(); alignToContent() })
+  setTimeout(alignToContent, 300)
+})
 watch(inputUrl, parseUrlLogic)
 
 function doImport() {
@@ -106,7 +129,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 </script>
 
 <template>
-  <!-- outer wrapper 撑满宽度，inner container 负责居中对齐 -->
   <div class="legado-outer">
     <div class="legado-container" ref="containerRef">
 
@@ -161,7 +183,7 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
           </button>
         </div>
 
-        <p class="footer-note">适配 开源阅读 3.0+ 及其兼容版本</p>
+        <p class="footer-note">适配 开源阅读 3.0 及其兼容版本</p>
       </template>
 
     </div>
@@ -169,19 +191,16 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 </template>
 
 <style scoped>
-/* 撑满内容区宽度，对齐交给 JS 动态注入 padding */
 .legado-outer {
   width: 100%;
 }
 
 .legado-container {
-  /* padding-left / padding-right 由 alignToContent() 动态注入 */
   box-sizing: border-box;
   width: 100%;
   text-align: center;
 }
 
-/* 卡片本身限宽居中 */
 .legado-card,
 .vp-h1,
 .footer-note {
@@ -207,7 +226,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
   overflow: hidden;
 }
 
-/* ── 跳转模式 ── */
 .redirect-mode {
   padding: 40px 20px;
   display: flex;
@@ -215,7 +233,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
   align-items: center;
 }
 
-/* ── 主交互模式 ── */
 .main-mode {
   padding: 20px;
   text-align: left;
@@ -232,7 +249,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
   color: var(--vp-c-text-2);
 }
 
-/* ── 类型网格：默认 4 列 ── */
 .type-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -262,7 +278,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 .type-icon { font-size: 24px; margin-bottom: 4px; }
 .type-label { font-size: 14px; font-weight: 700; white-space: nowrap; }
 
-/* ── 输入框 ── */
 .input-area textarea {
   width: 100%;
   height: 130px;
@@ -278,7 +293,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
   box-sizing: border-box;
 }
 
-/* ── 提交按钮 ── */
 .submit-btn {
   width: 100%;
   padding: 14px;
@@ -294,7 +308,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 .submit-btn:disabled { opacity: 0.4; cursor: not-allowed; }
 .submit-btn:not(:disabled):hover { opacity: 0.85; }
 
-/* ── 加载动画 ── */
 .loader-wrapper { position: relative; width: 70px; height: 70px; margin-bottom: 20px; }
 .loader-ring {
   position: absolute; width: 100%; height: 100%;
@@ -339,7 +352,6 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
 
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
-/* ── 手机端（< 400px）：3 列布局 ── */
 @media (max-width: 400px) {
   .vp-h1 { font-size: 26px; margin-bottom: 16px; }
   .type-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
