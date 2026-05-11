@@ -124,7 +124,7 @@ head:
 
 
 <div v-if="false">
-  <!--@include: PixivCommon.md-->
+  <!--@include: CommonPixiv.md-->
 </div>
 
 

@@ -56,7 +56,7 @@ head:
 
 
 <div v-if="false">
-  <!--@include: LinpxCommon.md-->
+  <!--@include: CommonLinpx.md-->
 </div>
 
 

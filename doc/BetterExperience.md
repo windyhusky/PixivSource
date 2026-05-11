@@ -185,7 +185,7 @@ head:
 - **这样才能保证最佳的使用体验**
 
 
-<!--@include: PixivCommon.md-->
+<!--@include: CommonPixiv.md-->
 
 
 ## 书源功能 {#BookSourceFunction}
