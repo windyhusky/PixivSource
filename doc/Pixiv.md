@@ -116,12 +116,16 @@ head:
 > 
 > **更多导入方法详见：** [如何导入书源](./ImportBookSource.md)
 
-<!--@include: PixivCommon.md-->
 
 > [!NOTE]
 > **🅿️ Pixiv 书源 新手配置指南，详见：**
 > [✨臻享阅读](BetterExperience.md)，
 > **重复内容不再赘述**
+
+
+<div v-if="false">
+  <!--@include: PixivCommon.md-->
+</div>
 
 
 ## 全部功能 {#All}
