@@ -1,7 +1,7 @@
 ---
 layout: doc
-title: 导入书源
-description: 一键导入 阅读资源 到开源阅读 App。
+title: 一键导入
+description: 一键导入 阅读资源 到开源阅读 App
 
 sidebar: true
 aside: false
@@ -11,6 +11,18 @@ prev: false
 next: false
 comment: false
 #friendlink: false
+
+head:
+  - - meta
+    - name: keywords
+      content: 一键导入, 书源, 订阅源, 导入 书源, 导入 订阅源, 开源阅读, Legado 导入书源, 开源阅读 导入书源
+  - - meta
+    - property: og:title
+      content: 一键导入 - 开源阅读资源一键导入 
+  - - meta
+    - property: og:description
+      content: 一键导入 阅读资源 到开源阅读 App
+      
 
 hero:
   actions:
