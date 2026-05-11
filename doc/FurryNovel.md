@@ -49,10 +49,16 @@ head:
 
 ## [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
 
+> [!NOTE]
+> **🐯 FurryNovel 书源 新手配置指南，详见：**
+> [⚡️ 快速开始](QuickStart.md)，
+> **重复内容不再赘述**
 
-[//]: # (<div v-if="false">)
+
+<div v-if="false">
   <!--@include: LinpxCommon.md-->
-[//]: # (</div>)
+</div>
+
 
 ## 高级功能 {#All}
 ### 🔍 搜索小说 {#SearchNovel}

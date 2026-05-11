@@ -50,10 +50,15 @@ head:
 ## [Linpx](http://www.furrynovel.ink) 是第三方 Pixiv 小说镜像站，主要内容为【兽人小说】
 
 
-[//]: # (<div v-if="false">)
-  <!--@include: LinpxCommon.md-->
+> [!NOTE]
+> **🦊 Linpx 书源 新手配置指南，详见：**
+> [⚡️ 快速开始](QuickStart.md)，
+> **重复内容不再赘述**
 
-[//]: # (</div>)
+
+<div v-if="false">
+  <!--@include: LinpxCommon.md-->
+</div>
 
 
 ## 高级功能 {#All}
