@@ -121,6 +121,13 @@ head:
 > **🅿️ Pixiv 书源 新手配置指南，详见：**
 > [✨臻享阅读](BetterExperience.md)，
 > **重复内容不再赘述**
+> 
+> **快速跳转：
+> 🔍 [搜索小说](#)；
+> ⭐️ [发现小说](#DiscoverNovel)；
+> 🔗 [添加网址](#AddUrl)；
+> 🌐 [订阅源](#RssSource)；
+> ▶️ [登陆界面](#LoginUI)**
 
 
 <div v-if="false">
@@ -253,7 +260,7 @@ head:
 ## 发现小说 {#DiscoverNovel}
 > [!NOTE]
 >
-> **发现页面 - 点击各按钮**
+> **发现页面 - 点击“Pixiv 小说” - 点击按钮**
 
 
 ### ⭐️ 常规小说
@@ -284,9 +291,9 @@ head:
 ![img](./pic/DiscoverPixivNew.png)
 > [!TIP]
 > 
-> 🔞 最新 企划 => **✅ 默认显示**
+> 🔞 最新企划 => **✅ 默认显示**
 > 
-> 💼 最新 企划 => ❌ 默认隐藏
+> 💼 最新企划 => ❌ 默认隐藏
 > 
 > 可在 **发现设置** 中修改【🔞 最新企划】【💼 最新企划】
 
@@ -311,6 +318,24 @@ head:
 > 💼 原创热门 => ❌ 默认隐藏
 >
 >  可在 **发现设置** 中修改【🔞 原创热门】【💼 原创热门】
+
+
+### 📌 [喜欢标签](#LikeTags)
+![img](./pic/DiscoverPixivLikeTags.png)
+> [!TIP]
+> 
+> **可在登录界面中，通过【📌 喜欢标签】添加**
+> 
+> **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+
+
+### ❤️ [他人收藏](#LikeAuthors)
+![img](./pic/DiscoverPixivLikeAuthors.jpg)
+> [!TIP]
+>
+> **可在登录界面中，通过【❤️ 他人收藏】添加，详见：**
+>
+> **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 
 
 ## 添加网址 {#AddUrl}
@@ -530,38 +555,24 @@ Pixiv 网站的搜索功能更加全面，可以替代阅读搜索
 ![img](./pic/PixivLoginUIBlockWords2.png)
 
 
-### 🚫 隐藏收藏 & 隐藏追更
-
-### 3. 隐藏收藏 & 隐藏追更（书源设置）
-> [!NOTE]
->
-> **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
-
-![img](./pic/PixivLoginUISettings.png)
-
-- ❤️ 隐藏收藏：搜索发现 **显示/隐藏 收藏单篇小说**
-- 📃 隐藏追更：搜索发现 **显示/隐藏 追更系列小说**
-
-
-
-## ▶️ 自定义发现 {#CustomizationDiscover}
-###  📌 喜欢标签
-
-### 1. 喜欢标签
+## 自定义发现 {#CustomizationDiscover}
+### 📌 喜欢标签 {#LikeTags}
 > [!NOTE]
 >
 > **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 
 - 1️⃣ 在登陆页面的【输入内容】输入标签（不需要`#`），点击【喜欢标签】，添加至 发现页面的【喜欢标签】列表
-  ![img](./pic/PixivLoginUILikeTags.png)
+
+![img](./pic/PixivLoginUILikeTags.png)
+
 - 2️⃣ 打开发现页面，点击按钮，查看内容
-  ![img](./pic/DiscoverPixivLikeTags.png)
+
+![img](./pic/DiscoverPixivLikeTags.png)
+
 - ▶️ 如未更新，请手动更新发现：发现 - 长按"Pixiv" - 刷新
 
 
-###  ❤️ 他人收藏
-
-### 2. 他人收藏
+### ❤️ 他人收藏 {#LikeAuthors}
 > [!NOTE]
 >
 > **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
@@ -578,7 +589,6 @@ Pixiv 网站的搜索功能更加全面，可以替代阅读搜索
 
 ![img](./pic/DiscoverPixivLikeAuthors.jpg)
 - ▶️ 如未更新，请手动更新发现：发现 - 长按"Pixiv" - 刷新
-
 
 
 <!--@include: CommonSuffix.md-->
