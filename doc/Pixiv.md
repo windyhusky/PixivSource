@@ -236,70 +236,27 @@ head:
 </details>
 
 
-### ⭐️ 发现小说 {#DiscoverNovel}
-<details><summary> ⭐️ 发现小说 </summary>
-
+## 发现小说 {#DiscoverNovel}
 > [!NOTE]
 >
 > **发现页面 - 点击各按钮**
 
-- <details><summary> ⭐️ 常规发现 </summary>
 
-  #### 2.0 常规发现
-  ![img](./pic/DiscoverPixiv.jpg)
-  > [!TIP]
-  >
-  >  - 🔞 默认发现 => **✅ 默认显示，不可隐藏**
-  >  - 💼 常规小说 => **✅ 默认显示，可以隐藏**
-  >
-  > 可在 **发现设置** 中修改【💼 常规小说】
-  </details>
-
-- <details><summary> 🆕 最新企划约稿 </summary>
-
-  #### 2.1 最新 企划 约稿
-  ![img](./pic/DiscoverPixivNew.png)
-  > [!TIP]
-  > 
-  >  - 🔞 最新 企划 约稿 => **✅ 默认显示**
-  >  - 💼 最新 企划 约稿 => ❌ 默认隐藏
-  > 
-  > 可在 **发现设置** 中修改【🔞 最新企划】【💼 最新企划】
-  </details>
-
-- <details><summary> 👑 小说排行 </summary>
-
-  #### 2.2 小说排行
-  ![img](./pic/DiscoverPixivRanking.png)
-  > [!TIP]
-  >
-  >  - 🔞 排行榜单 => **✅ 默认显示**
-  >  - 💼 排行榜单 => ❌ 默认隐藏
-  >
-  >  可在 **发现设置** 中修改【🔞 排行榜单】【💼 排行榜单】
-  </details>
-
-- <details><summary> 🔥 原创热门（默认隐藏） </summary>
-
-  #### 2.3 原创热门（默认隐藏）
-  ![img](./pic/DiscoverPixivHot.png)
-  > [!TIP]
-  >
-  >  - 🔞 原创热门 => ❌ 默认隐藏
-  >  - 💼 原创热门 => ❌ 默认隐藏
-  >
-  >  可在 **发现设置** 中修改【🔞 原创热门】【💼 原创热门】
-  </details>
-</details>
-
-
-<details><summary> 🆙 更新书源 </summary>
-
-#### 2.4 更新书源
+### ⭐️ 常规小说
 ![img](./pic/DiscoverPixiv.jpg)
+> [!TIP]
+>
+> 🔞 默认发现 => **✅ 默认显示，不可隐藏**
+> 
+> 💼 常规小说 => **✅ 默认显示，可以隐藏**
+>
+> 可在 **发现设置** 中修改【💼 常规小说】
+
+
+### 🆙 更新书源
 > [!NOTE]
 >
-> **点击按钮【🆙 更新】进入书源更新界面**
+> **💼 常规小说 的发现按钮中，点击按钮【🆙 更新】进入书源更新界面**
 
 ![img](./pic/UpdateSource.png)
 
@@ -307,8 +264,39 @@ head:
 >  - Jsdelivr CDN 更新有延迟
 >  - Github 更新需代理
 >  - Godeberg 更新免代理
-</details>
 
+
+### 🆕 最新企划
+![img](./pic/DiscoverPixivNew.png)
+> [!TIP]
+> 
+> 🔞 最新 企划 => **✅ 默认显示**
+> 
+> 💼 最新 企划 => ❌ 默认隐藏
+> 
+> 可在 **发现设置** 中修改【🔞 最新企划】【💼 最新企划】
+
+
+### 👑 小说排行
+![img](./pic/DiscoverPixivRanking.png)
+> [!TIP]
+>
+> 🔞 排行榜单 => **✅ 默认显示**
+> 
+> 💼 排行榜单 => ❌ 默认隐藏
+>
+> 可在 **发现设置** 中修改【🔞 排行榜单】【💼 排行榜单】
+
+
+### 🔥 原创热门
+![img](./pic/DiscoverPixivHot.png)
+> [!TIP]
+>
+> 🔞 原创热门 => ❌ 默认隐藏
+> 
+> 💼 原创热门 => ❌ 默认隐藏
+>
+>  可在 **发现设置** 中修改【🔞 原创热门】【💼 原创热门】
 
 
 ## 添加网址 {#AddUrl}
