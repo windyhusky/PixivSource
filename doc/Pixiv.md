@@ -346,48 +346,38 @@ https://www.pixiv.net/users/16721009
 ```
 
 
-### 🌐 订阅源 {#RssSource}
-<details><summary> 🌐 订阅源 </summary>
-
+## 订阅源 {#RssSource}
+### 🌐 订阅源
 > [!NOTE]
 > 
 > 订阅界面，打开 Pixiv 订阅源
 
-- <details><summary> ⬇️ 导入书源 </summary>
-  
-  #### 4.0 导入书源
-  ![img](./pic/InportBookSourcePixivWeb.png)
+###  ⬇️ 导入书源
+![img](./pic/InportBookSourcePixivWeb.png)
 
-  - 点击按钮，导入书源；再次点击，则可更新书源
-  - 此处使用的是 Jsdelivr CDN ，更新有延迟
-  
-  ![img](./pic/InportBookSourcePixiv.jpg)
-  </details>
+- 点击按钮，导入书源；再次点击，则可更新书源
+- 此处使用的是 Jsdelivr CDN ，更新有延迟
 
-- <details><summary> 🔍 站内搜索 </summary>
+![img](./pic/InportBookSourcePixiv.jpg)
 
-  #### 4.1 替代阅读搜索
-  Pixiv 网站的搜索功能更加全面
-  
-  ![img](./pic/SearchViaPixiv.png)
-  
-  #### 4.2 替代阅读发现
-  使用 Pixiv 书源未完成/隐藏功能
-  ![img](./pic/PixivNovelRanking.png)
-  </details>
 
-- <details><summary> ➕ 添加小说 </summary>
+###  🔍 站内搜索
+Pixiv 网站的搜索功能更加全面，可以替代阅读搜索
 
-  #### 4.3 添加小说至书架
-  在阅读内部浏览器内打开 Pixiv 小说/系列小说页面，【刷新】，点击【加入书架】按钮添加小说到书架
+![img](./pic/SearchViaPixiv.png)
 
-  - 小说正文页，添加小说到书架
-  ![img](./pic/AddBookViaPixiv1.png)
+使用 Pixiv 书源未完成/隐藏功能
+![img](./pic/PixivNovelRanking.png)
 
-  - 系列目录页，添加系列到书架
-  ![img](./pic/AddBookViaPixiv2.png)
-  </details>
-</details>
+
+###  ➕ 添加小说
+在阅读内部浏览器内打开 Pixiv 小说/系列小说页面，【刷新】，点击【加入书架】按钮添加小说到书架
+
+- 小说正文页，添加小说到书架
+![img](./pic/AddBookViaPixiv1.png)
+
+- 系列目录页，添加系列到书架
+![img](./pic/AddBookViaPixiv2.png)
 
 
 ## 登录界面 {#LoginUI}
