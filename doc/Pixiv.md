@@ -310,44 +310,40 @@ head:
 </details>
 
 
-### 🔗 添加网址 {#AddUrl}
-<details><summary> 🔗 添加网址 </summary>
 
+## 添加网址 {#AddUrl}
+### 🔗 添加网址
 > [!NOTE]
 >
 > **书架 - 菜单 - 添加网址 - 粘贴小说链接**
 > 
 > **可以同时添加多个小说的链接**
 
-- <details><summary> 🔗 实际操作 </summary>
+### ⏺️ 实际操作
+![img](./pic/AddBookViaUrl1.png)
+![img](./pic/AddBookViaUrl2.png)
+![img](./pic/AddBookViaUrl3.png)
 
-  ![img](./pic/AddBookViaUrl1.png)
-  ![img](./pic/AddBookViaUrl2.png)
-  ![img](./pic/AddBookViaUrl3.png)
-  </details>
 
-- <details><summary> 🔗 支持链接 </summary>
-  
-  支持 Pixiv 多个格式的网址链接：
-  - Pixiv 单篇小说链接
-  ```
-  https://www.pixiv.net/novel/show.php?id=20063566
-  ```
-  - Pixiv 系列小说链接
-  ```
-  https://www.pixiv.net/novel/series/8054073
-  ```
-  - Pixiv 作者链接（添加近期1本小说）
-  ```
-  https://www.pixiv.net/users/16721009
-  ```
-  **无法添加的链接：**
-  - Pixiv App 小说分享链接 **（删掉#号即可正常添加）**
-  ```
-  测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
-  ```
-  </details>
-</details>
+### 🔗 支持链接
+支持 Pixiv 多个格式的网址链接：
+- Pixiv 单篇小说链接
+```
+https://www.pixiv.net/novel/show.php?id=20063566
+```
+- Pixiv 系列小说链接
+```
+https://www.pixiv.net/novel/series/8054073
+```
+- Pixiv 作者链接（添加近期1本小说）
+```
+https://www.pixiv.net/users/16721009
+```
+**无法添加的链接：**
+- Pixiv App 小说分享链接 **（删掉#号即可正常添加）**
+```
+测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
+```
 
 
 ### 🌐 订阅源 {#RssSource}
