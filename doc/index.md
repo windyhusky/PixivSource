@@ -48,16 +48,20 @@ hero:
       text: ✨ 臻享阅读
       link: BetterExperience
       
-#    - theme: alt
-#      text: ⚡️ 快速开始
-#      link: QuickStart
+    - theme: alt
+      text: ⚡️ 快速开始
+      link: QuickStart
+
+    - theme: brand
+      text: 🚀 一键导入
+      link: Import
       
     - theme: brand
       text: 🚀 导入 Pixiv 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
     - theme: alt
-      text: 📘 书源指南
+      text: 📘 指南
       link: Pixiv
       
     - theme: brand
@@ -65,20 +69,12 @@ hero:
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"
       
     - theme: alt
-      text: 📙 书源指南
+      text: 📙 指南
       link: Linpx
       
     - theme: brand
       text: 🚀 导入 订阅源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
-      
-    - theme: alt
-      text: ⚡️ 快速开始
-      link: QuickStart
-      
-    - theme: brand
-      text: 🚀 一键导入
-      link: Import
       
 #    - theme: alt
 #      text: ⬇️ 阅读软件
@@ -96,9 +92,9 @@ hero:
       text: ☕ 打赏
       link: Sponsor
       
-    - theme: alt
-      text: 🤝 友情链接
-      link: FriendLink
+#    - theme: alt
+#      text: 🤝 友情链接
+#      link: FriendLink
       
 
 features:
@@ -123,4 +119,4 @@ features:
     link: BetterExperience#IPDirect
 ---
 <HomeUnderline />
-<FriendLinkHome />
+<FriendLinkFooterHome />

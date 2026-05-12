@@ -148,7 +148,7 @@ export default defineConfig({
                 ]
             },
             {
-                text: "专用教程",
+                text: "功能手册",
                 collapsed: false,
                 items: [
                     { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
