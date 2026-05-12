@@ -129,19 +129,6 @@ head:
 | [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 需要代理，需要登录 |
 
 
-### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max)
-> [!TIP]
->
-> **这是 youfengknight 基于 阅读 Sigma 的改版阅读仓库**
->
-> 项目地址：https://github.com/youfengknight/Legado_Max
-
-| 下载站点 | 备注 |
-| ------- | --- |
-| [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/youfengknight/Legado_Max/actions)   | 需要代理，需要登录 |
-
-
 ### ⏺️ 【兼容】[阅读 Archive](https://github.com/Rimchars/legado)
 > [!TIP]
 >
@@ -153,6 +140,32 @@ head:
 | ------- | --- |
 | [Github Release](https://github.com/Rimchars/legado/releases) | 需要代理，无需登录 |
 | [Github Action](https://github.com/Rimchars/legado/actions)   | 需要代理，需要登录 |
+
+
+### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado)
+> [!TIP]
+>
+> **这是 Jingshiro 基于 阅读 Sigma 的改版阅读仓库**
+>
+> 项目地址：https://github.com/Jingshiro/legado
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/Jingshiro/legado/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/Jingshiro/legado/actions)   | 需要代理，需要登录 |
+
+
+### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max)
+> [!TIP]
+>
+> **这是 youfengknight 基于 阅读 Sigma ，专为 墨水屏阅读器 优化的改版阅读仓库**
+>
+> 项目地址：https://github.com/youfengknight/Legado_Max
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/youfengknight/Legado_Max/actions)   | 需要代理，需要登录 |
 
 
 ### 🚮 其他版本 {#AndroidOthers}
