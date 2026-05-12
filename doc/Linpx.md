@@ -19,7 +19,7 @@ head:
 <img width="150" height="150" src="./pic/BookSourceLinpx.png" alt="Linpx BookSource"/>
 <br>
 
-# Linpx 书源使用指南
+# Linpx 书源 功能手册
 ### 🦊 [开源阅读](https://github.com/Luoyacheng/legado) Linpx 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)
@@ -137,7 +137,7 @@ head:
 > [!TIP]
 >  - Jsdelivr CDN 更新有延迟
 >  - Github 更新需代理
->  - Godeberg 更新免代理
+>  - Codeberg 更新免代理
 
 
 ## 添加网址 {#AddUrl}
@@ -175,6 +175,7 @@ https://furrynovel.ink/pixiv/user/119908520
 > [!NOTE]
 > 
 > 订阅界面，打开 Linpx 订阅源
+
 
 ### ⬇️ 导入书源
 ![img](./pic/InportBookSourceLinpxWeb.png)

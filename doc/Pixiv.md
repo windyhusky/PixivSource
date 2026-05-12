@@ -281,7 +281,7 @@ head:
 > [!TIP]
 >  - Jsdelivr CDN 更新有延迟
 >  - Github 更新需代理
->  - Godeberg 更新免代理
+>  - Codeberg 更新免代理
 
 
 ### 🆕 最新企划
