@@ -119,7 +119,7 @@ head:
 > **重复内容不再赘述**
 > 
 > **快速跳转：
-> 🔍 [搜索小说](#)；
+> 🔍 [搜索小说](#SearchNovel)；
 > ⭐️ [发现小说](#DiscoverNovel)；
 > 🔗 [添加网址](#AddUrl)；
 > 🌐 [订阅源](#RssSource)；
@@ -376,7 +376,7 @@ https://www.pixiv.net/users/16721009
 > 
 > 订阅界面，打开 Pixiv 订阅源
 
-###  ⬇️ 导入书源
+### ⬇️ 导入书源
 ![img](./pic/InportBookSourcePixivWeb.png)
 
 - 点击按钮，导入书源；再次点击，则可更新书源
