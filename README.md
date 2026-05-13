@@ -125,10 +125,11 @@
 
 <details><summary> ✈️ 社群链接 </summary>
 
-### Telegram 频道 & 群组
-| Telegram 频道 & 群组 | 备注 |
-| ------------------ | --- |
+### 相关社群
+| 频道 & 群组 | 备注           |
+| ----------------- |--------------|
 | 🔊 [Pixiv 书源](https://t.me/PixivSource) | Pixiv 书源 频道 |
+| 🔊 [Legado｜开源阅读](https://pd.qq.com/s/8qxylhj2s) | 阅读 QQ 频道 |
 | 🔊 [Legado｜开源阅读](https://t.me/Legado_Channels) | 开源阅读 频道 |
 | 🔊 [Legado Beta](https://t.me/Legado_Beta) | 开源阅读 Beta 频道 |
 | 👥 [Legado·开源阅读](https://t.me/Legado_Channels/1445) | 开源阅读 群组 |

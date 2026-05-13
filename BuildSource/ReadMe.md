@@ -3,7 +3,7 @@
 
 ### [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 ### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-### ❤️ [Pixiv 书源项目 赞助名单](../doc/Sponsor.md)
+### ☕️ [Pixiv 书源项目 打赏名单](https://pixivsource.pages.dev/Sponsor)
 </div>
 
 
