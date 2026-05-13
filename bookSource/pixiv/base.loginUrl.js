@@ -1063,6 +1063,30 @@ function backupData() {
     return JSON.stringify(data, null, 4)
 }
 
+function restoreData(data) {
+    // 账号相关
+    putInCache("pixiv:uid", data?.pixivUid)
+    putInCache("pixivUid", data?.pixivUid)
+    putInCache("pixivCsrfToken", data?.pixivCsrfToken)
+    putInCache("pixivCookie", data?.pixivCookie)
+    // 书源缓存
+    putInCacheObject("pixivAuthors", data?.pixivAuthors)
+    putInCacheObject("likeNovels", data?.likeNovels)
+    putInCacheObject("watchedSeries", data?.watchedSeries)
+
+    // 书源设置
+    putInCacheObject("pixivSettings", data?.pixivSettings)
+    putInCacheObject("captionBlockWords", data?.captionBlockWords)
+    putInCacheObject("tagsBlockWords", data?.tagsBlockWords)
+    // putInCacheObject("blockCaption", data?.blockCaption)
+    // putInCacheObject("blockTags", data?.blockTags)
+    putInCacheObject("likeTags", data?.likeTags)
+
+    putInCacheMap("blockAuthorMap", data?.blockAuthorMap)
+    putInCacheMap("likeAuthors", data?.likeAuthors)
+
+    try {source.refreshExplore()} catch (e) {}
+}
 
 function cleanCache() {
     let novel = getNovel()
