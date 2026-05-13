@@ -1066,10 +1066,14 @@ function backupRestore() {
         let data = backupData()
         // source.putVariable(data)
         java.upLoginData({"书源设置": data})
-    }
-    if (isJsonString(variable)) {
+
+    } else if (isJsonString(variable)) {
         sleepToast("\n💾 恢复数据\n\n已导入书源数据")
         restoreData(JSON.parse(variable))
+        java.upLoginData({"书源设置": ""})
+
+    } else {
+        sleepToast("\n💾 备份恢复\n\n⚠️ 输入数据出错，请检查数据格式（JSON）")
     }
 }
 
@@ -1087,8 +1091,9 @@ function backupData() {
     data.pixivSettings = getFromCacheObject("pixivSettings")
     data.blockCaption = getFromCacheObject("blockCaption")
     if (!data.blockCaption) data.blockCaption = getFromCacheObject("captionBlockWords")
-    data.blockTags = getFromCacheObject(`blockTags`)
+    data.blockTags = getFromCacheObject("blockTags")
     if (!data.blockTags) data.blockCaption = getFromCacheObject("blockTags")
+    data.likeTags = getFromCacheObject("likeTags")
 
     // 书源设置 Map
     data.blockAuthorMap = Object.fromEntries(getFromCacheMap("blockAuthorMap"))
