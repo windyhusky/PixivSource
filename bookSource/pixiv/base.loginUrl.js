@@ -1060,9 +1060,9 @@ function backupRestore() {
 function backupData() {
     let data = {}
     // 账号相关
-    data.pixivUid = getFromCache("pixiv:uid")
-    data.pixivCsrfToken = getCsrfToken()
-    data.pixivCookie = getCookie()
+    // data.pixivUid = getFromCache("pixiv:uid")
+    // data.pixivCsrfToken = getCsrfToken()
+    // data.pixivCookie = getCookie()
     // 书源缓存
     data.pixivAuthors = getFromCacheObject("pixivAuthors")
     data.likeNovels = getFromCacheObject("likeNovels")
@@ -1081,10 +1081,10 @@ function backupData() {
 
 function restoreData(data) {
     // 账号相关
-    putInCache("pixiv:uid", data?.pixivUid)
-    putInCache("pixivUid", data?.pixivUid)
-    putInCache("pixivCsrfToken", data?.pixivCsrfToken)
-    putInCache("pixivCookie", data?.pixivCookie)
+    // putInCache("pixiv:uid", data?.pixivUid)
+    // putInCache("pixivUid", data?.pixivUid)
+    // putInCache("pixivCsrfToken", data?.pixivCsrfToken)
+    // putInCache("pixivCookie", data?.pixivCookie)
     // 书源缓存
     putInCacheObject("pixivAuthors", data?.pixivAuthors)
     putInCacheObject("likeNovels", data?.likeNovels)
