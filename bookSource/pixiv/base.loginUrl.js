@@ -833,12 +833,18 @@ function likeTagsDelete() {
 
 
 function likeAuthorsShow() {
-    let text = printAuthorMap(getFromCacheMap(`likeAuthors`))
+    let likeAuthors = getFromCacheMap("likeAuthorsMap")
+    if (likeAuthors.size === 0) likeAuthors = getFromCacheMap("likeAuthors")
+
+    let text = printAuthorMap(likeAuthors)
     sleepToast(`👀 查看收藏\n❤️ 他人收藏\n\n${text.trim()}`, 2)
+    putInCacheMap(`likeAuthorsMap`, likeAuthors)
 }
 
 function likeAuthorsAdd() {
-    let likeAuthors = getFromCacheMap(`likeAuthors`)
+    let likeAuthors = getFromCacheMap("likeAuthorsMap")
+    if (likeAuthors.size === 0) likeAuthors = getFromCacheMap("likeAuthors")
+    
     let word = String(result.get("文本框")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
         return sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 @作者名称`)
@@ -867,12 +873,14 @@ function likeAuthorsAdd() {
     else if (word) {
         sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n📌 【文本框】内输入【用户ID】可关注其他用户的收藏`)
     }
-    putInCacheMap(`likeAuthors`, likeAuthors)
+    putInCacheMap(`likeAuthorsMap`, likeAuthors)
     try {source.refreshExplore()} catch (e) {}
 }
 
 function likeAuthorsDelete() {
-    let likeAuthors = getFromCacheMap(`likeAuthors`)
+    let likeAuthors = getFromCacheMap("likeAuthorsMap")
+    if (likeAuthors.size === 0) likeAuthors = getFromCacheMap("likeAuthors")
+
     let word = String(result.get("文本框")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
         return sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n⚠️ 仅支持通过【作者ID/作者名称】取关\n不支持输入 @作者名称`)
@@ -903,7 +911,7 @@ function likeAuthorsDelete() {
     else if (word) {
         sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n📌 【文本框】内输入【用户ID】可取关其他用户的收藏`)
     }
-    putInCacheMap(`likeAuthors`, likeAuthors)
+    putInCacheMap(`likeAuthorsMap`, likeAuthors)
     try {source.refreshExplore()} catch (e) {}
 }
 
@@ -1074,8 +1082,7 @@ function backupData() {
     data.likeTags = getFromCacheObject(`likeTags`)
     // 书源设置 Map
     data.blockAuthorMap = Object.fromEntries(getFromCacheMap("blockAuthorMap"))
-    data.likeAuthors = Object.fromEntries(getFromCacheMap("likeAuthors"))
-    // data.likeAuthorsMap = Object.fromEntries(getFromCacheMap("likeAuthorsMap"))
+    data.likeAuthorsMap = Object.fromEntries(getFromCacheMap("likeAuthorsMap"))
     return JSON.stringify(data, null, 4)
 }
 
@@ -1098,8 +1105,7 @@ function restoreData(data) {
     putInCacheObject("likeTags", data?.likeTags)
     // 书源设置 Map
     putInCacheMap("blockAuthorMap", new Map(Object.entries(data?.blockAuthorMap)))
-    putInCacheMap("likeAuthors", new Map(Object.entries(data?.likeAuthors)))
-    // putInCacheMap("likeAuthorsMap", new Map(Object.entries(data?.likeAuthorsMap)))
+    putInCacheMap("likeAuthorsMap", new Map(Object.entries(data?.likeAuthorsMap)))
     try {source.refreshExplore()} catch (e) {}
 }
 
