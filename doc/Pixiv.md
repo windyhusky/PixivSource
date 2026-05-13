@@ -123,7 +123,7 @@ head:
 > ⭐️ [发现小说](#DiscoverNovel)；
 > 🔗 [添加网址](#AddUrl)；
 > 🌐 [订阅源](#RssSource)；
-> ⚙️ [️书源设置](#Settings)；
+> ⚙️ [️设置功能](#Settings)；
 > ⏺ [互动功能](#Interact)**
 
 
