@@ -56,7 +56,9 @@ function removeSettingsCache() {
 
 function getCookie() {
     let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (isLogin()) putInCache("pixivCookie", pixivCookie, 60*60)
+    if (!isLogin()) return ""
+    putInCache("pixivCookie", pixivCookie, 60*60)
+    return pixivCookie
 }
 
 // 获取 Csrf Token，以便进行收藏等请求
@@ -965,7 +967,6 @@ let settingsName = {
     "SHOW_RANK_GENERAL": "🆗 排行榜单",
     "SHOW_GENRE_ADULT": "🔞 原创热门",
     "SHOW_GENRE_GENERAL": "🆗 原创热门",
-    "SHOW_FURRY": "🐺 兽人小说",
     "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",
     "SHOW_SETTINGS": "⚙️ 书源设置\n（书源编辑界面）",
     "SHOW_DISCOVER2": "⚙️ 发现设置\n（小说阅读界面）",
@@ -1040,6 +1041,28 @@ function editSettings(settingName) {
     }
     sleepToast(msg)
 }
+
+function backupData() {
+    let data = {}
+    // 账号相关
+    data.pixivUid = getFromCache("pixiv:uid")
+    data.pixivCsrfToken = getCsrfToken()
+    data.pixivCookie = getCookie()
+    // 书源缓存
+    data.pixivAuthors = getFromCacheObject("pixivAuthors")
+    data.likeNovels = getFromCacheObject("likeNovels")
+    data.watchedSeries = getFromCacheObject("watchedSeries")
+    // 书源设置
+    data.pixivSettings = getFromCacheObject("pixivSettings")
+    data.captionBlockWords = getFromCacheObject("captionBlockWords")
+    data.tagsBlockWords = getFromCacheObject("tagsBlockWords")
+    data.likeTags = getFromCacheObject(`likeTags`)
+    // 书源设置 Map
+    data.blockAuthorMap = getFromCacheMap("blockAuthorMap")
+    data.likeAuthors = getFromCacheMap("likeAuthors")
+    return JSON.stringify(data, null, 4)
+}
+
 
 function cleanCache() {
     let novel = getNovel()

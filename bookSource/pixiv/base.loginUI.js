@@ -69,8 +69,7 @@ let settings = [
 
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
-    // {"🔍 搜索说明": "readMeSearch()" },
-    {"🐺 兽人作者": "updatePixivAuthors()" },
+    {"💾 备份恢复": "backupRestore()" },
 ]
 
 let discoverSettings = [
@@ -85,7 +84,7 @@ let discoverSettings = [
 
     {"🔞 原创热门": "editSettings('SHOW_GENRE_ADULT')" },
     {"🆗 原创热门": "editSettings('SHOW_GENRE_GENERAL')" },
-    {"🐺 兽人小说": "editSettings('SHOW_FURRY')" },
+    {"🐺 兽人作者": "updatePixivAuthors()" },
 ]
 
 let li = []
