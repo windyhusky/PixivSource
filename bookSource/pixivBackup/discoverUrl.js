@@ -132,7 +132,9 @@ if (likeTags && likeTags.length >= 1) {
 }
 
 // 他人收藏
-let likeAuthors = getFromCacheMap("likeAuthors")
+let likeAuthors = getFromCacheMap("likeAuthorsMap")
+if (!likeAuthors) likeAuthors = getFromCacheMap("likeAuthors")
+
 if (likeAuthors.size > 0) {
     likeAuthors.forEach((authorName, authorId) => {
         let bookmark = {}

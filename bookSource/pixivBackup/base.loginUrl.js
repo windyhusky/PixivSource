@@ -50,7 +50,9 @@ function removeSettingsCache() {
 
 function getCookie() {
     let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (isLogin()) putInCache("pixivCookie", pixivCookie, 60*60)
+    if (!isLogin()) return ""
+    putInCache("pixivCookie", pixivCookie, 60*60)
+    return pixivCookie
 }
 
 // 获取 Csrf Token，以便进行收藏等请求
@@ -647,10 +649,10 @@ function novelPollAnswer() {
     }
 }
 
-let wordsType = {
-    "caption": "📃 简介屏蔽列表",
-    "tags": "#️ 标签屏蔽列表",
-    "authors": "👤 作者屏蔽列表"
+let blockType = {
+    "Caption": "📃 简介屏蔽列表",
+    "Tags": "#️ 标签屏蔽列表",
+    "Authors": "👤 作者屏蔽列表"
 }
 
 function printAuthorMap(map) {
@@ -662,97 +664,105 @@ function printAuthorMap(map) {
 }
 
 function blockShowFactory() {
-    let keys = Object.keys(wordsType)
-    let key = getFromCacheObject("wordsType")
+    let keys = Object.keys(blockType)
+    let key = getFromCacheObject("blockType")
 
     // 切换屏蔽列表
-    let index = keys.indexOf(key) + 1
-    if (index === keys.length) index = 0
-    key = keys[index]
-    putInCacheObject("wordsType", key)
+    let currentIndex = keys.indexOf(key)
+    let nextIndex = (currentIndex + 1) % keys.length
+    key = keys[nextIndex]
+    putInCacheObject("blockType", key)
 
     if (key === "authors") {
         let words = printAuthorMap(getFromCacheMap("blockAuthorMap"))
         if (!words) words = ""
-        sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words}`, 2)
+        sleepToast(`👀 查看屏蔽\n${blockType[key]}\n\n${words}`, 2)
     } else {
-        let words = getFromCacheObject(`${key}BlockWords`)
+        let words = getFromCacheObject(`block${key}`)
+        if (!words) words = getFromCacheObject(`${key.toLowerCase()}BlockWords`)
         if (!words) words = []
-        sleepToast(`👀 查看屏蔽\n${wordsType[key]}\n\n${words.join("\n")}`, 2)
+        sleepToast(`👀 查看屏蔽\n${blockType[key]}\n\n${words.join("\n")}`, 2)
+        putInCacheObject(`block${key}`, words)
     }
 }
 
 function blockWordAdd() {
-    let method = getFromCacheObject("wordsType")
-    let blockWords = getFromCacheObject(`${method}BlockWords`)
-    if (blockWords === null) blockWords = []
+    let method = getFromCacheObject("blockType")
+    let blockTypeName = blockType[method]
+    let blockWords = getFromCacheObject(`block${method}`)
+    if (!blockWords) getFromCacheObject(`${method.toLowerCase()}BlockWords`)
+    if (!blockWords) blockWords = []
 
     let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
     } else if (blockWords.includes(word)) {
-        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 【${word}】已经加入屏蔽列表了`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n✅ 【${word}】已经加入屏蔽列表了`)
     } else {
         blockWords.push(word)
-        putInCacheObject(`${method}BlockWords`, blockWords)
-        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 已将【${word}】加入屏蔽列表中`)
+        putInCacheObject(`block${method}`, blockWords)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n✅ 已将【${word}】加入屏蔽列表中`)
     }
 }
 
 function blockWordDelete() {
-    let method = getFromCacheObject("wordsType")
-    let blockWords = getFromCacheObject(`${method}BlockWords`)
-    if (blockWords === null) blockWords = []
+    let method = getFromCacheObject("blockType")
+    let blockTypeName = blockType[method]
+    let blockWords = getFromCacheObject(`block${method}`)
+    if (!blockWords) getFromCacheObject(`${method.toLowerCase()}BlockWords`)
+    if (!blockWords) blockWords = []
 
     let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
     } else if (!blockWords.includes(word)) {
-        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 【${word}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n⚠️ 【${word}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
     } else {
         blockWords = blockWords.filter(item => item !== word)
-        putInCacheObject(`${method}BlockWords`, blockWords)
-        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n✅ 已删除屏蔽词【${word}】`)
+        putInCacheObject(`block${method}`, blockWords)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n✅ 已删除屏蔽词【${word}】`)
     }
 }
 
 function blockAuthorAdd() {
-    let method = getFromCacheObject("wordsType")
+    let method = getFromCacheObject("blockType")
+    let blockTypeName = blockType[method]
     let blockAuthors = getFromCacheMap(`blockAuthorMap`)
 
     let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
     } else if (blockAuthors.has(word)) {
         let text = `${blockAuthors.get(word)} ${word}`
-        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 【${text}】已经加入屏蔽列表了`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n✅ 【${text}】已经加入屏蔽列表了`)
     }
     // 输入纯数字，添加对应ID的作者
     else if (!isNaN(word)) {
         let user = getAjaxJson(urlUserDetailed(word)).body
         blockAuthors.set(user.userId, user.name)
         let text = `@${user.name} ${user.userId}`
-        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n✅ 已将【${text}】加入屏蔽列表中`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n✅ 已将【${text}】加入屏蔽列表中`)
     }
     else if (word) {
-        sleepToast(`🚫 添加屏蔽\n${wordsType[method]}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
     }
     putInCacheMap(`blockAuthorMap`, blockAuthors)
 }
 
 function blockAuthorDelete() {
-    let method = getFromCacheObject("wordsType")
+    let method = getFromCacheObject("blockType")
+    let blockTypeName = blockType[method]
     let blockAuthors = getFromCacheMap(`blockAuthorMap`)
 
     let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
     }
     // 输入纯数字，删除对应ID的作者
     else if (!isNaN(word) && blockAuthors.has(word)) {
         let text = `@${blockAuthors.get(word)} ${word}`
         blockAuthors.delete(word)
-        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n✅ 已删除【${text}】`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n✅ 已删除【${text}】`)
     }
     //作者名称
     else if (Array.from(blockAuthors.values()).includes(word)) {
@@ -760,21 +770,21 @@ function blockAuthorDelete() {
         let key = Array.from(blockAuthors.keys())[index]
         let text = `@${blockAuthors.get(key)} ${key}`
         blockAuthors.delete(key)
-        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n✅ 已删除【${text}】`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n✅ 已删除【${text}】`)
     }
     else if (word) {
-        sleepToast(`⭕️ 删除屏蔽\n${wordsType[method]}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
     }
     putInCacheMap(`blockAuthorMap`, blockAuthors)
 }
 
 function blockAddFactory() {
-    if (getFromCacheObject("wordsType") === "authors") return blockAuthorAdd()
+    if (getFromCacheObject("blockType") === "authors") return blockAuthorAdd()
     else return blockWordAdd()
 }
 
 function blockDeleteFactory() {
-    if (getFromCacheObject("wordsType") === "authors") return blockAuthorDelete()
+    if (getFromCacheObject("blockType") === "authors") return blockAuthorDelete()
     else return blockWordDelete()
 }
 
@@ -825,12 +835,18 @@ function likeTagsDelete() {
 
 
 function likeAuthorsShow() {
-    let text = printAuthorMap(getFromCacheMap(`likeAuthors`))
+    let likeAuthors = getFromCacheMap("likeAuthorsMap")
+    if (likeAuthors.size === 0) likeAuthors = getFromCacheMap("likeAuthors")
+
+    let text = printAuthorMap(likeAuthors)
     sleepToast(`👀 查看收藏\n❤️ 他人收藏\n\n${text.trim()}`, 2)
+    putInCacheMap(`likeAuthorsMap`, likeAuthors)
 }
 
 function likeAuthorsAdd() {
-    let likeAuthors = getFromCacheMap(`likeAuthors`)
+    let likeAuthors = getFromCacheMap("likeAuthorsMap")
+    if (likeAuthors.size === 0) likeAuthors = getFromCacheMap("likeAuthors")
+    
     let word = String(result.get("文本框")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
         return sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 @作者名称`)
@@ -859,12 +875,14 @@ function likeAuthorsAdd() {
     else if (word) {
         sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n📌 【文本框】内输入【用户ID】可关注其他用户的收藏`)
     }
-    putInCacheMap(`likeAuthors`, likeAuthors)
+    putInCacheMap(`likeAuthorsMap`, likeAuthors)
     try {source.refreshExplore()} catch (e) {}
 }
 
 function likeAuthorsDelete() {
-    let likeAuthors = getFromCacheMap(`likeAuthors`)
+    let likeAuthors = getFromCacheMap("likeAuthorsMap")
+    if (likeAuthors.size === 0) likeAuthors = getFromCacheMap("likeAuthors")
+
     let word = String(result.get("文本框")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
         return sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n⚠️ 仅支持通过【作者ID/作者名称】取关\n不支持输入 @作者名称`)
@@ -895,7 +913,7 @@ function likeAuthorsDelete() {
     else if (word) {
         sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n📌 【文本框】内输入【用户ID】可取关其他用户的收藏`)
     }
-    putInCacheMap(`likeAuthors`, likeAuthors)
+    putInCacheMap(`likeAuthorsMap`, likeAuthors)
     try {source.refreshExplore()} catch (e) {}
 }
 
@@ -959,7 +977,6 @@ let settingsName = {
     "SHOW_RANK_GENERAL": "🆗 排行榜单",
     "SHOW_GENRE_ADULT": "🔞 原创热门",
     "SHOW_GENRE_GENERAL": "🆗 原创热门",
-    "SHOW_FURRY": "🐺 兽人小说",
     "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",
     "SHOW_SETTINGS": "⚙️ 书源设置\n（书源编辑界面）",
     "SHOW_DISCOVER2": "⚙️ 发现设置\n（小说阅读界面）",
@@ -1033,6 +1050,66 @@ function editSettings(settingName) {
         if (settingName.startsWith("SHOW")) try {source.refreshExplore()} catch (e) {}
     }
     sleepToast(msg)
+}
+
+function backupRestore() {
+    let variable = String(result.get("书源设置")).trim()
+    // let variable = String(source.getVariable())
+    if (variable === "") {
+        sleepToast("\n💾 备份数据\n\n已导出书源数据")
+        let data = backupData()
+        // source.putVariable(data)
+        java.upLoginData({"书源设置": data})
+    }
+    if (isJsonString(variable)) {
+        sleepToast("\n💾 恢复数据\n\n已导入书源数据")
+        restoreData(JSON.parse(variable))
+    }
+}
+
+function backupData() {
+    let data = {}
+    // 账号相关
+    // data.pixivUid = getFromCache("pixivUid")
+    // data.pixivCsrfToken = getCsrfToken()
+    // data.pixivCookie = getCookie()
+    // 书源缓存
+    data.pixivAuthors = getFromCacheObject("pixivAuthors")
+    data.likeNovels = getFromCacheObject("likeNovels")
+    data.watchedSeries = getFromCacheObject("watchedSeries")
+    // 书源设置
+    data.pixivSettings = getFromCacheObject("pixivSettings")
+    data.blockCaption = getFromCacheObject("blockCaption")
+    if (!data.blockCaption) data.blockCaption = getFromCacheObject("captionBlockWords")
+    data.blockTags = getFromCacheObject(`blockTags`)
+    if (!data.blockTags) data.blockCaption = getFromCacheObject("blockTags")
+
+    // 书源设置 Map
+    data.blockAuthorMap = Object.fromEntries(getFromCacheMap("blockAuthorMap"))
+    data.likeAuthorsMap = Object.fromEntries(getFromCacheMap("likeAuthorsMap"))
+    if (!data.likeAuthorsMap) data.likeAuthorsMap = Object.fromEntries(getFromCacheMap("likeAuthors"))
+    return JSON.stringify(data, null, 4)
+}
+
+function restoreData(data) {
+    // 账号相关
+    // putInCache("pixivUid", data?.pixivUid)
+    // putInCache("pixivCsrfToken", data?.pixivCsrfToken)
+    // putInCache("pixivCookie", data?.pixivCookie)
+    // 书源缓存
+    putInCacheObject("pixivAuthors", data?.pixivAuthors)
+    putInCacheObject("likeNovels", data?.likeNovels)
+    putInCacheObject("watchedSeries", data?.watchedSeries)
+
+    // 书源设置
+    putInCacheObject("pixivSettings", data?.pixivSettings)
+    putInCacheObject("blockCaption", data?.blockCaption)
+    putInCacheObject("blockTags", data?.blockTags)
+    putInCacheObject("likeTags", data?.likeTags)
+    // 书源设置 Map
+    putInCacheMap("blockAuthorMap", new Map(Object.entries(data?.blockAuthorMap)))
+    putInCacheMap("likeAuthorsMap", new Map(Object.entries(data?.likeAuthorsMap)))
+    try {source.refreshExplore()} catch (e) {}
 }
 
 function cleanCache() {

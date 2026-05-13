@@ -30,8 +30,8 @@ function isLegadoOfficial() {
     }
     return isLegadoOfficialStatus
 }
-// 检测 阅读 Beta 版本 与 LYC 版本
-// LYC 版本新增函数
+// 检测 阅读 Beta 版本 与 Sigma 版本
+// Sigma 版本新增函数
 // java.ajaxTestAll()
 // java.openVideoPlayer(url: String, title: String, float: Boolean)
 // cookie.setWebCookie(url,cookie)
@@ -222,33 +222,33 @@ function publicFunc() {
     u.novelFilter2 = function(novels) {
         const length = novels.length
         let novels0 = novels.map(novel => novel.id)
-        let captionBlockWords = getFromCacheObject("captionBlockWords")
-        if (!captionBlockWords) captionBlockWords = []
-        else {
+        let blockCaption = getFromCacheObject("blockCaption")
+        if (!blockCaption) blockCaption = getFromCacheObject("captionBlockWords")
+        if (blockCaption) {
             // 仅保留没有任何屏蔽词的小说
             // novels = novels.filter(novel => {
-            //     return !captionBlockWords.some(item => {
+            //     return !blockCaption.some(item => {
             //         if (novel.description !== undefined) return novel.description.includes(item)
             //     })
             // })
-            novels = novels.filter(novel => !captionBlockWords.some(item => novel.description.includes(item)))
+            novels = novels.filter(novel => !blockCaption.some(item => novel.description.includes(item)))
             let novels2 = novels.map(novel => novel.id)
-            java.log(`🚫 屏蔽描述：${captionBlockWords.join("\n")}`)
+            java.log(`🚫 屏蔽描述：${blockCaption.join("\n")}`)
             java.log(`🚫 屏蔽描述：过滤前${novels0.length}；过滤后${novels2.length}`)
         }
 
-        let tagsBlockWords = getFromCacheObject("tagsBlockWords")
-        if (!tagsBlockWords) tagsBlockWords = []
-        else {
+        let blockTags = getFromCacheObject("blockTags")
+        if (!blockTags) blockTags = getFromCacheObject("tagsBlockWords")
+        if (blockTags) {
             // 仅保留没有任何屏蔽词的小说
             // novels = novels.filter(novel => {
-            //     return !tagsBlockWords.some(item => {
+            //     return !blockTags.some(item => {
             //         if (novel.tags !== undefined) return novel.tags.includes(item)
             //     })
             // })
-            novels = novels.filter(novel => !tagsBlockWords.some(item => novel.tagsList.includes(item)))
+            novels = novels.filter(novel => !blockTags.some(item => novel.tagsList.includes(item)))
             let novels2 = novels.map(novel => novel.id)
-            java.log(`🚫 屏蔽标签：${tagsBlockWords.join("、")}`)
+            java.log(`🚫 屏蔽标签：${blockTags.join("、")}`)
             java.log(`🚫 屏蔽标签：过滤前${novels0.length}；过滤后${novels2.length}`)
         }
         return novels
@@ -589,13 +589,15 @@ function checkMessageThread(checkTimes) {
 // 获取请求的user id方便其他ajax请求构造
 function getPixivUid() {
     // cache.delete("pixiv:uid")
-    let uid = getFromCache("pixivUid")
-    if (!uid && isLogin()) {
+    let pixivUid = getFromCache("pixivUid")
+    if (!pixivUid) pixivUid = getFromCache("pixivUid")
+
+    if (!pixivUid && isLogin()) {
         let html = java.ajax("https://www.pixiv.net/")
-        uid = html.match(/user_id:'(\d+)'/)[1]
-        putInCache("pixiv:uid", uid)
+        pixivUid = html.match(/user_id:'(\d+)'/)[1]
+        putInCache("pixivUid", pixivUid)
     }
-    return uid
+    return pixivUid
 }
 
 function getHeaders() {
