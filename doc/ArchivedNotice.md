@@ -1,3 +1,18 @@
+---
+layout: doc
+title: 归档声明
+description: 归档声明
+
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendlink: false
+---
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>

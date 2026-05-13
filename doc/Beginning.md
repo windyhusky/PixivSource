@@ -1,7 +1,7 @@
 ---
 layout: doc
 title: 项目起源 - Pixiv 书源项目起源
-description: PixivSource 书源项目起源
+description: Pixiv 书源项目起源
 
 #sidebar: false
 #aside: false

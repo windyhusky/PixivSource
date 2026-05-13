@@ -3,6 +3,15 @@ layout: doc
 title: ⚡️ 快速开始：5分钟配置开源阅读 Pixiv 书源
 description: 五分钟完成配置：下载阅读、一键导入 Pixiv/Linpx/BTSRK 书源与订阅源、登录账号，立即开始阅读 Pixiv 小说。
 
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendlink: false
+
 head:
   - - meta
     - name: keywords

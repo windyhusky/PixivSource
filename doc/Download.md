@@ -3,6 +3,15 @@ layout: doc
 title: 下载开源阅读 - Android、iOS、鸿蒙 全平台版本
 description: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Sigma/Plus，iOS 可用源阅。
 
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendlink: false
+
 head:
   - - meta
     - name: keywords

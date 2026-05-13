@@ -3,6 +3,15 @@ layout: doc
 title: Pixiv 书源全功能使用手册
 description: 深度解析 Pixiv 书源用法：高级搜索、发现设置、收藏、追更、评论、屏蔽作者、屏蔽标签、自定义发现，直连模式等。
 
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendlink: false
+
 head:
   - - meta
     - name: keywords

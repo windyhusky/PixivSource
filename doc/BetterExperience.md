@@ -3,6 +3,15 @@ layout: doc
 title: ✨ 臻享阅读 - 开源阅读 + Pixiv 书源 新手使用指南
 description: 彻底解决 Pixiv 官方软件的痛点！从认识开源阅读，到导入书源、登录账号、开始使用，彻底告别 Pixiv 官方软件的阅读功能缺陷，找回阅读的纯粹乐趣。
 
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendlink: false
+
 head:
   - - meta
     - name: keywords

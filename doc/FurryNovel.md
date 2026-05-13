@@ -3,6 +3,15 @@ layout: doc
 title: FurryNovel 书源指南 - 在开源阅读中阅读兽人小说
 description: 用开源阅读 + FurryNovel 书源，无需登录即可搜索、发现、阅读兽人控小说站收录的 Pixiv、Bilibili 兽人小说，支持按标签筛选发现。
 
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendlink: false
+
 head:
   - - meta
     - name: keywords

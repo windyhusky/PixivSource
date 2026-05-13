@@ -3,6 +3,15 @@ layout: doc
 title: 导入订阅源 - 开源阅读 导入订阅源教程
 description: 开源阅读 Legado 导入订阅源完整教程：一键导入、规则订阅、网络导入、文件导入四种方式。
 
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendlink: false
+
 head:
   - - meta
     - name: keywords

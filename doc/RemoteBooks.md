@@ -3,6 +3,15 @@ layout: doc
 title: 远程书籍 - 在开源阅读中阅读 WebDAV 网盘中的书籍
 description: 在开源阅读 Legado 中配置 WebDAV 远程书籍：设置本地保存目录、添加坚果云等网盘服务器、浏览并导入网盘中的小说到书架。
 
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendlink: false
+
 head:
   - - meta
     - name: keywords
