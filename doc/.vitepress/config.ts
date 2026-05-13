@@ -233,7 +233,15 @@ export default defineConfig({
             permalink: false,
         },
         config: (md) => {
-            md.use(timeline);
+            md.use(timeline)
+
+            // 网页去除 Github 警告
+            const originalParse = md.parse;
+            md.parse = (src, env) => {
+                const targetRegex = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上浏览此文档[\s\S]*?排版更精美\*\*/g;
+                const cleanedSrc = src.replace(targetRegex, '');
+                return originalParse.call(md, cleanedSrc, env);
+            }
 
             // 图片渲染规则：懒加载 & 异步解码
             md.renderer.rules.image = (tokens, idx, options, env, self) => {

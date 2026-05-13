@@ -30,12 +30,11 @@ head:
 </div>
 
 
-<div class="github-only-notice">
-
-> [!NOTE]
+> [!WARNING]
 >
-> 📖 **你正在 GitHub 上浏览此文档， [网页版](https://pixivsource.pages.dev/Pixiv) 内容更全面，排版更精美**
-</div>
+> ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
+> [网页版](https://pixivsource.pages.dev/Pixiv)
+> 内容更全面，排版更精美**
 
 
 > [!TIP]
