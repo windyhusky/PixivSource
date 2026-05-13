@@ -656,9 +656,9 @@ function novelPollAnswer() {
 }
 
 let blockType = {
-    "caption": "📃 简介屏蔽列表",
-    "tags": "#️ 标签屏蔽列表",
-    "authors": "👤 作者屏蔽列表"
+    "Caption": "📃 简介屏蔽列表",
+    "Tags": "#️ 标签屏蔽列表",
+    "Authors": "👤 作者屏蔽列表"
 }
 
 function printAuthorMap(map) {
@@ -674,9 +674,9 @@ function blockShowFactory() {
     let key = getFromCacheObject("blockType")
 
     // 切换屏蔽列表
-    let index = keys.indexOf(key) + 1
-    if (index === keys.length) index = 0
-    key = keys[index]
+    let currentIndex = keys.indexOf(key)
+    let nextIndex = (currentIndex + 1) % keys.length
+    key = keys[nextIndex]
     putInCacheObject("blockType", key)
 
     if (key === "authors") {
@@ -684,83 +684,91 @@ function blockShowFactory() {
         if (!words) words = ""
         sleepToast(`👀 查看屏蔽\n${blockType[key]}\n\n${words}`, 2)
     } else {
-        let words = getFromCacheObject(`${key}BlockWords`)
+        let words = getFromCacheObject(`block${key}`)
+        if (!words) words = getFromCacheObject(`${key.toLowerCase()}BlockWords`)
         if (!words) words = []
         sleepToast(`👀 查看屏蔽\n${blockType[key]}\n\n${words.join("\n")}`, 2)
+        putInCacheObject(`block${key}`, words)
     }
 }
 
 function blockWordAdd() {
     let method = getFromCacheObject("blockType")
-    let blockWords = getFromCacheObject(`${method}BlockWords`)
-    if (blockWords === null) blockWords = []
+    let blockTypeName = blockType[method]
+    let blockWords = getFromCacheObject(`block${method}`)
+    if (!blockWords) getFromCacheObject(`${method.toLowerCase()}BlockWords`)
+    if (!blockWords) blockWords = []
 
     let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`🚫 添加屏蔽\n${blockType[method]}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
     } else if (blockWords.includes(word)) {
-        sleepToast(`🚫 添加屏蔽\n${blockType[method]}\n\n✅ 【${word}】已经加入屏蔽列表了`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n✅ 【${word}】已经加入屏蔽列表了`)
     } else {
         blockWords.push(word)
-        putInCacheObject(`${method}BlockWords`, blockWords)
-        sleepToast(`🚫 添加屏蔽\n${blockType[method]}\n\n✅ 已将【${word}】加入屏蔽列表中`)
+        putInCacheObject(`block${method}`, blockWords)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n✅ 已将【${word}】加入屏蔽列表中`)
     }
 }
 
 function blockWordDelete() {
     let method = getFromCacheObject("blockType")
-    let blockWords = getFromCacheObject(`${method}BlockWords`)
-    if (blockWords === null) blockWords = []
+    let blockTypeName = blockType[method]
+    let blockWords = getFromCacheObject(`block${method}`)
+    if (!blockWords) getFromCacheObject(`${method.toLowerCase()}BlockWords`)
+    if (!blockWords) blockWords = []
 
     let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`⭕️ 删除屏蔽\n${blockType[method]}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n⚠️ 请在【文本框】内输入屏蔽词`)
     } else if (!blockWords.includes(word)) {
-        sleepToast(`⭕️ 删除屏蔽\n${blockType[method]}\n\n⚠️ 【${word}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n⚠️ 【${word}】不在屏蔽列表\n请检查是否有错别字或标点符号是否一致`)
     } else {
         blockWords = blockWords.filter(item => item !== word)
-        putInCacheObject(`${method}BlockWords`, blockWords)
-        sleepToast(`⭕️ 删除屏蔽\n${blockType[method]}\n\n✅ 已删除屏蔽词【${word}】`)
+        putInCacheObject(`block${method}`, blockWords)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n✅ 已删除屏蔽词【${word}】`)
     }
 }
 
 function blockAuthorAdd() {
     let method = getFromCacheObject("blockType")
+    let blockTypeName = blockType[method]
     let blockAuthors = getFromCacheMap(`blockAuthorMap`)
 
     let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`🚫 添加屏蔽\n${blockType[method]}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
     } else if (blockAuthors.has(word)) {
         let text = `${blockAuthors.get(word)} ${word}`
-        sleepToast(`🚫 添加屏蔽\n${blockType[method]}\n\n✅ 【${text}】已经加入屏蔽列表了`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n✅ 【${text}】已经加入屏蔽列表了`)
     }
     // 输入纯数字，添加对应ID的作者
     else if (!isNaN(word)) {
         let user = getAjaxJson(urlUserDetailed(word)).body
         blockAuthors.set(user.userId, user.name)
         let text = `@${user.name} ${user.userId}`
-        sleepToast(`🚫 添加屏蔽\n${blockType[method]}\n\n✅ 已将【${text}】加入屏蔽列表中`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n✅ 已将【${text}】加入屏蔽列表中`)
     }
     else if (word) {
-        sleepToast(`🚫 添加屏蔽\n${blockType[method]}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
+        sleepToast(`🚫 添加屏蔽\n${blockTypeName}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
     }
     putInCacheMap(`blockAuthorMap`, blockAuthors)
 }
 
 function blockAuthorDelete() {
     let method = getFromCacheObject("blockType")
+    let blockTypeName = blockType[method]
     let blockAuthors = getFromCacheMap(`blockAuthorMap`)
 
     let word = String(result.get("文本框")).trim()
     if (word === "") {
-        sleepToast(`⭕️ 删除屏蔽\n${blockType[method]}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n⚠️ 请在【文本框】内输入【作者ID】\n或使用上方 🚫 屏蔽作者`)
     }
     // 输入纯数字，删除对应ID的作者
     else if (!isNaN(word) && blockAuthors.has(word)) {
         let text = `@${blockAuthors.get(word)} ${word}`
         blockAuthors.delete(word)
-        sleepToast(`⭕️ 删除屏蔽\n${blockType[method]}\n\n✅ 已删除【${text}】`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n✅ 已删除【${text}】`)
     }
     //作者名称
     else if (Array.from(blockAuthors.values()).includes(word)) {
@@ -768,10 +776,10 @@ function blockAuthorDelete() {
         let key = Array.from(blockAuthors.keys())[index]
         let text = `@${blockAuthors.get(key)} ${key}`
         blockAuthors.delete(key)
-        sleepToast(`⭕️ 删除屏蔽\n${blockType[method]}\n\n✅ 已删除【${text}】`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n✅ 已删除【${text}】`)
     }
     else if (word) {
-        sleepToast(`⭕️ 删除屏蔽\n${blockType[method]}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
+        sleepToast(`⭕️ 删除屏蔽\n${blockTypeName}\n\n⚠️ 输入【用户ID】可屏蔽该作者`)
     }
     putInCacheMap(`blockAuthorMap`, blockAuthors)
 }
@@ -1077,8 +1085,8 @@ function backupData() {
     data.watchedSeries = getFromCacheObject("watchedSeries")
     // 书源设置
     data.pixivSettings = getFromCacheObject("pixivSettings")
-    data.captionBlockWords = getFromCacheObject("captionBlockWords")
-    data.tagsBlockWords = getFromCacheObject("tagsBlockWords")
+    data.blockCaption = getFromCacheObject("blockCaption")
+    data.blockTags = getFromCacheObject("blockTags")
     data.likeTags = getFromCacheObject(`likeTags`)
     // 书源设置 Map
     data.blockAuthorMap = Object.fromEntries(getFromCacheMap("blockAuthorMap"))
@@ -1098,10 +1106,8 @@ function restoreData(data) {
 
     // 书源设置
     putInCacheObject("pixivSettings", data?.pixivSettings)
-    putInCacheObject("captionBlockWords", data?.captionBlockWords)
-    putInCacheObject("tagsBlockWords", data?.tagsBlockWords)
-    // putInCacheObject("blockCaption", data?.blockCaption)
-    // putInCacheObject("blockTags", data?.blockTags)
+    putInCacheObject("blockCaption", data?.blockCaption)
+    putInCacheObject("blockTags", data?.blockTags)
     putInCacheObject("likeTags", data?.likeTags)
     // 书源设置 Map
     putInCacheMap("blockAuthorMap", new Map(Object.entries(data?.blockAuthorMap)))
