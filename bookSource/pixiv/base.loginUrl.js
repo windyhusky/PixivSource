@@ -1086,11 +1086,14 @@ function backupData() {
     // 书源设置
     data.pixivSettings = getFromCacheObject("pixivSettings")
     data.blockCaption = getFromCacheObject("blockCaption")
-    data.blockTags = getFromCacheObject("blockTags")
-    data.likeTags = getFromCacheObject(`likeTags`)
+    if (!data.blockCaption) data.blockCaption = getFromCacheObject("captionBlockWords")
+    data.blockTags = getFromCacheObject(`blockTags`)
+    if (!data.blockTags) data.blockCaption = getFromCacheObject("blockTags")
+
     // 书源设置 Map
     data.blockAuthorMap = Object.fromEntries(getFromCacheMap("blockAuthorMap"))
     data.likeAuthorsMap = Object.fromEntries(getFromCacheMap("likeAuthorsMap"))
+    if (!data.likeAuthorsMap) data.likeAuthorsMap = Object.fromEntries(getFromCacheMap("likeAuthors"))
     return JSON.stringify(data, null, 4)
 }
 
