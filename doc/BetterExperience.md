@@ -130,7 +130,8 @@ head:
 
 
 ## 软件介绍 {#LegadoIntroduction}
-像常规阅读软件一样，也有：书架、搜索、发现、我的 等页面
+像常规阅读软件一样，开源阅读 也有：书架、搜索、发现、我的 等页面
+
 ### 📚 书架页面 {#Shelf}
 添加小说后如图：
 ![img](./pic/LegadoBookShelf.png)
@@ -152,18 +153,32 @@ head:
 ![img.png](./pic/LegadoProfile.png)
 
 > [!IMPORTANT]
+> 
 > **设置中的这两项非常重要**，稍后讲解：
 >  - **【书源管理】** 查看 [书源管理](#BookSourceSet)
 >  - **【备份与恢复】** 查看 [备份与恢复](#WebdavBackup)
 
 
 ## 概念介绍 {#SourceIntroduction}
-### 📖 书源 {#BookSource}
+### 📖 开源阅读 {#Legado}
+阅读指 [**Legado / 开源阅读**](https://github.com/Luoyacheng/legado) 这一开源阅读软件
+
 > [!NOTE]
+>
+> **阅读是一个特殊的浏览器，通过特定规则【书源/订阅源】访问网页，并进行重新排版**
+>
+> **简而言之，【阅读】就是个工具，并不提供任何小说内容。**
+>
+> 转自：[**阅读常见问题解答**](https://mp.weixin.qq.com/s/5EO-TuqYfDrK-bFk78vd3g)
+
+
+### 📚 书源 {#BookSource}
+> [!NOTE]
+>
 > **【开源阅读】没有账号体系，软件本身并不提供小说资源**
-> 
+>
 > **提供小说资源的是【书源】，准确来说是书源内部的网站**
-> 
+>
 > **书源是指导阅读浏览器，向书源内部网站请求数据的一套方法**
 
 **有什么网站的书源，就可以看什么网站的小说**
@@ -171,11 +186,12 @@ head:
 - 有【番茄】书源，就可以看 番茄小说
 - 有【Pixiv】书源，就可以看 Pixiv 小说
 
+
 ### 🌐 订阅源 {#RssSource}
 > [!NOTE]
-> 
+>
 > 「订阅源类似于RSS，甚至可以听音乐看视频」
-> 
+>
 > **这里提供的订阅源类似于浏览器书签，可以在阅读软件（订阅界面）内快速访问相关网站**
 
 
@@ -184,9 +200,9 @@ head:
 - 这里使用的是**一键导入，不需要区分二者**
 
 > [!IMPORTANT]
-> 
+>
 > **点击下方链接，一键导入书源、订阅源**
-> 
+>
 > 🅿️ [一键导入 Pixiv 书源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
 >
 > 🐲 [一键导入 Pixiv 订阅源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
