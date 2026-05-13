@@ -60,13 +60,13 @@ head:
 > ⭐️ [发现小说](#DiscoverNovel)；
 > 🔗 [添加网址](#AddUrl)；
 > 🌐 [订阅源](#RssSource)；
-> ⚙️ [️书源设置](#Settings)；
+> ⚙️ [️设置功能](#Settings)；
 > ⏺ [互动功能](#Interact)**
 
 
-[//]: # (<div v-if="false">)
+<div v-if="false">
   <!--@include: CommonLinpx.md-->
-[//]: # (</div>)
+</div>
 
 
 ## 搜索小说 {#SearchNovel}
@@ -204,6 +204,61 @@ https://furrynovel.ink/pixiv/user/119908520
 打开 Linpx 小说页面，点击【添加到书架】按钮，即可添加小说到书架
   
 ![img](./pic/AddBookViaLinpx.png)
+
+
+## 设置功能 {#Settings}
+> [!NOTE]
+>
+> **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
+
+![img](./pic/LinpxLogin.png)
+
+
+### ▶️ 基础功能
+> [!NOTE]
+>
+> **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
+
+![img](./pic/LinpxLoginUIBase.png)
+- **🆙 更新书源：更新书源/更新订阅**
+- 🔰 使用指南：打开 Github 文档(本页)
+- 🐞 反馈问题：打开 Github Issues
+
+
+### ⚙️ 书源设置
+> [!NOTE]
+>
+> **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
+
+![img](./pic/LinpxLoginUISettings.png)
+- ⚙️ 当前设置：显示当前设置
+- 🔧 默认设置：恢复默认设置
+- 👤 搜索作者：默认搜索，开启\关闭 搜索作者
+-
+- 🀄 繁简通搜：搜索进行繁简转换（搜索作者、标签不转换）
+- 📖 更多简介：详情显示更多简介
+- 🔗 原始链接：显示原始链接
+- 
+- 📚 恢复《》：恢复正文内被替换的书名号《》
+- 🖼️ 显示描述：章首显示描述
+- 🐞 调试模式：开启调试模式
+- 
+- **⏳ 图片解析：选择解析图片网站，获取 Pixiv 图片直链**
+- **🔗 图片链接：选择下载图片网站，Pixiv 图片直链 => 站方图片链接**
+- ↔️ 图片大小：切换图片大小，加快加载速度
+
+
+## 互动功能 {#Interact}
+### ⏺ 互动功能
+> [!NOTE]
+>
+> **⏺ 互动功能 => 书架 - 小说阅读界面 - Linpx - 登录**
+
+![img](./pic/LinpxLoginUINovels.png)
+
+- ⤴️ 分享章节：复制当前小说 Linpx 链接
+- ⤴️ 分享作者：复制当前作者 Linpx 链接
+- 🅿️ 分享小说：复制当前小说 Pixiv 链接
 
 
 <!--@include: CommonSuffix.md-->
