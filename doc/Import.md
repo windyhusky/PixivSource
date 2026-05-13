@@ -29,7 +29,7 @@ hero:
     - theme: alt
       text: ⬇️ 阅读软件
       link: Download
-			
+      
     - theme: alt
       text: 🚀 一键导入 订阅源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/books.json"
@@ -54,3 +54,10 @@ hero:
 
 <ImportRedirect />
 <VPHeroAction title="⚡️ 快速导入" />
+
+
+> [!WARNING]
+>
+> ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
+> [网页版](https://pixivsource.pages.dev/Import)
+> 内容更全面，排版更精美**
