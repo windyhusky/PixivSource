@@ -1042,6 +1042,21 @@ function editSettings(settingName) {
     sleepToast(msg)
 }
 
+function backupRestore() {
+    let variable = String(result.get("书源设置")).trim()
+    // let variable = String(source.getVariable())
+    if (variable === "") {
+        sleepToast("\n💾 备份数据\n\n已导出书源数据")
+        let data = backupData()
+        // source.putVariable(data)
+        java.upLoginData({"书源设置": data})
+    }
+    if (isJsonString(variable)) {
+        sleepToast("\n💾 恢复数据\n\n已导入书源数据")
+        restoreData(JSON.parse(variable))
+    }
+}
+
 function backupData() {
     let data = {}
     // 账号相关
