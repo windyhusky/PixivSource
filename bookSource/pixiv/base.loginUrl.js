@@ -1073,8 +1073,9 @@ function backupData() {
     data.tagsBlockWords = getFromCacheObject("tagsBlockWords")
     data.likeTags = getFromCacheObject(`likeTags`)
     // 书源设置 Map
-    data.blockAuthorMap = getFromCacheMap("blockAuthorMap")
-    data.likeAuthors = getFromCacheMap("likeAuthors")
+    data.blockAuthorMap = Object.fromEntries(getFromCacheMap("blockAuthorMap"))
+    data.likeAuthors = Object.fromEntries(getFromCacheMap("likeAuthors"))
+    // data.likeAuthorsMap = Object.fromEntries(getFromCacheMap("likeAuthorsMap"))
     return JSON.stringify(data, null, 4)
 }
 
@@ -1096,10 +1097,10 @@ function restoreData(data) {
     // putInCacheObject("blockCaption", data?.blockCaption)
     // putInCacheObject("blockTags", data?.blockTags)
     putInCacheObject("likeTags", data?.likeTags)
-
-    putInCacheMap("blockAuthorMap", data?.blockAuthorMap)
-    putInCacheMap("likeAuthors", data?.likeAuthors)
-
+    // 书源设置 Map
+    putInCacheMap("blockAuthorMap", new Map(Object.entries(data?.blockAuthorMap)))
+    putInCacheMap("likeAuthors", new Map(Object.entries(data?.likeAuthors)))
+    // putInCacheMap("likeAuthorsMap", new Map(Object.entries(data?.likeAuthorsMap)))
     try {source.refreshExplore()} catch (e) {}
 }
 
