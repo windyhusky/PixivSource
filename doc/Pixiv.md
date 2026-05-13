@@ -98,15 +98,8 @@ head:
 > #### 最新版【阅读 Sigma + 书源】已支持降低刷新书架时的并发率
 > #### 但依然不建议在书架上添加过多小说
 
- 
-### ⬇️ 下载阅读 {#DownloadLegado}
-> [!IMPORTANT]
->
-> 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
->
-> https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk
->
-> **苹果设备及更多兼容软件详见：** [下载阅读](./Download.md)
+
+<!--@include: CommonDownload.md-->
 
 
 ### 🚀 导入书源 & 订阅源 {#ImportSources}
