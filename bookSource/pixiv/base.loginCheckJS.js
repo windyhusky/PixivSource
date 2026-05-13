@@ -616,13 +616,15 @@ function checkMessageThread(checkTimes) {
 // 获取请求的user id方便其他ajax请求构造
 function getPixivUid() {
     // cache.delete("pixiv:uid")
-    let uid = getFromCache("pixiv:uid")
-    if (!uid && isLogin()) {
+    let pixivUid = getFromCache("pixivUid")
+    if (!pixivUid) pixivUid = getFromCache("pixivUid")
+
+    if (!pixivUid && isLogin()) {
         let html = java.ajax("https://www.pixiv.net/")
-        uid = html.match(/user_id:'(\d+)'/)[1]
-        putInCache("pixiv:uid", uid)
+        pixivUid = html.match(/user_id:'(\d+)'/)[1]
+        putInCache("pixivUid", pixivUid)
     }
-    return uid
+    return pixivUid
 }
 
 function getHeaders() {

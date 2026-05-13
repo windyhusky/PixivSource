@@ -1060,7 +1060,7 @@ function backupRestore() {
 function backupData() {
     let data = {}
     // 账号相关
-    // data.pixivUid = getFromCache("pixiv:uid")
+    // data.pixivUid = getFromCache("pixivUid")
     // data.pixivCsrfToken = getCsrfToken()
     // data.pixivCookie = getCookie()
     // 书源缓存
@@ -1081,7 +1081,6 @@ function backupData() {
 
 function restoreData(data) {
     // 账号相关
-    // putInCache("pixiv:uid", data?.pixivUid)
     // putInCache("pixivUid", data?.pixivUid)
     // putInCache("pixivCsrfToken", data?.pixivCsrfToken)
     // putInCache("pixivCookie", data?.pixivCookie)

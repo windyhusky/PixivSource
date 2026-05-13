@@ -159,7 +159,7 @@ function handlerRegexIllusts() {
             }
         }
         let userIllusts = getWebviewJson(
-            urlIP(urlIllustsDetailed(getFromCache("pixiv:uid"), illustIds)), html => {
+            urlIP(urlIllustsDetailed(getFromCache("pixivUid"), illustIds)), html => {
                 return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
             }).body
         return util.formatIllusts(util.handIllusts(Object.values(userIllusts)))
