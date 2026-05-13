@@ -48,6 +48,21 @@ head:
 
 
 ## ⏱️ [近期更新](https://github.com/DowneyRem/PixivSource/releases/latest) {#Latest}
+### 📚 更新 268 {#268}
+- 🅿️ Pixiv 小说、小说备用 书源：
+  - **💾 备份恢复** [issues#49](https://github.com/DowneyRem/PixivSource/issues/49)
+    - ⬆️ 导出数据
+    - ⬇️ 导入数据
+  - 🔢 备份数据
+    - 💾 Pixiv 缓存数据
+    - ⚙️ Pixiv 设置数据
+    - ⏺️ Pixiv 自定义数据
+
+
+## 📆 2026上半年 {#2026H1}
+[//]: # (## 📃 更新 260-270 {#260+})
+
+
 ### 📚 更新 267 {#267}
 - 🦊 Linpx & FN 书源：
   - **添加设置：设置图片参数**
@@ -70,10 +85,6 @@ head:
     - 🐱 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend)
   - 拆分图片直链获取与直链生成
   - 添加设置：⏳ 图片解析 🔗 图片链接 ↔️ 图片大小
-
-
-## 📆 2026上半年 {#2026H1}
-[//]: # (## 📃 更新 260-270 {#260+})
 
 
 ### 📚 更新 266 {#266}
