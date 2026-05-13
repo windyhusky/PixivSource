@@ -115,7 +115,7 @@ head:
 
 
 ### ⬇️ 下载阅读 {#DownloadLegado}
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 >
 > 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
 >
@@ -151,7 +151,7 @@ head:
 
 ![img.png](./pic/LegadoProfile.png)
 
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 > **设置中的这两项非常重要**，稍后讲解：
 >  - **【书源管理】** 查看 [书源管理](#BookSourceSet)
 >  - **【备份与恢复】** 查看 [备份与恢复](#WebdavBackup)
@@ -183,7 +183,7 @@ head:
 - **书源、订阅源的内部数据不同，添加源（网络导入、规则订阅）的时候需要区分**
 - 这里使用的是**一键导入，不需要区分二者**
 
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 > 
 > **点击下方链接，一键导入书源、订阅源**
 > 

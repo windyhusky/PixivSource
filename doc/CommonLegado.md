@@ -4,7 +4,7 @@ layout: doc
 
 ## 阅读设置 {#LegadoSettings}
 ### 💾 [备份恢复](WebdavBackup.md) {#WebdavBackup}
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
 >
@@ -14,7 +14,7 @@ layout: doc
 
 
 ### 🔄 关闭刷新 {#TurnOffAutoRefresh}
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 >
 > **使用时，请在设置里，关闭自动刷新**
 >

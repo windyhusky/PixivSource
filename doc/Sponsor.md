@@ -64,7 +64,7 @@ name="唐尼瑞姆" badge="🐲" icon="🐲">
 
 <Sponsor/>
 
-> [!IMPORTANT] 重要 
+> [!IMPORTANT] 
 > 
 > **可在【留言】中留下【书源】和【你的ID/昵称】，以便统计打赏名单，
 > 详见：[打赏详情](https://downeyrem.github.io/Sponsor/Source)**

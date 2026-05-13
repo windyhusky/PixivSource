@@ -3,7 +3,7 @@ layout: doc
 ---
 
 ### ⬇️ 下载阅读 {#DownloadLegado}
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 >
 > 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
 >
@@ -13,7 +13,7 @@ layout: doc
 
 
 ### 🚀 导入书源 & 订阅源 {#ImportSources}
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 >
 > **点击下方链接，一键导入书源、订阅源**
 >

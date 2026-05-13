@@ -58,10 +58,10 @@ head:
 
 ## [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 ### ⚠️ 使用须知 {#Notice}
-> [!CAUTION] 危险！
+> [!CAUTION]
 > #### ⚠️ 使用本书源造成的一切损失均由【使用者】自行承担
 
-> [!WARNING] 警告！
+> [!WARNING]
 > #### ⚠️ 请勿在 Pixiv 平台宣传本项目（书源）
 > <details><summary><strong> 📄 包括但不限于以下内容 </strong></summary>
 >
@@ -84,12 +84,12 @@ head:
 > #### 可能会触发 shadow ban 限制（大）部分功能，严重的甚至会封号
 
 
-> [!WARNING] 警告！
+> [!WARNING]
 > #### ⚠️ 不建议在书架上添加过多小说（超过100篇）
 > #### 否则刷新书架时，可能会触发请求限制，严重的会封号
 
 
-> [!IMPORTANT] 重要  
+> [!IMPORTANT]  
 > #### ⚠️ 使用本书源时，请务必在阅读设置里 [关闭【自动刷新】](#TurnOffAutoRefresh)
 > #### 否则自动刷新时，可能会触发请求限制，严重的会封号
 
@@ -100,7 +100,7 @@ head:
 
  
 ### ⬇️ 下载阅读 {#DownloadLegado}
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 >
 > 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
 >
@@ -110,7 +110,7 @@ head:
 
 
 ### 🚀 导入书源 & 订阅源 {#ImportSources}
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 >
 > **点击下方链接，一键导入书源、订阅源**
 >

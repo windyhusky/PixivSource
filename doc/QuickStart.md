@@ -68,7 +68,7 @@ head:
 
 
 ### ⬇️ A.下载阅读 {#DownloadLegado}
-> [!IMPORTANT] 重要
+> [!IMPORTANT]
 >
 > 点击链接，下载 **【阅读 Plus】** 安装包并安装软件
 >
