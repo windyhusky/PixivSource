@@ -38,7 +38,12 @@ const looksLikeJsonInput = computed(() => {
 const jsonError = computed(() => {
   if (!looksLikeJsonInput.value) return ''
   try {
-    JSON.parse(inputUrl.value.trim())
+    let raw = inputUrl.value.trim()
+    // 预校验：如果是 {} 格式，尝试模拟包装后校验，防止在输入框动态提示错误
+    if (raw.startsWith('{') && raw.endsWith('}')) {
+      raw = `[${raw}]`
+    }
+    JSON.parse(raw)
     return ''
   } catch {
     return 'JSON 格式错误，请检查后再导入'
@@ -107,7 +112,7 @@ function alignToContent() {
   const sidebar = isDesktop
       ? (document.querySelector('.VPSidebar') as HTMLElement | null)
       : null
-  // < 1280px：aside 是浮层，不占文档流，忽略
+  // < 1280px：aside 是浮层 nudge，不占文档流，忽略
   const aside = hasAside
       ? (document.querySelector('.VPDocAside') as HTMLElement | null)
       : null
@@ -147,9 +152,9 @@ watch(() => route.path, () => {
 })
 watch(inputUrl, parseUrlLogic)
 
-// ── 核心执行逻辑：融入 Cloudflare Worker 边缘缓存无损流转 ──
+// ── 核心执行逻辑 ──
 async function doImport() {
-  const val = inputUrl.value.trim()
+  let val = inputUrl.value.trim()
   if (!val) return
 
   // 如果输入是 JSON，先进行格式合法性校验拦截
@@ -162,11 +167,20 @@ async function doImport() {
   if (looksLikeJsonInput.value) {
     isUploading.value = true
     try {
-      // 异步向部署在 Cloudflare 上的私有边缘节点投递配置
+      // 🌟 【核心纠错补丁】：解析前检查，如果是单对象形式 {}，自动为其首尾添加 [] 包装为标准书源数组
+      let parsedJson = JSON.parse(val)
+      if (!Array.isArray(parsedJson)) {
+        parsedJson = [parsedJson]
+      }
+
+      // 异步向部署在 Cloudflare 上的私有边缘节点投递合法的标准数组配置
       const response = await fetch(CF_WORKER_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(JSON.parse(val))
+        headers: {
+          'Content-Type': 'application/json',
+          'X-TNT-Secure': 'tnt_sec_2026' // 如果你后续在 Worker 启用了暗号校验，可在此处扩展
+        },
+        body: JSON.stringify(parsedJson)
       })
 
       if (!response.ok) throw new Error()
@@ -178,6 +192,7 @@ async function doImport() {
       // 生成安全的、绝不会被 Intent 截断的超短本地协议
       const finalUrl = `legado://import/${selectedType.value}?src=${encodeURIComponent(shortUrl)}`
 
+      generatedLegadoUrl.value = finalUrl
       isRedirecting.value = true
       window.location.href = finalUrl
       setTimeout(() => { isRedirecting.value = false }, 2800)
@@ -194,6 +209,7 @@ async function doImport() {
   const finalUrl = val.startsWith('legado://')
       ? val
       : `legado://import/${selectedType.value}?src=${encodeURIComponent(val)}`
+  generatedLegadoUrl.value = finalUrl
   window.location.href = finalUrl
   setTimeout(() => { isRedirecting.value = false }, 2800)
 }
