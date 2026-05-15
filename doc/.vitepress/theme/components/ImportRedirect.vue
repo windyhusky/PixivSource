@@ -9,6 +9,13 @@ const inputUrl = ref('')
 const selectedType = ref('importonline')
 const containerRef = ref<HTMLElement | null>(null)
 
+// 🌟 请在此处配置你部署好的 Cloudflare Worker 地址
+const CF_WORKER_URL = 'https://legado.tnt-wwxs-tz.workers.dev/'
+
+// 状态控制
+const isUploading = ref(false)
+const generatedLegadoUrl = ref('')
+
 const typeMap = [
   { label: '自动', value: 'importonline', icon: '⚡️' },
   { label: '书源', value: 'bookSource', icon: '📚' },
@@ -20,6 +27,28 @@ const typeMap = [
   { label: '阅读排版', value: 'readConfig', icon: '📝' },
   { label: '添加书架', value: 'book', icon: '➕' }
 ]
+
+// ── 智能判断输入内容是否疑似为纯 JSON 源码 ──
+const looksLikeJsonInput = computed(() => {
+  const trimmed = inputUrl.value.trim()
+  return trimmed.startsWith('{') || trimmed.startsWith('[')
+})
+
+// ── JSON 格式合法性校验 ──
+const jsonError = computed(() => {
+  if (!looksLikeJsonInput.value) return ''
+  try {
+    JSON.parse(inputUrl.value.trim())
+    return ''
+  } catch {
+    return 'JSON 格式错误，请检查后再导入'
+  }
+})
+
+// ── 是否为完全合法的 JSON 输入 ──
+const isValidJsonInput = computed(() => {
+  return looksLikeJsonInput.value && !jsonError.value
+})
 
 // ── 顶级极速跳转 ──
 const hasRedirected = ref(false)
@@ -42,6 +71,8 @@ if (typeof window !== 'undefined') {
 function parseUrlLogic(url: string) {
   const u = url.trim()
   if (!u) return
+  if (u.startsWith('{') || u.startsWith('[')) return // 避免解析纯 JSON 源码
+
   if (u.startsWith('legado://')) {
     const match = u.match(/legado:\/\/import\/([a-zA-Z]+)/)
     if (match?.[1]) {
@@ -116,23 +147,64 @@ watch(() => route.path, () => {
 })
 watch(inputUrl, parseUrlLogic)
 
-function doImport() {
+// ── 核心执行逻辑：融入 Cloudflare Worker 边缘缓存无损流转 ──
+async function doImport() {
   const val = inputUrl.value.trim()
   if (!val) return
+
+  // 如果输入是 JSON，先进行格式合法性校验拦截
+  if (looksLikeJsonInput.value && !isValidJsonInput.value && jsonError.value) {
+    alert(jsonError.value)
+    return
+  }
+
+  // 情况 A：处理大体积 JSON 配置源码
+  if (looksLikeJsonInput.value) {
+    isUploading.value = true
+    try {
+      // 异步向部署在 Cloudflare 上的私有边缘节点投递配置
+      const response = await fetch(CF_WORKER_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(JSON.parse(val))
+      })
+
+      if (!response.ok) throw new Error()
+
+      const resData = await response.json()
+      // 拿到 Worker 内存构建的极短链接（形如 https://xxx.workers.dev/?id=哈希值）
+      const shortUrl = resData.url
+
+      // 生成安全的、绝不会被 Intent 截断的超短本地协议
+      const finalUrl = `legado://import/${selectedType.value}?src=${encodeURIComponent(shortUrl)}`
+
+      isRedirecting.value = true
+      window.location.href = finalUrl
+      setTimeout(() => { isRedirecting.value = false }, 2800)
+    } catch (e) {
+      alert('私有云端无损通道建立失败，请检查 CF Worker 配置状态，或确认网络是否通畅。')
+    } finally {
+      isUploading.value = false
+    }
+    return
+  }
+
+  // 情况 B：处理常规的 http(s) 链接或原生 legado 协议
+  isRedirecting.value = true
   const finalUrl = val.startsWith('legado://')
       ? val
       : `legado://import/${selectedType.value}?src=${encodeURIComponent(val)}`
   window.location.href = finalUrl
+  setTimeout(() => { isRedirecting.value = false }, 2800)
 }
 
-const ready = computed(() => inputUrl.value.trim().length > 0)
+const ready = computed(() => inputUrl.value.trim().length > 0 && !isUploading.value)
 </script>
 
 <template>
   <div class="legado-outer">
     <div class="legado-container" ref="containerRef">
 
-      <!-- 状态 A：跳转中 -->
       <div v-if="isRedirecting" class="legado-card redirect-mode">
         <div class="loader-wrapper">
           <div class="loader-ring"></div>
@@ -142,14 +214,13 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
         <h2 class="redirect-title">正在拉起阅读 App</h2>
         <p class="redirect-desc">如果已安装开源阅读，应用将立即拉起...</p>
         <a
-            :href="inputUrl.startsWith('legado://') ? inputUrl : `legado://import/importonline?src=${encodeURIComponent(inputUrl)}`"
+            :href="generatedLegadoUrl || (inputUrl.startsWith('legado://') ? inputUrl : `legado://import/importonline?src=${encodeURIComponent(inputUrl)}`)"
             class="retry-btn-styled"
         >
           没有反应？点击手动跳转
         </a>
       </div>
 
-      <!-- 状态 B：主交互 -->
       <template v-else>
         <h1 class="vp-h1">🚀 一键导入 阅读资源</h1>
 
@@ -173,13 +244,14 @@ const ready = computed(() => inputUrl.value.trim().length > 0)
           <div class="input-area">
             <textarea
                 v-model="inputUrl"
-                placeholder="粘贴 http(s) 链接或 legado:// 协议..."
+                placeholder="粘贴 http(s) 链接、legado:// 协议，或者直接粘贴书源 JSON 源码..."
                 spellcheck="false"
+                :disabled="isUploading"
             ></textarea>
           </div>
 
           <button class="submit-btn" :disabled="!ready" @click="doImport">
-            确认导入至阅读
+            {{ isUploading ? '⏳ 正在通过 Cloudflare 分流打包...' : '确认导入至阅读' }}
           </button>
         </div>
 
