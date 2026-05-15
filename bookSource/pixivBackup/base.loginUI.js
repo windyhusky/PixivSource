@@ -70,6 +70,10 @@ let settings = [
     {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
+
+    {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
+    {"🔗 图片链接": "editSettings('PIC_LINK')" },
+    {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
 ]
 
 let discoverSettings = [

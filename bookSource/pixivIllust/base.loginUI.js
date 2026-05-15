@@ -9,13 +9,17 @@ let source = [
 
 let settings = [
     {"书源设置": "text" },
+    {"💾 备份恢复": "backupRestore()" },
     {"⚙️ 当前设置": "showSettings()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
-    {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
 
+    {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
-    {"🖼️ 🚫 常规质量": "editSettings('SHOW_CAPTIONS')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
+
+    {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
+    {"🔗 图片链接": "editSettings('PIC_LINK')" },
+    {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
 ]
 
 let li = []
