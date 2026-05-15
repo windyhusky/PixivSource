@@ -200,6 +200,32 @@ function urlCoverUrl(pxImgUrl) {
 }
 
 // 图片大小链接
+function testPxImgUrl(pxImgUrl) {
+    const { java, cache } = this
+    let headers = {
+        "User-Agent": this.getWebViewUA(),
+        "X-Requested-With": "XMLHttpRequest",
+        "Host": "i.pximg.net",
+        "Referer": "https://www.pixiv.net/"
+    }
+
+    pxImgUrl = pxImgUrl.replace("https://i.pximg.net", "https://210.140.139.133")
+    let baseUrl = pxImgUrl.slice(0, pxImgUrl.length - 4)
+    let suffix = [".png", ".jpg", ".jpeg"]
+    for (let ext of suffix) {
+        let finalUrl = baseUrl + ext
+        try {
+            java.head(finalUrl, headers)
+            // java.log("成功获取直链: " + finalUrl)
+            return finalUrl
+        } catch (e) {
+            // java.log(finalUrl + " 测试失败，尝试下一个...")
+        }
+    }
+    // java.log("未找到合法的 Pixiv 直链")
+    return ""
+}
+
 function urlPxImgQuality(pxImgUrl) {
     const {java, cache} = this
     let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
@@ -304,7 +330,6 @@ function urlIllustOriginal(illustId, order) {
     if (!settings.DEBUG) link = this.getFromCache(urlIllustDetailed(illustId))
 
     if (!link) {
-        let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
         let urlMap = {
             "Pixiv": (illustId) => this.urlIllustOriginalPixiv(illustId),
             "PixivCat": (illustId) => this.urlIllustOriginalPixivCat(illustId),
@@ -330,6 +355,7 @@ function urlIllustOriginalPixiv(illustId) {
             let illustThumb = resp.body.userIllusts[illustId].url
             let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
             illustOriginal = `https://i.pximg.net/img-master/img/${date}/${illustId}_p0_master1200.jpg`
+            illustOriginal = this.testPxImgUrl(illustOriginal)
         } catch (e) {}
     }
 
