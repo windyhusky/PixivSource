@@ -25,6 +25,16 @@ head:
   - - meta
     - property: og:image
       content: /pic/BookSourcePixiv.png
+
+repos:
+  - name: Pixiv 书源 / PixivSource
+    icon: /pic/BookSourcePixiv.png
+    desc: 最好的 Pixiv 小说阅读器
+    link: https://github.com/DowneyRem/PixivSource
+    prerelease: false
+    recommend: pixiv
+    show_assets: 1
+
 ---
 
 <div align="center">
@@ -131,6 +141,10 @@ head:
 <div v-if="false">
   <!--@include: CommonPixiv.md-->
 </div>
+
+
+## 近期更新 {#Latest}
+<DownloadCard/>
 
 
 ## 搜索小说 {#SearchNovel}

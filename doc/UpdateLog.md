@@ -22,6 +22,16 @@ head:
   - - meta
     - property: og:description
       content: PixivSource 书源更新记录：直连互动功能、搜索作者、重写排行榜、高并发优化、收藏追更评论等互动功能……历次版本的功能变更与问题修复说明。
+
+repos:
+  - name: PixivSource
+    icon: favicon-180x180.png
+    desc: 最好的 Pixiv 小说阅读器
+    link: https://github.com/DowneyRem/PixivSource
+    prerelease: false
+    recommend: pixiv
+    show_assets: 1
+
 ---
 
 <div align="center">
@@ -29,9 +39,6 @@ head:
 <br>
 
 # 📜 更新日志 📜
-### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
-#### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-#### ☕ [书源项目打赏名单](./Sponsor.md)
 </div>
 
 
@@ -42,12 +49,14 @@ head:
 > 内容更全面，排版更精美**
 
 
-> [!TIP]
->
-> **Pixiv 书源的更新日志（与 GitHub 同步）**
+## ⏱️ 近期更新 {#Latest}
+<DownloadCard/>
 
 
-## ⏱️ [近期更新](https://github.com/DowneyRem/PixivSource/releases/latest) {#Latest}
+## 📆 2026上半年 {#2026H1}
+[//]: # (## 📃 更新 260-270 {#260+})
+
+
 ### 📚 更新 268 {#268}
 - 🅿️ Pixiv 小说、小说备用 书源：
   - **💾 备份恢复** [issues#49](https://github.com/DowneyRem/PixivSource/issues/49)
@@ -57,10 +66,6 @@ head:
     - 💾 Pixiv 缓存数据
     - ⚙️ Pixiv 设置数据
     - ⏺️ Pixiv 自定义数据
-
-
-## 📆 2026上半年 {#2026H1}
-[//]: # (## 📃 更新 260-270 {#260+})
 
 
 ### 📚 更新 267 {#267}
