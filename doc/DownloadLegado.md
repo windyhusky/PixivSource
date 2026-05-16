@@ -31,11 +31,13 @@ repos:
     icon: /img/Legado.png
     desc: 极致阅读体验 免费开源电子书阅读器
     github: https://github.com/legadoteam/legado
+    prerelease: true
     
   - name: 阅读 MD3
     icon: /img/LegadoMD3.png
     desc: 开源阅读 Material Design 3 风格重构版
     github: https://github.com/HapeLee/legado-with-MD3
+#    prerelease: true
     
   - name: 阅读 Archive
     icon: 

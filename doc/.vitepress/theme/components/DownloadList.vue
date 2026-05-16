@@ -8,7 +8,7 @@ const { frontmatter } = useData()
 const rawRepos = computed(() => frontmatter.value.repos || [])
 const manualList = computed(() => frontmatter.value.manual || [])
 
-// 存储各个动态仓库的 GitHub 实时数据状态
+// 存储各个动态仓库的 GitHub 完整 Release 列表数据
 const apiDataMap = ref({})
 const loadingMap = ref({})
 
@@ -60,7 +60,7 @@ const renderMarkdown = (mdText) => {
   return html.replace(/(<\/div>)<br>/g, '$1')
 }
 
-// 异步拉取 GitHub Release 数据
+// 异步拉取 GitHub Releases 列表数据 (改用 /releases 以支持 Pre-release 筛选)
 onMounted(() => {
   rawRepos.value.forEach(async (repo) => {
     const repoPath = parseRepoPath(repo.github)
@@ -69,9 +69,10 @@ onMounted(() => {
     loadingMap.value[repo.github] = true
 
     try {
-      const res = await fetch(`https://api.github.com/repos/${repoPath}/releases/latest`)
+      const res = await fetch(`https://api.github.com/repos/${repoPath}/releases`)
       if (res.ok) {
         const data = await res.json()
+        // 存储完整的版本数组列表
         apiDataMap.value[repo.github] = data
       }
     } catch (e) {
@@ -81,6 +82,23 @@ onMounted(() => {
     }
   })
 })
+
+// 根据 Frontmatter 的 prerelease 配置，动态筛选出最符合条件的 Release 版本
+const getTargetRelease = (repoItem) => {
+  const releases = apiDataMap.value[repoItem.github]
+  if (!releases || !releases.length) return null
+
+  // 如果明确声明了 prerelease: true，直接返回列表里绝对最新的第一个版本 (无论正式还是预发布)
+  if (repoItem.prerelease) {
+    return releases[0]
+  }
+
+  // 否则，默认过滤掉 draft 和 prerelease，寻找最新的 Stable 正式版
+  const stableRelease = releases.find(r => !r.prerelease && !r.draft)
+
+  // 兜底：如果仓库里一个正式版都没有，则退一步返回最新的版本
+  return stableRelease || releases[0]
+}
 
 // 控制日志折叠状态
 const expandedKey = ref(null)
@@ -125,16 +143,19 @@ const navToRepo = (githubField) => {
             </div>
           </div>
 
-          <div class="card-content" v-else>
-            <div class="release-info" v-if="apiDataMap[item.github]">
+          <div class="card-content" v-else-if="getTargetRelease(item)">
+            <div class="release-info">
               <div class="meta">
-                <span class="tag">{{ apiDataMap[item.github].tag_name }}</span>
-                <span class="date">{{ formatDate(apiDataMap[item.github].published_at) }}</span>
+                <span class="tag">
+                  {{ getTargetRelease(item).tag_name }}
+                  <span v-if="getTargetRelease(item).prerelease" class="pre-badge">(Pre-release)</span>
+                </span>
+                <span class="date">{{ formatDate(getTargetRelease(item).published_at) }}</span>
               </div>
             </div>
 
             <div
-                v-if="apiDataMap[item.github] && apiDataMap[item.github].body"
+                v-if="getTargetRelease(item).body"
                 class="nested-changelog-box"
             >
               <div class="changelog-bar" @click="toggleLog('repo-' + index)">
@@ -145,13 +166,13 @@ const navToRepo = (githubField) => {
                 <i class="fas fa-chevron-down fold-arrow"></i>
               </div>
               <div class="changelog-body">
-                <div class="markdown-render" v-html="renderMarkdown(apiDataMap[item.github].body)"></div>
+                <div class="markdown-render" v-html="renderMarkdown(getTargetRelease(item).body)"></div>
               </div>
             </div>
 
-            <div class="card-actions" v-if="apiDataMap[item.github] && apiDataMap[item.github].assets">
+            <div class="card-actions" v-if="getTargetRelease(item).assets">
               <a
-                  v-for="(asset, aIdx) in apiDataMap[item.github].assets"
+                  v-for="(asset, aIdx) in getTargetRelease(item).assets"
                   :key="asset.id"
                   :href="asset.browser_download_url"
                   :class="['btn', aIdx === 0 ? 'primary' : 'secondary']"
@@ -160,8 +181,8 @@ const navToRepo = (githubField) => {
               </a>
 
               <a
-                  v-if="apiDataMap[item.github].assets.length === 0"
-                  :href="apiDataMap[item.github].html_url"
+                  v-if="getTargetRelease(item).assets.length === 0"
+                  :href="getTargetRelease(item).html_url"
                   target="_blank"
                   class="btn primary"
               >
@@ -222,6 +243,10 @@ const navToRepo = (githubField) => {
 </template>
 
 <style scoped>
+/* ========================================================
+   精细化排版布局与 VitePress 主题无缝适配
+   ======================================================== */
+
 .vp-download-container {
   margin-top: 2rem;
   width: 100%;
@@ -253,7 +278,7 @@ const navToRepo = (githubField) => {
   box-shadow: 0 6px 16px rgba(0,0,0,0.06);
 }
 
-/* 专属跳转点击热区：横向 Flex 布局 */
+/* 专属跳转点击热区 */
 .main-link-area {
   display: flex;
   gap: 1.2rem;
@@ -297,7 +322,6 @@ const navToRepo = (githubField) => {
   min-height: 42px;
 }
 
-/* 下方流式内容布局 */
 .card-footer-flow {
   display: flex;
   flex-direction: column;
@@ -316,7 +340,6 @@ const navToRepo = (githubField) => {
   width: 100%;
 }
 
-/* 【重要微调】让版本标签（tag）居左，更新时间（date）居右 */
 .meta {
   display: flex;
   justify-content: space-between;
@@ -324,16 +347,23 @@ const navToRepo = (githubField) => {
   width: 100%;
 }
 
+/* 【重要改动 1】去除了 background 底色，直接文本高亮呈现 */
 .tag {
-  background: var(--vp-c-brand-3, rgba(62, 175, 124, 0.15));
   color: var(--vp-c-brand-1);
-  padding: 2px 8px;
-  border-radius: 4px;
   font-weight: 600;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.pre-badge {
+  font-size: 11px;
+  color: var(--vp-c-danger-1);
+  font-weight: normal;
 }
 
 .static-tag {
-  background: rgba(52, 199, 89, 0.15);
   color: #34c759;
 }
 
@@ -366,7 +396,7 @@ const navToRepo = (githubField) => {
 .btn.primary { background: var(--vp-c-brand-1); color: white !important; }
 .btn.primary:hover { background: var(--vp-c-brand-2); }
 .btn.secondary { background: var(--vp-c-bg-alt); color: var(--vp-c-text-1) !important; border: 1px solid var(--vp-c-divider); }
-.btn.secondary:hover { background: var(--vp-c-divider); }
+.btn.secondary:hover { background: var(--vp-divider); }
 
 .size-text {
   font-size: 11px;
