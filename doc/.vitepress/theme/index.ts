@@ -8,6 +8,7 @@ import { useData, useRoute } from 'vitepress'
 import { h, watch } from "vue"
 import BackToTop from "./components/BackToTop.vue"
 import CustomFooter from "./components/CustomFooter.vue"
+import DownloadCard from "./components/DownloadCard.vue"
 import DownloadList from "./components/DownloadList.vue"
 import DownToDiscuss from "./components/DownToDiscuss.vue"
 import DragonChat from './components/DragonChat.vue'
@@ -68,6 +69,7 @@ export default {
         )
     },
     enhanceApp({app , router }) {
+        app.component('DownloadCard', DownloadCard)
         app.component('DownloadList', DownloadList)
         app.component('DragonChat', DragonChat)
         app.component('FriendLink', FriendLink)

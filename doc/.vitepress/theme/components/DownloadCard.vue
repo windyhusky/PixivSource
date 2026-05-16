@@ -3,27 +3,21 @@
  * DownloadCard.vue
  * 单张下载卡片组件。
  *
- * Props:
- *   - item          {Object}  仓库配置项（name, desc, icon, link, recommend, show_assets, prerelease, ...）
- *   - release       {Object|null}  经过 transformReleases 格式化后的目标 Release 对象
- *   - loading       {Boolean} 是否正在加载 API 数据
- *   - getDownloadUrl {Function} (assetUrl, repoItem) => String  链接转换函数（由父组件注入）
- *
- * 说明：
- *   - 折叠/展开状态（更新日志、更多资产）完全由组件自身管理，不依赖父组件。
- *   - 所有样式均为 scoped，不会污染外部。
+ * 既支持父组件通过 props 注入 item/release/loading/getDownloadUrl，也支持直接通过
+ * frontmatterSource + frontmatterIndex 从当前 VitePress 页面的 frontmatter 中读取数据。
  */
 
-import { ref, computed } from 'vue'
+import { computed, onMounted, ref, watch } from 'vue'
+import { useData } from 'vitepress'
 
 const props = defineProps({
   item: {
     type: Object,
-    required: true,
+    default: null,
   },
   release: {
     type: Object,
-    default: null,
+    default: undefined,
   },
   loading: {
     type: Boolean,
@@ -31,22 +25,166 @@ const props = defineProps({
   },
   getDownloadUrl: {
     type: Function,
-    required: true,
+    default: null,
+  },
+  frontmatterSource: {
+    type: String,
+    default: 'repos',
+    validator: value => ['repos', 'manual'].includes(value),
+  },
+  frontmatterIndex: {
+    type: Number,
+    default: 0,
   },
 })
 
-// ---------- 折叠状态（卡片内部自治）----------
-const logExpanded    = ref(false)
-const assetsExpanded = ref(false)
+const { frontmatter } = useData()
 
-const toggleLog    = () => { logExpanded.value    = !logExpanded.value }
+const logExpanded = ref(false)
+const assetsExpanded = ref(false)
+const localRelease = ref(null)
+const localLoading = ref(false)
+
+const frontmatterList = computed(() => frontmatter.value?.[props.frontmatterSource] || [])
+const cardItem = computed(() => props.item || frontmatterList.value[props.frontmatterIndex] || {})
+
+const hasInjectedRelease = computed(() => props.release !== undefined)
+const displayRelease = computed(() => hasInjectedRelease.value ? props.release : localRelease.value)
+const displayLoading = computed(() => props.loading || localLoading.value)
+
+const toggleLog = () => { logExpanded.value = !logExpanded.value }
 const toggleAssets = () => { assetsExpanded.value = !assetsExpanded.value }
 
-// ---------- 资产列表排序与截断 ----------
+const renderMarkdown = (mdText) => {
+  if (!mdText) return ''
+
+  let html = mdText
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+
+  html = html.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+
+  html = html.replace(/^(#{1,6})\s+(.+?)(?=\n|$)/gm, (match, hashes, content) => {
+    const level = hashes.length
+    return `<h${level} style="margin:12px 0 8px 0;font-weight:700;font-size:${1.4 - level * 0.1}rem;color:var(--vp-c-text-1);">${content}</h${level}>`
+  })
+
+  html = html.replace(/(?:^([*+-])\s+(.+?)(?:\n|$))+/gm, (match) => {
+    const items = match.trim().split('\n')
+        .map(line => {
+          const m = line.match(/^[*+-]\s+(.+)$/)
+          return m ? `<li style="margin:4px 0;list-style-type:disc;">${m[1]}</li>` : ''
+        })
+        .join('')
+    return `<ul style="padding-left:20px;margin:8px 0;">${items}</ul>`
+  })
+
+  html = html.replace(/`([^`\n]+)`/g, '<code style="background:var(--vp-c-bg-alt);padding:2px 6px;border-radius:4px;font-family:var(--vp-font-family-mono);font-size:0.85em;color:var(--vp-c-brand-1);border:1px solid var(--vp-c-divider)">$1</code>')
+  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong style="font-weight:700;color:var(--vp-c-text-1);">$1</strong>')
+  html = html.replace(/\[([^\]]+)]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--vp-c-brand-1);text-decoration:underline;">$1</a>')
+
+  return html.split('\n').map(line => {
+    if (line.trim().startsWith('<ul') || line.trim().startsWith('<li') || line.trim().startsWith('</ul') || line.trim().startsWith('<h')) return line
+    return line ? line + '<br>' : ''
+  }).join('\n')
+}
+
+const normalizeBody = (body) => {
+  if (!body) return ''
+  return String(body).includes('<') ? body : renderMarkdown(body)
+}
+
+const resolveRepoMeta = (urlField) => {
+  if (!urlField) return null
+  const url = urlField.trim()
+  if (url.includes('gitee.com/')) {
+    const path = url.split('gitee.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
+    return { platform: 'gitee', apiUrl: `https://gitee.com/api/v5/repos/${path}/releases` }
+  }
+  if (url.includes('github.com/')) {
+    const path = url.split('github.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
+    return { platform: 'github', apiUrl: `https://api.github.com/repos/${path}/releases` }
+  }
+  return null
+}
+
+const transformReleases = (rawData, platform) => {
+  if (!Array.isArray(rawData)) return []
+
+  const normalizedRawData = platform === 'gitee' ? [...rawData].reverse() : rawData
+
+  return normalizedRawData.map(item => {
+    const rawAssets = item.assets || []
+    const filteredAssets = rawAssets.filter(a => {
+      const n = (a.name || '').toLowerCase()
+      return !n.endsWith('.zip') && !n.endsWith('.tar.gz')
+    })
+
+    const isPre = platform === 'gitee'
+        ? (item.prerelease || ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k)))
+        : item.prerelease
+
+    let finalTagName = item.tag_name
+    if (String(item.tag_name).toLowerCase() === 'beta' && item.name) {
+      finalTagName = item.name.replace(/^legado_app_/, '')
+    }
+
+    return {
+      tag_name: finalTagName,
+      prerelease: isPre,
+      published_at: platform === 'gitee' ? item.created_at : item.published_at,
+      body: renderMarkdown(item.body || ''),
+      html_url: platform === 'gitee' ? `https://gitee.com/${item.author?.login}/${item.name?.replace('legado_app_', '')}/releases` : item.html_url,
+      assets: filteredAssets.map(a => ({
+        id: platform === 'gitee' ? a.browser_download_url : a.id,
+        name: a.name,
+        browser_download_url: a.browser_download_url,
+        size: platform === 'gitee' ? null : a.size,
+      })),
+    }
+  })
+}
+
+const getTargetRelease = (releases, item) => {
+  if (!releases || !releases.length) return null
+  return item.prerelease ? releases[0] : (releases.find(r => !r.prerelease) || releases[0])
+}
+
+const fetchFrontmatterRelease = async () => {
+  if (props.item || hasInjectedRelease.value || props.frontmatterSource !== 'repos') return
+
+  const item = cardItem.value
+  const meta = resolveRepoMeta(item.link || item.github)
+  if (!meta) {
+    localRelease.value = null
+    return
+  }
+
+  localLoading.value = true
+  try {
+    const res = await fetch(meta.apiUrl)
+    if (res.ok) {
+      localRelease.value = getTargetRelease(transformReleases(await res.json(), meta.platform), item)
+    }
+  } catch (e) {
+    console.error(e)
+  } finally {
+    localLoading.value = false
+  }
+}
+
+watch(cardItem, () => {
+  localRelease.value = null
+  fetchFrontmatterRelease()
+})
+
+onMounted(fetchFrontmatterRelease)
+
 const sortedAssets = computed(() => {
-  if (!props.release?.assets) return []
-  const keyword = props.item.recommend
-  return [...props.release.assets].sort((a, b) => {
+  if (!displayRelease.value?.assets) return []
+  const keyword = cardItem.value.recommend
+  return [...displayRelease.value.assets].sort((a, b) => {
     const aRec = keyword && a.name.toLowerCase().includes(keyword.toLowerCase())
     const bRec = keyword && b.name.toLowerCase().includes(keyword.toLowerCase())
     return bRec - aRec
@@ -54,67 +192,74 @@ const sortedAssets = computed(() => {
 })
 
 const visibleAssets = computed(() => {
-  if (assetsExpanded.value || !props.item.show_assets) return sortedAssets.value
-  return sortedAssets.value.slice(0, Number(props.item.show_assets))
+  if (assetsExpanded.value || !cardItem.value.show_assets) return sortedAssets.value
+  return sortedAssets.value.slice(0, Number(cardItem.value.show_assets))
 })
 
 const hiddenCount = computed(() => {
-  if (!props.item.show_assets) return 0
-  return Math.max(0, sortedAssets.value.length - Number(props.item.show_assets))
+  if (!cardItem.value.show_assets) return 0
+  return Math.max(0, sortedAssets.value.length - Number(cardItem.value.show_assets))
 })
 
-// ---------- 工具函数 ----------
 const formatSize = (bytes) => {
   if (!bytes) return ''
   return (bytes / (1024 * 1024)).toFixed(1) + ' MB'
 }
 
+const formatDate = (isoString) => {
+  if (!isoString) return ''
+  const date = new Date(isoString)
+  return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`
+}
+
 const isRecommend = (assetName) => {
-  const kw = props.item.recommend
+  const kw = cardItem.value.recommend
   return kw && assetName.toLowerCase().includes(kw.toLowerCase())
 }
 
+const defaultDownloadUrl = (assetUrl, item) => assetUrl || item.url || ''
+
+const resolveDownloadUrl = (assetUrl, item) => {
+  const resolver = props.getDownloadUrl || defaultDownloadUrl
+  return resolver(assetUrl, item)
+}
+
 const navToRepo = () => {
-  const url = props.item.link || props.item.github || props.item.url
+  const url = cardItem.value.link || cardItem.value.github || cardItem.value.url
   if (url) window.open(url.trim(), '_blank')
 }
 </script>
 
 <template>
-  <div class="download-card" :class="{ 'is-expanded': logExpanded }">
-    <!-- 卡片头部：点击跳转仓库 -->
+  <div v-if="cardItem.name" class="download-card" :class="{ 'is-expanded': logExpanded }">
     <div class="main-link-area" @click="navToRepo">
-      <img :src="item.icon" class="card-icon" :alt="item.name" />
+      <img :src="cardItem.icon" class="card-icon" :alt="cardItem.name" />
       <div class="header-main">
-        <h4>{{ item.name }}</h4>
-        <p class="desc">{{ item.desc }}</p>
+        <h4>{{ cardItem.name }}</h4>
+        <p class="desc">{{ cardItem.desc }}</p>
       </div>
     </div>
 
-    <!-- 加载中骨架屏 -->
-    <div class="card-footer-flow" v-if="loading">
+    <div class="card-footer-flow" v-if="displayLoading">
       <div class="card-content">
         <div class="skeleton-text" style="width:100%; height:12px; margin-bottom:1.2rem;"></div>
         <div class="skeleton-btn" style="height:38px;"></div>
       </div>
     </div>
 
-    <!-- 有发版数据 -->
-    <div class="card-footer-flow" v-else-if="release">
+    <div class="card-footer-flow" v-else-if="displayRelease">
       <div class="card-content">
-        <!-- 版本信息行 -->
         <div class="release-info">
           <div class="meta">
-            <a :href="release.html_url" target="_blank" class="tag clickable-tag" @click.stop>
-              {{ release.tag_name }}
-              <span v-if="release.prerelease" class="pre-badge">(Pre-release)</span>
+            <a :href="displayRelease.html_url" target="_blank" class="tag clickable-tag" @click.stop>
+              {{ displayRelease.tag_name }}
+              <span v-if="displayRelease.prerelease" class="pre-badge">(Pre-release)</span>
             </a>
-            <span class="date">{{ release.published_at }}</span>
+            <span class="date">{{ formatDate(displayRelease.published_at) }}</span>
           </div>
         </div>
 
-        <!-- 更新日志折叠区 -->
-        <div v-if="release.body" class="nested-changelog-box">
+        <div v-if="displayRelease.body" class="nested-changelog-box">
           <div class="changelog-bar" @click="toggleLog">
             <span class="bar-title">
               更新内容
@@ -122,30 +267,39 @@ const navToRepo = () => {
             </span>
           </div>
           <div class="changelog-body" :class="{ 'is-open': logExpanded }">
-            <div class="markdown-render" v-html="release.body"></div>
+            <div class="markdown-render" v-html="displayRelease.body"></div>
           </div>
         </div>
 
-        <!-- 下载按钮组 -->
         <div class="card-actions">
           <a
               v-for="asset in visibleAssets"
               :key="asset.id"
-              :href="getDownloadUrl(asset.browser_download_url, item)"
+              :href="resolveDownloadUrl(asset.browser_download_url, cardItem)"
               :class="['btn', isRecommend(asset.name) ? 'is-recommend' : 'secondary']"
               target="_blank"
               @click.stop
           >
             <div class="btn-left-content">
-              <div class="star-icon-slot">
-                <span v-if="isRecommend(asset.name)">🌟</span>
-              </div>
+              <div class="star-icon-slot"><span v-if="isRecommend(asset.name)">🌟</span></div>
               <span class="file-name">{{ asset.name }}</span>
             </div>
             <span v-if="asset.size" class="size-text">{{ formatSize(asset.size) }}</span>
           </a>
 
-          <!-- 展开/折叠更多资产 -->
+          <a
+              v-if="visibleAssets.length === 0"
+              :href="displayRelease.html_url"
+              target="_blank"
+              class="btn primary"
+              @click.stop
+          >
+            <div class="btn-left-content">
+              <div class="star-icon-slot"></div>
+              <span class="file-name">前往网页端下载</span>
+            </div>
+          </a>
+
           <div
               v-if="hiddenCount > 0 || assetsExpanded"
               class="toggle-more-assets-btn"
@@ -157,17 +311,16 @@ const navToRepo = () => {
       </div>
     </div>
 
-    <!-- 手动维护卡片（无 API，item.url 直链）-->
-    <div class="card-footer-flow" v-else-if="item.url || item.label">
+    <div class="card-footer-flow" v-else-if="cardItem.url || cardItem.label">
       <div class="card-content">
         <div class="release-info">
           <div class="meta">
-            <span class="tag">{{ item.version || '手动维护' }}</span>
-            <span class="date">{{ item.date || '' }}</span>
+            <span class="tag">{{ cardItem.version || '手动维护' }}</span>
+            <span class="date">{{ cardItem.date || '' }}</span>
           </div>
         </div>
 
-        <div v-if="item.changelog" class="nested-changelog-box">
+        <div v-if="cardItem.changelog" class="nested-changelog-box">
           <div class="changelog-bar" @click="toggleLog">
             <span class="bar-title">
               更新内容
@@ -175,21 +328,22 @@ const navToRepo = () => {
             </span>
           </div>
           <div class="changelog-body" :class="{ 'is-open': logExpanded }">
-            <div class="markdown-render" v-html="item.changelog"></div>
+            <div class="markdown-render" v-html="normalizeBody(cardItem.changelog)"></div>
           </div>
         </div>
 
         <div class="card-actions">
           <a
-              :href="getDownloadUrl(item.url, item)"
+              :href="resolveDownloadUrl(cardItem.url, cardItem)"
               target="_blank"
-              :class="['btn', item.recommend ? 'is-recommend' : 'primary']"
+              :class="['btn', cardItem.recommend ? 'is-recommend' : 'primary']"
+              @click.stop
           >
             <div class="btn-left-content">
-              <div class="star-icon-slot"><span v-if="item.recommend">🌟</span></div>
-              <span class="file-name">{{ item.label || '立即下载' }}</span>
+              <div class="star-icon-slot"><span v-if="cardItem.recommend">🌟</span></div>
+              <span class="file-name">{{ cardItem.label || '立即下载' }}</span>
             </div>
-            <span v-if="item.size" class="size-text">{{ item.size }}</span>
+            <span v-if="cardItem.size" class="size-text">{{ cardItem.size }}</span>
           </a>
         </div>
       </div>
@@ -198,7 +352,6 @@ const navToRepo = () => {
 </template>
 
 <style scoped>
-/* ===== 卡片容器 ===== */
 .download-card {
   border: 1px solid var(--vp-c-divider);
   background-color: var(--vp-c-bg-elv);
@@ -215,7 +368,6 @@ const navToRepo = () => {
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
-/* ===== 头部 ===== */
 .main-link-area {
   display: flex;
   gap: 1.2rem;
@@ -246,7 +398,6 @@ const navToRepo = () => {
   min-height: 42px;
 }
 
-/* ===== 内容区域 ===== */
 .card-footer-flow { display: flex; flex-direction: column; flex: 1; }
 .card-content { display: flex; flex-direction: column; flex: 1; }
 .release-info { margin-bottom: 1.2rem; font-size: 0.85rem; }
@@ -267,7 +418,6 @@ const navToRepo = () => {
 .pre-badge { font-size: 11px; color: var(--vp-c-danger-1); font-weight: 500; }
 .date { color: var(--vp-c-text-3); }
 
-/* ===== 更新日志折叠 ===== */
 .nested-changelog-box {
   background-color: var(--vp-c-bg-alt);
   border-radius: 8px;
@@ -295,7 +445,6 @@ const navToRepo = () => {
 }
 .markdown-render { font-size: 12.5px; color: var(--vp-c-text-2); line-height: 1.6; }
 
-/* ===== 下载按钮 ===== */
 .card-actions {
   display: flex;
   flex-direction: column;
@@ -350,8 +499,8 @@ const navToRepo = () => {
 }
 .toggle-more-assets-btn:hover { color: var(--vp-c-brand-2); text-decoration: underline; }
 
-/* ===== 骨架屏 ===== */
-.skeleton-text, .skeleton-btn {
+.skeleton-text,
+.skeleton-btn {
   background: linear-gradient(90deg, var(--vp-c-bg-alt) 25%, var(--vp-c-divider) 37%, var(--vp-c-bg-alt) 63%);
   background-size: 400% 100%;
   animation: skeleton-loading 1.4s infinite;
@@ -362,7 +511,6 @@ const navToRepo = () => {
   100% { background-position: 0% 50%; }
 }
 
-/* ===== 响应式 ===== */
 @media (max-width: 420px) {
   .btn { flex-wrap: wrap; }
   .file-name { min-width: 100%; margin-bottom: 2px; }
