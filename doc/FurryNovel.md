@@ -104,7 +104,9 @@ head:
 
 ### 👤 搜索作者
 > [!TIP]
-> **兼容搜索格式：`@作者名称`，并无实际功能**
+> **兼容搜索格式：`@作者名称`**
+> 
+> 受站方搜索功能限制，@作者 / #标签 目前仅作为兼容输入格式处理，不会触发独立作者/标签接口
 
 # ![img](./pic/SearchViaLegadoAuthor.jpg)
 
@@ -112,6 +114,8 @@ head:
 ### #️⃣ 标签专搜
 > [!TIP]
 > **兼容搜索格式：`@作者名称`，并无实际功能**
+>
+> 受站方搜索功能限制，@作者 / #标签 目前仅作为兼容输入格式处理，不会触发独立作者/标签接口
 
 # ![img](./pic/SearchViaLegadoHashtag.jpg)
 
@@ -184,7 +188,7 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 ## 订阅源 {#RssSource}
 > [!NOTE]
 >
-> 订阅界面，打开 Linpx 订阅源
+> 订阅界面，打开 兽人控小说站 订阅源
 
 
 ### ⬇️ 导入书源
@@ -219,7 +223,7 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 ## 设置功能 {#Settings}
 > [!NOTE]
 >
-> **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
+> **⚙️ 书源设置 => 我的 - 书源管理 - 兽人控小说站 - 登录**
 
 ![img](./pic/LinpxLogin.png)
 
@@ -227,7 +231,7 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 ### ▶️ 基础功能
 > [!NOTE]
 >
-> **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
+> **⚙️ 书源设置 => 我的 - 书源管理 - 兽人控小说站 - 登录**
 
 ![img](./pic/FurryNovelLoginUIBase.png)
 - **🆙 更新书源：更新书源/更新订阅**
@@ -238,7 +242,7 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 ### ⚙️ 书源设置
 > [!NOTE]
 >
-> **⚙️ 书源设置 => 我的 - 书源管理 - Linpx 小说 - 登录**
+> **⚙️ 书源设置 => 我的 - 书源管理 - 兽人控小说站 - 登录**
 
 ![img](./pic/FurryNovelLoginUISettings.png)
 - ⚙️ 当前设置：显示当前设置
@@ -262,12 +266,12 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 ### ⏺ 互动功能
 > [!NOTE]
 >
-> **⏺ 互动功能 => 书架 - 小说阅读界面 - Linpx 小说 - 登录**
+> **⏺ 互动功能 => 书架 - 小说阅读界面 - 兽人控小说站 - 登录**
 
 ![img](./pic/FurryNovelLoginUINovels.png)
 
-- ⤴️ 分享章节：复制当前小说 Linpx 链接
-- ⤴️ 分享作者：复制当前作者 Linpx 链接
+- ⤴️ 分享章节：复制当前小说 兽人控小说站 链接
+- ⤴️ 分享作者：复制当前作者 兽人控小说站 链接
 - 🅿️ 分享小说：复制当前小说 Pixiv 链接
 
 
