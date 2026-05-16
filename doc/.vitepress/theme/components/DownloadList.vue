@@ -327,6 +327,18 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
       </div>
     </div>
   </div>
+
+  <div class="bottom-info-banner">
+    <p class="more-link-text">更多平台更多软件，详见：
+      <a href="Download.md" class="banner-link">
+        <span>📚 软件合集</span>
+      </a>
+    </p>
+    <div class="banner-divider"></div>
+    <p class="copyright-text">
+      本页面仅为软件聚合下载，应用版权归原作者所有
+    </p>
+  </div>
 </template>
 
 <style scoped>
@@ -786,6 +798,64 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
   }
   100% {
     background-position: 0% 50%;
+  }
+}
+/* ==========================================================================
+   10. 底部聚合引导与版权声明 (Bottom Banner)
+   ========================================================================== */
+.bottom-info-banner {
+  margin-top: 3.5rem;          /* 与上方卡片网格拉开足够的呼吸间距 */
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  text-align: center;
+
+  border-radius: 12px;         /* 保持与下载卡片一致的圆角 */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.more-link-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--vp-c-text-1);
+  margin: 0 0 12px 0 !important;
+}
+
+/* 联动的呼吸动画与品牌色匹配 */
+.banner-link {
+  color: var(--vp-c-brand-1) !important;
+  text-decoration: none !important;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+
+.banner-link:hover {
+  color: var(--vp-c-brand-2) !important;
+  background-color: var(--vp-c-brand-dimm); /* 悬浮时带有淡淡的品牌背景色 */
+  transform: translateY(-1px);
+}
+
+
+.copyright-text {
+  font-size: 0.85rem;
+  color: var(--vp-c-text-3); /* 使用次次级弱化字体颜色，突出辅助声明性质 */
+  margin: 0 !important;
+  letter-spacing: 0.5px;
+}
+
+/* 适配小屏幕手机 */
+@media (max-width: 480px) {
+  .bottom-info-banner {
+    padding: 1.2rem 1rem;
+    margin-top: 2.5rem;
+  }
+  .more-link-text {
+    font-size: 0.95rem;
+  }
+  .banner-divider {
+    width: 80%;
   }
 }
 
