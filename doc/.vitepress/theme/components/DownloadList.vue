@@ -214,6 +214,7 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
 
 <template>
   <div class="vp-download-container">
+    <h1 class="vp-h1">⬇️ 开源阅读 软件下载 </h1>
 
     <div class="global-filter-bar">
       <label class="filter-checkbox-label">
@@ -341,6 +342,17 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 1.5rem;
+}
+
+.vp-h1 {
+  font-size: 30px;
+  font-weight: 800;
+  text-align: center !important;
+  display: block !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-bottom: 32px !important; /* 控制和下方控制条/卡片区域的间距 */
+  padding-top: 40px;
 }
 
 /* ==========================================================================

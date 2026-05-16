@@ -24,7 +24,7 @@ repos:
     
   - name: 阅读 MD3
     icon: /img/LegadoMD3.png
-    desc: 开源阅读 Material Design 3 风格重构版
+    desc: 开源阅读 Material Design 3 风格重构
     link: https://github.com/HapeLee/legado-with-MD3
     prerelease: false
     recommend: arm64-v8a
@@ -33,7 +33,7 @@ repos:
     
   - name: 阅读 Beta
     icon: /img/Legado.png
-    desc: 开源阅读 Beta
+    desc: 开源阅读 Beta 版
     link: https://github.com/legadoteam/legado
     prerelease: true
     recommend: releaseA.apk
@@ -51,7 +51,7 @@ repos:
 
   - name: 阅读 Max
     icon: /img/LegadoMax.png
-    desc: 继承 Sigma 版，专为 墨水屏阅读器 优化
+    desc: 继承 Sigma 版，专为墨水屏阅读器优化
     link: https://github.com/youfengknight/Legado_Max
     prerelease: false
     recommend: beta
@@ -60,7 +60,7 @@ repos:
 
   - name: 阅读 自用增强分支
     icon: /img/Legado.png
-    desc: 继承 Sigma 版，，新增了更多特性
+    desc: 继承 Sigma 版，新增了更多特性
     link: https://github.com/Jingshiro/legado
     prerelease: false
     recommend: releaseS
@@ -69,5 +69,4 @@ repos:
 
 ---
 
-# 下载开源阅读
 <DownloadList />
