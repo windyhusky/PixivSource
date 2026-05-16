@@ -13,15 +13,6 @@ comment: false
 #friendlink: false
 
 repos:
-#  - name: 阅读 Plus (Gitee)
-#    icon: /img/LegadoSigma.png
-#    desc: 阅读 Sigma 版的稳定版本
-#    link: https://gitee.com/lyc486/legado
-#    prerelease: false
-#    recommend: releaseS.apk
-#    show_assets: 1
-#    hide: false
-
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器

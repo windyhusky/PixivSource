@@ -37,12 +37,8 @@ hero:
     alt: Pixiv Source Logo
   actions:
     - theme: brand
-      text: ⬇️ 下载 阅读 Plus
-      link: "https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk"
-
-#    - theme: alt
-#      text: ⬇️ 下载 阅读软件
-#      link: Download      
+      text: ⬇️ 下载 阅读 Sigma
+      link: DownloadLegado
 
     - theme: alt
       text: ✨ 臻享阅读
@@ -74,11 +70,7 @@ hero:
       
     - theme: brand
       text: 🚀 导入 订阅源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
-      
-#    - theme: alt
-#      text: ⬇️ 阅读软件
-#      link: Download   
+      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json" 
 
     - theme: alt
       text: 🏠 项目
@@ -92,9 +84,9 @@ hero:
       text: ☕ 打赏
       link: Sponsor
       
-#    - theme: alt
-#      text: 🤝 友情链接
-#      link: FriendLink
+    - theme: alt
+      text: 🤝 友情链接
+      link: FriendLink
       
 
 features:

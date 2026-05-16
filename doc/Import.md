@@ -27,8 +27,8 @@ head:
 hero:
   actions:
     - theme: alt
-      text: ⬇️ 阅读软件
-      link: Download
+      text: ⬇️ 下载阅读
+      link: DownloadLegado
       
     - theme: alt
       text: 🚀 一键导入 订阅源
