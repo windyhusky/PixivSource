@@ -13,13 +13,14 @@ comment: false
 #friendlink: false
 
 repos:
-  - name: 阅读 Plus (Gitee)
-    icon: /img/LegadoSigma.png
-    desc: 阅读 Sigma 版的稳定版本
-    link: https://gitee.com/lyc486/legado
-    prerelease: false
-    recommend: releaseS.apk
-    show_assets: 1
+#  - name: 阅读 Plus (Gitee)
+#    icon: /img/LegadoSigma.png
+#    desc: 阅读 Sigma 版的稳定版本
+#    link: https://gitee.com/lyc486/legado
+#    prerelease: false
+#    recommend: releaseS.apk
+#    show_assets: 1
+#    hide: false
 
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
@@ -28,6 +29,16 @@ repos:
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1
+    hide: false
+    
+  - name: 阅读 MD3
+    icon: /img/LegadoMD3.png
+    desc: 开源阅读 Material Design 3 风格重构版
+    link: https://github.com/HapeLee/legado-with-MD3
+    prerelease: false
+    recommend: arm64-v8a
+    show_assets: 1
+    hide: false
     
   - name: 阅读 Beta
     icon: /img/Legado.png
@@ -36,14 +47,7 @@ repos:
     prerelease: true
     recommend: releaseA.apk
     show_assets: 1
-
-  - name: 阅读 MD3
-    icon: /img/LegadoMD3.png
-    desc: 开源阅读 Material Design 3 风格重构版
-    link: https://github.com/HapeLee/legado-with-MD3
-    prerelease: false
-    recommend: arm64-v8a
-    show_assets: 1
+    hide: true
 
   - name: 阅读 Archive
     icon: /img/LegadoArchive.svg
@@ -52,6 +56,7 @@ repos:
     prerelease: false
     recommend: arm64-v8a
     show_assets: 1
+    hide: true
 
   - name: 阅读 Max
     icon: /img/LegadoMax.png
@@ -60,6 +65,16 @@ repos:
     prerelease: false
     recommend: beta
     show_assets: 1
+    hide: true
+
+  - name: 阅读 自用增强分支
+    icon: /img/Legado.png
+    desc: 继承 Sigma 版，，新增了更多特性
+    link: https://github.com/Jingshiro/legado
+    prerelease: false
+    recommend: releaseS
+    show_assets: 1
+    hide: true
 
 ---
 

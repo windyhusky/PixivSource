@@ -8,13 +8,24 @@ const { frontmatter } = useData()
 const rawRepos = computed(() => frontmatter.value.repos || [])
 const manualList = computed(() => frontmatter.value.manual || [])
 
+// 【新增控制】：顶层是否展示所有阅读版本的全局开关
+const showAllRepos = ref(false)
+
+// 【核心修改】：过滤卡片逻辑。如果没勾选“展示所有”，则过滤掉配置了 hide: true 的卡片
+const filteredRepos = computed(() => {
+  if (showAllRepos.value) {
+    return rawRepos.value
+  }
+  return rawRepos.value.filter(repo => !repo.hide)
+})
+
 // 存储标准格式化后的数据
 const apiDataMap = ref({})
 const loadingMap = ref({})
 
 // 独立折叠状态存储：更新内容折叠
 const expandedMap = ref({})
-// 【新增】独立折叠状态存储：更多资产按钮折叠 { 'repo-0': false }
+// 独立折叠状态存储：更多资产按钮折叠
 const expandedAssetsMap = ref({})
 
 /**
@@ -65,7 +76,6 @@ const renderMarkdown = (mdText) => {
 const transformReleases = (rawData, platform) => {
   if (!Array.isArray(rawData)) return []
 
-  // Gitee 数据倒序处理
   const normalizedRawData = platform === 'gitee' ? [...rawData].reverse() : rawData
 
   return normalizedRawData.map(item => {
@@ -79,7 +89,7 @@ const transformReleases = (rawData, platform) => {
         ? (item.prerelease || ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k)))
         : item.prerelease
 
-    // 如果 tag_name 是 beta，提取 name 剥离前缀作为版本号
+    // 针对阅读 Beta/官方的特定解析
     let finalTagName = item.tag_name
     if (String(item.tag_name).toLowerCase() === 'beta' && item.name) {
       finalTagName = item.name.replace(/^legado_app_/, '')
@@ -126,6 +136,7 @@ const formatDate = (isoString) => {
 }
 
 onMounted(() => {
+  // 注意：后台拉取依然使用原始完整的列表，提前在内存准备好，这样用户一勾选就能秒出数据
   rawRepos.value.forEach(async (repo) => {
     const link = repo.link || repo.github
     const meta = resolveRepoMeta(link)
@@ -150,27 +161,19 @@ const getTargetRelease = (repoItem) => {
   return (repoItem.prerelease ? releases[0] : (releases.find(r => !r.prerelease) || releases[0]))
 }
 
-/**
- * 修改后的资产排序与截断处理函数
- * 区分“展示完整”与“默认截断限制”
- */
 const getSortedAssets = (releaseItem, repoItem, isViewAll = false) => {
   if (!releaseItem || !releaseItem.assets) return []
   const recommendKeyword = repoItem.recommend
 
-  // 先排序：将包含推荐关键字的置顶
   const sorted = [...releaseItem.assets].sort((a, b) => {
     const aRec = recommendKeyword && a.name.toLowerCase().includes(recommendKeyword.toLowerCase())
     const bRec = recommendKeyword && b.name.toLowerCase().includes(recommendKeyword.toLowerCase())
     return bRec - aRec
   })
 
-  // 如果要求“查看全部”或者 YAML 里面根本没限制数量（没写 show_assets），直接给完整列表
   if (isViewAll || !repoItem.show_assets) {
     return sorted
   }
-
-  // 默认情况下截取 YAML 配置的 show_assets 数量（如前1-2个）
   return sorted.slice(0, Number(repoItem.show_assets))
 }
 
@@ -178,7 +181,6 @@ const toggleLog = (key) => {
   expandedMap.value[key] = !expandedMap.value[key]
 }
 
-// 【新增】切换显示更多资产按钮的开关
 const toggleAssets = (key) => {
   expandedAssetsMap.value[key] = !expandedAssetsMap.value[key]
 }
@@ -188,8 +190,20 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
 
 <template>
   <div class="vp-download-container">
+
+    <div class="global-filter-bar">
+      <label class="filter-checkbox-label">
+        <input
+            type="checkbox"
+            v-model="showAllRepos"
+            class="filter-checkbox"
+        />
+        <span class="checkbox-custom-text">显示所有阅读分支版本</span>
+      </label>
+    </div>
+
     <div class="download-grid">
-      <div v-for="(item, index) in rawRepos" :key="'repo-'+index" class="download-card" :class="{'is-expanded': expandedMap['repo-'+index]}">
+      <div v-for="(item, index) in filteredRepos" :key="'repo-'+index" class="download-card" :class="{'is-expanded': expandedMap['repo-'+index]}">
         <div class="main-link-area" @click="navToRepo(item.link || item.github)">
           <img :src="item.icon" class="card-icon" />
           <div class="header-main">
@@ -544,6 +558,52 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
   color: var(--vp-c-brand-2);
   text-decoration: underline;
 }
+
+.global-filter-bar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding: 10px 14px;
+  background-color: var(--vp-c-bg-alt);
+  border: 1px solid var(--vp-c-divider);
+  border-radius: 8px;
+}
+.filter-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+.filter-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--vp-c-brand-1);
+  cursor: pointer;
+}
+.checkbox-custom-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+}
+.toggle-more-assets-btn {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: var(--vp-c-brand-1);
+  padding: 6px 0;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  margin-top: 2px;
+}
+.toggle-more-assets-btn:hover {
+  color: var(--vp-c-brand-2);
+  text-decoration: underline;
+}
+
 /* 手机端响应 */
 @media (max-width: 420px) {
   .main-link-area { flex-direction: row !important; gap: 1rem; }
