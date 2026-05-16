@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: 下载开源阅读 - Android、iOS、鸿蒙 全平台版本
+title: 阅读软件合集 - Android、iOS、鸿蒙 全平台版本
 description: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Sigma/Plus，iOS 可用源阅。
 
 #sidebar: false
@@ -18,7 +18,7 @@ head:
       content: 阅读 app, 阅读 Github, 开源阅读 app, 开源阅读 Github, 开源阅读 下载, 开源阅读 下载, Legado 下载, 阅读 Sigma, 阅读 Plus, 阅读 Beta, 阅读 MD3, 阅读 Max, 阅读 Archive, 开源阅读 iOS, 阅读 iOS, 源阅读, 源阅, 源阅 iOS, 开源阅读 鸿蒙
   - - meta
     - property: og:title
-      content: 下载开源阅读 - Android、iOS、鸿蒙 全平台版本
+      content: 阅读软件合集 - Android、iOS、鸿蒙 全平台版本
   - - meta
     - property: og:description
       content: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Sigma/Plus，iOS 可用源阅。
@@ -28,7 +28,7 @@ head:
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
-# 下载阅读
+# 阅读软件合集
 ### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](./Sponsor.md)
@@ -44,10 +44,11 @@ head:
 
 > [!TIP]
 > 
-> **开源阅读 Legado 全平台下载指南**
->
+> **开源阅读 Legado 全平台下载指南；软件下载页面 => 
+> [⬇️ 下载阅读](DownloadLegado.md)**
+> 
 > **另有：新手配置指南：**
-> [✨臻享阅读](BetterExperience.md)；
+> [✨ 臻享阅读](BetterExperience.md)；
 > **极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)
 

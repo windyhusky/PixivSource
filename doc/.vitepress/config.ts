@@ -116,7 +116,7 @@ export default defineConfig({
             {
                 text: "📖 阅读指南",
                 items: [
-                    { text: "⬇️ 下载阅读", link: "/Download" },
+                    { text: "📚 软件合集", link: "/Download" },
                     { text: "🚀 导入书源", link: "/ImportBookSource" },
                     { text: "🚀 导入订阅", link: "/ImportRssSource" },
                     { text: "💾 备份恢复", link: "/WebdavBackup" , activeMatch: '/' },
@@ -168,7 +168,7 @@ export default defineConfig({
                 text: "通用教程",
                 collapsed: true,
                 items: [
-                    { text: "⬇️ 下载阅读", link: "/Download" },
+                    { text: "📚 软件合集", link: "/Download" },
                     { text: "🚀 导入书源", link: "/ImportBookSource" },
                     { text: "🚀 导入订阅", link: "/ImportRssSource" },
                     { text: "💾 备份恢复", link: "/WebdavBackup" },
