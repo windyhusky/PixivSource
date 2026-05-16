@@ -8,10 +8,14 @@ const { frontmatter } = useData()
 const rawRepos = computed(() => frontmatter.value.repos || [])
 const manualList = computed(() => frontmatter.value.manual || [])
 
-// 【新增控制】：顶层是否展示所有阅读版本的全局开关
+// 【控制开关一】：顶层是否展示所有阅读版本的全局开关
 const showAllRepos = ref(false)
 
-// 【核心修改】：过滤卡片逻辑。如果没勾选“展示所有”，则过滤掉配置了 hide: true 的卡片
+// 【控制开关二】：是否启用 GitHub 代理加速的全局开关（默认开启，方便国内用户）
+const useGithubProxy = ref(true)
+const CF_PROXY_DOMAIN = import.meta.env.VITE_CF_PROXY_DOMAIN || ''
+
+// 过滤卡片逻辑。如果没勾选“展示所有”，则过滤掉配置了 hide: true 的卡片
 const filteredRepos = computed(() => {
   if (showAllRepos.value) {
     return rawRepos.value
@@ -27,6 +31,27 @@ const loadingMap = ref({})
 const expandedMap = ref({})
 // 独立折叠状态存储：更多资产按钮折叠
 const expandedAssetsMap = ref({})
+
+/**
+ * 智能下载链接转换器
+ * 根据全局加速开关状态，决定是否拼接 Cloudflare 代理前缀
+ */
+const getDownloadUrl = (assetUrl, repoItem) => {
+  if (!assetUrl) return ''
+
+  // 1. 如果是 Gitee 仓库，国内直连很快，不需要也不支持 GitHub 加速，直接返回原链接
+  if (repoItem.link && repoItem.link.includes('gitee.com')) {
+    return assetUrl
+  }
+
+  // 2. 如果是 GitHub 仓库，且用户勾选了“启用 GitHub 加速”
+  if (useGithubProxy.value && assetUrl.includes('github.com')) {
+    return `${CF_PROXY_DOMAIN}${assetUrl}`
+  }
+
+  // 3. 未勾选加速，或非 GitHub 资源，返回原官方链接
+  return assetUrl
+}
 
 /**
  * 高级轻量 Markdown 解析器
@@ -89,7 +114,7 @@ const transformReleases = (rawData, platform) => {
         ? (item.prerelease || ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k)))
         : item.prerelease
 
-    // 针对阅读 Beta/官方的特定解析
+    // 针对阅读 Beta / 官方特殊 tag 解析
     let finalTagName = item.tag_name
     if (String(item.tag_name).toLowerCase() === 'beta' && item.name) {
       finalTagName = item.name.replace(/^legado_app_/, '')
@@ -136,7 +161,6 @@ const formatDate = (isoString) => {
 }
 
 onMounted(() => {
-  // 注意：后台拉取依然使用原始完整的列表，提前在内存准备好，这样用户一勾选就能秒出数据
   rawRepos.value.forEach(async (repo) => {
     const link = repo.link || repo.github
     const meta = resolveRepoMeta(link)
@@ -177,14 +201,8 @@ const getSortedAssets = (releaseItem, repoItem, isViewAll = false) => {
   return sorted.slice(0, Number(repoItem.show_assets))
 }
 
-const toggleLog = (key) => {
-  expandedMap.value[key] = !expandedMap.value[key]
-}
-
-const toggleAssets = (key) => {
-  expandedAssetsMap.value[key] = !expandedAssetsMap.value[key]
-}
-
+const toggleLog = (key) => { expandedMap.value[key] = !expandedMap.value[key] }
+const toggleAssets = (key) => { expandedAssetsMap.value[key] = !expandedAssetsMap.value[key] }
 const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
 </script>
 
@@ -193,12 +211,16 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
 
     <div class="global-filter-bar">
       <label class="filter-checkbox-label">
-        <input
-            type="checkbox"
-            v-model="showAllRepos"
-            class="filter-checkbox"
-        />
+        <input type="checkbox" v-model="showAllRepos" class="filter-checkbox" />
         <span class="checkbox-custom-text">显示所有阅读分支版本</span>
+      </label>
+
+      <label class="filter-checkbox-label">
+        <input type="checkbox" v-model="useGithubProxy" class="filter-checkbox proxy-checkbox" />
+        <span class="checkbox-custom-text">
+          启用 GitHub 下载加速
+          <span class="speed-badge" v-if="useGithubProxy">(由 Cloudflare 支持)</span>
+        </span>
       </label>
     </div>
 
@@ -237,7 +259,9 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
             </div>
 
             <div class="card-actions">
-              <a v-for="asset in getSortedAssets(getTargetRelease(item), item, expandedAssetsMap['repo-'+index])" :key="asset.id" :href="asset.browser_download_url"
+              <a v-for="asset in getSortedAssets(getTargetRelease(item), item, expandedAssetsMap['repo-'+index])"
+                 :key="asset.id"
+                 :href="getDownloadUrl(asset.browser_download_url, item)"
                  :class="['btn', item.recommend && asset.name.toLowerCase().includes(item.recommend.toLowerCase()) ? 'is-recommend' : 'secondary']">
                 <div class="btn-left-content">
                   <div class="star-icon-slot"><span v-if="item.recommend && asset.name.toLowerCase().includes(item.recommend.toLowerCase())">🌟</span></div>
@@ -283,7 +307,7 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
               </div>
             </div>
             <div class="card-actions">
-              <a :href="item.url" target="_blank" :class="['btn', item.recommend ? 'is-recommend' : 'primary']">
+              <a :href="getDownloadUrl(item.url, item)" target="_blank" :class="['btn', item.recommend ? 'is-recommend' : 'primary']">
                 <div class="btn-left-content">
                   <div class="star-icon-slot"><span v-if="item.recommend">🌟</span></div>
                   <span class="file-name">{{ item.label || '立即下载' }}</span>
@@ -299,126 +323,338 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
 </template>
 
 <style scoped>
-/* ========================================================
-   精细化排版布局与 VitePress 主题无缝适配样式（完全保留先前样式）
-   ======================================================== */
+/* ==========================================================================
+   1. 基础容器与网格布局 (Container & Grid)
+   ========================================================================== */
 .vp-download-container {
   margin-top: 2rem;
   width: 100%;
 }
+
 .download-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 1.5rem;
 }
+
+/* ==========================================================================
+   2. 全局双联动顶栏控制条 (Top Filter Bar)
+   ========================================================================== */
+.global-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-top: 12px;
+  padding-right: 16px;
+  padding-bottom: 12px;
+  padding-left: 16px;
+  background-color: var(--vp-c-bg-alt);
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: var(--vp-c-divider);
+  border-right-color: var(--vp-c-divider);
+  border-bottom-color: var(--vp-c-divider);
+  border-left-color: var(--vp-c-divider);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+
+.filter-checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.filter-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--vp-c-brand-1);
+  cursor: pointer;
+}
+
+.proxy-checkbox {
+  accent-color: #f38020; /* Cloudflare 专属橙色 */
+}
+
+.checkbox-custom-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--vp-c-text-1);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.speed-badge {
+  font-size: 11px;
+  background-color: rgba(243, 128, 32, 0.15);
+  color: #f38020;
+  padding-top: 1px;
+  padding-right: 6px;
+  padding-bottom: 1px;
+  padding-left: 6px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  font-weight: bold;
+}
+
+/* ==========================================================================
+   3. 下载卡片基础样式 (Download Card)
+   ========================================================================== */
 .download-card {
-  border: 1px solid var(--vp-c-divider);
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: var(--vp-c-divider);
+  border-right-color: var(--vp-c-divider);
+  border-bottom-color: var(--vp-c-divider);
+  border-left-color: var(--vp-c-divider);
   background-color: var(--vp-c-bg-elv);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-  border-radius: 12px;
-  padding: 1.5rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
+  padding-top: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 0;
-  transition: all 0.25s ease;
+  transition-property: all;
+  transition-duration: 0.25s;
+  transition-timing-function: ease;
   position: relative;
-  box-sizing: border-box;
 }
+
 .download-card:hover {
-  border-color: var(--vp-c-brand-1);
+  border-top-color: var(--vp-c-brand-1);
+  border-right-color: var(--vp-c-brand-1);
+  border-bottom-color: var(--vp-c-brand-1);
+  border-left-color: var(--vp-c-brand-1);
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
+
+/* ==========================================================================
+   4. 卡片头部与图标 (Card Header & Icon)
+   ========================================================================== */
 .main-link-area {
   display: flex;
   gap: 1.2rem;
   cursor: pointer;
   margin-bottom: 1rem;
-  width: 100%;
 }
+
 .card-icon {
   width: 52px;
   height: 52px;
-  border-radius: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
   object-fit: cover;
+  background-image: none;
   background-color: var(--vp-c-bg-alt);
-  border: 1px solid var(--vp-c-divider);
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: var(--vp-c-divider);
+  border-right-color: var(--vp-c-divider);
+  border-bottom-color: var(--vp-c-divider);
+  border-left-color: var(--vp-c-divider);
   flex-shrink: 0;
 }
+
 .header-main {
   flex: 1;
   min-width: 0;
 }
+
 .header-main h4 {
-  margin: 0 0 0.4rem 0;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0.4rem;
+  margin-left: 0px;
   font-size: 1.15rem;
   font-weight: 600;
   color: var(--vp-c-text-1);
-  transition: color 0.2s ease;
 }
-.main-link-area:hover h4 {
-  color: var(--vp-c-brand-1);
-}
+
 .desc {
   font-size: 0.9rem;
   color: var(--vp-c-text-2);
-  margin: 0;
+  margin-top: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
   line-height: 1.5;
   min-height: 42px;
 }
+
+/* ==========================================================================
+   5. 数据流布局与版本信息 (Content Flow & Meta)
+   ========================================================================== */
 .card-footer-flow {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
+
 .card-content {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
+
 .release-info {
   margin-bottom: 1.2rem;
   font-size: 0.85rem;
-  width: 100%;
 }
+
 .meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
+
 .tag {
   color: var(--vp-c-brand-1);
   font-weight: 600;
   font-size: 0.95rem;
-  display: inline-flex;
+  text-decoration: none !important;
+  display: flex;
   align-items: center;
   gap: 6px;
-  text-decoration: none !important;
 }
+
 .clickable-tag:hover {
   color: var(--vp-c-brand-2);
   text-decoration: underline !important;
-  cursor: pointer;
 }
+
 .pre-badge {
   font-size: 11px;
   color: var(--vp-c-danger-1);
   font-weight: 500;
 }
-.static-tag { color: #34c759; }
-.date { color: var(--vp-c-text-3); }
+
+.date {
+  color: var(--vp-c-text-3);
+}
+
+/* ==========================================================================
+   6. 折叠更新日志内容区域 (Changelog Box)
+   ========================================================================== */
+.nested-changelog-box {
+  background-color: var(--vp-c-bg-alt);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: dashed;
+  border-right-style: dashed;
+  border-bottom-style: dashed;
+  border-left-style: dashed;
+  border-top-color: var(--vp-c-divider);
+  border-right-color: var(--vp-c-divider);
+  border-bottom-color: var(--vp-c-divider);
+  border-left-color: var(--vp-c-divider);
+  margin-bottom: 1rem;
+  overflow: hidden;
+  width: 100%;
+}
+
+.changelog-bar {
+  padding-top: 6px;
+  padding-right: 12px;
+  padding-bottom: 6px;
+  padding-left: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.bar-title {
+  font-size: 11.5px;
+  font-weight: bold;
+  color: var(--vp-c-text-2);
+}
+
+.changelog-body {
+  max-height: 0px;
+  overflow: hidden;
+  transition-property: max-height;
+  transition-duration: 0.3s;
+  transition-timing-function: ease-out;
+}
+
+.is-expanded .changelog-body {
+  max-height: 300px;
+  padding-top: 8px;
+  padding-right: 12px;
+  padding-bottom: 8px;
+  padding-left: 12px;
+  overflow-y: auto;
+  border-top-width: 1px;
+  border-top-style: dashed;
+  border-top-color: var(--vp-c-divider);
+}
+
+.markdown-render {
+  font-size: 12.5px;
+  color: var(--vp-c-text-2);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   7. 动作按钮组与单卡包折叠 (Action Buttons & Inner Assets Toggle)
+   ========================================================================== */
 .card-actions {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   margin-top: auto;
-  width: 100%;
   align-items: flex-start;
+  width: 100%;
 }
+
 .btn {
-  padding: 10px 14px;
-  border-radius: 8px;
+  padding-top: 10px;
+  padding-right: 14px;
+  padding-bottom: 10px;
+  padding-left: 14px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
   font-size: 0.85rem;
   font-weight: 500;
   text-decoration: none !important;
@@ -426,46 +662,53 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
   align-items: center;
   justify-content: space-between;
   gap: 0.8rem;
-  flex-wrap: wrap;
-  transition: all 0.2s ease, transform 0.1s;
-  cursor: pointer;
-  box-sizing: border-box;
   width: 100%;
+  transition-property: all;
+  transition-duration: 0.2s;
+  box-sizing: border-box;
 }
+
 .btn.is-recommend {
-  background: var(--vp-c-brand-1);
+  background-color: var(--vp-c-brand-1);
   color: white !important;
-  font-weight: 600;
-  border: 1px solid transparent;
   box-shadow: 0 4px 12px var(--vp-c-brand-3);
 }
-.btn.is-recommend:hover {
-  background: var(--vp-c-brand-2);
-  box-shadow: 0 4px 16px var(--vp-c-brand-3);
-}
+
 .btn.secondary {
-  background: var(--vp-c-bg-alt);
+  background-color: var(--vp-c-bg-alt);
   color: var(--vp-c-text-1) !important;
-  border: 1px solid var(--vp-c-divider);
+  border-top-width: 1px;
+  border-right-width: 1px;
+  border-bottom-width: 1px;
+  border-left-width: 1px;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-top-color: var(--vp-c-divider);
+  border-right-color: var(--vp-c-divider);
+  border-bottom-color: var(--vp-c-divider);
+  border-left-color: var(--vp-c-divider);
 }
-.btn.secondary:hover { background: var(--vp-c-divider); }
-.btn.primary { background: var(--vp-c-brand-1); color: white !important; }
-.btn.primary:hover { background: var(--vp-c-brand-2); }
-.btn:active { transform: scale(0.99); }
+
+.btn.primary {
+  background-color: var(--vp-c-brand-1);
+  color: white !important;
+}
+
 .btn-left-content {
   display: flex;
   align-items: center;
   flex: 1;
   min-width: 0;
 }
+
 .star-icon-slot {
   width: 18px;
   flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: flex-start;
   font-size: 13px;
 }
+
 .file-name {
   flex: 1;
   overflow: hidden;
@@ -473,144 +716,99 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
   white-space: nowrap;
   text-align: left;
 }
+
 .size-text {
-  font-size: 11.5px;
+  font-size: 11px;
   opacity: 0.85;
   font-family: var(--vp-font-family-mono);
-  white-space: nowrap;
   flex-shrink: 0;
-  text-align: right;
 }
-.nested-changelog-box {
-  background: var(--vp-c-bg-alt);
-  border-radius: 8px;
-  border: 1px dashed var(--vp-c-divider);
-  margin-bottom: 1rem;
-  overflow: hidden;
+
+/* 展开更多变体 APK 按钮 */
+.toggle-more-assets-btn {
   width: 100%;
-}
-.changelog-bar {
-  padding: 6px 12px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  text-align: center;
+  font-size: 12px;
+  color: var(--vp-c-brand-1);
+  padding-top: 6px;
+  padding-right: 0px;
+  padding-bottom: 6px;
+  padding-left: 0px;
   cursor: pointer;
   user-select: none;
+  font-weight: 500;
+  transition-property: color;
+  transition-duration: 0.2s;
+  margin-top: 2px;
 }
-.bar-title {
-  font-size: 11.5px;
-  font-weight: bold;
-  color: var(--vp-c-text-2);
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-.indicator-emoji {
-  font-size: 10px;
-  transition: all 0.2s ease;
-  display: inline-block;
-}
-.fold-arrow {
-  font-size: 10px;
-  color: var(--vp-c-text-3);
-  transition: transform 0.25s;
-}
-.changelog-body {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease-out, padding 0.3s;
-}
-.download-card.is-expanded .changelog-body {
-  max-height: 260px;
-  padding: 8px 12px;
-  overflow-y: auto;
-  border-top: 1px dashed var(--vp-c-divider);
-}
-.download-card.is-expanded .fold-arrow { transform: rotate(180deg); }
-.markdown-render { font-size: 12.5px; color: var(--vp-c-text-2); line-height: 1.6; }
 
-/* 骨架模拟屏 */
+.toggle-more-assets-btn:hover {
+  color: var(--vp-c-brand-2);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   8. 异步加载骨架屏动画 (Skeleton Loading)
+   ========================================================================== */
 .skeleton-text {
-  height: 12px;
   background: linear-gradient(90deg, var(--vp-c-bg-alt) 25%, var(--vp-c-divider) 37%, var(--vp-c-bg-alt) 63%);
   background-size: 400% 100%;
-  animation: skeleton-loading 1.4s ease infinite;
-  border-radius: 4px;
+  animation-name: skeleton-loading;
+  animation-duration: 1.4s;
+  animation-iteration-count: infinite;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
 }
-.skeleton-btn { height: 38px; background: var(--vp-c-bg-alt); border-radius: 8px; width: 100%; }
+
 @keyframes skeleton-loading {
-  0% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-.toggle-more-assets-btn {
-  width: 100%;
-  text-align: center;
-  font-size: 12px;
-  color: var(--vp-c-brand-1);
-  padding: 6px 0;
-  cursor: pointer;
-  user-select: none;
-  font-weight: 500;
-  transition: color 0.2s;
-  margin-top: 2px;
-}
-.toggle-more-assets-btn:hover {
-  color: var(--vp-c-brand-2);
-  text-decoration: underline;
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
-.global-filter-bar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 1.5rem;
-  padding: 10px 14px;
-  background-color: var(--vp-c-bg-alt);
-  border: 1px solid var(--vp-c-divider);
-  border-radius: 8px;
-}
-.filter-checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  user-select: none;
-}
-.filter-checkbox {
-  width: 16px;
-  height: 16px;
-  accent-color: var(--vp-c-brand-1);
-  cursor: pointer;
-}
-.checkbox-custom-text {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--vp-c-text-1);
-}
-.toggle-more-assets-btn {
-  width: 100%;
-  text-align: center;
-  font-size: 12px;
-  color: var(--vp-c-brand-1);
-  padding: 6px 0;
-  cursor: pointer;
-  user-select: none;
-  font-weight: 500;
-  transition: color 0.2s;
-  margin-top: 2px;
-}
-.toggle-more-assets-btn:hover {
-  color: var(--vp-c-brand-2);
-  text-decoration: underline;
+/* ==========================================================================
+   9. 响应式媒体查询断点 (Responsive Media Queries)
+   ========================================================================== */
+@media (max-width: 580px) {
+  .global-filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
 }
 
-/* 手机端响应 */
 @media (max-width: 420px) {
-  .main-link-area { flex-direction: row !important; gap: 1rem; }
-  .card-icon { width: 46px; height: 46px; }
-  .desc { min-height: auto; }
-  .btn { padding: 10px; }
-  .file-name { min-width: 100%; margin-bottom: 2px; }
-  .size-text { width: 100%; text-align: left; opacity: 0.6; font-size: 11px; }
+  .main-link-area {
+    flex-direction: row !important;
+  }
+
+  .card-icon {
+    width: 46px;
+    height: 46px;
+  }
+
+  .btn {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    flex-wrap: wrap;
+  }
+
+  .file-name {
+    min-width: 100%;
+    margin-bottom: 2px;
+  }
+
+  .size-text {
+    width: 100%;
+    text-align: left;
+    opacity: 0.6;
+  }
 }
 </style>
