@@ -44,14 +44,14 @@ repos:
     recommend: arm64-v8a
     
   - name: 阅读 Archive
-    icon: 
+    icon: /img/LegadoArchive.svg
     desc: 
     github: https://github.com/Rimchars/legado
     prerelease: false
     recommend: arm64-v8a
 
   - name: 阅读 Max
-    icon: 
+    icon: /img/LegadoMax.png
     desc: 
     github: https://github.com/youfengknight/Legado_Max
     prerelease: false
