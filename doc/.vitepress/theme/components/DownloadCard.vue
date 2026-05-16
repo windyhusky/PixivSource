@@ -221,7 +221,18 @@ const defaultDownloadUrl = (assetUrl, item) => assetUrl || item.url || ''
 
 const resolveDownloadUrl = (assetUrl, item) => {
   const resolver = props.getDownloadUrl || defaultDownloadUrl
-  return resolver(assetUrl, item)
+  let finalUrl = resolver(assetUrl, item)
+
+  if (finalUrl.endsWith('.json')) {
+    const regex = /github\.com\/([^/]+)\/([^/]+)\/releases\/download\/([^/]+)\/(.+)$/
+    const match = finalUrl.match(regex)
+    if (match) {
+      const [_, owner, repo, tag, filename] = match;
+      finalUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${tag}/${filename}`
+      finalUrl = `legado://import/importonline?src=${finalUrl}`
+    }
+  }
+  return finalUrl
 }
 
 const navToRepo = () => {
