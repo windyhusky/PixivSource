@@ -12,13 +12,63 @@ const manualList = computed(() => frontmatter.value.manual || [])
 const apiDataMap = ref({})
 const loadingMap = ref({})
 
+// 轻量 Markdown 解释器
+const renderMarkdown = (mdText) => {
+  if (!mdText) return ''
+
+  // 1. 基础 HTML 实体转义，防止 XSS
+  let html = mdText
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+
+  // 2. 统一处理换行符
+  html = html.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
+
+  // 3. 识别并解析 ### 或 # 等 Markdown 标题
+  html = html.replace(/^(#{1,6})\s+(.+?)(?=\n|$)/gm, (match, hashes, content) => {
+    const level = hashes.length
+    return `<h${level} style="margin:10px 0 6px 0;font-weight:700;font-size:${1.4 - level*0.1}rem;color:var(--vp-c-text-1);">${content}</h${level}>`
+  })
+
+  // 4. 【核心修复】：完美支持 * 和 - 编写的无序列表
+  // 匹配连续的 * 或 - 开头的行，将其整体包裹在 <ul> 标签中
+  html = html.replace(/(?:^([*+-])\s+(.+?)(?:\n|$))+/gm, (match) => {
+    const items = match.split('\n')
+        .map(line => {
+          const m = line.match(/^[*+-]\s+(.+)$/)
+          return m ? `<li style="margin:4px 0;list-style-type:disc;">${m[1]}</li>` : ''
+        })
+        .join('')
+    return `<ul style="padding-left:20px;margin:8px 0;">${items}</ul>`
+  })
+
+  // 5. 识别 `行内代码`
+  html = html.replace(/`([^`\n]+)`/g, '<code style="background:var(--vp-c-bg-alt);padding:2px 6px;border-radius:4px;font-family:var(--vp-font-family-mono);font-size:0.85em;color:var(--vp-c-brand-1);border:1px solid var(--vp-c-divider)">$1</code>')
+
+  // 6. 识别 **粗体**
+  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong style="font-weight:700;color:var(--vp-c-text-1);">$1</strong>')
+
+  // 7. 识别 [链接](url)
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--vp-c-brand-1);text-decoration:underline;">$1</a>')
+
+  // 8. 将剩余的普通单换行转换为 <br>（过滤掉已经生成的结构化标签尾部的换行）
+  html = html.split('\n').map(line => {
+    if (line.trim().startsWith('<ul') || line.trim().startsWith('<li') || line.trim().startsWith('</ul') || line.trim().startsWith('<h')) {
+      return line
+    }
+    return line ? line + '<br>' : ''
+  }).join('\n')
+
+  return html
+}
 /**
  * 1. 统一数据清洗适配器（Adapter）
  */
 const transformReleases = (rawData, platform) => {
   if (!Array.isArray(rawData)) return []
 
-  // 核心改动：如果是 Gitee 数据，最新的在最后，因此先将其克隆并执行倒序排列
+  // Gitee 倒序处理
   const normalizedRawData = platform === 'gitee' ? [...rawData].reverse() : rawData
 
   if (platform === 'gitee') {
@@ -29,9 +79,9 @@ const transformReleases = (rawData, platform) => {
         tag_name: item.tag_name,
         prerelease: isPre,
         published_at: item.created_at,
-        body: item.body || '',
+        // 【核心修改点】对 API 下发的更新日志直接做预解析，转换为安全 HTML
+        body: renderMarkdown(item.body || ''),
         html_url: `https://gitee.com/${item.author?.login || ''}/${item.name?.replace('legado_app_', '') || ''}/releases`,
-        // 过滤掉包含 .zip 和 .tar.gz 的下载内容
         assets: (item.assets || [])
             .filter(asset => {
               const name = (asset.name || '').toLowerCase()
@@ -47,14 +97,14 @@ const transformReleases = (rawData, platform) => {
     })
   }
 
-  // GitHub 平台数据清洗（保持原序列）
+  // GitHub 平台数据清洗
   return normalizedRawData.map(item => ({
     tag_name: item.tag_name,
     prerelease: item.prerelease,
     published_at: item.published_at || item.created_at,
-    body: item.body || '',
+    // 【核心修改点】同步预解析 GitHub 源码日志
+    body: renderMarkdown(item.body || ''),
     html_url: item.html_url,
-    // 同样过滤掉 GitHub 的源码压缩包
     assets: (item.assets || [])
         .filter(asset => {
           const name = (asset.name || '').toLowerCase()
@@ -98,28 +148,6 @@ const formatDate = (isoString) => {
   return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`
 }
 
-const renderMarkdown = (mdText) => {
-  if (!mdText) return ''
-  let html = mdText
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-
-  html = html.replace(/\r\n/g, '<br>').replace(/\n/g, '<br>')
-
-  html = html.replace(/^(#{1,6})\s+(.+?)(?=<br>|$)/gm, (match, hashes, content) => {
-    const level = hashes.length
-    return `<h${level} style="margin:8px 0;font-weight:700;font-size:${1.4 - level*0.1}rem;">${content}</h${level}>`
-  })
-
-  html = html.replace(/`([^`]+)`/g, '<code style="background:var(--vp-c-bg-alt);padding:2px 4px;border-radius:4px;font-family:var(--vp-font-family-mono);font-size:0.9em;color:var(--vp-c-brand-1)">$1</code>')
-  html = html.replace(/\*\*([^*]+)\*\*/g, '<strong style="font-weight:700;color:var(--vp-c-text-1);">$1</strong>')
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--vp-c-brand-1);text-decoration:underline;">$1</a>')
-  html = html.replace(/^([*+-])\s+(.+?)(?=<br>|$)/gm, '<div style="padding-left:12px;margin:2px 0;">• $2</div>')
-
-  return html.replace(/(<\/div>)<br>/g, '$1')
-}
-
 // 异步动态拉取数据
 onMounted(() => {
   rawRepos.value.forEach(async (repo) => {
@@ -143,20 +171,15 @@ onMounted(() => {
   })
 })
 
-/**
- * 根据配置，从已经标准化（Gitee 已洗白且倒序好）的数据源中匹配版本
- */
 const getTargetRelease = (repoItem) => {
   const targetLink = repoItem.link || repoItem.github
   const releases = apiDataMap.value[targetLink]
   if (!releases || !releases.length) return null
 
-  // 如果配置要求找预发布版本，直接取最新的第一条
   if (repoItem.prerelease) {
     return releases[0]
   }
 
-  // 寻找 prerelease: false 的稳定版本
   const stableRelease = releases.find(r => !r.prerelease)
   return stableRelease || releases[0]
 }
@@ -245,7 +268,7 @@ const navToRepo = (urlField) => {
                 <i class="fas fa-chevron-down fold-arrow"></i>
               </div>
               <div class="changelog-body">
-                <div class="markdown-render" v-html="renderMarkdown(getTargetRelease(item).body)"></div>
+                <div class="markdown-render" v-html="getTargetRelease(item).body"></div>
               </div>
             </div>
 
