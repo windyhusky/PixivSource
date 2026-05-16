@@ -11,9 +11,14 @@ const manualList = computed(() => frontmatter.value.manual || [])
 // 【控制开关一】：顶层是否展示所有阅读版本的全局开关
 const showAllRepos = ref(false)
 
-// 【控制开关二】：是否启用 GitHub 代理加速的全局开关（默认开启，方便国内用户）
+// 【控制开关二】：是否启用 GitHub 代理加速的全局开关
 const useGithubProxy = ref(true)
-const CF_PROXY_DOMAIN = import.meta.env.VITE_CF_PROXY_DOMAIN || ''
+
+// 🌟 核心优化：动态读取环境变量网关，并进行边界清洗，剔除末尾可能存在的意外斜杠
+const CF_PROXY_DOMAIN = computed(() => {
+  const rawUrl = import.meta.env.VITE_CF_WORKER_URL || ''
+  return rawUrl.endsWith('/') ? rawUrl.slice(0, -1) : rawUrl
+})
 
 // 过滤卡片逻辑。如果没勾选“展示所有”，则过滤掉配置了 hide: true 的卡片
 const filteredRepos = computed(() => {
@@ -44,9 +49,10 @@ const getDownloadUrl = (assetUrl, repoItem) => {
     return assetUrl
   }
 
-  // 2. 如果是 GitHub 仓库，且用户勾选了“启用 GitHub 加速”
-  if (useGithubProxy.value && assetUrl.includes('github.com')) {
-    return `${CF_PROXY_DOMAIN}${assetUrl}`
+  // 2. 如果是 GitHub 仓库，且用户勾选了“启用 GitHub 加速”，且网关已成功配置
+  if (useGithubProxy.value && CF_PROXY_DOMAIN.value && assetUrl.includes('github.com')) {
+    // 🌟 核心修复：确保拼接时满足：[Worker域名]/[完整的GitHub资产链接]，绝对不产生双斜杠导致 Referer 丢失
+    return `${CF_PROXY_DOMAIN.value}/${assetUrl}`
   }
 
   // 3. 未勾选加速，或非 GitHub 资源，返回原官方链接
@@ -219,7 +225,7 @@ const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
         <input type="checkbox" v-model="useGithubProxy" class="filter-checkbox proxy-checkbox" />
         <span class="checkbox-custom-text">
           启用 GitHub 下载加速
-          <span class="speed-badge" v-if="useGithubProxy">(由 Cloudflare 支持)</span>
+          <span class="speed-badge" v-if="useGithubProxy && CF_PROXY_DOMAIN">(由 Cloudflare 支持)</span>
         </span>
       </label>
     </div>

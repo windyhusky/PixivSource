@@ -4,3 +4,5 @@ node_modules
 /doc/.vitepress/dist
 /doc/.vitepress/cache
 *.pdf
+.env.local
+*.env.*.local

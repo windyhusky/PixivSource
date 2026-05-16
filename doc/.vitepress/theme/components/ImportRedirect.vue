@@ -9,8 +9,9 @@ const inputUrl = ref('')
 const selectedType = ref('importonline')
 const containerRef = ref<HTMLElement | null>(null)
 
-// 🌟 请在此处配置你部署好的 Cloudflare Worker 地址
-const CF_WORKER_URL = 'https://legado.tnt-wwxs-tz.workers.dev/'
+// 🌟 核心优化：动态读取 Vite 环境变量（本地开发通过 .env.local，线上通过 CF 后台注入）
+const CF_WORKER_URL = import.meta.env.VITE_CF_WORKER_URL || ''
+const SECURE_TOKEN = import.meta.env.VITE_SECURE_TOKEN || ''
 
 // 状态控制
 const isUploading = ref(false)
@@ -33,7 +34,7 @@ const cleanedInput = computed(() => {
   return inputUrl.value.replace(/^\s+/, '').replace(/\s+$/, '')
 })
 
-// ── 智能判断输入内容是否疑似为纯 JSON 源码（增强鲁棒性） ──
+// ── 智能判断输入内容是否疑似为纯 JSON 源码 ──
 const looksLikeJsonInput = computed(() => {
   const val = cleanedInput.value
   return val.startsWith('{') || val.startsWith('[')
@@ -124,15 +125,12 @@ function alignToContent() {
   const parent = container.parentElement!
   const parentRect = parent.getBoundingClientRect()
 
-  // < 960px：sidebar 是浮层，不参与布局计算
   const isDesktop = window.innerWidth >= 960
   const hasAside  = window.innerWidth >= 1280
 
-  // < 960px：sidebar 是浮层，不占文档流，忽略
   const sidebar = isDesktop
       ? (document.querySelector('.VPSidebar') as HTMLElement | null)
       : null
-  // < 1280px：aside 是浮层 nudge，不占文档流，忽略
   const aside = hasAside
       ? (document.querySelector('.VPDocAside') as HTMLElement | null)
       : null
@@ -148,9 +146,7 @@ let ro: ResizeObserver | null = null
 
 function observeLayout() {
   if (!ro) return
-  // 重新观察：documentElement 负责捕获窗口尺寸变化
   ro.observe(document.documentElement)
-  // aside 出现 / 消失 / 尺寸变化时立即重算
   const aside = document.querySelector('.VPDocAside')
   if (aside) ro.observe(aside)
 }
@@ -166,7 +162,6 @@ onMounted(() => {
 onUnmounted(() => ro?.disconnect())
 
 watch(() => route.path, () => {
-  // 路由切换后 aside 需要重新渲染，nextTick 后重新绑定观察 + 延迟保底
   nextTick(() => { observeLayout(); alignToContent() })
   setTimeout(alignToContent, 300)
 })
@@ -177,7 +172,6 @@ async function doImport() {
   let val = cleanedInput.value
   if (!val) return
 
-  // 触发最终校验，若防抖计时器未完成则立即行使拦截
   if (looksLikeJsonInput.value && jsonError.value) {
     alert(jsonError.value)
     return
@@ -185,20 +179,27 @@ async function doImport() {
 
   // 情况 A：处理大体积 JSON 配置源码
   if (looksLikeJsonInput.value) {
+    if (!CF_WORKER_URL) {
+      alert('未配置云端网关，暂时无法完成 JSON 解析托管。请直连引入 URL。')
+      return
+    }
+
     isUploading.value = true
     try {
-      // 🌟 【核心纠错补丁】：解析前检查，如果是单对象形式 {}，自动为其首尾添加 [] 包装为标准书源数组
       let parsedJson = JSON.parse(val)
       if (!Array.isArray(parsedJson)) {
         parsedJson = [parsedJson]
       }
 
-      // 异步向部署在 Cloudflare 上的私有边缘节点投递合法的标准数组配置
-      const response = await fetch(CF_WORKER_URL, {
+      // 补丁：智能清洗接口地址，防止末尾多余的 / 产生双斜杠导致本地调试时 Origin 丢失
+      const targetApi = CF_WORKER_URL.endsWith('/') ? CF_WORKER_URL.slice(0, -1) : CF_WORKER_URL;
+
+      // 异步向部署在 Cloudflare 上的私有二合一边缘节点投递配置
+      const response = await fetch(targetApi, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-TNT-Secure': 'tnt_sec_2026'
+          'X-TNT-Secure': SECURE_TOKEN // 从安全的环境变量动态读取暗号，完全替代硬编码
         },
         body: JSON.stringify(parsedJson)
       })
@@ -206,7 +207,6 @@ async function doImport() {
       if (!response.ok) throw new Error()
 
       const resData = await response.json()
-      // 拿到 Worker 内存构建的极短链接（形如 https://xxx.workers.dev/?id=哈希值）
       const shortUrl = resData.url
       const finalUrl = `legado://import/${selectedType.value}?src=${encodeURIComponent(shortUrl)}`
 
@@ -215,7 +215,7 @@ async function doImport() {
       window.location.href = finalUrl
       setTimeout(() => { isRedirecting.value = false }, 2800)
     } catch (e) {
-      alert('云端数据流转通道建立失败，请检查网络或重新点击尝试。')
+      alert('云端数据流转通道建立失败，请检查网络或确认暗号凭证是否对齐。')
     } finally {
       isUploading.value = false
     }
@@ -357,6 +357,16 @@ const ready = computed(() => cleanedInput.value.length > 0 && !isUploading.value
   color: var(--vp-c-text-2);
 }
 
+.clear-action-btn {
+  font-size: 13px;
+  color: var(--vp-c-brand-1);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+.clear-action-btn:hover { text-decoration: underline; }
+
 .type-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -374,6 +384,7 @@ const ready = computed(() => cleanedInput.value.length > 0 && !isUploading.value
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s;
+  color: var(--vp-c-text-1);
 }
 
 .type-item.only-mobile { display: none; }
@@ -399,6 +410,15 @@ const ready = computed(() => cleanedInput.value.length > 0 && !isUploading.value
   color: var(--vp-c-text-1);
   resize: none;
   box-sizing: border-box;
+}
+
+.json-error-banner {
+  color: var(--vp-c-danger-1);
+  font-size: 12px;
+  text-align: left;
+  margin-top: -12px;
+  margin-bottom: 12px;
+  font-weight: 500;
 }
 
 .submit-btn {
@@ -438,7 +458,7 @@ const ready = computed(() => cleanedInput.value.length > 0 && !isUploading.value
   font-size: 20px;
 }
 
-.redirect-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+.redirect-title { font-size: 18px; font-weight: 700; margin-bottom: 6px; color: var(--vp-c-text-1); }
 .redirect-desc  { color: var(--vp-c-text-3); font-size: 13px; margin-bottom: 24px; }
 
 .retry-btn-styled {
