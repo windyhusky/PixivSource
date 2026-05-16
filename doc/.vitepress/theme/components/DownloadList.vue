@@ -8,36 +8,96 @@ const { frontmatter } = useData()
 const rawRepos = computed(() => frontmatter.value.repos || [])
 const manualList = computed(() => frontmatter.value.manual || [])
 
-// 存储各个动态仓库的 GitHub 完整 Release 列表数据
+// 存储各个动态仓库清洗映射后的标准 Release 列表数据
 const apiDataMap = ref({})
 const loadingMap = ref({})
 
-// 智能解析 GitHub 字段
-const parseRepoPath = (githubField) => {
-  if (!githubField) return ''
-  let path = githubField.trim()
-  if (path.includes('github.com/')) {
-    path = path.split('github.com/')[1]
+/**
+ * 1. 统一数据清洗适配器（Adapter）
+ */
+const transformReleases = (rawData, platform) => {
+  if (!Array.isArray(rawData)) return []
+
+  // 核心改动：如果是 Gitee 数据，最新的在最后，因此先将其克隆并执行倒序排列
+  const normalizedRawData = platform === 'gitee' ? [...rawData].reverse() : rawData
+
+  if (platform === 'gitee') {
+    return normalizedRawData.map(item => {
+      const isPre = item.prerelease || ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k))
+
+      return {
+        tag_name: item.tag_name,
+        prerelease: isPre,
+        published_at: item.created_at,
+        body: item.body || '',
+        html_url: `https://gitee.com/${item.author?.login || ''}/${item.name?.replace('legado_app_', '') || ''}/releases`,
+        // 过滤掉包含 .zip 和 .tar.gz 的下载内容
+        assets: (item.assets || [])
+            .filter(asset => {
+              const name = (asset.name || '').toLowerCase()
+              return !name.endsWith('.zip') && !name.endsWith('.tar.gz')
+            })
+            .map(asset => ({
+              id: asset.browser_download_url,
+              name: asset.name,
+              browser_download_url: asset.browser_download_url,
+              size: null
+            }))
+      }
+    })
   }
-  path = path.replace(/\/releases\/?$/, '').replace(/\/$/, '')
-  return path
+
+  // GitHub 平台数据清洗（保持原序列）
+  return normalizedRawData.map(item => ({
+    tag_name: item.tag_name,
+    prerelease: item.prerelease,
+    published_at: item.published_at || item.created_at,
+    body: item.body || '',
+    html_url: item.html_url,
+    // 同样过滤掉 GitHub 的源码压缩包
+    assets: (item.assets || [])
+        .filter(asset => {
+          const name = (asset.name || '').toLowerCase()
+          return !name.endsWith('.zip') && !name.endsWith('.tar.gz')
+        })
+        .map(asset => ({
+          id: asset.id,
+          name: asset.name,
+          browser_download_url: asset.browser_download_url,
+          size: asset.size
+        }))
+  }))
 }
 
-// 字节转换为可读大小
+/**
+ * 2. 智能化分析 Link 链接
+ */
+const resolveRepoMeta = (urlField) => {
+  if (!urlField) return null
+  const url = urlField.trim()
+
+  if (url.includes('gitee.com/')) {
+    let path = url.split('gitee.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
+    return { platform: 'gitee', path, apiUrl: `https://gitee.com/api/v5/repos/${path}/releases` }
+  } else if (url.includes('github.com/')) {
+    let path = url.split('github.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
+    return { platform: 'github', path, apiUrl: `https://api.github.com/repos/${path}/releases` }
+  }
+  return null
+}
+
 const formatSize = (bytes) => {
-  if (!bytes) return ''
+  if (bytes === null || bytes === undefined) return ''
   const mb = bytes / (1024 * 1024)
   return mb.toFixed(1) + ' MB'
 }
 
-// 格式化 ISO 时间为 YYYY/MM/DD
 const formatDate = (isoString) => {
   if (!isoString) return ''
   const date = new Date(isoString)
   return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`
 }
 
-// 轻量 Markdown 解释器
 const renderMarkdown = (mdText) => {
   if (!mdText) return ''
   let html = mdText
@@ -60,48 +120,52 @@ const renderMarkdown = (mdText) => {
   return html.replace(/(<\/div>)<br>/g, '$1')
 }
 
-// 异步拉取 GitHub API 数据
+// 异步动态拉取数据
 onMounted(() => {
   rawRepos.value.forEach(async (repo) => {
-    const repoPath = parseRepoPath(repo.github)
-    if (!repoPath) return
+    const targetLink = repo.link || repo.github
+    const meta = resolveRepoMeta(targetLink)
+    if (!meta) return
 
-    loadingMap.value[repo.github] = true
+    loadingMap.value[targetLink] = true
 
     try {
-      const res = await fetch(`https://api.github.com/repos/${repoPath}/releases`)
+      const res = await fetch(meta.apiUrl)
       if (res.ok) {
-        const data = await res.json()
-        apiDataMap.value[repo.github] = data
+        const rawJson = await res.json()
+        apiDataMap.value[targetLink] = transformReleases(rawJson, meta.platform)
       }
     } catch (e) {
-      console.error(`Failed to fetch GitHub API for ${repoPath}:`, e)
+      console.error(`Failed to fetch ${meta.platform} API for ${meta.path}:`, e)
     } finally {
-      loadingMap.value[repo.github] = false
+      loadingMap.value[targetLink] = false
     }
   })
 })
 
-// 根据配置，动态筛选出最符合条件的 Release 版本
+/**
+ * 根据配置，从已经标准化（Gitee 已洗白且倒序好）的数据源中匹配版本
+ */
 const getTargetRelease = (repoItem) => {
-  const releases = apiDataMap.value[repoItem.github]
+  const targetLink = repoItem.link || repoItem.github
+  const releases = apiDataMap.value[targetLink]
   if (!releases || !releases.length) return null
 
+  // 如果配置要求找预发布版本，直接取最新的第一条
   if (repoItem.prerelease) {
     return releases[0]
   }
 
-  const stableRelease = releases.find(r => !r.prerelease && !r.draft)
+  // 寻找 prerelease: false 的稳定版本
+  const stableRelease = releases.find(r => !r.prerelease)
   return stableRelease || releases[0]
 }
 
-// 判断某个资产名字是否符合推荐词
 const isRecommendedAsset = (assetName, recommendKeyword) => {
   if (!recommendKeyword || !assetName) return false
   return assetName.toLowerCase().includes(recommendKeyword.toLowerCase().trim())
 }
 
-// 对资产列表进行重新排序：推荐的资产永远强制置顶到第一个
 const getSortedAssets = (releaseItem, recommendKeyword) => {
   if (!releaseItem || !releaseItem.assets) return []
   const assetsCopy = [...releaseItem.assets]
@@ -115,17 +179,14 @@ const getSortedAssets = (releaseItem, recommendKeyword) => {
   })
 }
 
-// 控制日志折叠状态
 const expandedKey = ref(null)
 const toggleLog = (key) => {
   expandedKey.value = expandedKey.value === key ? null : key
 }
 
-// 标题区域跳转 GitHub 主页
-const navToRepo = (githubField) => {
-  const repoPath = parseRepoPath(githubField)
-  if (repoPath) {
-    window.open(`https://github.com/${repoPath}`, '_blank')
+const navToRepo = (urlField) => {
+  if (urlField) {
+    window.open(urlField.trim(), '_blank')
   }
 }
 </script>
@@ -140,7 +201,7 @@ const navToRepo = (githubField) => {
           class="download-card"
           :class="{ 'is-expanded': expandedKey === 'repo-' + index }"
       >
-        <div class="main-link-area" @click="navToRepo(item.github)" title="前往项目仓库">
+        <div class="main-link-area" @click="navToRepo(item.link || item.github)" :title="'前往项目主页'">
           <img :src="item.icon" class="card-icon" :alt="item.name" />
           <div class="header-main">
             <h4>{{ item.name }}</h4>
@@ -149,7 +210,7 @@ const navToRepo = (githubField) => {
         </div>
 
         <div class="card-footer-flow">
-          <div class="card-content" v-if="loadingMap[item.github]">
+          <div class="card-content" v-if="loadingMap[item.link || item.github]">
             <div class="release-info">
               <div class="skeleton-text" style="width: 100%"></div>
             </div>
@@ -204,7 +265,7 @@ const navToRepo = (githubField) => {
                   </div>
                   <span class="file-name" :title="asset.name">{{ asset.name }}</span>
                 </div>
-                <span class="size-text">{{ formatSize(asset.size) }}</span>
+                <span v-if="asset.size !== null" class="size-text">{{ formatSize(asset.size) }}</span>
               </a>
 
               <a
@@ -287,20 +348,17 @@ const navToRepo = (githubField) => {
 
 <style scoped>
 /* ========================================================
-   精细化排版布局与 VitePress 主题无缝适配
+   精细化排版布局与 VitePress 主题无缝适配样式（完全保留先前样式）
    ======================================================== */
-
 .vp-download-container {
   margin-top: 2rem;
   width: 100%;
 }
-
 .download-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 1.5rem;
 }
-
 .download-card {
   border: 1px solid var(--vp-c-divider);
   background-color: var(--vp-c-bg-elv);
@@ -314,13 +372,11 @@ const navToRepo = (githubField) => {
   position: relative;
   box-sizing: border-box;
 }
-
 .download-card:hover {
   border-color: var(--vp-c-brand-1);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.06);
 }
-
 .main-link-area {
   display: flex;
   gap: 1.2rem;
@@ -328,7 +384,6 @@ const navToRepo = (githubField) => {
   margin-bottom: 1rem;
   width: 100%;
 }
-
 .card-icon {
   width: 52px;
   height: 52px;
@@ -338,12 +393,10 @@ const navToRepo = (githubField) => {
   border: 1px solid var(--vp-c-divider);
   flex-shrink: 0;
 }
-
 .header-main {
   flex: 1;
   min-width: 0;
 }
-
 .header-main h4 {
   margin: 0 0 0.4rem 0;
   font-size: 1.15rem;
@@ -351,11 +404,9 @@ const navToRepo = (githubField) => {
   color: var(--vp-c-text-1);
   transition: color 0.2s ease;
 }
-
 .main-link-area:hover h4 {
   color: var(--vp-c-brand-1);
 }
-
 .desc {
   font-size: 0.9rem;
   color: var(--vp-c-text-2);
@@ -363,32 +414,27 @@ const navToRepo = (githubField) => {
   line-height: 1.5;
   min-height: 42px;
 }
-
 .card-footer-flow {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-
 .card-content {
   display: flex;
   flex-direction: column;
   flex: 1;
 }
-
 .release-info {
   margin-bottom: 1.2rem;
   font-size: 0.85rem;
   width: 100%;
 }
-
 .meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
 }
-
 .tag {
   color: var(--vp-c-brand-1);
   font-weight: 600;
@@ -398,28 +444,18 @@ const navToRepo = (githubField) => {
   gap: 6px;
   text-decoration: none !important;
 }
-
 .clickable-tag:hover {
   color: var(--vp-c-brand-2);
   text-decoration: underline !important;
   cursor: pointer;
 }
-
 .pre-badge {
   font-size: 11px;
   color: var(--vp-c-danger-1);
   font-weight: 500;
 }
-
-.static-tag {
-  color: #34c759;
-}
-
-.date {
-  color: var(--vp-c-text-3);
-}
-
-/* PC等间距排齐靠上对齐，留出呼吸空间 */
+.static-tag { color: #34c759; }
+.date { color: var(--vp-c-text-3); }
 .card-actions {
   display: flex;
   flex-direction: column;
@@ -428,7 +464,6 @@ const navToRepo = (githubField) => {
   width: 100%;
   align-items: flex-start;
 }
-
 .btn {
   padding: 10px 14px;
   border-radius: 8px;
@@ -445,7 +480,6 @@ const navToRepo = (githubField) => {
   box-sizing: border-box;
   width: 100%;
 }
-
 .btn.is-recommend {
   background: var(--vp-c-brand-1);
   color: white !important;
@@ -457,31 +491,21 @@ const navToRepo = (githubField) => {
   background: var(--vp-c-brand-2);
   box-shadow: 0 4px 16px var(--vp-c-brand-3);
 }
-.btn.is-recommend .size-text {
-  opacity: 0.95;
-}
-
 .btn.secondary {
   background: var(--vp-c-bg-alt);
   color: var(--vp-c-text-1) !important;
   border: 1px solid var(--vp-c-divider);
 }
-.btn.secondary:hover {
-  background: var(--vp-c-divider);
-}
-
+.btn.secondary:hover { background: var(--vp-c-divider); }
 .btn.primary { background: var(--vp-c-brand-1); color: white !important; }
 .btn.primary:hover { background: var(--vp-c-brand-2); }
 .btn:active { transform: scale(0.99); }
-
 .btn-left-content {
   display: flex;
   align-items: center;
   flex: 1;
   min-width: 0;
 }
-
-/* 对齐槽位 */
 .star-icon-slot {
   width: 18px;
   flex-shrink: 0;
@@ -490,7 +514,6 @@ const navToRepo = (githubField) => {
   justify-content: flex-start;
   font-size: 13px;
 }
-
 .file-name {
   flex: 1;
   overflow: hidden;
@@ -498,7 +521,6 @@ const navToRepo = (githubField) => {
   white-space: nowrap;
   text-align: left;
 }
-
 .size-text {
   font-size: 11.5px;
   opacity: 0.85;
@@ -507,7 +529,6 @@ const navToRepo = (githubField) => {
   flex-shrink: 0;
   text-align: right;
 }
-
 .nested-changelog-box {
   background: var(--vp-c-bg-alt);
   border-radius: 8px;
@@ -516,7 +537,6 @@ const navToRepo = (githubField) => {
   overflow: hidden;
   width: 100%;
 }
-
 .changelog-bar {
   padding: 6px 12px;
   display: flex;
@@ -525,7 +545,6 @@ const navToRepo = (githubField) => {
   cursor: pointer;
   user-select: none;
 }
-
 .bar-title {
   font-size: 11.5px;
   font-weight: bold;
@@ -534,41 +553,29 @@ const navToRepo = (githubField) => {
   align-items: center;
   gap: 4px;
 }
-
 .indicator-emoji {
   font-size: 10px;
   transition: all 0.2s ease;
   display: inline-block;
 }
-
 .fold-arrow {
   font-size: 10px;
   color: var(--vp-c-text-3);
   transition: transform 0.25s;
 }
-
 .changelog-body {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-out, padding 0.3s;
 }
-
 .download-card.is-expanded .changelog-body {
   max-height: 260px;
   padding: 8px 12px;
   overflow-y: auto;
   border-top: 1px dashed var(--vp-c-divider);
 }
-
-.download-card.is-expanded .fold-arrow {
-  transform: rotate(180deg);
-}
-
-.markdown-render {
-  font-size: 12.5px;
-  color: var(--vp-c-text-2);
-  line-height: 1.6;
-}
+.download-card.is-expanded .fold-arrow { transform: rotate(180deg); }
+.markdown-render { font-size: 12.5px; color: var(--vp-c-text-2); line-height: 1.6; }
 
 /* 骨架模拟屏 */
 .skeleton-text {
@@ -578,12 +585,7 @@ const navToRepo = (githubField) => {
   animation: skeleton-loading 1.4s ease infinite;
   border-radius: 4px;
 }
-.skeleton-btn {
-  height: 38px;
-  background: var(--vp-c-bg-alt);
-  border-radius: 8px;
-  width: 100%;
-}
+.skeleton-btn { height: 38px; background: var(--vp-c-bg-alt); border-radius: 8px; width: 100%; }
 @keyframes skeleton-loading {
   0% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
@@ -591,17 +593,9 @@ const navToRepo = (githubField) => {
 
 /* 手机端响应 */
 @media (max-width: 420px) {
-  .main-link-area {
-    flex-direction: row !important;
-    gap: 1rem;
-  }
-  .card-icon {
-    width: 46px;
-    height: 46px;
-  }
-  .desc {
-    min-height: auto;
-  }
+  .main-link-area { flex-direction: row !important; gap: 1rem; }
+  .card-icon { width: 46px; height: 46px; }
+  .desc { min-height: auto; }
   .btn { padding: 10px; }
   .file-name { min-width: 100%; margin-bottom: 2px; }
   .size-text { width: 100%; text-align: left; opacity: 0.6; font-size: 11px; }
