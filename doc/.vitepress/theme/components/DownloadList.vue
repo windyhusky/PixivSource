@@ -12,7 +12,7 @@ const manualList = computed(() => frontmatter.value.manual || [])
 const apiDataMap = ref({})
 const loadingMap = ref({})
 
-// 智能解析 GitHub 字段：兼容 "Owner/Repo" 或 "https://github.com/Owner/Repo..."
+// 智能解析 GitHub 字段
 const parseRepoPath = (githubField) => {
   if (!githubField) return ''
   let path = githubField.trim()
@@ -60,7 +60,7 @@ const renderMarkdown = (mdText) => {
   return html.replace(/(<\/div>)<br>/g, '$1')
 }
 
-// 异步拉取 GitHub Releases 列表数据
+// 异步拉取 GitHub API 数据
 onMounted(() => {
   rawRepos.value.forEach(async (repo) => {
     const repoPath = parseRepoPath(repo.github)
@@ -82,7 +82,7 @@ onMounted(() => {
   })
 })
 
-// 根据 Frontmatter 的 prerelease 配置，动态筛选出最符合条件的 Release 版本
+// 根据配置，动态筛选出最符合条件的 Release 版本
 const getTargetRelease = (repoItem) => {
   const releases = apiDataMap.value[repoItem.github]
   if (!releases || !releases.length) return null
@@ -93,6 +93,26 @@ const getTargetRelease = (repoItem) => {
 
   const stableRelease = releases.find(r => !r.prerelease && !r.draft)
   return stableRelease || releases[0]
+}
+
+// 判断某个资产名字是否符合推荐词
+const isRecommendedAsset = (assetName, recommendKeyword) => {
+  if (!recommendKeyword || !assetName) return false
+  return assetName.toLowerCase().includes(recommendKeyword.toLowerCase().trim())
+}
+
+// 对资产列表进行重新排序：推荐的资产永远强制置顶到第一个
+const getSortedAssets = (releaseItem, recommendKeyword) => {
+  if (!releaseItem || !releaseItem.assets) return []
+  const assetsCopy = [...releaseItem.assets]
+
+  if (!recommendKeyword) return assetsCopy
+
+  return assetsCopy.sort((a, b) => {
+    const aRec = isRecommendedAsset(a.name, recommendKeyword)
+    const bRec = isRecommendedAsset(b.name, recommendKeyword)
+    return bRec - aRec
+  })
 }
 
 // 控制日志折叠状态
@@ -149,16 +169,13 @@ const navToRepo = (githubField) => {
                     title="查看当前版本发布页面"
                 >
                   {{ getTargetRelease(item).tag_name }}
-                  <span v-if="getTargetRelease(item).prerelease" class="pre-badge">(Pre)</span>
+                  <span v-if="getTargetRelease(item).prerelease" class="pre-badge">(Pre-release)</span>
                 </a>
                 <span class="date">{{ formatDate(getTargetRelease(item).published_at) }}</span>
               </div>
             </div>
 
-            <div
-                v-if="getTargetRelease(item).body"
-                class="nested-changelog-box"
-            >
+            <div v-if="getTargetRelease(item).body" class="nested-changelog-box">
               <div class="changelog-bar" @click="toggleLog('repo-' + index)">
                 <span class="bar-title">
                   更新内容
@@ -173,12 +190,20 @@ const navToRepo = (githubField) => {
 
             <div class="card-actions" v-if="getTargetRelease(item).assets">
               <a
-                  v-for="(asset, aIdx) in getTargetRelease(item).assets"
+                  v-for="(asset, aIdx) in getSortedAssets(getTargetRelease(item), item.recommend)"
                   :key="asset.id"
                   :href="asset.browser_download_url"
-                  :class="['btn', aIdx === 0 ? 'primary' : 'secondary']"
+                  :class="[
+                  'btn',
+                  isRecommendedAsset(asset.name, item.recommend) ? 'is-recommend' : 'secondary'
+                ]"
               >
-                <span class="file-name" :title="asset.name">{{ asset.name }}</span>
+                <div class="btn-left-content">
+                  <div class="star-icon-slot">
+                    <span v-if="isRecommendedAsset(asset.name, item.recommend)">🌟</span>
+                  </div>
+                  <span class="file-name" :title="asset.name">{{ asset.name }}</span>
+                </div>
                 <span class="size-text">{{ formatSize(asset.size) }}</span>
               </a>
 
@@ -188,7 +213,10 @@ const navToRepo = (githubField) => {
                   target="_blank"
                   class="btn primary"
               >
-                <span class="file-name">前往网页端下载</span>
+                <div class="btn-left-content">
+                  <div class="star-icon-slot"></div>
+                  <span class="file-name">前往网页端下载</span>
+                </div>
               </a>
             </div>
           </div>
@@ -235,8 +263,17 @@ const navToRepo = (githubField) => {
             </div>
 
             <div class="card-actions">
-              <a :href="item.url" target="_blank" class="btn primary">
-                <span class="file-name">{{ item.label || '立即下载' }}</span>
+              <a
+                  :href="item.url"
+                  target="_blank"
+                  :class="['btn', item.recommend ? 'is-recommend' : 'primary']"
+              >
+                <div class="btn-left-content">
+                  <div class="star-icon-slot">
+                    <span v-if="item.recommend">🌟</span>
+                  </div>
+                  <span class="file-name">{{ item.label || '立即下载' }}</span>
+                </div>
                 <span v-if="item.size" class="size-text">{{ item.size }}</span>
               </a>
             </div>
@@ -284,7 +321,6 @@ const navToRepo = (githubField) => {
   box-shadow: 0 6px 16px rgba(0,0,0,0.06);
 }
 
-/* 专属跳转点击热区：始终保持横向布局 */
 .main-link-area {
   display: flex;
   gap: 1.2rem;
@@ -359,7 +395,7 @@ const navToRepo = (githubField) => {
   font-size: 0.95rem;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 6px;
   text-decoration: none !important;
 }
 
@@ -372,7 +408,7 @@ const navToRepo = (githubField) => {
 .pre-badge {
   font-size: 11px;
   color: var(--vp-c-danger-1);
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .static-tag {
@@ -383,12 +419,14 @@ const navToRepo = (githubField) => {
   color: var(--vp-c-text-3);
 }
 
+/* PC等间距排齐靠上对齐，留出呼吸空间 */
 .card-actions {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
   margin-top: auto;
   width: 100%;
+  align-items: flex-start;
 }
 
 .btn {
@@ -402,21 +440,59 @@ const navToRepo = (githubField) => {
   justify-content: space-between;
   gap: 0.8rem;
   flex-wrap: wrap;
-  transition: background-color 0.2s, transform 0.1s;
+  transition: all 0.2s ease, transform 0.1s;
   cursor: pointer;
   box-sizing: border-box;
   width: 100%;
 }
 
+.btn.is-recommend {
+  background: var(--vp-c-brand-1);
+  color: white !important;
+  font-weight: 600;
+  border: 1px solid transparent;
+  box-shadow: 0 4px 12px var(--vp-c-brand-3);
+}
+.btn.is-recommend:hover {
+  background: var(--vp-c-brand-2);
+  box-shadow: 0 4px 16px var(--vp-c-brand-3);
+}
+.btn.is-recommend .size-text {
+  opacity: 0.95;
+}
+
+.btn.secondary {
+  background: var(--vp-c-bg-alt);
+  color: var(--vp-c-text-1) !important;
+  border: 1px solid var(--vp-c-divider);
+}
+.btn.secondary:hover {
+  background: var(--vp-c-divider);
+}
+
 .btn.primary { background: var(--vp-c-brand-1); color: white !important; }
 .btn.primary:hover { background: var(--vp-c-brand-2); }
-.btn.secondary { background: var(--vp-c-bg-alt); color: var(--vp-c-text-1) !important; border: 1px solid var(--vp-c-divider); }
-.btn.secondary:hover { background: var(--vp-c-divider); }
 .btn:active { transform: scale(0.99); }
+
+.btn-left-content {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+}
+
+/* 对齐槽位 */
+.star-icon-slot {
+  width: 18px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 13px;
+}
 
 .file-name {
   flex: 1;
-  min-width: 120px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -432,13 +508,13 @@ const navToRepo = (githubField) => {
   text-align: right;
 }
 
-/* 折叠日志容器 */
 .nested-changelog-box {
   background: var(--vp-c-bg-alt);
   border-radius: 8px;
   border: 1px dashed var(--vp-c-divider);
   margin-bottom: 1rem;
   overflow: hidden;
+  width: 100%;
 }
 
 .changelog-bar {
@@ -494,7 +570,7 @@ const navToRepo = (githubField) => {
   line-height: 1.6;
 }
 
-/* 骨架屏 */
+/* 骨架模拟屏 */
 .skeleton-text {
   height: 12px;
   background: linear-gradient(90deg, var(--vp-c-bg-alt) 25%, var(--vp-c-divider) 37%, var(--vp-c-bg-alt) 63%);
@@ -513,19 +589,18 @@ const navToRepo = (githubField) => {
   100% { background-position: 0% 50%; }
 }
 
-/* 针对移动手机终端专门优化（保留 .main-link-area 左右对齐，仅处理按钮） */
+/* 手机端响应 */
 @media (max-width: 420px) {
-  /* 【核心优化点】移除 flex-direction: column，让 logo 和名称描述保持左右分布 */
   .main-link-area {
     flex-direction: row !important;
     gap: 1rem;
   }
   .card-icon {
-    width: 46px; /* 移动端微调减小一点点，留出更多空间给右侧文本 */
+    width: 46px;
     height: 46px;
   }
   .desc {
-    min-height: auto; /* 移除最小高度限制，让流式排版自然包裹 */
+    min-height: auto;
   }
   .btn { padding: 10px; }
   .file-name { min-width: 100%; margin-bottom: 2px; }

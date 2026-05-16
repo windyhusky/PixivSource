@@ -26,28 +26,36 @@ repos:
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
     github: https://github.com/Luoyacheng/legado
+    prerelease: false
+    recommend: releaseS.apk
     
   - name: 阅读 Beta
     icon: /img/Legado.png
     desc: 极致阅读体验 免费开源电子书阅读器
     github: https://github.com/legadoteam/legado
     prerelease: true
+    recommend: releaseA.apk
     
   - name: 阅读 MD3
     icon: /img/LegadoMD3.png
     desc: 开源阅读 Material Design 3 风格重构版
     github: https://github.com/HapeLee/legado-with-MD3
 #    prerelease: true
+    recommend: arm64-v8a
     
   - name: 阅读 Archive
     icon: 
     desc: 
     github: https://github.com/Rimchars/legado
+    prerelease: false
+    recommend: arm64-v8a
 
   - name: 阅读 Max
     icon: 
     desc: 
     github: https://github.com/youfengknight/Legado_Max
+    prerelease: false
+#    recommend: arm64-v8a
 
 ---
 
