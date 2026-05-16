@@ -93,9 +93,16 @@ export default defineConfig({
         nav: [
             { text: "✍️ 博客", link: BLOG },
             { text: "🏠 主页", link: "/" },
-            { text: "🚀 一键导入", link: "/Import" },
             {
-                text: "📌 书源指南",
+                text: "📌 站方功能",
+                activeMatch: '/',
+                items: [
+                    { text: "⬇️ 下载阅读", link: "/DownloadLegado" },
+                    { text: "🚀 一键导入", link: "/Import" },
+                ],
+            },
+            {
+                text: "📚 书源指南",
                 activeMatch: '/',
                 items: [
                     { text: "✨ 臻享阅读", link: "/BetterExperience", activeMatch: '/' },
@@ -136,6 +143,7 @@ export default defineConfig({
                 text: "站方功能",
                 collapsed: false,
                 items: [
+                    { text: "⬇️ 下载阅读", link: "/DownloadLegado" },
                     { text: "🚀 一键导入", link: "/Import" },
                 ]
             },

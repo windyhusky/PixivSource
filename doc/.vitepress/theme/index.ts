@@ -1,23 +1,24 @@
 // .vitepress/theme/index.ts
-import DefaultTheme from "vitepress/theme";
-import "vitepress-markdown-timeline/dist/theme/index.css"; // 引入时间线样式
-import giscusTalk from 'vitepress-plugin-comment-with-giscus';
-import { useData, useRoute } from 'vitepress';
+import DefaultTheme from "vitepress/theme"
+import "vitepress-markdown-timeline/dist/theme/index.css" // 引入时间线样式
+import giscusTalk from 'vitepress-plugin-comment-with-giscus'
+import { useData, useRoute } from 'vitepress'
 
 
-import { h, watch } from "vue";
-import BackToTop from "./components/BackToTop.vue";
-import CustomFooter from "./components/CustomFooter.vue";
-import DownToDiscuss from "./components/DownToDiscuss.vue";
+import { h, watch } from "vue"
+import BackToTop from "./components/BackToTop.vue"
+import CustomFooter from "./components/CustomFooter.vue"
+import DownloadList from "./components/DownloadList.vue"
+import DownToDiscuss from "./components/DownToDiscuss.vue"
 import DragonChat from './components/DragonChat.vue'
 import FriendLink from "./components/FriendLink.vue"
 import FriendLinkFooter from './components/FriendLinkFooter.vue'
 import FriendLinkFooterHome from './components/FriendLinkFooterHome.vue'
 import HomeUnderline from "./components/HomeUnderline.vue"
 import ImportRedirect from "./components/ImportRedirect.vue"
-import NotFound from "./components/404.vue";
-import Sponsor from "./components/Sponsor.vue";
-import TeamGroups from "./components/TeamGroups.vue";
+import NotFound from "./components/404.vue"
+import Sponsor from "./components/Sponsor.vue"
+import TeamGroups from "./components/TeamGroups.vue"
 import UpdateTime from "./components/UpdateTime.vue"
 import VPHeroAction from "./components/VPHeroAction.vue"
 import './style/index.css'
@@ -47,8 +48,8 @@ export default {
 
     setup() {
         // Get frontmatter and route
-        const { frontmatter } = useData();
-        const route = useRoute();
+        const { frontmatter } = useData()
+        const route = useRoute()
 
         // giscus配置
         giscusTalk({
@@ -64,9 +65,10 @@ export default {
                 frontmatter, route
             },
             true
-        );
+        )
     },
     enhanceApp({app , router }) {
+        app.component('DownloadList', DownloadList)
         app.component('DragonChat', DragonChat)
         app.component('FriendLink', FriendLink)
         app.component('FriendLinkFooterHome', FriendLinkFooterHome)
@@ -86,7 +88,7 @@ export default {
             )
         }
     }
-};
+}
 
 // 彩虹背景动画样式
 function updateHomePageStyle(value: boolean) {
@@ -96,7 +98,7 @@ function updateHomePageStyle(value: boolean) {
         homePageStyle = document.createElement('style')
         homePageStyle.innerHTML = `
     :root {
-      animation: rainbow 12s linear infinite;
+      animation: rainbow 12s linear infinite
     }`
         document.body.appendChild(homePageStyle)
     } else {
