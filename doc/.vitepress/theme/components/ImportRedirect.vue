@@ -28,32 +28,52 @@ const typeMap = [
   { label: '添加书架', value: 'book', icon: '➕' }
 ]
 
-// ── 智能判断输入内容是否疑似为纯 JSON 源码 ──
-const looksLikeJsonInput = computed(() => {
-  const trimmed = inputUrl.value.trim()
-  return trimmed.startsWith('{') || trimmed.startsWith('[')
+// ── 深度清洗判定：过滤掉前端可能存在的空白、换行、或开头的意外噪点 ──
+const cleanedInput = computed(() => {
+  return inputUrl.value.replace(/^\s+/, '').replace(/\s+$/, '')
 })
 
-// ── JSON 格式合法性校验 ──
-const jsonError = computed(() => {
-  if (!looksLikeJsonInput.value) return ''
-  try {
-    let raw = inputUrl.value.trim()
-    // 预校验：如果是 {} 格式，尝试模拟包装后校验，防止在输入框动态提示错误
-    if (raw.startsWith('{') && raw.endsWith('}')) {
-      raw = `[${raw}]`
+// ── 智能判断输入内容是否疑似为纯 JSON 源码（增强鲁棒性） ──
+const looksLikeJsonInput = computed(() => {
+  const val = cleanedInput.value
+  return val.startsWith('{') || val.startsWith('[')
+})
+
+// ── 防御加固：使用独立变量承载错误，避免计算属性在输入大文本时导致频繁 Parse 发生卡死 ──
+const jsonError = ref('')
+let debounceTimer: any = null
+
+// 监听输入，采用防抖机制（300ms 延迟校验），大文本粘贴时绝不卡顿
+watch(inputUrl, () => {
+  if (debounceTimer) clearTimeout(debounceTimer)
+  debounceTimer = setTimeout(() => {
+    if (!looksLikeJsonInput.value) {
+      jsonError.value = ''
+      return
     }
-    JSON.parse(raw)
-    return ''
-  } catch {
-    return 'JSON 格式错误，请检查后再导入'
-  }
+    try {
+      let raw = cleanedInput.value
+      if (raw.startsWith('{') && raw.endsWith('}')) {
+        raw = `[${raw}]`
+      }
+      JSON.parse(raw)
+      jsonError.value = ''
+    } catch {
+      jsonError.value = 'JSON 格式错误，请检查后再导入'
+    }
+  }, 300)
 })
 
 // ── 是否为完全合法的 JSON 输入 ──
 const isValidJsonInput = computed(() => {
   return looksLikeJsonInput.value && !jsonError.value
 })
+
+// ── 一键清空输入框 ──
+function clearInput() {
+  inputUrl.value = ''
+  jsonError.value = ''
+}
 
 // ── 顶级极速跳转 ──
 const hasRedirected = ref(false)
@@ -154,11 +174,11 @@ watch(inputUrl, parseUrlLogic)
 
 // ── 核心执行逻辑 ──
 async function doImport() {
-  let val = inputUrl.value.trim()
+  let val = cleanedInput.value
   if (!val) return
 
-  // 如果输入是 JSON，先进行格式合法性校验拦截
-  if (looksLikeJsonInput.value && !isValidJsonInput.value && jsonError.value) {
+  // 触发最终校验，若防抖计时器未完成则立即行使拦截
+  if (looksLikeJsonInput.value && jsonError.value) {
     alert(jsonError.value)
     return
   }
@@ -178,7 +198,7 @@ async function doImport() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-TNT-Secure': 'tnt_sec_2026' // 如果你后续在 Worker 启用了暗号校验，可在此处扩展
+          'X-TNT-Secure': 'tnt_sec_2026'
         },
         body: JSON.stringify(parsedJson)
       })
@@ -188,8 +208,6 @@ async function doImport() {
       const resData = await response.json()
       // 拿到 Worker 内存构建的极短链接（形如 https://xxx.workers.dev/?id=哈希值）
       const shortUrl = resData.url
-
-      // 生成安全的、绝不会被 Intent 截断的超短本地协议
       const finalUrl = `legado://import/${selectedType.value}?src=${encodeURIComponent(shortUrl)}`
 
       generatedLegadoUrl.value = finalUrl
@@ -197,7 +215,7 @@ async function doImport() {
       window.location.href = finalUrl
       setTimeout(() => { isRedirecting.value = false }, 2800)
     } catch (e) {
-      alert('私有云端无损通道建立失败，请检查 CF Worker 配置状态，或确认网络是否通畅。')
+      alert('云端数据流转通道建立失败，请检查网络或重新点击尝试。')
     } finally {
       isUploading.value = false
     }
@@ -214,7 +232,7 @@ async function doImport() {
   setTimeout(() => { isRedirecting.value = false }, 2800)
 }
 
-const ready = computed(() => inputUrl.value.trim().length > 0 && !isUploading.value)
+const ready = computed(() => cleanedInput.value.length > 0 && !isUploading.value)
 </script>
 
 <template>
@@ -243,6 +261,7 @@ const ready = computed(() => inputUrl.value.trim().length > 0 && !isUploading.va
         <div class="legado-card main-mode">
           <div class="legado-header">
             <span class="header-title">请选择导入类型</span>
+            <button v-if="inputUrl" class="clear-action-btn" @click="clearInput">清空内容</button>
           </div>
 
           <div class="type-grid">
@@ -264,6 +283,7 @@ const ready = computed(() => inputUrl.value.trim().length > 0 && !isUploading.va
                 spellcheck="false"
                 :disabled="isUploading"
             ></textarea>
+            <div v-if="jsonError" class="json-error-banner">⚠️ {{ jsonError }}</div>
           </div>
 
           <button class="submit-btn" :disabled="!ready" @click="doImport">
