@@ -8,33 +8,37 @@ const { frontmatter } = useData()
 const rawRepos = computed(() => frontmatter.value.repos || [])
 const manualList = computed(() => frontmatter.value.manual || [])
 
-// 存储各个动态仓库清洗映射后的标准 Release 列表数据
+// 存储标准格式化后的数据
 const apiDataMap = ref({})
 const loadingMap = ref({})
 
-// 轻量 Markdown 解释器
+// 独立折叠状态存储：更新内容折叠
+const expandedMap = ref({})
+// 【新增】独立折叠状态存储：更多资产按钮折叠 { 'repo-0': false }
+const expandedAssetsMap = ref({})
+
+/**
+ * 高级轻量 Markdown 解析器
+ */
 const renderMarkdown = (mdText) => {
   if (!mdText) return ''
 
-  // 1. 基础 HTML 实体转义，防止 XSS
   let html = mdText
       .replace(/&/g, '&amp;')
       .replace(/</g, '&lt;')
       .replace(/>/g, '&gt;')
 
-  // 2. 统一处理换行符
   html = html.replace(/\r\n/g, '\n').replace(/\r/g, '\n')
 
-  // 3. 识别并解析 ### 或 # 等 Markdown 标题
+  // 解析标题
   html = html.replace(/^(#{1,6})\s+(.+?)(?=\n|$)/gm, (match, hashes, content) => {
     const level = hashes.length
-    return `<h${level} style="margin:10px 0 6px 0;font-weight:700;font-size:${1.4 - level*0.1}rem;color:var(--vp-c-text-1);">${content}</h${level}>`
+    return `<h${level} style="margin:12px 0 8px 0;font-weight:700;font-size:${1.4 - level*0.1}rem;color:var(--vp-c-text-1);">${content}</h${level}>`
   })
 
-  // 4. 【核心修复】：完美支持 * 和 - 编写的无序列表
-  // 匹配连续的 * 或 - 开头的行，将其整体包裹在 <ul> 标签中
+  // 解析无序列表 (* 或 -)
   html = html.replace(/(?:^([*+-])\s+(.+?)(?:\n|$))+/gm, (match) => {
-    const items = match.split('\n')
+    const items = match.trim().split('\n')
         .map(line => {
           const m = line.match(/^[*+-]\s+(.+)$/)
           return m ? `<li style="margin:4px 0;list-style-type:disc;">${m[1]}</li>` : ''
@@ -43,36 +47,28 @@ const renderMarkdown = (mdText) => {
     return `<ul style="padding-left:20px;margin:8px 0;">${items}</ul>`
   })
 
-  // 5. 识别 `行内代码`
+  // 基础样式解析
   html = html.replace(/`([^`\n]+)`/g, '<code style="background:var(--vp-c-bg-alt);padding:2px 6px;border-radius:4px;font-family:var(--vp-font-family-mono);font-size:0.85em;color:var(--vp-c-brand-1);border:1px solid var(--vp-c-divider)">$1</code>')
-
-  // 6. 识别 **粗体**
   html = html.replace(/\*\*([^*]+)\*\*/g, '<strong style="font-weight:700;color:var(--vp-c-text-1);">$1</strong>')
-
-  // 7. 识别 [链接](url)
   html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--vp-c-brand-1);text-decoration:underline;">$1</a>')
 
-  // 8. 将剩余的普通单换行转换为 <br>（过滤掉已经生成的结构化标签尾部的换行）
-  html = html.split('\n').map(line => {
-    if (line.trim().startsWith('<ul') || line.trim().startsWith('<li') || line.trim().startsWith('</ul') || line.trim().startsWith('<h')) {
-      return line
-    }
+  // 处理剩余换行
+  return html.split('\n').map(line => {
+    if (line.trim().startsWith('<ul') || line.trim().startsWith('<li') || line.trim().startsWith('</ul') || line.trim().startsWith('<h')) return line
     return line ? line + '<br>' : ''
   }).join('\n')
-
-  return html
 }
+
 /**
- * 1. 统一数据清洗适配器（Adapter）
+ * 统一数据清洗适配器
  */
 const transformReleases = (rawData, platform) => {
   if (!Array.isArray(rawData)) return []
 
-  // Gitee 倒序处理
+  // Gitee 数据倒序处理
   const normalizedRawData = platform === 'gitee' ? [...rawData].reverse() : rawData
 
   return normalizedRawData.map(item => {
-    // 附件过滤逻辑：移除 .zip 和 .tar.gz
     const rawAssets = item.assets || []
     const filteredAssets = rawAssets.filter(a => {
       const n = (a.name || '').toLowerCase()
@@ -83,16 +79,13 @@ const transformReleases = (rawData, platform) => {
         ? (item.prerelease || ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k)))
         : item.prerelease
 
-    // 【核心修复】：如果 tag_name 是全小写的 beta，或者包含 beta，则提取精简后的 name 字段作为展示的版本号
+    // 如果 tag_name 是 beta，提取 name 剥离前缀作为版本号
     let finalTagName = item.tag_name
     if (String(item.tag_name).toLowerCase() === 'beta' && item.name) {
-      // 官方的 name 格式一般是 "legado_app_3.26.032519"
-      // 我们用 replace 把前缀 "legado_app_" 剥离掉，只留下纯版本号 "3.26.032519"
       finalTagName = item.name.replace(/^legado_app_/, '')
     }
 
     return {
-      // 使用处理后的版本号
       tag_name: finalTagName,
       prerelease: isPre,
       published_at: platform === 'gitee' ? item.created_at : item.published_at,
@@ -108,27 +101,22 @@ const transformReleases = (rawData, platform) => {
   })
 }
 
-/**
- * 2. 智能化分析 Link 链接
- */
 const resolveRepoMeta = (urlField) => {
   if (!urlField) return null
   const url = urlField.trim()
-
   if (url.includes('gitee.com/')) {
     let path = url.split('gitee.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
-    return { platform: 'gitee', path, apiUrl: `https://gitee.com/api/v5/repos/${path}/releases` }
+    return { platform: 'gitee', apiUrl: `https://gitee.com/api/v5/repos/${path}/releases` }
   } else if (url.includes('github.com/')) {
     let path = url.split('github.com/')[1].replace(/\/releases\/?$/, '').replace(/\/$/, '')
-    return { platform: 'github', path, apiUrl: `https://api.github.com/repos/${path}/releases` }
+    return { platform: 'github', apiUrl: `https://api.github.com/repos/${path}/releases` }
   }
   return null
 }
 
 const formatSize = (bytes) => {
-  if (bytes === null || bytes === undefined) return ''
-  const mb = bytes / (1024 * 1024)
-  return mb.toFixed(1) + ' MB'
+  if (!bytes) return ''
+  return (bytes / (1024 * 1024)).toFixed(1) + ' MB'
 }
 
 const formatDate = (isoString) => {
@@ -137,110 +125,87 @@ const formatDate = (isoString) => {
   return `${date.getFullYear()}/${String(date.getMonth() + 1).padStart(2, '0')}/${String(date.getDate()).padStart(2, '0')}`
 }
 
-// 异步动态拉取数据
 onMounted(() => {
   rawRepos.value.forEach(async (repo) => {
-    const targetLink = repo.link || repo.github
-    const meta = resolveRepoMeta(targetLink)
+    const link = repo.link || repo.github
+    const meta = resolveRepoMeta(link)
     if (!meta) return
-
-    loadingMap.value[targetLink] = true
-
+    loadingMap.value[link] = true
     try {
       const res = await fetch(meta.apiUrl)
       if (res.ok) {
-        const rawJson = await res.json()
-        apiDataMap.value[targetLink] = transformReleases(rawJson, meta.platform)
+        apiDataMap.value[link] = transformReleases(await res.json(), meta.platform)
       }
     } catch (e) {
-      console.error(`Failed to fetch ${meta.platform} API for ${meta.path}:`, e)
+      console.error(e)
     } finally {
-      loadingMap.value[targetLink] = false
+      loadingMap.value[link] = false
     }
   })
 })
 
 const getTargetRelease = (repoItem) => {
-  const targetLink = repoItem.link || repoItem.github
-  const releases = apiDataMap.value[targetLink]
+  const releases = apiDataMap.value[repoItem.link || repoItem.github]
   if (!releases || !releases.length) return null
-
-  if (repoItem.prerelease) {
-    return releases[0]
-  }
-
-  const stableRelease = releases.find(r => !r.prerelease)
-  return stableRelease || releases[0]
+  return (repoItem.prerelease ? releases[0] : (releases.find(r => !r.prerelease) || releases[0]))
 }
 
-const isRecommendedAsset = (assetName, recommendKeyword) => {
-  if (!recommendKeyword || !assetName) return false
-  return assetName.toLowerCase().includes(recommendKeyword.toLowerCase().trim())
-}
-
-const getSortedAssets = (releaseItem, recommendKeyword) => {
+/**
+ * 修改后的资产排序与截断处理函数
+ * 区分“展示完整”与“默认截断限制”
+ */
+const getSortedAssets = (releaseItem, repoItem, isViewAll = false) => {
   if (!releaseItem || !releaseItem.assets) return []
-  const assetsCopy = [...releaseItem.assets]
+  const recommendKeyword = repoItem.recommend
 
-  if (!recommendKeyword) return assetsCopy
-
-  return assetsCopy.sort((a, b) => {
-    const aRec = isRecommendedAsset(a.name, recommendKeyword)
-    const bRec = isRecommendedAsset(b.name, recommendKeyword)
+  // 先排序：将包含推荐关键字的置顶
+  const sorted = [...releaseItem.assets].sort((a, b) => {
+    const aRec = recommendKeyword && a.name.toLowerCase().includes(recommendKeyword.toLowerCase())
+    const bRec = recommendKeyword && b.name.toLowerCase().includes(recommendKeyword.toLowerCase())
     return bRec - aRec
   })
-}
 
-const expandedKey = ref(null)
-const toggleLog = (key) => {
-  expandedKey.value = expandedKey.value === key ? null : key
-}
-
-const navToRepo = (urlField) => {
-  if (urlField) {
-    window.open(urlField.trim(), '_blank')
+  // 如果要求“查看全部”或者 YAML 里面根本没限制数量（没写 show_assets），直接给完整列表
+  if (isViewAll || !repoItem.show_assets) {
+    return sorted
   }
+
+  // 默认情况下截取 YAML 配置的 show_assets 数量（如前1-2个）
+  return sorted.slice(0, Number(repoItem.show_assets))
 }
+
+const toggleLog = (key) => {
+  expandedMap.value[key] = !expandedMap.value[key]
+}
+
+// 【新增】切换显示更多资产按钮的开关
+const toggleAssets = (key) => {
+  expandedAssetsMap.value[key] = !expandedAssetsMap.value[key]
+}
+
+const navToRepo = (url) => { url && window.open(url.trim(), '_blank') }
 </script>
 
 <template>
   <div class="vp-download-container">
     <div class="download-grid">
-
-      <div
-          v-for="(item, index) in rawRepos"
-          :key="'repo-' + index"
-          class="download-card"
-          :class="{ 'is-expanded': expandedKey === 'repo-' + index }"
-      >
-        <div class="main-link-area" @click="navToRepo(item.link || item.github)" :title="'前往项目主页'">
-          <img :src="item.icon" class="card-icon" :alt="item.name" />
+      <div v-for="(item, index) in rawRepos" :key="'repo-'+index" class="download-card" :class="{'is-expanded': expandedMap['repo-'+index]}">
+        <div class="main-link-area" @click="navToRepo(item.link || item.github)">
+          <img :src="item.icon" class="card-icon" />
           <div class="header-main">
             <h4>{{ item.name }}</h4>
             <p class="desc">{{ item.desc }}</p>
           </div>
         </div>
-
         <div class="card-footer-flow">
           <div class="card-content" v-if="loadingMap[item.link || item.github]">
-            <div class="release-info">
-              <div class="skeleton-text" style="width: 100%"></div>
-            </div>
-            <div class="card-actions">
-              <div class="skeleton-btn"></div>
-            </div>
+            <div class="skeleton-text" style="width:100%; height:12px; margin-bottom:1.2rem;"></div>
+            <div class="skeleton-btn" style="height:38px;"></div>
           </div>
-
           <div class="card-content" v-else-if="getTargetRelease(item)">
             <div class="release-info">
               <div class="meta">
-                <a
-                    :href="getTargetRelease(item).html_url"
-                    target="_blank"
-                    class="tag clickable-tag"
-                    @click.stop
-                    title="查看当前版本发布页面"
-                >
+                <a :href="getTargetRelease(item).html_url" target="_blank" class="tag clickable-tag" @click.stop>
                   {{ getTargetRelease(item).tag_name }}
                   <span v-if="getTargetRelease(item).prerelease" class="pre-badge">(Pre-release)</span>
                 </a>
@@ -249,102 +214,64 @@ const navToRepo = (urlField) => {
             </div>
 
             <div v-if="getTargetRelease(item).body" class="nested-changelog-box">
-              <div class="changelog-bar" @click="toggleLog('repo-' + index)">
-                <span class="bar-title">
-                  更新内容
-                  <span class="indicator-emoji">{{ expandedKey === 'repo-' + index ? '🔼' : '🔽' }}</span>
-                </span>
-                <i class="fas fa-chevron-down fold-arrow"></i>
+              <div class="changelog-bar" @click="toggleLog('repo-'+index)">
+                <span class="bar-title">更新内容 <span class="indicator-emoji">{{ expandedMap['repo-'+index] ? '🔼' : '🔽' }}</span></span>
               </div>
               <div class="changelog-body">
                 <div class="markdown-render" v-html="getTargetRelease(item).body"></div>
               </div>
             </div>
 
-            <div class="card-actions" v-if="getTargetRelease(item).assets">
-              <a
-                  v-for="(asset, aIdx) in getSortedAssets(getTargetRelease(item), item.recommend)"
-                  :key="asset.id"
-                  :href="asset.browser_download_url"
-                  :class="[
-                  'btn',
-                  isRecommendedAsset(asset.name, item.recommend) ? 'is-recommend' : 'secondary'
-                ]"
-              >
+            <div class="card-actions">
+              <a v-for="asset in getSortedAssets(getTargetRelease(item), item, expandedAssetsMap['repo-'+index])" :key="asset.id" :href="asset.browser_download_url"
+                 :class="['btn', item.recommend && asset.name.toLowerCase().includes(item.recommend.toLowerCase()) ? 'is-recommend' : 'secondary']">
                 <div class="btn-left-content">
-                  <div class="star-icon-slot">
-                    <span v-if="isRecommendedAsset(asset.name, item.recommend)">🌟</span>
-                  </div>
-                  <span class="file-name" :title="asset.name">{{ asset.name }}</span>
+                  <div class="star-icon-slot"><span v-if="item.recommend && asset.name.toLowerCase().includes(item.recommend.toLowerCase())">🌟</span></div>
+                  <span class="file-name">{{ asset.name }}</span>
                 </div>
-                <span v-if="asset.size !== null" class="size-text">{{ formatSize(asset.size) }}</span>
+                <span v-if="asset.size" class="size-text">{{ formatSize(asset.size) }}</span>
               </a>
 
-              <a
-                  v-if="getTargetRelease(item).assets.length === 0"
-                  :href="getTargetRelease(item).html_url"
-                  target="_blank"
-                  class="btn primary"
+              <div
+                  v-if="item.show_assets && getTargetRelease(item).assets.length > Number(item.show_assets)"
+                  class="toggle-more-assets-btn"
+                  @click="toggleAssets('repo-'+index)"
               >
-                <div class="btn-left-content">
-                  <div class="star-icon-slot"></div>
-                  <span class="file-name">前往网页端下载</span>
-                </div>
-              </a>
+                {{ expandedAssetsMap['repo-'+index] ? '收起部分版本 🔼' : `展开更多版本 (${getTargetRelease(item).assets.length - item.show_assets}+) 🔽` }}
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div
-          v-for="(item, index) in manualList"
-          :key="'manual-' + index"
-          class="download-card"
-          :class="{ 'is-expanded': expandedKey === 'manual-' + index }"
-      >
-        <div class="main-link-area" @click="item.url && window.open(item.url, '_blank')" :class="{ 'has-link': item.url }">
-          <img :src="item.icon" class="card-icon" :alt="item.name" />
+      <div v-for="(item, index) in manualList" :key="'manual-'+index" class="download-card" :class="{'is-expanded': expandedMap['manual-'+index]}">
+        <div class="main-link-area" @click="item.url && navToRepo(item.url)">
+          <img :src="item.icon" class="card-icon" />
           <div class="header-main">
             <h4>{{ item.name }}</h4>
             <p class="desc">{{ item.desc }}</p>
           </div>
         </div>
-
         <div class="card-footer-flow">
           <div class="card-content">
             <div class="release-info">
               <div class="meta">
-                <a v-if="item.url" :href="item.url" target="_blank" class="tag static-tag clickable-tag" @click.stop>
-                  {{ item.version || '手动维护' }}
-                </a>
-                <span v-else class="tag static-tag">{{ item.version || '手动维护' }}</span>
-                <span class="date">{{ item.date || '未知时间' }}</span>
+                <span class="tag">{{ item.version || '手动维护' }}</span>
+                <span class="date">{{ item.date || '' }}</span>
               </div>
             </div>
-
             <div v-if="item.changelog" class="nested-changelog-box">
-              <div class="changelog-bar" @click="toggleLog('manual-' + index)">
-                <span class="bar-title">
-                  更新内容
-                  <span class="indicator-emoji">{{ expandedKey === 'manual-' + index ? '🔼' : '🔽' }}</span>
-                </span>
-                <i class="fas fa-chevron-down fold-arrow"></i>
+              <div class="changelog-bar" @click="toggleLog('manual-'+index)">
+                <span class="bar-title">更新内容 <span class="indicator-emoji">{{ expandedMap['manual-'+index] ? '🔼' : '🔽' }}</span></span>
               </div>
               <div class="changelog-body">
                 <div class="markdown-render" v-html="renderMarkdown(item.changelog)"></div>
               </div>
             </div>
-
             <div class="card-actions">
-              <a
-                  :href="item.url"
-                  target="_blank"
-                  :class="['btn', item.recommend ? 'is-recommend' : 'primary']"
-              >
+              <a :href="item.url" target="_blank" :class="['btn', item.recommend ? 'is-recommend' : 'primary']">
                 <div class="btn-left-content">
-                  <div class="star-icon-slot">
-                    <span v-if="item.recommend">🌟</span>
-                  </div>
+                  <div class="star-icon-slot"><span v-if="item.recommend">🌟</span></div>
                   <span class="file-name">{{ item.label || '立即下载' }}</span>
                 </div>
                 <span v-if="item.size" class="size-text">{{ item.size }}</span>
@@ -353,7 +280,6 @@ const navToRepo = (urlField) => {
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
@@ -602,7 +528,22 @@ const navToRepo = (urlField) => {
   0% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
-
+.toggle-more-assets-btn {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  color: var(--vp-c-brand-1);
+  padding: 6px 0;
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+  transition: color 0.2s;
+  margin-top: 2px;
+}
+.toggle-more-assets-btn:hover {
+  color: var(--vp-c-brand-2);
+  text-decoration: underline;
+}
 /* 手机端响应 */
 @media (max-width: 420px) {
   .main-link-area { flex-direction: row !important; gap: 1rem; }
