@@ -3,7 +3,7 @@ layout: doc
 title: 下载开源阅读
 description: 下载开源阅读
 
-sidebar: true
+#sidebar: false
 aside: false
 editLink: false
 lastUpdated: false

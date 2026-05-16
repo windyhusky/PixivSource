@@ -71,52 +71,41 @@ const transformReleases = (rawData, platform) => {
   // Gitee 倒序处理
   const normalizedRawData = platform === 'gitee' ? [...rawData].reverse() : rawData
 
-  if (platform === 'gitee') {
-    return normalizedRawData.map(item => {
-      const isPre = item.prerelease || ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k))
-
-      return {
-        tag_name: item.tag_name,
-        prerelease: isPre,
-        published_at: item.created_at,
-        // 【核心修改点】对 API 下发的更新日志直接做预解析，转换为安全 HTML
-        body: renderMarkdown(item.body || ''),
-        html_url: `https://gitee.com/${item.author?.login || ''}/${item.name?.replace('legado_app_', '') || ''}/releases`,
-        assets: (item.assets || [])
-            .filter(asset => {
-              const name = (asset.name || '').toLowerCase()
-              return !name.endsWith('.zip') && !name.endsWith('.tar.gz')
-            })
-            .map(asset => ({
-              id: asset.browser_download_url,
-              name: asset.name,
-              browser_download_url: asset.browser_download_url,
-              size: null
-            }))
-      }
+  return normalizedRawData.map(item => {
+    // 附件过滤逻辑：移除 .zip 和 .tar.gz
+    const rawAssets = item.assets || []
+    const filteredAssets = rawAssets.filter(a => {
+      const n = (a.name || '').toLowerCase()
+      return !n.endsWith('.zip') && !n.endsWith('.tar.gz')
     })
-  }
 
-  // GitHub 平台数据清洗
-  return normalizedRawData.map(item => ({
-    tag_name: item.tag_name,
-    prerelease: item.prerelease,
-    published_at: item.published_at || item.created_at,
-    // 【核心修改点】同步预解析 GitHub 源码日志
-    body: renderMarkdown(item.body || ''),
-    html_url: item.html_url,
-    assets: (item.assets || [])
-        .filter(asset => {
-          const name = (asset.name || '').toLowerCase()
-          return !name.endsWith('.zip') && !name.endsWith('.tar.gz')
-        })
-        .map(asset => ({
-          id: asset.id,
-          name: asset.name,
-          browser_download_url: asset.browser_download_url,
-          size: asset.size
-        }))
-  }))
+    const isPre = platform === 'gitee'
+        ? (item.prerelease || ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k)))
+        : item.prerelease
+
+    // 【核心修复】：如果 tag_name 是全小写的 beta，或者包含 beta，则提取精简后的 name 字段作为展示的版本号
+    let finalTagName = item.tag_name
+    if (String(item.tag_name).toLowerCase() === 'beta' && item.name) {
+      // 官方的 name 格式一般是 "legado_app_3.26.032519"
+      // 我们用 replace 把前缀 "legado_app_" 剥离掉，只留下纯版本号 "3.26.032519"
+      finalTagName = item.name.replace(/^legado_app_/, '')
+    }
+
+    return {
+      // 使用处理后的版本号
+      tag_name: finalTagName,
+      prerelease: isPre,
+      published_at: platform === 'gitee' ? item.created_at : item.published_at,
+      body: renderMarkdown(item.body || ''),
+      html_url: platform === 'gitee' ? `https://gitee.com/${item.author?.login}/${item.name?.replace('legado_app_', '')}/releases` : item.html_url,
+      assets: filteredAssets.map(a => ({
+        id: platform === 'gitee' ? a.browser_download_url : a.id,
+        name: a.name,
+        browser_download_url: a.browser_download_url,
+        size: platform === 'gitee' ? null : a.size
+      }))
+    }
+  })
 }
 
 /**
