@@ -25,7 +25,7 @@ head:
 
 repos:
   - name: Linpx 书源
-    icon: /pic/BookSourceLinpx.png
+    icon: /img/BookSourceLinpx.png
     desc: PixivSource 书源子项目
     link: https://github.com/DowneyRem/PixivSource
     prerelease: false

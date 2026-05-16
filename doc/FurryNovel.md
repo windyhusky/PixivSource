@@ -25,7 +25,7 @@ head:
 
 repos:
   - name: 兽人控小说站 书源
-    icon: /pic/BookSourceFurryNovel.png
+    icon: /img/BookSourceFurryNovel.png
     desc: PixivSource 书源子项目
     link: https://github.com/DowneyRem/PixivSource
     prerelease: false
