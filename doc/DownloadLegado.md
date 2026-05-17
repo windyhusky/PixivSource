@@ -16,7 +16,7 @@ repos:
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
-    link: https://gitee.com/lyc486/legado/releases/
+    link: https://gitee.com/lyc486/legado
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1

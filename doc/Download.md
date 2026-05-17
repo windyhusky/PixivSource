@@ -27,7 +27,7 @@ repos:
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
-    link: https://gitee.com/lyc486/legado/releases/
+    link: https://gitee.com/lyc486/legado
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1
@@ -109,8 +109,8 @@ repos:
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------ | --- |
-| [阅读 Sigma](https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk)            | Plus  | 无需代理，无需登录 |
-| [Gitee Release](https://gitee.com/lyc486/legado/releases)       | 正式版 | 无需代理，无需登录 |
+| [阅读 Sigma](https://gitee.com/lyc486/legado/releasesdownload/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk)            | Plus  | 无需代理，无需登录 |
+| [Gitee Release](https://gitee.com/lyc486/legado)       | 正式版 | 无需代理，无需登录 |
 | [Github Release](https://github.com/Luoyacheng/legado/releases) | legado_plus_releaseS.apk | 需要代理，无需登录 |
 | [Github Action](https://github.com/Luoyacheng/legado/actions)   |     | 需要代理，需要登录 |
 | [Telegram 频道](https://t.me/readsigma)                         | 正式版 | 需要代理，需要登录 |
