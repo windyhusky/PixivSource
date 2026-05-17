@@ -1,7 +1,3 @@
----
-layout: doc
----
-
 ## 书源配置 {#BookSourceSet}
 ### 📡 开启代理（可选）{#SetProxy}
 > [!TIP]

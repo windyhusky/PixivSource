@@ -1,7 +1,3 @@
----
-layout: doc
----
-
 ## 🐞 [故障处理](TroubleShoot.md) {#TroubleShoot}
 > [!NOTE]
 >

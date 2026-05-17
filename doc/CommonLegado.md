@@ -1,7 +1,3 @@
----
-layout: doc
----
-
 ## 阅读设置 {#LegadoSettings}
 ### 💾 [备份恢复](WebdavBackup.md) {#WebdavBackup}
 > [!IMPORTANT]
