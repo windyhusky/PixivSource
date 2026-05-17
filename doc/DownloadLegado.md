@@ -16,11 +16,20 @@ repos:
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
-    link: https://github.com/Luoyacheng/legado
+    link: https://gitee.com/lyc486/legado/releases/
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1
     hide: false
+    
+#  - name: 阅读 Sigma
+#    icon: /img/LegadoSigma.png
+#    desc: 极致阅读体验 免费开源电子书阅读器
+#    link: https://github.com/Luoyacheng/legado
+#    prerelease: false
+#    recommend: releaseS.apk
+#    show_assets: 1
+#    hide: false
     
   - name: 阅读 MD3
     icon: /img/LegadoMD3.png
