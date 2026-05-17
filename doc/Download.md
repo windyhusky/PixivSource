@@ -22,6 +22,16 @@ head:
   - - meta
     - property: og:description
       content: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Sigma/Plus，iOS 可用源阅。
+
+repos:
+  - name: 阅读 Sigma
+    icon: /img/LegadoSigma.png
+    desc: 极致阅读体验 免费开源电子书阅读器
+    link: https://gitee.com/lyc486/legado/releases/
+    prerelease: false
+    recommend: releaseS.apk
+    show_assets: 1
+
 ---
 
 <div align="center">
@@ -54,12 +64,15 @@ head:
 
 
 ## 下载阅读 {#DownloadAPP}
+<DownloadCard/>
+
+
 ### ✅ 阅读兼容性
 | 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
 | ------ | ----- | ------ | -------|
-| **👍【推荐】阅读 Sigma** | **3.25.1224** | **Pixiv 小说**　　 | **最新版** | 
-| **🏛️【官方】阅读 Beta** | **3.25.1224** | **Pixiv 小说**　　 | **最新版** |
-| 🎀【兼容】阅读 MD3   | 3.26      | Pixiv 小说备用 | 最新版 | 
+| **👍【推荐】阅读 Sigma** | **3.25.1224** | **Pixiv 小说** | **最新版** | 
+| **🏛️【官方】阅读 Beta** | **3.25.1224** | **Pixiv 小说** | **最新版** |
+| **🎀【兼容】阅读 MD3**  | **3.26.8**    | **Pixiv 小说** | **最新版** | 
 | 🍎【兼容】源阅       | 1.0 (112) | Pixiv 小说备用 | 最新版 |
 
 

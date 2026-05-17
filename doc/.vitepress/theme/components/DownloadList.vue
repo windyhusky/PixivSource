@@ -158,7 +158,7 @@ onMounted(() => {
   <div class="bottom-info-banner">
     <p class="more-link-text">
       更多平台更多软件，详见：
-      <a href="Download.md" class="banner-link"><span>📚 软件合集</span></a>
+      <a href="Download" class="banner-link"><span>📚 软件合集</span></a>
     </p>
     <p class="copyright-text">本页面仅为软件聚合下载，应用版权归原作者所有</p>
   </div>
