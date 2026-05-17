@@ -4,7 +4,8 @@
  * 软件下载页面组件，负责：
  *   - 从 frontmatter.repos 读取下载卡片配置
  *   - 并发拉取 GitHub / Gitee API Release 数据
- *   - 提供「显示全部」「GitHub 加速」两个全局开关
+ *   - 提供「显示全部」全局开关
+ *   - GitHub / CF 下载加速逻辑暂时注释保留，待可用域名稳定后再开启
  *   - 将格式化后的数据 + getDownloadUrl 函数传递给 DownloadCard 子组件
  *
  * 与 DownloadCard.vue 配合使用，放置在同一目录下即可。
@@ -45,13 +46,14 @@ const repoList = computed(() => frontmatter.value.repos || [])
 
 // ---------- 全局开关 ----------
 const showAllRepos = ref(false)
-const useGithubProxy = ref(true)
+// GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先保留代码便于后续恢复。
+// const useGithubProxy = ref(true)
 
 // ---------- Cloudflare Worker 代理域名（可在 .env 中配置 VITE_CF_WORKER_URL）----------
-const CF_PROXY_DOMAIN = computed(() => {
-  const raw = import.meta.env.VITE_CF_WORKER_URL || ''
-  return raw.endsWith('/') ? raw.slice(0, -1) : raw
-})
+// const CF_PROXY_DOMAIN = computed(() => {
+//   const raw = import.meta.env.VITE_CF_WORKER_URL || ''
+//   return raw.endsWith('/') ? raw.slice(0, -1) : raw
+// })
 
 // ---------- 按需过滤卡片列表 ----------
 const visibleRepoList = computed(() =>
@@ -126,13 +128,14 @@ const resolveRepoMeta = (url) => {
 // ---------- 下载链接转换（传递给 DownloadCard）----------
 const getDownloadUrl = (assetUrl, repoItem) => {
   if (!assetUrl) return ''
-
-  const repoLink = getRepoKey(repoItem)
-  if (repoLink.includes('gitee.com')) return assetUrl
-
-  if (useGithubProxy.value && CF_PROXY_DOMAIN.value && assetUrl.includes('github.com')) {
-    return `${CF_PROXY_DOMAIN.value}/${assetUrl}`
-  }
+  
+  // GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先直接返回原始下载链接。
+  // const repoLink = getRepoKey(repoItem)
+  // if (repoLink.includes('gitee.com')) return assetUrl
+  //
+  // if (useGithubProxy.value && CF_PROXY_DOMAIN.value && assetUrl.includes('github.com')) {
+  //   return `${CF_PROXY_DOMAIN.value}/${assetUrl}`
+  // }
 
   return assetUrl
 }
@@ -182,7 +185,9 @@ onMounted(() => {
         <input v-model="showAllRepos" type="checkbox" class="filter-checkbox" />
         <span class="checkbox-custom-text">显示所有阅读分支版本</span>
       </label>
-
+      
+      <!--
+      GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先隐藏复选框。
       <label class="filter-checkbox-label">
         <input v-model="useGithubProxy" type="checkbox" class="filter-checkbox proxy-checkbox" />
         <span class="checkbox-custom-text">
@@ -192,6 +197,7 @@ onMounted(() => {
           </span>
         </span>
       </label>
+      -->
     </div>
 
     <!-- 卡片网格 -->
@@ -249,7 +255,8 @@ onMounted(() => {
   user-select: none;
 }
 .filter-checkbox { width: 16px; height: 16px; accent-color: var(--vp-c-brand-1); cursor: pointer; }
-.proxy-checkbox  { accent-color: #f38020; }
+/* GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先保留样式便于后续恢复。 */
+/* .proxy-checkbox  { accent-color: #f38020; } */
 .checkbox-custom-text {
   font-size: 14px;
   font-weight: 500;
@@ -258,6 +265,7 @@ onMounted(() => {
   align-items: center;
   gap: 6px;
 }
+/*
 .speed-badge {
   font-size: 11px;
   background-color: rgba(243, 128, 32, 0.15);
@@ -266,6 +274,7 @@ onMounted(() => {
   border-radius: 4px;
   font-weight: bold;
 }
+*/
 
 /* ===== 卡片网格 ===== */
 .download-grid {
