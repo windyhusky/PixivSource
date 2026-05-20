@@ -221,20 +221,35 @@ repos:
 ## 苹果版 {#AppleiOS}
 ### 🍎 【非官方】苹果版
 
-| 软件名称 | 收费方式 | 备注 |
-| ------ | ------ | ---- |
-| [源阅](https://github.com/kaich/SourceReadSite)    | TestFlight 付费 ￥128      | 兼容书源，【源阅读】的后续版本 |
-| [千阅](https://apps.apple.com/app/id1665963317)    | 订阅制 & 永久 ~~￥98~~ ￥199 | 不完全兼容书源              |
-| [读不舍手](https://apps.apple.com/app/id1662413517) | 订阅制 & 永久 ￥128 ~ ￥368  | 不完全兼容书源，广告较多      |
-| [阅读阅多](https://apps.apple.com/app/id6747099551) | 订阅制 & 永久 ￥399 ~ ￥788 ~ ￥1488 | 不完全兼容书源，内置浏览器支持不佳 |
+| 软件名称 | 收费方式 | 常规书源 | JS 书源 |
+| ------ | ------ | ---- | ---- |
+| [轻悦时光](https://github.com/autobcb/qysg)         | 可选订阅制会员 & 永久 ￥60；TestFlight ￥8 | ✅ | ✅ |
+| [源阅](https://github.com/kaich/SourceReadSite)    | TestFlight ￥128 | ✅ | ✅ |
+| [千阅](https://apps.apple.com/app/id1665963317)    | 可选订阅制会员 & 永久 ~~￥98~~ ￥199 | ✅ | ❌ |
+| [阅读阅多](https://apps.apple.com/app/id6747099551) | 可选订阅制会员 & 永久 ￥399 ~ ￥798 ~ ￥1497 | ✅ | ❌ |
+| [栖阅](https://apps.apple.com/app/id6759361885)    | ⚠️需付费，订阅制 & 永久 ￥58 | ❓ | ❓ |
+| [读不舍手](https://apps.apple.com/app/id1662413517) | 可选订阅制会员 & 永久 ￥128 ~ ￥368 | ❌ | ❌ |
+| [书享阅读](https://www.sxyd.lltask.top) | 可选订阅制会员：年费 ￥38，~~￥68~~ | ❌ | ❌ |
+| [阅读 Tauri]() | 🆓 免费 | ❌ | ❌ |
+
+
+- 📅 测试时间：2026-05-20
+- 📚 测试书源（以阅读 3.0 的 JSON 书源为准）：
+  - 常规书源：[天命皆烬小说](https://www.yckceo.com/yuedu/shuyuan/content/id/7259.html) 
+  - CSS 书源：
+  - JSON 书源：
+  - XPath 书源：
+  - JS 书源：[兽人控小说站](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)
 
 
 ### 🔀 替代软件 {#AlternativeAPP}
 <details><summary> 🔀 替代软件 </summary>
 
 不兼容阅读书源的，其他换源阅读软件
-| 软件名称 | 备注                        |
-| ------------------------------------------------------ | -------------- |
+
+| 软件名称 | 备注            |
+| ------ | -------------- |
+| [书享阅读](https://www.sxyd.lltask.top) | 订阅制：年费 ￥38，~~￥68~~ |
 | [益达](https://github.com/xiaohucode/yidaRule/releases) | 开源（苹果&安卓） |
 | [用心读书](https://apps.apple.com/app/id1569793141)      | 付费 TestFlight |
 | 香色闺阁 | 已下架 |
