@@ -49,6 +49,15 @@ repos:
     show_assets: 1
     hide: true
 
+  - name: 阅读T
+    icon: /img/Legado.png
+    desc: 带定时任务的阅读
+    link: https://github.com/skybbk1001/legadoT
+    prerelease: true
+    recommend: release.apk
+    show_assets: 1
+    hide: true
+    
   - name: 阅读 Archive
     icon: /img/LegadoArchive.svg
     desc: 继承 Sigma 版，增强界面、AI、EPUB、漫画、视频和主题能力
