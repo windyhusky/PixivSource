@@ -151,7 +151,7 @@ repos:
 | [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 需要代理，需要登录 |
 
 
-### ⏺️ 【兼容】[阅读 T(https://github.com/skybbk1001/legadoT)
+### ⏺️ 【兼容】[阅读 T](https://github.com/skybbk1001/legadoT)
 > [!TIP]
 >
 > **带有定时任务的阅读，这是 明月照大江 基于 阅读官方版 的改版阅读仓库**
@@ -235,19 +235,17 @@ repos:
 ## 苹果版 {#AppleiOS}
 ### 🍎 【非官方】苹果版
 
-| 软件名称 | 收费方式 | 常规书源 | JS 书源 |
-| ------ | ------ | ---- | ---- |
-| [源阅](https://github.com/kaich/SourceReadSite)    | TestFlight ￥128 | ✅ | ✅ |
-| [轻悦时光](https://github.com/autobcb/qysg)         | 可选订阅制会员 & 永久 ￥60；TestFlight ￥8 | ✅ | ✅ |
-| [千阅](https://apps.apple.com/app/id1665963317)    | 可选订阅制会员 & 永久 ~~￥98~~ ￥199 | ✅ | ❌ |
-| [阅读阅多](https://apps.apple.com/app/id6747099551) | 可选订阅制会员 & 永久 ￥399 ~ ￥798 ~ ￥1497 | ✅ | ❌ |
-| [栖阅](https://apps.apple.com/app/id6759361885)    | ⚠️需付费，订阅制 & 永久 ￥58 | ❓ | ❓ |
-| [读不舍手](https://apps.apple.com/app/id1662413517) | 可选订阅制会员 & 永久 ￥128 ~ ￥368 | ❌ | ❌ |
-| [书享阅读](https://www.sxyd.lltask.top) | 可选订阅制会员：年费 ￥38，~~￥68~~ | ❌ | ❌ |
-| [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) | 🆓 免费 | ❌ | ❌ |
+| 软件名称 | 试用 | 商店 | TF | 常规书源 | JS 书源 | 收费方式 |
+| :------ | :---: | :---: | :---: | :----: | :----: | :----- |
+| [源阅](https://github.com/kaich/SourceReadSite)   | ❌ | ❌ | ✅ | ✅ | ✅ | TestFlight ￥128 |
+| [轻悦时光](https://github.com/autobcb/qysg)        | ✅ | ❌ | ✅ | ✅ | ✅ | 订阅制 & 永久 ￥60；TestFlight ￥8 |
+| [千阅](https://apps.apple.com/app/id1665963317)   | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ~~￥98~~ ￥199 |
+| [阅读阅多](https://apps.apple.com/app/id6747099551) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ￥399 ~ ￥798 ~ ￥1497 |
+| [栖阅](https://apps.apple.com/app/id6759361885)   | ❌ | ✅ | ❌ | ❓ | ❓ | 永久 ￥58 |
+| [读不舍手](https://apps.apple.com/app/id1662413517) | ✅ | ✅ | ❌ | ❌ | ❌ | 订阅制 & 永久 ￥128 ~ ￥368 |
+| [书享阅读](https://www.sxyd.lltask.top) | ✅ | ❌ | ❌ | ❌ | ❌ | 订阅制：年费 ￥38，~~￥68~~ |
+| [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) | ✅ | ❌ | ❌ | ❌ | ❌ | 🆓 免费 |
 
-
-- 📅 测试时间：2026-05-20
 - 📚 测试书源（以阅读 3.0 的 JSON 书源为准）：
   - 常规书源：[天命皆烬小说](https://www.yckceo.com/yuedu/shuyuan/content/id/7259.html) 
   - CSS 书源：
