@@ -24,21 +24,21 @@ head:
       content: 开源阅读 Legado 全平台软件合集：Android 推荐阅读 Sigma/Plus，iOS 可用源阅或轻悦时光。
 
 repos:
-#  - name: 阅读 Sigma
-#    icon: /img/LegadoSigma.png
-#    desc: 极致阅读体验 免费开源电子书阅读器
-#    link: https://gitee.com/lyc486/legado
-#    prerelease: false
-#    recommend: releaseS.apk
-#    show_assets: 1
-    
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
     link: https://github.com/Luoyacheng/legado
     prerelease: false
-    recommend: releaseS.apk
+    recommend: plus
     show_assets: 1
+    
+  - name: 轻悦时光
+    icon: /img/QYSG.png
+    desc: 纯本地的多端兼容阅读器
+    link: https://github.com/autobcb/qysg
+    prerelease: false
+    recommend: 64.apk ios win mac
+    show_assets: 2
 
 ---
 
@@ -79,6 +79,7 @@ repos:
 | **👍 【推荐】阅读 Sigma** | **3.25.1224+** | **Pixiv 小说**  | **最新** | 
 | **🏛️ 【官方】阅读 Beta**  | **3.25.1224+** | **Pixiv 小说**  | **最新** |
 | **🎀 【兼容】阅读 MD3**   | **3.26.8+**    | **Pixiv 小说**  | **最新** |
+| **🍎 【兼容】轻悦时光**    | **2.1.0519** | **Pixiv 小说备用** | **最新** |
 | **🍎 【兼容】源阅**       | **1.0 (112)** | **Pixiv 小说备用** | **最新** |
 
 
@@ -97,7 +98,7 @@ repos:
 
 | 软件 | 试用 | 书源 | JS 源 | 收费方式 |
 | :------ | :---: | :---: | :---: | :----- |
-| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ✅ | ☑️ | 订阅制 & 永久 ￥60；TF ￥8 |
+| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ✅ | ✅ | 订阅制 & 永久 ￥60；TF ￥8 |
 | [墨境](https://github.com/keys-cherish/morealm-reader) | ✅ | ✅ | ❌ | 免费 |
 
 
@@ -107,7 +108,7 @@ repos:
 > 推荐使用 **阅读 Sigma**，更多版本选择详见 下方列表 或
 > **[⬇️ 下载阅读](DownloadLegado.md)**
 
-<DownloadCard/>
+<DownloadCard :frontmatter-index="0" />
 
 
 ### ➕ 更多软件 {#AndroidMore}
@@ -274,8 +275,8 @@ repos:
 
 | 软件 | 试用 | 商店 | TF | 书源 | JS 源 | 收费方式 |
 | :------ | :---: | :---: | :---: | :---: | :---: | :----- |
+| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ❌ | ✅ | ✅ | ✅ | 订阅制 & 永久 ￥60；TF ￥8 |
 | [源阅](https://github.com/kaich/SourceReadSite) | ❌ | ❌ | ✅ | ✅ | ✅ | TF ￥128 |
-| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ❌ | ✅ | ✅ | ☑️ | 订阅制 & 永久 ￥60；TF ￥8 |
 | | | | | | | |
 | [千阅](https://apps.apple.com/app/id1665963317) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ~~￥98~~ ￥199 |
 | [阅读阅多](https://apps.apple.com/app/id6747099551) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ￥399 ~ ￥798 ~ ￥1497 |
@@ -286,8 +287,15 @@ repos:
 
 ### ⬇️ 下载软件 {#IOSDownload}
 > [!NOTE]
+>
+> **轻悦时光现已兼容大部分 阅读3 的书源，全平台可用**
+
+<DownloadCard :frontmatter-index="1" />
+
+
+> [!NOTE]
 > 
-> **源阅是目前对阅读书源兼容性效果最好的软件，兼容 Pixiv 备用小说书源**
+> **源阅目前对阅读书源兼容效果也很不错**
 
 | 相关站点 | 备注   |
 | ------- | ------|
@@ -368,10 +376,13 @@ repos:
 
 | 软件 | 试用 | 书源 | JS 源 | 收费方式 |
 | :------ | :---: | :---: | :---: | :----- |
-| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ✅ | ☑️ | 订阅制 & 永久 ￥60；TF ￥8 |
+| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ✅ | ✅ | 订阅制 & 永久 ￥60；TF ￥8 |
 | [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) | ✅ | ❌ | ❌ | 免费 |
 - ✅ 支持；☑️ 部分支持；❌ 不支持；❓未知（未测试）
 
+
+### ⬇️ 下载软件 {#MultiPlatformDownload}
+<DownloadCard :frontmatter-index="1" />
 
 ### 📚 [轻悦时光](https://www.qread.xyz/) {#qysg}
 > [!TIP]
