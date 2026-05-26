@@ -336,9 +336,9 @@ repos:
 ### ⬇️ 下载软件 {#HarmonyDownload}
 > [!IMPORTANT]
 >
-> **原生鸿蒙版已停更；卓易通详见：安卓版 => [下载阅读](#AndroidDownload)**
->
-> **跨平台方案，详见：[阅读 Tauri](#LegadoTauri)**
+> **原生鸿蒙版已停更；卓易通详见：
+> 安卓版 => [下载阅读](#AndroidDownload)；**
+> **跨平台方案，见下方**
 
 
 ### 🚮 停更软件 {#HarmonyOthers}
@@ -358,12 +358,43 @@ repos:
 
 
 ## 跨平台 {#MultiPlatform}
+### ✅ 兼容软件 {#MultiPlatformCompatibility}
+> [!IMPORTANT]
+> 📚 **测试书源（以阅读3 的 JSON 书源为准）**
+>
+> **书源，指 阅读3 的常规书源**，测试书源：[天命皆烬小说](https://www.yckceo.com/yuedu/shuyuan/content/id/7259.html)
+>
+> **JS 源，指 阅读3 的 JS 书源**，测试书源：[兽人控小说站](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)
+
+| 软件 | 试用 | 书源 | JS 源 | 收费方式 |
+| :------ | :---: | :---: | :---: | :----- |
+| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ✅ | ☑️ | 订阅制 & 永久 ￥60；TF ￥8 |
+| [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) | ✅ | ❌ | ❌ | 免费 |
+- ✅ 支持；☑️ 部分支持；❌ 不支持；❓未知（未测试）
+
+
+### 📚 [轻悦时光](https://www.qread.xyz/) {#qysg}
+> [!TIP]
+>
+> **轻悦时光是一款纯本地阅读器，采用新的书源规则以达到多端兼容，适配各种屏幕尺寸，保护用户隐私，无需网络连接即可阅读。**
+> 
+> **现已兼容大部分 阅读3 的书源，全平台可用**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [官网](https://www.qread.xyz/#download) | 无需代理，无需登录 |
+| [Github Release](https://github.com/autobcb/qysg/releases) | 需要代理，无需登录 |
+| [华为应用市场](https://appgallery.huawei.com/app/detail?id=com.q9uo11.nread) | 无需代理，无需登录 |
+| [百度网盘](https://pan.baidu.com/s/1qEarjwyfQcF0r8mao2JdnA?pwd=dkbd#list/path=%2F%E8%BD%BB%E6%82%A6%E6%97%B6%E5%85%89) | 无需代理，需要登录 |
+| [iOS TestFlight](https://api.qread.xyz/tf) | 需要代理，无需登录 |
+
+
 ### 💻 [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) {#LegadoTauri}
 > [!NOTE]
 >
 > **阅读官方推出的跨平台桌面应用，目前仍在开发中，全平台可用**
 >
-> **⚠️ 不兼容阅读3的书源**
+> **⚠️ 不兼容 阅读3 的书源**
 >
 > 项目地址：https://github.com/LegadoTeam/Legado-Tauri-Release
 
@@ -373,7 +404,6 @@ repos:
 
 
 ### 🖥️ [阅读 服务器版](https://github.com/hectorqin/reader) {#LegadoServer}
-
 > [!TIP]
 >
 > **这是 hectorqin 的阅读3服务器版，桌面端与 iOS 均可使用**
