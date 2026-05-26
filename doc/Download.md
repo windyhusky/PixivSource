@@ -84,9 +84,21 @@ repos:
 
 ## 安卓版 {#Android}
 ### ✅ 兼容软件 {#AndroidCompatibility}
-> [!IMPORTANT]
+> [!TIP]
 > 
-> **所有 阅读修改版 【最新版】均支持本站书源**
+> **所有 阅读修改版 【最新版】，理论上均支持本站书源**
+
+> [!IMPORTANT]
+> 📚 **测试书源（以阅读3 的 JSON 书源为准）**
+>
+> **书源，指 阅读3 的常规书源**，测试书源：[天命皆烬小说](https://www.yckceo.com/yuedu/shuyuan/content/id/7259.html)
+>
+> **JS 源，指 阅读3 的 JS 书源**，测试书源：[兽人控小说站](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)
+
+| 软件 | 试用 | 书源 | JS 源 | 收费方式 |
+| :------ | :---: | :---: | :---: | :----- |
+| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ✅ | ☑️ | 订阅制 & 永久 ￥60；TF ￥8 |
+| [墨境](https://github.com/keys-cherish/morealm-reader) | ✅ | ✅ | ❌ | 免费 |
 
 
 ### ⬇️ 下载软件 {#AndroidDownload}
