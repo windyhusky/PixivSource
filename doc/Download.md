@@ -70,23 +70,26 @@ repos:
 > **极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)
 
-### ✅ 兼容软件
+### ✅ 兼容软件 {#Compatibility}
+> [!NOTE]
+> **经过测试，下述软件均支持本站书源**
+
 | 阅读软件 | 版本号 | 兼容书源 | 书源版本 |
 |:----|:---|:----|:-----|
 | **👍 【推荐】阅读 Sigma** | **3.25.1224+** | **Pixiv 小说**  | **最新** | 
 | **🏛️ 【官方】阅读 Beta**  | **3.25.1224+** | **Pixiv 小说**  | **最新** |
 | **🎀 【兼容】阅读 MD3**   | **3.26.8+**    | **Pixiv 小说**  | **最新** |
-| **🍎【兼容】源阅**       | **1.0 (112)** | **Pixiv 小说备用** | **最新** |
+| **🍎 【兼容】源阅**       | **1.0 (112)** | **Pixiv 小说备用** | **最新** |
 
 
 ## 安卓版 {#Android}
-### ✅ 兼容软件
+### ✅ 兼容软件 {#AndroidCompatibility}
 > [!IMPORTANT]
 > 
 > **所有 阅读修改版 【最新版】均支持本站书源**
 
 
-### ⬇️ 下载软件 {#DownloadLegado}
+### ⬇️ 下载软件 {#AndroidDownload}
 > [!NOTE]
 >
 > 推荐使用 **阅读 Sigma**，更多版本选择详见 下方列表 或
@@ -235,19 +238,27 @@ repos:
 
 
 ## 苹果版 {#AppleiOS}
-### ✅ 兼容软件 {#iOSAppCompatibility}
+### ✅ 兼容软件 {#iOSCompatibility}
+> [!IMPORTANT]
+> 📚 **测试书源（以阅读3 的 JSON 书源为准）**
+>
+> **书源，指 阅读3 的常规书源**，测试书源：[天命皆烬小说](https://www.yckceo.com/yuedu/shuyuan/content/id/7259.html)
+>
+> **JS 源，指 阅读3 的 JS 书源**，测试书源：[兽人控小说站](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)
 
 | 软件 | 试用 | 商店 | TF | 书源 | JS 源 | 收费方式 |
 | :------ | :---: | :---: | :---: | :---: | :---: | :----- |
 | [源阅](https://github.com/kaich/SourceReadSite) | ❌ | ❌ | ✅ | ✅ | ✅ | TF ￥128 |
-| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ❌ | ✅ | ✅ | ❌ | 订阅制 & 永久 ￥60；TF ￥8 |
+| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ❌ | ✅ | ✅ | ☑️ | 订阅制 & 永久 ￥60；TF ￥8 |
+| | | | | | | |
 | [千阅](https://apps.apple.com/app/id1665963317) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ~~￥98~~ ￥199 |
 | [阅读阅多](https://apps.apple.com/app/id6747099551) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ￥399 ~ ￥798 ~ ￥1497 |
 | [栖阅](https://apps.apple.com/app/id6759361885) | ❌ | ✅ | ❌ | ❓ | ❓ | 永久 ￥58 |
 | [读不舍手](https://apps.apple.com/app/id1662413517) | ✅ | ✅ | ❌ | ❌ | ❌ | 订阅制 & 永久 ￥128 ~ ￥368 |
+- ✅ 支持；☑️ 部分支持；❌ 不支持；❓未知（未测试）
 
 
-### ⬇️ 下载软件 {#DownloadSourceRead}
+### ⬇️ 下载软件 {#IOSDownload}
 > [!NOTE]
 > 
 > **源阅是目前对阅读书源兼容性效果最好的软件，兼容 Pixiv 备用小说书源**
@@ -260,22 +271,7 @@ repos:
 | QQ 群 | QQ 查找群：`909487476`、`728349235`、`137723922`、`103120951` |
 
 
-### ➕ 更多软件 {#iOSMore}
-#### ✅ 支持 Pixiv 书源（支持 JS）
-
-| 软件名称 | 试用 | 商店 | TF | 收费方式 |
-| :------ | :---: | :---: | :---: | :----- |
-| [源阅](https://github.com/kaich/SourceReadSite) | ❌ | ❌ | ✅ | TestFlight ￥128 |
-| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ❌ | ✅ | 订阅制 & 永久 ￥60；TestFlight ￥8 |
-
-- 📚 测试书源（以阅读 3.0 的 JSON 书源为准）：
-  - 常规书源：[天命皆烬小说](https://www.yckceo.com/yuedu/shuyuan/content/id/7259.html) 
-  - CSS 书源：
-  - JSON 书源：
-  - XPath 书源：
-  - JS 书源：[兽人控小说站](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)
-
-### 🔀 替代软件 {#AlternativeAPP}
+### 🔀 替代软件 {#iOSAlternativeAPP}
 <details><summary> 🔀 其他换源阅读软件 </summary>
 
 以下软件不兼容阅读书源，但可作为替代选择
@@ -290,7 +286,7 @@ repos:
 </details>
 
 
-### 🚮 停更软件 {#AppleiOSOthers}
+### 🚮 停更软件 {#iOSOthers}
 
 <details><summary> 🚮 已下架软件 </summary>
 
@@ -314,17 +310,16 @@ repos:
 </details>
 
 
-## 鸿蒙版
-### ⬇️ 下载软件 {#DownloadApp}
+## 鸿蒙版 {#Harmony}
+### ⬇️ 下载软件 {#HarmonyDownload}
 > [!IMPORTANT]
 >
-> **原生鸿蒙版已停更；
-> 卓易通详见：安卓版 => [下载阅读](#DownloadLegado)**
-> 
+> **原生鸿蒙版已停更；卓易通详见：安卓版 => [下载阅读](#AndroidDownload)**
+>
 > **跨平台方案，详见：[阅读 Tauri](#LegadoTauri)**
 
 
-### 🚮 停更软件 {#OtherPlatformsOthers}
+### 🚮 停更软件 {#HarmonyOthers}
 <details><summary> 🌸 阅读 鸿蒙版（已停更）</summary>
 
 > [!NOTE]
@@ -340,8 +335,8 @@ repos:
 </details>
 
 
-## 跨平台 {#OtherPlatforms}
-### 💻 [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release){#LegadoTauri}
+## 跨平台 {#MultiPlatform}
+### 💻 [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) {#LegadoTauri}
 > [!NOTE]
 >
 > **阅读官方推出的跨平台桌面应用，目前仍在开发中，全平台可用**
