@@ -73,7 +73,7 @@ repos:
 
 
 ## 安卓版 {#Android}
-### ⬇️ 下载阅读 {#DownloadAPP}
+### ⬇️ 下载阅读 {#DownloadLegado}
 
 <DownloadCard/>
 
@@ -102,7 +102,7 @@ repos:
 
 #### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
 
-> [!TIP]
+> [!NOTE]
 >
 > **这是 喵公子 用于同步上游代码的仓库，是【阅读 Beta】的仓库**
 >
@@ -195,7 +195,7 @@ repos:
 ### 🚮 停更软件 {#AndroidOthers}
 <details><summary> 👎 阅读 正式版（已停更）</summary>
 
-> [!TIP]
+> [!NOTE]
 >
 > **这是 gedoor/坤飞 阅读3.0的仓库，24年之前是阅读【正式版】的主仓库**
 >
@@ -214,8 +214,11 @@ repos:
 
 <details><summary> 🚮 阅读 Pro 版（已下架）</summary>
 
-- 阅读 Pro 版于 2023 年被 Google 下架，现已停止更新，不推荐继续使用
-- 所有 Pro 版限定功能已于 2023.11.01 移植至普通版
+> [!NOTE]
+> 
+> **阅读 Pro 版于 2023 年被 Google 下架，现已停止更新，不推荐继续使用** 
+> 
+> **所有 Pro 版限定功能已于 2023.11.01 移植至普通版**
 </details>
 
 
@@ -272,40 +275,58 @@ repos:
 </details>
 
 
-## 🖥️ 【非官方】[服务器版](https://github.com/hectorqin/reader) {#LegadoServer}
-> [!TIP]
+## 鸿蒙版
+### ⬇️ 下载软件 {#DownloadApp}
+> [!IMPORTANT]
 >
-> **这是 hectorqin 的阅读3服务器版。桌面端，iOS可用**
->
-> 项目地址：https://github.com/hectorqin/reader
-
-| 下载站点                                                 | 备注            |
-| ------------------------------------------------------ | -------------- |
-| [Github](https://github.com/hectorqin/reader/releases) | 需要代理         |
-| [Telegram 频道](https://t.me/facker_channel)            | 需要代理，需要登录 |
-| 微信公众号【假装大佬】                                      |                |
+> **原生鸿蒙版已停更；
+> 卓易通详见：安卓版 => [下载阅读](#DownloadLegado)**
+> 
+> **跨平台方案，详见：[阅读 Tauri](#LegadoTauri)**
 
 
-## 🌸 【官方】[鸿蒙版](https://github.com/mgz0227/legado-Harmony) {#LegadoHarmony}
-> [!TIP]
+### 🚮 停更软件 {#OtherPlatformsOthers}
+<details><summary> 🌸 阅读 鸿蒙版（已停更）</summary>
+
+> [!NOTE]
 >
 > **这是 阅读官方 的阅读鸿蒙版，目前可以本地阅读**
 >
 > 项目地址：https://github.com/mgz0227/legado-Harmony
 
-| 下载站点                                                        | 备注   |
-| ------------------------------------------------------------- | ----- |
-| [Github](https://github.com/mgz0227/legado-Harmony/releases)  | 开发中 |
-| [Gitee](https://gitee.com/mgz0227/legado-Harmony/releases)    | 开发中 |
+| 下载站点 | 备注 |
+| ------- | ---- |
+| [Github](https://github.com/mgz0227/legado-Harmony/releases) | 停止更新 |
+| [Gitee](https://gitee.com/mgz0227/legado-Harmony/releases) | 停止更新 |
+</details>
 
 
-## 🐞 【不兼容】[阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release)
-> [!TIP]
+## 跨平台 {#OtherPlatforms}
+### 💻 [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release){#LegadoTauri}
+> [!NOTE]
 >
-> **阅读官方推出的跨平台桌面阅读应用，目前还在开发中，全平台可用**
+> **阅读官方推出的跨平台桌面应用，目前仍在开发中，全平台可用**
+>
+> **⚠️ 不兼容阅读3的书源**
 >
 > 项目地址：https://github.com/LegadoTeam/Legado-Tauri-Release
 
 | 下载站点 | 备注 |
 | ------- | --- |
 | [Github Release](https://github.com/LegadoTeam/Legado-Tauri-Release/releases) | 需要代理，无需登录 |
+
+
+### 🖥️ [阅读 服务器版](https://github.com/hectorqin/reader) {#LegadoServer}
+
+> [!TIP]
+>
+> **这是 hectorqin 的阅读3服务器版，桌面端与 iOS 均可使用**
+>
+> 项目地址：https://github.com/hectorqin/reader
+
+| 下载站点 | 备注 |
+| ------- | ---- |
+| [Github](https://github.com/hectorqin/reader/releases) | 需要代理 |
+| [Telegram 频道](https://t.me/facker_channel) | 需要代理，需要登录 |
+| 微信公众号【假装大佬】 | |
+
