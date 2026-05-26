@@ -48,8 +48,17 @@ repos:
     recommend: releaseA.apk
     show_assets: 1
     hide: true
-
-  - name: 阅读T
+    
+  - name: 阅读 Archive
+    icon: /img/LegadoArchive.svg
+    desc: 继承 Sigma 版，增强界面、AI、EPUB、漫画、视频和主题能力
+    link: https://github.com/Rimchars/legado
+    prerelease: false
+    recommend: arm64-v8a
+    show_assets: 1
+    hide: true
+    
+  - name: 阅读 T
     icon: /img/Legado.png
     desc: 带定时任务的阅读
     link: https://github.com/skybbk1001/legadoT
@@ -58,12 +67,12 @@ repos:
     show_assets: 1
     hide: true
     
-  - name: 阅读 Archive
+  - name: 阅读 R
     icon: /img/LegadoArchive.svg
-    desc: 继承 Sigma 版，增强界面、AI、EPUB、漫画、视频和主题能力
-    link: https://github.com/Rimchars/legado
+    desc: 继承 Archive 版，增强界面、AI、EPUB、漫画、视频和主题能力
+    link: https://github.com/refgd/legado
     prerelease: false
-    recommend: arm64-v8a
+    recommend: .apk
     show_assets: 1
     hide: true
 

@@ -179,6 +179,20 @@ repos:
 | [Github Action](https://github.com/Rimchars/legado/actions) | 需要代理，需要登录 |
 
 
+#### ⏺️ 【兼容】[阅读 R](https://github.com/refgd/legado) {#LegadoR}
+
+> [!TIP]
+>
+> **这是 refgd 基于 阅读 Archive 的改版阅读仓库，增强了界面、AI、EPUB、漫画、视频和主题能力**
+>
+> 项目地址：https://github.com/refgd/legado
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/refgd/legado/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/refgd/legado/actions) | 需要代理，需要登录 |
+
+
 #### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado) {#LegadoJingshiro}
 
 > [!TIP]
