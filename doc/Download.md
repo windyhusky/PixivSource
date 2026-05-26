@@ -24,10 +24,18 @@ head:
       content: 开源阅读 Legado 全平台软件合集：Android 推荐阅读 Sigma/Plus，iOS 可用源阅或轻悦时光。
 
 repos:
+#  - name: 阅读 Sigma
+#    icon: /img/LegadoSigma.png
+#    desc: 极致阅读体验 免费开源电子书阅读器
+#    link: https://gitee.com/lyc486/legado
+#    prerelease: false
+#    recommend: releaseS.apk
+#    show_assets: 1
+    
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
-    link: https://gitee.com/lyc486/legado
+    link: https://github.com/Luoyacheng/legado
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1
@@ -62,25 +70,29 @@ repos:
 > **极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)
 
-
-## ✅ 软件兼容性
+### ✅ 兼容软件
 | 阅读软件 | 版本号 | 兼容书源 | 书源版本 |
-| ------ | ----- | ------ | -------|
-| **👍【推荐】阅读 Sigma** | **3.25.1224** | **Pixiv 小说** | **最新版** | 
-| **🏛️【官方】阅读 Beta** | **3.25.1224** | **Pixiv 小说** | **最新版** |
-| **🎀【兼容】阅读 MD3**  | **3.26.8**    | **Pixiv 小说** | **最新版** | 
-| **🍎【兼容】源阅**      | **1.0 (112)** | **Pixiv 小说备用** | **最新版** |
+|:----|:---|:----|:-----|
+| **👍 【推荐】阅读 Sigma** | **3.25.1224+** | **Pixiv 小说**  | **最新** | 
+| **🏛️ 【官方】阅读 Beta**  | **3.25.1224+** | **Pixiv 小说**  | **最新** |
+| **🎀 【兼容】阅读 MD3**   | **3.26.8+**    | **Pixiv 小说**  | **最新** |
+| **🍎【兼容】源阅**       | **1.0 (112)** | **Pixiv 小说备用** | **最新** |
 
 
 ## 安卓版 {#Android}
-### ⬇️ 下载阅读 {#DownloadLegado}
+### ✅ 兼容软件
+> [!IMPORTANT]
+> 
+> **所有 阅读修改版 【最新版】均支持本站书源**
 
-<DownloadCard/>
 
+### ⬇️ 下载软件 {#DownloadLegado}
 > [!NOTE]
 >
-> 以上为推荐的兼容版本，更多版本选择详见 下方列表 或
+> 推荐使用 **阅读 Sigma**，更多版本选择详见 下方列表 或
 > **[⬇️ 下载阅读](DownloadLegado.md)**
+
+<DownloadCard/>
 
 
 ### ➕ 更多软件 {#AndroidMore}
@@ -223,7 +235,33 @@ repos:
 
 
 ## 苹果版 {#AppleiOS}
-### 🍎 【非官方】苹果版
+### ✅ 兼容软件 {#iOSAppCompatibility}
+
+| 软件 | 试用 | 商店 | TF | 书源 | JS 源 | 收费方式 |
+| :------ | :---: | :---: | :---: | :---: | :---: | :----- |
+| [源阅](https://github.com/kaich/SourceReadSite) | ❌ | ❌ | ✅ | ✅ | ✅ | TF ￥128 |
+| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ❌ | ✅ | ✅ | ❌ | 订阅制 & 永久 ￥60；TF ￥8 |
+| [千阅](https://apps.apple.com/app/id1665963317) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ~~￥98~~ ￥199 |
+| [阅读阅多](https://apps.apple.com/app/id6747099551) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ￥399 ~ ￥798 ~ ￥1497 |
+| [栖阅](https://apps.apple.com/app/id6759361885) | ❌ | ✅ | ❌ | ❓ | ❓ | 永久 ￥58 |
+| [读不舍手](https://apps.apple.com/app/id1662413517) | ✅ | ✅ | ❌ | ❌ | ❌ | 订阅制 & 永久 ￥128 ~ ￥368 |
+
+
+### ⬇️ 下载软件 {#DownloadSourceRead}
+> [!NOTE]
+> 
+> **源阅是目前对阅读书源兼容性效果最好的软件，兼容 Pixiv 备用小说书源**
+
+| 相关站点 | 备注   |
+| ------- | ------|
+| [Github](https://github.com/kaich/Yuedu) | 源阅读 Github 介绍 |
+| [Github](https://github.com/kaich/SourceReadSite) | 源阅 Appstore 官网 Github 介绍 |
+| [QQ 频道](https://qun.qq.com/qqweb/qunpro/share?_wv=3&_wwv=128&inviteCode=1Vptq2&from=181074&biz=ka) |  源阅 QQ 频道，现已弃用 |
+| QQ 群 | QQ 查找群：`909487476`、`728349235`、`137723922`、`103120951` |
+
+
+### ➕ 更多软件 {#iOSMore}
+#### ✅ 支持 Pixiv 书源（支持 JS）
 
 | 软件名称 | 试用 | 商店 | TF | 收费方式 |
 | :------ | :---: | :---: | :---: | :----- |
