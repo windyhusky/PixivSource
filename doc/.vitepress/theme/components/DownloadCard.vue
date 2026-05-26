@@ -132,9 +132,25 @@ const sortedAssets = computed(() => {
   if (!displayRelease.value?.assets) return []
   const keyword = cardItem.value.recommend
   return [...displayRelease.value.assets].sort((a, b) => {
-    const aRec = keyword && a.name.toLowerCase().includes(keyword.toLowerCase())
-    const bRec = keyword && b.name.toLowerCase().includes(keyword.toLowerCase())
-    return bRec - aRec
+    // 如果没有配置推荐关键字，保持原样
+    if (!keyword) return 0
+
+    const kw = keyword.split(" ")
+
+    // 找出 a 和 b 分别匹配到的第一个关键字的索引（索引越小表示在 recommend 中越靠前，优先级越高）
+    // 如果没有匹配到，则赋予一个极大的索引值（确保未推荐的排在最后）
+    const aIndex = kw.findIndex(k => a.name.toLowerCase().includes(k.toLowerCase()))
+    const bIndex = kw.findIndex(k => b.name.toLowerCase().includes(k.toLowerCase()))
+
+    const aMatch = aIndex !== -1
+    const bMatch = bIndex !== -1
+
+    if (aMatch && bMatch) {
+      return aIndex - bIndex // 均匹配时，按关键字在 recommend 中的先后顺序升序排列
+    }
+    if (aMatch) return -1 // 只有 a 匹配，a 排前面
+    if (bMatch) return 1  // 只有 b 匹配，b 排前面
+    return 0              // 均未匹配，保持原顺序
   })
 })
 
@@ -160,8 +176,8 @@ const formatDate = (isoString) => {
 }
 
 const isRecommend = (assetName) => {
-  const kw = cardItem.value.recommend
-  return kw && assetName.toLowerCase().includes(kw.toLowerCase())
+  const kw = cardItem.value.recommend.split(" ")
+  return kw.some(item => assetName.includes(item))
 }
 
 const defaultDownloadUrl = (assetUrl, item) => assetUrl || item.url || ''
@@ -324,6 +340,8 @@ const navToRepo = () => {
 
 <style scoped>
 .download-card {
+  margin-top: 16px;
+  margin-bottom: 16px;
   border: 1px solid var(--vp-c-divider);
   background-color: var(--vp-c-bg-elv);
   border-radius: 12px;

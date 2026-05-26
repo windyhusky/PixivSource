@@ -63,7 +63,7 @@ repos:
     desc: 带定时任务的阅读
     link: https://github.com/skybbk1001/legadoT
     prerelease: true
-    recommend: release.apk
+    recommend: legado
     show_assets: 1
     hide: true
     
@@ -72,7 +72,7 @@ repos:
     desc: 继承 Archive 版，增强界面、AI、EPUB、漫画、视频和主题能力
     link: https://github.com/refgd/legado
     prerelease: false
-    recommend: .apk
+    recommend: legado
     show_assets: 1
     hide: true
 
