@@ -2,36 +2,36 @@
 /**
  * DownloadList.vue
  * 软件下载页面组件，负责：
- *   - 从 frontmatter.repos 读取下载卡片配置
- *   - 并发拉取 GitHub / Gitee API Release 数据
- *   - 提供「显示全部」全局开关
- *   - GitHub / CF 下载加速逻辑暂时注释保留，待可用域名稳定后再开启
- *   - 将格式化后的数据 + getDownloadUrl 函数传递给 DownloadCard 子组件
+ * - 从 frontmatter.repos 读取下载卡片配置
+ * - 并发拉取 GitHub / Gitee API Release 数据
+ * - 提供「显示全部」全局开关
+ * - GitHub / CF 下载加速逻辑暂时注释保留，待可用域名稳定后再开启
+ * - 将格式化后的数据 + getDownloadUrl 函数传递给 DownloadCard 子组件
  *
  * 与 DownloadCard.vue 配合使用，放置在同一目录下即可。
  *
  * frontmatter 格式：
- *   repos:
- *     - name: 阅读 Sigma
- *       desc: 极致阅读体验
- *       icon: /img/LegadoSigma.png
- *       link: https://github.com/Luoyacheng/legado
- *       recommend: plus_releaseS    # 推荐关键词（匹配 asset 文件名）
- *       show_assets: 2              # 默认折叠后显示几个
- *       prerelease: false           # 取最新正式版还是最新预发布版
- *       hide: true                  # 不展开「显示所有」时隐藏
+ * repos:
+ *   - name: 阅读 Sigma
+ *     desc: 极致阅读体验
+ *     icon: /img/LegadoSigma.png
+ *     link: https://github.com/Luoyacheng/legado
+ *     recommend: plus_releaseS    # 推荐关键词（匹配 asset 文件名）
+ *     show_assets: 2              # 默认折叠后显示几个
+ *     prerelease: false           # 取最新正式版还是最新预发布版
+ *     hide: true                  # 不展开「显示所有」时隐藏
  *
- *     # 如需直链卡片，也放在 repos 中，无需再维护 manual 列表：
- *     - name: 某 APK
- *       desc: 说明
- *       icon: /img/xxx.png
- *       url: https://example.com/xxx.apk
- *       label: 立即下载
- *       version: "3.26"
- *       date: "2025/01/01"
- *       size: "12.3 MB"
- *       recommend: true
- *       changelog: "- 修复了 xxx\n- 新增了 yyy"
+ * # 如需直链卡片，也放在 repos 中，无需再维护 manual 列表：
+ * - name: 某 APK
+ *   desc: 说明
+ *   icon: /img/xxx.png
+ *   url: https://example.com/xxx.apk
+ *   label: 立即下载
+ *   version: "3.26"
+ *   date: "2025/01/01"
+ *   size: "12.3 MB"
+ *   recommend: true
+ *   changelog: "- 修复了 xxx\n- 新增了 yyy"
  */
 
 import { computed, onMounted, ref } from 'vue'
@@ -42,7 +42,10 @@ import { resolveRepoMeta, transformReleases } from '../utils/releases'
 const { frontmatter } = useData()
 
 // ---------- 配置读取 ----------
-const repoList = computed(() => frontmatter.value.repos || [])
+// 仅在此处将原有的单一 repoList 分离读取，以实现按分类渲染
+const legadoList = computed(() => frontmatter.value.legadoRepos || [])
+const thirdPartyList = computed(() => frontmatter.value.thirdPartyRepos || [])
+const repoList = computed(() => [...legadoList.value, ...thirdPartyList.value])
 
 // ---------- 全局开关 ----------
 const showAllRepos = ref(false)
@@ -56,8 +59,12 @@ const showAllRepos = ref(false)
 // })
 
 // ---------- 按需过滤卡片列表 ----------
-const visibleRepoList = computed(() =>
-    showAllRepos.value ? repoList.value : repoList.value.filter(item => !item.hide)
+// 分别为两个核心板块提供过滤逻辑
+const visibleLegadoList = computed(() =>
+    showAllRepos.value ? legadoList.value : legadoList.value.filter(item => !item.hide)
+)
+const visibleThirdPartyList = computed(() =>
+    showAllRepos.value ? thirdPartyList.value : thirdPartyList.value.filter(item => !item.hide)
 )
 
 // ---------- API 数据存储 ----------
@@ -69,7 +76,7 @@ const getRepoKey = (item) => item?.link || item?.github || ''
 // ---------- 下载链接转换（传递给 DownloadCard）----------
 const getDownloadUrl = (assetUrl, repoItem) => {
   if (!assetUrl) return ''
-  
+
   // GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先直接返回原始下载链接。
   // const repoLink = getRepoKey(repoItem)
   // if (repoLink.includes('gitee.com')) return assetUrl
@@ -120,37 +127,39 @@ onMounted(() => {
   <div class="vp-download-container">
     <h1 class="vp-h1">⬇️ 开源阅读 软件下载</h1>
 
-    <!-- 全局控制条 -->
-    <div class="global-filter-bar">
-      <label class="filter-checkbox-label">
-        <input v-model="showAllRepos" type="checkbox" class="filter-checkbox" />
-        <span class="checkbox-custom-text">显示所有阅读分支版本</span>
-      </label>
-      
-      <!--
-      GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先隐藏复选框。
-      <label class="filter-checkbox-label">
-        <input v-model="useGithubProxy" type="checkbox" class="filter-checkbox proxy-checkbox" />
-        <span class="checkbox-custom-text">
-          启用 GitHub 下载加速
-          <span v-if="useGithubProxy && CF_PROXY_DOMAIN" class="speed-badge">
-            (由 Cloudflare 支持)
-          </span>
-        </span>
-      </label>
-      -->
+    <div class="category-section" v-if="visibleLegadoList.length">
+      <h2 class="category-title">🏛️ 开源阅读及其分支</h2>
+      <div class="global-filter-bar">
+        <label class="filter-checkbox-label">
+          <input v-model="showAllRepos" type="checkbox" class="filter-checkbox" />
+          <span class="checkbox-custom-text">显示所有隐藏分支/版本</span>
+        </label>
+      </div>
+
+      <div class="download-grid">
+        <DownloadCard
+            v-for="(item, index) in visibleLegadoList"
+            :key="getRepoKey(item) || item.url || `legado-${index}`"
+            :item="item"
+            :release="getTargetRelease(item)"
+            :loading="!!loadingMap[getRepoKey(item)]"
+            :get-download-url="getDownloadUrl"
+        />
+      </div>
     </div>
 
-    <!-- 卡片网格 -->
-    <div class="download-grid">
-      <DownloadCard
-          v-for="(item, index) in visibleRepoList"
-          :key="getRepoKey(item) || item.url || `repo-${index}`"
-          :item="item"
-          :release="getTargetRelease(item)"
-          :loading="!!loadingMap[getRepoKey(item)]"
-          :get-download-url="getDownloadUrl"
-      />
+    <div class="category-section" v-if="visibleThirdPartyList.length">
+      <h2 class="category-title">🎀 第三方阅读软件</h2>
+      <div class="download-grid">
+        <DownloadCard
+            v-for="(item, index) in visibleThirdPartyList"
+            :key="getRepoKey(item) || item.url || `third-${index}`"
+            :item="item"
+            :release="getTargetRelease(item)"
+            :loading="!!loadingMap[getRepoKey(item)]"
+            :get-download-url="getDownloadUrl"
+        />
+      </div>
     </div>
   </div>
 
@@ -224,10 +233,16 @@ onMounted(() => {
   gap: 1.5rem;
 }
 
+/* ===== 强行修正行间距冲突 ===== */
+.download-grid :deep(.download-card) {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
 /* ===== 底部引导 ===== */
 .bottom-info-banner {
-  margin-top: 3.5rem;
-  margin-bottom: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 1.5rem;
   text-align: center;
   border-radius: 12px;

@@ -12,7 +12,7 @@ next: false
 comment: false
 #friendlink: false
 
-repos:
+legadoRepos:
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
@@ -38,7 +38,7 @@ repos:
     prerelease: false
     recommend: arm64-v8a
     show_assets: 1
-    hide: false
+#    hide: true
     
   - name: 阅读 Beta
     icon: /img/Legado.png
@@ -93,7 +93,16 @@ repos:
     recommend: releaseS
     show_assets: 1
     hide: true
-
+    
+thirdPartyRepos:
+  - name: 轻悦时光
+    icon: /img/QYSG.png
+    desc: 纯本地的多端兼容阅读器
+    link: https://github.com/autobcb/qysg
+    prerelease: false
+    recommend: 64.apk ios win mac
+    show_assets: 2
+    hide: false
 ---
 
 <DownloadList />
