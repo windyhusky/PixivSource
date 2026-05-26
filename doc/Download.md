@@ -272,22 +272,18 @@ repos:
 
 
 ### 🔀 替代软件 {#iOSAlternativeAPP}
-<details><summary> 🔀 其他换源阅读软件 </summary>
+以下软件 **不兼容阅读书源**，但可作为替代选择
 
-以下软件不兼容阅读书源，但可作为替代选择
-
-| 软件名称 | 备注 |
-| ------ | ---- |
-| [益达](https://github.com/xiaohucode/yidaRule/releases) | 开源，苹果 & 安卓 |
-| [书享阅读](https://www.sxyd.lltask.top) | 订阅制：年费 ￥38 |
-| [用心读书](https://apps.apple.com/app/id1569793141) | 付费 TestFlight |
-| 香色闺阁 | 已下架 |
-| 爱阅书香 | 已下架 |
-</details>
+| 软件 | 试用 | 商店 | TF | 收费方式 |
+| :--- | :---: | :---: | :---: | :---- |
+| [益达](https://github.com/xiaohucode/yidaRule/releases) | ✅ | ❌ | ❌ | 免费 |
+| [用心读书](https://apps.apple.com/app/id1569793141) | ✅ | ✅ | ✅ | 订阅制 & 永久 ￥98 |
+| [书享阅读](https://www.sxyd.lltask.top) | ✅ | ❌ | ❌ | 订阅制：年费 ￥38 |
+| 香色闺阁 | ❓ | ❌ | ❌ | 已下架 |
+| 爱阅书香 | ❓ | ❌ | ❌ | 已下架 |
 
 
 ### 🚮 停更软件 {#iOSOthers}
-
 <details><summary> 🚮 已下架软件 </summary>
 
 | 软件名称 | 备注 |
