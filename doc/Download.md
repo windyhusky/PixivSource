@@ -237,41 +237,42 @@ repos:
   - XPath 书源：
   - JS 书源：[兽人控小说站](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)
 
-
 ### 🔀 替代软件 {#AlternativeAPP}
-<details><summary> 🔀 替代软件 </summary>
+<details><summary> 🔀 其他换源阅读软件 </summary>
 
-不兼容阅读书源的，其他换源阅读软件
+以下软件不兼容阅读书源，但可作为替代选择
 
-| 软件名称 | 备注            |
-| ------ | -------------- |
-| [书享阅读](https://www.sxyd.lltask.top) | 订阅制：年费 ￥38，~~￥68~~ |
-| [益达](https://github.com/xiaohucode/yidaRule/releases) | 开源（苹果&安卓） |
-| [用心读书](https://apps.apple.com/app/id1569793141)      | 付费 TestFlight |
+| 软件名称 | 备注 |
+| ------ | ---- |
+| [益达](https://github.com/xiaohucode/yidaRule/releases) | 开源，苹果 & 安卓 |
+| [书享阅读](https://www.sxyd.lltask.top) | 订阅制：年费 ￥38 |
+| [用心读书](https://apps.apple.com/app/id1569793141) | 付费 TestFlight |
 | 香色闺阁 | 已下架 |
 | 爱阅书香 | 已下架 |
 </details>
 
 
-### 🚮 其他版本 {#AppleiOSOthers}
+### 🚮 停更软件 {#AppleiOSOthers}
+
 <details><summary> 🚮 已下架软件 </summary>
 
-| 软件名称     | AppStore                                           | Github                                 | 备注            |
-|------------ | ------------------------------------------------- | --------------------------------------- | -------------- |
-| 源阅读       | [源阅读](https://apps.apple.com/app/id1561787704 ) | [源阅读](https://github.com/kaich/Yuedu) | 停止维护，现已下架 |
-| ~~青果阅读~~ | [青果阅读](https://apps.apple.com/app/id1142490639) | 无                                      | 停止维护，现已下架 |
-| ~~花火阅读~~ | [花火阅读](https://apps.apple.com/app/id1546631588) | 无                                      | 停止维护，现已下架 |
-| ~~星文阅读~~ | [星文阅读](https://apps.apple.com/app/id1662197753) | 无                                      | 停止维护，现已下架 |
+| 软件名称 | 备注 |
+| ------- | ---- |
+| [源阅读](https://apps.apple.com/app/id1561787704) | 停止维护，现已下架 |
+| ~~香色闺阁~~ | 停止维护，现已下架 |
+| ~~爱阅书香~~ | 停止维护，现已下架 |
+| ~~[青果阅读](https://apps.apple.com/app/id1142490639)~~ | 停止维护，现已下架 |
+| ~~[花火阅读](https://apps.apple.com/app/id1546631588)~~ | 停止维护，现已下架 |
+| ~~[星文阅读](https://apps.apple.com/app/id1662197753)~~ | 停止维护，现已下架 |
 </details>
+
 
 <details><summary> ❌ 阅读官方苹果版 </summary>
 
-- 官方苹果版 已经停止开发
-
 | 下载站点 | 备注 |
 | ------ | --- |
-| ~~[GitHub](https://github.com/gedoor/YueDuFlutter)~~ | 已经停止开发 |
-| ~~[Telegram 频道(iOS版)](https://t.me/legado_ios)~~   | 已经停止开发 |
+| ~~[GitHub](https://github.com/gedoor/YueDuFlutter)~~ | 已停止开发 |
+| ~~[Telegram 频道(iOS版)](https://t.me/legado_ios)~~ | 已停止开发 |
 </details>
 
 
