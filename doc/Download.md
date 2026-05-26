@@ -15,13 +15,13 @@ description: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Si
 head:
   - - meta
     - name: keywords
-      content: 阅读 app, 阅读 Github, 开源阅读 app, 开源阅读 Github, 开源阅读 下载, 开源阅读 下载, Legado 下载, 阅读 Sigma, 阅读 Plus, 阅读 Beta, 阅读 MD3, 阅读 Max, 阅读 Archive, 开源阅读 iOS, 阅读 iOS, 源阅读, 源阅, 源阅 iOS, 开源阅读 鸿蒙
+      content: 阅读 app, 开源阅读 app, 开源阅读 Github, Legado 下载, 阅读 Sigma, 阅读 Plus, 阅读 Beta, 阅读 MD3, 阅读 Max, 阅读 Archive, 开源阅读 iOS, 源阅, 源阅 iOS, 开源阅读 鸿蒙
   - - meta
     - property: og:title
       content: 阅读软件合集 - Android、iOS、鸿蒙 全平台版本
   - - meta
     - property: og:description
-      content: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Sigma/Plus，iOS 可用源阅。
+      content: 开源阅读 Legado 全平台软件合集：Android 推荐阅读 Sigma/Plus，iOS 可用源阅或轻悦时光。
 
 repos:
   - name: 阅读 Sigma
@@ -54,7 +54,7 @@ repos:
 
 > [!TIP]
 > 
-> **开源阅读 Legado 全平台下载指南；软件下载页面 => 
+> **开源阅读 Legado 全平台下载指南；安卓软件下载页面 => 
 > [⬇️ 下载阅读](DownloadLegado.md)**
 > 
 > **另有：新手配置指南：**
@@ -63,44 +63,29 @@ repos:
 > [⚡️ 快速开始](QuickStart.md)
 
 
-## 下载阅读 {#DownloadAPP}
-<DownloadCard/>
-
-
-### ✅ 阅读兼容性
-| 阅读版本 | 版本号 | 兼容书源 | 书源版本 |
+## ✅ 软件兼容性
+| 阅读软件 | 版本号 | 兼容书源 | 书源版本 |
 | ------ | ----- | ------ | -------|
 | **👍【推荐】阅读 Sigma** | **3.25.1224** | **Pixiv 小说** | **最新版** | 
 | **🏛️【官方】阅读 Beta** | **3.25.1224** | **Pixiv 小说** | **最新版** |
 | **🎀【兼容】阅读 MD3**  | **3.26.8**    | **Pixiv 小说** | **最新版** | 
-| 🍎【兼容】源阅       | 1.0 (112) | Pixiv 小说备用 | 最新版 |
-
-
-### 📚 书源兼容性
-<details><summary> 🅿️ Pixiv 书源 </summary>
-
-| Pixiv | 更新时间 | 阅读 Beta | 导入链接 |
-| ----- | ------- | -------- | ------- |
-| 最新 |           | 新包名 3.25.1224 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
-| 254 | 2025.12.16 | 3.23.0503 - 3.25.1107 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/254/pixiv.json) |
-| 194 | 2025.05.28 | 3.23.0503 - 3.25.1107 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/pixiv.json) |
-| 174 | 2025.02.20 | 3.22.0103 - 3.23.0404 | [Pixiv 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/pixiv.json) |
-</details>
-
-
-<details><summary> 🦊 Linpx 书源 </summary>
-
-| Linpx | 更新时间 | 阅读 Beta | 导入链接 |
-| ----- | ------ | --------- | ------- |
-| 最新 |           | 新包名 3.25.1224 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
-| 254 | 2025.12.16 | 3.25.1107 - 3.25.1224 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/linpx.json) |
-| 253 | 2025.12.16 | 3.23.0503 - 3.25.1107 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/linpx.json) |
-| 174 | 2025.02.20 | 3.22.0103 - 3.23.0404 | [Linpx 书源](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/linpx.json) | 
-</details>
+| **🍎【兼容】源阅**      | **1.0 (112)** | **Pixiv 小说备用** | **最新版** |
 
 
 ## 安卓版 {#Android}
-### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado) {#LegadoSigma}
+### ⬇️ 下载阅读 {#DownloadAPP}
+
+<DownloadCard/>
+
+> [!NOTE]
+>
+> 以上为推荐的兼容版本，更多版本选择详见 下方列表 或
+> **[⬇️ 下载阅读](DownloadLegado.md)**
+
+
+### ➕ 更多软件 {#AndroidMore}
+
+#### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado) {#LegadoSigma}
 > [!TIP]
 > 
 > **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
@@ -109,36 +94,36 @@ repos:
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------ | --- |
-| [阅读 Sigma](https://gitee.com/lyc486/legado/releasesdownload/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk)            | Plus  | 无需代理，无需登录 |
-| [Gitee Release](https://gitee.com/lyc486/legado)       | 正式版 | 无需代理，无需登录 |
+| [Gitee Release](https://gitee.com/lyc486/legado/releases) | Plus | 无需代理，无需登录 |
 | [Github Release](https://github.com/Luoyacheng/legado/releases) | legado_plus_releaseS.apk | 需要代理，无需登录 |
-| [Github Action](https://github.com/Luoyacheng/legado/actions)   |     | 需要代理，需要登录 |
-| [Telegram 频道](https://t.me/readsigma)                         | 正式版 | 需要代理，需要登录 |
+| [Github Action](https://github.com/Luoyacheng/legado/actions) | | 需要代理，需要登录 |
+| [Telegram 频道](https://t.me/readsigma) | 正式版 | 需要代理，需要登录 |
 
 
-### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
+#### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
+
 > [!TIP]
 >
 > **这是 喵公子 用于同步上游代码的仓库，是【阅读 Beta】的仓库**
-> 
+>
 > **阅读 Beta 【新包名】是当前主流版本**
 >
 > 【新包名】项目地址：https://github.com/LegadoTeam/legado
-> 
+>
 > 【原包名】项目地址：https://github.com/mgz0227/legado
 
-
-| 下载站点                                                         | 推荐版本  | 备注 | 
-| --------------------------------------------------------------- | -------- | --- |
-| [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe)               | 新共存版 | 无需代理，无需登录 |
-| [喵公子阅读资源](https://yd.mgz6.com)                             | (新包名) | 无需代理，无需登录 |
+| 下载站点 | 推荐版本 | 备注 |
+| ------- | ------- | --- |
+| [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) | 新共存版 | 无需代理，无需登录 |
+| [喵公子阅读资源](https://yd.mgz6.com) | (新包名) | 无需代理，无需登录 |
 | [Github Release](https://github.com/legadoteam/legado/releases) | legado.app.releaseA | 需要代理，无需登录 |
-| [Github Action](https://github.com/legadoteam/legado/actions)   | legado.app.releaseA | 需要代理，需要登录 |
-| [Legado 频道](https://t.me/Legado_Channels)                     | 新共存版  | 需要代理，需要登录 |
-| [Legado Beta 频道](https://t.me/Legado_Beta)                    | 新共存版  | 需要代理，需要登录 |
+| [Github Action](https://github.com/legadoteam/legado/actions) | legado.app.releaseA | 需要代理，需要登录 |
+| [Legado 频道](https://t.me/Legado_Channels) | 新共存版 | 需要代理，需要登录 |
+| [Legado Beta 频道](https://t.me/Legado_Beta) | 新共存版 | 需要代理，需要登录 |
 
 
-### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
+#### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
+
 > [!TIP]
 >
 > **这是 HapeLee 的阅读改版仓库，软件界面采用 MD3 风格**
@@ -148,37 +133,39 @@ repos:
 | 下载站点 | 备注 |
 | ------- | --- |
 | [Github Release](https://github.com/HapeLee/legado-with-MD3/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/HapeLee/legado-with-MD3/actions)   | 需要代理，需要登录 |
+| [Github Action](https://github.com/HapeLee/legado-with-MD3/actions) | 需要代理，需要登录 |
 
 
-### ⏺️ 【兼容】[阅读 T](https://github.com/skybbk1001/legadoT)
+#### ⏺️ 【兼容】[阅读 T](https://github.com/skybbk1001/legadoT) {#LegadoT}
+
 > [!TIP]
 >
 > **带有定时任务的阅读，这是 明月照大江 基于 阅读官方版 的改版阅读仓库**
 >
 > 项目地址：https://github.com/skybbk1001/legadoT
 
-
 | 下载站点 | 备注 |
 | ------- | --- |
 | [Github Release](https://github.com/skybbk1001/legadoT/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/skybbk1001/legadoT/actions)   | 需要代理，需要登录 |
+| [Github Action](https://github.com/skybbk1001/legadoT/actions) | 需要代理，需要登录 |
 
 
-### ⏺️ 【兼容】[阅读 Archive](https://github.com/Rimchars/legado)
+#### ⏺️ 【兼容】[阅读 Archive](https://github.com/Rimchars/legado) {#LegadoArchive}
+
 > [!TIP]
 >
-> **这是 Rimchars 基于 阅读 Sigma 的改版阅读仓库**
+> **这是 Rimchars 基于 阅读 Sigma 的改版阅读仓库，增强了界面、AI、EPUB、漫画、视频和主题能力**
 >
 > 项目地址：https://github.com/Rimchars/legado
 
 | 下载站点 | 备注 |
 | ------- | --- |
 | [Github Release](https://github.com/Rimchars/legado/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/Rimchars/legado/actions)   | 需要代理，需要登录 |
+| [Github Action](https://github.com/Rimchars/legado/actions) | 需要代理，需要登录 |
 
 
-### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado)
+#### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado) {#LegadoJingshiro}
+
 > [!TIP]
 >
 > **这是 Jingshiro 基于 阅读 Sigma 的改版阅读仓库**
@@ -188,63 +175,57 @@ repos:
 | 下载站点 | 备注 |
 | ------- | --- |
 | [Github Release](https://github.com/Jingshiro/legado/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/Jingshiro/legado/actions)   | 需要代理，需要登录 |
+| [Github Action](https://github.com/Jingshiro/legado/actions) | 需要代理，需要登录 |
 
 
-### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max)
+#### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max) {#LegadoMax}
+
 > [!TIP]
 >
-> **这是 youfengknight 基于 阅读 Sigma ，专为 墨水屏阅读器 优化的改版阅读仓库**
+> **这是 youfengknight 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
 >
 > 项目地址：https://github.com/youfengknight/Legado_Max
 
 | 下载站点 | 备注 |
 | ------- | --- |
 | [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/youfengknight/Legado_Max/actions)   | 需要代理，需要登录 |
+| [Github Action](https://github.com/youfengknight/Legado_Max/actions) | 需要代理，需要登录 |
 
 
-### 🚮 其他版本 {#AndroidOthers}
+### 🚮 停更软件 {#AndroidOthers}
 <details><summary> 👎 阅读 正式版（已停更）</summary>
 
 > [!TIP]
 >
 > **这是 gedoor/坤飞 阅读3.0的仓库，24年之前是阅读【正式版】的主仓库**
-> 
+>
 > **目前主要由 Horis 维护（只修 Bug），现在是【阅读 Beta】的上游仓库**
-> 
+>
 > 项目地址：https://github.com/gedoor/legado
 
 **正式版已经停止更新，不推荐继续使用**
 
-| 下载站点 | 推荐版本 | 备注 |
-| ------- | ------ | ---- |
-| [Github Release](https://github.com/gedoor/legado/releases) | 不推荐 | 需要代理，无需登录 |
-| [Telegram 频道](https://t.me/Legado_Channels)               | 不推荐 | 需要代理，需要登录 |
+| 下载站点 | 备注 |
+| ------- | ---- |
+| [Github Release](https://github.com/gedoor/legado/releases) | 需要代理，无需登录 |
+| [Telegram 频道](https://t.me/Legado_Channels) | 需要代理，需要登录 |
 </details>
 
 
 <details><summary> 🚮 阅读 Pro 版（已下架）</summary>
 
-- 阅读 Pro 版于2023年被Google下架
-- 现已经停止更新，不推荐继续使用
-- 所有 Pro 版限定功能已经移植到普通版（2023.11.01）
+- 阅读 Pro 版于 2023 年被 Google 下架，现已停止更新，不推荐继续使用
+- 所有 Pro 版限定功能已于 2023.11.01 移植至普通版
 </details>
 
 
 ## 苹果版 {#AppleiOS}
 ### 🍎 【非官方】苹果版
 
-| 软件名称 | 试用 | 商店 | TF | 常规书源 | JS 书源 | 收费方式 |
-| :------ | :---: | :---: | :---: | :----: | :----: | :----- |
-| [源阅](https://github.com/kaich/SourceReadSite)   | ❌ | ❌ | ✅ | ✅ | ✅ | TestFlight ￥128 |
-| [轻悦时光](https://github.com/autobcb/qysg)        | ✅ | ❌ | ✅ | ✅ | ✅ | 订阅制 & 永久 ￥60；TestFlight ￥8 |
-| [千阅](https://apps.apple.com/app/id1665963317)   | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ~~￥98~~ ￥199 |
-| [阅读阅多](https://apps.apple.com/app/id6747099551) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ￥399 ~ ￥798 ~ ￥1497 |
-| [栖阅](https://apps.apple.com/app/id6759361885)   | ❌ | ✅ | ❌ | ❓ | ❓ | 永久 ￥58 |
-| [读不舍手](https://apps.apple.com/app/id1662413517) | ✅ | ✅ | ❌ | ❌ | ❌ | 订阅制 & 永久 ￥128 ~ ￥368 |
-| [书享阅读](https://www.sxyd.lltask.top) | ✅ | ❌ | ❌ | ❌ | ❌ | 订阅制：年费 ￥38，~~￥68~~ |
-| [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) | ✅ | ❌ | ❌ | ❌ | ❌ | 🆓 免费 |
+| 软件名称 | 试用 | 商店 | TF | 收费方式 |
+| :------ | :---: | :---: | :---: | :----- |
+| [源阅](https://github.com/kaich/SourceReadSite) | ❌ | ❌ | ✅ | TestFlight ￥128 |
+| [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ❌ | ✅ | 订阅制 & 永久 ￥60；TestFlight ￥8 |
 
 - 📚 测试书源（以阅读 3.0 的 JSON 书源为准）：
   - 常规书源：[天命皆烬小说](https://www.yckceo.com/yuedu/shuyuan/content/id/7259.html) 
