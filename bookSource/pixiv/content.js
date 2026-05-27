@@ -23,6 +23,7 @@ function getNovelInfo(res) {
     // 放入小说信息以便登陆界面使用
     let novel = source.getLoginInfoMap()
     if (!novel) novel = getFromCacheObject("novel")
+    if (!novel) novel = {}
     if (res && res.error === true) return
     novel.id = Number(res.id)
     novel.title = res.title
@@ -63,6 +64,7 @@ function getNovelInfo(res) {
     // 添加投票信息
     if (res.pollData) novel.pollChoicesCount = res.pollData.choices.length
     else novel.pollChoicesCount = 0
+
     novel["章节名称"] = novel.title
     source.putLoginInfo(JSON.stringify(novel))
     putInCacheObject("novel", novel)

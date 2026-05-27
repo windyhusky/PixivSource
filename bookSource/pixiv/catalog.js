@@ -77,8 +77,7 @@ function seriesHandler(res) {
         }
     }
     // 放入小说信息以便登陆界面使用
-    let novel = source.getLoginInfoMap()
-    if (novel === undefined) novel = getFromCacheObject("novel")
+    if (!novel) novel = {}
     novel.novelIds = novelIds
     putInCacheObject(`novelIds${seriesID}`, novelIds, cacheSaveSeconds)
     // java.log(JSON.stringify(returnList))
