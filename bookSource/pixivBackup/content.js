@@ -234,7 +234,7 @@ function processComment(item) {
 
 function formatComment(item, replyToName = null) {
     const content = processComment(item)
-    const isMyComment = item.userId === String(getFromCache("pixiv:uid"))
+    const isMyComment = item.userId === String(getFromCache("pixivUid"))
     const commentId = isMyComment ? `(${item.id})` : ""
     const name = replyToName ? `@${item.userName}(⤴️@${replyToName})` : `@${item.userName}`
     return `${name}：${content}(${item.commentDate})${commentId}\n`
