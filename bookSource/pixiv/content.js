@@ -49,12 +49,15 @@ function getNovelInfo(res) {
     }
 
     // 系列 + 阅读，使用当前章节名称
-    if (novel.seriesId && globalThis.environment.IS_LEGADO) {
-        let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
-        novel.id = novelIds[book.durChapterIndex]
+    if (novel.seriesId && util.environment.IS_LEGADO) {
         novel.title = book.durChapterTitle
-        let bookmarkId = getFromCacheObject(`collect${novel.id}`)
-        novel.isBookmark = !!bookmarkId
+        try{
+            let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
+            novel.id = novelIds[book.durChapterIndex]
+        } catch(e) {
+            let novelIds = getAjaxJson(urlIP(urlSeriesNovelsTitles(novel.seriesId)), true).body
+            novel.id = novelIds[book.durChapterIndex].id
+        }
     }
 
     // 添加投票信息
