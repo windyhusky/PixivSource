@@ -56,15 +56,15 @@ repos:
 > [!WARNING]
 >
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
-> [网页版](https://pixivsource.pages.dev/Download) 
+> [网页版](https://pixivsource.pages.dev/Download)
 > 内容更全面，排版更精美**
 
 
 > [!TIP]
-> 
-> **开源阅读 Legado 全平台下载指南；安卓软件下载页面 => 
+>
+> **开源阅读 Legado 全平台下载指南；安卓软件下载页面 =>
 > [⬇️ 下载阅读](DownloadLegado.md)**
-> 
+>
 > **另有：新手配置指南：**
 > [✨ 臻享阅读](BetterExperience.md)；
 > **极简配置指南：**
@@ -86,7 +86,7 @@ repos:
 ## 安卓版 {#Android}
 ### ✅ 兼容软件 {#AndroidCompatibility}
 > [!TIP]
-> 
+>
 > **所有 阅读修改版 【最新版】，理论上均支持本站书源**
 
 > [!IMPORTANT]
@@ -112,44 +112,6 @@ repos:
 
 
 ### ➕ 更多软件 {#AndroidMore}
-
-#### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado) {#LegadoSigma}
-> [!TIP]
-> 
-> **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
-> 
-> 项目地址：https://github.com/Luoyacheng/legado
-
-| 下载站点 | 推荐版本 | 备注 |
-| ------- | ------ | --- |
-| [Gitee Release](https://gitee.com/lyc486/legado/releases) | Plus | 无需代理，无需登录 |
-| [Github Release](https://github.com/Luoyacheng/legado/releases) | legado_plus_releaseS.apk | 需要代理，无需登录 |
-| [Github Action](https://github.com/Luoyacheng/legado/actions) | | 需要代理，需要登录 |
-| [Telegram 频道](https://t.me/readsigma) | 正式版 | 需要代理，需要登录 |
-
-
-#### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
-
-> [!NOTE]
->
-> **这是 喵公子 用于同步上游代码的仓库，是【阅读 Beta】的仓库**
->
-> **阅读 Beta 【新包名】是当前主流版本**
->
-> 【新包名】项目地址：https://github.com/LegadoTeam/legado
->
-> 【原包名】项目地址：https://github.com/mgz0227/legado
-
-| 下载站点 | 推荐版本 | 备注 |
-| ------- | ------- | --- |
-| [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) | 新共存版 | 无需代理，无需登录 |
-| [喵公子阅读资源](https://yd.mgz6.com) | (新包名) | 无需代理，无需登录 |
-| [Github Release](https://github.com/legadoteam/legado/releases) | legado.app.releaseA | 需要代理，无需登录 |
-| [Github Action](https://github.com/legadoteam/legado/actions) | legado.app.releaseA | 需要代理，需要登录 |
-| [Legado 频道](https://t.me/Legado_Channels) | 新共存版 | 需要代理，需要登录 |
-| [Legado Beta 频道](https://t.me/Legado_Beta) | 新共存版 | 需要代理，需要登录 |
-
-
 #### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
 
 > [!TIP]
@@ -235,13 +197,59 @@ repos:
 
 
 ### 🚮 停更软件 {#AndroidOthers}
+
+<details><summary> 🏛️ 阅读 Beta （已停更）</summary>
+
+#### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
+> [!NOTE]
+>
+> **这是 喵公子 用于同步上游代码的仓库，是【阅读 Beta】的仓库**
+>
+> **阅读 Beta 【新包名】是当前主流版本**
+>
+> 【新包名】项目地址：https://github.com/LegadoTeam/legado
+>
+> 【原包名】项目地址：https://github.com/mgz0227/legado
+
+| 下载站点 | 推荐版本 | 备注 |
+| ------- | ------- | --- |
+| [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) | 新共存版 | 无需代理，无需登录 |
+| [喵公子阅读资源](https://yd.mgz6.com) | (新包名) | 无需代理，无需登录 |
+| [Github Release](https://github.com/legadoteam/legado/releases) | legado.app.releaseA | 需要代理，无需登录 |
+| [Github Action](https://github.com/legadoteam/legado/actions) | legado.app.releaseA | 需要代理，需要登录 |
+| [Legado 频道](https://t.me/Legado_Channels) | 新共存版 | 需要代理，需要登录 |
+| [Legado Beta 频道](https://t.me/Legado_Beta) | 新共存版 | 需要代理，需要登录 |
+</details>
+
+
+<details><summary> 👍 阅读 Sigma （已停更）</summary>
+
+#### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado) {#LegadoSigma}
+> [!TIP]
+>
+> **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
+>
+> 项目地址：https://github.com/Luoyacheng/legado
+
+| 下载站点 | 推荐版本 | 备注 |
+| ------- | ------ | --- |
+| [Gitee Release](https://gitee.com/lyc486/legado/releases) | Plus | 无需代理，无需登录 |
+| [Github Release](https://github.com/Luoyacheng/legado/releases) | legado_plus_releaseS.apk | 需要代理，无需登录 |
+| [Github Action](https://github.com/Luoyacheng/legado/actions) | | 需要代理，需要登录 |
+| [Telegram 频道](https://t.me/readsigma) | 正式版 | 需要代理，需要登录 |
+</details>
+
+
 <details><summary> 👎 阅读 正式版（已停更）</summary>
 
+#### 👎 【官方】[阅读 正式版](https://github.com/gedoor/legado) {#Legado}
 > [!NOTE]
 >
 > **这是 gedoor/坤飞 阅读3.0的仓库，24年之前是阅读【正式版】的主仓库**
 >
 > **目前主要由 Horis 维护（只修 Bug），现在是【阅读 Beta】的上游仓库**
+>
+> **现已删库跑路（2026.05.27）**
 >
 > 项目地址：https://github.com/gedoor/legado
 
@@ -257,9 +265,9 @@ repos:
 <details><summary> 🚮 阅读 Pro 版（已下架）</summary>
 
 > [!NOTE]
-> 
-> **阅读 Pro 版于 2023 年被 Google 下架，现已停止更新，不推荐继续使用** 
-> 
+>
+> **阅读 Pro 版于 2023 年被 Google 下架，现已停止更新，不推荐继续使用**
+>
 > **所有 Pro 版限定功能已于 2023.11.01 移植至普通版**
 </details>
 
@@ -294,7 +302,7 @@ repos:
 
 
 > [!NOTE]
-> 
+>
 > **源阅目前对阅读书源兼容效果也很不错**
 
 | 相关站点 | 备注   |
@@ -388,7 +396,7 @@ repos:
 > [!TIP]
 >
 > **轻悦时光是一款纯本地阅读器，采用新的书源规则以达到多端兼容，适配各种屏幕尺寸，保护用户隐私，无需网络连接即可阅读。**
-> 
+>
 > **现已兼容大部分 阅读3 的书源，全平台可用**
 
 | 下载站点 | 备注 |
