@@ -84,6 +84,8 @@ function putInCacheMap(mapName, mapObject, saveSeconds) {
         item[key] = value
         orderedArray.push(item)
     })
+
+    // let orderedArray = Array.from(mapObject, ([key, value]) => ({ [key]: value }))
     // [{'key1': 'value1'}, {'key2': 'value2'}]
     cache.put(mapName, JSON.stringify(orderedArray), saveSeconds)
 }
