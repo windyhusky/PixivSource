@@ -1,5 +1,10 @@
 let pixivSettings = getFromCacheObject("pixivSettings")
 if (!pixivSettings) pixivSettings = setDefaultSettings()
+let novelData = getFromCacheObject("novel")
+let number = {
+    1:"1️⃣", 2:"2️⃣", 3:"3️⃣", 4:"4️⃣", 5:"5️⃣",
+    6:"6️⃣", 7:"7️⃣", 8:"8️⃣", 9:"9️⃣", 0:"0️⃣",
+}
 
 let source = [
     {"🅿️ 登录账号": "login()" },
@@ -29,6 +34,17 @@ let novel = [
     {"⭐️ ⚫️ 关注作者": "userFollowFactory()"},
     {"🚫 ⭕️ 屏蔽作者": "userBlock()"},
 ]
+
+if (novelData.pollData && !novelData.pollData.selectedValue) {
+    let choices = [{"投票问题": "text"}]
+    for (let i = 1; i <= novelData.pollData.choices.length; i++) {
+        let emoji = number[i]
+        let key = `${emoji} 投票选项`
+        let value = `novelPollAnswer("${i}")`
+        choices.push({ [key] : value })
+    }
+    novel = novel.concat(choices)
+}
 
 let comment = [
     {"文本框": "text" },
