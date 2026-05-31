@@ -62,8 +62,13 @@ function getNovelInfo(res) {
     }
 
     // 添加投票信息
-    if (res.pollData) novel.pollChoicesCount = res.pollData.choices.length
-    else novel.pollChoicesCount = 0
+    if (res.pollData) {
+        novel.choices = res.pollData.choices
+        novel.pollChoicesCount = res.pollData.choices.length
+    } else {
+        novel.choices = []
+        novel.pollChoicesCount = 0
+    }
 
     novel["章节名称"] = novel.title
     source.putLoginInfo(JSON.stringify(novel))
