@@ -16,6 +16,7 @@ function getNovel() {
     }
     let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
     novel.authorId = novel.userId = resp.userId
+    novel.question = resp.pollData.question
     return novel
 }
 
@@ -59,7 +60,12 @@ function copyTocUrl() {
 
 // 保存阅读，更新登录界面的章节名称
 function saveRead() {
-    source.putLoginInfo(JSON.stringify({"章节名称": book.durChapterTitle}))
+    let novel = getNovel()
+    novelData = {}
+    novelData["章节名称"] = book.durChapterTitle
+    // novelData["章节名称"] = novel.title
+    novelData["投票问题"] = novel.question
+    source.putLoginInfo(JSON.stringify(novelData))
 }
 
 function startShelfRefresh() {
