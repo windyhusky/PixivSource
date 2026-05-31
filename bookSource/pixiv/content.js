@@ -66,13 +66,13 @@ function getNovelInfo(res) {
         novel.pollData = res.pollData
         novel.pollChoicesCount = res.pollData.choices.length
     } else {
-        novel.choices = []
+        novel.pollData = {}
         novel.pollChoicesCount = 0
     }
 
     // 登录界面显示信息
     novel["章节名称"] = novel.title
-    novel["投票问题"] = novel.pollData.question
+    novel["投票问题"] = novel.pollData.question || ""
     source.putLoginInfo(JSON.stringify(novel))
     putInCacheObject("novel", novel)
 }
