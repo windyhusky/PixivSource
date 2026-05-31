@@ -313,13 +313,12 @@ function urlSearchUser(userName, page, full) {
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (url && !url.trim()) return ""
+
+    let headers = {"Referer": "https://www.pixiv.net/"}
     if (!this._settings) {
         this._settings = this.getFromCacheObject("pixivSettings") || this.setDefaultSettings()
     }
-    if (!this._settings.IPDirect) return url
-
-    let headers = {"Referer": "https://www.pixiv.net/"}
-    if (url.trim()) {
+    if (this._settings.IPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
             headers.host = "i.pximg.net"
