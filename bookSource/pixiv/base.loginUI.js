@@ -12,11 +12,11 @@ let source = [
     {"🐞 反馈问题": "startGithubIssue()" },
 ]
 
-let methord = ""
-if (book) methord = 2
+let method = ""
+if (book) method = 2
 let settingsBase = [
-    {"👀 书源设置": `editSettings('SHOW_SETTINGS${methord}')` },
-    {"👀 发现设置": `editSettings('SHOW_DISCOVER${methord}')` },
+    {"👀 书源设置": `editSettings('SHOW_SETTINGS${method}')` },
+    {"👀 发现设置": `editSettings('SHOW_DISCOVER${method}')` },
     {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 ]
 
