@@ -86,8 +86,8 @@ function seriesHandler(res) {
     return returnList
 }
 
-(function (res) {
-    res = util.getNovelResSeries(result)
+(() => {
+    let res = util.getNovelRespSeries(result).body
     if (res.firstNovelId === undefined || res.seriesNavData === null) {
         return oneShotHandler(res)
     } else {

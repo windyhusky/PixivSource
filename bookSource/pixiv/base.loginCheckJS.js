@@ -549,7 +549,7 @@ function publicFunc() {
     }
 
     // 目录：从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
-    u.getNovelResSeries = function(result) {
+    u.getNovelRespSeries = function(result) {
         let seriesId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
@@ -584,7 +584,7 @@ function publicFunc() {
             java.log(`无法从 Pixiv 获取当前小说`)
             java.log(JSON.stringify(res))
         }
-        return res.body
+        return res
     }
 
     util = u
