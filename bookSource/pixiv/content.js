@@ -280,22 +280,22 @@ function getComment(res, content) {
 
 function getContent(res) {
     getNovelInfo(res)  // 放入信息以便登陆界面使用
-    let content = String(res.content)
+    let content = String(res.body.content)
     // let content = "undefined"
     if (content.includes("undefined")) {
         return checkContent()
     }
 
-    content = getCaptions(res, content)
-    content = replaceUploadedImage(res, content)
+    content = getCaptions(res.body, content)
+    content = replaceUploadedImage(res.body, content)
     content = replacePixivImage(content)
     content = replaceNewPage(content)
     content = replaceChapter(content)
     content = replaceJumpPage(content)
     content = replaceJumpUrl(content)
     content = replaceRb(content)
-    content = getPollData(res, content)
-    content = getComment(res, content)
+    content = getPollData(res.body, content)
+    content = getComment(res.body, content)
     return content
 }
 
@@ -320,5 +320,5 @@ function checkContent() {
 }
 
 (() => {
-    return getContent(util.getNovelResFirst(result))
+    return getContent(util.getNovelRespFirst(result))
 })()
