@@ -49,7 +49,7 @@ if (novelData.pollData && !novelData.pollData.selectedValue) {
     novelData.pollData.choices.forEach((choice, i) => {
         let emoji = number[i + 1]
         let key = `${emoji} 投票选项`
-        let value = `novelPollAnswer("${i + 1}")`
+        let value = `novelPollAnswer(${i + 1})`
         choices.push({ [key] : value })
     })
     novel = novel.concat(choices)
