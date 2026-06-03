@@ -20,28 +20,22 @@ function objParse(obj) {
 }
 
 function getNovelInfo(res) {
-    // 放入小说信息以便登陆界面使用
-    let novel = source.getLoginInfoMap()
-    if (!novel) novel = getFromCacheObject("novel")
-    if (!novel) novel = {}
     if (res && res.error === true) return
-    novel.id = Number(res.id)
-    novel.title = res.title
-    novel.userId = res.userId
-    novel.userName = res.userName
 
-    if (res.bookmarkData) {
+    let novel = res.body
+    novel.id = Number(novel.id)
+    if (novel.bookmarkData) {
         novel.isBookmark = true
-        putInCache(`collect${novel.id}`, res.bookmarkData.id)
+        putInCache(`collect${novel.id}`, novel.bookmarkData.id)
         util.saveNovels("likeNovels", [Number(novel.id)])
     } else {
         novel.isBookmark = false
     }
 
-    if (res.seriesNavData) {
-        novel.seriesId = Number(res.seriesNavData.seriesId)
-        novel.seriesTitle = res.seriesNavData.title
-        novel.isWatched = res.seriesNavData.isWatched
+    if (novel.seriesNavData) {
+        novel.seriesId = Number(novel.seriesNavData.seriesId)
+        novel.seriesTitle = novel.seriesNavData.title
+        novel.isWatched = novel.seriesNavData.isWatched
         util.saveNovels("watchedSeries", [Number(novel.seriesId)])
     } else {
         novel.seriesId = null
@@ -62,19 +56,20 @@ function getNovelInfo(res) {
     }
 
     // 添加投票信息
-    if (res.pollData) {
-        novel.pollData = res.pollData
-        novel.pollChoicesCount = res.pollData.choices.length
+    if (novel.pollData) {
+        novel.question = novel.pollData.question
+        novel.pollChoicesCount = novel.pollData.choices.length
     } else {
-        novel.pollData = {}
+        novel.question = ""
         novel.pollChoicesCount = 0
     }
 
     // 登录界面显示信息
     novel["章节名称"] = novel.title
-    novel["投票问题"] = novel.pollData.question || ""
+    novel["投票问题"] = novel.question || ""
     source.putLoginInfo(JSON.stringify(novel))
-    putInCacheObject("novel", novel)
+    res.body = novel
+    putInCacheObject(urlNovelDetailed(novel.id), res)
 }
 
 function getCaptions(res, content)　{
