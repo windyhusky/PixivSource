@@ -1,10 +1,6 @@
 let pixivSettings = getFromCacheObject("pixivSettings")
 if (!pixivSettings) pixivSettings = setDefaultSettings()
-let novelData = getFromCacheObject("novel")
-let number = {
-    1:"1️⃣", 2:"2️⃣", 3:"3️⃣", 4:"4️⃣", 5:"5️⃣",
-    6:"6️⃣", 7:"7️⃣", 8:"8️⃣", 9:"9️⃣", 0:"0️⃣",
-}
+let number = { 1:"1️⃣", 2:"2️⃣", 3:"3️⃣", 4:"4️⃣", 5:"5️⃣" }
 
 let source = [
     {"🅿️ 登录账号": "login()" },
@@ -35,25 +31,27 @@ let novel = [
     {"🚫 ⭕️ 屏蔽作者": "userBlock()"},
 ]
 
-let getNovelId = function () {
-    let novelId
-    try {
-        novelId = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
-    } catch(e){
-        novelId = chapter.url.match(/\d+/)[0]
-    }
-    return novelId
+let getNovelId = () => {
+    try { return  chapter.url.match(/novel\/(\d+)/)[1] } catch(e) {}
+    try { return chapter.url.match(/\d+/)[0] } catch(e) {}
+    return 0
+}
+let getNovelData = (novelId) => {
+    try { return getFromCacheObject(urlNovelDetailed(novelId)).body } catch(e) {}
+    try { return getAjaxJson(urlNovelDetailed(novelId)).body } catch(e) {}
+    return {}
 }
 
-let novelData = getFromCacheObject(urlNovelUrl(getNovelId())).body
+let novelData = getNovelData(getNovelId())
 if (novelData.pollData && !novelData.pollData.selectedValue) {
     let choices = [{"投票问题": "text"}]
-    for (let i = 1; i <= novelData.pollData.choices.length; i++) {
-        let emoji = number[i]
+
+    novelData.pollData.choices.forEach((choice, i) => {
+        let emoji = number[i + 1]
         let key = `${emoji} 投票选项`
-        let value = `novelPollAnswer("${i}")`
+        let value = `novelPollAnswer("${i + 1}")`
         choices.push({ [key] : value })
-    }
+    })
     novel = novel.concat(choices)
 }
 
