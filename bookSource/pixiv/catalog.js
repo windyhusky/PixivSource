@@ -32,15 +32,15 @@ function seriesHandler(res) {
     let returnList = [], novelIds = []
     let seriesID = res.id, allChaptersCount = res.total
     util.debugFunc(() => {
-        java.log(`本系列 ${seriesID} 一共有${allChaptersCount}章`);
+        java.log(`本系列 ${seriesID} 一共有${allChaptersCount}章`)
     })
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        resp = getAjaxJson(urlIP(urlSeriesNovels(seriesID, limit, lastIndex)), true)
-        res = resp.body.thumbnails.novel
-        // res = resp.body.page.seriesContents
-        res.forEach(v => {
+        let resp = getAjaxJson(urlIP(urlSeriesNovels(seriesID, limit, lastIndex)), true)
+        let novels = resp.body.thumbnails.novel
+        // novels = resp.body.page.seriesContents
+        novels.forEach(v => {
             v.title = v.title.trim()
             v.chapterUrl = urlIP(urlNovel(v.id))
             novelIds.push(v.id)
@@ -55,7 +55,7 @@ function seriesHandler(res) {
                 java.log(`${v.title}`)
             })
         })
-        return res;
+        return novels
     }
 
     if (!util.settings.SHOW_UPDATE_TIME) {
@@ -71,18 +71,13 @@ function seriesHandler(res) {
         let max = Math.ceil(allChaptersCount / limit)
         for (let i = 0; i < max; i++) {
             //java.log("i的值:"+i)
-            let list = sendAjaxForGetChapters(i * limit);
+            let list = sendAjaxForGetChapters(i * limit)
             //取出每个值
             returnList = returnList.concat(list)
         }
     }
-    // 放入小说信息以便登陆界面使用
-    if (!novel) novel = {}
-    novel.novelIds = novelIds
     putInCacheObject(`novelIds${seriesID}`, novelIds, cacheSaveSeconds)
     // java.log(JSON.stringify(returnList))
-    source.putLoginInfo(JSON.stringify(novel))
-    putInCacheObject("novel", novel)
     return returnList
 }
 
