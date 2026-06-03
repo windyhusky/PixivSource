@@ -35,6 +35,17 @@ let novel = [
     {"🚫 ⭕️ 屏蔽作者": "userBlock()"},
 ]
 
+let getNovelId = function () {
+    let novelId
+    try {
+        novelId = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
+    } catch(e){
+        novelId = chapter.url.match(/\d+/)[0]
+    }
+    return novelId
+}
+
+let novelData = getFromCacheObject(urlNovelUrl(getNovelId())).body
 if (novelData.pollData && !novelData.pollData.selectedValue) {
     let choices = [{"投票问题": "text"}]
     for (let i = 1; i <= novelData.pollData.choices.length; i++) {
