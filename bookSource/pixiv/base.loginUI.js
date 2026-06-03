@@ -32,7 +32,7 @@ let novel = [
 ]
 
 let getNovelId = () => {
-    try { return  chapter.url.match(/novel\/(\d+)/)[1] } catch(e) {}
+    try { return chapter.url.match(/novel\/(\d+)/)[1] } catch(e) {}
     try { return chapter.url.match(/\d+/)[0] } catch(e) {}
     return 0
 }

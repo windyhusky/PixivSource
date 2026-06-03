@@ -116,9 +116,7 @@ function getNovel() {
             return sleepToast("🔰 功能提示\n\n⚠️ 请在【小说正文】使用该功能")
         }
     } else {  // 兼容用
-        let novel = source.getLoginInfoMap()
-        if (!novel) novel = getFromCacheObject("novel")
-        return novel
+        return getFromCacheObject("novel")
     }
 }
 

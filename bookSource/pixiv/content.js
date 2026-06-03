@@ -71,6 +71,7 @@ function getNovelInfo(resp) {
 
     // 写入缓存
     resp.body = novel
+    putInCacheObject("novel", resp)
     putInCacheObject(urlNovelDetailed(novel.id), resp)
 }
 
