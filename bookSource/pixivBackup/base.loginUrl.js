@@ -98,11 +98,6 @@ function getNovel() {
 
             let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
             novel.userId = resp.userId
-            if (resp.pollData) {
-                novel.pollChoicesCount = resp.pollData.choices.length
-            } else {
-                novel.pollChoicesCount = 0
-            }
             // java.log(JSON.stringify(novel))
             return novel
         } catch (e) {
@@ -110,9 +105,7 @@ function getNovel() {
             return sleepToast("🔰 功能提示\n\n⚠️ 请在【小说正文】使用该功能")
         }
     } else {  // 兼容用
-        let novel = source.getLoginInfoMap()
-        if (!novel) novel = getFromCacheObject("novel")
-        return novel
+        return getFromCacheObject("novel")
     }
 }
 
@@ -138,6 +131,7 @@ function getPostBody(url, body, headers) {
         // sleepToast(e)
         // sleepToast(JSON.stringify(headers))
         if (e.includes("400")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 headers`, 1)
+        // else if (e.includes("401")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
         else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
         else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 pixivCsrfToken `, 1)
         else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
@@ -616,35 +610,28 @@ function novelCommentDelete() {
     if (comments.length >= 2) sleepToast("🗑 删除评论\n\n✅ 评论已删除完毕", 1)
 }
 
-function novelPollAnswer() {
+function novelPollAnswer(choiceId) {
     let novel = getNovel()
-    // novel.pollChoicesCount = getAjaxJson(urlNovelDetailed(novel.id)).body.pollData.selectedValue
-    if (!novel.pollChoicesCount) {
-        return sleepToast(`📃 小说投票\n\n⚠️ 该小说【${novel.title}】无投票信息，建议【清除缓存】【刷新】后重试`)
-    }
-
-    let choiceId = String(result.get("文本框")).trim()
-    if (!choiceId) {
-        return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：请在【文本框】内输入投票选项(数字)`)
-    } else if (Number(choiceId) > novel.pollData.selectedValue) {
-        return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：选项${choiceId}超出范围`)
-    } else if (Number(choiceId) <= 0 || Number(choiceId) > novel.pollChoicesCount) {
-        return sleepToast(`📃 小说投票\n\n⚠️ 投票失败：选项${choiceId}超出范围`)
-    }
-
     let resp = getPostBody(
         `https://www.pixiv.net/ajax/novel/${novel.id}/poll/answer`,
         JSON.stringify({"choice_id": choiceId})
     )
-    // 200 成功，403 重复投票，400 选项超过范围
+    // 200 成功，401 未登录，403 重复投票，400 选项超过范围
     if (resp.error === true) {
-        if (resp.errMsg.includes("403")) {
-            sleepToast(`📃 小说投票\n\n✅ 已经投过票了`)
+        if (resp.errMsg.includes("401")) {
+            sleepToast(`📃 小说投票\n\n⚠️ 请先登录，再投票哦`, 3)
+        } else if (resp.errMsg.includes("403")) {
+            sleepToast(`📃 小说投票\n\n✅ 你已经投过票了`, 3)
         } else {
-            sleepToast(`📃 小说投票\n\n⚠️ 投票失败`)
+            sleepToast(`📃 小说投票\n\n⚠️ 投票失败`, 3)
             shareFactory("novel")
         }
     } else {
+        let novelData = getFromCacheObject(urlNovelDetailed(novel.id))
+        novelData.body.pollData.selectedValue = Number(choiceId)
+        novelData.body.pollData[choiceId].count += 1
+        novelData.body.pollData.total += 1
+        putInCacheObject(urlNovelDetailed(novel.id), novelData)
         sleepToast(`📃 小说投票\n\n✅ 投票成功`)
     }
 }
@@ -846,7 +833,7 @@ function likeAuthorsShow() {
 function likeAuthorsAdd() {
     let likeAuthors = getFromCacheMap("likeAuthorsMap")
     if (likeAuthors.size === 0) likeAuthors = getFromCacheMap("likeAuthors")
-    
+
     let word = String(result.get("文本框")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
         return sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 @作者名称`)
@@ -896,13 +883,13 @@ function likeAuthorsDelete() {
         let text = `@${novel.userName} ${novel.userId}`
         sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n✅ 已将【${text}】移出他人收藏列表了\n\n📌 【文本框】内输入【用户ID】可取消关注其他用户的收藏`)
 
-    // 输入纯数字，删除对应ID的作者
+        // 输入纯数字，删除对应ID的作者
     } else if (!isNaN(word) && likeAuthors.has(word)) {
         let text = `@${likeAuthors.get(word)} ${word}`
         likeAuthors.delete(word)
         sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n✅ 已取关【${text}】`)
 
-    //作者名称
+        //作者名称
     } else if (Array.from(likeAuthors.values()).includes(word)) {
         let index = Array.from(likeAuthors.values()).indexOf(word)
         let key = Array.from(likeAuthors.keys())[index]
@@ -1085,7 +1072,7 @@ function backupData() {
     data.pixivSettings = getFromCacheObject("pixivSettings")
     data.blockCaption = getFromCacheObject("blockCaption")
     if (!data.blockCaption) data.blockCaption = getFromCacheObject("captionBlockWords")
-    data.blockTags = getFromCacheObject(`blockTags`)
+    data.blockTags = getFromCacheObject("blockTags")
     if (!data.blockTags) data.blockCaption = getFromCacheObject("blockTags")
     data.likeTags = getFromCacheObject("likeTags")
 

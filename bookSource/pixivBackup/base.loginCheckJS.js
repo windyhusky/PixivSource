@@ -479,7 +479,7 @@ function publicFunc() {
 
     // 正文，详情，搜索：从网址获取id，返回单篇小说 res，系列返回首篇小说 res
     // pixiv 默认分享信息中有#号，不会被识别成链接，无法使用添加网址
-    u.getNovelResFirst = function(result) {
+    u.getNovelRespFirst = function(result) {
         let novelId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
@@ -518,11 +518,11 @@ function publicFunc() {
             java.log(`无法从 Pixiv 获取当前小说`)
             java.log(JSON.stringify(res))
         }
-        return res.body
+        return res
     }
 
     // 目录：从网址获取id，尽可能返回系列 res，单篇小说返回小说 res
-    u.getNovelResSeries = function(result) {
+    u.getNovelRespSeries = function(result) {
         let seriesId = 0, res = {"body": {}}
         let isJson = isJsonString(result)
         let isHtml = isHtmlString(result)
@@ -557,7 +557,7 @@ function publicFunc() {
             java.log(`无法从 Pixiv 获取当前小说`)
             java.log(JSON.stringify(res))
         }
-        return res.body
+        return res
     }
 
     util = u

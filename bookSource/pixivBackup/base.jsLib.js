@@ -311,12 +311,10 @@ function urlSearchUser(userName, page, full) {
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (url && !url.trim()) return ""
-    let headers = {"Referer": "https://www.pixiv.net/"}
 
+    let headers = {"Referer": "https://www.pixiv.net/"}
     let settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
-    if (!settings.IPDirect) return url
-
     if (settings.IPDirect && url.trim()) {
         if (url.includes("i.pximg.net")) {
             url = url.replace("https://i.pximg.net", "https://210.140.139.133")
@@ -530,7 +528,7 @@ function updateSource() {
             <td>📆 更新：${timeFormat(source.lastUpdateTime)}</td>
         </tr> 
         <tr><td colspan="2" style="text-align: left;">${comment.slice(3, 10).join("<br>")}</td></tr>
-        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-3, comment.length).join("<br>")}</td></tr>
+        <tr><td colspan="2" style="text-align: left;">${comment.slice(comment.length-20, comment.length).join("<br>")}</td></tr>
     </table>
     
     <table border="0" cellspacing="20">

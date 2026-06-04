@@ -1,5 +1,6 @@
 let pixivSettings = getFromCacheObject("pixivSettings")
 if (!pixivSettings) pixivSettings = setDefaultSettings()
+let number = { 1:"1️⃣", 2:"2️⃣", 3:"3️⃣", 4:"4️⃣", 5:"5️⃣" }
 
 let source = [
     {"🅿️ 登录账号": "login()" },
@@ -11,11 +12,11 @@ let source = [
     {"🐞 反馈问题": "startGithubIssue()" },
 ]
 
-let methord = ""
-if (book) methord = 2
+let method = ""
+if (book) method = 2
 let settingsBase = [
-    {"👀 书源设置": `editSettings('SHOW_SETTINGS${methord}')` },
-    {"👀 发现设置": `editSettings('SHOW_DISCOVER${methord}')` },
+    {"👀 书源设置": `editSettings('SHOW_SETTINGS${method}')` },
+    {"👀 发现设置": `editSettings('SHOW_DISCOVER${method}')` },
     {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 ]
 
@@ -29,6 +30,31 @@ let novel = [
     {"⭐️ ⚫️ 关注作者": "userFollowFactory()"},
     {"🚫 ⭕️ 屏蔽作者": "userBlock()"},
 ]
+
+let getNovelId = () => {
+    try { return chapter.url.match(/novel\/(\d+)/)[1] } catch(e) {}
+    try { return chapter.url.match(/\d+/)[0] } catch(e) {}
+    return 0
+}
+let getNovelData = (novelId) => {
+    try { return getFromCacheObject(urlNovelDetailed(novelId)).body } catch(e) {}
+    try { return getAjaxJson(urlNovelDetailed(novelId)).body } catch(e) {}
+    return {}
+}
+
+let novelData = getNovelData(getNovelId())
+if (novelData.pollData && !novelData.pollData.selectedValue) {
+// if (novelData.pollData) {
+    let choices = [{"问卷调查": "text"}]
+
+    novelData.pollData.choices.forEach((choice, i) => {
+        let emoji = number[i + 1]
+        let key = `${emoji} 投票选项`
+        let value = `novelPollAnswer(${i + 1})`
+        choices.push({ [key] : value })
+    })
+    novel = novel.concat(choices)
+}
 
 let comment = [
     {"文本框": "text" },
