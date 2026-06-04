@@ -214,10 +214,19 @@ function replaceRb(content) {
 
 // 添加投票信息
 function getPollData(resp, content) {
+    // resp.pollData.selectedValue = 0
     if (resp.pollData) {
-        let poll = `📃 投票(✅${resp.pollData.total}已投)：\n${resp.pollData.question}\n`
-        resp.pollData.choices.forEach(choice => {
-            poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
+        let text = ""
+        if (!resp.pollData.selectedValue) text = "，⚠️当前未投)\n(点击【Pixiv 小说】，打开登录界面，点击投票选项，即可参与投票"
+        let poll = `📃 问卷调查(✅${resp.pollData.total}已投${text})`
+        poll += `\n\n🔠 投票：\n${resp.pollData.question}\n`
+
+        resp.pollData.choices.forEach((choice, i) => {
+            if ( i+1 === Number(resp.pollData.selectedValue)) {
+                poll += `✅选项${choice.id}：${choice.text}(✅${choice.count})\n`
+            } else {
+                poll += `☑️选项${choice.id}：${choice.text}(✅${choice.count})\n`
+            }
         })
         content += "\n" + "——————————\n".repeat(2) + poll
     }
