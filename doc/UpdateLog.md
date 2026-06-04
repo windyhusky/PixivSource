@@ -53,7 +53,7 @@ repos:
 <DownloadCard/>
 
 
-## 📚 书源兼容性
+## 📚 旧版书源兼容性
 ### 🅿️ Pixiv 书源
 | 导入链接 | 更新时间 | 阅读 Beta | 
 | ------ | ------- | -------- | 
@@ -63,6 +63,8 @@ repos:
 | [174 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/pixiv.json) | 2025.02.20 | 3.22.0103 - 3.23.0404 |
 
 
+<details><summary><strong> 🦊 Linpx 书源 </strong></summary>
+
 ### 🦊 Linpx 书源
 | 导入链接 |更新时间 | 阅读 Beta | 
 | ------ | ------ | --------- |
@@ -70,10 +72,22 @@ repos:
 | [254 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/254/linpx.json) | 2025.12.16 | 3.25.1107 - 3.25.1224 |
 | [253 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/linpx.json) | 2025.12.16 | 3.23.0503 - 3.25.1107 |
 | [174 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/linpx.json) | 2025.02.20 | 3.22.0103 - 3.23.0404 |
+</details>
 
 
 ## 📆 2026上半年 {#2026H1}
 [//]: # (## 📃 更新 260-270 {#260+})
+
+### 📚 更新 269 {#269}
+- 🅿️ Pixiv 小说、小说备用 书源：
+  - **✅ 优化兼容性，兼容 轻悦时光 (2.1.05312)**
+    - ✅ 搜索 ✅ 发现 ✅ 添加网址
+    - ❎ 投票功能暂不支持
+    - ▶️ 其他功能未测试
+  - **📃 问卷调查**
+    - 📄 正文：优化投票显示内容
+    - ✅ 登录界面：点击按钮进行投票
+    - ⤴️ 回调：实时更新投票问题
 
 
 ### 📚 更新 268 {#268}
