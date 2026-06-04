@@ -19,29 +19,23 @@ function objParse(obj) {
     })
 }
 
-function getNovelInfo(res) {
-    // 放入小说信息以便登陆界面使用
-    let novel = source.getLoginInfoMap()
-    if (!novel) novel = getFromCacheObject("novel")
-    if (!novel) novel = {}
-    if (res && res.error === true) return
-    novel.id = Number(res.id)
-    novel.title = res.title
-    novel.userId = res.userId
-    novel.userName = res.userName
+function getNovelInfo(resp) {
+    if (resp && resp.error === true) return
 
-    if (res.bookmarkData) {
+    let novel = resp.body
+    novel.id = Number(novel.id)
+    if (novel.bookmarkData) {
         novel.isBookmark = true
-        putInCache(`collect${novel.id}`, res.bookmarkData.id)
+        putInCache(`collect${novel.id}`, novel.bookmarkData.id)
         util.saveNovels("likeNovels", [Number(novel.id)])
     } else {
         novel.isBookmark = false
     }
 
-    if (res.seriesNavData) {
-        novel.seriesId = Number(res.seriesNavData.seriesId)
-        novel.seriesTitle = res.seriesNavData.title
-        novel.isWatched = res.seriesNavData.isWatched
+    if (novel.seriesNavData) {
+        novel.seriesId = Number(novel.seriesNavData.seriesId)
+        novel.seriesTitle = novel.seriesNavData.title
+        novel.isWatched = novel.seriesNavData.isWatched
         util.saveNovels("watchedSeries", [Number(novel.seriesId)])
     } else {
         novel.seriesId = null
@@ -62,34 +56,43 @@ function getNovelInfo(res) {
     }
 
     // 添加投票信息
-    if (res.pollData) novel.pollChoicesCount = res.pollData.choices.length
-    else novel.pollChoicesCount = 0
+    if (novel.pollData) {
+        novel.question = novel.pollData.question
+    } else {
+        novel.question = ""
+    }
 
+    // 登录界面显示信息
     novel["章节名称"] = novel.title
+    novel["问卷调查"] = novel.question || ""
     source.putLoginInfo(JSON.stringify(novel))
-    putInCacheObject("novel", novel)
+
+    // 写入缓存
+    resp.body = novel
+    putInCacheObject("novel", resp)
+    putInCacheObject(urlNovelDetailed(novel.id), resp)
 }
 
-function getCaptions(res, content)　{
-    // 在正文内部添加小说描述
-    if (util.settings.SHOW_CAPTIONS && res.description !== "") {
-        content = res.description + "\n" + "——————————\n".repeat(2) + content
+// 在正文内部添加小说描述
+function getCaptions(resp, content)　{
+    if (util.settings.SHOW_CAPTIONS && resp.description !== "") {
+        content = resp.description + "\n" + "——————————\n".repeat(2) + content
     }
     return content
 }
 
-function replaceUploadedImage(res, content) {
-    // 获取 [uploadedimage:] 的图片链接
-    if (res.textEmbeddedImages) {
-        Object.keys(res.textEmbeddedImages).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(res.textEmbeddedImages[key].urls.original)}">`)
+// 获取 [uploadedimage:] 的图片链接
+function replaceUploadedImage(resp, content) {
+    if (resp.textEmbeddedImages) {
+        Object.keys(resp.textEmbeddedImages).forEach((key) => {
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(resp.textEmbeddedImages[key].urls.original)}">`)
         })
     }
     return content
 }
 
+// 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
 function replacePixivImage(content) {
-    // 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
     let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
     if (matched) {
         matched.forEach(pixivimage => {
@@ -111,8 +114,8 @@ function replacePixivImage(content) {
     return content
 }
 
+// 替换 Pixiv 分页标记符号 [newpage]
 function replaceNewPage(content) {
-    // 替换 Pixiv 分页标记符号 [newpage]
     if (!util.environment.IS_LEGADO_SIGMA) {
         let matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
         if (matched) {
@@ -124,8 +127,8 @@ function replaceNewPage(content) {
     return content
 }
 
+// 替换 Pixiv 章节标记符号 [chapter:]
 function replaceChapter(content) {
-    // 替换 Pixiv 章节标记符号 [chapter:]
     let matched = content.match(RegExp(/\[chapter:(.*?)]/gm))
     if (matched) {
         for (let i in matched) {
@@ -142,8 +145,8 @@ function replaceChapter(content) {
     return content
 }
 
+// 替换 Pixiv 跳转页面标记符号 [[jump:]]
 function replaceJumpPage(content) {
-    // 替换 Pixiv 跳转页面标记符号 [[jump:]]
     let matched = content.match(RegExp(/\[jump:(\d+)]/gm))
     if (matched) {
         for (let i in matched) {
@@ -154,8 +157,8 @@ function replaceJumpPage(content) {
     return content
 }
 
+// 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
 function replaceJumpUrl(content) {
-    // 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
     let matched = content.match(RegExp(/\[\[jumpuri:(.*?)>(.*?)]]/gm))
     if (matched) {
         for (let i in matched) {
@@ -178,8 +181,8 @@ function replaceJumpUrl(content) {
     return content
 }
 
+// 替换 Pixiv 注音标记符号 [[rb: > ]]
 function replaceRb(content) {
-    // 替换 Pixiv 注音标记符号 [[rb: > ]]
     let matched = content.match(RegExp(/\[\[rb:(.*?)>(.*?)]]/gm))
     if (matched) {
         for (let i in matched) {
@@ -207,12 +210,21 @@ function replaceRb(content) {
     return content
 }
 
-function getPollData(res, content) {
-    // 添加投票
-    if (res.pollData) {
-        let poll = `📃 投票(✅${res.pollData.total}已投)：\n${res.pollData.question}\n`
-        res.pollData.choices.forEach(choice => {
-            poll += `选项${choice.id}：${choice.text}(✅${choice.count})\n`
+// 添加投票信息
+function getPollData(resp, content) {
+    // resp.pollData.selectedValue = 0
+    if (resp.pollData) {
+        let text = ""
+        if (!resp.pollData.selectedValue) text = "，⚠️当前未投)\n(点击【Pixiv 小说】，打开登录界面，点击投票选项，即可参与投票"
+        let poll = `📃 问卷调查(✅${resp.pollData.total}已投${text})`
+        poll += `\n\n🔠 投票：\n${resp.pollData.question}\n`
+
+        resp.pollData.choices.forEach((choice, i) => {
+            if ( i+1 === Number(resp.pollData.selectedValue)) {
+                poll += `✅选项${choice.id}：${choice.text}(✅${choice.count})\n`
+            } else {
+                poll += `☑️选项${choice.id}：${choice.text}(✅${choice.count})\n`
+            }
         })
         content += "\n" + "——————————\n".repeat(2) + poll
     }
@@ -240,20 +252,20 @@ function formatComment(item, replyToName = null) {
     return `${name}：${content}(${item.commentDate})${commentId}\n`
 }
 
-function getComment(res, content) {
-    if (!util.settings.SHOW_COMMENTS || res.commentCount === 0) return content
+function getComment(resp, content) {
+    if (!util.settings.SHOW_COMMENTS || resp.commentCount === 0) return content
 
     const limit = 50
     let comments = [], commentUrls = [];
-    let maxPage = Math.ceil(res.commentCount / limit)
+    let maxPage = Math.ceil(resp.commentCount / limit)
     if (maxPage >= 2 && util.environment.IS_LEGADO) {
         for (let i = 0; i < maxPage; i++) {
-            commentUrls.push(urlIP(urlNovelComments(res.id, i * limit, limit)))
+            commentUrls.push(urlIP(urlNovelComments(resp.id, i * limit, limit)))
         }
         comments = getAjaxAllJson(commentUrls).map(resp => resp.body.comments).flat()
     } else {
         for (let i = 0; i < maxPage; i++) {
-            let result = getAjaxJson(urlIP(urlNovelComments(res.id, i * limit, limit)), true)
+            let result = getAjaxJson(urlIP(urlNovelComments(resp.id, i * limit, limit)), true)
             if (result && !result.error && result.body && result.body.comments) {
                 comments = comments.concat(result.body.comments)
             }
@@ -276,24 +288,24 @@ function getComment(res, content) {
     return content + "\n" + "——————————\n".repeat(2) + commentText
 }
 
-function getContent(res) {
-    getNovelInfo(res)  // 放入信息以便登陆界面使用
-    let content = String(res.content)
+function getContent(resp) {
+    getNovelInfo(resp)  // 放入信息以便登陆界面使用
+    let content = String(resp.body.content)
     // let content = "undefined"
     if (content.includes("undefined")) {
         return checkContent()
     }
 
-    content = getCaptions(res, content)
-    content = replaceUploadedImage(res, content)
+    content = getCaptions(resp.body, content)
+    content = replaceUploadedImage(resp.body, content)
     content = replacePixivImage(content)
     content = replaceNewPage(content)
     content = replaceChapter(content)
     content = replaceJumpPage(content)
     content = replaceJumpUrl(content)
     content = replaceRb(content)
-    content = getPollData(res, content)
-    content = getComment(res, content)
+    content = getPollData(resp.body, content)
+    content = getComment(resp.body, content)
     return content
 }
 
@@ -318,5 +330,5 @@ function checkContent() {
 }
 
 (() => {
-    return getContent(util.getNovelResFirst(result))
+    return getContent(util.getNovelRespFirst(result))
 })()
