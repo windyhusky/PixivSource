@@ -64,7 +64,7 @@ function saveRead() {
     novelData = {}
     novelData["章节名称"] = book.durChapterTitle
     // novelData["章节名称"] = novel.title
-    novelData["投票问题"] = novel.question
+    novelData["问卷调查"] = novel.question
     source.putLoginInfo(JSON.stringify(novelData))
 }
 

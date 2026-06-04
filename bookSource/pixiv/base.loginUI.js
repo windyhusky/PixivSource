@@ -44,7 +44,8 @@ let getNovelData = (novelId) => {
 
 let novelData = getNovelData(getNovelId())
 if (novelData.pollData && !novelData.pollData.selectedValue) {
-    let choices = [{"投票问题": "text"}]
+// if (novelData.pollData) {
+    let choices = [{"问卷调查": "text"}]
 
     novelData.pollData.choices.forEach((choice, i) => {
         let emoji = number[i + 1]
