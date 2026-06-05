@@ -4,10 +4,12 @@ function getNovel() {
     if (book.bookUrl.includes("series")) {
         novel.seriesId = book.bookUrl.match(/\d+/)[0]
         novel.seriesTitle = book.name
-
-        let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
-        novel.id = novelIds[book.durChapterIndex]
         novel.title = book.durChapterTitle
+        try {
+            novel.id = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
+        } catch(e){
+            novel.id = chapter.url.match(/\d+/)[0]
+        }
     } else {
         novel.seriesId = 0
         novel.seriesTitle = ""
