@@ -131,8 +131,8 @@ function getPostBody(url, body, headers) {
         // sleepToast(e)
         // sleepToast(JSON.stringify(headers))
         if (e.includes("400")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 headers`, 1)
-        // else if (e.includes("401")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
-        else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
+            // else if (e.includes("401")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
+        // else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
         else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 pixivCsrfToken `, 1)
         else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
         return {error: true, errMsg:e}
@@ -621,17 +621,14 @@ function novelPollAnswer(choiceId) {
         if (resp.errMsg.includes("401")) {
             sleepToast(`📃 小说投票\n\n⚠️ 请先登录，再投票哦`, 3)
         } else if (resp.errMsg.includes("403")) {
+            cleanCache(0)
             sleepToast(`📃 小说投票\n\n✅ 你已经投过票了`, 3)
         } else {
             sleepToast(`📃 小说投票\n\n⚠️ 投票失败`, 3)
             shareFactory("novel")
         }
     } else {
-        let novelData = getFromCacheObject(urlNovelDetailed(novel.id))
-        novelData.body.pollData.selectedValue = Number(choiceId)
-        novelData.body.pollData[choiceId].count += 1
-        novelData.body.pollData.total += 1
-        putInCacheObject(urlNovelDetailed(novel.id), novelData)
+        cleanCache(0)
         sleepToast(`📃 小说投票\n\n✅ 投票成功`)
     }
 }
@@ -1104,12 +1101,12 @@ function restoreData(data) {
     try {source.refreshExplore()} catch (e) {}
 }
 
-function cleanCache() {
+function cleanCache(toast) {
     let novel = getNovel()
     cache.delete(`${urlNovelUrl(novel.id)}`)
     cache.delete(`${urlNovelDetailed(novel.id)}`)
     try {java.refreshContent()} catch(err) {}
-    sleepToast(`🔄 刷新本章\n\n若正文未更新，请手动刷新`, 5)
+    if (toast) sleepToast(`🔄 刷新本章\n\n若正文未更新，请手动刷新`, 5)
 }
 
 function getFurryAuthors() {
