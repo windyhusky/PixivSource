@@ -16,7 +16,7 @@ function getNovel() {
     }
     let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
     novel.authorId = novel.userId = resp.userId
-    novel.question = resp.pollData.question || ""
+    novel.question = resp?.pollData?.question || ""
     return novel
 }
 
