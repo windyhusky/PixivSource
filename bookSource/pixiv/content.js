@@ -44,7 +44,7 @@ function getNovelInfo(resp) {
     }
 
     // 系列 + 阅读，使用当前章节名称
-    if (novel.seriesId && util.environment.IS_LEGADO) {
+    if (novel.seriesId && globalThis.environment.IS_LEGADO) {
         novel.title = book.durChapterTitle
         try{
             let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
