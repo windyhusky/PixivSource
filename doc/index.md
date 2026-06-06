@@ -102,7 +102,7 @@ features:
     
   - icon: ⭐️
     title: 互动功能齐全
-    details: ❤️收藏小说📃追更系列<br>✅发送评论⭐️关注作者
+    details: ❤️收藏📃追更⭐️关注<br>✅投票💬评论🚫屏蔽
     link: BetterExperience#InteractiveFunction
     
   - icon: ✈️
