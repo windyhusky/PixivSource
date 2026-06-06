@@ -1,6 +1,8 @@
 let pixivSettings = getFromCacheObject("pixivSettings")
 if (!pixivSettings) pixivSettings = setDefaultSettings()
+let pixivEnvironment = getFromCacheObject("pixivEnvironment")
 let number = { 1:"1️⃣", 2:"2️⃣", 3:"3️⃣", 4:"4️⃣", 5:"5️⃣" }
+const BOOK = typeof book !== 'undefined' && !!book
 
 let source = [
     {"🅿️ 登录账号": "login()" },
@@ -13,7 +15,7 @@ let source = [
 ]
 
 let method = ""
-if (book) method = 2
+if (BOOK) method = 2
 let settingsBase = [
     {"👀 书源设置": `editSettings('SHOW_SETTINGS${method}')` },
     {"👀 发现设置": `editSettings('SHOW_DISCOVER${method}')` },
@@ -31,7 +33,7 @@ let novel = [
     {"🚫 ⭕️ 屏蔽作者": "userBlock()"},
 ]
 
-if (book) {
+if (BOOK) {
     let getNovelId = () => {
         try { return chapter.url.match(/novel\/(\d+)/)[1] } catch(e) {}
         try { return chapter.url.match(/\d+/)[0] } catch(e) {}
@@ -120,21 +122,22 @@ let discoverSettings = [
 ]
 
 let li = []
-try {
-    if (book) {
-        li = settingsBase.concat(novel).concat(comment)
-        if (pixivSettings.SHOW_SETTINGS2) li = li.concat(settings)
-        if (pixivSettings.SHOW_DISCOVER2) li = li.concat(discoverSettings)
-    } else {
-        li = source.concat(settingsBase)
-        if (pixivSettings.SHOW_SETTINGS) li = li.concat(settings)
-        if (pixivSettings.SHOW_DISCOVER) li = li.concat(discoverSettings)
-    }
-} catch (e) {}
+if (BOOK) {
+    li = settingsBase.concat(novel).concat(comment)
+    if (pixivSettings.SHOW_SETTINGS2) li = li.concat(settings)
+    if (pixivSettings.SHOW_DISCOVER2) li = li.concat(discoverSettings)
+} else {
+    li = source.concat(settingsBase)
+    if (pixivSettings.SHOW_SETTINGS) li = li.concat(settings)
+    if (pixivSettings.SHOW_DISCOVER) li = li.concat(discoverSettings)
+}
 
 // 处理按钮
 li.forEach(item => {
     item.name = Object.keys(item)[0]
+    if (pixivEnvironment.IS_LEGADO_T) {
+        item.name = item.name.replace(/🚫 |⚫️ |㊙️ /g, "")
+    }
     let list = item.name.split(" ")
     if (list.length === 1 ) {
         item.type = "text"
