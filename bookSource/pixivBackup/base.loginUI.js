@@ -31,29 +31,31 @@ let novel = [
     {"🚫 ⭕️ 屏蔽作者": "userBlock()"},
 ]
 
-let getNovelId = () => {
-    try { return chapter.url.match(/novel\/(\d+)/)[1] } catch(e) {}
-    try { return chapter.url.match(/\d+/)[0] } catch(e) {}
-    return 0
-}
-let getNovelData = (novelId) => {
-    try { return getFromCacheObject(urlNovelDetailed(novelId)).body } catch(e) {}
-    try { return getAjaxJson(urlNovelDetailed(novelId)).body } catch(e) {}
-    return {}
-}
+if (book) {
+    let getNovelId = () => {
+        try { return chapter.url.match(/novel\/(\d+)/)[1] } catch(e) {}
+        try { return chapter.url.match(/\d+/)[0] } catch(e) {}
+        return 0
+    }
+    let getNovelData = (novelId) => {
+        try { return getFromCacheObject(urlNovelDetailed(novelId)).body } catch(e) {}
+        try { return getAjaxJson(urlNovelDetailed(novelId)).body } catch(e) {}
+        return {}
+    }
 
-let novelData = getNovelData(getNovelId())
-if (novelData.pollData && !novelData.pollData.selectedValue) {
-// if (novelData.pollData) {
-    let choices = [{"问卷调查": "text"}]
+    let novelData = getNovelData(getNovelId())
+    if (novelData.pollData && !novelData.pollData.selectedValue) {
+        // if (novelData.pollData) {
+        let choices = [{"问卷调查": "text"}]
 
-    novelData.pollData.choices.forEach((choice, i) => {
-        let emoji = number[i + 1]
-        let key = `${emoji} 投票选项`
-        let value = `novelPollAnswer(${i + 1})`
-        choices.push({ [key] : value })
-    })
-    novel = novel.concat(choices)
+        novelData.pollData.choices.forEach((choice, i) => {
+            let emoji = number[i + 1]
+            let key = `${emoji} 投票选项`
+            let value = `novelPollAnswer(${i + 1})`
+            choices.push({ [key] : value })
+        })
+        novel = novel.concat(choices)
+    }
 }
 
 let comment = [
