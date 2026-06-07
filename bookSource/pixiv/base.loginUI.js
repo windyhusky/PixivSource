@@ -105,9 +105,9 @@ let settings = [
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
     {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 
-    {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
-    {"🔗 图片链接": "editSettings('PIC_LINK')" },
-    {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
+    // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
+    // {"🔗 图片链接": "editSettings('PIC_LINK')" },
+    // {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
 ]
 
 let discoverSettings = [

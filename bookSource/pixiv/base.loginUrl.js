@@ -967,9 +967,9 @@ const novelSettingsName = {
     "DEBUG": "🐞 调试模式",
     "IPDirect": "✈️ 直连模式",
 
-    "PIC_SOURCE": "⏳ 图片解析",
-    "PIC_LINK": "🔗 图片链接",
-    "PIC_SIZE": "↔️ 图片大小",
+    // "PIC_SOURCE": "⏳ 图片解析",
+    // "PIC_LINK": "🔗 图片链接",
+    // "PIC_SIZE": "↔️ 图片大小",
 }
 const fastSettingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
@@ -984,6 +984,7 @@ const IPDirectSettingsName = {
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
 }
 const discoverSettingsName ={
+    "SHOW_ADULT": "🔞 默认发现",
     "SHOW_GENERAL": "🆗 常规小说",
     "SHOW_NEW_ADULT": "🔞 最新企划",
     "SHOW_NEW_GENERAL": "🆗 最新企划",
@@ -998,7 +999,6 @@ const otherSettingsName = {
     "SHOW_DISCOVER2": "⚙️ 发现设置\n（小说阅读界面）",
     "SHOW_SETTINGS2": "⚙️ 书源设置\n（小说阅读界面）",
 }
-
 const settingsName = Object.assign({},
     novelSettingsName,
     fastSettingsName,

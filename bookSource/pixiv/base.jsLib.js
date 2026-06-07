@@ -433,6 +433,7 @@ function setDefaultSettings() {
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
 
+    settings.SHOW_ADULT = true          // 发现：显示 默认发现
     settings.SHOW_GENERAL = true        // 发现：显示 常规小说
     settings.SHOW_NEW_ADULT = true      // 发现：显示 最新企划约稿 R18
     settings.SHOW_NEW_GENERAL = false   // 发现：显示 最新企划约稿 常规
