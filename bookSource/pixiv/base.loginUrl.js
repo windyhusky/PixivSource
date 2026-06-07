@@ -946,22 +946,44 @@ function readMeSearch() {
     ⏬ 字数筛选2：@作者的名称 字数3w5`.replace("    ",""), 5)
 }
 
-let settingsName = {
+const novelSettingsName = {
+    "SEARCH_AUTHOR": "🔍 搜索作者",
+    "CONVERT_CHINESE": "🀄️ 繁简通搜",
+    "MORE_INFORMATION": "📖 更多简介",
+
+    "ADD_CHAPTER_INDEX": "🔢 章节编号",
+    "SHOW_UPDATE_TIME": "📅 更新时间",
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+
+    "SHOW_CAPTIONS": "📄 显示描述",
+    "SHOW_COMMENTS": "💬 显示评论",
+    "SHOW_PICTURES": "🖼️ 显示图片",
+
+    "REPLACE_TITLE_MARKS": "📚 恢复《》",
+    "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
+    "HIDE_WATCHED_SERIES": "📃 隐藏追更",
+
+    "FAST": "⏩ 快速模式",
+    "DEBUG": "🐞 调试模式",
+    "IPDirect": "✈️ 直连模式",
+
+    "PIC_SOURCE": "⏳ 图片解析",
+    "PIC_LINK": "🔗 图片链接",
+    "PIC_SIZE": "↔️ 图片大小",
+}
+const fastSettingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
     "SHOW_UPDATE_TIME": "📅 更新时间",
     "SHOW_COMMENTS": "💬 显示评论",
     "SHOW_PICTURES": "🖼️ 显示图片",
-    "ADD_CHAPTER_INDEX": "🔢 章节编号",
-    "MORE_INFORMATION": "📖 更多简介",
-    "REPLACE_TITLE_MARKS": "📚 恢复《》",
-    "SHOW_CAPTIONS": "📄 显示描述",
-    "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
-    "HIDE_WATCHED_SERIES": "📃 隐藏追更",
-    "IPDirect": "✈️ 直连模式",
-    "FAST": "⏩ 快速模式",
-    "DEBUG": "🐞 调试模式",
+}
+const IPDirectSettingsName = {
+    "SEARCH_AUTHOR": "🔍 搜索作者",
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+}
+const discoverSettingsName ={
     "SHOW_GENERAL": "🆗 常规小说",
     "SHOW_NEW_ADULT": "🔞 最新企划",
     "SHOW_NEW_GENERAL": "🆗 最新企划",
@@ -969,11 +991,21 @@ let settingsName = {
     "SHOW_RANK_GENERAL": "🆗 排行榜单",
     "SHOW_GENRE_ADULT": "🔞 原创热门",
     "SHOW_GENRE_GENERAL": "🆗 原创热门",
+}
+const otherSettingsName = {
     "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",
     "SHOW_SETTINGS": "⚙️ 书源设置\n（书源编辑界面）",
     "SHOW_DISCOVER2": "⚙️ 发现设置\n（小说阅读界面）",
     "SHOW_SETTINGS2": "⚙️ 书源设置\n（小说阅读界面）",
 }
+
+const settingsName = Object.assign({},
+    novelSettingsName,
+    fastSettingsName,
+    IPDirectSettingsName,
+    discoverSettingsName,
+    otherSettingsName
+)
 
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
@@ -987,16 +1019,17 @@ function getSettingStatus(mode) {
     let keys = [], msgList = []
     let settings = getFromCacheObject("pixivSettings")
     if (mode === "FAST") {
-        keys = Object.keys(settingsName).slice(0, 6)
+        keys = Object.keys(fastSettingsName)
     } else if (mode === "IPDirect") {
-        keys = Object.keys(settingsName).slice(0, 2)
+        keys = Object.keys(IPDirectSettingsName)
     } else if (mode.includes("DISCOVER")) {
-        keys = Object.keys(settingsName).slice(15, 21)
+        keys = Object.keys(discoverSettingsName)
     } else {
-        keys = Object.keys(settingsName).slice(0, 15)
+        keys = Object.keys(novelSettingsName)
     }
-    for (let i in keys) {
+    for (let i = 0; i < keys.length; i++) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
+        if ((i+1) % 6 === 0) msgList.push("\n")
     }
     return msgList.join("\n").trim()
 }
