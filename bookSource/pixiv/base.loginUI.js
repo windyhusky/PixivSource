@@ -18,7 +18,7 @@ let method = ""
 if (BOOK) method = 2
 let settingsBase = [
     {"👀 书源设置": `editSettings('SHOW_SETTINGS${method}')` },
-    {"👀 发现设置": `editSettings('SHOW_DISCOVER${method}')` },
+    {"🚫 🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
     {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 ]
 
@@ -89,7 +89,7 @@ let settings = [
     {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
     {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
 
-    {"🔢 🚫 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
+    {"🚫 🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
     {"📅 🚫 更新时间": "editSettings('SHOW_UPDATE_TIME')" },
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
 

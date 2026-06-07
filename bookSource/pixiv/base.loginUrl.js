@@ -1072,7 +1072,8 @@ function editSettings(settingName) {
         try {source.refreshExplore()} catch (e) {}
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
-        if (settingName.startsWith("SHOW")) try {source.refreshExplore()} catch (e) {}
+        if (settingName in Object.keys(discoverSettingsName)) try {source.refreshExplore()} catch (e) {}
+        if (settingName ===  "ADD_CHAPTER_INDEX") try { java.refreshBookToc() } catch(e) {}
     }
     sleepToast(msg)
 }
