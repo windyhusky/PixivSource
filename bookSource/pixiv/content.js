@@ -83,7 +83,7 @@ function getCaptions(resp, content)　{
 
 // 获取 [uploadedimage:] 的图片链接
 function replaceUploadedImage(resp, content) {
-    if (resp.textEmbeddedImages) {
+    if (globalThis.settings.SHOW_PICTURES && resp.textEmbeddedImages) {
         Object.keys(resp.textEmbeddedImages).forEach((key) => {
             content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(resp.textEmbeddedImages[key].urls.original)}">`)
         })
@@ -93,6 +93,8 @@ function replaceUploadedImage(resp, content) {
 
 // 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
 function replacePixivImage(content) {
+    if (!globalThis.settings.SHOW_PICTURES) return content
+
     let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
     if (matched) {
         matched.forEach(pixivimage => {
