@@ -952,9 +952,11 @@ let settingsName = {
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
     "SHOW_UPDATE_TIME": "📅 更新时间",
     "SHOW_COMMENTS": "💬 显示评论",
+    "SHOW_PICTURES": "🖼️ 显示图片",
+    "ADD_CHAPTER_INDEX": "🔢 章节编号",
     "MORE_INFORMATION": "📖 更多简介",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
-    "SHOW_CAPTIONS": "🖼️ 显示描述",
+    "SHOW_CAPTIONS": "📄 显示描述",
     "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
     "HIDE_WATCHED_SERIES": "📃 隐藏追更",
     "IPDirect": "✈️ 直连模式",
@@ -976,7 +978,7 @@ let settingsName = {
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
-    else return "🈚️ 未设置"
+    else if (status === undefined) return "🈚️ 未设置"
 }
 
 // 检测快速模式修改的4个设置
@@ -985,13 +987,13 @@ function getSettingStatus(mode) {
     let keys = [], msgList = []
     let settings = getFromCacheObject("pixivSettings")
     if (mode === "FAST") {
-        keys = Object.keys(settingsName).slice(0, 5)
+        keys = Object.keys(settingsName).slice(0, 6)
     } else if (mode === "IPDirect") {
         keys = Object.keys(settingsName).slice(0, 2)
     } else if (mode.includes("DISCOVER")) {
-        keys = Object.keys(settingsName).slice(13, 21)
+        keys = Object.keys(settingsName).slice(15, 21)
     } else {
-        keys = Object.keys(settingsName).slice(0, 13)
+        keys = Object.keys(settingsName).slice(0, 15)
     }
     for (let i in keys) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)

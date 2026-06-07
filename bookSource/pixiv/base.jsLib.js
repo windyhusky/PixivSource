@@ -415,16 +415,19 @@ function setDefaultSettings() {
     let settings = {}
     settings.SEARCH_AUTHOR = false      // 搜索：默认不搜索作者名称
     settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
-    settings.HIDE_LIKE_NOVELS = false   // 搜索：搜索结果 隐藏收藏小说
-    settings.HIDE_WATCHED_SERIES = false// 搜索：搜索结果 隐藏追整系列
-
     settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
+
+    settings.ADD_CHAPTER_INDEX = false  // 目录：添加章节编号
     settings.SHOW_UPDATE_TIME = true    // 目录：显示更新时间，但会增加少许请求
     settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
 
-    settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
     settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
     settings.SHOW_COMMENTS = true       // 正文：章尾显示评论，但会增加大量请求
+    settings.SHOW_PICTURES = true       // 正文：正文显示图片，但会增加少许请求
+
+    settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
+    settings.HIDE_LIKE_NOVELS = false   // 全局：搜索结果 隐藏收藏小说
+    settings.HIDE_WATCHED_SERIES = false// 全局：搜索结果 隐藏追整系列
 
     settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
@@ -464,6 +467,7 @@ function checkSettings(settings) {
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_COMMENTS = false        // 正文：显示评论
+        settings.SHOW_PICTURES = false        // 正文：显示图片
     }
     this.putInCacheObject("pixivSettings", settings)
     return settings
