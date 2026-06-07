@@ -13,14 +13,20 @@ let source = [
     {"🔰 使用指南": "startGithubReadme()" },
     {"🐞 反馈问题": "startGithubIssue()" },
 ]
-
-let method = ""
-if (BOOK) method = 2
-let settingsBase = [
-    {"👀 书源设置": `editSettings('SHOW_SETTINGS${method}')` },
-    {"🚫 🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
-    {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
-]
+let settingsBase = []
+if (BOOK) {
+    settingsBase = [
+        {"👀 书源设置": `editSettings('SHOW_SETTINGS2')` },
+        {"🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
+        {"✈️ 直连模式": "editSettings('IPDirect')" },
+    ]
+} else {
+    settingsBase = [
+        {"👀 书源设置": `editSettings('SHOW_SETTINGS')` },
+        {"👀 发现设置": `editSettings('SHOW_DISCOVER')` },
+        {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
+    ]
+}
 
 let novel = [
     {"章节名称": "text" },
