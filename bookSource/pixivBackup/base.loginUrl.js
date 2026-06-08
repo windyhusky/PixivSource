@@ -131,7 +131,7 @@ function getPostBody(url, body, headers) {
         // sleepToast(e)
         // sleepToast(JSON.stringify(headers))
         if (e.includes("400")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 headers`, 1)
-            // else if (e.includes("401")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
+        // else if (e.includes("401")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
         // else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
         else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 pixivCsrfToken `, 1)
         else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
@@ -830,7 +830,7 @@ function likeAuthorsShow() {
 function likeAuthorsAdd() {
     let likeAuthors = getFromCacheMap("likeAuthorsMap")
     if (likeAuthors.size === 0) likeAuthors = getFromCacheMap("likeAuthors")
-
+    
     let word = String(result.get("文本框")).trim()
     if (word.startsWith("@") || word.startsWith("＠")) {
         return sleepToast(`❤️ 他人收藏\n❤️ 添加收藏\n\n⚠️ 仅支持通过【作者ID】关注\n不支持添加 @作者名称`)
@@ -880,13 +880,13 @@ function likeAuthorsDelete() {
         let text = `@${novel.userName} ${novel.userId}`
         sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n✅ 已将【${text}】移出他人收藏列表了\n\n📌 【文本框】内输入【用户ID】可取消关注其他用户的收藏`)
 
-        // 输入纯数字，删除对应ID的作者
+    // 输入纯数字，删除对应ID的作者
     } else if (!isNaN(word) && likeAuthors.has(word)) {
         let text = `@${likeAuthors.get(word)} ${word}`
         likeAuthors.delete(word)
         sleepToast(`❤️ 他人收藏\n🖤 取消收藏\n\n✅ 已取关【${text}】`)
 
-        //作者名称
+    //作者名称
     } else if (Array.from(likeAuthors.values()).includes(word)) {
         let index = Array.from(likeAuthors.values()).indexOf(word)
         let key = Array.from(likeAuthors.keys())[index]
@@ -940,20 +940,45 @@ function readMeSearch() {
     ⏬ 字数筛选2：@作者的名称 字数3w5`.replace("    ",""), 5)
 }
 
-let settingsName = {
+const novelSettingsName = {
+    "SEARCH_AUTHOR": "🔍 搜索作者",
+    "CONVERT_CHINESE": "🀄️ 繁简通搜",
+    "MORE_INFORMATION": "📖 更多简介",
+
+    "ADD_CHAPTER_INDEX": "🔢 章节编号",
+    "SHOW_UPDATE_TIME": "📅 更新时间",
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+
+    "SHOW_CAPTIONS": "📄 显示描述",
+    "SHOW_COMMENTS": "💬 显示评论",
+    "SHOW_PICTURES": "🖼️ 显示图片",
+
+    "REPLACE_TITLE_MARKS": "📚 恢复《》",
+    "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
+    "HIDE_WATCHED_SERIES": "📃 隐藏追更",
+
+    "FAST": "⏩ 快速模式",
+    "DEBUG": "🐞 调试模式",
+    "IPDirect": "✈️ 直连模式",
+
+    // "PIC_SOURCE": "⏳ 图片解析",
+    // "PIC_LINK": "🔗 图片链接",
+    // "PIC_SIZE": "↔️ 图片大小",
+}
+const fastSettingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
     "SHOW_UPDATE_TIME": "📅 更新时间",
     "SHOW_COMMENTS": "💬 显示评论",
-    "MORE_INFORMATION": "📖 更多简介",
-    "REPLACE_TITLE_MARKS": "📚 恢复《》",
-    "SHOW_CAPTIONS": "🖼️ 显示描述",
-    "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
-    "HIDE_WATCHED_SERIES": "📃 隐藏追更",
-    "IPDirect": "✈️ 直连模式",
-    "FAST": "⏩ 快速模式",
-    "DEBUG": "🐞 调试模式",
+    "SHOW_PICTURES": "🖼️ 显示图片",
+}
+const IPDirectSettingsName = {
+    "SEARCH_AUTHOR": "🔍 搜索作者",
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+}
+const discoverSettingsName ={
+    "SHOW_ADULT": "🔞 默认发现",
     "SHOW_GENERAL": "🆗 常规小说",
     "SHOW_NEW_ADULT": "🔞 最新企划",
     "SHOW_NEW_GENERAL": "🆗 最新企划",
@@ -961,16 +986,25 @@ let settingsName = {
     "SHOW_RANK_GENERAL": "🆗 排行榜单",
     "SHOW_GENRE_ADULT": "🔞 原创热门",
     "SHOW_GENRE_GENERAL": "🆗 原创热门",
+}
+const otherSettingsName = {
     "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",
     "SHOW_SETTINGS": "⚙️ 书源设置\n（书源编辑界面）",
     "SHOW_DISCOVER2": "⚙️ 发现设置\n（小说阅读界面）",
     "SHOW_SETTINGS2": "⚙️ 书源设置\n（小说阅读界面）",
 }
+const settingsName = Object.assign({},
+    novelSettingsName,
+    fastSettingsName,
+    IPDirectSettingsName,
+    discoverSettingsName,
+    otherSettingsName
+)
 
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
-    else return "🈚️ 未设置"
+    else if (status === undefined) return "🈚️ 未设置"
 }
 
 // 检测快速模式修改的4个设置
@@ -979,16 +1013,17 @@ function getSettingStatus(mode) {
     let keys = [], msgList = []
     let settings = getFromCacheObject("pixivSettings")
     if (mode === "FAST") {
-        keys = Object.keys(settingsName).slice(0, 5)
+        keys = Object.keys(fastSettingsName)
     } else if (mode === "IPDirect") {
-        keys = Object.keys(settingsName).slice(0, 2)
+        keys = Object.keys(IPDirectSettingsName)
     } else if (mode.includes("DISCOVER")) {
-        keys = Object.keys(settingsName).slice(13, 21)
+        keys = Object.keys(discoverSettingsName)
     } else {
-        keys = Object.keys(settingsName).slice(0, 13)
+        keys = Object.keys(novelSettingsName)
     }
-    for (let i in keys) {
+    for (let i = 0; i < keys.length; i++) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
+        if ((i+1) % 6 === 0) msgList.push("\n")
     }
     return msgList.join("\n").trim()
 }
@@ -1031,25 +1066,36 @@ function editSettings(settingName) {
         try {source.refreshExplore()} catch (e) {}
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
-        if (settingName.startsWith("SHOW")) try {source.refreshExplore()} catch (e) {}
+        if (settingName in Object.keys(discoverSettingsName)) try {source.refreshExplore()} catch (e) {}
+        if (settingName ===  "ADD_CHAPTER_INDEX") try { java.refreshBookToc() } catch(e) {}
     }
     sleepToast(msg)
 }
 
 function backupRestore() {
-    let variable = String(result.get("书源设置")).trim()
-    // let variable = String(source.getVariable())
+    let variable = String(result.get("书源设置") || "").trim()
+    if (!variable) variable = String(source.getVariable() || "").trim()
+
     if (variable === "") {
-        sleepToast("\n💾 备份数据\n\n已导出书源数据")
         let data = backupData()
-        // source.putVariable(data)
-        java.upLoginData({"书源设置": data})
+        try {
+            java.upLoginData({"书源设置": data})
+            sleepToast("\n💾 备份数据\n\n✅ 已导出书源数据")
+        } catch(e) {
+            try {
+                source.putVariable(data)
+                sleepToast("\n💾 备份恢复\n\n✅ 已导出书源数据至 源变量")
+            } catch(e) {
+                sleepToast("\n💾 备份恢复\n\n⚠️ 书源导出数据失败")
+            }
+        }
+    }
 
-    } else if (isJsonString(variable)) {
-        sleepToast("\n💾 恢复数据\n\n已导入书源数据")
+    else if (isJsonString(variable)) {
         restoreData(JSON.parse(variable))
-        java.upLoginData({"书源设置": ""})
-
+        sleepToast("\n💾 恢复数据\n\n✅ 已导入书源数据")
+        try { java.upLoginData({"书源设置": ""})} catch(e) {}
+        try { source.putVariable("") } catch(e) {}
     } else {
         sleepToast("\n💾 备份恢复\n\n⚠️ 输入数据出错，请检查数据格式（JSON）")
     }
