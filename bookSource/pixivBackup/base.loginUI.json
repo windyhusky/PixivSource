@@ -287,6 +287,15 @@
         }
     },
     {
+        "name": "🔢 章节编号",
+        "type": "button",
+        "action": "editSettings('ADD_CHAPTER_INDEX')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
         "name": "📅 更新时间",
         "type": "button",
         "action": "editSettings('SHOW_UPDATE_TIME')",
@@ -314,7 +323,7 @@
         }
     },
     {
-        "name": "🖼️ 显示描述",
+        "name": "📄 显示描述",
         "type": "button",
         "action": "editSettings('SHOW_CAPTIONS')",
         "style": {
@@ -326,6 +335,15 @@
         "name": "💬 显示评论",
         "type": "button",
         "action": "editSettings('SHOW_COMMENTS')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "🖼️ 显示插图",
+        "type": "button",
+        "action": "editSettings('SHOW_PICTURES')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -368,32 +386,41 @@
         }
     },
     {
-        "name": "⏳ 图片解析",
+        "name": "✈️ 直连模式",
         "type": "button",
-        "action": "editSettings('PIC_SOURCE')",
+        "action": "editSettings('IPDirect')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
-    {
-        "name": "🔗 图片链接",
-        "type": "button",
-        "action": "editSettings('PIC_LINK')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "↔️ 图片大小",
-        "type": "button",
-        "action": "editSettings('PIC_SIZE')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
+//    {
+//        "name": "⏳ 图片解析",
+//        "type": "button",
+//        "action": "editSettings('PIC_SOURCE')",
+//        "style": {
+//            "layout_flexGrow": 1,
+//            "layout_flexBasisPercent": -1
+//        }
+//    },
+//    {
+//        "name": "🔗 图片链接",
+//        "type": "button",
+//        "action": "editSettings('PIC_LINK')",
+//        "style": {
+//            "layout_flexGrow": 1,
+//            "layout_flexBasisPercent": -1
+//        }
+//    },
+//    {
+//        "name": "↔️ 图片大小",
+//        "type": "button",
+//        "action": "editSettings('PIC_SIZE')",
+//        "style": {
+//            "layout_flexGrow": 1,
+//            "layout_flexBasisPercent": -1
+//        }
+//    },
 
     {
         "name": "发现设置",

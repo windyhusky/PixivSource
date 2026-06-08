@@ -13,14 +13,20 @@ let source = [
     {"🔰 使用指南": "startGithubReadme()" },
     {"🐞 反馈问题": "startGithubIssue()" },
 ]
-
-let method = ""
-if (BOOK) method = 2
-let settingsBase = [
-    {"👀 书源设置": `editSettings('SHOW_SETTINGS${method}')` },
-    {"👀 发现设置": `editSettings('SHOW_DISCOVER${method}')` },
-    {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
-]
+let settingsBase = []
+if (BOOK) {
+    settingsBase = [
+        {"👀 书源设置": `editSettings('SHOW_SETTINGS2')` },
+        {"🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
+        {"✈️ 直连模式": "editSettings('IPDirect')" },
+    ]
+} else {
+    settingsBase = [
+        {"👀 书源设置": `editSettings('SHOW_SETTINGS')` },
+        {"👀 发现设置": `editSettings('SHOW_DISCOVER')` },
+        {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
+    ]
+}
 
 let novel = [
     {"章节名称": "text" },
@@ -45,9 +51,11 @@ if (BOOK) {
         return {}
     }
 
+    let pixivUid = String(getFromCache("pixivUid"))
     let novelData = getNovelData(getNovelId())
-    if (novelData.pollData && !novelData.pollData.selectedValue) {
-        // if (novelData.pollData) {
+    let showChoices = novelData.pollData && pixivUid !== novelData.novelUid && !novelData.pollData.selectedValue
+    if (pixivSettings.DEBUG) showChoices = !!novelData.pollData
+    if (showChoices) {
         let choices = [{"问卷调查": "text"}]
 
         novelData.pollData.choices.forEach((choice, i) => {
@@ -89,21 +97,25 @@ let settings = [
     {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
     {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
 
+    {"🚫 🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
     {"📅 🚫 更新时间": "editSettings('SHOW_UPDATE_TIME')" },
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
-    {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
 
-    {"🖼️ 🚫 显示描述": "editSettings('SHOW_CAPTIONS')" },
+    {"📄 🚫 显示描述": "editSettings('SHOW_CAPTIONS')" },
     {"💬 🚫 显示评论": "editSettings('SHOW_COMMENTS')" },
-    {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
+    {"🖼️ 🚫 显示插图": "editSettings('SHOW_PICTURES')" },
 
+    {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
+    {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
     {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
+
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
+    {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 
-    {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
-    {"🔗 图片链接": "editSettings('PIC_LINK')" },
-    {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
+    // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
+    // {"🔗 图片链接": "editSettings('PIC_LINK')" },
+    // {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
 ]
 
 let discoverSettings = [
