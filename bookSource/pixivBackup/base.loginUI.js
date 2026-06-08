@@ -53,7 +53,7 @@ if (BOOK) {
 
     let pixivUid = String(getFromCache("pixivUid"))
     let novelData = getNovelData(getNovelId())
-    let showChoices = novelData.pollData && pixivUid !== novelData.novelUid && !novelData.pollData.selectedValue
+    let showChoices = novelData.pollData && pixivUid !== novelData.userId && !novelData.pollData.selectedValue
     if (pixivSettings.DEBUG) showChoices = !!novelData.pollData
     if (showChoices) {
         let choices = [{"问卷调查": "text"}]
