@@ -13,10 +13,6 @@
 项目地址：https://github.com/DowneyRem/PixivSource
 使用教程：https://pixivsource.pages.dev/FurryNovel
 
-规则订阅：Import 订阅源
-https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json
-https://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json
-
 ⚙️ 书源设置：
 书源管理 - 编辑书源 - 基本 - 变量说明 - 修改并保存
 

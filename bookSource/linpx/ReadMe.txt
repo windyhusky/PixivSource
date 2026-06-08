@@ -14,9 +14,5 @@
 项目地址：https://github.com/DowneyRem/PixivSource
 使用教程：https://pixivsource.pages.dev/Linpx
 
-规则订阅：Import 订阅源
-https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/import.json
-https://raw.githubusercontent.com/DowneyRem/PixivSource/main/import.json
-
 ⚙️ 书源设置：
 设置：打开小说 - 菜单 - 登录 - 点击下方按钮
