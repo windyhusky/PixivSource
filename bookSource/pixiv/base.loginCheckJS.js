@@ -64,10 +64,10 @@ function publicFunc() {
     if (!globalThis.environment) {
         globalThis.environment = {}
         globalThis.environment.IS_SOURCEREAD = isSourceRead()
-        globalThis.environment.IS_LEGADO = !isSourceRead()
         globalThis.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
         globalThis.environment.IS_LEGADO_SIGMA = isLegadoSigma()
         globalThis.environment.IS_LEGADO_T = isLegadoT()
+        globalThis.environment.IS_LEGADO = globalThis.environment.IS_LEGADO_OFFICIAL || globalThis.environment.IS_LEGADO_SIGMA || globalThis.environment.IS_LEGADO_T
     }
 
     // 只有第一次初始化时才输出日志
@@ -82,18 +82,12 @@ function publicFunc() {
             java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
         } else if (globalThis.environment.IS_LEGADO_T) {
             java.log("📱 软件平台：🤖 阅读 T")
-            java.log("\n⚠️当前软件为：阅读 T】\n目前不确定兼容性如何")
         } else if (globalThis.environment.IS_LEGADO_OFFICIAL) {
             java.log("📱 软件平台：🤖 阅读 正式版")
             sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-            sleep(3);
+            sleep(3)
             startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
-        } else {
-            java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
-            sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-            sleep(3);
-            startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
-            }
+        }
 
         if (globalThis.settings.IPDirect) {
             java.log("✈️ 直连模式：✅ 已开启")
