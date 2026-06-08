@@ -40,10 +40,12 @@ function seriesHandler(res) {
         let resp = getAjaxJson(urlIP(urlSeriesNovels(seriesID, limit, lastIndex)), true)
         let novels = resp.body.thumbnails.novel
         // novels = resp.body.page.seriesContents
-        novels.forEach(v => {
-            v.title = v.title.trim()
-            v.chapterUrl = urlIP(urlNovel(v.id))
+        novels.forEach((v, i) => {
             novelIds.push(v.id)
+            v.title = v.title.trim()
+            if (util.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
+            v.chapterUrl = urlIP(urlNovel(v.id))
+
             if (v.updateDate !== undefined) {
                 v.updateDate = timeTextFormat(v.createDate)
                 v.chapterInfo = `${v.updateDate}　　${v.textCount}字`
@@ -60,8 +62,9 @@ function seriesHandler(res) {
 
     if (!util.settings.SHOW_UPDATE_TIME) {
         returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesID)), true).body
-        returnList.forEach(v => {
+        returnList.forEach((v, i) => {
             v.title = v.title.trim()
+            if (util.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
             v.chapterUrl = urlIP(urlNovel(v.id))
             novelIds.push(v.id)
         })

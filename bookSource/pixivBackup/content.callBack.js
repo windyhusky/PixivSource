@@ -43,10 +43,12 @@ function clearCache() {
         cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
 
         let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
-        novelIds.forEach(novelId => {
-            cache.delete(`${urlNovelUrl(novelId)}`)
-            cache.delete(`${urlNovelDetailed(novelId)}`)
-        })
+        if (novelIds && novelIds.length > 0) {
+            novelIds.forEach(novelId => {
+                cache.delete(`${urlNovelUrl(novelId)}`)
+                cache.delete(`${urlNovelDetailed(novelId)}`)
+            })
+        }
     }
     return true
 }
