@@ -40,9 +40,13 @@ function isLegadoOfficial() {
 function isLegadoSigma() {
     return typeof java.ajaxTestAll === "function"
 }
+// 检测 阅读 T 版本
+function isLegadoT() {
+    return typeof java.ocr === "function"
+}
 
 function publicFunc() {
-    let u = {}, settings
+    let u = {}
     // 输出书源信息
     java.log(`${source.bookSourceComment.split("\n")[0]}`)
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
@@ -57,8 +61,10 @@ function publicFunc() {
     // 环境写入缓存
     u.environment = {}
     u.environment.IS_SOURCEREAD = isSourceRead()
-    u.environment.IS_LEGADO = !isSourceRead()
     u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
+    u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
+    u.environment.IS_LEGADO_T = isLegadoT()
+    u.environment.IS_LEGADO = u.environment.IS_LEGADO_T || u.environment.IS_LEGADO_OFFICIAL || u.environment.IS_LEGADO_T
     putInCacheObject("pixivEnvironment", u.environment)
 
     // 输出环境信息
@@ -66,17 +72,15 @@ function publicFunc() {
         java.log("📱 软件平台：🍎 源阅 SourceRead")
     } else if (u.environment.IS_LEGADO_SIGMA) {
         java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
+    } else if (globalThis.environment.IS_LEGADO_T) {
+        java.log("📱 软件平台：🤖 阅读 T")
     } else if (u.environment.IS_LEGADO_OFFICIAL) {
         java.log("📱 软件平台：🤖 阅读 正式版")
         // sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
         // sleep(3);
         // startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
-    } else {
-        java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
-        // sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-        // sleep(3);
-        // startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
     }
+
     if (u.settings.IPDirect) {
         java.log("✈️ 直连模式：✅ 已开启")
     } else {
@@ -463,14 +467,14 @@ function publicFunc() {
             }
 
             if (util.settings.MORE_INFORMATION) {
-                novel.description = `\n登录：${util.checkStatus(isLogin())}登录账号
-                ${collectMsg}\n书名：${novel.title}\n作者：${novel.userName}
-                标签：${novel.tags}\n上传：${novel.createDate}
-                更新：${novel.updateDate}\n简介：${novel.description}`
+                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
+                ${collectMsg}\n📖 书名：${novel.title}\n👤 作者：${novel.userName}
+                #️ 标签：${novel.tags}\n⬆️ 上传：${novel.createDate}
+                🔄 更新：${novel.updateDate}\n📄 简介：${novel.description}`
             } else {
-                novel.description = `\n登录：${util.checkStatus(isLogin())}登录账号
-                ${collectMsg}\n上传：${novel.createDate}\n更新：${novel.updateDate}
-                简介：${novel.description}`
+                novel.description = `\n🅿️ 登录：${util.checkStatus(isLogin())}登录账号
+                ${collectMsg}\n⬆️ 上传：${novel.createDate}\n🔄 更新：${novel.updateDate}
+                📄 简介：${novel.description}`
             }
         })
         novels = util.novelFilter2(novels)
