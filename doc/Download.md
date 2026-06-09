@@ -397,8 +397,10 @@ repos:
 > [!TIP]
 >
 > **轻悦时光是一款纯本地阅读器，采用新的书源规则以达到多端兼容，适配各种屏幕尺寸，保护用户隐私，无需网络连接即可阅读。**
+
+> [!NOTE]
 >
-> **现已兼容大部分 阅读3 的书源，全平台可用**
+> **轻悦时光现已兼容大部分 阅读3 的书源，全平台可用** 
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -409,21 +411,10 @@ repos:
 | [iOS TestFlight](https://api.qread.xyz/tf) | 需要代理，无需登录 |
 
 
-### 💻 [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) {#LegadoTauri}
-> [!NOTE]
->
-> **阅读官方推出的跨平台桌面应用，目前仍在开发中，全平台可用**
->
-> **⚠️ 不兼容 阅读3 的书源**
->
-> 项目地址：https://github.com/LegadoTeam/Legado-Tauri-Release
+### 🚮 停更软件 {#MultiPlatformOthers}
+<details><summary> 💻 阅读 服务器版 </summary>
 
-| 下载站点 | 备注 |
-| ------- | --- |
-| [Github Release](https://github.com/LegadoTeam/Legado-Tauri-Release/releases) | 需要代理，无需登录 |
-
-
-### 🖥️ [阅读 服务器版](https://github.com/hectorqin/reader) {#LegadoServer}
+#### 🖥️ [阅读 服务器版](https://github.com/hectorqin/reader) {#LegadoServer}
 > [!TIP]
 >
 > **这是 hectorqin 的阅读3服务器版，桌面端与 iOS 均可使用**
@@ -435,4 +426,21 @@ repos:
 | [Github](https://github.com/hectorqin/reader/releases) | 需要代理 |
 | [Telegram 频道](https://t.me/facker_channel) | 需要代理，需要登录 |
 | 微信公众号【假装大佬】 | |
+</details>
 
+
+<details><summary> 💻 阅读 Tauri </summary>
+
+#### 💻 [阅读 Tauri](https://github.com/LegadoTeam/Legado-Tauri-Release) {#LegadoTauri}
+> [!NOTE]
+>
+> **阅读官方推出的跨平台桌面应用，目前仍在开发中，全平台可用**
+>
+> **⚠️ 不兼容 阅读3 的书源**
+>
+> 项目地址：https://github.com/LegadoTeam/Legado-Tauri-Release
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/LegadoTeam/Legado-Tauri-Release/releases) | 需要代理，无需登录 |
+</details>
