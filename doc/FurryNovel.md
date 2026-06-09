@@ -151,7 +151,7 @@ repos:
 
 ![img](./pic/SetSourceVariable1.png)
 
-![img](./pic/SetSourceVariable.png)
+![img](./pic/SetSourceVariable2.png)
 
 2️⃣ 设置源变量：输入标签`龙`，保存
 
