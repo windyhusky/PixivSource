@@ -62,7 +62,7 @@ head:
 
 
 ## 导入书源
-### 🚀 A.一键导入【最简单】 {#OneClickImport}
+### 🚀 A.一键导入【最简单】 {#OneClick}
 **点击链接，一键导入 书源、订阅源**
 | 源名称    | jsDelivr | Github |
 |--------| -------- | ------ |
@@ -143,9 +143,9 @@ legado://import/addToBookshelf?src={url}
 </details>
 
 
+### 🌐 C.网络导入 {#Internet}
 <details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
 
-### 🌐 C.网络导入
 **我的 - 书源管理 - 菜单 - 网络导入 - 复制链接、粘贴 - 添加书源**
 
 #### 1. 打开【我的】页面，点击【书源管理】
@@ -164,9 +164,9 @@ legado://import/addToBookshelf?src={url}
 </details>
 
 
+### 📑 D.文件导入 {#File}
 <details><summary><strong> 📄 文件导入　详细操作</strong></summary>
 
-### 📑 D.文件导入
 #### 1.下载书源/订阅源文件
 打开 [此处的书源链接](#Subscription) ，选择 **链接另存为**，下载相应书源
 
