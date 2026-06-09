@@ -164,7 +164,7 @@ head:
 ![img](./pic/SubscribeBoookSourcePixiv.jpg)
 
 #### 3. 点击相应订阅规则，导入并启用/更新书源
-![img](./pic/SubscribeHomePage.jpg)
+![img](./pic/SubscribeHomePage.png)
 
 **首次点击【订阅规则】 即可导入**
 
