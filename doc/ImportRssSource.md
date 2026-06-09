@@ -147,5 +147,5 @@ head:
 ![img](./pic/OpenInLegado.png)
 
 #### 3.导入并启用书源/订阅源
-![img](./pic/InportBookSourcePixiv.jpg)
+![img](./pic/InportBookSourcePixiv.png)
 </details>

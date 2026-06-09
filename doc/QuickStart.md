@@ -135,7 +135,7 @@ head:
 ![img](./pic/OpenInLegado.png)
 
 #### 2.导入并启用书源
-![img](./pic/InportBookSourcePixiv.jpg)
+![img](./pic/InportBookSourcePixiv.png)
 </details>
 
 
@@ -168,7 +168,7 @@ head:
 
 **首次点击【订阅规则】 即可导入**
 
-![img](./pic/InportBookSourcePixiv.jpg)
+![img](./pic/InportBookSourcePixiv.png)
 
 **导入之后，再次点击则会检查更新**
 </details>

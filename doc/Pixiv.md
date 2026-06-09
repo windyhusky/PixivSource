@@ -397,7 +397,7 @@ https://www.pixiv.net/users/16721009
 - 点击按钮，导入书源；再次点击，则可更新书源
 - 此处使用的是 Jsdelivr CDN ，更新有延迟
 
-![img](./pic/InportBookSourcePixiv.jpg)
+![img](./pic/InportBookSourcePixiv.png)
 
 
 ###  🔍 站内搜索

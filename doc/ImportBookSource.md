@@ -81,7 +81,7 @@ head:
 ![img](./pic/OpenInLegado.png)
 
 #### 2.导入并启用书源
-![img](./pic/InportBookSourcePixiv.jpg)
+![img](./pic/InportBookSourcePixiv.png)
 </details>
 
 
@@ -137,7 +137,7 @@ legado://import/addToBookshelf?src={url}
 
 **首次点击【订阅规则】 即可导入**
 
-![img](./pic/InportBookSourcePixiv.jpg)
+![img](./pic/InportBookSourcePixiv.png)
 
 **导入之后，再次点击则会检查更新**
 </details>
@@ -160,7 +160,7 @@ legado://import/addToBookshelf?src={url}
 #### 4. 导入并启用书源
 **如果导入失败，请开启代理，或过段时间重试**
 
-![img](./pic/InportBookSourcePixiv.jpg)
+![img](./pic/InportBookSourcePixiv.png)
 </details>
 
 
@@ -178,5 +178,5 @@ legado://import/addToBookshelf?src={url}
 ![img](./pic/OpenInLegado.png)
 
 #### 3.导入并启用书源/订阅源
-![img](./pic/InportBookSourcePixiv.jpg)
+![img](./pic/InportBookSourcePixiv.png)
 </details>
