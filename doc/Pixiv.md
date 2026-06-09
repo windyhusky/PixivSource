@@ -405,9 +405,6 @@ Pixiv 网站的搜索功能更加全面，可以替代阅读搜索
 
 ![img](./pic/SearchViaPixiv.png)
 
-使用 Pixiv 书源未完成/隐藏功能
-![img](./pic/PixivNovelRanking.png)
-
 
 ###  ➕ 添加小说
 在阅读内部浏览器内打开 Pixiv 小说/系列小说页面，【刷新】，点击【加入书架】按钮添加小说到书架
