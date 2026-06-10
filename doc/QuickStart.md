@@ -84,7 +84,7 @@ route.path = route.path.replace("/", "");
 > **以下两种导入方式任选：**
 
 
-<!--@include: CommonImport.md-->
+<!--@include: CommonImportMethod.md-->
 
 
 ## 书源配置 {#BookSourceSet}

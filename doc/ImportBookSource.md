@@ -70,5 +70,5 @@ route.path = route.path.replace("/", "");
 
 ## 导入书源
 
-<!--@include: CommonImport.md-->
+<!--@include: CommonImportMethod.md-->
 
