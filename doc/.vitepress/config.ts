@@ -295,6 +295,9 @@ export default defineConfig({
         // 2. 生成 Cloudflare _redirects (仅在 CF 平台执行)
         if (isCF) {
             const rules: string[] = []
+            // 手动重定向放最前面，优先级最高
+            rules.push(`/ReadMe  /  301`)
+            rules.push(`/readme  /  301`)
 
             const getFiles = (dir: string) => {
                 const files = readdirSync(dir)
