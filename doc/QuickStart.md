@@ -59,43 +59,9 @@ head:
 
 
 ## 下载软件 {#DownloadAPP}
-> [!TIP]
->
-> **Android 设备：阅读 + Pixiv 书源**
->
-> **苹果设备可用：源阅 + Pixiv 书源**
-> **，详见：[下载阅读](Download.md)**
 
 
-### ⬇️ A.下载阅读 {#DownloadLegado}
-> [!IMPORTANT]
->
-> [点击链接](DownloadLegado.md)，下载 **【阅读 Sigma】** 安装包并安装软件
-
-
-### ✅ B.兼容软件 {#CompatibleAPP}
-<details><summary><strong>🉑 兼容软件 </strong></summary>
-
-- [Pixiv 小说书源](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
-
-| 阅读版本 | 推荐 | 版本号 |
-| ------ | --- | ----- |
-| 👍【推荐】[阅读 Plus](https://github.com/Luoyacheng/legado/releases) | Plus  | 3.25.0927 |
-| 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
-</details>
-
-<details><summary><strong> 🈶 更多软件 </strong></summary>
-
-- [Pixiv 小说备用书源](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) 兼容软件：
-
-| 阅读版本 | 推荐 | 版本号 |
-| ------ | --- | ----- |
-| 👍【推荐】[阅读 Plus](https://github.com/Luoyacheng/legado/releases) | Plus  | 3.25.0927 |
-| 🏛️【官方】[阅读 Beta](https://miaogongzi.lanzout.com/b01rgkhhe)  | 新共存  | 3.25.0527 |
-| 🎀【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3/releases) | | 3.26     | 
-| 🍎【兼容】[源阅](https://github.com/kaich/SourceReadSite)      | TestFlight | 1.0 (112) |
-- 详见：[下载阅读](Download.md)
-</details>
+<!--@include: CommonDownload.md-->
 
 
 ## 导入书源 {#ImportSources}
