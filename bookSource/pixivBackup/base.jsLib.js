@@ -419,8 +419,9 @@ function setDefaultSettings() {
     settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
 
     settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
-    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论，但会增加大量请求
     settings.SHOW_PICTURES = true       // 正文：正文显示图片，但会增加少许请求
+    settings.SHOW_QUESTION = true       // 正文：正文显示投票
+    settings.SHOW_COMMENTS = true       // 正文：章尾显示评论，但会增加大量请求
 
     settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
     settings.HIDE_LIKE_NOVELS = false   // 全局：搜索结果 隐藏收藏小说
@@ -451,18 +452,15 @@ function checkSettings(settings) {
     const {java, cache} = this
     if (!settings) settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
-    if (settings.FAST || settings.IPDirect) {
+    if (settings.IPDirect) {
         settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
-    }
-    if (!settings.FAST && !settings.IPDirect) {
-        // settings.SEARCH_AUTHOR = true         // 搜索：默认不搜索作者名称
-        settings.SHOW_ORIGINAL_LINK = true    // 目录：显示章节源链接
     }
 
     if (settings.FAST) {
         settings.SEARCH_AUTHOR = false        // 搜索：默认不搜索作者名称
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜
+        settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
         settings.SHOW_UPDATE_TIME = false     // 目录：显示章节更新时间
         settings.SHOW_COMMENTS = false        // 正文：显示评论
         settings.SHOW_PICTURES = false        // 正文：显示图片

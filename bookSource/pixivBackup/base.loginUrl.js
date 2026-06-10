@@ -940,31 +940,45 @@ function readMeSearch() {
     ⏬ 字数筛选2：@作者的名称 字数3w5`.replace("    ",""), 5)
 }
 
-const novelSettingsName = {
+const serachSettingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
     "MORE_INFORMATION": "📖 更多简介",
-
+}
+const catalogSettingsName = {
     "ADD_CHAPTER_INDEX": "🔢 章节编号",
     "SHOW_UPDATE_TIME": "📅 更新时间",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
-
+}
+const contentSettingsName = {
     "SHOW_CAPTIONS": "📄 显示描述",
-    "SHOW_COMMENTS": "💬 显示评论",
     "SHOW_PICTURES": "🖼️ 显示图片",
+    "SHOW_QUESTION": "✅ 显示投票",
 
+    "SHOW_COMMENTS": "💬 显示评论",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
+}
+const otherSettingsName = {
     "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
     "HIDE_WATCHED_SERIES": "📃 隐藏追更",
 
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
     "IPDirect": "✈️ 直连模式",
-
-    // "PIC_SOURCE": "⏳ 图片解析",
-    // "PIC_LINK": "🔗 图片链接",
-    // "PIC_SIZE": "↔️ 图片大小",
 }
+const pictureSettingsName = {
+    "PIC_SOURCE": "⏳ 图片解析",
+    "PIC_LINK": "🔗 图片链接",
+    "PIC_SIZE": "↔️ 图片大小",
+}
+const novelSettingsName = Object.assign({},
+    serachSettingsName,
+    catalogSettingsName,
+    contentSettingsName,
+    otherSettingsName,
+    // pictureSettingsName
+)
+
 const fastSettingsName = {
     "SEARCH_AUTHOR": "🔍 搜索作者",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
@@ -987,7 +1001,7 @@ const discoverSettingsName ={
     "SHOW_GENRE_ADULT": "🔞 原创热门",
     "SHOW_GENRE_GENERAL": "🆗 原创热门",
 }
-const otherSettingsName = {
+const menuSettingsName = {
     "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",
     "SHOW_SETTINGS": "⚙️ 书源设置\n（书源编辑界面）",
     "SHOW_DISCOVER2": "⚙️ 发现设置\n（小说阅读界面）",
@@ -998,7 +1012,7 @@ const settingsName = Object.assign({},
     fastSettingsName,
     IPDirectSettingsName,
     discoverSettingsName,
-    otherSettingsName
+    menuSettingsName
 )
 
 function statusMsg(status) {
@@ -1038,6 +1052,11 @@ function showSettingsDiscover() {
 function setDefaultSettingsLoginUrl() {
     setDefaultSettings()
     sleepToast(`\n✅ 已恢复　🔧 默认设置\n\n${getSettingStatus()}`)
+    sleep(2)
+    try { source.refreshExplore() } catch (e) {}
+    try { java.refreshBookInfo() } catch(e) {}
+    try { java.refreshBookToc() } catch(e) {}
+    try { java.refreshContent() } catch(e) {}
 }
 
 function editSettings(settingName) {
@@ -1050,10 +1069,16 @@ function editSettings(settingName) {
         status = settings[settingName] = true
     }
     putInCacheObject("pixivSettings", settings)
+    // globalThis.settings = settings
 
     if (settingName === "FAST") {
         checkSettings(settings)
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
+        sleepToast(msg)
+        try { source.refreshExplore() } catch (e) {}
+        try { java.refreshBookToc() } catch(e) {}
+        try { java.refreshContent() } catch(e) {}
+
     } else if (settingName === "IPDirect") {
         if (settings.IPDirect && !isLogin()) {
             msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
@@ -1063,13 +1088,30 @@ function editSettings(settingName) {
             checkSettings(settings)
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
         }
-        try {source.refreshExplore()} catch (e) {}
+        sleepToast(msg)
+        try { source.refreshExplore() } catch (e) {}
+        try { java.refreshBookToc() } catch(e) {}
+        try { java.refreshContent() } catch(e) {}
+
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
-        if (settingName in Object.keys(discoverSettingsName)) try {source.refreshExplore()} catch (e) {}
-        if (settingName ===  "ADD_CHAPTER_INDEX") try { java.refreshBookToc() } catch(e) {}
+        sleepToast(msg)
+        if (settingName === "MORE_INFORMATION") {
+            sleep(2); try { java.refreshBookInfo() } catch(e) {}
+
+        } else if (settingName in discoverSettingsName) {
+            sleep(2); try { source.refreshExplore() } catch (e) {}
+
+        } else if (settingName in catalogSettingsName) {
+            sleep(2); try { java.refreshBookToc() } catch(e) {}
+
+        } else if (settingName in contentSettingsName) {
+            sleep(2); try { java.refreshContent() } catch(e) {}
+
+        } else if (settingName in pictureSettingsName) {
+            sleep(2); try { java.refreshContent() } catch(e) {}
+        }
     }
-    sleepToast(msg)
 }
 
 function backupRestore() {

@@ -314,18 +314,27 @@
         }
     },
     {
-        "name": "📚 恢复《》",
+        "name": "📄 显示描述",
         "type": "button",
-        "action": "editSettings('REPLACE_TITLE_MARKS')",
+        "action": "editSettings('SHOW_CAPTIONS')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
         }
     },
     {
-        "name": "📄 显示描述",
+        "name": "🖼️ 显示插图",
         "type": "button",
-        "action": "editSettings('SHOW_CAPTIONS')",
+        "action": "editSettings('SHOW_PICTURES')",
+        "style": {
+            "layout_flexGrow": 1,
+            "layout_flexBasisPercent": -1
+        }
+    },
+    {
+        "name": "✅ 显示投票",
+        "type": "button",
+        "action": "editSettings('SHOW_QUESTION')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -341,9 +350,9 @@
         }
     },
     {
-        "name": "🖼️ 显示插图",
+        "name": "📚 恢复《》",
         "type": "button",
-        "action": "editSettings('SHOW_PICTURES')",
+        "action": "editSettings('REPLACE_TITLE_MARKS')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -380,15 +389,6 @@
         "name": "🐞 调试模式",
         "type": "button",
         "action": "editSettings('DEBUG')",
-        "style": {
-            "layout_flexGrow": 1,
-            "layout_flexBasisPercent": -1
-        }
-    },
-    {
-        "name": "✈️ 直连模式",
-        "type": "button",
-        "action": "editSettings('IPDirect')",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
