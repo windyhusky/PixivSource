@@ -85,9 +85,9 @@ hero:
       link: Sponsor
       
     - theme: alt
-      text: 🤝 友情链接
-      link: FriendLink
-      
+      text: 📜 更新日志
+      link: UpdateLog
+
 
 features:
   - icon: 📖
