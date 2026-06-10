@@ -34,6 +34,13 @@ repos:
 
 ---
 
+<script setup>
+import { useRoute, useRouter } from "vitepress";
+const route = useRoute();
+route.path = route.path.replace("/", "");
+</script>
+
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourceLinpx.png" alt="Linpx BookSource"/>
 <br>

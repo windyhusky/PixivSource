@@ -93,9 +93,12 @@ route.path = route.path.replace("/", "");
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 
 <details><summary><strong> 🅿️ Pixiv 书源 </strong></summary>
-
 <!--@include: CommonLoginPixiv.md-->
+</details>
 
+
+<details><summary><strong> 🦊 Linpx 与 兽人控小说站 </strong></summary>
+<!--@include: CommonLoginLinpx.md-->
 </details>
 
 
