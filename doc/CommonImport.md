@@ -111,3 +111,47 @@
 **导入之后，再次点击则会检查更新**
 </details>
 
+
+<div v-if="route.path.startsWith('ImportBookSource')">
+
+### 🌐 C.网络导入 {#Internet}
+<details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
+
+**我的 - 书源管理 - 菜单 - 网络导入 - 复制链接、粘贴 - 添加书源**
+
+#### 1. 打开【我的】页面，点击【书源管理】
+![img](./pic/ImportOnlineBookSource1.jpg)
+
+#### 2. 点击右上角的三点菜单，选择【网络导入】
+![img](./pic/ImportOnlineBookSource2.jpg)
+
+#### 3. 粘贴书源链接，点击确定
+![img](./pic/ImportOnlineBookSource3.jpg)
+
+#### 4. 导入并启用书源
+**如果导入失败，请开启代理，或过段时间重试**
+
+![img](./pic/InportBookSourcePixiv.png)
+</details>
+</div>
+
+
+<div v-if="route.path.startsWith('Import')">
+
+### 📑 D.文件导入 {#File}
+<details><summary><strong> 📄 文件导入　详细操作</strong></summary>
+
+#### 1.下载书源/订阅源文件
+打开 [此处的书源链接](#Subscription) ，选择 **链接另存为**，下载相应书源
+
+或打开 [Github Release](https://github.com/DowneyRem/PixivSource/releases/latest)，下载相应书源
+
+#### 2.使用阅读打开
+点击书源文件，打开方式选择：阅读
+
+![img](./pic/OpenInLegado.png)
+
+#### 3.导入并启用书源/订阅源
+![img](./pic/InportBookSourcePixiv.png)
+</details>
+</div>
