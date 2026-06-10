@@ -8,6 +8,13 @@
 </div>
 
 
+> [!WARNING]
+>
+> ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
+> [网页版](https://pixivsource.pages.dev)
+> 内容更全面，排版更精美**
+
+
 ## ✨ [臻享阅读：最好的 Pixiv 第三方小说阅读器——开源阅读 + Pixiv 书源](https://pixivsource.pages.dev/BetterExperience)
 ## ⚡️ [快速开始](https://pixivsource.pages.dev/QuickStart)：[下载阅读](https://pixivsource.pages.dev/QuickStart#DownloadLegado)➡️[导入书源](https://pixivsource.pages.dev/QuickStart#ImportSources)➡️[登录账号](https://pixivsource.pages.dev/QuickStart#LoginAccount)➡️[阅读设置](https://pixivsource.pages.dev/QuickStart#LegadoSettings)➡️[开始使用](https://pixivsource.pages.dev/Pixiv#All)
 
