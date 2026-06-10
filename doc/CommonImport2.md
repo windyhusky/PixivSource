@@ -1,6 +1,6 @@
 
 
-<div v-if="route.path === 'Pixiv'">
+<div v-if="route.path === 'Pixiv' || route.path === 'BetterExperience'">
 
 > [!IMPORTANT]
 >
