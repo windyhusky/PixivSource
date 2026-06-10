@@ -169,6 +169,34 @@ repos:
 | [Github Action](https://github.com/refgd/legado/actions) | 需要代理，需要登录 |
 
 
+#### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max) {#LegadoMax}
+
+> [!TIP]
+>
+> **这是 youfengknight 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
+>
+> 项目地址：https://github.com/youfengknight/Legado_Max
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/youfengknight/Legado_Max/actions) | 需要代理，需要登录 |
+
+
+#### ⏺️ 【兼容】[阅读 薯条版](https://github.com/huajideshutiao/legado) {#LegadoShutiao}
+
+> [!TIP]
+>
+> **这是 huajideshutiao 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
+>
+> 项目地址：https://github.com/huajideshutiao/Legado
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/huajideshutiao/Legado/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/huajideshutiao/Legado/actions) | 需要代理，需要登录 |
+
+
 #### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado) {#LegadoJingshiro}
 
 > [!TIP]
@@ -183,18 +211,6 @@ repos:
 | [Github Action](https://github.com/Jingshiro/legado/actions) | 需要代理，需要登录 |
 
 
-#### ⏺️ 【兼容】[阅读 Max](https://github.com/youfengknight/Legado_Max) {#LegadoMax}
-
-> [!TIP]
->
-> **这是 youfengknight 基于 阅读 Sigma，专为墨水屏阅读器优化的改版阅读仓库**
->
-> 项目地址：https://github.com/youfengknight/Legado_Max
-
-| 下载站点 | 备注 |
-| ------- | --- |
-| [Github Release](https://github.com/youfengknight/Legado_Max/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/youfengknight/Legado_Max/actions) | 需要代理，需要登录 |
 
 
 ### 🚮 停更软件 {#AndroidOthers}

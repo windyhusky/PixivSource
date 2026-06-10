@@ -68,7 +68,7 @@ legadoRepos:
     hide: true
     
   - name: 阅读 R
-    icon: /img/LegadoArchive.svg
+    icon: /img/LegadoR.png
     desc: 继承 Archive 版，增强界面、AI、EPUB、漫画、视频和主题能力
     link: https://github.com/refgd/legado
     prerelease: false
@@ -84,9 +84,18 @@ legadoRepos:
     recommend: beta
     show_assets: 1
     hide: true
+    
+  - name: 阅读 薯条版
+    icon: /img/LegadoShutiao.png
+    desc: 继承 官方版 的修改版
+    link: https://github.com/huajideshutiao/Legado
+    prerelease: false
+    recommend: arm64
+    show_assets: 1
+    hide: true
 
   - name: 阅读 自用增强分支
-    icon: /img/Legado.png
+    icon: /img/LegadoJingshiro.png
     desc: 继承 Sigma 版，新增了更多特性
     link: https://github.com/Jingshiro/legado
     prerelease: false
