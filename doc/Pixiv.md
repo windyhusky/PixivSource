@@ -37,6 +37,13 @@ repos:
 
 ---
 
+<script setup>
+import { useRoute, useRouter } from "vitepress";
+const route = useRoute();
+route.path = route.path.replace("/", "");
+</script>
+
+
 <div align="center">
 <img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
@@ -111,17 +118,8 @@ repos:
 
 <!--@include: CommonDownload.md-->
 
-
 ### 🚀 导入书源 & 订阅源 {#ImportSources}
-> [!IMPORTANT]
->
-> **点击下方链接，一键导入书源、订阅源**
->
-> 🅿️ [一键导入 Pixiv 书源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
->
-> 🐲 [一键导入 Pixiv 订阅源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
-> 
-> **更多导入方法详见：** [如何导入书源](./ImportBookSource.md)
+<!--@include: CommonImport2.md-->
 
 
 > [!NOTE]
@@ -138,9 +136,10 @@ repos:
 > ⏺ [互动功能](#Interact)**
 
 
-<div v-if="false">
+[//]: # (<div v-if="false">)
   <!--@include: CommonPixiv.md-->
-</div>
+
+[//]: # (</div>)
 
 
 ## 近期更新 {#Latest}
