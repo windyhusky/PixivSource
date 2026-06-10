@@ -114,7 +114,7 @@
 
 <div v-if="route.path.startsWith('ImportBookSource')">
 
-### 🌐 C.网络导入 {#Internet}
+### 🌐 C.网络导入 {#InternetBookSource}
 <details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
 
 **我的 - 书源管理 - 菜单 - 网络导入 - 复制链接、粘贴 - 添加书源**
@@ -132,6 +132,32 @@
 **如果导入失败，请开启代理，或过段时间重试**
 
 ![img](./pic/InportBookSourcePixiv.png)
+</details>
+</div>
+
+
+<div v-if="route.path.startsWith('ImportRssSource')">
+
+### 🌐 C.网络导入 {#InternetRssSource}
+<details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
+
+订阅 - 设置 - 网络导入 - 复制链接，粘贴 - 添加订阅
+
+#### 1.打开【订阅】页面，点击右上角【设置】
+![img](./pic/ImportOnlineRssSource1.png)
+
+#### 2.点击右上角的三点菜单，选择【网络导入】
+![img](./pic/ImportOnlineRssSource2.png)
+
+#### 3.粘贴订阅源链接，点击确定
+![img](./pic/ImportOnlineRssSource3.jpg)
+
+#### 4.导入并启用订阅源
+![img](./pic/InportRssSourceBtsrk.png)
+
+![img](./pic/ImportOnlineRssSource4.jpg)
+
+**无法网络导入时，请尝试开启代理，或过段时间重试**
 </details>
 </div>
 
