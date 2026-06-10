@@ -1,3 +1,15 @@
+
+<div v-if="route.path === 'BetterExperience' || route.path === 'QuickStart'">
+
+## 📖 畅享阅读 {#EnjoyReading}
+- 🔍 [搜索小说](Pixiv.md#SearchNovel)：书架页面，搜索小说，添加小说到书架
+- ⭐️ [发现小说](Pixiv.md#DiscoverNovel)：发现页面，查看小说，添加小说到书架
+- 🔗 [添加网址](Pixiv.md#AddUrl)：书架页面，通过 **【添加网址】** 添加小说到书架
+- 🌐 [订阅源](Pixiv.md#RssSource)：订阅页面，通过 **【订阅源】** 添加小说到书架
+- ▶️ 全部功能详见 [Pixiv 书源 功能手册](Pixiv.md)
+</div>
+
+
 ## 🐞 [故障处理](TroubleShoot.md) {#TroubleShoot}
 > [!NOTE]
 >

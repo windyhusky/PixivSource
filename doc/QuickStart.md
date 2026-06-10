@@ -63,11 +63,7 @@ route.path = route.path.replace("/", "");
 
 
 ## ⚡️ 快速开始：[下载阅读](QuickStart#DownloadLegado) => [导入书源](QuickStart#ImportSources) => [书源配置](QuickStart#LoginAccount) => [阅读设置](QuickStart#LegadoSettings) {#QuickStart}
-
-
 ## 下载软件 {#DownloadAPP}
-
-
 <!--@include: CommonDownload.md-->
 
 
@@ -83,7 +79,6 @@ route.path = route.path.replace("/", "");
 >
 > **以下两种导入方式任选：**
 
-
 <!--@include: CommonImportMethod.md-->
 
 
@@ -96,21 +91,11 @@ route.path = route.path.replace("/", "");
 <!--@include: CommonLoginPixiv.md-->
 </details>
 
-
 <details><summary><strong> 🦊 Linpx 与 兽人控小说站 </strong></summary>
 <!--@include: CommonLoginLinpx.md-->
 </details>
 
-
 <!--@include: CommonLegado.md-->
-
-
-## 📖 [畅享阅读](Pixiv.md#All) {#All}
-- 🔍 搜索小说：书架页面，搜索小说，添加小说到书架
-- ⭐️ 发现小说：发现页面，查看小说，添加小说到书架
-- 🔗 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
-- 🌐 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
-
 
 <!--@include: CommonSuffix.md-->
 
