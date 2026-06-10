@@ -119,7 +119,7 @@ route.path = route.path.replace("/", "");
 <!--@include: CommonDownload.md-->
 
 ### 🚀 导入书源 & 订阅源 {#ImportSources}
-<!--@include: CommonImport2.md-->
+<!--@include: CommonImport.md-->
 
 
 > [!NOTE]
@@ -136,10 +136,11 @@ route.path = route.path.replace("/", "");
 > ⏺ [互动功能](#Interact)**
 
 
-[//]: # (<div v-if="false">)
-  <!--@include: CommonPixiv.md-->
+<div v-if="false">
+<!--@include: CommonPixiv.md-->
 
-[//]: # (</div>)
+<!--@include: CommonLegado.md-->
+</div>
 
 
 ## 近期更新 {#Latest}

@@ -127,6 +127,8 @@ route.path = route.path.replace("/", "");
 
 <!--@include: CommonPixiv.md-->
 
+<!--@include: CommonLegado.md-->
+
 
 ## 书源功能 {#BookSourceFunction}
 > [!NOTE]

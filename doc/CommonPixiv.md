@@ -62,7 +62,4 @@
 > **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
 >
 > **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
- 
-
-<!--@include: CommonLegado.md-->
 
