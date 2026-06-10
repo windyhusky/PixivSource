@@ -88,54 +88,14 @@ route.path = route.path.replace("/", "");
 
 
 ## 书源配置 {#BookSourceSet}
-### 🅿️ [Pixiv 账号登录](Pixiv#LoginAccount) {#LoginAccount}
 > [!NOTE]
 >
 > **有账号的网站，在书源里登录账号才能阅读相关小说**
 
-<details><summary><strong> 🅿️ 登录账号 </strong></summary>
+<details><summary><strong> 🅿️ Pixiv 书源 </strong></summary>
 
-#### 📡 开启代理
-> [!TIP]
->
-> 此处略过，**最好开启【全局代理】，确保阅读可用访问代理**
+<!--@include: CommonLoginPixiv.md-->
 
-#### 🅿️ 登录账号
-> [!NOTE]
->
-> **有账号的网站，在书源里登录账号才能阅读相关小说**
-
-**我的 - 书源管理 - 菜单 - 登录 - 登录账号**
-
-![img](./pic/PixivLogin1.png)
-
-![img](./pic/PixivLoginUIBase.png)
-
-**登录你的账号，登录成功后，点击右上角的对勾**
-
-![img](./pic/PixivLogin2.jpg)
-> [!TIP]
->
-> **如果需要验证码，请更换代理，或过段时间再次尝试**
-</details>
-
-
-### 🦊 Linpx 与 兽人控小说站 {#CheckAccess}
-> [!NOTE]
-> 
-> **Linpx & 兽人控小说站 暂无账号体系，无需登录即可使用**
-
-<details><summary><strong> ✅ 检查网站能否访问 </strong></summary>
-
-**订阅 - 点击 Linpx / 兽人控小说站 - 打开网站**
-
-- 如果可以直接打开，那么一切大功告成！
-  - **多数网络下，Linpx & 兽人控小说站 无需代理即可访问**
-  - Linpx & 兽人控小说站 没有账号体系，**无需登录即可使用**，不必做过多的操作
-
-- 如果 **无法直接打开** 则可以：
-  - 切换至其他网络（**更换网络运营商、使用流量或 WIFI**）后再尝试
-  - 开启代理后再尝试
 </details>
 
 
@@ -146,7 +106,7 @@ route.path = route.path.replace("/", "");
 - 🔍 搜索小说：书架页面，搜索小说，添加小说到书架
 - ⭐️ 发现小说：发现页面，查看小说，添加小说到书架
 - 🔗 添加网址：书架页面，通过 **【添加网址】** 添加小说到书架
-- 🌐 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架 
+- 🌐 订阅源：订阅页面，通过 **【订阅源】** 添加小说到书架
 
 
 <!--@include: CommonSuffix.md-->
