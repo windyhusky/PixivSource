@@ -216,6 +216,8 @@ function replaceRb(content) {
 
 // 添加投票信息
 function getPollData(resp, content) {
+    if (!util.settings.SHOW_QUESTION || !resp.pollData) return content
+
     // resp.pollData.selectedValue = 0
     if (resp.pollData) {
         let text = ""
