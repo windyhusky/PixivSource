@@ -44,12 +44,19 @@
     transform: translateY(-5px);
 }
 
-/*.VPDoc h1 {*/
-/*    background: -webkit-linear-gradient(10deg, #0e2dc0 15%, #13ad0e 15%);*/
-/*    background-clip: text;*/
-/*    -webkit-background-clip: text;*/
-/*    -webkit-text-fill-color: transparent;*/
-/*}*/
 .vp-doc a {
+    font-weight: 600;  /* VitePress 默认加粗粗细 */
     /*text-decoration: none;*/
+}
+
+/* 时间轴 适配 VitePress 默认的段落颜色与加粗颜色 */
+.timeline-dot p {
+    /* 使用 VitePress 默认的正文文本颜色（自动适配黑夜模式） */
+    color: var(--vp-c-text-1);
+}
+
+.timeline-dot p strong {
+    /* 使用 VitePress 默认的加粗/强调文本颜色 */
+    color: var(--vp-c-text-1);
+    font-weight: 600; /* VitePress 默认的加粗权重 */
 }
