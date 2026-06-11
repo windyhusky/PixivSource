@@ -1177,9 +1177,20 @@ function backupData() {
 
 function restoreData(data) {
     // 账号相关
-    // putInCache("pixivUid", data?.pixivUid)
-    // putInCache("pixivCsrfToken", data?.pixivCsrfToken)
-    // putInCache("pixivCookie", data?.pixivCookie)
+    let pixivCookie = stripCfCookies(data?.pixivCookie)
+    if (pixivCookie) {
+        removeCookie()
+        putInCache("pixivUid", data?.pixivUid)
+        putInCache("pixivCookie", pixivCookie, 60*60)
+        putInCache("pixivCsrfToken", data?.pixivCsrfToken)
+        cookie.setCookie("https://www.pixiv.net", pixivCookie)
+        cookie.setCookie("https://accounts.pixiv.net", pixivCookie)
+        try {
+            cookie.setWebCookie("https://www.pixiv.net", pixivCookie)
+            cookie.setWebCookie("https://accounts.pixiv.net", pixivCookie)
+        } catch (e) {}
+    }
+
     // 书源缓存
     putInCacheObject("pixivAuthors", data?.pixivAuthors)
     putInCacheObject("likeNovels", data?.likeNovels)
@@ -1194,6 +1205,14 @@ function restoreData(data) {
     putInCacheMap("blockAuthorMap", new Map(Object.entries(data?.blockAuthorMap)))
     putInCacheMap("likeAuthorsMap", new Map(Object.entries(data?.likeAuthorsMap)))
     try {source.refreshExplore()} catch (e) {}
+}
+
+function stripCfCookies(cookieStr) {
+    return cookieStr
+        .replace(/;?\s*cf_clearance=[^;]*/g, '')
+        .replace(/;?\s*__cf_bm=[^;]*/g, '')
+        .replace(/^;\s*/, '')   // 防止开头多余的分号
+        .trim()
 }
 
 function cleanCache(toast) {
