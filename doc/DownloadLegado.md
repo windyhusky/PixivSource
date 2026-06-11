@@ -109,7 +109,7 @@ thirdPartyRepos:
     desc: 纯本地的多端兼容阅读器
     link: https://github.com/autobcb/qysg
     prerelease: false
-    recommend: 64.apk ios win mac
+    recommend: 64 ios win mac
     show_assets: 2
     hide: false
 ---
