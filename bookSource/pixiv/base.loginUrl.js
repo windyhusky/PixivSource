@@ -1127,8 +1127,9 @@ function backupRestore() {
     if (variable === "") {
         let data = backupData()
         try {
+            java.copyText(text)
             java.upLoginData({"书源设置": data})
-            sleepToast("\n💾 备份数据\n\n✅ 已导出书源数据")
+            sleepToast("\n💾 备份数据\n\n✅ 已导出书源数据 到剪贴板", 2)
         } catch(e) {
             try {
                 source.putVariable(data)
@@ -1152,9 +1153,9 @@ function backupRestore() {
 function backupData() {
     let data = {}
     // 账号相关
-    // data.pixivUid = getFromCache("pixivUid")
-    // data.pixivCsrfToken = getCsrfToken()
-    // data.pixivCookie = getCookie()
+    data.pixivUid = getFromCache("pixivUid")
+    data.pixivCsrfToken = getCsrfToken()
+    data.pixivCookie = getCookie()
     // 书源缓存
     data.pixivAuthors = getFromCacheObject("pixivAuthors")
     data.likeNovels = getFromCacheObject("likeNovels")
