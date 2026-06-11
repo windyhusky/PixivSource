@@ -40,10 +40,6 @@ function isLegadoOfficial() {
 function isLegadoSigma() {
     return typeof java.ajaxTestAll === "function"
 }
-// 检测 阅读 T 版本
-function isLegadoT() {
-    return typeof java.ocr === "function"
-}
 
 function publicFunc() {
     let u = {}, settings = {}
@@ -66,8 +62,7 @@ function publicFunc() {
         globalThis.environment.IS_SOURCEREAD = isSourceRead()
         globalThis.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
         globalThis.environment.IS_LEGADO_SIGMA = isLegadoSigma()
-        globalThis.environment.IS_LEGADO_T = isLegadoT()
-        globalThis.environment.IS_LEGADO = globalThis.environment.IS_LEGADO_OFFICIAL || globalThis.environment.IS_LEGADO_SIGMA || globalThis.environment.IS_LEGADO_T
+        globalThis.environment.IS_LEGADO = globalThis.environment.IS_LEGADO_OFFICIAL || globalThis.environment.IS_LEGADO_SIGMA
     }
 
     // 只有第一次初始化时才输出日志
@@ -80,8 +75,6 @@ function publicFunc() {
             java.log("📱 软件平台：🍎 源阅 SourceRead")
         } else if (globalThis.environment.IS_LEGADO_SIGMA) {
             java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
-        } else if (globalThis.environment.IS_LEGADO_T) {
-            java.log("📱 软件平台：🤖 阅读 T")
         } else if (globalThis.environment.IS_LEGADO_OFFICIAL) {
             java.log("📱 软件平台：🤖 阅读 正式版")
             sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")

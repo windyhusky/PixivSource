@@ -40,10 +40,6 @@ function isLegadoOfficial() {
 function isLegadoSigma() {
     return typeof java.ajaxTestAll === "function"
 }
-// 检测 阅读 T 版本
-function isLegadoT() {
-    return typeof java.ocr === "function"
-}
 
 function publicFunc() {
     let u = {}
@@ -63,8 +59,7 @@ function publicFunc() {
     u.environment.IS_SOURCEREAD = isSourceRead()
     u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
     u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
-    u.environment.IS_LEGADO_T = isLegadoT()
-    u.environment.IS_LEGADO = u.environment.IS_LEGADO_T || u.environment.IS_LEGADO_OFFICIAL || u.environment.IS_LEGADO_T
+    u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
     putInCacheObject("pixivEnvironment", u.environment)
 
     // 输出环境信息
@@ -72,8 +67,6 @@ function publicFunc() {
         java.log("📱 软件平台：🍎 源阅 SourceRead")
     } else if (u.environment.IS_LEGADO_SIGMA) {
         java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
-    } else if (globalThis.environment.IS_LEGADO_T) {
-        java.log("📱 软件平台：🤖 阅读 T")
     } else if (u.environment.IS_LEGADO_OFFICIAL) {
         java.log("📱 软件平台：🤖 阅读 正式版")
         // sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
