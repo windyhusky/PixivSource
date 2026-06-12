@@ -332,7 +332,7 @@ const navToRepo = () => {
             </span>
           </div>
           <div class="changelog-body" :class="{ 'is-open': logExpanded }">
-            <div class="markdown-render" v-html="displayRelease.body"></div>
+            <div class="markdown-render" v-html="normalizeBody(displayRelease.body)"></div>
           </div>
         </div>
 
@@ -536,7 +536,11 @@ const navToRepo = () => {
   overflow-y: auto;
   border-top: 1px dashed var(--vp-c-divider);
 }
-.markdown-render { font-size: 12.5px; color: var(--vp-c-text-2); line-height: 1.6; }
+.markdown-render {
+  font-size: 12.5px;
+  color: var(--vp-c-text-2);
+  line-height: 1.6; }
+
 
 .card-actions {
   display: flex;
