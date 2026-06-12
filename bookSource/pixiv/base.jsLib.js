@@ -18,7 +18,7 @@ function cacheGetAndSet(key, supplyFunc, requestUpdate) {
 
     const isExpired = v && (new Date().getTime() >= timestamp + cacheTempSeconds)
     const isError = v && (v.error === true) && isExpired
-    requestUpdate = requestUpdate && isExpired
+    requestUpdate = requestUpdate || isExpired
 
     if (!v || requestUpdate || isError) {
         v = supplyFunc()
