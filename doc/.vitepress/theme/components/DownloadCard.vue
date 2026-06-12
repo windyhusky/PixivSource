@@ -5,6 +5,12 @@
  *
  * 既支持父组件通过 props 注入 item/release/loading/getDownloadUrl，也支持直接通过
  * frontmatterSource + frontmatterIndex 从当前 VitePress 页面的 frontmatter 中读取数据。
+ *
+ * 本地缓存说明：
+ * - 通过 localStorage 缓存 GitHub/Gitee Releases 接口的转换结果，避免短时间内重复请求触发限流。
+ * - GitHub 未认证限流相对宽松（约 60 次/小时/IP），缓存 15 分钟；
+ *   Gitee 限流较严格，缓存 30 分钟。
+ * - 请求失败（网络错误 / 403 限流）时，会尝试读取"已过期但存在"的缓存数据作为兜底展示。
  */
 
 import { computed, nextTick, onMounted, ref, useSSRContext, watch } from 'vue'
@@ -83,6 +89,54 @@ const getTargetRelease = (releases, item) => {
   return item.prerelease ? releases[0] : (releases.find(r => !r.prerelease) || releases[0])
 }
 
+// ------------------------------------------------------------------
+// 本地缓存（localStorage）
+// ------------------------------------------------------------------
+const CACHE_PREFIX = 'release-cache:'
+const CACHE_TTL = {
+  github: 15 * 60 * 1000, // GitHub 未认证限流较宽松（约60次/小时），缓存15分钟
+  gitee: 30 * 60 * 1000,  // Gitee 限流较严格，缓存30分钟
+}
+
+/**
+ * 读取有效（未过期）的缓存数据
+ */
+const readCache = (key) => {
+  try {
+    const raw = localStorage.getItem(CACHE_PREFIX + key)
+    if (!raw) return null
+    const { data, time, ttl } = JSON.parse(raw)
+    if (Date.now() - time > ttl) return null
+    return data
+  } catch (e) {
+    return null
+  }
+}
+
+/**
+ * 读取缓存数据，不判断是否过期（用于请求失败时的兜底展示）
+ */
+const readStaleCache = (key) => {
+  try {
+    const raw = localStorage.getItem(CACHE_PREFIX + key)
+    if (!raw) return null
+    return JSON.parse(raw).data
+  } catch (e) {
+    return null
+  }
+}
+
+/**
+ * 写入缓存
+ */
+const writeCache = (key, data, ttl) => {
+  try {
+    localStorage.setItem(CACHE_PREFIX + key, JSON.stringify({ data, time: Date.now(), ttl }))
+  } catch (e) {
+    // localStorage 已满或被禁用（如隐私模式）时静默失败，不影响正常展示
+  }
+}
+
 const fetchFrontmatterRelease = async () => {
   if (props.item || hasInjectedRelease.value || props.frontmatterSource !== 'repos') return
 
@@ -93,14 +147,38 @@ const fetchFrontmatterRelease = async () => {
     return
   }
 
+  const cacheKey = meta.apiUrl
+  const ttl = CACHE_TTL[meta.platform] || CACHE_TTL.github
+
+  // 1. 命中有效缓存，直接使用，不发起请求
+  const cached = readCache(cacheKey)
+  if (cached) {
+    localRelease.value = getTargetRelease(cached, item)
+    return
+  }
+
+  // 2. 缓存未命中或已过期，发起请求
   localLoading.value = true
   try {
     const res = await fetch(meta.apiUrl)
     if (res.ok) {
-      localRelease.value = getTargetRelease(transformReleases(await res.json(), meta.platform, meta.webUrl), item)
+      const releases = transformReleases(await res.json(), meta.platform, meta.webUrl)
+      writeCache(cacheKey, releases, ttl)
+      localRelease.value = getTargetRelease(releases, item)
+    } else {
+      // 请求被限流（403）或其他非 2xx 响应，尝试用过期缓存兜底
+      const stale = readStaleCache(cacheKey)
+      if (stale) {
+        localRelease.value = getTargetRelease(stale, item)
+      } else {
+        console.error(`获取 Release 失败：${meta.apiUrl}，状态码 ${res.status}`)
+      }
     }
   } catch (e) {
     console.error(e)
+    // 网络错误时，同样尝试过期缓存兜底
+    const stale = readStaleCache(cacheKey)
+    if (stale) localRelease.value = getTargetRelease(stale, item)
   } finally {
     localLoading.value = false
   }
@@ -116,14 +194,14 @@ onMounted(async () => {
 
   await nextTick()
   if (
-    platformIconEl.value instanceof HTMLElement &&
-    (getComputedStyle(platformIconEl.value).maskImage ||
-      getComputedStyle(platformIconEl.value).webkitMaskImage) === 'none' &&
-    repoPlatform.value?.icon
+      platformIconEl.value instanceof HTMLElement &&
+      (getComputedStyle(platformIconEl.value).maskImage ||
+          getComputedStyle(platformIconEl.value).webkitMaskImage) === 'none' &&
+      repoPlatform.value?.icon
   ) {
     platformIconEl.value.style.setProperty(
-      '--icon',
-      `url('https://api.iconify.design/simple-icons/${repoPlatform.value.icon}.svg')`
+        '--icon',
+        `url('https://api.iconify.design/simple-icons/${repoPlatform.value.icon}.svg')`
     )
   }
 })
