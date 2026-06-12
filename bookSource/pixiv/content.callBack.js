@@ -6,11 +6,20 @@ let getNovelId = (seriesId) => {
             return chapter.url.match(/\d+/)[0]
         }
     }
-    let novelIds = getFromCacheObject(`novelIds${seriesId}`)
-    if (novelIds) {
-        return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
+
+    if (!book.bookUrl.includes("series")) {
+        return book.bookUrl.match(/\d+/)[0]
     } else {
-        return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+        seriesId = book.bookUrl.match(/\d+/)[0]
+    }
+
+    if (seriesId) {
+        let novelIds = getFromCacheObject(`novelIds${seriesId}`)
+        if (novelIds) {
+            return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
+        } else {
+            return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+        }
     }
 }
 
@@ -20,7 +29,7 @@ function getNovel() {
     if (book.bookUrl.includes("series")) {
         novel.seriesId = book.bookUrl.match(/\d+/)[0]
         novel.seriesTitle = book.name
-        novel.id = getNovelId(novel.seriesId)
+        novel.id = getNovelId()
         novel.title = book.durChapterTitle
     } else {
         novel.seriesId = 0
