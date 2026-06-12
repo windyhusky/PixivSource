@@ -102,38 +102,38 @@ function customButton(){
 //     java.open("login")
 // }
 //
-function clickBookName() {
-    java.open("search", null, book.name)
-    return true
-}
-
-function longClickBookName() {
-    let novel = getNovel()
-    startBrowser(urlNovelUrl(novel.id), novel.title)
-    return true
-}
-
-function clickAuthor() {
-    java.open("search", null, book.author)
-    return true
-}
-
-function longClickAuthor() {
-    let novel = getNovel()
-    startBrowser(urlUserUrl(novel.userId), novel.userName)
-    return true
-}
+// function clickBookName() {
+//     java.open("search", null, book.name)
+//     return true
+// }
+//
+// function longClickBookName() {
+//     let novel = getNovel()
+//     startBrowser(urlNovelUrl(novel.id), novel.title)
+//     return true
+// }
+//
+// function clickAuthor() {
+//     java.open("search", null, book.author)
+//     return true
+// }
+//
+// function longClickAuthor() {
+//     let novel = getNovel()
+//     startBrowser(urlUserUrl(novel.userId), novel.userName)
+//     return true
+// }
 
 function callBackFactory(event) {
     switch (event) {
-        case "clickBookName":
-            return clickBookName()
-        case "longClickBookName":
-            return longClickBookName()
-        case "clickAuthor":
-            return clickAuthor()
-        case "longClickAuthor":
-            return longClickAuthor()
+        // case "clickBookName":
+        //     return clickBookName()
+        // case "longClickBookName":
+        //     return longClickBookName()
+        // case "clickAuthor":
+        //     return clickAuthor()
+        // case "longClickAuthor":
+        //     return longClickAuthor()
         case "clickCustomButton":
             return customButton()
         // case "longClickCustomButton":
@@ -155,8 +155,8 @@ function callBackFactory(event) {
         //     return delBookShelf()
         case "saveRead":
             return saveRead()
-        case "startRead":
-            return saveRead()
+        // case "startRead":
+        //     return startRead()
         // case "endRead":
         //     return endRead()
         case "startShelfRefresh":

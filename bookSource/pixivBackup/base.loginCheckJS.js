@@ -617,6 +617,7 @@ function getHeaders() {
         "Cookie": getFromCache("pixivCookie") || ""
     }
     putInCacheObject("headers", headers)
+    putInCacheObject("pixivHeaders", headers)
     return headers
 }
 

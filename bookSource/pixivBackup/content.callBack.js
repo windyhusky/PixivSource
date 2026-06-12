@@ -1,15 +1,27 @@
+let getNovelId = (seriesId) => {
+    if (chapter) {
+        try {
+            return chapter.url.match(/novel\/(\d+)/)[1]
+        } catch (e) {
+            return chapter.url.match(/\d+/)[0]
+        }
+    }
+    let novelIds = getFromCacheObject(`novelIds${seriesId}`)
+    if (novelIds) {
+        return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
+    } else {
+        return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+    }
+}
+
 function getNovel() {
     let novel = {}
     novel.author = novel.userName = book.author.replace("@", "")
     if (book.bookUrl.includes("series")) {
         novel.seriesId = book.bookUrl.match(/\d+/)[0]
         novel.seriesTitle = book.name
+        novel.id = getNovelId(novel.seriesId)
         novel.title = book.durChapterTitle
-        try {
-            novel.id = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
-        } catch(e){
-            novel.id = chapter.url.match(/\d+/)[0]
-        }
     } else {
         novel.seriesId = 0
         novel.seriesTitle = ""
@@ -34,15 +46,18 @@ function shareBook() {
 
 function clearCache() {
     let novel = getNovel()
-    cache.delete(`${urlNovelUrl(novel.id)}`)
-    cache.delete(`${urlNovelDetailed(novel.id)}`)
-    cache.delete(`${urlSearchNovel(novel.title, 1)}`)
+    if (novel.id) {
+        cache.delete(`${urlNovelUrl(novel.id)}`)
+        cache.delete(`${urlNovelDetailed(novel.id)}`)
+        cache.delete(`${urlSearchNovel(novel.title, 1)}`)
+    }
     if (novel.seriesId) {
         cache.delete(`${urlSeriesUrl(novel.seriesId)}`)
         cache.delete(`${urlSeriesDetailed(novel.seriesId)}`)
         cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
 
         let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
+        if (!novelIds) novelIds = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body.map(item => item.id)
         if (novelIds && novelIds.length > 0) {
             novelIds.forEach(novelId => {
                 cache.delete(`${urlNovelUrl(novelId)}`)
@@ -87,38 +102,38 @@ function customButton(){
 //     java.open("login")
 // }
 //
-// function clickBookName() {
-//     java.open("search", null, book.name)
-//     return true
-// }
-//
-// function longClickBookName() {
-//     let novel = getNovel()
-//     startBrowser(urlNovelUrl(novel.id), novel.title)
-//     return true
-// }
-//
-// function clickAuthor() {
-//     java.open("search", null, book.author)
-//     return true
-// }
-//
-// function longClickAuthor() {
-//     let novel = getNovel()
-//     startBrowser(urlUserUrl(novel.userId), novel.userName)
-//     return true
-// }
+function clickBookName() {
+    java.open("search", null, book.name)
+    return true
+}
+
+function longClickBookName() {
+    let novel = getNovel()
+    startBrowser(urlNovelUrl(novel.id), novel.title)
+    return true
+}
+
+function clickAuthor() {
+    java.open("search", null, book.author)
+    return true
+}
+
+function longClickAuthor() {
+    let novel = getNovel()
+    startBrowser(urlUserUrl(novel.userId), novel.userName)
+    return true
+}
 
 function callBackFactory(event) {
     switch (event) {
-        // case "clickBookName":
-        //     return clickBookName()
-        // case "longClickBookName":
-        //     return longClickBookName()
-        // case "clickAuthor":
-        //     return clickAuthor()
-        // case "longClickAuthor":
-        //     return longClickAuthor()
+        case "clickBookName":
+            return clickBookName()
+        case "longClickBookName":
+            return longClickBookName()
+        case "clickAuthor":
+            return clickAuthor()
+        case "longClickAuthor":
+            return longClickAuthor()
         case "clickCustomButton":
             return customButton()
         // case "longClickCustomButton":
@@ -140,8 +155,8 @@ function callBackFactory(event) {
         //     return delBookShelf()
         case "saveRead":
             return saveRead()
-        // case "startRead":
-        //     return startRead()
+        case "startRead":
+            return saveRead()
         // case "endRead":
         //     return endRead()
         case "startShelfRefresh":

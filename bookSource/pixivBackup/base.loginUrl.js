@@ -110,6 +110,7 @@ function getNovel() {
 }
 
 function getPostBody(url, body, headers) {
+    if (headers === undefined) headers = getFromCacheObject("pixivHeaders")
     if (headers === undefined) headers = getFromCacheObject("headers")
     if (isJsonString(body)) {
         headers["content-type"] = "application/json; charset=utf-8"
@@ -376,17 +377,12 @@ function userFollow(restrict) {
         "https://www.pixiv.net/bookmark_add.php",
         `mode=add&type=user&user_id=${novel.userId}&tag=""&restrict=${restrict}&format=json`
     )
-    if (resp.error === true) {
-        sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败`, 1)
-
+    if (resp.error) {
+        sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败\n已打开浏览器，请(上滑)手动关注`, 1)
         java.startBrowserAwait(`${urlUserUrl(novel.userId)},
     {"headers": {"User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36" }}`, `关注${novel.userName}`, false)
-        let lastStatus = getAjaxJson(urlUserDetailed(novel.userId), true).body.isFollowed
-        if (lastStatus) sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
-
-    } else {
-        sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
     }
+    sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
 }
 
 function userUnFollow() {
@@ -403,10 +399,8 @@ function userUnFollow() {
     }
 }
 
-function userFollowFactory(code) {
-    if (code === undefined) code = 1
+function userFollowFactory() {
     let novel = getNovel()
-
     let lastStatus = getAjaxJson(urlUserDetailed(novel.userId), true).body.isFollowed
     if (lastStatus) userUnFollow()
     else userFollow()
