@@ -46,15 +46,18 @@ function shareBook() {
 
 function clearCache() {
     let novel = getNovel()
-    cache.delete(`${urlNovelUrl(novel.id)}`)
-    cache.delete(`${urlNovelDetailed(novel.id)}`)
-    cache.delete(`${urlSearchNovel(novel.title, 1)}`)
+    if (novel.id) {
+        cache.delete(`${urlNovelUrl(novel.id)}`)
+        cache.delete(`${urlNovelDetailed(novel.id)}`)
+        cache.delete(`${urlSearchNovel(novel.title, 1)}`)
+    }
     if (novel.seriesId) {
         cache.delete(`${urlSeriesUrl(novel.seriesId)}`)
         cache.delete(`${urlSeriesDetailed(novel.seriesId)}`)
         cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
 
         let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
+        if (!novelIds) novelIds = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body.map(item => item.id)
         if (novelIds && novelIds.length > 0) {
             novelIds.forEach(novelId => {
                 cache.delete(`${urlNovelUrl(novelId)}`)
