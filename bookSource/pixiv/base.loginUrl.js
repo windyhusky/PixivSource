@@ -116,6 +116,7 @@ function getNovel() {
 }
 
 function getPostBody(url, body, headers) {
+    if (headers === undefined) headers = getFromCacheObject("pixivHeaders")
     if (headers === undefined) headers = getFromCacheObject("headers")
     if (isJsonString(body)) {
         headers["content-type"] = "application/json; charset=utf-8"
