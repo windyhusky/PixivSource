@@ -1,15 +1,27 @@
+let getNovelId = (seriesId) => {
+    if (chapter) {
+        try {
+            return chapter.url.match(/novel\/(\d+)/)[1]
+        } catch (e) {
+            return chapter.url.match(/\d+/)[0]
+        }
+    }
+    let novelIds = getFromCacheObject(`novelIds${seriesId}`)
+    if (novelIds) {
+        return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
+    } else {
+        return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+    }
+}
+
 function getNovel() {
     let novel = {}
     novel.author = novel.userName = book.author.replace("@", "")
     if (book.bookUrl.includes("series")) {
         novel.seriesId = book.bookUrl.match(/\d+/)[0]
         novel.seriesTitle = book.name
+        novel.id = getNovelId(novel.seriesId)
         novel.title = book.durChapterTitle
-        try {
-            novel.id = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
-        } catch(e){
-            novel.id = chapter.url.match(/\d+/)[0]
-        }
     } else {
         novel.seriesId = 0
         novel.seriesTitle = ""
