@@ -366,7 +366,7 @@ const navToRepo = () => {
           </a>
 
           <div
-              v-if="hiddenCount > 0 || assetsExpanded"
+              v-if="hiddenCount >= 0 || assetsExpanded"
               class="toggle-more-assets-btn"
               @click="toggleAssets"
           >
