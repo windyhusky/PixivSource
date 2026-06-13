@@ -112,23 +112,21 @@ function getNovel() {
     if (environment.IS_LEGADO_SIGMA) {
         try {
             let novel = {}
-            try {
-                novel.id = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
-            } catch(e){
-                novel.id = chapter.url.match(/\d+/)[0]
-            }
-            novel.title = chapter.title
-            novel.userName = book.author.replace("@", "")
             if (book.bookUrl.includes("series")) {
                 novel.seriesId = book.bookUrl.match(/\d+/)[0]
                 novel.seriesTitle = book.name
+                novel.id = getNovelId(novel.seriesId)
+                novel.title = book.durChapterTitle
             } else {
                 novel.seriesId = 0
                 novel.seriesTitle = ""
+                novel.id = book.bookUrl.match(/\d+/)[0]
+                novel.title = book.name
             }
-
+            novel.author = novel.userName = book.author.replace("@", "")
             let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
             novel.userId = resp.userId
+            novel.question = resp?.pollData?.question || ""
             // java.log(JSON.stringify(novel))
             return novel
         } catch (e) {
