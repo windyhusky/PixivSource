@@ -1,4 +1,10 @@
 function login() {
+    sleepToast("🔄 正在检测登陆状态，请稍候")
+    if (isLogin()) {
+        sleepToast("️🅿️ 登录账号\n✅ 已经登录过账号了\n\n可以点击【🔙 退出账号】来切换账号")
+        return false
+    }
+
     let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
     {"headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
     if (resp.code() === 200) {
@@ -76,28 +82,51 @@ function getCsrfToken() {
     return pixivCsrfToken
 }
 
+function getNovelId(seriesId) {
+    if (chapter) {
+        try {
+            return chapter.url.match(/novel\/(\d+)/)[1]
+        } catch (e) {
+            return chapter.url.match(/\d+/)[0]
+        }
+    }
+
+    if (!book.bookUrl.includes("series")) {
+        return book.bookUrl.match(/\d+/)[0]
+    } else {
+        seriesId = book.bookUrl.match(/\d+/)[0]
+    }
+
+    if (seriesId) {
+        let novelIds = getFromCacheObject(`novelIds${seriesId}`)
+        if (novelIds) {
+            return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
+        } else {
+            return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+        }
+    }
+}
+
 function getNovel() {
     let environment = getFromCacheObject("pixivEnvironment")
     if (environment.IS_LEGADO_SIGMA) {
         try {
             let novel = {}
-            try {
-                novel.id = chapter.url.match(/novel\/(\d+)/)[1]  // 直连模式
-            } catch(e){
-                novel.id = chapter.url.match(/\d+/)[0]
-            }
-            novel.title = chapter.title
-            novel.userName = book.author.replace("@", "")
             if (book.bookUrl.includes("series")) {
                 novel.seriesId = book.bookUrl.match(/\d+/)[0]
                 novel.seriesTitle = book.name
+                novel.id = getNovelId(novel.seriesId)
+                novel.title = book.durChapterTitle
             } else {
                 novel.seriesId = 0
                 novel.seriesTitle = ""
+                novel.id = book.bookUrl.match(/\d+/)[0]
+                novel.title = book.name
             }
-
+            novel.author = novel.userName = book.author.replace("@", "")
             let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
             novel.userId = resp.userId
+            novel.question = resp?.pollData?.question || ""
             // java.log(JSON.stringify(novel))
             return novel
         } catch (e) {
