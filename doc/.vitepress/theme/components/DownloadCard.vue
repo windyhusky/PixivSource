@@ -537,9 +537,9 @@ const navToRepo = () => {
   border-top: 1px dashed var(--vp-c-divider);
 }
 .markdown-render {
-  font-size: 12.5px;
+  font-size: 14px;
   color: var(--vp-c-text-2);
-  line-height: 1.6; }
+  line-height: 1.3; }
 
 
 .card-actions {
