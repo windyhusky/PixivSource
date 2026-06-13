@@ -15,7 +15,6 @@
 
 import { computed, nextTick, onMounted, ref, useSSRContext, watch } from 'vue'
 import { useData } from 'vitepress'
-import { renderMarkdown } from '../utils/renderMarkdown'
 import { resolveRepoMeta, transformReleases } from '../utils/releases'
 
 const props = defineProps({
@@ -78,11 +77,6 @@ if (import.meta.env.SSR) {
 
 const toggleLog = () => { logExpanded.value = !logExpanded.value }
 const toggleAssets = () => { assetsExpanded.value = !assetsExpanded.value }
-
-const normalizeBody = (body) => {
-  if (!body) return ''
-  return String(body).includes('<') ? body : renderMarkdown(body)
-}
 
 const getTargetRelease = (releases, item) => {
   if (!releases || !releases.length) return null
@@ -332,7 +326,7 @@ const navToRepo = () => {
             </span>
           </div>
           <div class="changelog-body" :class="{ 'is-open': logExpanded }">
-            <div class="markdown-render" v-html="normalizeBody(displayRelease.body)"></div>
+            <div class="markdown-render" v-html="displayRelease.body"></div>
           </div>
         </div>
 
@@ -393,7 +387,7 @@ const navToRepo = () => {
             </span>
           </div>
           <div class="changelog-body" :class="{ 'is-open': logExpanded }">
-            <div class="markdown-render" v-html="normalizeBody(cardItem.changelog)"></div>
+            <div class="markdown-render" v-html="cardItem.changelog"></div>
           </div>
         </div>
 
