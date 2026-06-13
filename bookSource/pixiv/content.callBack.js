@@ -1,4 +1,4 @@
-let getNovelId = (seriesId) => {
+function getNovelId(seriesId) {
     if (chapter) {
         try {
             return chapter.url.match(/novel\/(\d+)/)[1]
@@ -25,11 +25,10 @@ let getNovelId = (seriesId) => {
 
 function getNovel() {
     let novel = {}
-    novel.author = novel.userName = book.author.replace("@", "")
     if (book.bookUrl.includes("series")) {
         novel.seriesId = book.bookUrl.match(/\d+/)[0]
         novel.seriesTitle = book.name
-        novel.id = getNovelId()
+        novel.id = getNovelId(novel.seriesId)
         novel.title = book.durChapterTitle
     } else {
         novel.seriesId = 0
@@ -37,9 +36,11 @@ function getNovel() {
         novel.id = book.bookUrl.match(/\d+/)[0]
         novel.title = book.name
     }
+    novel.author = novel.userName = book.author.replace("@", "")
     let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
-    novel.authorId = novel.userId = resp.userId
+    novel.userId = resp.userId
     novel.question = resp?.pollData?.question || ""
+    // java.log(JSON.stringify(novel))
     return novel
 }
 

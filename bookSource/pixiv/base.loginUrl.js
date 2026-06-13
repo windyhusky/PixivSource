@@ -82,6 +82,31 @@ function getCsrfToken() {
     return pixivCsrfToken
 }
 
+function getNovelId(seriesId) {
+    if (chapter) {
+        try {
+            return chapter.url.match(/novel\/(\d+)/)[1]
+        } catch (e) {
+            return chapter.url.match(/\d+/)[0]
+        }
+    }
+
+    if (!book.bookUrl.includes("series")) {
+        return book.bookUrl.match(/\d+/)[0]
+    } else {
+        seriesId = book.bookUrl.match(/\d+/)[0]
+    }
+
+    if (seriesId) {
+        let novelIds = getFromCacheObject(`novelIds${seriesId}`)
+        if (novelIds) {
+            return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
+        } else {
+            return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+        }
+    }
+}
+
 function getNovel() {
     let environment = getFromCacheObject("pixivEnvironment")
     if (environment.IS_LEGADO_SIGMA) {
