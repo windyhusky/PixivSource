@@ -81,7 +81,7 @@ const toggleAssets = () => { assetsExpanded.value = !assetsExpanded.value }
 
 const normalizeBody = (body) => {
   if (!body) return ''
-  return renderMarkdown(body)
+  return String(body).includes('<') ? body : renderMarkdown(body)
 }
 
 const getTargetRelease = (releases, item) => {
