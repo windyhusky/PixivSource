@@ -1138,9 +1138,9 @@ function backupRestore() {
     if (variable === "") {
         let data = backupData()
         try {
-            java.copyText(text)
+            java.copyText(data)
             java.upLoginData({"书源设置": data})
-            sleepToast("\n💾 备份数据\n\n✅ 已导出书源数据 到剪贴板", 2)
+            sleepToast("\n💾 备份数据\n\n✅ 已导出书源数据 到剪贴板")
         } catch(e) {
             try {
                 source.putVariable(data)
