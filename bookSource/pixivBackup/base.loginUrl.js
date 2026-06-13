@@ -1,10 +1,4 @@
 function login() {
-    sleepToast("🔄 正在检测登陆状态，请稍候")
-    if (isLogin()) {
-        sleepToast("️🅿️ 登录账号\n✅ 已经登录过账号了\n\n可以点击【🔙 退出账号】来切换账号")
-        return false
-    }
-
     let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
     {"headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
     if (resp.code() === 200) {
