@@ -232,13 +232,22 @@ function copyTocUrl() {
     return true
 }
 
-
-// 添加书架、删除书架
+// 添加书籍、删除书籍
 function addBookShelf() {
-    novelBookmarkAdd()
+    let settings = getFromCacheObject("pixivSettings")
+    if (!settings.AUTO_LIKE_NOVELS) return
+
+    let novel = getNovel()
+    if (novel.seriesId) seriesWatch()
+    else if (novel.id) novelBookmarkAdd()
 }
 function delBookShelf() {
-    novelBookmarkDelete()
+    let settings = getFromCacheObject("pixivSettings")
+    if (!settings.AUTO_DISLIKE_NOVELS) return
+
+    let novel = getNovel()
+    if (novel.seriesId) seriesUnWatch()
+    else if (novel.id) novelBookmarkDelete()
 }
 
 // 保存阅读，更新登录界面的章节名称
@@ -314,12 +323,14 @@ function callBackFactory(event) {
             return addBookShelf()
         case "delBookShelf":
             return delBookShelf()
+
         case "saveRead":
             return saveRead()
         case "startRead":
             return saveRead()
         // case "endRead":
         //     return endRead()
+
         case "startShelfRefresh":
             return startShelfRefresh()
         case "endShelfRefresh":
