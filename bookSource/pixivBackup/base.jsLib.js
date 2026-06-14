@@ -422,10 +422,12 @@ function setDefaultSettings() {
     settings.SHOW_PICTURES = true       // 正文：正文显示图片，但会增加少许请求
     settings.SHOW_QUESTION = true       // 正文：正文显示投票
     settings.SHOW_COMMENTS = true       // 正文：章尾显示评论，但会增加大量请求
-
     settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
-    settings.HIDE_LIKE_NOVELS = false   // 全局：搜索结果 隐藏收藏小说
-    settings.HIDE_WATCHED_SERIES = false// 全局：搜索结果 隐藏追整系列
+
+    settings.AUTO_LIKE_NOVELS = false   // 全局：添加书架：自动收藏/追更
+    settings.AUTO_DISLIKE_NOVELS = false// 全局：删除书籍：自动取消收藏/追更
+    settings.HIDE_LIKE_NOVELS = false   // 全局：搜索/发现：隐藏已收藏小说
+    settings.HIDE_WATCHED_SERIES = false// 全局：搜索/发现：隐藏已追更系列
 
     settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式

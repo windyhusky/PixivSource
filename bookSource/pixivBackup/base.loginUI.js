@@ -17,8 +17,11 @@ let settingsBase = []
 if (BOOK) {
     settingsBase = [
         {"👀 书源设置": `editSettings('SHOW_SETTINGS2')` },
-        {"🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
+        {"🔰 使用指南": "startGithubReadme()" },
         {"✈️ 直连模式": "editSettings('IPDirect')" },
+        {"🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
+        {"❤️ 自动收藏": "editSettings('AUTO_LIKE_NOVELS')" },
+        {"🐞 调试模式": "editSettings('DEBUG')" },
     ]
 } else {
     settingsBase = [
@@ -107,11 +110,15 @@ let settings = [
 
     {"💬 🚫 显示评论": "editSettings('SHOW_COMMENTS')" },
     {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
-    {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
+    {"❤️ 🚫 自动收藏": "editSettings('AUTO_LIKE_NOVELS')" },
 
+    {"🚫 🖤 自动取消": "editSettings('AUTO_DISLIKE_NOVELS')" },
+    {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
     {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
+
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
+    {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 
     // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
     // {"🔗 图片链接": "editSettings('PIC_LINK')" },
