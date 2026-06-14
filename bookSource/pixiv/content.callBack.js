@@ -44,6 +44,106 @@ function getNovel() {
     return novel
 }
 
+function getPostBody(url, body, headers) {
+    if (headers === undefined) headers = getFromCacheObject("pixivHeaders")
+    if (headers === undefined) headers = getFromCacheObject("headers")
+    if (isJsonString(body)) {
+        headers["content-type"] = "application/json; charset=utf-8"
+    } else if (typeof body === "string") {
+        headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
+    }
+
+    let settings = getFromCacheObject("pixivSettings")
+    if (settings.IPDirect) {
+        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
+        headers["Host"] = "www.pixiv.net"
+    }
+    try {
+        java.log(`getPostBody(${url}, ${body}, ${headers})`)
+        // java.log(`getPostBody(${url}, ${body}, ${JSON.stringify(headers)})`)
+        return JSON.parse(java.post(url, body, headers).body())
+    } catch (e) {
+        e = String(e)
+        // sleepToast(e)
+        // sleepToast(JSON.stringify(headers))
+        if (e.includes("400")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 headers`, 1)
+            // else if (e.includes("401")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
+        // else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
+        else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 pixivCsrfToken `, 1)
+        else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
+        return {error: true, errMsg:e}
+    }
+}
+
+function novelBookmarkAdd() {
+    let restrict = 0
+    let novel = getNovel()
+    let novelObj = getAjaxJson(urlNovelDetailed(novel.id), true)
+    if (novelObj.body.bookmarkData && novelObj.body.bookmarkData.private === false) restrict = 1
+    let resp = getPostBody(
+        "https://www.pixiv.net/ajax/novels/bookmarks/add",
+        JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
+    )
+    if (resp.error === true) {
+        sleepToast(`❤️ 收藏小说\n\n⚠️ 收藏【${novel.title}】失败`)
+        shareFactory("novel")
+    } else {
+        putInCacheObject(`collect${novel.id}`, resp.body)
+        let likeNovels = getFromCacheObject("likeNovels")
+        likeNovels.push(Number(novel.id))
+        putInCacheObject("likeNovels", likeNovels)
+
+        let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
+        novelObj.body.isBookmark = true
+        putInCacheObject(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
+    }
+
+    if (restrict === 1) {
+        sleepToast(`㊙️ 私密收藏\n\n✅ 已私密收藏\n${novel.title}`)
+    } else {
+        sleepToast(`❤️ 公开收藏\n\n✅ 已公开收藏\n${novel.title}`)
+    }
+}
+
+function getNovelBookmarkId(novelId) {
+    let bookmarkId = getFromCacheObject(`collect${novelId}`)
+    if (bookmarkId === null) {
+        try {
+            bookmarkId = getAjaxJson(urlNovelBookmarkData(novelId), true).body.bookmarkData.id
+        } catch (e) {
+            bookmarkId = 0
+        }
+    }
+    return bookmarkId
+}
+
+function novelBookmarkDelete() {
+    let novel = getNovel()
+    let bookmarkId = getNovelBookmarkId(novel.id)
+    if (bookmarkId === 0) return sleepToast(`🖤 取消收藏\n\n✅ 已经取消收藏\n${novel.title}`)
+
+    let resp = getPostBody(
+        "https://www.pixiv.net/ajax/novels/bookmarks/delete",
+        `del=1&book_id=${bookmarkId}`
+    )
+    if (resp.error === true) {
+        sleepToast(`🖤 取消收藏\n\n⚠️ 取消收藏失败\n${novel.title}`)
+        shareFactory("novel")
+    } else {
+        cache.delete(`collect${novel.id}`)
+        sleepToast(`🖤 取消收藏\n\n✅ 已经取消收藏\n${novel.title}`)
+
+        let likeNovels = getFromCacheObject("likeNovels")
+        likeNovels = likeNovels.filter(item => item !== Number(novel.id))
+        putInCacheObject("likeNovels", likeNovels)
+
+        let novelObj = getAjaxJson(urlNovelDetailed(novel.id))
+        novelObj.body.isBookmark = false
+        putInCacheObject(urlNovelDetailed(novel.id), novelObj, cacheSaveSeconds)
+    }
+}
+
+
 function shareBook() {
     let text = `我正在看：【${book.author.replace("@", "")}】创作的《${book.name}》`
     if (!!book.durChapterTitle && String(book.name) !== String(book.durChapterTitle)) {
@@ -85,6 +185,15 @@ function copyBookUrl() {
 function copyTocUrl() {
     java.copyText(book.tocUrl)
     return true
+}
+
+
+// 添加书架、删除书架
+function addBookShelf() {
+    novelBookmarkAdd()
+}
+function delBookShelf() {
+    novelBookmarkDelete()
 }
 
 // 保存阅读，更新登录界面的章节名称
@@ -156,10 +265,10 @@ function callBackFactory(event) {
             return copyTocUrl()
 
         // 下面的事件无法被回调结果消费
-        // case "addBookShelf":
-        //     return addBookShelf()
-        // case "delBookShelf":
-        //     return delBookShelf()
+        case "addBookShelf":
+            return addBookShelf()
+        case "delBookShelf":
+            return delBookShelf()
         case "saveRead":
             return saveRead()
         case "startRead":
