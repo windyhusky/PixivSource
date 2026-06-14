@@ -107,11 +107,15 @@ let settings = [
 
     {"💬 🚫 显示评论": "editSettings('SHOW_COMMENTS')" },
     {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
-    {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
+    {"❤️ 🚫 自动收藏": "editSettings('AUTO_LIKE_NOVELS')" },
 
+    {"🚫 🖤 自动取消": "editSettings('AUTO_DISLIKE_NOVELS')" },
+    {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
     {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
+
     {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
+    {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 
     // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
     // {"🔗 图片链接": "editSettings('PIC_LINK')" },
