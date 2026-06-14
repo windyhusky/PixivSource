@@ -17,8 +17,11 @@ let settingsBase = []
 if (BOOK) {
     settingsBase = [
         {"👀 书源设置": `editSettings('SHOW_SETTINGS2')` },
-        {"🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
+        {"🔰 使用指南": "startGithubReadme()" },
         {"✈️ 直连模式": "editSettings('IPDirect')" },
+        {"🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
+        {"❤️ 自动收藏": "editSettings('AUTO_LIKE_NOVELS')" },
+        {"🐞 调试模式": "editSettings('DEBUG')" },
     ]
 } else {
     settingsBase = [
