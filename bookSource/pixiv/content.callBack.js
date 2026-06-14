@@ -143,6 +143,51 @@ function novelBookmarkDelete() {
     }
 }
 
+function seriesWatch() {
+    let novel = getNovel()
+    let resp = getPostBody(
+        `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
+        "{}"
+    )
+    if (resp.error === true) {
+        sleepToast(`📃 追更系列\n\n⚠️ 追更【${novel.seriesTitle}】失败`, 1)
+        shareFactory("series")
+    } else {
+        putInCache(`watch${novel.seriesId}`, true)
+        sleepToast(`📃 追更系列\n\n✅ 已追更【${novel.seriesTitle}】`)
+
+        let watchedSeries = getFromCacheObject("watchedSeries")
+        watchedSeries.push(Number(novel.seriesId))
+        putInCacheObject("watchedSeries", watchedSeries)
+
+        let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+        novelObj.body.isWatched = true
+        putInCacheObject(urlSeriesDetailed(novel.seriesId), novelObj, cacheSaveSeconds)
+    }
+}
+
+function seriesUnWatch() {
+    let novel = getNovel()
+    let resp = getPostBody(
+        `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
+        "{}"
+    )
+    if (resp.error === true) {
+        sleepToast(`📃 追更系列\n\n⚠️ 取消追更【${novel.seriesTitle}】失败`, 1)
+        shareFactory("series")
+    } else {
+        cache.delete(`watch${novel.seriesId}`)
+        sleepToast(`📃 追更系列\n\n✅ 已取消追更【${novel.seriesTitle}】`)
+
+        let watchedSeries = getFromCacheObject("watchedSeries")
+        watchedSeries = watchedSeries.filter(item => item !== Number(novel.seriesId))
+        putInCacheObject("watchedSeries", watchedSeries)
+
+        let novelObj = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+        novelObj.body.isWatched = false
+        putInCacheObject(urlSeriesDetailed(novel.seriesId), novelObj, cacheSaveSeconds)
+    }
+}
 
 function shareBook() {
     let text = `我正在看：【${book.author.replace("@", "")}】创作的《${book.name}》`
