@@ -100,7 +100,6 @@ function saveRead() {
 function startShelfRefresh() {
     source.putConcurrent("18/30000")
 }
-
 function endShelfRefresh() {
     source.putConcurrent("25/5000")
 }
@@ -108,46 +107,44 @@ function endShelfRefresh() {
 function customButton(){
     java.open("login")
 }
-// function longCustomButton(){
-//     java.open("login")
-// }
-//
-// function clickBookName() {
-//     java.open("search", null, book.name)
-//     return true
-// }
-//
-// function longClickBookName() {
-//     let novel = getNovel()
-//     startBrowser(urlNovelUrl(novel.id), novel.title)
-//     return true
-// }
-//
-// function clickAuthor() {
-//     java.open("search", null, book.author)
-//     return true
-// }
-//
-// function longClickAuthor() {
-//     let novel = getNovel()
-//     startBrowser(urlUserUrl(novel.userId), novel.userName)
-//     return true
-// }
+function longCustomButton(){
+    java.open("login")
+}
+
+function clickBookName() {
+    java.open("search", null, book.name)
+    return true
+}
+function longClickBookName() {
+    let novel = getNovel()
+    startBrowser(urlNovelUrl(novel.id), novel.title)
+    return true
+}
+
+function clickAuthor() {
+    java.open("search", null, book.author)
+    return true
+}
+function longClickAuthor() {
+    let novel = getNovel()
+    startBrowser(urlUserUrl(novel.userId), novel.userName)
+    return true
+}
 
 function callBackFactory(event) {
     switch (event) {
-        // case "clickBookName":
-        //     return clickBookName()
-        // case "longClickBookName":
-        //     return longClickBookName()
-        // case "clickAuthor":
-        //     return clickAuthor()
-        // case "longClickAuthor":
-        //     return longClickAuthor()
+        case "clickBookName":
+            return clickBookName()
+        case "longClickBookName":
+            return longClickBookName()
+        case "clickAuthor":
+            return clickAuthor()
+        case "longClickAuthor":
+            return longClickAuthor()
         case "clickCustomButton":
             return customButton()
-        // case "longClickCustomButton":
-        //     return longcustomButton()
+        case "longClickCustomButton":
+            return longCustomButton()
 
         case "clickShareBook":
             return shareBook()
@@ -165,8 +162,8 @@ function callBackFactory(event) {
         //     return delBookShelf()
         case "saveRead":
             return saveRead()
-        // case "startRead":
-        //     return startRead()
+        case "startRead":
+            return saveRead()
         // case "endRead":
         //     return endRead()
         case "startShelfRefresh":
