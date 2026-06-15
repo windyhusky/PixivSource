@@ -10,7 +10,7 @@ permissions:
   pages: write
   id-token: write
 
-# 强制所有 job 的 JS actions 使用 Node 24（临时方案，直到各 action 官方升级）
+# 🌟 强迫症福音：强制所有官方与第三方 JS actions 全面进入 Node 24 时代
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
@@ -23,26 +23,34 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.repository_owner == 'DowneyRem' }}
     steps:
-      - name: Checkout
+      - name: Checkout Code
         uses: actions/checkout@v5
         with:
           fetch-depth: 0
-      - uses: pnpm/action-setup@v4
-#        with:
-#          version: 9
-      - name: Setup Node
+
+      # 1. 先把 pnpm 环境立起来
+      - name: Setup pnpm Environment
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      # 2. 🌟 官方合二为一原生缓存：设置 Node 24 的同时，原生接管 pnpm 的依赖缓存
+      # 不再依赖外部的 actions/cache，从根本上解决底层 Node API 冲突闪退问题
+      - name: Setup Node & Cache
         uses: actions/setup-node@v6
         with:
           node-version: 24
           cache: pnpm
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
+
       - name: Build with VitePress
         run: pnpm docs:build
-        env:
-          GITHUB_ACTIONS: true   # 触发 canonical 跳转注入（GitHub Actions 自动注入，此处显式声明便于阅读）
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
