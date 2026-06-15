@@ -29,7 +29,7 @@ function removeCookie() {
     cookie.removeCookie('https://accounts.google.com')
     cookie.removeCookie('https://api.weibo.com')
     cache.delete("pixivCookie")
-    cache.delete("pixiv:uid")
+    cache.delete("pixivUid")
     cache.delete("pixivCsrfToken")  // 与登录设备有关
     cache.delete("headers")
 }
@@ -325,9 +325,9 @@ function novelMarker(page) {
 
     let resp = getPostBody(
         "https://www.pixiv.net/novel/rpc_marker.php",
-        `mode=save&i_id=${novel.id}&u_id=${getFromCacheObject("pixiv:uid")}&page=${page}`
+        `mode=save&i_id=${novel.id}&u_id=${getFromCacheObject("pixivUid")}&page=${page}`
     )
-    java.log(`mode=save&i_id=${novel.id}&u_id=${getFromCacheObject("pixiv:uid")}&page=${page}`)
+    java.log(`mode=save&i_id=${novel.id}&u_id=${getFromCacheObject("pixivUid")}&page=${page}`)
     if (resp.error === true) {
         sleepToast("🏷️ 添加书签\n\n⚠️ 操作失败", 1)
         shareFactory("novel")
@@ -539,7 +539,7 @@ function splitComments(text) {
 
 function novelCommentAdd() {
     let resp, novel = getNovel()
-    let userId = getFromCacheObject("pixiv:uid")
+    let userId = getFromCacheObject("pixivUid")
     let comment = String(result.get("文本框")).trim()
     if (comment === "") {
         return sleepToast(`✅ 发送评论\n⚠️ 请在【文本框】内输入评论\n\n输入【评论内容；评论ID】可回复该条评论，如【非常喜欢；123456】`)
@@ -575,7 +575,7 @@ function novelCommentAdd() {
 }
 
 function getNovelCommentID(novelId, commentText) {
-    let list = [], uid = String(getFromCacheObject("pixiv:uid"))
+    let list = [], uid = String(getFromCacheObject("pixivUid"))
     let resp = getAjaxJson(urlNovelComments(novelId, 0, 50), true)
     resp.body.comments.forEach(comment => {
         if (comment.userId === uid && comment.comment === commentText) list.push(comment.id)

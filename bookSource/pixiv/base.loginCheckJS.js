@@ -137,7 +137,7 @@ function publicFunc() {
         cookie.removeCookie('https://accounts.google.com')
         cookie.removeCookie('https://api.weibo.com')
         cache.delete("pixivCookie")
-        cache.delete("pixiv:uid")
+        cache.delete("pixivUid")
         cache.delete("pixivCsrfToken")  // 与登录设备有关
         cache.delete("headers")
     }
@@ -602,7 +602,7 @@ function checkMessageThread(checkTimes) {
 
 // 获取请求的user id方便其他ajax请求构造
 function getPixivUid() {
-    // cache.delete("pixiv:uid")
+    // cache.delete("pixivUid")
     let pixivUid = getFromCache("pixivUid")
     if (!pixivUid) pixivUid = getFromCache("pixivUid")
 
