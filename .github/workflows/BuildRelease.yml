@@ -1,0 +1,99 @@
+name: Build Releases
+
+on:
+  push:
+    branches: ["main"]
+    tags:
+      - '[0-9]'
+      - '[0-9][0-9]'
+      - '[0-9][0-9][0-9]'
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+#          version: 9
+          run_install: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build JSON files
+        run: pnpm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: |
+            pixiv.json
+            linpx.json
+          retention-days: 30
+
+      - name: Extract Changelog
+        if: github.ref_type == 'tag'
+        run: |
+          TAG_NAME="${{ github.ref_name }}"
+          
+          # 修复：使用 -v t_name 将变量安全传给 awk，避免双引号解析死结
+          awk -v t_name="$TAG_NAME" '
+          $0 ~ "### 📚 更新 " t_name { 
+              sub(/ \{#[^}]+\}/, ""); 
+              print; 
+              flag=1; 
+              next 
+          }
+          /^##/ { if (flag) exit }
+          flag
+          ' doc/UpdateLog.md > RELEASE_NEXT.md
+          
+          # 检查提取的文件是否为空
+          if [ -s RELEASE_NEXT.md ]; then
+              echo "LOG_FOUND=true" >> $GITHUB_ENV
+              echo "--- 成功匹配到日志 ---"
+              cat RELEASE_NEXT.md
+              echo "----------------------"
+          else
+              echo "LOG_FOUND=false" >> $GITHUB_ENV
+              echo "--- Else: 未在 md 里找到对应日志，将启用 GitHub 默认生成 ---"
+              rm -f RELEASE_NEXT.md
+          fi
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        if: github.ref_type == 'tag'
+        with:
+#          title: ${{ github.ref_name }}
+          draft: false
+#          prerelease: true
+
+          # 逻辑：如果没找到对应日志 (LOG_FOUND != true)，则让 GitHub 自动生成
+          generate_release_notes: ${{ env.LOG_FOUND != 'true' }}
+
+          # 逻辑：如果找到了就读取临时文件，没找到就传递空值从而不干扰 GitHub 默认行为
+          body_path: ${{ env.LOG_FOUND == 'true' && 'RELEASE_NEXT.md' || '' }}
+
+          files: |
+            pixiv.json
+            linpx.json

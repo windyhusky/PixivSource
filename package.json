@@ -1,6 +1,7 @@
 {
   "name": "pixivsource",
   "version": "1.0.0",
+  "packageManager": "pnpm@9.0.0",
   "description": "<div align=\"center\">\r <img width=\"125\" height=\"125\" src=\"doc/pic/BookSourcePixiv.png\" alt=\"Pixiv BookSource\"/>",
   "homepage": "https://github.com/DowneyRem/PixivSource#readme",
   "bugs": {
