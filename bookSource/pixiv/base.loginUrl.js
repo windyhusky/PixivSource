@@ -6,7 +6,7 @@ function login() {
     }
 
     let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
-    {"headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
+    {headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
     if (resp.code() === 200) {
         getCsrfToken(); getCookie()
         return true
@@ -31,7 +31,7 @@ function removeCookie() {
     cache.delete("pixivCookie")
     cache.delete("pixivUid")
     cache.delete("pixivCsrfToken")  // 与登录设备有关
-    cache.delete("headers")
+    cache.delete("pixivHeaders")
 }
 
 function removeCacheList(listName) {

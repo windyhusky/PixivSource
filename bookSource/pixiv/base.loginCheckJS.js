@@ -655,7 +655,7 @@ if (result.code() === 200) {
 //     java.log(`${getWebViewUA()}\n`)
 //     java.log(`${getFromCache("pixivCsrfToken")}\n`)
 //     java.log(`${getFromCache("pixivCookie")}\n`)
-//     java.log(`${getFromCache("headers")}\n`)
+//     java.log(`${getFromCache("pixivHeaders")}\n`)
 // })
 
 java.getStrResponse(null, null)

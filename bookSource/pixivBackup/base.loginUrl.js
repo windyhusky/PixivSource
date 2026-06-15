@@ -25,7 +25,7 @@ function removeCookie() {
     cache.delete("pixivCookie")
     cache.delete("pixivUid")
     cache.delete("pixivCsrfToken")  // 与登录设备有关
-    cache.delete("headers")
+    cache.delete("pixivHeaders")
 }
 
 function removeCacheList(listName) {
