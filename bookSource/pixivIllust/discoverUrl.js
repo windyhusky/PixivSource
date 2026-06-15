@@ -11,8 +11,8 @@ li = [
     {"📃 追更": "https://www.pixiv.net/ajax/watch_list/manga?p={{page}}&new=1&lang=zh"},
     {"💯 推荐": "https://www.pixiv.net/ajax/top/illust?mode=all&lang=zh"},
     {"🔍 发现": "https://www.pixiv.net/ajax/illust/discovery?mode=all&lang=zh"},
-    {"❤️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/illusts/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"},
-    {"㊙️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixiv:uid\")}}/illusts/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=hide&lang=zh"},
+    {"❤️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixivUid\")}}/illusts/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"},
+    {"㊙️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixivUid\")}}/illusts/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=hide&lang=zh"},
     {"🏠 首页": "https://www.pixiv.net"},
     {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"}
 ]
