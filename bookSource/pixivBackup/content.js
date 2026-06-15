@@ -221,9 +221,12 @@ function getPollData(resp, content) {
     // resp.pollData.selectedValue = 0
     if (resp.pollData) {
         let text = ""
-        if (!resp.pollData.selectedValue) text = "，⚠️当前未投)\n(点击【Pixiv 小说】，打开登录界面，点击投票选项，即可参与投票"
-        let poll = `📃 问卷调查(✅${resp.pollData.total}已投${text})`
-        poll += `\n\n🔠 投票：\n${resp.pollData.question}\n`
+        let showText = util.settings.DEBUG || String(getFromCache("pixivUid")) !== resp.userId
+        if (!resp.pollData.selectedValue && showText) {
+            text = "\n\n(⚠️当前未投，点击【Pixiv 小说】，打开登录界面，点击投票选项，即可参与投票)"
+        }
+        let poll = `📃 问卷调查(✅${resp.pollData.total}已投)
+        ${text}\n\n🔠 投票：\n${resp.pollData.question}\n`
 
         resp.pollData.choices.forEach((choice, i) => {
             if ( i+1 === Number(resp.pollData.selectedValue)) {
