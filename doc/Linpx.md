@@ -24,12 +24,28 @@ head:
       content: 用开源阅读 Legado + Linpx 书源，无需登录即可搜索、发现、阅读 Linpx 的兽人小说，支持搜索小说名称、作者、标签以及导入链接。
 
 repos:
-  - name: Linpx 书源
-    icon: /img/BookSourceLinpx.png
-    desc: PixivSource 书源子项目
+  - name: Pixiv 书源 / PixivSource
+    icon: /img/BookSourcePixiv.png
+    desc: 最好的 Pixiv 小说阅读器
     link: https://github.com/DowneyRem/PixivSource
     prerelease: false
-    recommend: linpx
+    recommend: pixiv
+    show_assets: 1
+
+  - name: 阅读 Sigma
+    icon: /img/LegadoSigma.png
+    desc: 极致阅读体验 免费开源电子书阅读器
+    link: https://gitee.com/lyc486/legado
+    prerelease: false
+    recommend: releaseS.apk
+    show_assets: 1
+
+  - name: 轻悦时光
+    icon: /img/QYSG.png
+    desc: 纯本地的多端兼容阅读器
+    link: https://github.com/autobcb/qysg
+    prerelease: false
+    recommend: ios 64 win mac
     show_assets: 1
 
 ---

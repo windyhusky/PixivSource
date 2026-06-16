@@ -35,6 +35,22 @@ repos:
     recommend: pixiv
     show_assets: 1
 
+  - name: 阅读 Sigma
+    icon: /img/LegadoSigma.png
+    desc: 极致阅读体验 免费开源电子书阅读器
+    link: https://gitee.com/lyc486/legado
+    prerelease: false
+    recommend: releaseS.apk
+    show_assets: 1
+
+  - name: 轻悦时光
+    icon: /img/QYSG.png
+    desc: 纯本地的多端兼容阅读器
+    link: https://github.com/autobcb/qysg
+    prerelease: false
+    recommend: ios 64 win mac
+    show_assets: 1
+
 ---
 
 <script setup>

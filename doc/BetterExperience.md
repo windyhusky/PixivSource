@@ -12,7 +12,21 @@ description: 彻底解决 Pixiv 官方软件的痛点！从认识开源阅读，
 #comment: false
 #friendlink: false
 
-repos:    
+head:
+  - - meta
+    - name: keywords
+      content: 臻享阅读, Pixiv 书源新手教程, 开源阅读 Legado 入门, Pixiv 小说书架, Legado Pixiv 配置, Pixiv 小说阅读器, Legado Pixiv 书源, 开源阅读配置
+  - - meta
+    - property: og:title
+      content: ✨ 臻享阅读 - 开源阅读 + Pixiv 书源 新手使用指南
+  - - meta
+    - property: og:description
+      content: 彻底解决 Pixiv 官方软件的痛点！从认识开源阅读，到导入书源、登录账号、开始使用，彻底告别 Pixiv 官方软件的阅读功能缺陷，找回阅读的纯粹乐趣。
+  - - meta
+    - property: og:image
+      content: /pic/BookSourcePixiv.png
+
+repos:
   - name: Pixiv 书源 / PixivSource
     icon: /img/BookSourcePixiv.png
     desc: 最好的 Pixiv 小说阅读器
@@ -28,28 +42,14 @@ repos:
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1
-    
-#  - name: 轻悦时光
-#    icon: /img/QYSG.png
-#    desc: 纯本地的多端兼容阅读器
-#    link: https://github.com/autobcb/qysg
-#    prerelease: false
-#    recommend: ios 64 win mac
-#    show_assets: 1
-
-head:
-  - - meta
-    - name: keywords
-      content: 臻享阅读, Pixiv 书源新手教程, 开源阅读 Legado 入门, Pixiv 小说书架, Legado Pixiv 配置, Pixiv 小说阅读器, Legado Pixiv 书源, 开源阅读配置
-  - - meta
-    - property: og:title
-      content: ✨ 臻享阅读 - 开源阅读 + Pixiv 书源 新手使用指南
-  - - meta
-    - property: og:description
-      content: 彻底解决 Pixiv 官方软件的痛点！从认识开源阅读，到导入书源、登录账号、开始使用，彻底告别 Pixiv 官方软件的阅读功能缺陷，找回阅读的纯粹乐趣。
-  - - meta
-    - property: og:image
-      content: /pic/BookSourcePixiv.png
+  
+  - name: 轻悦时光
+    icon: /img/QYSG.png
+    desc: 纯本地的多端兼容阅读器
+    link: https://github.com/autobcb/qysg
+    prerelease: false
+    recommend: ios 64 win mac
+    show_assets: 1
 ---
 
 <script setup>
