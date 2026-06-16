@@ -161,7 +161,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ## 功能对比
 > [!TIP]
 >
-> **Pixiv 官方 APP 与 Pixiv 书源（开源阅读）的功能对比**
+> **Pixiv 官方 APP 与 Pixiv 书源（开源阅读）的功能对比**，完整版详见：
+> [功能对比](FunctionComparison.md)
 
 ### 📖 阅读体验
 | 功能 | Pixiv App | Pixiv 书源 |
@@ -219,7 +220,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 |:---------|:----------|:---------------------------|
 | **付费功能** | 💰 会员功能   | 🆓 免费使用                    |
 | **备份数据** | ❌ 无       | 🅿️ 备份登录状态<br>✅ 备份书源配置     |
-| **直连模式** | ❌ 无       | ✅ 支持(开源阅读)<br> ❌ 不支持(轻悦时光) |
+| **直连模式** | ❌ 无       | ✅ 支持(开源阅读)<br>❌ 不支持(轻悦时光) |
 | **软件更新** | ❌ 无       | ✅ 阅读软件<br>✅ 书源更新           |
 
 
