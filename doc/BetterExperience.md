@@ -12,6 +12,31 @@ description: 彻底解决 Pixiv 官方软件的痛点！从认识开源阅读，
 #comment: false
 #friendlink: false
 
+repos:    
+  - name: Pixiv 书源 / PixivSource
+    icon: /img/BookSourcePixiv.png
+    desc: 最好的 Pixiv 小说阅读器
+    link: https://github.com/DowneyRem/PixivSource
+    prerelease: false
+    recommend: pixiv
+    show_assets: 1
+  
+  - name: 阅读 Sigma
+    icon: /img/LegadoSigma.png
+    desc: 极致阅读体验 免费开源电子书阅读器
+    link: https://gitee.com/lyc486/legado
+    prerelease: false
+    recommend: releaseS.apk
+    show_assets: 1
+    
+#  - name: 轻悦时光
+#    icon: /img/QYSG.png
+#    desc: 纯本地的多端兼容阅读器
+#    link: https://github.com/autobcb/qysg
+#    prerelease: false
+#    recommend: ios 64 win mac
+#    show_assets: 1
+
 head:
   - - meta
     - name: keywords
@@ -67,8 +92,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 你是否被下面的问题所困扰？ {#Trouble}
-### 官方 APP 的小说阅读体验堪忧 {#OfficialAPPTrouble}
-<details><summary><strong> 👎 阅读体验堪忧 </strong></summary>
+### 👎 官方 APP 的小说阅读体验堪忧 {#OfficialAPPTrouble}
+<details><summary><strong> 官方软件阅读体验堪忧 </strong></summary>
 
 - 小说功能缺陷
   - **没有小说书架**
@@ -85,8 +110,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 </details>
 
 
-### 第三方 APP 的小说阅读体验不佳 {#UnOfficialAPPTrouble}
-<details><summary><strong> 😞 阅读体验不佳 </strong></summary>
+### 😞 第三方 APP 的小说阅读体验不佳 {#UnOfficialAPPTrouble}
+<details><summary><strong> 第三方软件阅读体验不佳 </strong></summary>
 
 - <details><summary> 🈚️ 无小说功能 </summary>
 
@@ -114,8 +139,13 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 **迄今为止（2025.12），上述软件的小说阅读体验，依然没有一个超过了 Pixiv**
 
 
-## 你是否想改善阅读体验呢？<br>如果你的回答是“是的”<br>那么你可能需要：{#Question}
+### 你是否想改善阅读体验呢？<br>如果你的回答是「是的」<br>那么你可能需要：{#Question}
+<div align="center">
+
 ## 开源阅读 + Pixiv 书源 {#RepoIntroduction}
+<img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+</div>
+
 > [!NOTE]
 >
 > **我们的目标：做最好的 Pixiv 的小说阅读器**
