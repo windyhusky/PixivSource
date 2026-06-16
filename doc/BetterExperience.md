@@ -80,10 +80,12 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
+### ⚡️ 快速跳转
 > [!TIP]
 > 
 > **面向新手的完整配置指南，彻底解决 Pixiv 官方软件的痛点！**
 > 
+> [⚡️ 点我立即开始配置](#StartNow)；
 > **另有：极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)
 > 
@@ -145,7 +147,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 #### 你将获得：堪比网络小说的阅读体验
 
 
-## 功能对比
+## 功能对比 {#FunctionComparison.md}
 > [!TIP]
 >
 > **Pixiv 官方 APP 与 Pixiv 书源（开源阅读）的功能对比**，完整版详见：
@@ -211,7 +213,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | **软件更新** | ❌ 无 | ✅ 阅读软件<br>✅ 书源更新 |
 
 
-## 立即开始
+## 立即开始 {#StartNow}
 > [!TIP]
 > **只需3个步骤，即可拥有上述功能：**
 > 1. ▶️ **[安装阅读软件](#DownloadLegado)** 
