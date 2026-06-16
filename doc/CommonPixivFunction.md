@@ -160,6 +160,7 @@
 ![img](./pic/PixivPollText2.png)
 
 
+## 屏蔽功能 {#Block}
 ### 🚫 屏蔽作者 {#BlockAuthor}
 > [!NOTE]
 >
@@ -194,6 +195,16 @@
 - 3️⃣ 点击【查看屏蔽】按钮，会切换屏蔽列表，并显示屏蔽内容
 
 ![img](./pic/PixivLoginUIBlockWords2.png)
+
+
+### 🚫 隐藏收藏 & 隐藏追更 {#HideNovels}
+> [!TIP]
+>
+> **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录**
+
+![img](./pic/PixivLoginUISettings.png)
+- ❤️ 隐藏收藏：搜索发现 显示/隐藏 收藏单篇小说
+- 📃 隐藏追更：搜索发现 显示/隐藏 追更系列小说
 
 
 ## 自定义发现 {#CustomizationDiscover}
