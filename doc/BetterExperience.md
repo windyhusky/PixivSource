@@ -91,9 +91,9 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [🅿️ Pixiv 书源 功能手册](Pixiv.md)
 
 
-## 你是否被下面的问题所困扰？ {#Trouble}
-### 👎 官方 APP 的小说阅读体验堪忧 {#OfficialAPPTrouble}
-<details><summary><strong> 官方软件阅读体验堪忧 </strong></summary>
+## 为什么需要 Pixiv 书源？
+### 👎 Pixiv App 更适合看图，而不是看小说
+<details><summary><strong>查看详细说明</strong></summary>
 
 - 小说功能缺陷
   - **没有小说书架**
@@ -110,52 +110,39 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 </details>
 
 
-### 😞 第三方 APP 的小说阅读体验不佳 {#UnOfficialAPPTrouble}
-<details><summary><strong> 第三方软件阅读体验不佳 </strong></summary>
-
-- <details><summary> 🈚️ 无小说功能 </summary>
-
-  - [PixEz Viewer](https://github.com/ultranity/Pix-EzViewer)
-  - [Pi Pixiv](https://github.com/darriousliu/PiPixiv)
-  </details>
-
-- <details><summary> 👎 阅读体验明显不如 Pixiv </summary>
-
-  - [Pixiv Shaft](https://github.com/CeuiLiSA/Pixiv-Shaft) 
-  - [Pixiv Artvier](https://github.com/kerrinz/pixiv-artvier) 
-  - [Pixes](https://github.com/wgh136/pixes)
-  </details>
-
-- <details><summary> 😞 阅读体验略逊色于 Pixiv </summary>
-
-  - [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)
-  - [Pixiv Multi Platform](https://github.com/magic-cucumber/Pixiv-MultiPlatform)
-  - [Pixiv Viewer](https://github.com/asadahimeka/pixiv-viewer)
-  </details>
-</details>
-
-> 软件整理自 https://linux.do/t/topic/657910
-
-**迄今为止（2025.12），上述软件的小说阅读体验，依然没有一个超过了 Pixiv**
-
-
-### 你是否想改善阅读体验呢？<br>如果你的回答是「是的」<br>那么你可能需要：{#Question}
-<div align="center">
-
-## 开源阅读 + Pixiv 书源 {#RepoIntroduction}
-<img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
-</div>
+### 😞 现有 第三方 App 不能满足重度小说阅读需求
+<details><summary><strong>调研软件列表</strong></summary>
 
 > [!NOTE]
->
-> **我们的目标：做最好的 Pixiv 的小说阅读器**
+> **调研时间：2025.12**
 > 
-> **经过充分的调研，此目标已在 2025.12 实现**
+> 软件列表：https://linux.do/t/topic/657910
 
+#### 🈚️ 无小说功能
+- [PixEz Viewer](https://github.com/ultranity/Pix-EzViewer)
+- [Pi Pixiv](https://github.com/darriousliu/PiPixiv)
+
+#### 👎 阅读体验明显不如 Pixiv
+- [Pixiv Shaft](https://github.com/CeuiLiSA/Pixiv-Shaft)
+- [Pixiv Artvier](https://github.com/kerrinz/pixiv-artvier)
+- [Pixes](https://github.com/wgh136/pixes)
+
+#### 😞 阅读体验略逊色于 Pixiv
+- [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)
+- [Pixiv Multi Platform](https://github.com/magic-cucumber/Pixiv-MultiPlatform)
+- [Pixiv Viewer](https://github.com/asadahimeka/pixiv-viewer)
+</details>
+
+
+#### 有没有更好的选择？
+### 🅿️ 开源阅读 + Pixiv 书源
+> [!NOTE]
+>
+> **我们的目标：做最好的 Pixiv 小说阅读器**
+>
+> **经过充分调研、持续迭代与用户反馈，此目标已在 2025.12 实现**
 
 #### 你将获得：堪比网络小说的阅读体验
-> [!IMPORTANT]
-> 使用 **开源阅读 + Pixiv 书源**，彻底摆脱官方 App 的限制，获得舒适的 Pixiv 小说阅读体验
 
 
 ## 功能对比
