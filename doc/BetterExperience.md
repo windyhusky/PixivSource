@@ -220,6 +220,9 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 2. ➕ **[导入 Pixiv 书源](#ImportSources)** 
 > 3. 🅿️ **[登录 Pixiv 账号](#BookSourceSet)** 
 > 4. 📖 **[畅享阅读](#EnjoyReading)**
+> 
+> **另有：极简配置指南：**
+> [⚡️ 快速开始](QuickStart.md)
 
 <!--@include: CommonDownload.md-->
 

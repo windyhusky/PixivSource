@@ -12,7 +12,6 @@
 
 像常规阅读软件一样，开源阅读 也有：书架、搜索、发现、我的 等页面
 
-
 ### 📚 书架页面 {#Shelf}
 添加小说后如图：
 ![img](./pic/LegadoBookShelf.png)
@@ -36,11 +35,15 @@
 > [!IMPORTANT]
 >
 > **设置中的这两项非常重要**，稍后讲解：
->  - **【书源管理】** 查看 [书源管理](#BookSourceSet)
+>  - **【书源管理】** 查看 [书源管理](#BookSourceManage)
 >  - **【备份与恢复】** 查看 [备份与恢复](#WebdavBackup)
 
+### ⚙️ 书源管理 {#BookSourceManage}
+**书源管理：（导入）添加、修改、删除书源**
+![img.png](./pic/LegadoBookSourceManage.png)
 
-## 概念介绍 {#SourceIntroduction}
+
+## 书源介绍 {#SourceIntroduction}
 ### 📚 书源 {#BookSource}
 > [!NOTE]
 >
@@ -54,7 +57,6 @@
 - 有【起点】书源，就可以看 起点网文
 - 有【番茄】书源，就可以看 番茄小说
 - 有【Pixiv】书源，就可以看 Pixiv 小说
-
 
 ### 🌐 订阅源 {#RssSource}
 > [!NOTE]
