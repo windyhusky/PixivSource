@@ -1,4 +1,15 @@
 ## 软件介绍 {#LegadoIntroduction}
+### 📖 开源阅读 {#Legado}
+阅读指 [**Legado / 开源阅读**](https://github.com/Luoyacheng/legado) 这一开源阅读软件
+
+> [!NOTE]
+>
+> **阅读是一个特殊的浏览器，通过特定规则【书源/订阅源】访问网页，并进行重新排版**
+>
+> **简而言之，【阅读】就是个工具，并不提供任何小说内容。**
+>
+> 转自：[**阅读常见问题解答**](https://mp.weixin.qq.com/s/5EO-TuqYfDrK-bFk78vd3g)
+
 像常规阅读软件一样，开源阅读 也有：书架、搜索、发现、我的 等页面
 
 ### 📚 书架页面 {#Shelf}
@@ -29,18 +40,6 @@
 
 
 ## 概念介绍 {#SourceIntroduction}
-### 📖 开源阅读 {#Legado}
-阅读指 [**Legado / 开源阅读**](https://github.com/Luoyacheng/legado) 这一开源阅读软件
-
-> [!NOTE]
->
-> **阅读是一个特殊的浏览器，通过特定规则【书源/订阅源】访问网页，并进行重新排版**
->
-> **简而言之，【阅读】就是个工具，并不提供任何小说内容。**
->
-> 转自：[**阅读常见问题解答**](https://mp.weixin.qq.com/s/5EO-TuqYfDrK-bFk78vd3g)
-
-
 ### 📚 书源 {#BookSource}
 > [!NOTE]
 >
