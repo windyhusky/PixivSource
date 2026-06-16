@@ -77,10 +77,10 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美** 
 
 
+## [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
+### ⚡️ 快速跳转
 > [!TIP]
-> **🐯 FurryNovel 书源 全功能使用手册**
->
-> **另有：新手配置指南：**
+> **新手配置指南：**
 > [✨臻享阅读](BetterExperience.md)；
 > **极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)；
@@ -88,14 +88,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **另有：**
 > [🅿️ Pixiv 书源 功能手册](Pixiv.md)；
 > [🦊 Linpx 书源 功能手册](Linpx.md)
-
-
-## [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
-
-> [!NOTE]
-> **🐯 FurryNovel 书源 新手配置指南，详见：**
-> [⚡️ 快速开始](QuickStart.md)，
-> **重复内容不再赘述**
 >
 > **快速跳转：
 > 🔍 [搜索小说](#)；
@@ -110,6 +102,9 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <!--@include: CommonDownload.md-->
 
 <!--@include: CommonImport.md-->
+</div>
+
+<div v-if="false">
 
 ## 书源配置 {#BookSourceSet}
 <!--@include: CommonLoginLinpx.md-->
@@ -118,7 +113,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 </div>
 
 
-## 近期更新 {#Latest}
+### ⏱️ 近期更新 {#Latest}
 <DownloadCard/>
 
 

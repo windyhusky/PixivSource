@@ -81,17 +81,24 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
+## [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
+### ⚡️ 快速跳转
 > [!TIP]
-> **🅿️ Pixiv 书源 全功能使用手册**
-> 
-> **另有：新手配置指南：**
+> **新手配置指南：**
 > [✨臻享阅读](BetterExperience.md)；
 > **极简配置指南：**
 > [⚡️ 快速开始](QuickStart.md)，
 > **重复内容不再赘述**
+> 
+> **快速跳转：
+> 🔍 [搜索小说](#SearchNovel)；
+> ⭐️ [发现小说](#DiscoverNovel)；
+> 🔗 [添加网址](#AddUrl)；
+> 🌐 [订阅源](#RssSource)；
+> ⚙️ [️设置功能](#Settings)；
+> ⏺ [互动功能](#Interact)**
 
 
-## [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 ### ⚠️ 使用须知 {#Notice}
 > [!CAUTION]
 > #### ⚠️ 使用本书源造成的一切损失均由【使用者】自行承担
@@ -134,24 +141,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > #### 但依然不建议在书架上添加过多小说
 
 
+<div v-if="false">
 <!--@include: CommonDownload.md-->
 
 <!--@include: CommonImport.md-->
-
-
-> [!NOTE]
-> **🅿️ Pixiv 书源 新手配置指南，详见：**
-> [✨臻享阅读](BetterExperience.md)，
-> **重复内容不再赘述**
-> 
-> **快速跳转：
-> 🔍 [搜索小说](#SearchNovel)；
-> ⭐️ [发现小说](#DiscoverNovel)；
-> 🔗 [添加网址](#AddUrl)；
-> 🌐 [订阅源](#RssSource)；
-> ⚙️ [️设置功能](#Settings)；
-> ⏺ [互动功能](#Interact)**
-
+</div>
 
 <div v-if="false">
 <!--@include: CommonPixiv.md-->
@@ -160,7 +154,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 </div>
 
 
-## 近期更新 {#Latest}
+### ⏱️ 近期更新 {#Latest}
 <DownloadCard/>
 
 
