@@ -63,13 +63,19 @@
 >
 > **这里提供的订阅源类似于浏览器书签，可以在阅读软件（订阅界面）内快速访问相关网站**
 
-
-### 🚀 导入书源 & 订阅源 {#ImportSources}
+### 🚀 导入书源 {#ImportSources2}
 - **书源、订阅源的内部数据不同，添加源（网络导入、规则订阅）的时候需要区分**
 - 这里使用的是**一键导入，不需要区分二者**
 
-<!--@include: CommonImport.md-->
+> [!IMPORTANT]
+>
+> **点击下方链接，一键导入书源、订阅源**
+>
+> 🅿️ [一键导入 Pixiv 书源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
+>
+> 🐲 [一键导入 Pixiv 订阅源](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json)
+>
+> **更多导入方法详见：** [如何导入书源](./ImportBookSource.md)
 
 - 一般来说，书源开发者**同时提供书源和订阅源的话，最好都要导入**
 - **这样才能保证最佳的使用体验**
-

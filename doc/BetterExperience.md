@@ -256,6 +256,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 <!--@include: CommonDownload.md-->
 
+<!--@include: CommonImport.md-->
+
 <!--@include: CommonIntroduction.md-->
 
 <!--@include: CommonPixiv.md-->
