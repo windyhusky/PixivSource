@@ -44,6 +44,8 @@
 
 
 ## 书源介绍 {#SourceIntroduction}
+<details><summary><strong> 查看详细介绍 </strong></summary>
+
 ### 📚 书源 {#BookSource}
 > [!NOTE]
 >
@@ -64,4 +66,4 @@
 > 「订阅源类似于RSS，甚至可以听音乐看视频」
 >
 > **这里提供的订阅源类似于浏览器书签，可以在阅读软件（订阅界面）内快速访问相关网站**
-
+</details>
