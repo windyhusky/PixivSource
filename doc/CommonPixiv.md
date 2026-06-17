@@ -3,7 +3,7 @@
 <!--@include: CommonLoginPixiv.md-->
 
 
-### 🔞 浏览范围（可选）{R18Settings}
+### 🔞 浏览范围（可选）{#ViewSettings}
 > [!TIP]
 > ##### 如果你已经开启了 R18 设置，则可以跳过这一步
 

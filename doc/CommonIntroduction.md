@@ -12,20 +12,20 @@
 
 像常规阅读软件一样，开源阅读 也有：书架、搜索、发现、我的 等页面
 
-### 📚 书架页面 {#Shelf}
+### 📚 书架页面 {#ShelfPage}
 添加小说后如图：
 ![img](./pic/LegadoBookShelf.png)
 
-### 🔎 搜索页面 {#Search}
+### 🔎 搜索页面 {#SearchPage}
 添加书源后如图：
 ![img](./pic/SearchViaLegado.png)
 
-### ⭐️ 发现页面 {#discover}
+### ⭐️ 发现页面 {#DiscoverPage}
 添加书源后如图：
 
 ![img](./pic/LegadoDiscover.png)
 
-### 👤 我的页面 {#Mine}
+### 👤 我的页面 {#MyPage}
 多数阅读软件的我的页面都有登录账号
 
 与常规阅读软件不同，【开源阅读】的我的页面，最上面却是【书源管理】

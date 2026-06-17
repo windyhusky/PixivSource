@@ -88,6 +88,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **Pixiv 书源 全部功能 详见：**
 > [🅿️ Pixiv 书源 功能手册](Pixiv.md)
 
+### ⚡️ 快速跳转 {#QuickJump}
 
 ## ⚡️ 快速开始：[下载阅读](QuickStart#DownloadLegado) => [导入书源](QuickStart#ImportSources) => [书源配置](QuickStart#LoginAccount) => [阅读设置](QuickStart#LegadoSettings) {#QuickStart}
 ## 下载软件 {#DownloadAPP}

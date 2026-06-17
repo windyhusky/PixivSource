@@ -80,7 +80,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
-### ⚡️ 快速跳转
+### ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
 > 
 > **面向新手的完整配置指南，彻底解决 Pixiv 官方软件的痛点！**
@@ -93,8 +93,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [🅿️ Pixiv 书源 功能手册](Pixiv.md)
 
 
-## 为什么需要 Pixiv 书源？
-### 👎 Pixiv App 更适合看图，而不是看小说
+## 为什么需要 Pixiv 书源？ {#WhyPixivSource}
+### 👎 Pixiv App 更适合看图，而不是看小说 {#Unsuitable}
 <details><summary><strong>查看详细说明</strong></summary>
 
 - 小说功能缺陷
@@ -112,7 +112,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 </details>
 
 
-### 😞 现有 第三方 App 不能满足重度小说阅读需求
+### 😞 现有 第三方 App 不能满足重度小说阅读需求 {#Unsuitable2}
 <details><summary><strong>调研软件列表</strong></summary>
 
 > [!NOTE]
@@ -136,8 +136,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 </details>
 
 
-#### 有没有更好的选择？
-### 🅿️ 开源阅读 + Pixiv 书源
+#### 有没有更好的选择？ {#BetterChoice}
+### 🅿️ 开源阅读 + Pixiv 书源 {#Legado&PixivSource}
 > [!NOTE]
 >
 > **我们的目标：做最好的 Pixiv 小说阅读器**
@@ -153,7 +153,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **Pixiv 官方 APP 与 Pixiv 书源（开源阅读）的功能对比**，完整版详见：
 > [功能对比](FunctionComparison.md)
 
-### 📖 阅读体验
+### 📖 阅读体验 {#ReadingExperience}
 | 功能 | Pixiv App | Pixiv 书源 |
 |------|-----------|-----------|
 | **小说书架** | ❌ 无 | ✅ 支持 |
@@ -165,7 +165,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | **纯净无广** | 💰 会员功能 | ✅ 纯净无广 |
 
 
-### ▶️ 互动功能
+### ▶️ 互动功能 {#InteractFunction}
 | 功能 | Pixiv App | Pixiv 书源 |
 |------|-----------|-----------|
 | **收藏小说** | ☑️ 支持 | ✅ 支持（可选：添加书架时自动收藏） |
@@ -174,7 +174,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | **投票功能** | ✅ 支持 | ✅ 支持 |
 
 
-### 🔍 搜索功能
+### 🔍 搜索功能 {#SearchFunction}
 | 功能 | Pixiv App | Pixiv 书源 |
 |------|-----------|-----------|
 | **搜索标签** | ☑️ 默认 | ✅ 默认搜索 |
@@ -183,7 +183,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | **繁简通搜** | ❌ 无 | ✅ 支持 |
 
 
-### ⭐️ 发现功能
+### ⭐️ 发现功能 {#DiscoverFunction}
 | 功能 | Pixiv App | Pixiv 书源 |
 |------|-----------|-----------|
 | **关注作者** | ✅ 支持 | ✅ 支持 |
@@ -194,7 +194,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | **他人收藏** | ❌ 无 | ✅ 支持 |
 
 
-### 🚫 小说过滤
+### 🚫 小说过滤 {#NovelFilter}
 | 功能 | Pixiv App | Pixiv 书源 |
 |------|-----------|-----------|
 | **屏蔽作者** | 💰 会员功能 | 🆓 免费支持 |
@@ -204,7 +204,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | **隐藏追更** | ❌ 无 | ✅ 支持 |
 
 
-### ⏺️ 其他功能
+### ⏺️ 其他功能 {#OtherFunctions}
 | 功能 | Pixiv App | Pixiv 书源 |
 |------|-----------|-----------|
 | **付费功能** | 💰 会员功能 | 🆓 免费使用 |
@@ -233,9 +233,5 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <!--@include: CommonPixiv.md-->
 
 <!--@include: CommonLegado.md-->
-
-<div v-if="false">
-<!--@include: CommonPixivFunction.md-->
-</div>
 
 <!--@include: CommonSuffix.md-->
