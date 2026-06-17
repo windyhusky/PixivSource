@@ -152,7 +152,7 @@
 <details><summary> 📢 鸣谢 </summary>
 
 ### 鸣谢
-- ☕️ [Pixiv 书源项目 打赏名单](./doc/Sponsor.md)
+- ☕️ [Pixiv 书源项目 打赏名单](https://pixivsource.pages.dev/Sponsor)
 - 感谢 [阅读 3.0](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [阅读 Sigma](https://github.com/Luoyacheng/legado) 提供的软件平台
 - 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
@@ -170,40 +170,6 @@
   )，并修复了部分 Bug
 - 感谢 [@SuCan127](https://github.com/SuCan127) 测试【源阅】的兼容性
 - 感谢 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，这是他的兽人小说分享频道 [@FurryReading](https://t.me/FurryReading)
-</details>
-
-<details><summary> ☑️ To Do </summary>
-
-### To Do
-- ~~Linpx 系列小说书源（上游不支持）~~
-<details><summary> ✅ 已完成 </summary>
-
-- ✅ Linpx 订阅源
-- ✅ Pixiv 订阅源（使用JS注入，代码来自【聚合搜索】）
-- ✅ 兽人控小说站 订阅源
-- ✅ Pixiv 书源：关注作者的最新小说 https://github.com/DowneyRem/PixivSource/issues/11
-- ✅ Linpx 书源：推荐作者的近期小说
-- ✅ Pixiv 书源：通过作品ID添加插画
-- ✅ Linpx 书源：通过作品ID添加插画（使用 pixiv.cat ）
-- ✅ Pixiv 书源：添加网址加入书架；订阅源添加到书架
-- ✅ Pixiv 书源：追更列表 https://github.com/DowneyRem/PixivSource/issues/14
-- ✅ Pixiv 书源：排行榜 https://github.com/DowneyRem/PixivSource/issues/13
-- ✅ Pixiv 系列小说 书源 
-- ✅ Pixiv 书源：完善字数统计 https://github.com/DowneyRem/PixivSource/issues/18
-- ✅ Pixiv 书源：显示更多信息 https://github.com/DowneyRem/PixivSource/issues/17
-- ✅ Pixiv & Linpx 书源：添加小说更新时间
-- ✅ Pixiv & Linpx 书源：搜索作者
-- ✅ import 订阅源：导入其他书源、订阅源
-- ✅ Pixiv & Linpx 书源：添加小说章节字数
-- ✅ Pixiv 书源：正文尾部加入小说评论
-- ✅ Linpx 书源：搜索链接
-- ✅ Pixiv & Linpx 书源：添加链接
-- ✅ 兽人控小说站 书源
-- ✅ 书源发现：更新书源和订阅源
-- ✅ 订阅源：导入/更新书源
-- ✅ Pixiv 漫画书源：搜索、详情、目录、正文
-- ✅ Pixiv & Linpx & 兽人控小说站 书源：繁简通搜
-</details>
 </details>
 
 
