@@ -1,5 +1,5 @@
-## 🍖 [投喂打赏](Sponsor.md) {#Sponsor}
-<DragonChat name="唐尼瑞姆" badge="🐲" icon="🐲">
+## 🍖 [投喂打赏](Sponsor.md#Sponsor) {#Sponsor}
+<DragonChat name="唐尼瑞姆" icon="🐲">
 
 <strong>如果书源帮到了你，欢迎投喂本龙（开发者）。</strong><br>
 <strong>你的鼓励是持续更新的动力～</strong>
@@ -14,12 +14,12 @@
 </DragonChat>
 
 
-<div v-if="pagePath !== 'Sponsor'">
-<Sponsor :qrs ="[]"/>
+<div v-if="pagePath === 'Sponsor'">
+  <Sponsor/>
 </div>
 
-<div v-if="pagePath === 'Sponsor'">
-<Sponsor/>
+<div v-else>
+  <Sponsor :qrs="[]"/>
 </div>
 
 
