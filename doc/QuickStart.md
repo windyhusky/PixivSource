@@ -79,18 +79,23 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
+## ⚡️ 快速开始 {#QuickJump}
 > [!TIP]
-> **没有复杂的概念，五分钟即可完成配置。即刻开始，享受极致阅读体验**
+> **只需4个步骤，5分钟完成配置。即刻开始，享受极致阅读体验**
 > 
+> ▶️ **[下载阅读](#DownloadLegado) =>**
+> ➕ **[导入书源](#ImportSources) =>**
+> 🅿️ **[书源配置](#BookSourceSet) =>**
+> ⚙️ **[阅读设置](#LegadoSettings) =>**
+> 📖 **[畅享阅读](#EnjoyReading)**
+> <br><br>
 > **另有：面向新手，从零开始的完整配置指南：**
 > [✨臻享阅读](BetterExperience.md)
 > 
 > **Pixiv 书源 全部功能 详见：**
 > [🅿️ Pixiv 书源 功能手册](Pixiv.md)
 
-### ⚡️ 快速跳转 {#QuickJump}
 
-## ⚡️ 快速开始：[下载阅读](QuickStart#DownloadLegado) => [导入书源](QuickStart#ImportSources) => [书源配置](QuickStart#LoginAccount) => [阅读设置](QuickStart#LegadoSettings) {#QuickStart}
 ## 下载软件 {#DownloadAPP}
 <!--@include: CommonDownload.md-->
 
