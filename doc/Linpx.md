@@ -78,7 +78,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## [Linpx](http://www.furrynovel.ink) 是第三方 Pixiv 小说镜像站，主要内容为【兽人小说】
-### ⚡️ 快速跳转
+### ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
 > **新手配置指南：**
 > [✨臻享阅读](BetterExperience.md)；
@@ -123,7 +123,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **书架页面 - 放大镜 - 输入关键词 - 搜索小说**
 
 
-### 🔎 搜索小说
+### 🔎 搜索小说 {#SearchNovels}
 > [!TIP]
 > **✅ 支持搜索：小说名称、作者名称、小说标签、小说链接**
 > 
@@ -132,7 +132,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegado.png)
 
 
-### 🀄️ 繁简通搜
+### 🀄️ 繁简通搜 {#ConvertChinese}
 > [!TIP]
 > **【默认搜索】进行繁简转换，同时返回繁体简体小说内容，可在书源设置中关闭**
 >
@@ -145,7 +145,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoConvert.jpg)
 
 
-### 👤 搜索作者
+### 👤 搜索作者 {#SearchAuthor}
 > [!TIP]
 > **搜索作者（格式：`@作者名称`）** 
 > 
@@ -154,7 +154,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoAuthor.jpg)
 
 
-### #️⃣ 标签专搜
+### #️⃣ 标签专搜 {#SearchTag}
 > [!TIP]
 > **标签专搜（格式：`#标签1` 或 `#标签1 标签2`）**
 >
@@ -171,11 +171,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **发现页面 - 点击“Linpx” - 点击按钮**
 
 
-### ⭐️ 常规小说
+### ⭐️ 常规小说 {#DiscoverNormal}
 ![img](./pic/DiscoverLinpx.png)
 
 
-### 🆙 更新书源
+### 🆙 更新书源 {#UpdateSource}
 > [!NOTE]
 >
 > **点击按钮【🆙 更新】进入书源更新界面**
@@ -189,7 +189,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 添加网址 {#AddUrl}
-### 🔗 添加网址
+### 🔗 添加网址 {#AddViaUrl}
 > [!NOTE]
 >
 > **书架 - 菜单 - 添加网址 - 粘贴小说链接**
@@ -197,12 +197,12 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **可以同时添加多个小说的链接**
 
 
-### ⏺️ 实际操作
+### ⏺️ 实际操作 {#Operation}
 ![img](./pic/AddBookViaUrl1.png)
 ![img](./pic/AddBookViaUrl2.png)
 ![img](./pic/AddBookViaUrl3.png)
 
-### 🔗 支持链接
+### 🔗 支持链接 {#SupportedLinks}
 支持 Linpx 多个格式的网址链接：
 - Linpx 小说链接
 ```
@@ -225,7 +225,7 @@ https://furrynovel.ink/pixiv/user/119908520
 > 订阅界面，打开 Linpx 订阅源
 
 
-### ⬇️ 导入书源
+### ⬇️ 导入书源 {#ImportSource}
 ![img](./pic/InportBookSourceLinpxWeb.png)
 
 - 点击按钮，导入书源；再次点击，则可更新书源
@@ -234,13 +234,13 @@ https://furrynovel.ink/pixiv/user/119908520
 ![img](./pic/InportBookSourceLinpx.png)
 
 
-### 🔍 站内搜索
+### 🔍 站内搜索 {#SearchViaSite}
 受阅读设计的限制，阅读内部搜索不可能完全支持 Linpx 的功能。网站的搜索功能更加全面。
 
 ![img](./pic/SearchViaLinpx.png)
 
 
-### 🔜 链接转换
+### 🔜 链接转换 {#ConvertLinks}
 阅读内部浏览器内打开 Linpx，搜索栏中粘贴 Pixiv 小说链接，即可进入对应页面
   
 ![img](./pic/LinpxConvertPixivUrl1.png)
@@ -248,7 +248,7 @@ https://furrynovel.ink/pixiv/user/119908520
 ![img](./pic/LinpxConvertPixivUrl2.png)
 
 
-### ➕ 添加小说
+### ➕ 添加小说 {#AddViaSite}
 打开 Linpx 小说页面，点击【添加到书架】按钮，即可添加小说到书架
   
 ![img](./pic/AddBookViaLinpx.png)
@@ -262,7 +262,7 @@ https://furrynovel.ink/pixiv/user/119908520
 ![img](./pic/LinpxLogin.png)
 
 
-### ▶️ 基础功能
+### ▶️ 基础功能 {#SettingsBase}
 > [!NOTE]
 >
 > **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
@@ -273,7 +273,7 @@ https://furrynovel.ink/pixiv/user/119908520
 - 🐞 反馈问题：打开 Github Issues
 
 
-### ⚙️ 书源设置
+### ⚙️ 书源设置 {#SettingsSource}
 > [!NOTE]
 >
 > **⚙️ 书源设置 => 我的 - 书源管理 - Linpx - 登录**
@@ -297,7 +297,7 @@ https://furrynovel.ink/pixiv/user/119908520
 
 
 ## 互动功能 {#Interact}
-### ⏺ 互动功能
+### ⏺ 互动功能 {#InteractFunction}
 > [!NOTE]
 >
 > **⏺ 互动功能 => 书架 - 小说阅读界面 - Linpx - 登录**

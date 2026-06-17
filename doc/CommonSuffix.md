@@ -20,4 +20,4 @@
 <!--@include: CommonSponsor.md-->
 
 
-## 🐲 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供
+## 🐲 本教程由兽人阅读频道 [@FurryReading](https://t.me/FurryReading) 提供 {#FurryReading}

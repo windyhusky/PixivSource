@@ -82,7 +82,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
-### ⚡️ 快速跳转
+### ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
 > **新手配置指南：**
 > [✨臻享阅读](BetterExperience.md)；
@@ -164,14 +164,14 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **书架页面 - 放大镜 - 输入关键词 - 搜索小说**
 
 
-### 🔍 搜索小说
+### 🔎 搜索小说 {#SearchNovels}
 > [!TIP]
 > ✅ 默认搜索：同时搜索**小说名称、系列小说名称、标签**
 
 ![img](./pic/SearchViaLegado.png)
 
 
-### 🀄️ 繁简通搜
+### 🀄️ 繁简通搜 {#ConvertChinese}
 > [!TIP]
 > **【默认搜索】进行繁简转换，同时返回繁体简体小说内容，可在书源设置中关闭**
 > 
@@ -184,7 +184,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoConvert.jpg)
 
 
-### ➖ 排除标签
+### ➖ 排除标签 {#ExcludeTags}
 > [!TIP]
 > **格式：`标签1 -标签2` `标签1 -标签2 -标签3`**
 > 
@@ -198,7 +198,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoExclude.jpg)
 
 
-###  ➕ 多选标签
+###  ➕ 多选标签 {#MultipleTags}
 > [!TIP]
 > **多选标签（格式：`标签1 or 标签2` `标签1 or 标签2 or 标签3`）**
 > 
@@ -212,7 +212,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoUnion.jpg)
 
 
-###  👤 搜索作者(模糊)
+###  👤 搜索作者(模糊) {#SearchAuthorFuzzy}
 > [!TIP]
 > **模糊搜索作者（格式：`$作者名称`）**
 > 
@@ -225,7 +225,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoAuthor.png)
 
 
-###  👤 搜索作者(精确)
+###  👤 搜索作者(精确) {#SearchAuthorExact}
 > [!TIP]
 > **精确搜索作者（格式：`@作者名称`）**
 > 
@@ -238,7 +238,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoAuthor.jpg)
 
 
-###  #️⃣ 标签专搜
+### #️⃣ 标签专搜 {#SearchTag}
 > [!TIP]
 > **标签专搜（格式：`#标签1` 或 `#标签1 标签2`）**
 > 
@@ -251,7 +251,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoHashtag.jpg)
 
 
-###  ⏬ 字数过滤
+###  ⏬ 字数过滤 {#LengthFilter}
 > [!TIP]
 > **字数过滤（格式：`关键词 字数3k`）** 
 > 
@@ -267,7 +267,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoWordCountFilter2.jpg)
 
 
-###  🔝 高级搜索
+###  🔝 高级搜索 {#AdvancedSearch}
 > [!TIP]
 > **上述搜索规则基本可以共同使用**，~~发挥你的想象力，自由组合吧~~
 > 
@@ -286,7 +286,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **发现页面 - 点击“Pixiv 小说” - 点击按钮**
 
 
-### ⭐️ 常规小说
+### ⭐️ 常规小说 {#DiscoverNormal}
 ![img](./pic/DiscoverPixiv.jpg)
 > [!TIP]
 >
@@ -297,7 +297,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 可在 **发现设置** 中修改【💼 常规小说】
 
 
-### 🆙 更新书源
+### 🆙 更新书源 {#UpdateSource}
 > [!NOTE]
 >
 > **💼 常规小说 的发现按钮中，点击按钮【🆙 更新】进入书源更新界面**
@@ -310,7 +310,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 >  - Codeberg 更新免代理
 
 
-### 🆕 最新企划
+### 🆕 最新企划 {#NewProgect}
 ![img](./pic/DiscoverPixivNew.png)
 > [!TIP]
 > 
@@ -321,7 +321,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 可在 **发现设置** 中修改【🔞 最新企划】【💼 最新企划】
 
 
-### 👑 小说排行
+### 👑 小说排行 {#Ranking}
 ![img](./pic/DiscoverPixivRanking.png)
 > [!TIP]
 >
@@ -332,7 +332,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 可在 **发现设置** 中修改【🔞 排行榜单】【💼 排行榜单】
 
 
-### 🔥 原创热门
+### 🔥 原创热门 {#Trending}
 ![img](./pic/DiscoverPixivHot.png)
 > [!TIP]
 >
@@ -343,7 +343,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 >  可在 **发现设置** 中修改【🔞 原创热门】【💼 原创热门】
 
 
-### 📌 [喜欢标签](#LikeTags)
+### 📌 [喜欢标签](#LikeTags) {#LikeTagsDiscover}
 ![img](./pic/DiscoverPixivLikeTags.png)
 > [!TIP]
 > 
@@ -352,7 +352,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 
 
-### ❤️ [他人收藏](#LikeAuthors)
+### ❤️ [他人收藏](#LikeAuthors) {#LikeAuthorsDiscover}
 ![img](./pic/DiscoverPixivLikeAuthors.jpg)
 > [!TIP]
 >
@@ -362,20 +362,20 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 添加网址 {#AddUrl}
-### 🔗 添加网址
+### 🔗 添加网址 {#AddViaUrl}
 > [!NOTE]
 >
 > **书架 - 菜单 - 添加网址 - 粘贴小说链接**
 > 
 > **可以同时添加多个小说的链接**
 
-### ⏺️ 实际操作
+### ⏺️ 实际操作 {#Operation}
 ![img](./pic/AddBookViaUrl1.png)
 ![img](./pic/AddBookViaUrl2.png)
 ![img](./pic/AddBookViaUrl3.png)
 
 
-### 🔗 支持链接
+### 🔗 支持链接 {#SupportedLinks}
 支持 Pixiv 多个格式的网址链接：
 - Pixiv 单篇小说链接
 ```
@@ -397,12 +397,11 @@ https://www.pixiv.net/users/16721009
 
 
 ## 订阅源 {#RssSource}
-### 🌐 订阅源
 > [!NOTE]
 > 
 > 订阅界面，打开 Pixiv 订阅源
 
-### ⬇️ 导入书源
+### ⬇️ 导入书源 {#ImportSource}
 ![img](./pic/InportBookSourcePixivWeb.png)
 
 - 点击按钮，导入书源；再次点击，则可更新书源
@@ -411,13 +410,13 @@ https://www.pixiv.net/users/16721009
 ![img](./pic/InportBookSourcePixiv.png)
 
 
-###  🔍 站内搜索
+### 🔍 站内搜索 {#SearchViaSite}
 Pixiv 网站的搜索功能更加全面，可以替代阅读搜索
 
 ![img](./pic/SearchViaPixiv.png)
 
 
-###  ➕ 添加小说
+### ➕ 添加小说 {#AddViaSite}
 在阅读内部浏览器内打开 Pixiv 小说/系列小说页面，【刷新】，点击【加入书架】按钮添加小说到书架
 
 - 小说正文页，添加小说到书架

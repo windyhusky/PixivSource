@@ -78,7 +78,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
-### ⚡️ 快速跳转
+### ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
 > **新手配置指南：**
 > [✨臻享阅读](BetterExperience.md)；
@@ -123,14 +123,14 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **书架页面 - 放大镜 - 输入关键词 - 搜索小说**
 
 
-### 🔎 搜索小说
+### 🔎 搜索小说 {#SearchNovels}
 > [!TIP]
 > **✅ 支持搜索：小说名称、系列小说名称、作者名称、小说标签**
 
 ![img](./pic/SearchViaLegado.png)
 
 
-### 🀄️ 繁简通搜
+### 🀄️ 繁简通搜 {#ConvertChinese}
 > [!TIP]
 > **【默认搜索】进行繁简转换，同时返回繁体简体小说内容，可在书源设置中关闭**
 >
@@ -143,7 +143,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/SearchViaLegadoConvert.jpg)
 
 
-### 👤 搜索作者
+### 👤 搜索作者 {#SearchAuthor}
 > [!TIP]
 > **兼容搜索格式：`@作者名称`**
 > 
@@ -152,7 +152,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 # ![img](./pic/SearchViaLegadoAuthor.jpg)
 
 
-### #️⃣ 标签专搜
+### #️⃣ 标签专搜 {#SearchTag}
 > [!TIP]
 > **兼容搜索格式：`@作者名称`，并无实际功能**
 >
@@ -167,11 +167,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **发现页面 - 点击“兽人控小说站” - 点击按钮**
 
 
-### ⭐️ 常规小说
+### ⭐️ 常规小说 {#DiscoverNormal}
 ![img](./pic/DiscoverFurryNovel.png)
 
 
-### ⏬ 筛选发现
+### ⏬ 筛选发现 {#DiscoverFilter}
 1️⃣ 发现 - 长按 **"兽人小说站"** - 编辑 - 右上角菜单 - 设置源变量
 
 ![img](./pic/SetSourceVariable0.png)
@@ -187,7 +187,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/DiscoverFurryNovelSort.png)
 
 
-### 🆙 更新书源
+### 🆙 更新书源 {#UpdateSource}
 > [!NOTE]
 >
 > **点击按钮【🆙 更新】进入书源更新界面**
@@ -201,7 +201,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 添加网址 {#AddUrl}
-### 🔗 添加网址
+### 🔗 添加网址 {#AddViaUrl}
 > [!NOTE]
 >
 > **书架 - 菜单 - 添加网址 - 粘贴小说链接**
@@ -209,13 +209,13 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **可以同时添加多个小说的链接**
 
 
-### ⏺️ 实际操作
+### ⏺️ 实际操作 {#Operation}
 ![img](./pic/AddBookViaUrl1.png)
 ![img](./pic/AddBookViaUrl2.png)
 ![img](./pic/AddBookViaUrl3.png)
 
 
-### 🔗 支持链接
+### 🔗 支持链接 {#SupportedLinks}
 支持 兽人控小说站 多个格式的网址链接：
 - 兽人控小说站 目录链接
 ```
@@ -232,7 +232,7 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 > 订阅界面，打开 兽人控小说站 订阅源
 
 
-### ⬇️ 导入书源
+### ⬇️ 导入书源 {#ImportSource}
 ![img](./pic/InportBookSourceFurryNovelWeb.png)
 
 - 点击按钮，导入书源；再次点击，则可更新书源
@@ -241,19 +241,19 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 ![img](./pic/InportBookSourceLinpx.png)
 
 
-### 🔍 站内搜索
+### 🔍 站内搜索 {#SearchViaSite}
 受阅读设计的限制，阅读内部搜索不可能完全支持 兽人控小说站 的功能。网站的搜索功能更加全面。
 
 ![img](./pic/SearchViaFurryNovel.png)
 
 
-### ⭐️ 站内发现
+### ⭐️ 站内发现 {#DiscoverViaSite}
 阅读内部浏览器打开 兽人控小说站，即可使用 书源未完成的功能
 
 ![img](./pic/FurryNovelRaces.png)
 
 
-### ➕ 添加小说
+### ➕ 添加小说 {#AddViaSite}
 在阅读内部浏览器内打开 兽人控小说站 小说页面，点击【添加到书架】按钮即可添加小说到书架
 
 ![img](./pic/AddBookViaFurryNovel1.png)
@@ -269,7 +269,7 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 ![img](./pic/LinpxLogin.png)
 
 
-### ▶️ 基础功能
+### ▶️ 基础功能 {#SettingsBase}
 > [!NOTE]
 >
 > **⚙️ 书源设置 => 我的 - 书源管理 - 兽人控小说站 - 登录**
@@ -280,7 +280,7 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 - 🐞 反馈问题：打开 Github Issues
 
 
-### ⚙️ 书源设置
+### ⚙️ 书源设置 {#SettingsSource}
 > [!NOTE]
 >
 > **⚙️ 书源设置 => 我的 - 书源管理 - 兽人控小说站 - 登录**
@@ -304,7 +304,7 @@ https://furrynovel.com/zh/novel/8312/chapter/33116
 
 
 ## 互动功能 {#Interact}
-### ⏺ 互动功能
+### ⏺ 互动功能 {#InteractFunction}
 > [!NOTE]
 >
 > **⏺ 互动功能 => 书架 - 小说阅读界面 - 兽人控小说站 - 登录**
