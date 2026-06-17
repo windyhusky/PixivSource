@@ -24,11 +24,20 @@ head:
       content: 喜欢 PixivSource 书源？欢迎打赏支持开发者，赞助者将加入感谢名单、专属社区，并获得新功能投票权。
 ---
 
+<script setup>
+import { computed } from "vue";
+import { useData } from "vitepress";
+
+const { page } = useData();
+const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
+</script>
+
+
 <div align="center">
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
-# ☕ 支持开发 ☕
+# 🍖 投喂打赏 🍖
 </div>
 
 
@@ -48,27 +57,7 @@ head:
 > [⚡️快速开始](QuickStart.md) **将有助于你的分享**
 
 
-## 🍖 投喂打赏
-<DragonChat avatar="https://www.github.com/DowneyRem.png"
-name="唐尼瑞姆" badge="🐲" icon="🐲">
-<strong>如果书源帮到了你，欢迎投喂本龙（开发者）。</strong><br>
-<strong>你的鼓励是持续更新的动力～</strong>
-<div class="quote-area">
-你将获得：<br>
-· <strong>加入感谢名单，公开鸣谢</strong><br>
-· <strong>加入专属社区，书源反馈群</strong><br>
-· <strong>赞助书源项目的上游开发者</strong><br>
-· <strong>解锁幕后内容，了解开发书源的点滴</strong><br>
-· <strong>新功能投票权，新功能参考你的意见</strong><br>
-</div>
-</DragonChat>
-
-<Sponsor/>
-
-> [!IMPORTANT] 
-> 
-> **可在【留言】中留下【书源】和【你的ID/昵称】，以便统计打赏名单，
-> 详见：[打赏详情](https://downeyrem.github.io/Sponsor)**
+<!--@include: CommonSponsor.md-->
 
 
 ## 💶 项目赞助

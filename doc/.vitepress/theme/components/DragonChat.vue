@@ -1,5 +1,5 @@
 <template>
-  <div class="dragon-chat-container">
+  <div :class="['dragon-chat-container', { 'align-right': align === 'right' }]">
     <div class="avatar-wrapper">
       <img :src="withBase(avatar)" :alt="name" class="avatar-img" />
       <div class="avatar-badge">{{ badge }}</div>
@@ -27,6 +27,7 @@ defineProps({
   name: { type: String, default: '' },
   badge: { type: String, default: '' },
   icon: { type: String, default: '' },
+  align: { type: String, default: 'left' }
 })
 </script>
 
@@ -42,6 +43,11 @@ defineProps({
   max-width: 600px;
   /* 建议添加：适配默认主题的文字颜色 */
   color: var(--vp-c-text-1);
+}
+
+/* 当设为右侧时，反转 flex 容器的主轴方向 */
+.dragon-chat-container.align-right {
+  flex-direction: row-reverse;
 }
 
 .avatar-wrapper {
