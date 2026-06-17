@@ -3,7 +3,7 @@ import DefaultTheme from "vitepress/theme"
 import "vitepress-markdown-timeline/dist/theme/index.css" // 引入时间线样式
 import giscusTalk from 'vitepress-plugin-comment-with-giscus'
 import { useData, useRoute } from 'vitepress'
-
+import { useRegisterSW } from 'virtual:pwa-register/vue'
 
 import { h, watch } from "vue"
 import BackToTop from "./components/BackToTop.vue"
@@ -49,6 +49,7 @@ export default {
 
     setup() {
         // Get frontmatter and route
+        const { needRefresh, updateServiceWorker } = useRegisterSW()
         const { frontmatter } = useData()
         const route = useRoute()
 

@@ -1,4 +1,5 @@
 import { defineConfig, type HeadConfig } from "vitepress"
+import { withPwa } from '@vite-pwa/vitepress'
 import timeline from "vitepress-markdown-timeline"
 import { writeFileSync, readdirSync, statSync } from 'fs'
 import { resolve, relative } from 'path'
@@ -21,7 +22,7 @@ const BLOG = "https://downeyrem.pages.dev/"
 
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig({
+export default withPwa(defineConfig({
     lang: "zh-CN",
     title: "Pixiv 书源",
     description: "适配 开源阅读 Legado 3.0 的 Pixiv 书源",
@@ -331,5 +332,48 @@ export default defineConfig({
                 console.log(`\n\x1b[32m✓\x1b[0m 已成功生成 _redirects 文件，包含 ${rules.length} 条大小写重定向规则。`)
             }
         }
-    }
-})
+    },
+
+    pwa: {
+        outDir: '.vitepress/dist',
+        base: BASE,
+        registerType: 'autoUpdate',
+        includeAssets: ['favicon.png', 'favicon-180x180.png', 'favicon-192x192.png'],
+        manifest: {
+            name: 'Pixiv 书源',
+            short_name: 'PixivSource',
+            description: '适配 开源阅读 Legado 3.0 的 Pixiv 书源',
+            theme_color: '#009ff7',
+            background_color: '#ffffff',
+            display: 'standalone',
+            start_url: BASE,
+            scope: BASE,
+            icons: [
+                {
+                    src: 'favicon-192x192.png',
+                    sizes: '192x192',
+                    type: 'image/png',
+                },
+                {
+                    src: 'favicon-192x192.png',
+                    sizes: '192x192',
+                    type: 'image/png',
+                    purpose: 'maskable',
+                },
+                {
+                    src: 'favicon-180x180.png',
+                    sizes: '180x180',
+                    type: 'image/png',
+                },                {
+                    src: 'favicon-512x512.png',
+                    sizes: '512x512',
+                    type: 'image/png',
+                },
+            ],
+
+        workbox: {
+            globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
+            maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        },
+    },
+}))
