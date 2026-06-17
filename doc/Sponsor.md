@@ -48,7 +48,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
-## ⤴️ 分享书源
+## ⤴️ 分享书源 {#Share}
 > [!TIP]
 > **最简单的方法**
 > **——向你的亲朋好友分享 Pixiv 书源**
@@ -60,20 +60,20 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <!--@include: CommonSponsor.md-->
 
 
-## 💶 项目赞助
+## 💶 项目赞助 {#SupportedProjects}
 > [!TIP]
 > 
 > **本项目的赞助项目，赞助记录详见：[打赏详情](https://downeyrem.github.io/Sponsor/Source)**
 
 
-### 📅 定期赞助
+### 📅 定期赞助 {#Regularly}
 - [Linpx](https://www.furrynovel.ink) （2023年起，每年 ￥100）
-### 🔀 不定期赞助
+### 🔀 不定期赞助 {#Irregularly}
 - [阅读 Sigma](https://github.com/Luoyacheng/legado) （洛娅橙）
 - [阅读 Beta](https://beta.miaogongzi.cc) （喵公子）
 
 
-## ⌨️ 帮助名单
+## ⌨️ 帮助名单 {#HelperList}
 > [!TIP]
 >
 > **按帮助本项目的先后顺序排名**
@@ -87,4 +87,4 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 - 阅读书源开发群的诸位开发者
 
 
-## 🙏 感谢上方诸位的帮助
+## 🙏 感谢上方诸位的帮助 {#Thanks}

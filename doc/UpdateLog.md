@@ -53,8 +53,8 @@ repos:
 <DownloadCard/>
 
 
-## 📚 旧版书源兼容性
-### 🅿️ Pixiv 书源
+## 📚 书源兼容性 {#Compatibility}
+### 🅿️ Pixiv 书源 {#Pixiv}
 | 导入链接 | 更新时间 | 阅读 Beta | 
 | ------ | ------- | -------- | 
 | [最新版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |            | 新包名 3.26.0216 |
@@ -67,7 +67,7 @@ repos:
 
 <details><summary><strong> 🦊 Linpx 书源 </strong></summary>
 
-### 🦊 Linpx 书源
+### 🦊 Linpx 书源 {#Linpx}
 | 导入链接 |更新时间 | 阅读 Beta | 
 | ------ | ------ | --------- |
 | [最新版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)|           | 新包名 3.25.1224 |

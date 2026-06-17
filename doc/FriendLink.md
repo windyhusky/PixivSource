@@ -111,7 +111,7 @@ friendGroups:
 <FriendLink />
 
 
-### 🏠 本站信息
+### 🏠 本站信息 {#SiteInformation}
 ```yaml
 - name: Pixiv 书源
   link: https://pixivsource.pages.dev/
@@ -119,7 +119,7 @@ friendGroups:
   desc: 最好的 Pixiv 小说阅读器
 ```
 
-### ➕ 添加友链
+### ➕ 添加友链 {#AddFriendLink}
 > [!NOTE]
 > 目前仅接受 **开源阅读相关资源站点** 添加友情链接
 > 
