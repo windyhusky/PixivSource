@@ -10,7 +10,7 @@ description: 用开源阅读 Legado + Linpx 书源，无需登录即可搜索、
 #prev: false
 #next: false
 #comment: false
-#friendlink: false
+#friendLink: false
 
 head:
   - - meta

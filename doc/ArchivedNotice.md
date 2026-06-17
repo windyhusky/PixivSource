@@ -10,7 +10,7 @@ description: 归档声明
 #prev: false
 #next: false
 #comment: false
-#friendlink: false
+#friendLink: false
 ---
 
 <div align="center">

@@ -10,7 +10,7 @@ description: 在开源阅读 Legado 中配置 WebDAV 远程书籍：设置本地
 #prev: false
 #next: false
 #comment: false
-#friendlink: false
+#friendLink: false
 
 head:
   - - meta

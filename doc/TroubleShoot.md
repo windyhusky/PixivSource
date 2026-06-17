@@ -10,7 +10,7 @@ description: 故障排查与处理
 #prev: false
 #next: false
 #comment: false
-#friendlink: false
+#friendLink: false
 ---
 
 <div align="center">

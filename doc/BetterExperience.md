@@ -10,7 +10,7 @@ description: 彻底解决 Pixiv 官方软件的痛点！从认识开源阅读，
 #prev: false
 #next: false
 #comment: false
-#friendlink: false
+#friendLink: false
 
 head:
   - - meta

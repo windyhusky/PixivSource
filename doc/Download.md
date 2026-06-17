@@ -10,7 +10,7 @@ description: 开源阅读 Legado 全平台下载指南：Android 推荐阅读 Si
 #prev: false
 #next: false
 #comment: false
-#friendlink: false
+#friendLink: false
 
 head:
   - - meta

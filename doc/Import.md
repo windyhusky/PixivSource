@@ -10,7 +10,7 @@ lastUpdated: false
 prev: false
 next: false
 comment: false
-#friendlink: false
+#friendLink: false
 
 head:
   - - meta

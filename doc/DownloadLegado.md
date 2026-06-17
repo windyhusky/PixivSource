@@ -10,7 +10,7 @@ lastUpdated: false
 prev: false
 next: false
 comment: false
-#friendlink: false
+#friendLink: false
 
 legadoRepos:
   - name: 阅读 Sigma

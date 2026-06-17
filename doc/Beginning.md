@@ -10,7 +10,7 @@ description: Pixiv 书源项目起源
 prev: false
 next: false
 #comment: false
-#friendlink: false
+#friendLink: false
 
 ---
 

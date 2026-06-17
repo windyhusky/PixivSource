@@ -10,7 +10,7 @@ description: 五分钟完成配置：下载阅读、一键导入 Pixiv/Linpx/BTS
 #prev: false
 #next: false
 #comment: false
-#friendlink: false
+#friendLink: false
 
 head:
   - - meta

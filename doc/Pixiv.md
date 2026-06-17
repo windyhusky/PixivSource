@@ -10,7 +10,7 @@ description: 深度解析 Pixiv 书源用法：高级搜索、发现设置、收
 #prev: false
 #next: false
 #comment: false
-#friendlink: false
+#friendLink: false
 
 head:
   - - meta
