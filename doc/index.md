@@ -93,17 +93,17 @@ features:
   - icon: 📖
     title: 书源功能全面
     details: 🔍搜索小说 ⭐️发现小说<br>🔗添加网址 🌐订阅源
-    link: Pixiv#All
+    link: Pixiv#QuickJump
     
   - icon: 📚
     title: 阅读体验完善
     details: 搜索：📄单篇📚系列👤作者<br>查看：🖼插图✅投票💬评论
-    link: Pixiv#All
+    link: Pixiv#QuickJump
     
   - icon: ⭐️
     title: 互动功能齐全
     details: ❤️收藏📃追更⭐️关注<br>✅投票💬评论🚫屏蔽
-    link: BetterExperience#InteractiveFunction
+    link: Pixiv#InteractiveFunction
     
   - icon: ✈️
     title: 直连无需代理

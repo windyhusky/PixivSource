@@ -4,9 +4,8 @@
 >
 > **【开源阅读】没有账号体系，不能在登录书源网站的同时恢复数据**
 >
-> **需要配置 Webdav 服务，才能从云端恢复数据**
->
-> **详见：[备份与恢复](WebdavBackup.md)**
+> **需要配置 Webdav 服务，才能从云端恢复数据，详见：**
+> **[备份与恢复](WebdavBackup.md)**
 
 
 ### 🔄 关闭刷新 {#TurnOffAutoRefresh}
@@ -30,7 +29,6 @@
 ### ☁️ [远程书籍](RemoteBooks.md)（可选） {#RemoteBooks}
 > [!TIP]
 >
-> **使用支持 Webdav 的网盘，阅读网盘上的书籍**
->
-> **详见：[远程书籍](RemoteBooks.md)**
+> **使用支持 Webdav 的网盘，阅读网盘上的书籍，详见：**
+> **[远程书籍](RemoteBooks.md)**
 
