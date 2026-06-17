@@ -52,8 +52,8 @@ head:
 > [⚡️ 快速开始](QuickStart.md)
 
 
-## 远程书籍
-### 📂 设置保存目录
+## 远程书籍 {#RemoteBooks}
+### 📂 设置保存目录 {#SetSaveFolder}
 **打开软件，点击书架右上角菜单，点击远程书籍**
 
 ![img](./pic/RemoteBooksSettings0.png)
@@ -71,7 +71,7 @@ head:
 ![img](./pic/SaveFileSettings2.png)
 
 
-### ☁️ 远程书籍配置
+### ☁️ 远程书籍配置 {#SetInfomation}
 **书架菜单 - 远程书籍 - 右上角三点菜单 - 服务器配置 - 加号 - 添加服务器配置信息**
 
 ![img](./pic/RemoteBooksSettings0.png)
@@ -99,7 +99,7 @@ head:
 ![img](./pic/RemoteBooksSettings5.png)
 
 
-### 🐺 兽人小说分享
+### 🐺 兽人小说分享 {#FurryNovels}
 
 > [!TIP]
 > 
@@ -123,7 +123,7 @@ head:
 </details>
 
 
-### 👀 查看远程书籍
+### 👀 查看远程书籍 {#ReadRemoteBooks}
 
 刷新，查看文件
 

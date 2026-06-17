@@ -61,7 +61,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [⚡️ 快速开始](QuickStart.md)
 
 
-## 获取书源、订阅源
+## 获取书源、订阅源 {#GetSources}
 - [Legado | 开源阅读 | 频道](https://t.me/legado_channels)
 - [源仓库](https://www.yckceo.com/yuedu/shuyuan/index.html)
 - [Yiove 书源仓库](https://shuyuan.yiove.com)
@@ -70,7 +70,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 - [阅读 APP 源](https://legado.aoaostar.com)
 
 
-## 导入书源
+## 导入书源 {#ImportBookSource}
 
 <!--@include: CommonImportMethod.md-->
 

@@ -67,13 +67,13 @@ head:
 > 坚果云每月有 1G 免费流量，备份阅读数据已经足够了。
 
 
-## 配置坚果云
-### 🌰 注册坚果云
+## 配置坚果云 {#SetJianguoYun}
+### 🌰 注册坚果云 {#SignUp}
 打开 [坚果云 创建账号](https://www.jianguoyun.com/d/signup) ，输入 **你的邮箱，设置密码，注册账号**
 
 ![img](./pic/JianGuoYun0.png)
 
-### 🛠 配置坚果云
+### 🛠 配置坚果云 {#Settings}
 #### 1. 在右上角点击【用户名】，选择【账户信息】
 ![img](./pic/JianGuoYun1.png)
 
@@ -92,8 +92,8 @@ head:
 - WebDav 密码：（**刚刚生成的应用密码**）
 
 
-## 设置备份信息
-### ⚙️ 设置备份信息
+## 设置备份信息 {#SetBackupInfomation}
+### ⚙️ 设置备份信息 {#SetBackup}
 #### 1. 进入备份与恢复
 **主界面 - 我的 - 设置 - 备份与恢复**
 
@@ -116,7 +116,7 @@ head:
 > **请一定要填入【你自己的】 Webdav 账户信息，不然会导致数据泄露（并且还是你亲手造成的）**
 
 
-### 📂 设置备份目录
+### 📂 设置备份目录 {#SetBackupPath}
 **点击备份路径，设置备份目录**
 
 ![img.png](./pic/WebdavBackup2.png)
@@ -134,7 +134,7 @@ head:
 ![img](./pic/SaveFileSettings2.png)
 
 
-### 💾 自动备份
+### 💾 自动备份 {#AutoBackup}
 > [!TIP]
 > 
 > **完成 WebDav 备份设置后，每次退出 APP 即会自动备份**
@@ -144,11 +144,11 @@ head:
 > **同一天的备份会覆盖，不同日期的备份不会覆盖**
 
 
-## 备份与恢复
+## 备份与恢复 {#Backup&Restore}
 ![img.png](./pic/WebdavBackup2.png)
 
 
-### ⬆️ 备份数据
+### ⬆️ 备份数据 {#Backup}
 **备份与恢复，点击【备份】即可备份数据**
 > [!TIP]
 > 
@@ -157,7 +157,7 @@ head:
 > **如果备份失败，请手动在坚果云根目录新建文件夹"legado"，然后再备份**
 
 
-### ⬇️ 恢复数据
+### ⬇️ 恢复数据 {#Restore}
 **备份与恢复，点击【恢复】，选择需要恢复的备份文件，即可恢复数据**
 
 ![img](./pic/WebdavBackup3.png)

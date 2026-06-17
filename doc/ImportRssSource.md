@@ -66,6 +66,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **重复内容不再赘述**
 
 
-## 导入订阅源
+## 导入订阅源 {#ImportRssSorce}
 
 <!--@include: CommonImportMethod.md-->
