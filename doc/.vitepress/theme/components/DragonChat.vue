@@ -40,6 +40,7 @@ const AVATAR_POOL = [
   { img: './DowneyRemLeft1.png', align: 'right' },
   { img: './DowneyRemLeft2.png', align: 'right' },
   { img: './DowneyRemLeft3.png', align: 'right' },
+  { img: './DowneyRemLeft4.png', align: 'right' }
 ]
 
 // 随机抽中的索引
