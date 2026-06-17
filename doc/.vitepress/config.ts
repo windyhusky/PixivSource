@@ -370,7 +370,23 @@ export default withPwa(defineConfig({
                     type: 'image/png',
                 },
             ],
-
+            screenshots: [
+                {
+                    src: 'screenshot-wide.png',
+                    sizes: '1280x750',
+                    type: 'image/png',
+                    form_factor: 'wide',
+                    label: 'Pixiv 书源 - 桌面版',
+                },
+                {
+                    src: 'screenshot-mobile.png',
+                    sizes: '390x760',
+                    type: 'image/png',
+                    form_factor: 'narrow',
+                    label: 'Pixiv 书源 - 移动版',
+                },
+            ],
+        },
         workbox: {
             globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
             maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
