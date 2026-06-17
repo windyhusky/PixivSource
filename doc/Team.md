@@ -113,6 +113,7 @@ teamGroups:
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # 🛠️ 开发团队 🛠️
+#### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 </div>
 
 
