@@ -63,8 +63,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <img width="150" height="150" src="./pic/BookSourceFurryNovel.png" alt="FurryNovel BookSource"/>
 <br>
 
-# FurryNovel 书源 功能手册
-### 🐯 [开源阅读](https://github.com/Luoyacheng/legado) FurryNovel 书源
+# [兽人控小说站](https://www.furrynovel.com) 书源 功能手册
+#### 🐯 [开源阅读](https://github.com/Luoyacheng/legado) 兽人控小说站 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 </div>
 
@@ -76,17 +76,13 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美** 
 
 
-## [兽人控小说站](https://www.furrynovel.com) 收录了 Pixiv, Bilibili 的大部分兽人小说
 ### ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
 > **新手配置指南：**
 > [✨臻享阅读](BetterExperience.md)；
 > **极简配置指南：**
-> [⚡️ 快速开始](QuickStart.md)；
-> 
-> **另有：**
-> [🅿️ Pixiv 书源 功能手册](Pixiv.md)；
-> [🦊 Linpx 书源 功能手册](Linpx.md)
+> [⚡️ 快速开始](QuickStart.md)，
+> **重复内容不再赘述**
 >
 > **快速跳转：
 > 🔍 [搜索小说](#)；
@@ -95,6 +91,10 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 🌐 [订阅源](#RssSource)；
 > ⚙️ [️设置功能](#Settings)；
 > ⏺ [互动功能](#Interact)**
+> 
+> **另有：**
+> 🅿️ [Pixiv 书源 功能手册](Pixiv.md)；
+> 🦊 [Linpx 书源 功能手册](Linpx.md)
 
 
 <div v-if="false">

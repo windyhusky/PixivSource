@@ -66,7 +66,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 
-# Pixiv 书源 功能手册
+# [Pixiv](https://www.pixiv.net) 书源 功能手册
 #### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 </div>
@@ -79,7 +79,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
-## [Pixiv](https://www.pixiv.net) 是以插图、漫画、小说为中心的艺术网站
 ### ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
 > **新手配置指南：**

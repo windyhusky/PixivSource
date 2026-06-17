@@ -77,7 +77,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
-## ⚡️ 快速开始 {#QuickJump}
+### ⚡️ 快速开始 {#QuickJump}
 > [!TIP]
 > **只需4个步骤，5分钟完成配置。即刻开始，享受极致阅读体验**
 > 
