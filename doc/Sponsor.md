@@ -47,6 +47,7 @@ head:
 > [✨臻享阅读](BetterExperience.md)、
 > [⚡️快速开始](QuickStart.md) **将有助于你的分享**
 
+
 ## 🍖 投喂打赏
 <DragonChat avatar="https://www.github.com/DowneyRem.png"
 name="唐尼瑞姆" badge="🐲" icon="🐲">
@@ -67,7 +68,7 @@ name="唐尼瑞姆" badge="🐲" icon="🐲">
 > [!IMPORTANT] 
 > 
 > **可在【留言】中留下【书源】和【你的ID/昵称】，以便统计打赏名单，
-> 详见：[打赏详情](https://downeyrem.github.io/Sponsor/Source)**
+> 详见：[打赏详情](https://downeyrem.github.io/Sponsor)**
 
 
 ## 💶 项目赞助

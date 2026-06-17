@@ -40,8 +40,9 @@ const props = defineProps({
   links: {
     type: Array,
     default: () => [
-      { text: '爱发电', icon: '💜', url: 'https://afdian.com/a/DowneyRem', color: '#946ce6' },
+      { text: '爱发电', icon: '❤️', url: 'https://afdian.com/a/DowneyRem', color: '#946ce6' },
       { text: '引力圈', icon: '💫', url: 'https://app.unifans.io/c/downeyrem', color: '#28235b' },
+      { text: 'GitHub Sponsors', icon: '🐙', url: 'https://github.com/sponsors/DowneyRem', color: '#000000' },
       { text: 'Buy me a Coffee', icon: '☕️', url: 'https://ko-fi.com/downeyrem', color: '#ff5f5f' },
     ]
   },
