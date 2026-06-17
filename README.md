@@ -1,5 +1,5 @@
 <div align="center">
-<img width="150" height="150" src="doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<img width="256" src="doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 ## 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
 ### 🏠 [书源官网](https://pixivsource.pages.dev) & [使用指南](https://pixivsource.pages.dev/BetterExperience) 

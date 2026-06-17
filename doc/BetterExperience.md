@@ -62,11 +62,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 <div align="center">
-<img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
 # ✨ 臻享阅读 ✨
-## 最好的 Pixiv 第三方小说阅读器
+# 最好的 Pixiv 第三方小说阅读器
 ### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) + Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 #### ☕ [书源项目打赏名单](Sponsor.md)

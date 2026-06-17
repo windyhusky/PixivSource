@@ -14,7 +14,7 @@ description: 故障排查与处理
 ---
 
 <div align="center">
-<img width="150" height="150" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
+<img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 <br>
 
 # 故障排查与处理
