@@ -33,7 +33,7 @@ hero:
   tagline: <br>你值得拥有，更好的小说阅读体验<br>⬇️ 点击【✨ 臻享阅读】改善你的阅读体验吧
 
   image:
-    src: "/favicon-180x180.png"
+    src: "/PixivSource.png"
     alt: Pixiv Source Logo
   actions:
     - theme: brand
