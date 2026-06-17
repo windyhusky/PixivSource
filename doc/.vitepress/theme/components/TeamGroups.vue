@@ -1,7 +1,7 @@
 <template>
   <div class="team-groups-wrapper">
     <div v-for="group in teamGroups" :key="group.title" class="team-group">
-      <h3 :id="group.title" class="group-title">{{ group.title }}</h3>
+      <h3 :id="group.anchor || group.title" class="group-title">{{ group.title }}</h3>
       <div class="team-container">
         <div v-for="item in group.items" :key="item.link ?? item.name" class="team-card">
           <a

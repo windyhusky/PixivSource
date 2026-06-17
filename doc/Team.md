@@ -26,6 +26,7 @@ head:
 
 teamGroups:
   - title: 🛠️ 开发团队
+    anchor: Developers
     items:
       - name: DowneyRem
         title: 唐尼瑞姆
@@ -60,6 +61,7 @@ teamGroups:
 
 
   - title: 🌐 站方协助
+    anchor: SiteOwner
     items:
       - name: Linpicio
         title: 林彼丢
@@ -86,6 +88,7 @@ teamGroups:
 
 
   - title: 🤝 社区帮助
+    anchor: Community
     items:
       - name: Luoyacheng
         title: 洛娅橙

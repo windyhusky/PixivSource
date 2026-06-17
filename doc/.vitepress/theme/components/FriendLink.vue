@@ -1,7 +1,7 @@
 <template>
     <div class="friends-wrapper">
         <div v-for="group in friendGroups" :key="group.title" class="friend-group">
-            <h3 :id="group.title" class="group-title">{{ group.title }}</h3>
+            <h3 :id="group.anchor || group.title" class="group-title">{{ group.title }}</h3>
 
             <div class="friends-container">
                 <a

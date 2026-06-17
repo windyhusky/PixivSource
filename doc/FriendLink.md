@@ -26,6 +26,7 @@ head:
 
 friendGroups:
   - title: 📖 阅读软件
+    anchor: Application
     items:
       - name: 阅读 Sigma
         link: https://github.com/Luoyacheng/legado
@@ -37,14 +38,10 @@ friendGroups:
         icon: /img/LegadoMD3.png
         desc: 开源阅读 Material Design 3 风格重构版
         
-#      - name: 阅读 
-#        link: https://github.com/gedoor/legado
-#        icon: /img/Legado.png
-#        desc: 开源阅读 Legado
-
 
   - title: 📚 阅读资源
-    items:
+    anchor: Resources
+    items: 
       - name: Pixiv 书源
         link: https://pixivsource.pages.dev/
         icon: favicon-512x512.png
@@ -58,6 +55,7 @@ friendGroups:
 
 
   - title: 🌏 翻译工具
+    anchor: Translator
     items:
       - name: 生肉狮 RawMage
         link: https://my-lion-bot.online/
@@ -66,6 +64,7 @@ friendGroups:
 
 
   - title: 🖥 博客分享
+    anchor: ShareBlog
     items:
       - name: 唐尼瑞姆的博客
         link: https://downeyrem.pages.dev
@@ -79,6 +78,7 @@ friendGroups:
 
 
   - title: ⚡️ VitePress
+    anchor: VitePress
     items:
       - name: VitePress 官网
         desc: 由 Vite 和 Vue 驱动的静态站点生成器
