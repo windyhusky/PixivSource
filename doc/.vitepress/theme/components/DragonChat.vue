@@ -1,7 +1,9 @@
 <template>
-  <div :class="['dragon-chat-container', { 'align-right': align === 'right' }]">
+  <!-- 绑定计算后的对齐方式 -->
+  <div :class="['dragon-chat-container', { 'align-right': computedConfig.align === 'right' }]">
     <div class="avatar-wrapper">
-      <img :src="withBase(avatar)" :alt="name" class="avatar-img" />
+      <!-- 绑定计算后的头像路径 -->
+      <img :src="withBase(computedConfig.avatar)" :alt="name" class="avatar-img" />
       <div class="avatar-badge">{{ badge }}</div>
     </div>
 
@@ -21,13 +23,62 @@
 <script setup>
 // 1. 引入 withBase
 import { withBase } from 'vitepress'
+import { ref, onMounted, computed } from 'vue'
 
-defineProps({
+const props = defineProps({
+  // 保留单张图的传参，方便特殊页面临时覆盖
   avatar: { type: String, default: '' },
   name: { type: String, default: '' },
   badge: { type: String, default: '' },
   icon: { type: String, default: '' },
-  align: { type: String, default: 'left' }
+  align: { type: String, default: 'left' },
+
+  // 核心改动：把你的多图随机池直接写成默认值
+  avatarList: {
+    type: Array,
+    default: () => [
+      { img: './DowneyRem1.png', align: 'left' },
+      { img: './DowneyRem2.png', align: 'left' },
+      { img: './DowneyRemLeft1.png', align: 'right' },
+      { img: './DowneyRemLeft2.png', align: 'right' },
+      { img: './DowneyRemLeft3.png', align: 'right' },
+    ]
+  }
+})
+
+// 记录随机抽中的索引
+const randomIndex = ref(-1)
+
+onMounted(() => {
+  if (props.avatarList && props.avatarList.length > 0) {
+    randomIndex.value = Math.floor(Math.random() * props.avatarList.length)
+  }
+})
+
+// 动态计算最终使用的头像和位置配置
+const computedConfig = computed(() => {
+  // 如果 Markdown 里单独传了单张 avatar，优先用传进来的（不随机）
+  if (props.avatar) {
+    return {
+      avatar: props.avatar,
+      align: props.align
+    }
+  }
+
+  // 默认走组件内的多图随机池
+  if (props.avatarList && props.avatarList.length > 0 && randomIndex.value !== -1) {
+    const chosen = props.avatarList[randomIndex.value]
+    return {
+      avatar: chosen.img,
+      align: chosen.align
+    }
+  }
+
+  // 极端的兜底防错
+  return {
+    avatar: './DowneyRemToy.png',
+    align: 'right'
+  }
 })
 </script>
 
@@ -41,11 +92,9 @@ defineProps({
   gap: 20px;
   margin: 30px auto;
   max-width: 600px;
-  /* 建议添加：适配默认主题的文字颜色 */
   color: var(--vp-c-text-1);
 }
 
-/* 当设为右侧时，反转 flex 容器的主轴方向 */
 .dragon-chat-container.align-right {
   flex-direction: row-reverse;
 }
@@ -82,12 +131,11 @@ defineProps({
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-/* 深色模式适配建议：将背景改为使用 CSS 变量，否则在深色模式下背景可能过亮 */
 .chat-bubble {
   position: relative;
   flex: 1;
   min-width: 280px;
-  background: var(--vp-c-bg-soft); /* 使用默认主题的柔和背景色 */
+  background: var(--vp-c-bg-soft);
   border: 1px solid rgba(93, 155, 157, 0.3);
   border-radius: 20px;
   padding: 20px;
