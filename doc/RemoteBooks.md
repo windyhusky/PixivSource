@@ -26,7 +26,6 @@ head:
 
 <div align="center">
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
-<br>
 
 # 远程书籍
 ### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源

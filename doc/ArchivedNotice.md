@@ -15,7 +15,6 @@ description: 归档声明
 
 <div align="center">
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
-<br>
 
 # 项目归档声明
 ### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源

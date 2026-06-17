@@ -95,7 +95,6 @@ friendGroups:
 
 <div align="center">
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
-<br>
 
 # 🤝 友情链接 🤝
 </div>

@@ -16,7 +16,6 @@ next: false
 
 <div align="center">
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
-<br>
 
 # 🌱 项目起源 🌱
 </div>

@@ -15,7 +15,7 @@ const date = computed(() => {
 
 <template>
   <div v-if="showLastUpdated" class="LastUpdated">
-    <p>更新时间: {{ date?.toLocaleDateString() }}</p><br>
+    <p>更新时间: {{ date?.toLocaleDateString() }}</p>
   </div>
 </template>
 

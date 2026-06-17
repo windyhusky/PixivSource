@@ -63,7 +63,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 <div align="center">
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
-<br>
 
 # ✨ 臻享阅读 ✨
 # 最好的 Pixiv 第三方小说阅读器
