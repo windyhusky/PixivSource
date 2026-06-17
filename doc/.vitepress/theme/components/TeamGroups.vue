@@ -88,11 +88,14 @@ const resolvePath = (path) =>
 }
 
 .group-title {
-  margin: 2rem 0 1rem;
-  padding-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  margin: 32px 0 16px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--vp-c-divider);
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   font-weight: 600;
+  color: var(--vp-c-text-1);
 }
 
 .team-container {
