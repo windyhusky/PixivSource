@@ -21,6 +21,7 @@
   "scripts": {
     "build": "tsx BuildSource/buildBookSource.ts",
     "docs:convert": "node doc/scripts/ConvertChinese.js",
+    "predocs:dev": "node doc/scripts/ConvertChinese.js --dev",
     "docs:dev": "vitepress dev doc --host",
     "docs:build": "node doc/scripts/ConvertChinese.js && vitepress build doc",
     "docs:preview": "vitepress build doc && vitepress preview doc"

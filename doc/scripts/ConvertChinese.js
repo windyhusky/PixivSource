@@ -11,6 +11,20 @@
  *   "build": "node scripts/ConvertChinese.js && vitepress build docs"
  */
 
+import { existsSync } from 'fs'
+import { join } from 'path'
+
+// 💡 智慧缓存检查：如果是本地开发（dev）环境，且繁体配置文件已经存在，就直接秒退出！
+const isDev = process.argv.includes('--dev') // 透过参数判断是不是从 dev 唤醒的
+const hasConfig = existsSync(join(process.cwd(), 'doc/zh-TW/config.zh-TW.json'))
+
+if (isDev && hasConfig) {
+  // 已经有繁体配置了，本地开发直接放行，不浪费时间重复翻译！
+  process.exit(0)
+}
+
+console.log('🔄 侦测到繁体档案不存在或触发了完整编译，开始执行简转繁作业...')
+
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from 'fs'
 import { join, relative, dirname } from 'path'
 import { Converter } from 'opencc-js'
