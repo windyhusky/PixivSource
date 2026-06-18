@@ -1,8 +1,9 @@
 import { defineConfig, type HeadConfig } from "vitepress"
 import { withPwa } from '@vite-pwa/vitepress'
 import timeline from "vitepress-markdown-timeline"
-import { cnNav, cnSidebar } from './navSideBar'
-import { cnThemeConfig, twThemeConfig } from "./themeConfig"
+import { cnNav, cnSidebar } from './navSideBar.ts'
+import twConfig from '../zh-TW/config.zh-TW.json' with { type: 'json' }
+import { cnThemeConfig, twThemeConfig } from "./themeConfig.ts"
 import { writeFileSync, readdirSync, statSync } from 'fs'
 import { resolve, relative } from 'path'
 
@@ -74,8 +75,8 @@ export default withPwa(defineConfig({
             title: "Pixiv 書源",
             description: "適配 開源閲讀 Legado 3.0 的 Pixiv 書源",
             themeConfig :{
-                nav: cnNav,
-                sidebar: cnSidebar,
+                nav: twConfig.nav,
+                sidebar: twConfig.sidebar,
                 ...twThemeConfig
             }
         },

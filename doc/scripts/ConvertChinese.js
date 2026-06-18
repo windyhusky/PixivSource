@@ -1,8 +1,8 @@
 /**
  * ConvertChinese.js
  *
- * 将 doc/ 根目录下的简体中文 .md 文件转换为繁体中文
- * 输出到 doc/zh-TW/ 目录
+ * 將 doc/ 根目錄下的簡體中文 .md 文件轉換為繁體中文
+ * 輸出到 doc/zh-TW/ 目錄，並自動生成繁體導覽列與側邊欄配置
  *
  * 用法：
  *   node scripts/ConvertChinese.js
@@ -14,6 +14,10 @@
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from 'fs'
 import { join, relative, dirname } from 'path'
 import { Converter } from 'opencc-js'
+
+// ─── 引入簡體導覽列與側邊欄配置 ──────────────────────────────────────────────
+// 這裡去掉副檔名，讓 Node.js 自動相容 .ts 或 .js
+import { cnNav, cnSidebar } from '../.vitepress/navSideBar.ts'
 
 // ─── 配置 ────────────────────────────────────────────────────────────────────
 
@@ -36,6 +40,41 @@ const SKIP_FILES = []
 // ─── 初始化转换器 ─────────────────────────────────────────────────────────────
 
 const converter = Converter({ from: 'cn', to: 'twp' })
+
+// ─── 导航/侧边栏配置数据转换逻辑 ──────────────────────────────────────────────────
+
+/**
+ * 递归转换 VitePress 的导航栏和侧边栏配置
+ */
+function convertConfigData(data) {
+  if (Array.isArray(data)) {
+    return data.map(item => convertConfigData(item));
+  } else if (data !== null && typeof data === 'object') {
+    const newItem = { ...data };
+
+    // 1. 转换文本
+    if (newItem.text) {
+      newItem.text = converter(newItem.text);
+    }
+
+    // 2. 自动修正繁体版的链接路径
+    if (newItem.link && typeof newItem.link === 'string') {
+      // 排除外部链接（如 http://, https://）和已经处理过的路径
+      if (!newItem.link.startsWith('http') && !newItem.link.startsWith('/zh-TW')) {
+        // 根路径 "/" 映射为 "/zh-TW/"，其余普通路径加上 "/zh-TW" 前缀
+        newItem.link = newItem.link === '/' ? '/zh-TW/' : `/zh-TW${newItem.link}`;
+      }
+    }
+
+    // 3. 递归处理嵌套的子项目（items）
+    if (newItem.items) {
+      newItem.items = convertConfigData(newItem.items);
+    }
+
+    return newItem;
+  }
+  return data;
+}
 
 // ─── 转换逻辑 ─────────────────────────────────────────────────────────────────
 
@@ -127,7 +166,7 @@ function convertLine(line) {
     return id
   })
 
-  // 2. 保护 Markdown 链接/图片的 URL 部分 [...](URL) 中的 URL
+  // 2. 保护 Markdown 链接/图片的 URL 部分
   result = result.replace(/(\]\()([^)]+)(\))/g, (match, open, url, close) => {
     const id = `\x00URL${protected_segments.length}\x00`
     protected_segments.push(match)
@@ -192,6 +231,7 @@ function getAllMdFiles(dir, baseDir = dir) {
 // ─── 主流程 ───────────────────────────────────────────────────────────────────
 
 function main() {
+  // 1. 处理 Markdown 文件的转换
   const files = getAllMdFiles(SOURCE_DIR)
 
   if (files.length === 0) {
@@ -227,7 +267,29 @@ function main() {
     }
   }
 
-  console.log(`\n完成：${successCount} 个成功，${errorCount} 个失败`)
+  // 2. 自动生成繁体導覽列與側邊欄配置
+  console.log('\n========================================')
+  console.log('⏳ 开始自动转换 nav 和 sidebar 配置...')
+  try {
+    const twNav = convertConfigData(cnNav)
+    const twSidebar = convertConfigData(cnSidebar)
+
+    const configResult = {
+      nav: twNav,
+      sidebar: twSidebar
+    }
+
+    // 写入到 doc/zh-TW/ 目录下
+    writeFileSync(
+        join(OUTPUT_DIR, 'config.zh-TW.json'),
+        JSON.stringify(configResult, null, 2),
+        'utf-8'
+    )
+    console.log('  ✅  繁体配置已成功输出至 doc/zh-TW/config.zh-TW.json')
+  } catch (err) {
+    console.error(`  ❌  生成繁体配置失败: ${err.message}`)
+  }
+  console.log('========================================\n')
   console.log(`输出目录：${OUTPUT_DIR}`)
 }
 
