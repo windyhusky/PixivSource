@@ -261,8 +261,6 @@ function convertLine(line) {
 function fixPaths(text) {
   // Markdown 图片/链接：![...](./pic/...)  →  ![...](../pic/...)
   text = text.replace(/\]\(\.\/(pic[^)]*)\)/g, '](../$1)')
-  // HTML 标签内的 src 属性：src="./pic/..."  →  src="../pic/..."
-  text = text.replace(/src="\.\/pic\//g, 'src="../pic/')
   return text
 }
 
