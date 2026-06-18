@@ -33,28 +33,8 @@ export default withPwa(defineConfig({
     ignoreDeadLinks: true,  // 忽略死链
     appearance: true,       // 默认主题由用户配色方案决定
     lastUpdated: true,      // 获取页面最后更新的时间戳
-    head: [
-        ['meta', { name: 'keywords', content: 'Pixiv 小说, Pixiv 阅读, Pixiv 书源, 阅读书源, Legado 书源, 开源阅读 Pixiv 书源, Pixiv 小说阅读器, 阅读3书源, Pixiv Source, Pixiv BookSource' }],
-        // og:title / og:description 已移至 transformHead，由各页面 frontmatter 动态生成
 
-        // 使用相对路径或动态 Base 确保图标加载正确
-        ['link', { rel: 'icon', type: 'image/png', sizes: '64x64', href: `${BASE}favicon.png` }],
-        ["link", { rel: "apple-touch-icon", sizes: '180x180', href: `${BASE}favicon-180x180.png` }],
-        ['link', { rel: 'icon', type: 'image/png', sizes: '192x192', href: `${BASE}favicon-192x192.png` }],
 
-        ["link", { rel: "preconnect", href: "https://www.googletagmanager.com" }],
-        ["link", { rel: "preconnect", href: "https://www.google-analytics.com" }],
-
-        // ["link", { rel: "manifest", href: "/manifest.json" }]
-        ["script", {
-            async: "", src: "https://www.googletagmanager.com/gtag/js?id=G-MJW9QDKTDH" }],
-        ["script", {},
-            `window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag("js", new Date());
-            gtag("config", "G-MJW9QDKTDH");`
-        ],
-    ],
 
     locales: {
         root: {
