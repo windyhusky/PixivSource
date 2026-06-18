@@ -1,10 +1,11 @@
+<div v-if="!pagePath.includes('zh-TW')">
 
 ### 📡 开启代理（可选）{#SetProxy}
 > [!TIP]
 >
 >  - **如果你可以直接访问 Pixiv ，可以略过这一步**
 >  - **否则，建议开启【全局代理】，确保阅读可以访问代理**
-
+</div>
 
 ### 🅿️ 登录账号 {#LoginAccount}
 > [!NOTE]

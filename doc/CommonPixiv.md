@@ -34,6 +34,8 @@
 </details>
 
 
+<div v-if="!pagePath.includes('zh-TW')">
+
 ### ✈️ 直连模式（可选） {#IPDirect}
 > [!TIP]
 > 
@@ -62,4 +64,4 @@
 > **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
 >
 > **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
-
+</div>
