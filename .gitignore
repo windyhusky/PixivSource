@@ -6,3 +6,4 @@ node_modules
 *.pdf
 .env.local
 *.env.*.local
+doc/zh-TW/
