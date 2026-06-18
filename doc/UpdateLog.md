@@ -25,7 +25,7 @@ head:
 
 repos:
   - name: PixivSource
-    icon: favicon-180x180.png
+    icon: /img/BookSourcePixiv.png
     desc: 最好的 Pixiv 小说阅读器
     link: https://github.com/DowneyRem/PixivSource
     prerelease: false
