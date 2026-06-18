@@ -16,7 +16,7 @@
 </div>
 
 
-<div v-if="pagePath.startsWith('Import')">
+<div v-if="pagePath.includes('Import')">
 
 | 源名称    | jsDelivr | Github |
 |--------| -------- | ------ |
@@ -39,7 +39,7 @@
 ![img](./pic/InportBookSourcePixiv.png)
 </details>
 
-<div v-if="pagePath.startsWith('Import')">
+<div v-if="pagePath.includes('Import')">
 <details><summary><strong> ⚙️ 一键导入　网站设置 </strong></summary>
   
   > [!NOTE]
@@ -79,7 +79,7 @@
 </div>
 
 
-<div v-if="pagePath.startsWith('Import')">
+<div v-if="pagePath.includes('Import')">
 
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
@@ -112,7 +112,7 @@
 </details>
 
 
-<div v-if="pagePath.startsWith('ImportBookSource')">
+<div v-if="pagePath.includes('ImportBookSource')">
 
 ### 🌐 C.网络导入 {#InternetBookSource}
 <details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
@@ -136,7 +136,7 @@
 </div>
 
 
-<div v-if="pagePath.startsWith('ImportRssSource')">
+<div v-if="pagePath.includes('ImportRssSource')">
 
 ### 🌐 C.网络导入 {#InternetRssSource}
 <details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
@@ -162,7 +162,7 @@
 </div>
 
 
-<div v-if="pagePath.startsWith('Import')">
+<div v-if="pagePath.includes('Import')">
 
 ### 📑 D.文件导入 {#File}
 <details><summary><strong> 📄 文件导入　详细操作</strong></summary>
