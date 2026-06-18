@@ -6,7 +6,7 @@
 >
 >　**点击链接，一键导入 书源、订阅源**
 
-<div v-if="pagePath === 'QuickStart'">
+<div v-if="pagePath.includes('QuickStart')">
 
 | 源名称    | jsDelivr | Github |
 |--------| -------- | ------ |
@@ -69,7 +69,7 @@
 > 
 >　**订阅 - 规则订阅 - 添加 - 复制链接、粘贴 - 添加订阅**
 
-<div v-if="pagePath === 'QuickStart'">
+<div v-if="pagePath.includes('QuickStart')">
 
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |

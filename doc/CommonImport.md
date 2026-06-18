@@ -1,5 +1,5 @@
 ### 🚀 导入书源 {#ImportSources}
-<div v-if="pagePath === 'Pixiv' || pagePath === 'BetterExperience'">
+<div v-if="pagePath.includes('Pixiv') || pagePath.includes('BetterExperience')">
 
 > [!IMPORTANT]
 >
@@ -13,7 +13,7 @@
 </div>
 
 
-<div v-if="pagePath === 'Linpx'">
+<div v-if="pagePath.includes('Linpx')">
 
 > [!IMPORTANT]
 >
@@ -27,7 +27,7 @@
 </div>
 
 
-<div v-if="pagePath === 'FurryNovel'">
+<div v-if="pagePath.includes('FurryNovel')">
 
 > [!IMPORTANT]
 >
