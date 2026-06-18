@@ -24,6 +24,7 @@
     "predocs:dev": "node doc/scripts/ConvertChinese.js --dev",
     "docs:dev": "vitepress dev doc --host",
     "docs:build": "node doc/scripts/ConvertChinese.js && vitepress build doc",
+    "predocs:preview": "node doc/scripts/ConvertChinese.js --dev",
     "docs:preview": "vitepress build doc && vitepress preview doc"
   },
   "dependencies": {
