@@ -2,7 +2,7 @@ import { defineConfig, type HeadConfig } from "vitepress"
 import { withPwa } from '@vite-pwa/vitepress'
 import timeline from "vitepress-markdown-timeline"
 import { cnNav, cnSidebar } from './navSideBar'
-import { cnThemeConfig } from "./themeConfig"
+import { cnThemeConfig, twThemeConfig } from "./themeConfig"
 import { writeFileSync, readdirSync, statSync } from 'fs'
 import { resolve, relative } from 'path'
 
@@ -26,8 +26,6 @@ const BLOG = "https://downeyrem.pages.dev/"
 // https://vitepress.dev/reference/site-config
 export default withPwa(defineConfig({
     lang: "zh-CN",
-    title: "Pixiv 书源",
-    description: "适配 开源阅读 Legado 3.0 的 Pixiv 书源",
     base: BASE,  // 项目名称
     cleanUrls: true,        // 简洁URL
     srcExclude: ['**/*Common*.md'], // 公共 include 片段不作为独立页面渲染
@@ -61,6 +59,8 @@ export default withPwa(defineConfig({
         root: {
             label: '简体中文',
             lang: 'zh-CN',
+            title: "Pixiv 书源",
+            description: "适配 开源阅读 Legado 3.0 的 Pixiv 书源",
             themeConfig :{
                 nav: cnNav,
                 sidebar: cnSidebar,
@@ -70,10 +70,19 @@ export default withPwa(defineConfig({
         "zh-TW": {
             label: '繁體中文',
             lang: 'zh-TW',
+            link: '/zh-TW/',
+            title: "Pixiv 書源",
+            description: "適配 開源閲讀 Legado 3.0 的 Pixiv 書源",
+            themeConfig :{
+                nav: cnNav,
+                sidebar: cnSidebar,
+                ...twThemeConfig
+            }
         },
         en: {
             label: 'English',
             lang: 'en-US',
+            title: "PixivSource",
             link: '/en/',
         }
     },
