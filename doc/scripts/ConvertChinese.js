@@ -140,11 +140,54 @@ function convertMarkdown(text) {
 /**
  * 转换 frontmatter 的 value（冒号后面的部分）
  * key: value  →  key 不变，value 转换
+ * 自动修正 Frontmatter 中的站内路由链接
  */
 function convertFrontmatterValue(line) {
-  const match = line.match(/^(\s*[\w-]+\s*:\s*)(.*)$/)
-  if (!match) return converter(line)
-  return match[1] + converter(match[2])
+  // 1. 判斷這一行是否包含冒號 ":"
+  const colonIndex = line.indexOf(':')
+  if (colonIndex === -1) return converter(line)
+
+  const keyPart = line.slice(0, colonIndex + 1) // 包含冒號的部分，例如 "    link:" 或 "  - link:"
+  const valuePart = line.slice(colonIndex + 1)  // 冒號後面的值
+
+  const cleanKey = keyPart.trim().replace(/^-\s*/, '').toLowerCase()
+
+  // 2. 只要這行的 key 乾淨檢查後是 "link:"，就100%切入路由修正
+  if (cleanKey === 'link:') {
+    let value = valuePart.trim()
+    if (!value) return line // 空值不處理
+
+    // 檢查並提取引號內部的路徑
+    const quoteMatch = value.match(/^['"](.*)['"]$/)
+    let rawPath = quoteMatch ? quoteMatch[1] : value
+
+    // 排除外部鏈結、客戶端協定、以及已經處理過的路徑
+    if (
+        !rawPath.startsWith('http') &&
+        !rawPath.startsWith('legado:') &&
+        !rawPath.startsWith('zh-TW/') &&
+        !rawPath.startsWith('/zh-TW/')
+    ) {
+      if (rawPath === '/') {
+        rawPath = '/zh-TW/';
+      } else {
+        // 統一加上 /zh-TW/ 字首
+        rawPath = `/zh-TW/${rawPath.replace(/^\//, '')}`;
+      }
+
+      // 還原引號
+      value = quoteMatch ? `${value[0]}${rawPath}${value[value.length - 1]}` : rawPath;
+    }
+
+    // 獲取冒號前面的原始縮排與空格，並拼接回覆（鏈結不翻譯）
+    const matchSpacing = keyPart.match(/^(\s*(?:-\s*)?)/)
+    const spacing = matchSpacing ? matchSpacing[1] : ''
+    return `${spacing}link: ${value}`
+  }
+
+  // 3. 普通屬性，交給 keyPart + 翻譯後的 valuePart
+  // 保持原本的 key 縮排不被破壞
+  return keyPart + converter(valuePart)
 }
 
 /**
