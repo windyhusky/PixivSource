@@ -33,7 +33,7 @@ hero:
   tagline: <br>你值得擁有，更好的小說閱讀體驗<br>⬇️ 點選【✨ 臻享閱讀】改善你的閱讀體驗吧
 
   image:
-    src: "./pic/PixivSource.png"
+    src: "/zh-TW/PixivSource.png"
     alt: Pixiv Source Logo
   actions:
     - theme: brand
