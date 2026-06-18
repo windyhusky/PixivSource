@@ -80,12 +80,12 @@ export default withPwa(defineConfig({
                 ...twThemeConfig
             }
         },
-        en: {
-            label: 'English',
-            lang: 'en-US',
-            title: "PixivSource",
-            link: '/en/',
-        }
+        // en: {
+        //     label: 'English',
+        //     lang: 'en-US',
+        //     title: "PixivSource",
+        //     link: '/en/',
+        // }
     },
     // 每页动态注入 canonical 和 og 标签，GitHub Pages 构建时额外注入跳转
     transformHead({ pageData }) {
