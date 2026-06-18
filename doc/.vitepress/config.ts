@@ -88,49 +88,7 @@ export default withPwa(defineConfig({
         //     copyright: `Copyright © 2025-${new Date().getFullYear()} <a href="https://github.com/DowneyRem/PixivSource">PixivSource</a> All rights reserved.`
         // },
     },
-    markdown: {
-        lineNumbers: true, // 行号显示
-        // ✅ 通过 VitePress 原生入口配置锚点，避免与内置插件重复注册
-        anchor: {
-            slugify: (s: string) => s,
-            permalink: false,
-        },
-        config: (md) => {
-            md.use(timeline)
 
-            // 网页去除 Github 警告
-            const originalParse = md.parse;
-            md.parse = (src, env) => {
-                const targetRegex1 = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上浏览此文档[\s\S]*?排版更精美\*\*/g;
-                const targetRegex2 = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上瀏覽此文件[\s\S]*?排版更精美\*\*/g;
-                const cleanedSrc = src.replace(targetRegex1, '').replace(targetRegex2, '');
-                return originalParse.call(md, cleanedSrc, env);
-            }
-
-            // 图片渲染规则：懒加载 & 异步解码
-            md.renderer.rules.image = (tokens, idx, options, env, self) => {
-                const token = tokens[idx]
-                token.attrSet('loading', 'lazy')    // 开启懒加载
-                token.attrSet('decoding', 'async')  // 异步渲染图片
-                return self.renderToken(tokens, idx, options)
-            }
-
-            // 链接渲染规则：处理站内导入链接
-            const defaultRender = md.renderer.rules.link_open || ((tokens, idx, options, env, self) => self.renderToken(tokens, idx, options))
-            md.renderer.rules.link_open = (tokens, idx, options, env, self) => {
-                const hrefIndex = tokens[idx].attrIndex("href")
-                if (hrefIndex >= 0) {
-                    const hrefAttr = tokens[idx].attrs![hrefIndex]
-                    let href = hrefAttr[1]
-                    // @ts-ignore
-                    if (href.startsWith("https://loyc.xyz/b/cdx.html?src=")) {
-                        hrefAttr[1] = href.replace("https://loyc.xyz/b/cdx.html?src=", "")
-                    }
-                }
-                return defaultRender(tokens, idx, options, env, self);
-            };
-        }
-    },
     sitemap: {
         hostname: CANONICAL_BASE,
         lastmodDateOnly: true,  // print date not time
