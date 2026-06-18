@@ -20,8 +20,9 @@
   },
   "scripts": {
     "build": "tsx BuildSource/buildBookSource.ts",
+    "docs:convert": "node doc/scripts/ConvertChinese.js",
     "docs:dev": "vitepress dev doc --host",
-    "docs:build": "vitepress build doc",
+    "docs:build": "node doc/scripts/ConvertChinese.js && vitepress build doc",
     "docs:preview": "vitepress build doc && vitepress preview doc"
   },
   "dependencies": {
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@vite-pwa/vitepress": "^1.1.0",
+    "opencc-js": "^1.3.1",
     "vite-plugin-pwa": "^1.3.0",
     "vitepress-markdown-timeline": "^1.2.2",
     "vitepress-plugin-comment-with-giscus": "^1.1.15",

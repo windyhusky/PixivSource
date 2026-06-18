@@ -55,6 +55,21 @@ export default withPwa(defineConfig({
         ],
     ],
 
+    locales: {
+        root: {
+            label: '简体中文',
+            lang: 'zh-CN',
+        },
+        "zh-TW": {
+            label: '繁體中文',
+            lang: 'zh-TW',
+        },
+        en: {
+            label: 'English',
+            lang: 'en-US',
+            link: '/en/',
+        }
+    },
     // 每页动态注入 canonical 和 og 标签，GitHub Pages 构建时额外注入跳转
     transformHead({ pageData }) {
         const path = pageData.relativePath
@@ -248,8 +263,9 @@ export default withPwa(defineConfig({
             // 网页去除 Github 警告
             const originalParse = md.parse;
             md.parse = (src, env) => {
-                const targetRegex = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上浏览此文档[\s\S]*?排版更精美\*\*/g;
-                const cleanedSrc = src.replace(targetRegex, '');
+                const targetRegex1 = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上浏览此文档[\s\S]*?排版更精美\*\*/g;
+                const targetRegex2 = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上瀏覽此文件[\s\S]*?排版更精美\*\*/g;
+                const cleanedSrc = src.replace(targetRegex1, '').replace(targetRegex2, '');
                 return originalParse.call(md, cleanedSrc, env);
             }
 
