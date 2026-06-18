@@ -21,6 +21,7 @@
 </template>
 
 <script setup>
+// 1. 引入 withBase
 import { withBase } from 'vitepress'
 import { ref, onMounted, computed } from 'vue'
 
@@ -30,47 +31,60 @@ const props = defineProps({
   name: { type: String, default: '' },
   badge: { type: String, default: '' },
   icon: { type: String, default: '' },
-  align: { type: String, default: 'left' }
+  align: { type: String, default: 'left' },
+
+  // 核心改动：把你的多图随机池直接写成默认值
+  avatarList: {
+    type: Array,
+    default: () => [
+      { img: '/DowneyRem1.png', align: 'left' },
+      { img: '/DowneyRem2.png', align: 'left' },
+      { img: '/DowneyRemLeft1.png', align: 'right' },
+      { img: '/DowneyRemLeft2.png', align: 'right' },
+      { img: '/DowneyRemLeft3.png', align: 'right' },
+      { img: '/DowneyRemLeft4.png', align: 'right' },
+    ]
+  }
 })
 
-// 核心改动：将原本在 props 里的数据，精简为内部固定的图片池常量
-const AVATAR_POOL = [
-  { img: './DowneyRem1.png', align: 'left' },
-  { img: './DowneyRem2.png', align: 'left' },
-  { img: './DowneyRemLeft1.png', align: 'right' },
-  { img: './DowneyRemLeft2.png', align: 'right' },
-  { img: './DowneyRemLeft3.png', align: 'right' },
-  { img: './DowneyRemLeft4.png', align: 'right' }
-]
-
-// 随机抽中的索引
+// 记录随机抽中的索引
 const randomIndex = ref(-1)
 
 onMounted(() => {
-  // 页面挂载后，在图片池内进行随机摇号
-  randomIndex.value = Math.floor(Math.random() * AVATAR_POOL.length)
+  if (props.avatarList && props.avatarList.length > 0) {
+    randomIndex.value = Math.floor(Math.random() * props.avatarList.length)
+  }
 })
 
-// 精简后的动态计算逻辑
+// 动态计算最终使用的头像和位置配置
 const computedConfig = computed(() => {
-  // 1. 优先：如果 Markdown 里传了单张 avatar 覆盖，则直接用传进来的，不随机
+  // 如果 Markdown 里单独传了单张 avatar，优先用传进来的（不随机）
   if (props.avatar) {
-    return { avatar: props.avatar, align: props.align }
+    return {
+      avatar: props.avatar,
+      align: props.align
+    }
   }
 
-  // 2. 正常情况：摇号成功后，直接从内部图片池里拿对应数据
-  if (randomIndex.value !== -1) {
-    const chosen = AVATAR_POOL[randomIndex.value]
-    return { avatar: chosen.img, align: chosen.align }
+  // 默认走组件内的多图随机池
+  if (props.avatarList && props.avatarList.length > 0 && randomIndex.value !== -1) {
+    const chosen = props.avatarList[randomIndex.value]
+    return {
+      avatar: chosen.img,
+      align: chosen.align
+    }
   }
 
-  // 3. 兜底：刚进页面还没抽好签时，先拿第一张图垫底
-  return { avatar: AVATAR_POOL[0].img, align: AVATAR_POOL[0].align }
+  // 极端的兜底防错
+  return {
+    avatar: './DowneyRemToy.png',
+    align: 'right'
+  }
 })
 </script>
 
 <style scoped>
-/* 保持原样式不变 */
+/* 保持你原来的样式不变 */
 .dragon-chat-container {
   display: flex;
   flex-wrap: wrap;
