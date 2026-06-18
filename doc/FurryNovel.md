@@ -199,31 +199,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 >  - Codeberg 更新免代理
 
 
-## 添加网址 {#AddUrl}
-### 🔗 添加网址 {#AddViaUrl}
-> [!NOTE]
->
-> **书架 - 菜单 - 添加网址 - 粘贴小说链接**
->
-> **可以同时添加多个小说的链接**
+<!--@include: CommonAddViaLink.md-->
 
-
-### ⏺️ 实际操作 {#Operation}
-![img](./pic/AddBookViaUrl1.png)
-![img](./pic/AddBookViaUrl2.png)
-![img](./pic/AddBookViaUrl3.png)
-
-
-### 🔗 支持链接 {#SupportedLinks}
-支持 兽人控小说站 多个格式的网址链接：
-- 兽人控小说站 目录链接
-```
-https://furrynovel.com/zh/novel/8312
-```
-- 兽人控小说站 章节链接
-```
-https://furrynovel.com/zh/novel/8312/chapter/33116
-```
 
 ## 订阅源 {#RssSource}
 > [!NOTE]

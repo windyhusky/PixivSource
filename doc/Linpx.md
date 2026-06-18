@@ -187,35 +187,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 >  - Codeberg 更新免代理
 
 
-## 添加网址 {#AddUrl}
-### 🔗 添加网址 {#AddViaUrl}
-> [!NOTE]
->
-> **书架 - 菜单 - 添加网址 - 粘贴小说链接**
->
-> **可以同时添加多个小说的链接**
-
-
-### ⏺️ 实际操作 {#Operation}
-![img](./pic/AddBookViaUrl1.png)
-![img](./pic/AddBookViaUrl2.png)
-![img](./pic/AddBookViaUrl3.png)
-
-### 🔗 支持链接 {#SupportedLinks}
-支持 Linpx 多个格式的网址链接：
-- Linpx 小说链接
-```
-https://furrynovel.ink/pixiv/novel/26200191
-```
-- Linpx 分享链接
-```
-我正在看唐尼瑞姆创作的《测试页面》一起来看吧！
-https://furrynovel.ink/pn/26200191
-```
-- Linpx 作者链接
-```
-https://furrynovel.ink/pixiv/user/119908520
-```
+<!--@include: CommonAddViaLink.md-->
 
 
 ## 订阅源 {#RssSource}

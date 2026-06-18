@@ -358,39 +358,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 
 
-## 添加网址 {#AddUrl}
-### 🔗 添加网址 {#AddViaUrl}
-> [!NOTE]
->
-> **书架 - 菜单 - 添加网址 - 粘贴小说链接**
-> 
-> **可以同时添加多个小说的链接**
-
-### ⏺️ 实际操作 {#Operation}
-![img](./pic/AddBookViaUrl1.png)
-![img](./pic/AddBookViaUrl2.png)
-![img](./pic/AddBookViaUrl3.png)
-
-
-### 🔗 支持链接 {#SupportedLinks}
-支持 Pixiv 多个格式的网址链接：
-- Pixiv 单篇小说链接
-```
-https://www.pixiv.net/novel/show.php?id=20063566
-```
-- Pixiv 系列小说链接
-```
-https://www.pixiv.net/novel/series/8054073
-```
-- Pixiv 作者链接（添加近期1本小说）
-```
-https://www.pixiv.net/users/16721009
-```
-**无法添加的链接：**
-- Pixiv App 小说分享链接 **（删掉#号即可正常添加）**
-```
-测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
-```
+<!--@include: CommonAddViaLink.md-->
 
 
 ## 订阅源 {#RssSource}
