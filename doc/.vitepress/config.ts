@@ -1,9 +1,9 @@
 import { defineConfig, type HeadConfig } from "vitepress"
 import { withPwa } from '@vite-pwa/vitepress'
 import timeline from "vitepress-markdown-timeline"
-import { cnNav, cnSidebar } from './navSideBar.ts'
+import { cnNav, cnSidebar } from './navSideBar.js'
 import twConfig from '../zh-TW/config.zh-TW.json' with { type: 'json' }
-import { cnThemeConfig, twThemeConfig } from "./themeConfig.ts"
+import { cnThemeConfig, twThemeConfig } from "./themeConfig.js"
 import { writeFileSync, readdirSync, statSync } from 'fs'
 import { resolve, relative } from 'path'
 

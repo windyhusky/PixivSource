@@ -31,7 +31,7 @@ import { Converter } from 'opencc-js'
 
 // ─── 引入简体导航栏与侧边栏配置 ──────────────────────────────────────────────
 // 这里去掉副档名，让 Node.js 自动相容 .ts 或 .js
-import { cnNav, cnSidebar } from '../.vitepress/navSideBar.ts'
+import { cnNav, cnSidebar } from '../.vitepress/navSideBar.js'
 
 // ─── 配置 ────────────────────────────────────────────────────────────────────
 
