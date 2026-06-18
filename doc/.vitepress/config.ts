@@ -91,59 +91,8 @@ export default withPwa(defineConfig({
 
     sitemap: {
         hostname: CANONICAL_BASE,
-        lastmodDateOnly: true,  // print date not time
-        xmlns: {   // 精简 xmlns
-            news: false,
-            xhtml: false,
-            image: false,
-        }
-    },
-
-    buildEnd(siteConfig) {
-        // 1. 生成 robots.txt
-        const robots = isCF
-            ? `User-agent: *\nAllow: /\n\nSitemap: https://pixivsource.pages.dev/sitemap.xml\n`
-            : `User-agent: *\nDisallow: /\n`
-        writeFileSync(resolve(siteConfig.outDir, 'robots.txt'), robots)
-
-        // 2. 生成 Cloudflare _redirects (仅在 CF 平台执行)
-        if (isCF) {
-            const rules: string[] = []
-            // 手动重定向放最前面，优先级最高
-            rules.push(`/ReadMe  /  301`)
-            rules.push(`/readme  /  301`)
-
-            const getFiles = (dir: string) => {
-                const files = readdirSync(dir)
-                for (const file of files) {
-                    const fullPath = resolve(dir, file)
-
-                    if (statSync(fullPath).isDirectory()) {
-                        getFiles(fullPath)
-                    } else if (file.endsWith('.html')) {
-                        let relPath = relative(siteConfig.outDir, fullPath)
-                        relPath = relPath.replace(/\\/g, '/')
-                        relPath = relPath.replace(/index\.html$/, '').replace(/\.html$/, '')
-
-                        let urlPath = relPath.startsWith('/') ? relPath : '/' + relPath
-                        if (urlPath.length > 1 && urlPath.endsWith('/')) {
-                            urlPath = urlPath.slice(0, -1)
-                        }
-
-                        const lowerPath = urlPath.toLowerCase()
-                        if (urlPath !== lowerPath) {
-                            rules.push(`${lowerPath}  ${urlPath}  301`)
-                        }
-                    }
-                }
-            }
-
-            getFiles(siteConfig.outDir)
-            if (rules.length > 0) {
-                writeFileSync(resolve(siteConfig.outDir, '_redirects'), rules.join('\n'))
-                console.log(`\n\x1b[32m✓\x1b[0m 已成功生成 _redirects 文件，包含 ${rules.length} 条大小写重定向规则。`)
-            }
-        }
+        lastmodDateOnly: true,
+        xmlns: { news: false, xhtml: false, image: false }
     },
 
     pwa: getPwaConfig(BASE)
