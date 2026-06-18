@@ -1,14 +1,14 @@
 /**
  * ConvertChinese.js
  *
- * 將 doc/ 根目錄下的簡體中文 .md 文件轉換為繁體中文
- * 輸出到 doc/zh-TW/ 目錄，並自動生成繁體導覽列與側邊欄配置
+ * 将 doc/ 根目录下的简体中文 .md 文件转换为繁体中文
+ * 输出到 doc/zh-TW/ 目录，并自动生成繁体导航栏与侧边栏配置
  *
  * 用法：
- *   node scripts/ConvertChinese.js
+ * node doc/scripts/ConvertChinese.js
  *
  * 建议在 package.json 里配置：
- *   "build": "node scripts/ConvertChinese.js && vitepress build docs"
+ * "build": "node doc/scripts/ConvertChinese.js && vitepress build docs"
  */
 
 import { existsSync } from 'fs'
@@ -23,14 +23,14 @@ if (isDev && hasConfig) {
   process.exit(0)
 }
 
-console.log('🔄 侦测到繁体档案不存在或触发了完整编译，开始执行简转繁作业...')
+console.log('🔄 开始执行简转繁...')
 
 import { readFileSync, writeFileSync, mkdirSync, readdirSync, statSync } from 'fs'
-import { join, relative, dirname } from 'path'
+import { relative, dirname } from 'path'
 import { Converter } from 'opencc-js'
 
-// ─── 引入簡體導覽列與側邊欄配置 ──────────────────────────────────────────────
-// 這裡去掉副檔名，讓 Node.js 自動相容 .ts 或 .js
+// ─── 引入简体导航栏与侧边栏配置 ──────────────────────────────────────────────
+// 这里去掉副档名，让 Node.js 自动相容 .ts 或 .js
 import { cnNav, cnSidebar } from '../.vitepress/navSideBar.ts'
 
 // ─── 配置 ────────────────────────────────────────────────────────────────────
@@ -95,12 +95,12 @@ function convertConfigData(data) {
 /**
  * 转换 Markdown 文本
  * 规则：
- *   - 跳过代码块（```...```）
- *   - 跳过行内代码（`...`）
- *   - 跳过链接 URL 和图片路径（不转换括号内的 URL 部分）
- *   - 跳过 HTML 标签属性值（src= href= content= 等）
- *   - 跳过 YAML frontmatter 的 key
- *   - 正常转换所有中文文字内容
+ * - 跳过代码块（```...```）
+ * - 跳过行内代码（`...`）
+ * - 跳过链接 URL 和图片路径（不转换括号内的 URL 部分）
+ * - 跳过 HTML 标签属性值（src= href= content= 等）
+ * - 跳过 YAML frontmatter 的 key
+ * - 正常转换所有中文文字内容
  */
 function convertMarkdown(text) {
   const lines = text.split('\n')
@@ -157,25 +157,25 @@ function convertMarkdown(text) {
  * 自动修正 Frontmatter 中的站内路由链接
  */
 function convertFrontmatterValue(line) {
-  // 1. 判斷這一行是否包含冒號 ":"
+  // 1. 判断这一行是否包含冒号 ":"
   const colonIndex = line.indexOf(':')
   if (colonIndex === -1) return converter(line)
 
-  const keyPart = line.slice(0, colonIndex + 1) // 包含冒號的部分，例如 "    link:" 或 "  - link:"
-  const valuePart = line.slice(colonIndex + 1)  // 冒號後面的值
+  const keyPart = line.slice(0, colonIndex + 1) // 包含冒号的部分，例如 "   link:" 或 "  - link:"
+  const valuePart = line.slice(colonIndex + 1)  // 冒号后面的值
 
   const cleanKey = keyPart.trim().replace(/^-\s*/, '').toLowerCase()
 
-  // 2. 只要這行的 key 乾淨檢查後是 "link:"，就100%切入路由修正
+  // 2. 只要这行的 key 干净检查后是 "link:"，就100%切入路由修正
   if (cleanKey === 'link:') {
     let value = valuePart.trim()
-    if (!value) return line // 空值不處理
+    if (!value) return line // 空值不处理
 
-    // 檢查並提取引號內部的路徑
+    // 检查并提取引号内部路径
     const quoteMatch = value.match(/^['"](.*)['"]$/)
     let rawPath = quoteMatch ? quoteMatch[1] : value
 
-    // 排除外部鏈結、客戶端協定、以及已經處理過的路徑
+    // 排除外部链接、客户端协议、以及已经处理过的路径
     if (
         !rawPath.startsWith('http') &&
         !rawPath.startsWith('legado:') &&
@@ -185,22 +185,22 @@ function convertFrontmatterValue(line) {
       if (rawPath === '/') {
         rawPath = '/zh-TW/';
       } else {
-        // 統一加上 /zh-TW/ 字首
+        // 统一加上 /zh-TW/ 前缀
         rawPath = `/zh-TW/${rawPath.replace(/^\//, '')}`;
       }
 
-      // 還原引號
+      // 还原引号
       value = quoteMatch ? `${value[0]}${rawPath}${value[value.length - 1]}` : rawPath;
     }
 
-    // 獲取冒號前面的原始縮排與空格，並拼接回覆（鏈結不翻譯）
+    // 获取冒号前面的原始缩进与空格，并拼接回复（链接不翻译）
     const matchSpacing = keyPart.match(/^(\s*(?:-\s*)?)/)
     const spacing = matchSpacing ? matchSpacing[1] : ''
     return `${spacing}link: ${value}`
   }
 
-  // 3. 普通屬性，交給 keyPart + 翻譯後的 valuePart
-  // 保持原本的 key 縮排不被破壞
+  // 3. 普通属性，交给 keyPart + 翻译后的 valuePart
+  // 保持原本的 key 缩进不被破坏
   return keyPart + converter(valuePart)
 }
 
@@ -254,7 +254,7 @@ function convertLine(line) {
  * 修正图片/链接路径
  * zh-TW/ 目录比根目录深一层，相对路径需要加 ../
  * ./pic/xxx.png  →  ../pic/xxx.png
- * ./QuickStart   →  ../QuickStart  （站内链接不加，由 VitePress 路由处理）
+ * ./QuickStart   →  ../QuickStart （站内链接不加，由 VitePress 路由处理）
  */
 function fixPaths(text) {
   // Markdown 图片/链接：![...](./pic/...)  →  ![...](../pic/...)
@@ -324,7 +324,7 @@ function main() {
     }
   }
 
-  // 2. 自动生成繁体導覽列與側邊欄配置
+  // 2. 自动生成繁体导航栏与侧边栏配置
   console.log('\n========================================')
   console.log('⏳ 开始自动转换 nav 和 sidebar 配置...')
   try {
@@ -342,12 +342,11 @@ function main() {
         JSON.stringify(configResult, null, 2),
         'utf-8'
     )
-    console.log('  ✅  繁体配置已成功输出至 doc/zh-TW/config.zh-TW.json')
+    console.log('✅ 繁体配置已成功输出至 doc/zh-TW/config.zh-TW.json')
   } catch (err) {
-    console.error(`  ❌  生成繁体配置失败: ${err.message}`)
+    console.error(`❌ 生成繁体配置失败: ${err.message}`)
   }
-  console.log('========================================\n')
-  console.log(`输出目录：${OUTPUT_DIR}`)
+  console.log('========================================')
 }
 
 main()
