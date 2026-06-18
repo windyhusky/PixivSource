@@ -34,40 +34,13 @@ export default withPwa(defineConfig({
     appearance: true,       // 默认主题由用户配色方案决定
     lastUpdated: true,      // 获取页面最后更新的时间戳
 
+    head: getHeadConfig(BASE),
+    locales: localesConfig,
+    markdown: markdownConfig,
+    transformPageData,
+    buildEnd: getBuildEndHook(isCF, isGitHub),
 
-
-    locales: {
-        root: {
-            label: '简体中文',
-            lang: 'zh-CN',
-            title: "Pixiv 书源",
-            description: "适配 开源阅读 Legado 3.0 的 Pixiv 书源",
-            themeConfig :{
-                nav: cnNav,
-                sidebar: cnSidebar,
-                ...cnThemeConfig
-            }
-        },
-        "zh-TW": {
-            label: '繁體中文',
-            lang: 'zh-TW',
-            link: '/zh-TW/',
-            title: "Pixiv 書源",
-            description: "適配 開源閲讀 Legado 3.0 的 Pixiv 書源",
-            themeConfig :{
-                nav: twConfig.nav,
-                sidebar: twConfig.sidebar,
-                ...twThemeConfig
-            }
-        },
-        // en: {
-        //     label: 'English',
-        //     lang: 'en-US',
-        //     title: "PixivSource",
-        //     link: '/en/',
-        // }
-    },
-    // 每页动态注入 canonical 和 og 标签，GitHub Pages 构建时额外注入跳转
+    // 独立控制动态 Head 元数据注入
     transformHead({ pageData }) {
         const path = pageData.relativePath
             .replace(/index\.md$/, '')
