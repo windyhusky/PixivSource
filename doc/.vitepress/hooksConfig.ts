@@ -3,6 +3,37 @@ import { execSync } from 'child_process'
 import fs from 'fs'
 import { join } from 'path'
 
+
+// 繁体版 Git 时间穿透补丁
+export async function transformPageData(pageData: any) {
+    if (pageData.relativePath && pageData.relativePath.startsWith('zh-TW/')) {
+        const cnRelativePath = pageData.relativePath.replace(/^zh-TW\//, '')
+        const cnFilePath = join('doc', cnRelativePath)
+        let detectedTimestamp = null
+
+        try {
+            const gitTimestamp = execSync(`git log -1 --format=%ct "${cnFilePath}"`, { stdio: ['pipe', 'pipe', 'ignore'] })
+                .toString()
+                .trim()
+            if (gitTimestamp) detectedTimestamp = parseInt(gitTimestamp, 10) * 1000
+        } catch (e) {}
+
+        if (!detectedTimestamp) {
+            try {
+                const twFilePath = join('doc', pageData.relativePath)
+                detectedTimestamp = fs.statSync(twFilePath).mtime.getTime()
+            } catch (e) {}
+        }
+
+        if (detectedTimestamp) {
+            pageData.lastUpdated = detectedTimestamp
+            if (!pageData.frontmatter) pageData.frontmatter = {}
+            pageData.frontmatter.lastUpdated = detectedTimestamp
+        }
+    }
+}
+
+
 // 构建结束自动化生成 (Robots & 重定向)
 export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
     return (siteConfig: SiteConfig) => {
