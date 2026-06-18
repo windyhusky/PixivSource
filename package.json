@@ -21,11 +21,14 @@
   "scripts": {
     "build": "tsx BuildSource/buildBookSource.ts",
     "docs:convert": "node doc/scripts/ConvertChinese.js",
-    "predocs:dev": "node doc/scripts/ConvertChinese.js --dev",
+
+    "predocs:dev": "pnpm run docs:convert -- --dev",
     "docs:dev": "vitepress dev doc --host",
-    "docs:build": "node doc/scripts/ConvertChinese.js && vitepress build doc",
-    "predocs:preview": "node doc/scripts/ConvertChinese.js --dev",
-    "docs:preview": "vitepress build doc && vitepress preview doc"
+
+    "predocs:build": "pnpm run docs:convert",
+    "docs:build": "vitepress build doc",
+
+    "docs:preview": "pnpm run docs:build && vitepress preview doc"
   },
   "dependencies": {
     "markdown-it-anchor": "^9.2.0",
