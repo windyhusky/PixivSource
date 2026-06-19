@@ -73,6 +73,14 @@ export const cnSidebar = [
         ]
     },
     {
+        text: "Pixiv 书源",
+        collapsed: false,
+        items: [
+            { text: "🆚 功能对比", link: "/PixivComparison" },
+            { text: "⚙️ 书源设置", link: "/PixivSettings" },
+        ]
+    },
+    {
         text: "通用教程",
         collapsed: true,
         items: [
