@@ -25,5 +25,16 @@ export const localesConfig = {
             sidebar: twConfig.sidebar,
             ...twThemeConfig
         }
+    },
+    "en": {
+        label: 'English',
+        lang: 'en-US',
+        link: '/en/',
+        title: "Pixiv Souse",
+        description: "Pixiv BookSource for Legado 3.0",
+        themeConfig: {
+            nav: "",
+            sidebar: "",
+        }
     }
 }
