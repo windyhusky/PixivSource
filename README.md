@@ -173,6 +173,12 @@
 </details>
 
 
-## ⭐️ Stargazers over time
-[![Stargazers over time](https://starchart.cc/DowneyRem/PixivSource.svg?variant=adaptive)](https://starchart.cc/DowneyRem/PixivSource)
+<details><summary> ⭐️ Star History </summary>
+
+<picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DowneyRem/PixivSource&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DowneyRem/PixivSource&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=DowneyRem/PixivSource&type=Date" />
+</picture>
+</details>
 
