@@ -2,27 +2,26 @@
 <img width="256" src="doc/zh-TW/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 ## 🅿️ [開源閱讀](https://github.com/Luoyacheng/legado) Pixiv 書源
-### 🏠 [書源官網](https://pixivsource.pages.dev) & [使用指南](https://pixivsource.pages.dev/BetterExperience) 
-### ✈️ 頻道 [@PixivSource](https://t.me/PixivSource)
-### ☕️ [Pixiv 書源專案 打賞名單](https://pixivsource.pages.dev/Sponsor)
+### 🏠 [書源官網](https://pixivsource.pages.dev) 📖 [使用指南](https://pixivsource.pages.dev/zh-TW/BetterExperience) ✈️ 頻道 [@PixivSource](https://t.me/PixivSource)
+### ☕️ [Pixiv 書源專案 打賞名單](https://pixivsource.pages.dev/zh-TW/Sponsor)
 </div>
 
 
-## ✨ [臻享閱讀：最好的 Pixiv 第三方小說閱讀器——開源閱讀 + Pixiv 書源](https://pixivsource.pages.dev/BetterExperience)
-## ⚡️ [快速開始](https://pixivsource.pages.dev/QuickStart)：[下載閱讀](https://pixivsource.pages.dev/QuickStart#DownloadLegado)➡️[匯入書源](https://pixivsource.pages.dev/QuickStart#ImportSources)➡️[登入賬號](https://pixivsource.pages.dev/QuickStart#LoginAccount)➡️[閱讀設定](https://pixivsource.pages.dev/QuickStart#LegadoSettings)➡️[開始使用](https://pixivsource.pages.dev/Pixiv#All)
+## ✨ [臻享閱讀：最好的 Pixiv 第三方小說閱讀器——開源閱讀 + Pixiv 書源](https://pixivsource.pages.dev/zh-TW/BetterExperience)
+## ⚡️ [快速開始](https://pixivsource.pages.dev/zh-TW/QuickStart)：[下載閱讀](https://pixivsource.pages.dev/zh-TW/QuickStart#DownloadLegado)➡️[匯入書源](https://pixivsource.pages.dev/zh-TW/QuickStart#ImportSources)➡️[登入賬號](https://pixivsource.pages.dev/zh-TW/QuickStart#LoginAccount)➡️[閱讀設定](https://pixivsource.pages.dev/zh-TW/QuickStart#LegadoSettings)➡️[開始使用](https://pixivsource.pages.dev/zh-TW/Pixiv#All)
 
 
 ## 📖 書源功能 
-| 書源    | 狀態 | 直連 | 支援 Ｐ站 特性 | 實現 閱讀 功能 |
-| ------ | --- | --- |------------ | ----------- |
-| Pixiv  | ✅ | ✅ | ✅ 單篇 ✅ 系列 ✅ 插圖 | ✅ 搜尋 ✅ 發現 ✅ 新增網址 |
-| Linpx  | ✅ | ✅ | ✅ 單篇 ✅ 系列 ✅ 插圖 | ✅ 搜尋 ✅ 發現 ✅ 新增網址 |
-| 獸人小說 | ✅ | ✅ | ✅ 單篇 ✅ 系列 ✅ 插圖 | ✅ 搜尋 ✅ 發現 ✅ 新增網址 |
+| 書源    | 狀態 | 支援 Ｐ站 特性 | 實現 閱讀 功能 |
+| ------ | --- | ------------ | ----------- |
+| Pixiv  | ✅ | ✅ 單篇 ✅ 系列 ✅ 插圖 | ✅ 搜尋 ✅ 發現 ✅ 新增網址 |
+| Linpx  | ✅ | ✅ 單篇 ✅ 系列 ✅ 插圖 | ✅ 搜尋 ✅ 發現 ✅ 新增網址 |
+| 獸人小說 | ✅ | ✅ 單篇 ✅ 系列 ✅ 插圖 | ✅ 搜尋 ✅ 發現 ✅ 新增網址 |
 
 
 <details><summary> 🆚 功能對比 </summary>
 
-## 🆚 [功能對比](https://pixivsource.pages.dev/Comparison)（與 Pixiv App）
+## 🆚 [功能對比](https://pixivsource.pages.dev/zh-TW/Comparison)（與 Pixiv App）
 ### 📖 閱讀體驗
 | 功能 | Pixiv App | Pixiv 書源 |
 | :--- | :--- | :--- |
@@ -129,8 +128,8 @@
 
 
 ## 🗃 雜類
-### 🌱 [專案起源：為了更好的閱讀體驗](https://pixivsource.pages.dev/Beginning)
-### ☕️ [支援開發](https://pixivsource.pages.dev/Sponsor)
+### 🌱 [專案起源：為了更好的閱讀體驗](https://pixivsource.pages.dev/zh-TW/Beginning)
+### ☕️ [支援開發](https://pixivsource.pages.dev/zh-TW/Sponsor)
 
 <details><summary> ©️ 版權問題 </summary>
 
@@ -179,7 +178,7 @@
 <details><summary> 📢 鳴謝 </summary>
 
 ### 鳴謝
-- ☕️ [Pixiv 書源專案 打賞名單](https://pixivsource.pages.dev/Sponsor)
+- ☕️ [Pixiv 書源專案 打賞名單](https://pixivsource.pages.dev/zh-TW/Sponsor)
 - 感謝 [閱讀 3.0](https://github.com/gedoor/legado) 提供的軟體平臺
 - 感謝 [閱讀 Sigma](https://github.com/Luoyacheng/legado) 提供的軟體平臺
 - 感謝 [Linpx](https://github.com/libudu/linpx-web) 提供的 [網站服務](https://www.furrynovel.ink)
