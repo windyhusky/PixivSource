@@ -138,11 +138,9 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > #### 但依然不建议在书架上添加过多小说
 
 
-<div v-if="false">
 <!--@include: CommonDownload.md-->
 
 <!--@include: CommonImport.md-->
-</div>
 
 <div v-if="false">
 <!--@include: CommonPixiv.md-->

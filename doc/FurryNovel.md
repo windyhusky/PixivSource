@@ -97,11 +97,9 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 🦊 [Linpx 书源 功能手册](Linpx.md)
 
 
-<div v-if="false">
 <!--@include: CommonDownload.md-->
 
 <!--@include: CommonImport.md-->
-</div>
 
 <div v-if="false">
 
