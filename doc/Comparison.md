@@ -12,7 +12,7 @@ layout: doc
 #comment: false
 #friendLink: false
 
-head:
+#head:
 #  - - meta
 #    - name: keywords
 #      content: 臻享阅读, Pixiv 书源新手教程, 开源阅读 Legado 入门, Pixiv 小说书架, Legado Pixiv 配置, Pixiv 小说阅读器, Legado Pixiv 书源, 开源阅读配置
