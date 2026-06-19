@@ -1,3 +1,5 @@
+### 🔠 [English](README.en.md) 🀄️ [简体中文](README.md)
+
 <div align="center">
 <img width="256" src="doc/zh-TW/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
