@@ -154,7 +154,7 @@ if (BOOK) {
 // 处理按钮
 li.forEach(item => {
     item.name = Object.keys(item)[0]
-    if (!pixivEnvironment.IS_LEGADO_SIGMA) {
+    if (!pixivEnvironment?.IS_LEGADO_SIGMA) {
         item.name = item.name.replace(/🚫 |⚫️ |㊙️ /g, "")
     }
     let list = item.name.split(" ")
