@@ -5,7 +5,7 @@
 
 ### 🔞 浏览范围（可选）{#ViewSettings}
 > [!TIP]
-> #### 如果你已经开启了 R18 功能，则可以跳过这一步
+> 如果你已经开启了 R18 功能，则可以跳过这一步
 
 <details><summary><strong>📆 编辑出生年份 </strong></summary>
 
@@ -41,6 +41,8 @@
 >
 > **如果你可以直接访问 Pixiv ，可以略过这一步**
 
+<details><summary><strong> ✈️ 直连模式 </strong></summary>
+
 > [!NOTE]
 > 
 > **完成【登录账号】后，可在登录界面开启【直连模式】**
@@ -68,4 +70,6 @@
 > **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)**
 >
 > **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
+
+</details>
 </div>
