@@ -44,7 +44,7 @@
 
 
 ## 书源介绍 {#SourceIntroduction}
-### 📚 书源 {#BookSource}
+### 📚 书源 {#BookSourceConcept}
 > [!NOTE]
 >
 > **【开源阅读】没有账号体系，软件本身并不提供小说资源**
@@ -58,7 +58,8 @@
 - 有【番茄】书源，就可以看 番茄小说
 - 有【Pixiv】书源，就可以看 Pixiv 小说
 
-### 🌐 订阅源 {#RssSource}
+
+### 🌐 订阅源 {#RssSourceConcept}
 > [!NOTE]
 >
 > 「订阅源类似于RSS，甚至可以听音乐看视频」

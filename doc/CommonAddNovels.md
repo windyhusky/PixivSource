@@ -2,10 +2,12 @@
 > [!TIP]
 > ▶️ 全部功能详见 [Pixiv 书源 功能手册](Pixiv.md)
 
-### 🔍 [搜索小说](Pixiv.md#SearchNovel)
+### 🔍 [搜索小说](Pixiv.md#SearchNovel) {#SearchNovel}
 > [!NOTE]
 >
 > **书架页面 - 放大镜 - 输入关键词 - 搜索小说 - 添加小说到书架**
+> 
+> 同时搜索：**Pixiv 网站上小说、本地书架上的小说**
 
 > [!TIP]
 > ✅ 默认同时搜索： **小说名称、系列小说名称、标签**
@@ -28,7 +30,7 @@
 点击【放入书架】，添加小说到书架
 
 
-### ⭐️ [发现小说](Pixiv.md#DiscoverNovel)
+### ⭐️ [发现小说](Pixiv.md#DiscoverNovel) {#DiscoverNovel}
 > [!NOTE]
 >
 > **发现页面 - 点击“Pixiv 小说” - 点击按钮 - 添加小说到书架**
@@ -51,7 +53,7 @@
 点击【放入书架】，添加小说到书架
 
 
-### 🔗 [添加网址](Pixiv.md#AddUrl)
+### 🔗 [添加网址](Pixiv.md#AddUrl) {#AddUrl}
 > [!NOTE]
 >
 > **书架 - 菜单 - 添加网址 - 粘贴小说链接 - 添加小说到书架**
@@ -88,7 +90,7 @@ https://www.pixiv.net/novel/show.php?id=26200191
 ```
 
 
-### 🌐 [订阅源](Pixiv.md#RssSource)
+### 🌐 [订阅源](Pixiv.md#RssSource) {#RssSource}
 > [!NOTE]
 >
 > **订阅 - Pixiv - 打开小说正文/系列小说目录 - 添加小说到书架**
