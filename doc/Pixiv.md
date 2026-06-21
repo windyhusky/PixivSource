@@ -156,7 +156,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ## 搜索小说 {#SearchNovel}
 > [!NOTE]
 >
-> **书架页面 - 放大镜 - 输入关键词 - 搜索小说**
+> **书架页面 - 放大镜 - 输入关键词 - 搜索小说 - 添加小说到书架**
 
 
 ### 🔎 搜索小说 {#SearchNovels}

@@ -18,7 +18,7 @@
 支持 Pixiv 多个格式的网址链接：
 - Pixiv 单篇小说链接
 ```
-https://www.pixiv.net/novel/show.php?id=20063566
+https://www.pixiv.net/novel/show.php?id=26200191
 ```
 - Pixiv 系列小说链接
 ```
@@ -31,7 +31,7 @@ https://www.pixiv.net/users/16721009
 **无法添加的链接：**
 - Pixiv App 小说分享链接 **（删掉#号即可正常添加）**
 ```
-测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=20063566
+测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=26200191
 ```
 </div>
 
