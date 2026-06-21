@@ -350,9 +350,13 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/DiscoverPixivRanking.png)
 > [!TIP]
 >
-> 🔞 排行榜单 => **✅ 默认显示**
+> 🔞 排行榜单：
+> [排行榜](https://www.pixiv.net/novel/ranking.php?mode=daily_r18)
+> => **✅ 默认显示**
 > 
-> 💼 排行榜单 => ❌ 默认隐藏
+> 💼 排行榜单：
+> [排行榜](https://www.pixiv.net/novel/ranking.php)
+> => ❌ 默认隐藏
 >
 > 可在 **发现设置** 中修改【🔞 排行榜单】【💼 排行榜单】
 
