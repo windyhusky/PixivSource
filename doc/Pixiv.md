@@ -327,11 +327,23 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/DiscoverPixivNew.png)
 > [!TIP]
 > 
-> 🔞 最新企划 => **✅ 默认显示**
+> 🔞 最新企划约稿 => **✅ 默认显示**
 > 
-> 💼 最新企划 => ❌ 默认隐藏
+> 💼 最新企划约稿 => ❌ 默认隐藏
 > 
 > 可在 **发现设置** 中修改【🔞 最新企划】【💼 最新企划】
+
+- 🔞 最新企划约稿 => **✅ 默认显示**
+  - 🆕 最新：[大家的新作](https://www.pixiv.net/novel/new_r18.php)
+  - 📑 企划：[用户企划](https://www.pixiv.net/user_event.php?type=novels&mode=r18)
+  - 💰 约稿：[小说约稿](https://www.pixiv.net/request/complete/novels?mode=r18)
+  - 🔍 发现：[发现小说](https://www.pixiv.net/novel/discovery)
+
+- 💼 最新企划约稿
+  - 最新：[大家的新作](https://www.pixiv.net/novel/new.php)
+  - 企划：[用户企划](https://www.pixiv.net/user_event.php?type=novels)
+  - 约稿：[小说约稿](https://www.pixiv.net/request/complete/novels)
+  - 编辑：[编辑部推荐作品](https://www.pixiv.net/novel/editors_picks)
 
 
 ### 👑 小说排行 {#Ranking}
