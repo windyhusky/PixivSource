@@ -113,16 +113,13 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <!--@include: CommonImportMethod.md-->
 
 
-## 书源配置 {#BookSourceSet}
-> [!NOTE]
->
-> **有账号的网站，在书源里登录账号才能阅读相关小说**
+<!--@include: CommonPixiv.md-->
 
-<!--@include: CommonLoginPixiv.md-->
-
+<div v-if="!pagePath.includes('zh-TW')">
 <details><summary><strong> 🦊 Linpx 与 兽人控小说站 </strong></summary>
 <!--@include: CommonLoginLinpx.md-->
 </details>
+</div>
 
 <!--@include: CommonLegado.md-->
 
