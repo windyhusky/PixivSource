@@ -1,4 +1,4 @@
-## 📖 添加小说 {#EnjoyReading}
+## 📖 添加小说 {#AddNovels}
 > [!TIP]
 > ▶️ 全部功能详见 [Pixiv 书源 功能手册](Pixiv.md)
 

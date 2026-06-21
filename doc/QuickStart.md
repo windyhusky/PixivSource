@@ -85,7 +85,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > ➕ **[导入书源](#ImportSources) =>**
 > 🅿️ **[书源配置](#BookSourceSet) =>**
 > ⚙️ **[阅读设置](#LegadoSettings) =>**
-> 📖 **[畅享阅读](#EnjoyReading)**
+> 📖 **[添加小说](#AddNovels)**
 > <br><br>
 > **另有：面向新手，从零开始的完整配置指南：**
 > [✨臻享阅读](BetterExperience.md)

@@ -93,7 +93,7 @@ features:
   - icon: 📖
     title: 全面支援閱讀功能
     details: 🔍搜尋小說 ⭐️發現小說<br>🔗新增網址 🌐訂閱源
-    link: /zh-TW/BetterExperience#AddNovels
+    link: AddNovels
     
   - icon: 📚
     title: 閱讀體驗全面升級
