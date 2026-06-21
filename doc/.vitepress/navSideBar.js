@@ -19,7 +19,6 @@ export const cnNav = [
         items: [
             { text: "✨ 臻享阅读", link: "/BetterExperience", activeMatch: '/' },
             { text: "⚡️️️ 快速开始", link: "/QuickStart" },
-            { text: "💾 备份恢复", link: "/WebdavBackup" , activeMatch: '/' },
             { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
             { text: "🦊 Linpx 书源", link: "/Linpx" },
             { text: "🐯 兽人小说站", link: "/FurryNovel" },
@@ -246,14 +245,6 @@ export const twSideBar = [
             {
                 text: "🅿️ Pixiv 書源",
                 link: "/zh-TW/Pixiv"
-            },
-            {
-                text: "🦊 Linpx 書源",
-                link: "/zh-TW/Linpx"
-            },
-            {
-                text: "🐯 獸人控小說站 書源",
-                link: "/zh-TW/FurryNovel"
             }
         ]
     },
