@@ -19,6 +19,7 @@ export const cnNav = [
         items: [
             { text: "✨ 臻享阅读", link: "/BetterExperience", activeMatch: '/' },
             { text: "⚡️️️ 快速开始", link: "/QuickStart" },
+            { text: "➕ 添加小说", link: "/AddNovels" },
             { text: "🅿️ Pixiv 书源", link: "/Pixiv" },
             { text: "🦊 Linpx 书源", link: "/Linpx" },
             { text: "🐯 兽人小说站", link: "/FurryNovel" },
@@ -62,6 +63,7 @@ export const cnSidebar = [
         items: [
             { text: "✨ 臻享阅读", link: "/BetterExperience" },
             { text: "⚡️️️ 快速开始", link: "/QuickStart" },
+            { text: "➕ 添加小说", link: "/AddNovels" },
         ]
     },
     {
@@ -132,6 +134,7 @@ export const twNav = [
         items: [
             { text: "✨ 臻享閱讀", link: "/zh-TW/BetterExperience", activeMatch: "/" },
             { text: "⚡️️️ 快速開始", link: "/zh-TW/QuickStart" },
+            { text: "➕ 新增小說", link: "/AddNovels" },
             { text: "🅿️ Pixiv 書源", link: "/zh-TW/Pixiv" }
         ]
     },
@@ -173,7 +176,8 @@ export const twSideBar = [
         collapsed: false,
         items: [
             { text: "✨ 臻享閱讀", link: "/zh-TW/BetterExperience" },
-            { text: "⚡️️️ 快速開始", link: "/zh-TW/QuickStart" }
+            { text: "⚡️️️ 快速開始", link: "/zh-TW/QuickStart" },
+            { text: "➕ 新增小說", link: "/AddNovels" },
         ]
     },
     {
