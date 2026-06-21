@@ -93,7 +93,7 @@ features:
   - icon: 📖
     title: 全面支持阅读功能
     details: 🔍搜索小说 ⭐️发现小说<br>🔗添加网址 🌐订阅源
-    link: Pixiv#QuickJump
+    link: BetterExperience#AddNovels
     
   - icon: 📚
     title: 阅读体验全面升级
