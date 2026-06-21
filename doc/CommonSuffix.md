@@ -67,20 +67,18 @@
 > 更多详见 [添加网址](Pixiv.md#AddUrl)
 
 
-
-
 ```
 https://www.pixiv.net/novel/show.php?id=26200191
 ```
-先复制 Pixiv 链接，点击书架右上角菜单
+复制上面的 Pixiv 链接，点击书架右上角菜单
 
 ![img](./pic/AddBookViaUrl1.png)
 
-粘贴链接
+粘贴链接，点击确定，添加小说到书架
 
 ![img](./pic/AddBookViaUrl2.png)
 
-点击确定，添加小说到书架
+![img](./pic/AddBookViaUrl3.png)
 
 > [!WARNING]
 > 
@@ -88,8 +86,6 @@ https://www.pixiv.net/novel/show.php?id=26200191
 ```
 测试页面 | 唐尼瑞姆 #pixiv https://www.pixiv.net/novel/show.php?id=26200191
 ```
-
-![img](./pic/AddBookViaUrl3.png)
 
 
 ### 🌐 [订阅源](Pixiv.md#RssSource)
