@@ -52,7 +52,7 @@ hero:
 #      link: Import
       
     - theme: brand
-      text: 🚀 Import Pixiv Source
+      text: 🚀 Import Pixiv BookSource
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
 #    - theme: alt

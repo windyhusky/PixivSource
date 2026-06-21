@@ -57,7 +57,7 @@ hero:
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
     - theme: alt
-      text: 📘 Pixiv 書源功能手冊
+      text: 📘 Pixiv 書源 功能手冊
       link: /zh-TW/Pixiv
       
 #    - theme: brand
@@ -69,7 +69,7 @@ hero:
 #      link: /zh-TW/Linpx
       
     - theme: brand
-      text: 🚀 匯入 訂閱源
+      text: 🚀 匯入 Pixiv 訂閱源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
 
     - theme: alt
