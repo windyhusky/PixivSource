@@ -281,12 +281,22 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > **发现页面 - 点击“Pixiv 小说” - 点击按钮**
 
 
-### ⭐️ 常规小说 {#DiscoverNormal}
+### 📌️ 默认发现 {#DiscoverDefault}
 ![img](./pic/DiscoverPixiv.png)
 > [!TIP]
 >
 > 🔞 默认发现 => **✅ 默认显示，不可隐藏**
 > 
+
+- ⭐️ 关注：[关注作者，最新小说](https://www.pixiv.net/novel/bookmark_new_r18.php)
+- 📃 追更：[追更列表](https://www.pixiv.net/following/watchlist/novels)
+- 💯 推荐：[推荐作品](https://www.pixiv.net/novel)
+- 🔍 发现：[发现小说](https://www.pixiv.net/novel/discovery?mode=r18)
+- 
+- ❤️ 收藏：[公开收藏](https://www.pixiv.net/users/1234/bookmarks/novels?rest=show&mode=all)
+- ㊙️ 收藏：[匿名收藏](https://www.pixiv.net/users/1234/bookmarks/novels?rest=hide&mode=all)
+- 🏷️ 书签：[书签](https://www.pixiv.net/novel/marker_all.php)
+- 🏠 首页：[首页](https://www.pixiv.net)
 > 💼 常规小说 => **✅ 默认显示，可以隐藏**
 >
 > 可在 **发现设置** 中修改【💼 常规小说】
