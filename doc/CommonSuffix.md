@@ -2,6 +2,9 @@
 <div v-if="pagePath.includes('BetterExperience') || pagePath.includes('QuickStart')">
 
 ## 📖 添加小说 {#EnjoyReading}
+> [!TIP]
+> ▶️ 全部功能详见 [Pixiv 书源 功能手册](Pixiv.md)
+
 ### 🔍 [搜索小说](Pixiv.md#SearchNovel)
 > [!NOTE]
 >
@@ -116,7 +119,6 @@ https://www.pixiv.net/novel/show.php?id=26200191
 点击【放入书架】，添加小说到书架
 
 
-### ▶️ 全部功能详见 [Pixiv 书源 功能手册](Pixiv.md)
 </div>
 
 
