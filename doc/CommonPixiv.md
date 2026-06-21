@@ -3,6 +3,8 @@
 <!--@include: CommonLoginPixiv.md-->
 
 
+<div v-if="!pagePath.includes('QuickStart')">
+
 ### 🔞 浏览范围（可选）{#ViewSettings}
 > [!TIP]
 > 如果你已经开启了 R18 功能，则可以跳过这一步
@@ -32,6 +34,7 @@
 
 ![img](./pic/PixivSettingsView.png)
 </details>
+</div>
 
 
 <div v-if="!pagePath.includes('zh-TW')">
