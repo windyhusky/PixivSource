@@ -365,9 +365,13 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ![img](./pic/DiscoverPixivHot.png)
 > [!TIP]
 >
-> 🔞 原创热门 => ❌ 默认隐藏
+> 🔞 原创热门：
+> [原创热门](https://www.pixiv.net/genre/novel/male?mode=r18)
+> => ❌ 默认隐藏
 > 
-> 💼 原创热门 => ❌ 默认隐藏
+> 💼 原创热门：
+> [原创热门](https://www.pixiv.net/genre/novel)
+> => ❌ 默认隐藏
 >
 >  可在 **发现设置** 中修改【🔞 原创热门】【💼 原创热门】
 
