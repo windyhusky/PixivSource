@@ -1,4 +1,4 @@
-import { cnNav, cnSidebar } from './navSideBar.js'
+import { cnNav, cnSidebar, twNav, twSideBar } from './navSideBar.js'
 import { cnThemeConfig, twThemeConfig } from "./themeConfig.js"
 import twConfig from '../zh-TW/config.zh-TW.json' with { type: 'json' }
 
@@ -21,8 +21,8 @@ export const localesConfig = {
         title: "Pixiv 書源",
         description: "適配 開源閲讀 Legado 3.0 的 Pixiv 書源",
         themeConfig: {
-            nav: twConfig.nav,
-            sidebar: twConfig.sidebar,
+            nav: twNav,
+            sidebar: twSideBar,
             ...twThemeConfig
         }
     },

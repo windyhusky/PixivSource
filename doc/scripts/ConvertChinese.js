@@ -286,16 +286,13 @@ function getAllMdFiles(dir, baseDir = dir) {
 }
 
 // ─── 主流程 ───────────────────────────────────────────────────────────────────
-
-function main() {
-  // 1. 处理 Markdown 文件的转换
+// 处理 Markdown 文件的转换
+function convertMarkdownFile() {
   const files = getAllMdFiles(SOURCE_DIR)
-
   if (files.length === 0) {
     console.log('没有找到 .md 文件')
     return
   }
-
   console.log(`找到 ${files.length} 个文件，开始转换...\n`)
 
   let successCount = 0
@@ -323,8 +320,10 @@ function main() {
       errorCount++
     }
   }
+}
 
-  // 2. 自动生成繁体导航栏与侧边栏配置
+// 自动生成繁体导航栏与侧边栏配置
+function convertNavAndSideBar() {
   console.log('\n========================================')
   console.log('⏳ 开始自动转换 nav 和 sidebar 配置...')
   try {
@@ -347,6 +346,11 @@ function main() {
     console.error(`❌ 生成繁体配置失败: ${err.message}`)
   }
   console.log('========================================')
+}
+
+function main() {
+  convertMarkdownFile()
+  // convertNavAndSideBar()
 }
 
 main()

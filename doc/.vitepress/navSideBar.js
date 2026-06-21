@@ -1,8 +1,10 @@
 export const BLOG = "https://downeyrem.pages.dev/"
 
 export const cnNav = [
-    { text: "✍️ 博客", link: BLOG },
-    { text: "🏠 主页", link: "/" },
+    { 
+        text: "🏠 主页", 
+        link: "/"
+    },
     {
         text: "📌 站方功能",
         activeMatch: '/',
@@ -110,4 +112,229 @@ export const cnSidebar = [
             { text: "💵 打赏记录", link: `${BLOG}Sponsor` },
         ]
     },
+]
+
+export const twNav = [
+    {
+        text: "🏠 主頁",
+        link: "/zh-TW/"
+    },
+    {
+        text: "📌 站方功能",
+        activeMatch: "/",
+        items: [
+            {
+                text: "⬇️ 下載閱讀",
+                link: "/zh-TW/DownloadLegado"
+            },
+            {
+                text: "🚀 一鍵匯入",
+                link: "/zh-TW/Import"
+            }
+        ]
+    },
+    {
+        text: "📚 書源指南",
+        activeMatch: "/",
+        items: [
+            {
+                text: "✨ 臻享閱讀",
+                link: "/zh-TW/BetterExperience",
+                activeMatch: "/"
+            },
+            {
+                text: "⚡️️️ 快速開始",
+                link: "/zh-TW/QuickStart"
+            },
+            {
+                text: "🅿️ Pixiv 書源",
+                link: "/zh-TW/Pixiv"
+            }
+        ]
+    },
+    {
+        text: "📖 閱讀指南",
+        items: [
+            {
+                text: "📚 軟體合集",
+                link: "/zh-TW/Download"
+            },
+            {
+                text: "🚀 匯入書源",
+                link: "/zh-TW/ImportBookSource"
+            },
+            {
+                text: "🚀 匯入訂閱",
+                link: "/zh-TW/ImportRssSource"
+            },
+            {
+                text: "💾 備份恢復",
+                link: "/zh-TW/WebdavBackup",
+                activeMatch: "/"
+            },
+            {
+                text: "☁️ 遠端書籍",
+                link: "/zh-TW/RemoteBooks"
+            },
+            {
+                text: "🛠️ 故障排查",
+                link: "/zh-TW/TroubleShoot"
+            }
+        ]
+    },
+    {
+        text: "🚧 開發動態",
+        items: [
+            {
+                text: "📜 更新日誌",
+                link: "/zh-TW/UpdateLog"
+            },
+            {
+                text: "👥 開發團隊",
+                link: "/zh-TW/Team"
+            },
+            {
+                text: "🤝 友情連結",
+                link: "/zh-TW/FriendLink"
+            },
+            {
+                text: "☕ 支援開發",
+                link: "/zh-TW/Sponsor",
+                activeMatch: "/"
+            },
+            {
+                text: "✍️ 作者部落格",
+                link: BLOG
+            }
+        ]
+    }
+]
+
+export const twSideBar = [
+    {
+        text: "站方功能",
+        collapsed: false,
+        items: [
+            {
+                text: "⬇️ 下載閱讀",
+                link: "/zh-TW/DownloadLegado"
+            },
+            {
+                text: "🚀 一鍵匯入",
+                link: "/zh-TW/Import"
+            }
+        ]
+    },
+    {
+        text: "快速開始",
+        collapsed: false,
+        items: [
+            {
+                text: "✨ 臻享閱讀",
+                link: "/zh-TW/BetterExperience"
+            },
+            {
+                text: "⚡️️️ 快速開始",
+                link: "/zh-TW/QuickStart"
+            }
+        ]
+    },
+    {
+        text: "功能手冊",
+        collapsed: false,
+        items: [
+            {
+                text: "🅿️ Pixiv 書源",
+                link: "/zh-TW/Pixiv"
+            },
+            {
+                text: "🦊 Linpx 書源",
+                link: "/zh-TW/Linpx"
+            },
+            {
+                text: "🐯 獸人控小說站 書源",
+                link: "/zh-TW/FurryNovel"
+            }
+        ]
+    },
+    {
+        text: "Pixiv 書源",
+        collapsed: false,
+        items: [
+            {
+                text: "🆚 功能對比",
+                link: "/zh-TW/PixivComparison"
+            },
+            {
+                text: "⚙️ 書源設定",
+                link: "/zh-TW/PixivSettings"
+            }
+        ]
+    },
+    {
+        text: "通用教程",
+        collapsed: true,
+        items: [
+            {
+                text: "📚 軟體合集",
+                link: "/zh-TW/Download"
+            },
+            {
+                text: "🚀 匯入書源",
+                link: "/zh-TW/ImportBookSource"
+            },
+            {
+                text: "🚀 匯入訂閱",
+                link: "/zh-TW/ImportRssSource"
+            },
+            {
+                text: "💾 備份恢復",
+                link: "/zh-TW/WebdavBackup"
+            },
+            {
+                text: "☁️ 遠端書籍",
+                link: "/zh-TW/RemoteBooks"
+            },
+            {
+                text: "🛠️ 故障排查",
+                link: "/zh-TW/TroubleShoot"
+            }
+        ]
+    },
+    {
+        text: "開發動態",
+        collapsed: false,
+        items: [
+            {
+                text: "📜 更新日誌",
+                link: "/zh-TW/UpdateLog"
+            },
+            {
+                text: "🌱 專案起源",
+                link: "/zh-TW/Beginning"
+            },
+            {
+                text: "👥 開發團隊",
+                link: "/zh-TW/Team"
+            },
+            {
+                text: "🤝 友情連結",
+                link: "/zh-TW/FriendLink"
+            }
+        ]
+    },
+    {
+        text: "打賞記錄",
+        collapsed: false,
+        items: [
+            {
+                text: "☕ 支援開發",
+                link: "/zh-TW/Sponsor"
+            },
+            {
+                text: "💵 打賞記錄",
+                link: "https://downeyrem.pages.dev/Sponsor"
+            }
+        ]
+    }
 ]
