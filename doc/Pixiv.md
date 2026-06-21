@@ -282,7 +282,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ### ⭐️ 常规小说 {#DiscoverNormal}
-![img](./pic/DiscoverPixiv.jpg)
+![img](./pic/DiscoverPixiv.png)
 > [!TIP]
 >
 > 🔞 默认发现 => **✅ 默认显示，不可隐藏**

@@ -1,8 +1,6 @@
 
 <div v-if="pagePath.includes('BetterExperience') || pagePath.includes('QuickStart')">
 
-- ⭐️ [发现小说](Pixiv.md#DiscoverNovel)：发现页面，查看小说，添加小说到书架
-- 🌐 [订阅源](Pixiv.md#RssSource)：订阅页面，通过 **【订阅源】** 添加小说到书架
 ## 📖 添加小说 {#EnjoyReading}
 ### 🔍 [搜索小说](Pixiv.md#SearchNovel)
 > [!NOTE]
@@ -31,7 +29,26 @@
 
 
 ### ⭐️ [发现小说](Pixiv.md#DiscoverNovel)
-发现页面，查看小说，添加小说到书架
+> [!NOTE]
+>
+> **发现页面 - 点击“Pixiv 小说” - 点击按钮 - 添加小说到书架**
+
+> [!TIP]
+>
+> Pixiv 有诸多推荐小说的功能，这些功能均在**发现页面**，
+> 详见 [发现小说](Pixiv.md#DiscoverNovel)
+
+![img](./pic/DiscoverPixiv.png)
+
+打开发现页面，点击上方的发现按钮，可以进入小说列表
+
+![img](./pic/DiscoverViaLegado.png)
+
+点击发现结果，进入小说详情页面
+
+![img](./pic/BookInformation.png)
+
+点击【放入书架】，添加小说到书架
 
 
 ### 🔗 [添加网址](Pixiv.md#AddUrl)
@@ -41,17 +58,29 @@
 
 > [!TIP]
 > 
-> **可以同时添加多个小说的链接，支持链接：**
+> **当你收到 Pixiv 的链接时，可以通过添加网址，将其添加到书架**
+> 
+> **可以同时添加多个小说的链接，支持：**
 > - **Pixiv 单篇小说链接**
 > - **Pixiv 系列小说链接**
 > - **Pixiv 作者链接（添加近期1本小说）**
 > 更多详见 [添加网址](Pixiv.md#AddUrl)
 
 
-当你收到 Pixiv 的链接时，可以通过添加网址，将其添加到书架
+
+
+```
+https://www.pixiv.net/novel/show.php?id=26200191
+```
+先复制 Pixiv 链接，点击书架右上角菜单
 
 ![img](./pic/AddBookViaUrl1.png)
+
+粘贴链接
+
 ![img](./pic/AddBookViaUrl2.png)
+
+点击确定，添加小说到书架
 
 > [!WARNING]
 > 
