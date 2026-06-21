@@ -123,5 +123,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 <!--@include: CommonLegado.md-->
 
+<!--@include: CommonAddNovels.md-->
+
 <!--@include: CommonSuffix.md-->
 
