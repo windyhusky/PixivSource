@@ -157,6 +157,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [!NOTE]
 >
 > **书架页面 - 放大镜 - 输入关键词 - 搜索小说 - 添加小说到书架**
+>
+> 同时搜索：**Pixiv 网站上小说、本地书架上的小说**
 
 
 ### 🔎 搜索小说 {#SearchNovels}
@@ -278,7 +280,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ## 发现小说 {#DiscoverNovel}
 > [!NOTE]
 >
-> **发现页面 - 点击“Pixiv 小说” - 点击按钮**
+> **发现页面 - 点击“Pixiv 小说” - 点击按钮 - 添加小说到书架**
+
+> [!TIP]
+>
+> Pixiv 有诸多推荐小说的功能，这些功能均在**发现页面**
 
 
 ### 📌️ 默认发现 {#DiscoverDefault}
@@ -399,8 +405,17 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## 订阅源 {#RssSource}
 > [!NOTE]
-> 
-> 订阅界面，打开 Pixiv 订阅源
+>
+> **订阅 - Pixiv - 打开小说正文/系列小说目录 - 添加小说到书架**
+
+> [!TIP]
+>
+> 如果你不习惯使用阅读软件，可以**在这里打开 Pixiv 网页版**
+>
+> **并通过【加入书架】按钮，添加小说到书架**
+
+![img](./pic/SubscribeMainPage.png)
+
 
 ### ⬇️ 导入书源 {#ImportSource}
 ![img](./pic/InportBookSourcePixivWeb.png)
