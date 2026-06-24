@@ -37,13 +37,41 @@ export const writeCache = (key: string, data: any, ttl: number) => {
 
 // ── 翻页请求 ──
 export const fetchAllReleases = async (apiUrl: string): Promise<any[]> => {
-    const baseUrl = apiUrl.replace(/[?&]per_page=\d+/, '')
-    const separator = baseUrl.includes('?') ? '&' : '?'
     let page = 1
     let all: any[] = []
 
+    // 检测平台与提取仓库路径
+    const isGithub = apiUrl.includes('api.github.com/repos/')
+    const isGitee = apiUrl.includes('gitee.com/api/v5/repos/')
+
+    let repoPath = ''
+    let platform: 'github' | 'gitee' | null = null
+
+    if (isGithub) {
+        const match = apiUrl.match(/repos\/([^/]+\/[^/]+)/)
+        if (match) {
+            repoPath = match[1]
+            platform = 'github'
+        }
+    } else if (isGitee) {
+        const match = apiUrl.match(/repos\/([^/]+\/[^/]+)/)
+        if (match) {
+            repoPath = match[1]
+            platform = 'gitee'
+        }
+    }
+
     while (true) {
-        const url = `${baseUrl}${separator}per_page=100&page=${page}`
+        let url = ''
+        // 如果成功匹配到了平台和仓库路径，统一走你的专属 CF Worker 代理
+        if (platform && repoPath) {
+            url = `https://legado-repo.tnt-wwxs-tz.workers.dev/?platform=${platform}&repo=${encodeURIComponent(repoPath)}&per_page=100&page=${page}`
+        } else {
+            // 后备容错逻辑，保持原有拼接结构
+            const baseUrl = apiUrl.replace(/[?&]per_page=\d+/, '')
+            const separator = baseUrl.includes('?') ? '&' : '?'
+            url = `${baseUrl}${separator}per_page=100&page=${page}`
+        }
 
         let res: Response | null = null
         let lastError: any
