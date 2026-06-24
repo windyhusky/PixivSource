@@ -106,10 +106,8 @@ const fetchRepoRelease = async (repoItem) => {
   loadingMap.value[repoKey] = true
 
   try {
-    const res = await fetch(meta.apiUrl)
-    if (res.ok) {
-      releaseMap.value[repoKey] = transformReleases(await res.json(), meta.platform, meta.webUrl)
-    }
+    const rawData = await fetchAllReleases(meta.apiUrl)
+    releaseMap.value[repoKey] = transformReleases(rawData, meta.platform, meta.webUrl)
   } catch (error) {
     console.error(`[DownloadList] 拉取失败: ${repoKey}`, error)
   } finally {

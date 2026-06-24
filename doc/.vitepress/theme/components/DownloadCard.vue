@@ -144,33 +144,20 @@ const fetchFrontmatterRelease = async () => {
   const cacheKey = meta.apiUrl
   const ttl = CACHE_TTL[meta.platform] || CACHE_TTL.github
 
-  // 1. 命中有效缓存，直接使用，不发起请求
   const cached = readCache(cacheKey)
   if (cached) {
     localRelease.value = getTargetRelease(cached, item)
     return
   }
 
-  // 2. 缓存未命中或已过期，发起请求
   localLoading.value = true
   try {
-    const res = await fetch(meta.apiUrl)
-    if (res.ok) {
-      const releases = transformReleases(await res.json(), meta.platform, meta.webUrl)
-      writeCache(cacheKey, releases, ttl)
-      localRelease.value = getTargetRelease(releases, item)
-    } else {
-      // 请求被限流（403）或其他非 2xx 响应，尝试用过期缓存兜底
-      const stale = readStaleCache(cacheKey)
-      if (stale) {
-        localRelease.value = getTargetRelease(stale, item)
-      } else {
-        console.error(`获取 Release 失败：${meta.apiUrl}，状态码 ${res.status}`)
-      }
-    }
+    const rawData = await fetchAllReleases(meta.apiUrl)
+    const releases = transformReleases(rawData, meta.platform, meta.webUrl)
+    writeCache(cacheKey, releases, ttl)
+    localRelease.value = getTargetRelease(releases, item)
   } catch (e) {
     console.error(e)
-    // 网络错误时，同样尝试过期缓存兜底
     const stale = readStaleCache(cacheKey)
     if (stale) localRelease.value = getTargetRelease(stale, item)
   } finally {

@@ -80,3 +80,25 @@ export const transformReleases = (rawData: any, platform: 'gitee' | 'github', re
         }
     })
 }
+
+export const fetchAllReleases = async (apiUrl: string): Promise<any[]> => {
+    const baseUrl = apiUrl.replace(/[?&]per_page=\d+/, '')
+    const separator = baseUrl.includes('?') ? '&' : '?'
+    let page = 1
+    let all: any[] = []
+
+    while (true) {
+        const url = `${baseUrl}${separator}per_page=100&page=${page}`
+        const res = await fetch(url)
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+
+        const data = await res.json()
+        if (!Array.isArray(data) || data.length === 0) break
+
+        all = all.concat(data)
+        if (data.length < 100) break  // 最后一页
+        page++
+    }
+
+    return all
+}
