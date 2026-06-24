@@ -1,7 +1,7 @@
-import type { SiteConfig } from 'vitepress'
-import { execSync } from 'child_process'
+import type {SiteConfig} from 'vitepress'
+import {execSync} from 'child_process'
 import fs from 'fs'
-import { join, relative } from 'path'
+import {join, relative} from 'path'
 
 // 繁体版 Git 时间穿透补丁
 export async function transformPageData(pageData: any) {
@@ -19,9 +19,8 @@ export async function transformPageData(pageData: any) {
             try { time = fs.statSync(join('doc', relativePath)).mtimeMs } catch {}
         }
 
-        if (time) {
-            pageData.lastUpdated = time
-            pageData.frontmatter = { ...pageData.frontmatter, lastUpdated: time }
+        if (time && pageData.frontmatter.lastUpdated !== false) {
+            pageData.frontmatter = {...pageData.frontmatter, lastUpdated: time}
         }
     }
 }
