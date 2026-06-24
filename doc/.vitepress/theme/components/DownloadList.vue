@@ -2,16 +2,15 @@
 /**
  * DownloadList.vue
  * 软件下载页面组件，负责：
- * - 从 frontmatter.repos 读取下载卡片配置
- * - 并发拉取 GitHub / Gitee API Release 数据
+ * - 从 frontmatter.legadoRepos / thirdPartyRepos 读取下载卡片配置
+ * - 并发拉取 GitHub / Gitee API Release 数据（支持翻页、重试、过期缓存兜底）
  * - 提供「显示全部」全局开关
- * - GitHub / CF 下载加速逻辑暂时注释保留，待可用域名稳定后再开启
  * - 将格式化后的数据 + getDownloadUrl 函数传递给 DownloadCard 子组件
  *
  * 与 DownloadCard.vue 配合使用，放置在同一目录下即可。
  *
  * frontmatter 格式：
- * repos:
+ * legadoRepos:
  *   - name: 阅读 Sigma
  *     desc: 极致阅读体验
  *     icon: /img/LegadoSigma.png
@@ -21,7 +20,7 @@
  *     prerelease: false           # 取最新正式版还是最新预发布版
  *     hide: true                  # 不展开「显示所有」时隐藏
  *
- * # 如需直链卡片，也放在 repos 中，无需再维护 manual 列表：
+ * # 如需直链卡片，url 字段替代 link：
  * - name: 某 APK
  *   desc: 说明
  *   icon: /img/xxx.png
@@ -37,29 +36,34 @@
 import { computed, onMounted, ref } from 'vue'
 import { useData } from 'vitepress'
 import DownloadCard from './DownloadCard.vue'
-import { resolveRepoMeta, transformReleases } from '../utils/releases'
+import {
+  resolveRepoMeta,
+  transformReleases,
+  fetchAllReleases,
+  getTargetRelease,
+  readStaleCache,
+  writeCache,
+  CACHE_TTL,
+} from '../utils/releases'
 
 const { frontmatter } = useData()
 
 // ---------- 配置读取 ----------
-// 仅在此处将原有的单一 repoList 分离读取，以实现按分类渲染
 const legadoList = computed(() => frontmatter.value.legadoRepos || [])
 const thirdPartyList = computed(() => frontmatter.value.thirdPartyRepos || [])
 const repoList = computed(() => [...legadoList.value, ...thirdPartyList.value])
 
 // ---------- 全局开关 ----------
 const showAllRepos = ref(false)
+
 // GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先保留代码便于后续恢复。
 // const useGithubProxy = ref(true)
-
-// ---------- Cloudflare Worker 代理域名（可在 .env 中配置 VITE_CF_WORKER_URL）----------
 // const CF_PROXY_DOMAIN = computed(() => {
 //   const raw = import.meta.env.VITE_CF_WORKER_URL || ''
 //   return raw.endsWith('/') ? raw.slice(0, -1) : raw
 // })
 
 // ---------- 按需过滤卡片列表 ----------
-// 分别为两个核心板块提供过滤逻辑
 const visibleLegadoList = computed(() =>
     showAllRepos.value ? legadoList.value : legadoList.value.filter(item => !item.hide)
 )
@@ -74,42 +78,41 @@ const loadingMap = ref({}) // { repoKey: boolean }
 const getRepoKey = (item) => item?.link || item?.github || ''
 
 // ---------- 下载链接转换（传递给 DownloadCard）----------
-const getDownloadUrl = (assetUrl, repoItem) => {
+const getDownloadUrl = (assetUrl) => {
   if (!assetUrl) return ''
-
   // GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先直接返回原始下载链接。
-  // const repoLink = getRepoKey(repoItem)
-  // if (repoLink.includes('gitee.com')) return assetUrl
-  //
   // if (useGithubProxy.value && CF_PROXY_DOMAIN.value && assetUrl.includes('github.com')) {
   //   return `${CF_PROXY_DOMAIN.value}/${assetUrl}`
   // }
-
   return assetUrl
 }
 
 // ---------- 取目标 Release ----------
-const getTargetRelease = (repoItem) => {
+const getTargetReleaseForItem = (repoItem) => {
   const releases = releaseMap.value[getRepoKey(repoItem)]
-  if (!releases?.length) return null
-
-  return repoItem.prerelease
-      ? releases[0]
-      : releases.find(release => !release.prerelease) || releases[0]
+  return getTargetRelease(releases, repoItem)
 }
 
+// ---------- 拉取单个仓库的 Release 数据 ----------
 const fetchRepoRelease = async (repoItem) => {
   const repoKey = getRepoKey(repoItem)
   const meta = resolveRepoMeta(repoKey)
   if (!repoKey || !meta) return
 
   loadingMap.value[repoKey] = true
+  const cacheKey = meta.apiUrl
+  const ttl = CACHE_TTL[meta.platform] || CACHE_TTL.github
 
   try {
     const rawData = await fetchAllReleases(meta.apiUrl)
-    releaseMap.value[repoKey] = transformReleases(rawData, meta.platform, meta.webUrl)
+    const releases = transformReleases(rawData, meta.platform, meta.webUrl)
+    writeCache(cacheKey, releases, ttl)
+    releaseMap.value[repoKey] = releases
   } catch (error) {
     console.error(`[DownloadList] 拉取失败: ${repoKey}`, error)
+    // 降级到过期缓存，保证页面有内容可显示
+    const stale = readStaleCache(cacheKey)
+    if (stale) releaseMap.value[repoKey] = stale
   } finally {
     loadingMap.value[repoKey] = false
   }
@@ -139,7 +142,7 @@ onMounted(() => {
             v-for="(item, index) in visibleLegadoList"
             :key="getRepoKey(item) || item.url || `legado-${index}`"
             :item="item"
-            :release="getTargetRelease(item)"
+            :release="getTargetReleaseForItem(item)"
             :loading="!!loadingMap[getRepoKey(item)]"
             :get-download-url="getDownloadUrl"
         />
@@ -153,7 +156,7 @@ onMounted(() => {
             v-for="(item, index) in visibleThirdPartyList"
             :key="getRepoKey(item) || item.url || `third-${index}`"
             :item="item"
-            :release="getTargetRelease(item)"
+            :release="getTargetReleaseForItem(item)"
             :loading="!!loadingMap[getRepoKey(item)]"
             :get-download-url="getDownloadUrl"
         />
@@ -203,8 +206,10 @@ onMounted(() => {
   user-select: none;
 }
 .filter-checkbox { width: 16px; height: 16px; accent-color: var(--vp-c-brand-1); cursor: pointer; }
-/* GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先保留样式便于后续恢复。 */
-/* .proxy-checkbox  { accent-color: #f38020; } */
+
+/* GitHub / CF 下载加速暂时关闭，先保留样式便于后续恢复。 */
+/* .proxy-checkbox { accent-color: #f38020; } */
+
 .checkbox-custom-text {
   font-size: 14px;
   font-weight: 500;
@@ -213,16 +218,6 @@ onMounted(() => {
   align-items: center;
   gap: 6px;
 }
-/*
-.speed-badge {
-  font-size: 11px;
-  background-color: rgba(243, 128, 32, 0.15);
-  color: #f38020;
-  padding: 1px 6px;
-  border-radius: 4px;
-  font-weight: bold;
-}
-*/
 
 /* ===== 卡片网格 ===== */
 .download-grid {
@@ -231,7 +226,7 @@ onMounted(() => {
   gap: 1.5rem;
 }
 
-/* ===== 强行修正行间距冲突 ===== */
+/* 修正行间距冲突 */
 .download-grid :deep(.download-card) {
   margin-top: 0 !important;
   margin-bottom: 0 !important;

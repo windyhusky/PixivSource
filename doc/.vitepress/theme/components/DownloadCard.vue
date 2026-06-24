@@ -6,16 +6,23 @@
  * 既支持父组件通过 props 注入 item/release/loading/getDownloadUrl，也支持直接通过
  * frontmatterSource + frontmatterIndex 从当前 VitePress 页面的 frontmatter 中读取数据。
  *
- * 本地缓存说明：
- * - 通过 localStorage 缓存 GitHub/Gitee Releases 接口的转换结果，避免短时间内重复请求触发限流。
- * - GitHub 未认证限流相对宽松（约 60 次/小时/IP），缓存 15 分钟；
- *   Gitee 限流较严格，缓存 30 分钟。
- * - 请求失败（网络错误 / 403 限流）时，会尝试读取"已过期但存在"的缓存数据作为兜底展示。
+ * 缓存说明：
+ * - 缓存逻辑统一由 releases.ts 管理（readCache / readStaleCache / writeCache / CACHE_TTL）
+ * - 请求失败时降级到过期缓存，保证页面有内容可显示
  */
 
 import { computed, nextTick, onMounted, ref, useSSRContext, watch } from 'vue'
 import { useData } from 'vitepress'
-import { resolveRepoMeta, transformReleases } from '../utils/releases'
+import {
+  resolveRepoMeta,
+  transformReleases,
+  fetchAllReleases,
+  getTargetRelease,
+  readCache,
+  readStaleCache,
+  writeCache,
+  CACHE_TTL,
+} from '../utils/releases'
 
 const props = defineProps({
   item: {
@@ -78,59 +85,6 @@ if (import.meta.env.SSR) {
 const toggleLog = () => { logExpanded.value = !logExpanded.value }
 const toggleAssets = () => { assetsExpanded.value = !assetsExpanded.value }
 
-const getTargetRelease = (releases, item) => {
-  if (!releases || !releases.length) return null
-  return item.prerelease ? releases[0] : (releases.find(r => !r.prerelease) || releases[0])
-}
-
-// ------------------------------------------------------------------
-// 本地缓存（localStorage）
-// ------------------------------------------------------------------
-const CACHE_PREFIX = 'release-cache:'
-const CACHE_TTL = {
-  github: 15 * 60 * 1000, // GitHub 未认证限流较宽松（约60次/小时），缓存15分钟
-  gitee: 30 * 60 * 1000,  // Gitee 限流较严格，缓存30分钟
-}
-
-/**
- * 读取有效（未过期）的缓存数据
- */
-const readCache = (key) => {
-  try {
-    const raw = localStorage.getItem(CACHE_PREFIX + key)
-    if (!raw) return null
-    const { data, time, ttl } = JSON.parse(raw)
-    if (Date.now() - time > ttl) return null
-    return data
-  } catch (e) {
-    return null
-  }
-}
-
-/**
- * 读取缓存数据，不判断是否过期（用于请求失败时的兜底展示）
- */
-const readStaleCache = (key) => {
-  try {
-    const raw = localStorage.getItem(CACHE_PREFIX + key)
-    if (!raw) return null
-    return JSON.parse(raw).data
-  } catch (e) {
-    return null
-  }
-}
-
-/**
- * 写入缓存
- */
-const writeCache = (key, data, ttl) => {
-  try {
-    localStorage.setItem(CACHE_PREFIX + key, JSON.stringify({ data, time: Date.now(), ttl }))
-  } catch (e) {
-    // localStorage 已满或被禁用（如隐私模式）时静默失败，不影响正常展示
-  }
-}
-
 const fetchFrontmatterRelease = async () => {
   if (props.item || hasInjectedRelease.value || props.frontmatterSource !== 'repos') return
 
@@ -158,6 +112,7 @@ const fetchFrontmatterRelease = async () => {
     localRelease.value = getTargetRelease(releases, item)
   } catch (e) {
     console.error(e)
+    // 降级到过期缓存，保证页面有内容可显示
     const stale = readStaleCache(cacheKey)
     if (stale) localRelease.value = getTargetRelease(stale, item)
   } finally {
@@ -191,25 +146,22 @@ const sortedAssets = computed(() => {
   if (!displayRelease.value?.assets) return []
   const keyword = cardItem.value.recommend
   return [...displayRelease.value.assets].sort((a, b) => {
-    // 如果没有配置推荐关键字，保持原样
     if (!keyword) return 0
 
     const kw = keyword.split(" ")
 
-    // 找出 a 和 b 分别匹配到的第一个关键字的索引（索引越小表示在 recommend 中越靠前，优先级越高）
-    // 如果没有匹配到，则赋予一个极大的索引值（确保未推荐的排在最后）
+    // 找出 a 和 b 分别匹配到的第一个关键字的索引
+    // 索引越小表示在 recommend 中越靠前，优先级越高；未匹配则赋极大值排到最后
     const aIndex = kw.findIndex(k => a.name.toLowerCase().includes(k.toLowerCase()))
     const bIndex = kw.findIndex(k => b.name.toLowerCase().includes(k.toLowerCase()))
 
     const aMatch = aIndex !== -1
     const bMatch = bIndex !== -1
 
-    if (aMatch && bMatch) {
-      return aIndex - bIndex // 均匹配时，按关键字在 recommend 中的先后顺序升序排列
-    }
-    if (aMatch) return -1 // 只有 a 匹配，a 排前面
-    if (bMatch) return 1  // 只有 b 匹配，b 排前面
-    return 0              // 均未匹配，保持原顺序
+    if (aMatch && bMatch) return aIndex - bIndex
+    if (aMatch) return -1
+    if (bMatch) return 1
+    return 0
   })
 })
 
@@ -249,7 +201,7 @@ const resolveDownloadUrl = (assetUrl, item) => {
     const regex = /github\.com\/([^/]+)\/([^/]+)\/releases\/download\/([^/]+)\/(.+)$/
     const match = finalUrl.match(regex)
     if (match) {
-      const [_, owner, repo, tag, filename] = match;
+      const [_, owner, repo, tag, filename] = match
       finalUrl = `https://raw.githubusercontent.com/${owner}/${repo}/${tag}/${filename}`
       finalUrl = `legado://import/importonline?src=${finalUrl}`
     }
