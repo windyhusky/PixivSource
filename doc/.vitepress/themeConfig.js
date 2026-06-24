@@ -77,3 +77,45 @@ export const twThemeConfig = {
         }
     }
 }
+
+export const enThemeConfig = {
+    lightModeSwitchTitle: "Light Mode",
+    darkModeSwitchLabel: 'Dark Mode',
+    sidebarMenuLabel: "Menu",
+    returnToTopLabel: "Top",
+    outline: {
+        level: [2, 3],     // H2 H3 标题
+        label: 'Catalog'
+    },
+    editLink: {
+        pattern: "https://github.com/DowneyRem/PixivSource/blob/main/doc/:path",
+        text: "Edit on GitHub"
+    },
+    lastUpdated: {
+        text: 'Last Updated'
+    },
+    docFooter: {
+        prev: 'Previous',
+        next: 'Next'
+    },
+    search: {
+        provider: "local",
+        options: {
+            translations: {
+                button: {
+                    buttonText: "Search Document",
+                    buttonAriaLabel: "Search Document"
+                },
+                modal: {
+                    noResultsText: "No Search Result",
+                    resetButtonTitle: "Clear",
+                    footer: {
+                        selectText: "Select",
+                        navigateText: "Switch",
+                        closeText: "Close",
+                    }
+                }
+            }
+        }
+    }
+}

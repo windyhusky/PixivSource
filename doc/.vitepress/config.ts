@@ -5,6 +5,7 @@ import { withPwa } from '@vite-pwa/vitepress'
 import { getPwaConfig } from './pwaConfig'
 import { getHeadConfig } from './headConfig'
 import { localesConfig } from './localesConfig'
+import { enThemeConfig } from "./themeConfig.js"
 import { markdownConfig } from './markdownConfig'
 import { transformPageData, getBuildEndHook } from './hooksConfig'
 
@@ -74,6 +75,7 @@ export default withPwa(defineConfig({
         // footer: {
         //     copyright: `Copyright © 2025-${new Date().getFullYear()} <a href="https://github.com/DowneyRem/PixivSource">PixivSource</a> All rights reserved.`
         // },
+        ...enThemeConfig,
     },
 
     sitemap: {

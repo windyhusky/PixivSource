@@ -1,6 +1,6 @@
 import { cnNav, cnSidebar, twNav, twSideBar } from './navSideBar.js'
-import { cnThemeConfig, twThemeConfig } from "./themeConfig.js"
-import twConfig from '../zh-TW/config.zh-TW.json' with { type: 'json' }
+import { cnThemeConfig, twThemeConfig, enThemeConfig } from "./themeConfig.js"
+
 
 export const localesConfig = {
     root: {
@@ -35,6 +35,7 @@ export const localesConfig = {
         themeConfig: {
             nav: "",
             sidebar: "",
+            ...enThemeConfig
         }
     }
 }
