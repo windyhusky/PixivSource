@@ -1,20 +1,3 @@
-<div align="center">
-<img width="150" height="150" src="../../doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
-
-### [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
-### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-### ☕️ [Pixiv 书源项目 打赏名单](https://pixivsource.pages.dev/Sponsor)
-</div>
-
-
-## 📖 书源功能
-| 书源     | 状态 | 支持 Ｐ站 特性 | 实现 阅读 功能 |
-| ------- | --- | ------------ | ----------- |
-| Pixiv   |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
-| Linpx   |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
-| 兽人小说  |  ✅  | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索小说 ✅ 发现小说  ✅ 添加网址 |
-
-
 ## 🚀 导入书源
 | 源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |

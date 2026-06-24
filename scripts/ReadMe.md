@@ -1,12 +1,3 @@
-<div align="center">
-<img width="150" height="150" src="../doc/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
-
-### [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
-### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
-### ☕️ [Pixiv 书源项目 打赏名单](https://pixivsource.pages.dev/Sponsor)
-</div>
-
-
 ## 书源制作工具
 制作工具来自：https://github.com/eigeen/PixivSourceProject
 

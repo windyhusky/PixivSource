@@ -19,4 +19,4 @@
 - 更多方法详见：[导入书源](https://pixivsource.pages.dev/ImportBookSource) & [导入订阅源](https://pixivsource.pages.dev/ImportRssSource)
 
 
-### 其他详见首页 [README](../../README.md)
+### 其他详见首页 [README](../README.md)
