@@ -181,15 +181,10 @@ export const twSideBar = [
         ]
     },
     {
-        text: "功能手冊",
-        collapsed: false,
-        items: [{ text: "🅿️ Pixiv 書源", link: "/zh-TW/Pixiv" }
-        ]
-    },
-    {
         text: "Pixiv 書源",
         collapsed: false,
         items: [
+            { text: "🅿️ 功能手冊", link: "/zh-TW/Pixiv" },
             { text: "🆚 功能對比", link: "/zh-TW/PixivComparison" },
             { text: "⚙️ 書源設定", link: "/zh-TW/PixivSettings" }
         ]

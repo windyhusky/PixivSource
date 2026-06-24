@@ -30,7 +30,7 @@ export const cnThemeConfig = {
                     footer: {
                         selectText: "选择",
                         navigateText: "切换",
-                        closeText: "Esc 键",
+                        closeText: "关闭",
                     }
                 }
             }
@@ -70,7 +70,7 @@ export const twThemeConfig = {
                     footer: {
                         selectText: "選擇",
                         navigateText: "切換",
-                        closeText: "Esc 鍵"
+                        closeText: "關閉"
                     }
                 }
             }
@@ -107,7 +107,7 @@ export const enThemeConfig = {
                     buttonAriaLabel: "Search Document"
                 },
                 modal: {
-                    noResultsText: "No Search Result",
+                    noResultsText: "No Result",
                     resetButtonTitle: "Clear",
                     footer: {
                         selectText: "Select",
