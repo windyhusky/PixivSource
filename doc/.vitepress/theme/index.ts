@@ -83,11 +83,13 @@ export default {
         app.component('VPHeroAction', VPHeroAction)
 
         // 彩虹背景动画样式
+        const isHomePage = (path: string) =>
+            /^(index\.md|.*\/index\.md)$/.test(path)
         if (typeof window !== 'undefined') {
             watch(
                 () => router.route.data.relativePath,
-                () => updateHomePageStyle(location.pathname === "/"),
-                { immediate: true },
+                (path) => updateHomePageStyle(isHomePage(path)),
+                { immediate: true }
             )
         }
     }
