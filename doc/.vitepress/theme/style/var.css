@@ -61,8 +61,17 @@
     font-weight: 600; /* VitePress 默认的加粗权重 */
 }
 
-.my-emoji {
-    font-family: "Segoe UI Emoji", "Apple Color Emoji" !important;
-    display: inline-block; /* 确保它作为行内块元素，和文字完美并排 */
-    vertical-align: middle; /* 调整垂直对齐 */
+@font-face {
+    font-family: "Emoji";
+    src: local("Apple Color Emoji"), local("Segoe UI Emoji"), local("Noto Color Emoji");
+    unicode-range: U+1F000-1FFFF, U+2600-27FF;
+}
+
+:root {
+    --vp-font-family-base:
+            "Emoji",
+            "Chinese Quotes",
+            "Inter var", Inter,
+            "Noto Sans SC", "Noto Sans TC",
+            ui-sans-serif, system-ui, sans-serif;
 }
