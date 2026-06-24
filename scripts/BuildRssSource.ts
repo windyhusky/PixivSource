@@ -71,8 +71,8 @@ function saveTextFile(folder:string, fileName:string, data:any):void {
 
 function buildRssSource(sourceName:string): RssSource[] {
     // 需要在 项目根目录下执行
-    let templatePath = `rssSource/${sourceName}.json`
-    let defaultDataPath = `BuildSource/rssSource.json`
+    let templatePath = `src/rssSource/${sourceName}.json`
+    let defaultDataPath = `scripts/rssSource.json`
 
     // 读取基础模板
     let RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
@@ -93,9 +93,9 @@ function buildRssSource(sourceName:string): RssSource[] {
 
 function buildNovelSource(name:string): RssSource {
     // 需要在 项目根目录下执行
-    let sourcePath = `rssSource/${name}`
-    let templatePath = `rssSource/furry.json`
-    let defaultDataPath = `BuildSource/rssSource.json`
+    let sourcePath = `src/rssSource/${name}`
+    let templatePath = `src/rssSource/furry.json`
+    let defaultDataPath = `scripts/rssSource.json`
 
     let sourceName = ""
     if (name === "pixiv") sourceName = "Pixiv"
@@ -159,8 +159,8 @@ function buildBTSRKSource() {
 }
 
 function buildSearchSource() {
-    let sourcePath = `rssSource/search`
-    let defaultDataPath = `BuildSource/rssSource.json`
+    let sourcePath = `src/rssSource/search`
+    let defaultDataPath = `scripts/rssSource.json`
     // 读取基础模板
     let RssSource: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]
     // 读取各个构建后文件内容
@@ -198,8 +198,8 @@ function buildBooksSources() {
 
 function buildImportSource() {
     // 需要在 项目根目录下执行
-    let sourcePath = `rssSource/import`
-    let defaultDataPath = `BuildSource/rssSource.json`
+    let sourcePath = `src/rssSource/import`
+    let defaultDataPath = `scripts/rssSource.json`
 
     // 读取基础模板
     let RssSource: RssSource = JSON.parse(readTextFile(defaultDataPath))[0]

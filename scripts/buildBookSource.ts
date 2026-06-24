@@ -103,8 +103,8 @@ function saveTextFile(folder:string, fileName:string, data:any):void {
 
 function buildBookSource(sourceName:string, test:boolean|number =undefined): BookSource {
     // 需要在 项目根目录下执行
-    let sourcePath = `bookSource/${sourceName}`
-    let templatePath = `BuildSource/${sourceName}.json`
+    let sourcePath = `src/bookSource/${sourceName}`
+    let templatePath = `scripts/${sourceName}.json`
     // console.log(sourcePath)
     // console.log(templatePath)
 
