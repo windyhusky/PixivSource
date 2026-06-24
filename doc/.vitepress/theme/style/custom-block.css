@@ -191,8 +191,3 @@
     left: -5px;
     top: -1px;
 }
-
-/* 隐藏专门给 GitHub 看的引流信息 */
-.github-only-notice {
-    display: none;
-}

@@ -1,16 +1,15 @@
 /* var.css */
-/*:root {*/
-/*    --vp-c-brand-1: #3451b2;*/
-/*    --vp-c-brand-2: #3a5ccc;*/
-/*    --vp-c-brand-3: #5672cd;*/
-/*}*/
+:root {
+    --vp-c-brand-1: #3451b2;
+    --vp-c-brand-2: #3a5ccc;
+    --vp-c-brand-3: #5672cd;
+}
 
-/*.dark {*/
-/*    --vp-c-brand-1: #3dd68c;*/
-/*    --vp-c-brand-2: #30a46c;*/
-/*    --vp-c-brand-3: #298459;*/
-/*}*/
-/*以前的vp-c-brand已弃用*/
+.dark {
+    --vp-c-brand-1: #3dd68c;
+    --vp-c-brand-2: #30a46c;
+    --vp-c-brand-3: #298459;
+}
 
 :root {
     /* hero标题渐变色 */
