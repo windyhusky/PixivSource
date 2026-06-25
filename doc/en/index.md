@@ -1,7 +1,7 @@
 ---
 layout: home
-title: Pixiv Source - The Best Third-Party Pixiv Novel Reader
-description: Read Pixiv novels just like native web novels with open-source Legado + Pixiv Source. Supports search, bookmarks, updates, comments, direct connection, and more.
+title: Pixiv Source - The Ultimate Pixiv Novel Experience
+description: Bring Pixiv novels to your favorite open-source readers. Enjoy clean layouts, instant updates, offline reading, smart filters, and zero clutter.
 
 head:
   - - meta
@@ -9,10 +9,10 @@ head:
       content: Pixiv github, Pixiv third-party, Pixiv third-party app, Pixiv reader, Pixiv novel, Pixiv 小説, Linpx, FurryNovel, book source, Pixiv book source, Linpx book source, FurryNovel book source, PixivSource, Pixiv BookSource, open-source reader, Legado book source
   - - meta
     - property: og:title
-      content: Pixiv Source - The Best Third-Party Pixiv Novel Reader
+      content: Pixiv Source - The Ultimate Pixiv Novel Experience
   - - meta
     - property: og:description
-      content: Read Pixiv novels just like native web novels with open-source Legado + Pixiv Source. Supports search, bookmarks, updates, comments, direct connection, and more.
+      content: Bring Pixiv novels to your favorite open-source readers. Enjoy clean layouts, instant updates, offline reading, smart filters, and zero clutter.
   - - meta
     - property: og:image
       content: https://pixivsource.pages.dev/favicon-180x180.png
@@ -21,15 +21,15 @@ head:
       content: summary
   - - meta
     - name: twitter:title
-      content: Pixiv Source - The Best Third-Party Pixiv Novel Reader
+      content: Pixiv Source - The Ultimate Pixiv Novel Experience
   - - meta
     - name: twitter:description
-      content: Read Pixiv novels just like native web novels with open-source Legado + Pixiv Source. Supports search, bookmarks, updates, comments, and more.
+      content: Bring Pixiv novels to your favorite open-source readers. Enjoy clean layouts, instant updates, offline reading, smart filters, and zero clutter.
 
 hero:
-  name: Legado + Pixiv Source
-  text: Best Pixiv Novel App
-  tagline: <br>You deserve a much better reading experience
+  name: Pixiv Source + Legado
+  text: The Pixiv Novel App You Always Wanted
+  tagline: <br>Say goodbye to clunky web views. It's time for a ultimate, clean reading experience.
 
   image:
     src: "/PixivSource.png"
@@ -46,25 +46,25 @@ hero:
 #    - theme: alt
 #      text: ✨ Premium Experience
 #      link: BetterExperience
-#      
-#    - theme: alt
-#      text: ⚡️ Quick Start
-#      link: QuickStart
-#
+      
+    - theme: alt
+      text: ⚡️ Quick Start
+      link: QuickStart
+
 #    - theme: alt
 #      text: 📘 Pixiv Manual
 #      link: Pixiv
 
     - theme: brand
-      text: 🚀 Import Pixiv BookSource
+      text: 🚀 Import BookSource
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
     - theme: brand
-      text: 🚀 Import Pixiv RssSource
+      text: 🚀 Import RssSource
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json" 
 
     - theme: alt
-      text: ✈️ Telegram Channel
+      text: ✈️ Join Telegram
       link: https://t.me/PixivSource
 
 #    - theme: alt
@@ -80,16 +80,16 @@ features:
     details: 🔍 Search Novels<br> ⭐️ Discover Novels<br>🔗 Add Via URLs<br> 🌐 RssSource
     
   - icon: 🔍
-    title: Enhanced Search
-    details: 📄 One-Shot Name<br> 📚 Series Name<br> 👤 Author Name<br> 🀄️ Convert Chinese
+    title: Smart Search
+    details: 📄 One-shot Title<br> 📚 Series Title<br> 👤 Author Name<br> 📌 Hashtag Name
     
   - icon: 📚
-    title: Enhanced Reading
-    details: 📃 Novel Text<br> 🖼 Illustrations<br> ✅ Polls Information <br> 💬 Comments
+    title: Premium Layout
+    details: 🖼 Inline illustrations<br> ✅ Live story polls<br> 💬 Read user comments
     
   - icon: ⭐️
-    title: Complete Interactive Toolkit
-    details: ❤️ Bookmark<br> 📃 Track Updates<br> ⭐️ Follow Authors<br>✅ Cast Votes<br> 💬 Post Comments<br> 🚫 Block Content
+    title: Full Control Toolkit
+    details: ❤️ Save bookmarks<br> 📃 Track new chapters<br> ⭐️ Follow top creators<br>✅ Vote on polls<br> 💬 Reply to comments<br> 🚫 Mute tags & authors
 ---
 <HomeUnderline />
 <FriendLinkFooterHome />
