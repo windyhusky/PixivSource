@@ -6,7 +6,7 @@ export const cnNav = [
         link: "/"
     },
     {
-        text: "📌 站方功能",
+        text: "📌 常用工具",
         activeMatch: '/',
         items: [
             { text: "⬇️ 下载阅读", link: "/DownloadLegado" },
@@ -50,7 +50,7 @@ export const cnNav = [
 
 export const cnSidebar = [
     {
-        text: "站方功能",
+        text: "常用工具",
         collapsed: false,
         items: [
             { text: "⬇️ 下载阅读", link: "/DownloadLegado" },
@@ -134,7 +134,7 @@ export const twNav = [
         items: [
             { text: "✨ 臻享閱讀", link: "/zh-TW/BetterExperience", activeMatch: "/" },
             { text: "⚡️️️ 快速開始", link: "/zh-TW/QuickStart" },
-            { text: "➕ 新增小說", link: "/AddNovels" },
+            { text: "➕ 新增小說", link: "/zh-TW/AddNovels" },
             { text: "🅿️ Pixiv 書源", link: "/zh-TW/Pixiv" }
         ]
     },
@@ -177,7 +177,7 @@ export const twSidebar = [
         items: [
             { text: "✨ 臻享閱讀", link: "/zh-TW/BetterExperience" },
             { text: "⚡️️️ 快速開始", link: "/zh-TW/QuickStart" },
-            { text: "➕ 新增小說", link: "/AddNovels" },
+            { text: "➕ 新增小說", link: "/zh-TW/AddNovels" },
         ]
     },
     {
@@ -219,4 +219,106 @@ export const twSidebar = [
             { text: "💵 打賞記錄", link: `${BLOG}Sponsor` },
         ]
     }
+]
+
+
+export const enNav = [
+    {
+        text: "🏠 Home",
+        link: "/en/"
+    },
+    {
+        text: "📌 Toolkit",
+        activeMatch: "/",
+        items: [
+            { text: "⬇️ Download Apps", link: "/en/DownloadLegado" },
+            { text: "🚀 One-Click Import", link: "/en/Import" }
+        ]
+    },
+    {
+        text: "📚 Source Guide",
+        activeMatch: "/",
+        items: [
+            { text: "✨ Ultimate Read", link: "/en/BetterExperience", activeMatch: "/" },
+            { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
+            { text: "➕ Add Novels", link: "/en/AddNovels" },
+            { text: "🅿️ Pixiv Manual", link: "/en/Pixiv" }
+        ]
+    },
+    {
+        text: "📖 Legado Guide",
+        items: [
+            { text: "📚 Legado Apps", link: "/en/Download" },
+            { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
+            { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
+            { text: "💾 Webdav Backup", link: "/en/WebdavBackup", activeMatch: "/" },
+            { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
+            { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
+        ]
+    },
+    {
+        text: "🚧 Development",
+        items: [
+            { text: "📜 Updates", link: "/en/UpdateLog" },
+            { text: "👥 Dev Team", link: "/en/Team" },
+            { text: "🤝 Friend Link", link: "/en/FriendLink" },
+            { text: "☕ Sponsor", link: "/en/Sponsor", activeMatch: "/" },
+        ]
+    }
+]
+
+export const enSidebar = [
+    {
+        text: "📌 Toolkit",
+        activeMatch: "/",
+        items: [
+            { text: "⬇️ Download Apps", link: "/en/DownloadLegado" },
+            { text: "🚀 One-Click Import", link: "/en/Import" }
+        ]
+    },
+    {
+        text: "📚 Source Guide",
+        activeMatch: "/",
+        items: [
+            { text: "✨ Ultimate Read", link: "/en/BetterExperience" },
+            { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
+            { text: "➕ Add Novels", link: "/en/AddNovels" },
+        ]
+    },
+    {
+        text: "Pixiv BookSource",
+        collapsed: false,
+        items: [
+            { text: "🅿️ Pixiv Manual", link: "/en/Pixiv" },
+            { text: "🆚 功能对比", link: "/PixivComparison" },
+            { text: "⚙️ 书源设置", link: "/PixivSettings" },
+        ]
+    },
+    {
+        text: "📖 Legado Guide",
+        items: [
+            { text: "📚 Legado Apps", link: "/en/Download" },
+            { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
+            { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
+            { text: "💾 Webdav Backup", link: "/en/WebdavBackup" },
+            { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
+            { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
+        ]
+    },
+    {
+        text: "🚧 Development",
+        items: [
+            { text: "📜 Updates", link: "/en/UpdateLog" },
+            { text: "👥 Dev Team", link: "/en/Team" },
+            { text: "🤝 Friend Link", link: "/en/FriendLink" },
+        ]
+    },
+    {
+        text: "Sponsor",
+        collapsed: false,
+        items: [
+            { text: "☕ Sponsor", link: "/en/Sponsor" },
+            { text: "💵 Sponsorship History", link: `${BLOG}Sponsor` },
+        ]
+    },
 ]

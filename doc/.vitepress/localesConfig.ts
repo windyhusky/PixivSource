@@ -1,4 +1,4 @@
-import { cnNav, cnSidebar, twNav, twSideBar } from './navSideBar.js'
+import { cnNav, cnSidebar, twNav, twSidebar, enNav, enSidebar } from './navSidebar.js'
 import { cnThemeConfig, twThemeConfig, enThemeConfig } from "./themeConfig.js"
 
 
@@ -33,8 +33,8 @@ export const localesConfig = {
         title: "Pixiv Souse",
         description: "Pixiv BookSource for Legado 3.0",
         themeConfig: {
-            nav: "",
-            sidebar: "",
+            nav: enNav,
+            sidebar: enSidebar,
             ...enThemeConfig
         }
     }
