@@ -240,8 +240,8 @@ export const enNav = [
         activeMatch: "/",
         items: [
             // { text: "✨ Ultimate Read", link: "/en/BetterExperience", activeMatch: "/" },
-            // { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
-            // { text: "➕ Add Novels", link: "/en/AddNovels" },
+            { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
+            { text: "➕ Add Novels", link: "/en/AddNovels" },
             // { text: "🅿️ Pixiv Manual", link: "/en/Pixiv" }
         ]
     },
@@ -281,8 +281,8 @@ export const enSidebar = [
         activeMatch: "/",
         items: [
             // { text: "✨ Ultimate Read", link: "/en/BetterExperience" },
-            // { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
-            // { text: "➕ Add Novels", link: "/en/AddNovels" },
+            { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
+            { text: "➕ Add Novels", link: "/en/AddNovels" },
         ]
     },
     {
