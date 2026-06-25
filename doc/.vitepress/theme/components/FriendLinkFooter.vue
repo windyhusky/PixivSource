@@ -37,9 +37,14 @@
 <script setup>
 import { computed, ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useData, useRoute, withBase } from 'vitepress'
-import { data as friendGroups } from './FriendLink.data.ts'
+import { data as allLangData } from './FriendLink.data.ts'
 
-const { frontmatter } = useData()
+const { frontmatter, localeIndex } = useData()
+const friendGroups = computed(() => {
+  const lang = localeIndex.value || 'root'
+  return allLangData[lang] || allLangData['root'] || []
+})
+
 const route = useRoute()
 const containerRef = ref(null)
 

@@ -1,6 +1,6 @@
 <template>
   <!-- 外层全宽，确保分割线能延伸 -->
-  <div class="home-friends" v-if="allFriends.length > 0">
+  <div class="home-friends" v-if="showFooter.length > 0">
     <div class="container" ref="containerRef">
       <hr class="divider" />
       <div class="header">
@@ -10,7 +10,7 @@
         </a>
       </div>
       <div class="grid">
-        <a v-for="f in allFriends" :key="f.link" :href="f.link" target="_blank" rel="noopener" class="card">
+        <a v-for="f in showFooter" :key="f.link" :href="f.link" target="_blank" rel="noopener" class="card">
           <img :src="resolveIcon(f.icon)" class="icon" v-if="f.icon" loading="lazy" />
           <span class="name">{{ f.name }}</span>
         </a>
@@ -21,13 +21,21 @@
 
 <script setup>
 import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
-import { withBase } from 'vitepress'
-import { data as friendGroups } from './FriendLink.data.ts'
+import { useData, withBase } from 'vitepress'
+// 导入字典数据 { root: [...], en: [...], 'zh-TW': [...] }
+import { data as allLangData } from './FriendLink.data.ts'
 
-const allFriends = computed(() => friendGroups.flatMap(g => g.items || []))
-const resolveIcon = (icon) => icon?.startsWith('http') ? icon : withBase(icon || '')
-
+const { localeIndex } = useData()
 const containerRef = ref(null)
+
+// 关键修改：根据当前语言提取对应的数据，并拍平为数组
+const showFooter = computed(() => {
+  const lang = localeIndex.value || 'root'
+  const groups = allLangData[lang] || allLangData['root'] || []
+  return groups.flatMap(g => g.items || [])
+})
+
+const resolveIcon = (icon) => icon?.startsWith('http') ? icon : withBase(icon || '')
 
 /**
  * 首页对齐逻辑：
@@ -58,7 +66,6 @@ function alignToHomeContent() {
 let ro
 onMounted(() => {
   nextTick(alignToHomeContent)
-  // 监听窗口尺寸变化，实时调整对齐
   ro = new ResizeObserver(alignToContentAnimationFrame)
   ro.observe(document.documentElement)
 })
