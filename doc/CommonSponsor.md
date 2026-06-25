@@ -1,7 +1,7 @@
 ## 🍖 [投喂打赏](Sponsor.md#Sponsor) {#Sponsor}
 <DragonChat name="唐尼瑞姆" icon="🐲">
 
-<strong>如果书源帮到了你，欢迎投喂本龙（开发者）。</strong><br>
+<strong>如果书源帮到了你，欢迎投喂本龙</strong><br>
 <strong>你的鼓励是持续更新的动力～</strong>
 <div class="quote-area">
 你将获得：<br>
@@ -27,3 +27,7 @@
 >
 > **可在【留言】中留下【书源】和【你的ID/昵称】，以便统计打赏名单，
 > 详见：[打赏详情](https://downeyrem.github.io/Sponsor)**
+
+> [!TIP]
+> 
+> **如果暂时没有投喂的打算，可以去 [GitHub 仓库](https://github.com/DowneyRem/PixivSource) 帮本龙点个 ⭐️ Star**
