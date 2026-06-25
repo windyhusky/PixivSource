@@ -27,3 +27,7 @@ What you'll get:<br>
 >
 > **Feel free to leave your nickname and mention "PixivSource" in the message, so I can add you to the thanks list!
 > For details, see [Sponsor Details](https://downeyrem.github.io/Sponsor)**
+
+
+> [!TIP]
+> **If you are not planning to donate now, you can support by ⭐️ starring the [GitHub repository](https://github.com/DowneyRem/PixivSource)** 

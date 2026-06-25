@@ -287,7 +287,7 @@ export const enSidebar = [
     },
     {
         text: "🅿️ Pixiv BookSource",
-        collapsed: false,
+        collapsed: true,
         items: [
             // { text: "🅿️ Pixiv Manual", link: "/en/Pixiv" },
             // { text: "🆚 Comparison", link: "/PixivComparison" },
