@@ -46,7 +46,47 @@ import {
   CACHE_TTL,
 } from '../utils/releases'
 
-const { frontmatter } = useData()
+const { frontmatter, lang } = useData()
+// ---------- 多语言本地词典 ----------
+const i18n = {
+  'zh': {
+    title: '⬇️ 开源阅读 软件下载',
+    legadoTitle: '🏛️ 开源阅读及其分支',
+    thirdPartyTitle: '🎀 第三方阅读软件',
+    showAll: '显示所有分支版本',
+    moreLink: '更多平台更多软件，详见：',
+    moreBtn: '📚 软件合集',
+    copyright: '本页面仅为软件聚合下载，应用版权归原作者所有'
+  },
+  'zh-TW': {
+    title: '⬇️ 開源閱讀 軟件下載',
+    legadoTitle: '🏛️ 開源閱讀及其分支',
+    thirdPartyTitle: '🎀 第三方閱讀軟件',
+    showAll: '顯示所有分支版本',
+    moreLink: '更多平台更多軟件，詳見：',
+    moreBtn: '📚 軟件合集',
+    copyright: '本頁面僅為軟件聚合下載，應用版權歸原作者所有'
+  },
+  'en': {
+    title: '⬇️ Legado Download Center',
+    legadoTitle: '🏛️ Legado & Forks',
+    thirdPartyTitle: '🎀 Third-Party Apps',
+    showAll: 'Show all forks versions',
+    moreLink: 'For more platforms and apps, see: ',
+    moreBtn: '📚 App Collection',
+    copyright: 'This page is for aggregation only. Copyright belongs to the original authors.'
+  }
+}
+
+const t = computed(() => {
+  const currentLang = (lang.value || '')
+  const shortLang = currentLang.slice(0, 2)
+
+  if (i18n[currentLang]) return i18n[currentLang]
+  if (i18n[shortLang]) return i18n[shortLang]
+  if (i18n['en']) return i18n['en']
+  return i18n['zh']
+})
 
 // ---------- 配置读取 ----------
 const legadoList = computed(() => frontmatter.value.legadoRepos || [])
@@ -126,14 +166,14 @@ onMounted(() => {
 
 <template>
   <div class="vp-download-container">
-    <h1 class="vp-h1">⬇️ 开源阅读 软件下载</h1>
+    <h1 class="vp-h1">{{ t.title }}</h1>
 
     <div class="category-section" v-if="visibleLegadoList.length">
-      <h2 class="category-title">🏛️ 开源阅读及其分支</h2>
+      <h2 class="category-title">{{ t.legadoTitle }}</h2>
       <div class="global-filter-bar">
         <label class="filter-checkbox-label">
           <input v-model="showAllRepos" type="checkbox" class="filter-checkbox" />
-          <span class="checkbox-custom-text">显示所有隐藏分支/版本</span>
+          <span class="checkbox-custom-text">{{ t.showAll }}</span>
         </label>
       </div>
 
@@ -150,7 +190,7 @@ onMounted(() => {
     </div>
 
     <div class="category-section" v-if="visibleThirdPartyList.length">
-      <h2 class="category-title">🎀 第三方阅读软件</h2>
+      <h2 class="category-title">{{ t.thirdPartyTitle }}</h2>
       <div class="download-grid">
         <DownloadCard
             v-for="(item, index) in visibleThirdPartyList"
@@ -164,13 +204,12 @@ onMounted(() => {
     </div>
   </div>
 
-  <!-- 底部引导 -->
   <div class="bottom-info-banner">
     <p class="more-link-text">
-      更多平台更多软件，详见：
-      <a href="Download" class="banner-link"><span>📚 软件合集</span></a>
+      {{ t.moreLink }}
+      <a href="Download" class="banner-link"><span>{{ t.moreBtn }}</span></a>
     </p>
-    <p class="copyright-text">本页面仅为软件聚合下载，应用版权归原作者所有</p>
+    <p class="copyright-text">{{ t.copyright }}</p>
   </div>
 </template>
 
