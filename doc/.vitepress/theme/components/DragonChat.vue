@@ -1,8 +1,11 @@
 <template>
-  <!-- 绑定计算后的对齐方式 -->
-  <div :class="['dragon-chat-container', { 'align-right': computedConfig.align === 'right' }]">
+  <!-- 1. 动态绑定 isEnglish 类名 -->
+  <div :class="[
+    'dragon-chat-container',
+    { 'align-right': computedConfig.align === 'right' },
+    { 'is-english': isEnglish }
+  ]">
     <div class="avatar-wrapper">
-      <!-- 绑定计算后的头像路径 -->
       <img :src="withBase(computedConfig.avatar)" :alt="name" class="avatar-img" />
       <div v-if="badge" class="avatar-badge">{{ badge }}</div>
     </div>
@@ -21,19 +24,23 @@
 </template>
 
 <script setup>
-// 1. 引入 withBase
-import { withBase } from 'vitepress'
+import { withBase, useData } from 'vitepress'
 import { ref, onMounted, computed } from 'vue'
 
+// 获取 VitePress 页面数据
+const { page } = useData()
+
+// 2. 动态判断当前页面是不是英文版
+const isEnglish = computed(() => {
+  return page.value.relativePath.startsWith('en/')
+})
+
 const props = defineProps({
-  // 保留单张图的传参，方便特殊页面临时覆盖
   avatar: { type: String, default: '' },
   name: { type: String, default: '' },
   badge: { type: String, default: '' },
   icon: { type: String, default: '' },
   align: { type: String, default: 'left' },
-
-  // 核心改动：把你的多图随机池直接写成默认值
   avatarList: {
     type: Array,
     default: () => [
@@ -47,7 +54,6 @@ const props = defineProps({
   }
 })
 
-// 记录随机抽中的索引
 const randomIndex = ref(-1)
 
 onMounted(() => {
@@ -56,35 +62,20 @@ onMounted(() => {
   }
 })
 
-// 动态计算最终使用的头像和位置配置
 const computedConfig = computed(() => {
-  // 如果 Markdown 里单独传了单张 avatar，优先用传进来的（不随机）
   if (props.avatar) {
-    return {
-      avatar: props.avatar,
-      align: props.align
-    }
+    return { avatar: props.avatar, align: props.align }
   }
-
-  // 默认走组件内的多图随机池
   if (props.avatarList && props.avatarList.length > 0 && randomIndex.value !== -1) {
     const chosen = props.avatarList[randomIndex.value]
-    return {
-      avatar: chosen.img,
-      align: chosen.align
-    }
+    return { avatar: chosen.img, align: chosen.align }
   }
-
-  // 极端的兜底防错
-  return {
-    avatar: './DowneyRemToy.png',
-    align: 'right'
-  }
+  return { avatar: './DowneyRemToy.png', align: 'right' }
 })
 </script>
 
 <style scoped>
-/* 保持你原来的样式不变 */
+/* ================= 中文默认样式（保持你原有的紧凑精美） ================= */
 .dragon-chat-container {
   display: flex;
   flex-wrap: wrap;
@@ -92,7 +83,7 @@ const computedConfig = computed(() => {
   justify-content: center;
   gap: 20px;
   margin: 30px auto;
-  max-width: 600px;
+  max-width: 600px; /* 中文最大 600px */
   color: var(--vp-c-text-1);
 }
 
@@ -143,6 +134,14 @@ const computedConfig = computed(() => {
   backdrop-filter: blur(4px);
 }
 
+.dragon-chat-container.is-english {
+  max-width: 720px; /* 英文环境下，容器变宽 */
+}
+.dragon-chat-container.is-english .chat-bubble {
+  flex: 2;          /* 英文环境下，气泡框分到更多宽度，伸展更长 */
+  min-width: 320px;
+}
+
 .chat-header {
   display: flex;
   align-items: center;
@@ -161,7 +160,6 @@ const computedConfig = computed(() => {
   line-height: 1.7;
 }
 
-/* --- 核心修改部分 --- */
 .chat-content :deep(strong) {
   font-weight: bold;
   color: inherit;
