@@ -1,16 +1,16 @@
 <template>
   <!-- 外层全宽，确保分割线能延伸 -->
-  <div class="home-friends" v-if="showFooter.length > 0">
+  <div class="home-friends" v-if="friendGroups.length > 0">
     <div class="container" ref="containerRef">
       <hr class="divider" />
       <div class="header">
         <a href="/FriendLink" class="footer-title">
           <span class="title-emoji">🤝</span>
-          <span class="title-text">友情链接</span>
+          <span class="title-text">{{ t.title }}</span>
         </a>
       </div>
       <div class="grid">
-        <a v-for="f in showFooter" :key="f.link" :href="f.link" target="_blank" rel="noopener" class="card">
+        <a v-for="f in friendGroups" :key="f.link" :href="f.link" target="_blank" rel="noopener" class="card">
           <img :src="resolveIcon(f.icon)" class="icon" v-if="f.icon" loading="lazy" />
           <span class="name">{{ f.name }}</span>
         </a>
@@ -22,14 +22,15 @@
 <script setup>
 import { computed, ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { useData, withBase } from 'vitepress'
-// 导入字典数据 { root: [...], en: [...], 'zh-TW': [...] }
 import { data as allLangData } from './FriendLink.data.ts'
+import { friendLinkI18n as translations} from './FriendLinkLocales.ts'
 
 const { localeIndex } = useData()
 const containerRef = ref(null)
+const t = computed(() => translations[localeIndex.value] || translations['root'])
 
 // 关键修改：根据当前语言提取对应的数据，并拍平为数组
-const showFooter = computed(() => {
+const friendGroups = computed(() => {
   const lang = localeIndex.value || 'root'
   const groups = allLangData[lang] || allLangData['root'] || []
   return groups.flatMap(g => g.items || [])

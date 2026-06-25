@@ -5,7 +5,7 @@
       <div class="footer-header">
         <a href="/FriendLink" class="footer-title">
           <span class="title-emoji">🤝</span>
-          <span class="title-text">友情链接</span>
+          <span class="title-text">{{ t.title }}</span>
         </a>
       </div>
 
@@ -38,8 +38,11 @@
 import { computed, ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useData, useRoute, withBase } from 'vitepress'
 import { data as allLangData } from './FriendLink.data.ts'
+import { friendLinkI18n as translations} from './FriendLinkLocales.ts'
 
 const { frontmatter, localeIndex } = useData()
+const t = computed(() => translations[localeIndex.value] || translations['root'])
+
 const friendGroups = computed(() => {
   const lang = localeIndex.value || 'root'
   return allLangData[lang] || allLangData['root'] || []
