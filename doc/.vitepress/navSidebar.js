@@ -162,7 +162,7 @@ export const twNav = [
     }
 ]
 
-export const twSideBar = [
+export const twSidebar = [
     {
         text: "站方功能",
         collapsed: false,

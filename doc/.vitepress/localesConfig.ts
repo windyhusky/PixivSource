@@ -22,7 +22,7 @@ export const localesConfig = {
         description: "適配 開源閲讀 Legado 3.0 的 Pixiv 書源",
         themeConfig: {
             nav: twNav,
-            sidebar: twSideBar,
+            sidebar: twSidebar,
             ...twThemeConfig
         }
     },
