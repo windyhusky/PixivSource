@@ -40,6 +40,10 @@ hero:
       text: ⬇️ 下載 閱讀 Sigma
       link: /zh-TW/DownloadLegado
 
+    - theme: brand
+      text: 🚀 一鍵匯入
+      link: /zh-TW/Import
+      
     - theme: alt
       text: ✨ 臻享閱讀
       link: /zh-TW/BetterExperience
@@ -49,12 +53,12 @@ hero:
       link: /zh-TW/QuickStart
 
     - theme: brand
-      text: 🚀 一鍵匯入
-      link: /zh-TW/Import
-      
-    - theme: brand
       text: 🚀 匯入 Pixiv 書源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
+      
+    - theme: brand
+      text: 🚀 匯入 Pixiv 訂閱源
+      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
       
     - theme: alt
       text: 📘 Pixiv 書源 功能手冊
@@ -68,25 +72,21 @@ hero:
 #      text: 📙 指南
 #      link: /zh-TW/Linpx
       
-    - theme: brand
-      text: 🚀 匯入 Pixiv 訂閱源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
-
-    - theme: alt
-      text: 🏠 專案
-      link: https://github.com/DowneyRem/PixivSource
-
+#    - theme: alt
+#      text: 🏠 專案
+#      link: https://github.com/DowneyRem/PixivSource
+#
     - theme: alt
       text: ✈️ 頻道 
       link: https://t.me/PixivSource
 
     - theme: alt
-      text: ☕ 打賞
+      text: 💖 打賞
       link: /zh-TW/Sponsor
-      
-    - theme: alt
-      text: 📜 更新日誌
-      link: /zh-TW/UpdateLog
+#      
+#    - theme: alt
+#      text: 📜 更新日誌
+#      link: /zh-TW/UpdateLog
 
 
 features:

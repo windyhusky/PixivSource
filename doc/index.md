@@ -40,6 +40,10 @@ hero:
       text: ⬇️ 下载 阅读 Sigma
       link: DownloadLegado
 
+    - theme: brand
+      text: 🚀 一键导入
+      link: Import
+      
     - theme: alt
       text: ✨ 臻享阅读
       link: BetterExperience
@@ -49,44 +53,40 @@ hero:
       link: QuickStart
 
     - theme: brand
-      text: 🚀 一键导入
-      link: Import
-      
-    - theme: brand
       text: 🚀 导入 Pixiv 书源
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
+    - theme: brand
+      text: 🚀 导入 Linpx 书源
+      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"
+      
+    - theme: brand
+      text: 🚀 导入 订阅源
+      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
+      
     - theme: alt
-      text: 📘 Pixiv 书源 功能手册
+      text: 📘 Pixiv 书源手册
       link: Pixiv
       
-#    - theme: brand
-#      text: 🚀 导入 Linpx 书源
-#      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"
-#      
-#    - theme: alt
-#      text: 📙 功能手册
-#      link: Linpx
-#      
-    - theme: brand
-      text: 🚀 导入 Pixiv 订阅源
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json" 
-
     - theme: alt
-      text: 🏠 项目
-      link: https://github.com/DowneyRem/PixivSource
+      text: 📙 Linpx 书源手册
+      link: Linpx    
 
+#    - theme: alt
+#      text: 🏠 项目
+#      link: https://github.com/DowneyRem/PixivSource
+    
     - theme: alt
       text: ✈️ 频道 
       link: https://t.me/PixivSource
-
-    - theme: alt
-      text: ☕ 打赏
-      link: Sponsor
       
     - theme: alt
-      text: 📜 更新日志
-      link: UpdateLog
+      text: 💖 打赏
+      link: Sponsor
+      
+#    - theme: alt
+#      text: 📜 更新日志
+#      link: UpdateLog
 
 
 features:
