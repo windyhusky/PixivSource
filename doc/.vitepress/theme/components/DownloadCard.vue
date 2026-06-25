@@ -52,7 +52,47 @@ const props = defineProps({
   },
 })
 
-const { frontmatter } = useData()
+const { frontmatter, lang } = useData()
+const i18n = {
+  'zh': {
+    changelog: '更新内容',
+    prerelease: '(预发布版)',
+    goWeb: '前往网页端下载',
+    collapse: '收起部分版本 🔼',
+    expand: '展开更多版本 ({count}+) 🔽',
+    manual: '手动维护',
+    downloadNow: '立即下载'
+  },
+  'zh-TW': {
+    changelog: '更新內容',
+    prerelease: '(预發布版)',
+    goWeb: '前往網頁端下載',
+    collapse: '收起部分版本 🔼',
+    expand: '展開更多版本 ({count}+) 🔽',
+    manual: '手動維護',
+    downloadNow: '立即下載'
+  },
+  'en': {
+    changelog: 'Changelog',
+    prerelease: '(Pre-release)',
+    goWeb: 'View on Web to Download',
+    collapse: 'Collapse Versions 🔼',
+    expand: 'Expand More Versions ({count}+) 🔽',
+    manual: 'Manual Registry',
+    downloadNow: 'Download Now'
+  }
+}
+
+// 智能渐进式多语言匹配
+const t = computed(() => {
+  const currentLang = (lang.value || '')
+  const shortLang = currentLang.slice(0, 2)
+
+  if (i18n[currentLang]) return i18n[currentLang]
+  if (i18n[shortLang]) return i18n[shortLang]
+  if (i18n['en']) return i18n['en']
+  return i18n['zh']
+})
 
 const logExpanded = ref(false)
 const assetsExpanded = ref(false)
@@ -112,7 +152,6 @@ const fetchFrontmatterRelease = async () => {
     localRelease.value = getTargetRelease(releases, item)
   } catch (e) {
     console.error(e)
-    // 降级到过期缓存，保证页面有内容可显示
     const stale = readStaleCache(cacheKey)
     if (stale) localRelease.value = getTargetRelease(stale, item)
   } finally {
@@ -150,8 +189,6 @@ const sortedAssets = computed(() => {
 
     const kw = keyword.split(" ")
 
-    // 找出 a 和 b 分别匹配到的第一个关键字的索引
-    // 索引越小表示在 recommend 中越靠前，优先级越高；未匹配则赋极大值排到最后
     const aIndex = kw.findIndex(k => a.name.toLowerCase().includes(k.toLowerCase()))
     const bIndex = kw.findIndex(k => b.name.toLowerCase().includes(k.toLowerCase()))
 
@@ -187,8 +224,8 @@ const formatDate = (isoString) => {
 }
 
 const isRecommend = (assetName) => {
-  const kw = cardItem.value.recommend.split(" ")
-  return kw.some(item => assetName.includes(item))
+  const kw = cardItem.value.recommend?.split(" ") || []
+  return kw.some(item => item && assetName.includes(item))
 }
 
 const defaultDownloadUrl = (assetUrl, item) => assetUrl || item.url || ''
@@ -238,7 +275,7 @@ const navToRepo = () => {
       </div>
     </div>
 
-    <div class="card-footer-flow" v-if="displayLoading">
+    <div class="card-footer-flow" style="margin-top: 1rem;" v-if="displayLoading">
       <div class="card-content">
         <div class="skeleton-text" style="width:100%; height:12px; margin-bottom:1.2rem;"></div>
         <div class="skeleton-btn" style="height:38px;"></div>
@@ -251,7 +288,7 @@ const navToRepo = () => {
           <div class="meta">
             <a :href="displayRelease.html_url" target="_blank" class="tag clickable-tag" @click.stop>
               {{ displayRelease.tag_name }}
-              <span v-if="displayRelease.prerelease" class="pre-badge">(Pre-release)</span>
+              <span v-if="displayRelease.prerelease" class="pre-badge">{{ t.prerelease }}</span>
             </a>
             <span class="date">{{ formatDate(displayRelease.published_at) }}</span>
           </div>
@@ -260,7 +297,7 @@ const navToRepo = () => {
         <div v-if="displayRelease.body" class="nested-changelog-box">
           <div class="changelog-bar" @click="toggleLog">
             <span class="bar-title">
-              更新内容
+              {{ t.changelog }}
               <span class="indicator-emoji">{{ logExpanded ? '🔼' : '🔽' }}</span>
             </span>
           </div>
@@ -294,16 +331,16 @@ const navToRepo = () => {
           >
             <div class="btn-left-content">
               <div class="star-icon-slot"></div>
-              <span class="file-name">前往网页端下载</span>
+              <span class="file-name">{{ t.goWeb }}</span>
             </div>
           </a>
 
           <div
-              v-if="hiddenCount >= 0 || assetsExpanded"
+              v-if="hiddenCount > 0 || assetsExpanded"
               class="toggle-more-assets-btn"
               @click="toggleAssets"
           >
-            {{ assetsExpanded ? '收起部分版本 🔼' : `展开更多版本 (${hiddenCount}+) 🔽` }}
+            {{ assetsExpanded ? t.collapse : t.expand.replace('{count}', hiddenCount) }}
           </div>
         </div>
       </div>
@@ -313,7 +350,7 @@ const navToRepo = () => {
       <div class="card-content">
         <div class="release-info">
           <div class="meta">
-            <span class="tag">{{ cardItem.version || '手动维护' }}</span>
+            <span class="tag">{{ cardItem.version || t.manual }}</span>
             <span class="date">{{ cardItem.date || '' }}</span>
           </div>
         </div>
@@ -321,7 +358,7 @@ const navToRepo = () => {
         <div v-if="cardItem.changelog" class="nested-changelog-box">
           <div class="changelog-bar" @click="toggleLog">
             <span class="bar-title">
-              更新内容
+              {{ t.changelog }}
               <span class="indicator-emoji">{{ logExpanded ? '🔼' : '🔽' }}</span>
             </span>
           </div>
@@ -339,7 +376,7 @@ const navToRepo = () => {
           >
             <div class="btn-left-content">
               <div class="star-icon-slot"><span v-if="cardItem.recommend">🌟</span></div>
-              <span class="file-name">{{ cardItem.label || '立即下载' }}</span>
+              <span class="file-name">{{ cardItem.label || t.downloadNow }}</span>
             </div>
             <span v-if="cardItem.size" class="size-text">{{ cardItem.size }}</span>
           </a>
