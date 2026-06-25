@@ -34,6 +34,15 @@ repos:
 
 ---
 
+<script setup>
+import { computed } from "vue";
+import { useData } from "vitepress";
+
+const { page } = useData();
+const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
+</script>
+
+
 <div align="center">
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
@@ -52,6 +61,8 @@ repos:
 ## ⏱️ 近期更新 {#Latest}
 <DownloadCard/>
 
+
+<div v-if="!pagePath.includes('zh-TW')">
 
 ## 📚 书源兼容性 {#Compatibility}
 ### 🅿️ Pixiv 书源 {#Pixiv}
@@ -75,6 +86,7 @@ repos:
 | [253 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/linpx.json) | 2025.12.16 | 3.23.0503 - 3.25.1107 |
 | [174 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/linpx.json) | 2025.02.20 | 3.22.0103 - 3.23.0404 |
 </details>
+</div>
 
 
 ## 📆 2026上半年 {#2026H1}
@@ -618,7 +630,7 @@ repos:
 - ✈ 优化：直连模式提示：
   - Pixiv 小说
 - 🔗 设置分享链接：
-  - Pixiv、Linnx、FurryNovel
+  - Pixiv、Linpx、FurryNovel
     - ✅ Plus、Beta 版可用
     - 🚫 正式版、MD3、源阅 不可用
 
@@ -1413,7 +1425,7 @@ Pixiv 书源：
   - ✅ 登录：优化收藏/取消收藏小说，存在bug (05.29)
   - ✅ 登录：打开内置浏览器分享 (05.29)
   - ✅ 登录：单篇小说使用系列功能时进行提示 (05.29)
-  - ✅ 搜索：搜索作者：仅搜索有小说的前3个作者 (05.30)
+  - ✅ 搜索：搜索作者：仅搜索有小说的3个作者 (05.30)
   - ✅ 搜索：搜索作者：不再添加有系列的单篇小说 (05.30)
   - ✅ 搜索：恢复合并小说 (05.30)
   - ✅ 正文：允许实时更新评论 (05.30)
@@ -1424,7 +1436,7 @@ Pixiv 书源：
   - ✅ 兼容源阅：**当前最新版本1.0 (112)**
   - ✅ JSLib：强制更新 getAjaxJson (05.29)
   - ✅ JSLib：添加作者 URL (05.29)
-  - ✅ 搜索：搜索作者：仅搜索有小说的前3个作者 (05.30)
+  - ✅ 搜索：搜索作者：仅搜索有小说的3个作者 (05.30)
   - ✅ 搜索：搜索作者：不再添加有系列的单篇小说 (05.30)
   - ✅ 搜索：恢复合并小说 (05.30)
   - ✅ 正文：允许实时更新评论 (05.30)
@@ -1855,14 +1867,14 @@ Linpx 书源
 ### ⬆️ 更新 163 {#163}
 - Pixiv 书源
   - ✅ 修复未能替换的书名号的 bug (12.11)
-  - ✅ 更方便的可选功能设置 (12.11)
+  - ✅ 更方便地可选功能设置 (12.11)
   - ✅ 系列小说分流处理 (12.10)
   - ✅ 更新正则规则 (12.10)
   - ✅ 精简代码
 
 - Linpx 书源
   - ✅ 修复未能替换的书名号的 bug (12.11)
-  - ✅ 更方便的可选功能设置 (12.11)
+  - ✅ 更方便地可选功能设置 (12.11)
   - ✅ 更新正则规则 (12.10)
 
 
