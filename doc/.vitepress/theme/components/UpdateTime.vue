@@ -7,10 +7,11 @@ const { page, frontmatter, lang } = useData()
 
 // 1. 语言文本字典（未来需要支持新语言，直接在这里往下加即可）
 const i18nLabels: Record<string, string> = {
+  'zh': '更新时间',
   'zh-CN': '更新时间',
   'zh-TW': '更新時間',
   'zh-HK': '更新時間',
-  'en-US': 'Last Updated',
+  'en': 'Last Updated',
   'ja-JP': '最終更新'
 }
 

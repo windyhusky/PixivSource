@@ -74,6 +74,19 @@ import { useData, withBase } from 'vitepress'
 const { frontmatter } = useData()
 const teamGroups = computed(() => frontmatter.value.teamGroups || [])
 
+const i18nSponsor = {
+  'zh': '打赏',
+  'zh-CN': '打赏',
+  'zh-TW': '贊助',
+  'zh-HK': '贊助',
+  'en': 'Sponsor',
+  'ja-JP': '支援'
+}
+
+const t = computed(() => ({
+  sponsor: i18nSponsor[localeIndex.value] || i18nSponsor['zh-CN']
+}))
+
 const isSvg      = (icon) => icon?.trim().startsWith('<svg')
 const isIconify  = (icon) => icon?.includes(':') && !icon.startsWith('http')
 const resolvePath = (path) =>
