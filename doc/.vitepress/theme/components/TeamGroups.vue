@@ -27,8 +27,8 @@
                   v-for="(site, i) in item.sites"
                   :key="i"
                   :href="site.link"
-                  target="_blank"
-                  rel="noopener"
+                  :target="isExternal(site.link) ? '_blank' : undefined"
+                  :rel="isExternal(site.link) ? 'noopener' : undefined"
                   class="site-link"
                   :title="site.name"
               >
@@ -53,12 +53,12 @@
 
             <a
                 v-if="item.sponsor"
-                :href="item.sponsor"
-                target="_blank"
-                rel="noopener"
+                :href="resolveSponsorLink(item.sponsor)"
+                :target="isExternal(item.sponsor) ? '_blank' : undefined"
+                :rel="isExternal(item.sponsor) ? 'noopener' : undefined"
                 class="sponsor-btn"
             >
-              {{ item.sponsorText ?? '打赏' }}
+              {{ item.sponsorText ?? t.sponsor }}
             </a>
           </div>
         </div>
@@ -71,7 +71,7 @@
 import { computed } from 'vue'
 import { useData, withBase } from 'vitepress'
 
-const { frontmatter } = useData()
+const { frontmatter, localeIndex } = useData()
 const teamGroups = computed(() => frontmatter.value.teamGroups || [])
 
 const i18nSponsor = {
@@ -93,6 +93,15 @@ const resolvePath = (path) =>
     !path ? 'https://www.github.com/github.png'
         : (path.startsWith('http') || path.startsWith('data:')) ? path
             : withBase(path)
+
+const isExternal = (link) => link?.startsWith('http')
+
+const resolveSponsorLink = (link) => {
+  if (!link || isExternal(link)) return link
+  const lang = localeIndex.value
+  const prefix = (lang && lang !== 'root') ? `/${lang}` : ''
+  return withBase(`${prefix}${link}`.replace(/\/+/g, '/'))
+}
 </script>
 
 <style scoped>
