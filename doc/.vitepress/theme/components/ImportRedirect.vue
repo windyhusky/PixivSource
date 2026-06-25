@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted, computed, watch, nextTick } from 'vue'
-import { useRoute } from 'vitepress'
+import { useRoute, useData } from 'vitepress'
 
 const route = useRoute()
+const { lang } = useData()
 
 const isRedirecting = ref(false)
 const inputUrl = ref('')
@@ -17,19 +18,112 @@ const SECURE_TOKEN = import.meta.env.VITE_SECURE_TOKEN || ''
 const isUploading = ref(false)
 const generatedLegadoUrl = ref('')
 
-const typeMap = [
-  { label: '自动', value: 'importonline', icon: '⚡️' },
-  { label: '书源', value: 'bookSource', icon: '📚' },
-  { label: '订阅源', value: 'rssSource', icon: '📡' },
-  { label: '替换规则', value: 'replaceRule', icon: '✂️' },
-  { label: '目录规则', value: 'textTocRule', icon: '📖' },
-  { label: '朗读引擎', value: 'httpTTS', icon: '🗣️' },
-  { label: '主题样式', value: 'theme', icon: '🎨' },
-  { label: '阅读排版', value: 'readConfig', icon: '📝' },
-  { label: '添加书架', value: 'book', icon: '➕' }
-]
+// ---------- 多语言本地词典 ----------
+const i18n = {
+  'zh': {
+    title: '🚀 一键导入 阅读资源',
+    selectType: '请选择导入类型',
+    clear: '清空内容',
+    placeholder: '粘贴 http(s) 链接、legado:// 协议，或者直接粘贴书源 JSON 源码...',
+    jsonError: 'JSON 格式错误，请检查后再导入',
+    btnUpload: '⏳ 正在通过 Cloudflare 分流打包...',
+    btnSubmit: '确认导入至阅读',
+    redirectTitle: '正在拉起阅读 App',
+    redirectDesc: '如果已安装开源阅读，应用将立即拉起...',
+    manualRedirect: '没有反应？点击手动跳转',
+    footer: '适配 开源阅读 3.0 及其兼容版本',
+    gatewayError: '云端数据流转通道建立失败，请检查网络或确认暗号凭证是否对齐。',
+    noGateway: '未配置云端网关，暂时无法完成 JSON 解析托管。请直连引入 URL。',
+    types: {
+      importonline: '自动',
+      bookSource: '书源',
+      rssSource: '订阅源',
+      replaceRule: '替换规则',
+      textTocRule: '目录规则',
+      httpTTS: '朗读引擎',
+      theme: '主题样式',
+      readConfig: '阅读排版',
+      book: '添加书架'
+    }
+  },
+  'zh-TW': {
+    title: '🚀 一鍵導入 閱讀資源',
+    selectType: '請選擇導入類型',
+    clear: '清空內容',
+    placeholder: '粘貼 http(s) 鏈接、legado:// 協議，或者直接粘貼書源 JSON 源碼...',
+    jsonError: 'JSON 格式錯誤，請檢查後再導入',
+    btnUpload: '⏳ 正在通過 Cloudflare 分流打包...',
+    btnSubmit: '確認導入至閱讀',
+    redirectTitle: '正在拉起閱讀 App',
+    redirectDesc: '如果已安裝開源閱讀，應用將立即拉起...',
+    manualRedirect: '沒有反應？點擊手動跳轉',
+    footer: '適配 開源閱讀 3.0 及其兼容版本',
+    gatewayError: '雲端數據流轉通道建立失敗，請檢查網絡或確認暗號憑證是否對齊。',
+    noGateway: '未配置雲端網關，暫時無法完成 JSON 解析託管。請直連引入 URL。',
+    types: {
+      importonline: '自動',
+      bookSource: '書源',
+      rssSource: '訂閱源',
+      replaceRule: '替換規則',
+      textTocRule: '目錄規則',
+      httpTTS: '朗讀引擎',
+      theme: '主題樣式',
+      readConfig: '閱讀排版',
+      book: '添加書架'
+    }
+  },
+  'en': {
+    title: '🚀 One-Click Import',
+    selectType: 'Select Import Type',
+    clear: 'Clear',
+    placeholder: 'Paste http(s) link, legado:// protocol, or copy-paste book source JSON code directly...',
+    jsonError: 'Invalid JSON format, please verify before importing',
+    btnUpload: '⏳ Bundling via Cloudflare Workers...',
+    btnSubmit: 'Confirm Import to Legado',
+    redirectTitle: 'Launching Legado App',
+    redirectDesc: 'If you have Legado installed, it should launch automatically...',
+    manualRedirect: 'No response? Click here to redirect manually',
+    footer: 'Compatible with Legado 3.0 and its forks',
+    gatewayError: 'Cloudflare data tunnel failed. Please check your connection or token.',
+    noGateway: 'Cloud cloud gateway unconfigured. JSON code hosting is unavailable. Please use direct URL.',
+    types: {
+      importonline: 'Auto',
+      bookSource: 'Book',
+      rssSource: 'RSS',
+      replaceRule: 'Replace',
+      textTocRule: 'TOC',
+      httpTTS: 'TTS',
+      theme: 'Theme',
+      readConfig: 'Layout',
+      book: 'Bookshelf'
+    }
+  }
+}
 
-// ── 深度清洗判定：过滤掉前端可能存在的空白、换行、或开头的意外噪点 ──
+// 智能渐进式多语言匹配
+const t = computed(() => {
+  const currentLang = (lang.value || '')
+  const shortLang = currentLang.slice(0, 2)
+
+  if (i18n[currentLang]) return i18n[currentLang]
+  if (i18n[shortLang]) return i18n[shortLang]
+  if (i18n['en']) return i18n['en']
+  return i18n['zh']
+})
+
+const typeMap = computed(() => [
+  { label: t.value.types.importonline, value: 'importonline', icon: '⚡️' },
+  { label: t.value.types.bookSource, value: 'bookSource', icon: '📚' },
+  { label: t.value.types.rssSource, value: 'rssSource', icon: '📡' },
+  { label: t.value.types.replaceRule, value: 'replaceRule', icon: '✂️' },
+  { label: t.value.types.textTocRule, value: 'textTocRule', icon: '📖' },
+  { label: t.value.types.httpTTS, value: 'httpTTS', icon: '🗣️' },
+  { label: t.value.types.theme, value: 'theme', icon: '🎨' },
+  { label: t.value.types.readConfig, value: 'readConfig', icon: '📝' },
+  { label: t.value.types.book, value: 'book', icon: '➕' }
+])
+
+// ── 深度清洗判定 ──
 const cleanedInput = computed(() => {
   return inputUrl.value.replace(/^\s+/, '').replace(/\s+$/, '')
 })
@@ -40,11 +134,10 @@ const looksLikeJsonInput = computed(() => {
   return val.startsWith('{') || val.startsWith('[')
 })
 
-// ── 防御加固：使用独立变量承载错误，避免计算属性在输入大文本时导致频繁 Parse 发生卡死 ──
+// ── 防御加固：使用独立变量承载错误 ──
 const jsonError = ref('')
 let debounceTimer: any = null
 
-// 监听输入，采用防抖机制（300ms 延迟校验），大文本粘贴时绝不卡顿
 watch(inputUrl, () => {
   if (debounceTimer) clearTimeout(debounceTimer)
   debounceTimer = setTimeout(() => {
@@ -60,14 +153,9 @@ watch(inputUrl, () => {
       JSON.parse(raw)
       jsonError.value = ''
     } catch {
-      jsonError.value = 'JSON 格式错误，请检查后再导入'
+      jsonError.value = t.value.jsonError
     }
   }, 300)
-})
-
-// ── 是否为完全合法的 JSON 输入 ──
-const isValidJsonInput = computed(() => {
-  return looksLikeJsonInput.value && !jsonError.value
 })
 
 // ── 一键清空输入框 ──
@@ -97,28 +185,22 @@ if (typeof window !== 'undefined') {
 function parseUrlLogic(url: string) {
   const u = url.trim()
   if (!u) return
-  if (u.startsWith('{') || u.startsWith('[')) return // 避免解析纯 JSON 源码
+  if (u.startsWith('{') || u.startsWith('[')) return
 
   if (u.startsWith('legado://')) {
     const match = u.match(/legado:\/\/import\/([a-zA-Z]+)/)
     if (match?.[1]) {
-      const found = typeMap.find(item => item.value === match[1])
+      const found = typeMap.value.find(item => item.value === match[1])
       selectedType.value = found ? found.value : 'importonline'
     }
     return
   }
   const lower = u.toLowerCase()
-  const found = typeMap.find(item => item.value !== 'importonline' && lower.includes(item.value.toLowerCase()))
+  const found = typeMap.value.find(item => item.value !== 'importonline' && lower.includes(item.value.toLowerCase()))
   selectedType.value = found ? found.value : 'importonline'
 }
 
 // ── ResizeObserver 对齐 ──
-//
-// VitePress 布局（≥960px）：| sidebar(sticky) |←── 内容区 ──→| aside |
-// VitePress 布局（<960px） ：sidebar 为浮层，不占文档流，忽略
-//
-// 策略：只在 ≥960px 时才将 sidebar 计入左边界计算，
-//       aside 始终计入（它在任何断点下都不是浮层）。
 function alignToContent() {
   const container = containerRef.value
   if (!container) return
@@ -177,10 +259,9 @@ async function doImport() {
     return
   }
 
-  // 情况 A：处理大体积 JSON 配置源码
   if (looksLikeJsonInput.value) {
     if (!CF_WORKER_URL) {
-      alert('未配置云端网关，暂时无法完成 JSON 解析托管。请直连引入 URL。')
+      alert(t.value.noGateway)
       return
     }
 
@@ -191,15 +272,13 @@ async function doImport() {
         parsedJson = [parsedJson]
       }
 
-      // 补丁：智能清洗接口地址，防止末尾多余的 / 产生双斜杠导致本地调试时 Origin 丢失
       const targetApi = CF_WORKER_URL.endsWith('/') ? CF_WORKER_URL.slice(0, -1) : CF_WORKER_URL;
 
-      // 异步向部署在 Cloudflare 上的私有二合一边缘节点投递配置
       const response = await fetch(targetApi, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'X-TNT-Secure': SECURE_TOKEN // 从安全的环境变量动态读取暗号，完全替代硬编码
+          'X-TNT-Secure': SECURE_TOKEN
         },
         body: JSON.stringify(parsedJson)
       })
@@ -215,14 +294,13 @@ async function doImport() {
       window.location.href = finalUrl
       setTimeout(() => { isRedirecting.value = false }, 2800)
     } catch (e) {
-      alert('云端数据流转通道建立失败，请检查网络或确认暗号凭证是否对齐。')
+      alert(t.value.gatewayError)
     } finally {
       isUploading.value = false
     }
     return
   }
 
-  // 情况 B：处理常规的 http(s) 链接或原生 legado 协议
   isRedirecting.value = true
   const finalUrl = val.startsWith('legado://')
       ? val
@@ -245,23 +323,23 @@ const ready = computed(() => cleanedInput.value.length > 0 && !isUploading.value
           <div class="loader-ring-inner"></div>
           <span class="loader-icon">🚀</span>
         </div>
-        <h2 class="redirect-title">正在拉起阅读 App</h2>
-        <p class="redirect-desc">如果已安装开源阅读，应用将立即拉起...</p>
+        <h2 class="redirect-title">{{ t.redirectTitle }}</h2>
+        <p class="redirect-desc">{{ t.redirectDesc }}</p>
         <a
             :href="generatedLegadoUrl || (inputUrl.startsWith('legado://') ? inputUrl : `legado://import/importonline?src=${encodeURIComponent(inputUrl)}`)"
             class="retry-btn-styled"
         >
-          没有反应？点击手动跳转
+          {{ t.manualRedirect }}
         </a>
       </div>
 
       <template v-else>
-        <h1 class="vp-h1">🚀 一键导入 阅读资源</h1>
+        <h1 class="vp-h1">{{ t.title }}</h1>
 
         <div class="legado-card main-mode">
           <div class="legado-header">
-            <span class="header-title">请选择导入类型</span>
-            <button v-if="inputUrl" class="clear-action-btn" @click="clearInput">清空内容</button>
+            <span class="header-title">{{ t.selectType }}</span>
+            <button v-if="inputUrl" class="clear-action-btn" @click="clearInput">{{ t.clear }}</button>
           </div>
 
           <div class="type-grid">
@@ -279,7 +357,7 @@ const ready = computed(() => cleanedInput.value.length > 0 && !isUploading.value
           <div class="input-area">
             <textarea
                 v-model="inputUrl"
-                placeholder="粘贴 http(s) 链接、legado:// 协议，或者直接粘贴书源 JSON 源码..."
+                :placeholder="t.placeholder"
                 spellcheck="false"
                 :disabled="isUploading"
             ></textarea>
@@ -287,11 +365,11 @@ const ready = computed(() => cleanedInput.value.length > 0 && !isUploading.value
           </div>
 
           <button class="submit-btn" :disabled="!ready" @click="doImport">
-            {{ isUploading ? '⏳ 正在通过 Cloudflare 分流打包...' : '确认导入至阅读' }}
+            {{ isUploading ? t.btnUpload : t.btnSubmit }}
           </button>
         </div>
 
-        <p class="footer-note">适配 开源阅读 3.0 及其兼容版本</p>
+        <p class="footer-note">{{ t.footer }}</p>
       </template>
 
     </div>
@@ -299,6 +377,7 @@ const ready = computed(() => cleanedInput.value.length > 0 && !isUploading.value
 </template>
 
 <style scoped>
+/* 保持原有样式不变 */
 .legado-outer {
   width: 100%;
 }
