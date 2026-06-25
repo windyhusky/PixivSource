@@ -261,7 +261,7 @@ export const enNav = [
         items: [
             { text: "📜 Updates", link: "/en/UpdateLog" },
             { text: "👥 Dev Team", link: "/en/Team" },
-            // { text: "🤝 Friend Link", link: "/en/FriendLink" },
+            { text: "🤝 Friend Link", link: "/en/FriendLink" },
             { text: "☕ Sponsor", link: "/en/Sponsor", activeMatch: "/" },
         ]
     }
@@ -310,7 +310,7 @@ export const enSidebar = [
         items: [
             { text: "📜 Updates", link: "/en/UpdateLog" },
             { text: "👥 Dev Team", link: "/en/Team" },
-            // { text: "🤝 Friend Link", link: "/en/FriendLink" },
+            { text: "🤝 Friend Link", link: "/en/FriendLink" },
         ]
     },
     {

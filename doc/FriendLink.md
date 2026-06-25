@@ -43,8 +43,8 @@ friendGroups:
     anchor: Resources
     items: 
       - name: Pixiv 书源
-        link: https://pixivsource.pages.dev/
-        icon: favicon-512x512.png
+        link: /
+        icon: /favicon-512x512.png
         desc: 最好的 Pixiv 小说阅读器
         hide: true
 
