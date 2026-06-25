@@ -253,7 +253,7 @@ export const enNav = [
             // { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
             // { text: "💾 Webdav Backup", link: "/en/WebdavBackup", activeMatch: "/" },
             // { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
-            // { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
+            { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
         ]
     },
     {
@@ -262,7 +262,7 @@ export const enNav = [
             // { text: "📜 Updates", link: "/en/UpdateLog" },
             // { text: "👥 Dev Team", link: "/en/Team" },
             // { text: "🤝 Friend Link", link: "/en/FriendLink" },
-            // { text: "☕ Sponsor", link: "/en/Sponsor", activeMatch: "/" },
+            { text: "☕ Sponsor", link: "/en/Sponsor", activeMatch: "/" },
         ]
     }
 ]
@@ -302,7 +302,7 @@ export const enSidebar = [
             // { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
             // { text: "💾 Webdav Backup", link: "/en/WebdavBackup" },
             // { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
-            // { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
+            { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
         ]
     },
     {
@@ -318,7 +318,7 @@ export const enSidebar = [
         collapsed: false,
         items: [
             { text: "☕ Sponsor", link: "/en/Sponsor" },
-            { text: "💵 Sponsorship History", link: `${BLOG}Sponsor` },
+            // { text: "💵 Sponsorship History", link: `${BLOG}Sponsor` },
         ]
     },
 ]

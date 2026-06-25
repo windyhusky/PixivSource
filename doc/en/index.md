@@ -37,11 +37,11 @@ hero:
   actions:
     - theme: brand
       text: ⬇️ Download Legado Sigma
-      link: en/DownloadLegado
+      link: /en/DownloadLegado
 
     - theme: brand
       text: 🚀 One-Click Import Sources
-      link: Import
+      link: /en/Import
       
 #    - theme: alt
 #      text: ✨ Premium Experience
@@ -49,7 +49,7 @@ hero:
       
     - theme: alt
       text: ⚡️ Quick Start
-      link: QuickStart
+      link: /en/QuickStart
 
 #    - theme: alt
 #      text: 📘 Pixiv Manual
@@ -67,10 +67,10 @@ hero:
       text: ✈️ Join Telegram
       link: https://t.me/PixivSource
 
-#    - theme: alt
-#      text: 💖 Sponsor
-#      link: Sponsor
-#      
+    - theme: alt
+      text: 💖 Sponsor
+      link: /en/Sponsor
+      
 #    - theme: alt
 #      text: 📜 Changelog
 
