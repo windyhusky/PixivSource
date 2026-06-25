@@ -1,6 +1,9 @@
 import timeline from "vitepress-markdown-timeline"
 import type { MarkdownOption } from 'vitepress'
 
+// 匹配定义的 Emoji 范围
+const EMOJI_REGEX = /([\u{1F000}-\u{1FFFF}\u{2600}-\u{27FF}])/gu
+
 export const markdownConfig: MarkdownOption = {
     lineNumbers: true,
     anchor: { slugify: (s: string) => s, permalink: false },
@@ -13,6 +16,17 @@ export const markdownConfig: MarkdownOption = {
             const targetRegex1 = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上浏览此文档[\s\S]*?排版更精美\*\*/g
             const targetRegex2 = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上瀏覽此文件[\s\S]*?排版更精美\*\*/g
             return originalParse.call(md, src.replace(targetRegex1, '').replace(targetRegex2, ''), env)
+        }
+
+        // 安全替换文本中的 Emoji：仅拦截 text token，绝不污染属性和标签
+        const defaultTextRender = md.renderer.rules.text || ((tokens, idx) => tokens[idx].content)
+        md.renderer.rules.text = (tokens, idx, options, env, self) => {
+            const content = defaultTextRender(tokens, idx, options, env, self)
+            if (EMOJI_REGEX.test(content)) {
+                // 这里用 v-pre 阻止 Vue 编译内联内容，确保安全
+                return content.replace(EMOJI_REGEX, '<span class="emoji-box" v-pre>$1</span>')
+            }
+            return content
         }
 
         // 图片渲染：懒加载 & 异步解码

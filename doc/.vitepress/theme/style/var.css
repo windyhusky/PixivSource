@@ -74,3 +74,12 @@
             "Noto Sans SC", "Noto Sans TC",
             ui-sans-serif, system-ui, sans-serif;
 }
+
+/* 让 Emoji 完美占据一个汉字宽度的 CSS 样式 */
+.emoji-box {
+    display: inline-block;
+    width: 2ch;         /* 2ch 在中文语境下精确等于 1 个汉字的宽度 */
+    text-align: center; /* 确保 Emoji 在这 1 个汉字的格子内水平居中 */
+    vertical-align: middle; /* 修正由于 display 改变导致的行高垂直错位 */
+    line-height: 1;
+}
