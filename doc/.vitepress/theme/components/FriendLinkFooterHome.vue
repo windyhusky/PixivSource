@@ -1,5 +1,4 @@
 <template>
-  <!-- 外层全宽，确保分割线能延伸 -->
   <div class="home-friends" v-if="friendGroups.length > 0">
     <div class="container" ref="containerRef">
       <hr class="divider" />
@@ -9,7 +8,7 @@
           <span class="title-text">{{ t.title }}</span>
         </a>
       </div>
-      <div class="grid">
+      <div class="grid" :style="{ '--min-width': gridMinWidth }">
         <a v-for="f in friendGroups" :key="f.link" :href="f.link" target="_blank" rel="noopener" class="card">
           <img :src="resolveIcon(f.icon)" class="icon" v-if="f.icon" loading="lazy" />
           <span class="name">{{ f.name }}</span>
@@ -29,7 +28,9 @@ const { localeIndex } = useData()
 const containerRef = ref(null)
 const t = computed(() => translations[localeIndex.value] || translations['root'])
 
-// 关键修改：根据当前语言提取对应的数据，并拍平为数组
+// 根据语言动态计算首页卡片宽度
+const gridMinWidth = computed(() => localeIndex.value === 'en' ? '180px' : '160px')
+
 const friendGroups = computed(() => {
   const lang = localeIndex.value || 'root'
   const groups = allLangData[lang] || allLangData['root'] || []
@@ -38,30 +39,15 @@ const friendGroups = computed(() => {
 
 const resolveIcon = (icon) => icon?.startsWith('http') ? icon : withBase(icon || '')
 
-/**
- * 首页对齐逻辑：
- * 首页的正文通常包裹在 .VPHomeContent 中，其最大宽度一般为 1152px。
- * 在 730-960px 期间，它会有动态的 padding。
- */
 function alignToHomeContent() {
   const container = containerRef.value
   if (!container) return
-
-  // 尝试匹配首页的内容区域
-  const homeContent = document.querySelector('.VPHomeContent')
-      || document.querySelector('.VPContent')
-
+  const homeContent = document.querySelector('.VPHomeContent') || document.querySelector('.VPContent')
   if (!homeContent) return
-
   const rect = homeContent.getBoundingClientRect()
   const parentRect = container.parentElement.getBoundingClientRect()
-
-  // 动态同步左右内边距，使其与首页 Feature/Hero 区域对齐
-  const paddingLeft = Math.max(rect.left - parentRect.left, 0)
-  const paddingRight = Math.max(parentRect.right - rect.right, 0)
-
-  container.style.paddingLeft = `${paddingLeft}px`
-  container.style.paddingRight = `${paddingRight}px`
+  container.style.paddingLeft = `${Math.max(rect.left - parentRect.left, 0)}px`
+  container.style.paddingRight = `${Math.max(parentRect.right - rect.right, 0)}px`
 }
 
 let ro
@@ -91,7 +77,6 @@ onUnmounted(() => ro?.disconnect())
 .container {
   width: 100%;
   box-sizing: border-box;
-  /* 默认最大宽度与 VitePress 首页保持一致 */
   max-width: 1152px;
   margin: 0 auto;
 }
@@ -110,32 +95,32 @@ onUnmounted(() => ro?.disconnect())
 }
 
 .footer-title {
-    display: flex;
-    align-items: center;
-    font-size: 16px; /* 首页标题也可以保持 16px-18px */
-    font-weight: 700;
-    color: var(--vp-c-text-1);
-    text-decoration: none;
-    transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--vp-c-text-1);
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
 .footer-title:hover {
-    color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
 }
 
 .title-emoji {
-    width: 40px;
-    margin-left: 7px;
-    margin-right: 4px;
-    display: flex;
-    justify-content: center;
-    font-size: 18px;
+  width: 40px;
+  margin-left: 7px;
+  margin-right: 4px;
+  display: flex;
+  justify-content: center;
+  font-size: 18px;
 }
 
 .grid {
   display: grid;
-  /* 首页卡片较宽，我们稍微调小最小宽度以适应更多屏幕 */
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  /* 使用 CSS 变量控制最小宽度 */
+  grid-template-columns: repeat(auto-fill, minmax(var(--min-width, 160px), 1fr));
   gap: 16px;
 }
 
@@ -178,7 +163,6 @@ onUnmounted(() => ro?.disconnect())
   color: var(--vp-c-brand-1);
 }
 
-/* 适配 768px 以下的移动端 */
 @media (max-width: 768px) {
   .home-friends {
     padding-top: 40px;
@@ -189,7 +173,6 @@ onUnmounted(() => ro?.disconnect())
   }
 }
 
-/* 适配超小屏幕 */
 @media (max-width: 480px) {
   .grid {
     grid-template-columns: 1fr;

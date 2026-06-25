@@ -9,24 +9,24 @@
         </a>
       </div>
 
-      <div class="friends-grid">
+      <div class="friends-grid" :style="{ '--min-width': gridMinWidth }">
         <template v-for="group in friendGroups" :key="group.title">
           <a
-            v-for="friend in group.items"
-            :key="friend.link"
-            :href="friend.link"
-            target="_blank"
-            rel="noopener"
-            class="friend-item"
+              v-for="friend in group.items"
+              :key="friend.link"
+              :href="friend.link"
+              target="_blank"
+              rel="noopener"
+              class="friend-item"
           >
-          <template v-if="friend.icon">
-            <img
-                :src="resolveIcon(friend.icon)"
-                class="friend-icon"
-                loading="lazy"
-            />
-          </template>
-          <span class="friend-name">{{ friend.name }}</span>
+            <template v-if="friend.icon">
+              <img
+                  :src="resolveIcon(friend.icon)"
+                  class="friend-icon"
+                  loading="lazy"
+              />
+            </template>
+            <span class="friend-name">{{ friend.name }}</span>
           </a>
         </template>
       </div>
@@ -42,6 +42,9 @@ import { friendLinkI18n as translations} from './FriendLinkLocales.ts'
 
 const { frontmatter, localeIndex } = useData()
 const t = computed(() => translations[localeIndex.value] || translations['root'])
+
+// 根据语言动态计算宽度：英文环境下设为 160px，其余保持 140px
+const gridMinWidth = computed(() => localeIndex.value === 'en' ? '160px' : '140px')
 
 const friendGroups = computed(() => {
   const lang = localeIndex.value || 'root'
@@ -133,7 +136,8 @@ watch(() => route.path, () => nextTick(alignToContent))
 
 .friends-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  /* 使用 CSS 变量 --min-width，默认值为 140px */
+  grid-template-columns: repeat(auto-fill, minmax(var(--min-width, 140px), 1fr));
   gap: 16px 20px;
   width: 100%;
 }
