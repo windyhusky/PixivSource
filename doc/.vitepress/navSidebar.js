@@ -251,7 +251,7 @@ export const enNav = [
             // { text: "📚 Legado Apps", link: "/en/Download" },
             // { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
             // { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
-            // { text: "💾 Webdav Backup", link: "/en/WebdavBackup", activeMatch: "/" },
+            { text: "💾 Webdav Backup", link: "/en/WebdavBackup", activeMatch: "/" },
             // { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
             { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
         ]
@@ -300,7 +300,7 @@ export const enSidebar = [
             // { text: "📚 Legado Apps", link: "/en/Download" },
             // { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
             // { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
-            // { text: "💾 Webdav Backup", link: "/en/WebdavBackup" },
+            { text: "💾 Webdav Backup", link: "/en/WebdavBackup" },
             // { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
             { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
         ]
