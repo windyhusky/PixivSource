@@ -239,30 +239,30 @@ export const enNav = [
         text: "📚 Source Guide",
         activeMatch: "/",
         items: [
-            { text: "✨ Ultimate Read", link: "/en/BetterExperience", activeMatch: "/" },
-            { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
-            { text: "➕ Add Novels", link: "/en/AddNovels" },
-            { text: "🅿️ Pixiv Manual", link: "/en/Pixiv" }
+            // { text: "✨ Ultimate Read", link: "/en/BetterExperience", activeMatch: "/" },
+            // { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
+            // { text: "➕ Add Novels", link: "/en/AddNovels" },
+            // { text: "🅿️ Pixiv Manual", link: "/en/Pixiv" }
         ]
     },
     {
         text: "📖 Legado Guide",
         items: [
-            { text: "📚 Legado Apps", link: "/en/Download" },
-            { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
-            { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
-            { text: "💾 Webdav Backup", link: "/en/WebdavBackup", activeMatch: "/" },
-            { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
-            { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
+            // { text: "📚 Legado Apps", link: "/en/Download" },
+            // { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
+            // { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
+            // { text: "💾 Webdav Backup", link: "/en/WebdavBackup", activeMatch: "/" },
+            // { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
+            // { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
         ]
     },
     {
         text: "🚧 Development",
         items: [
-            { text: "📜 Updates", link: "/en/UpdateLog" },
-            { text: "👥 Dev Team", link: "/en/Team" },
-            { text: "🤝 Friend Link", link: "/en/FriendLink" },
-            { text: "☕ Sponsor", link: "/en/Sponsor", activeMatch: "/" },
+            // { text: "📜 Updates", link: "/en/UpdateLog" },
+            // { text: "👥 Dev Team", link: "/en/Team" },
+            // { text: "🤝 Friend Link", link: "/en/FriendLink" },
+            // { text: "☕ Sponsor", link: "/en/Sponsor", activeMatch: "/" },
         ]
     }
 ]
@@ -280,37 +280,37 @@ export const enSidebar = [
         text: "📚 Source Guide",
         activeMatch: "/",
         items: [
-            { text: "✨ Ultimate Read", link: "/en/BetterExperience" },
-            { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
-            { text: "➕ Add Novels", link: "/en/AddNovels" },
+            // { text: "✨ Ultimate Read", link: "/en/BetterExperience" },
+            // { text: "⚡️️️ Quick Start", link: "/en/QuickStart" },
+            // { text: "➕ Add Novels", link: "/en/AddNovels" },
         ]
     },
     {
-        text: "Pixiv BookSource",
+        text: "🅿️ Pixiv BookSource",
         collapsed: false,
         items: [
-            { text: "🅿️ Pixiv Manual", link: "/en/Pixiv" },
-            { text: "🆚 功能对比", link: "/PixivComparison" },
-            { text: "⚙️ 书源设置", link: "/PixivSettings" },
+            // { text: "🅿️ Pixiv Manual", link: "/en/Pixiv" },
+            // { text: "🆚 Comparison", link: "/PixivComparison" },
+            // { text: "⚙️ Settings", link: "/PixivSettings" },
         ]
     },
     {
         text: "📖 Legado Guide",
         items: [
-            { text: "📚 Legado Apps", link: "/en/Download" },
-            { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
-            { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
-            { text: "💾 Webdav Backup", link: "/en/WebdavBackup" },
-            { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
-            { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
+            // { text: "📚 Legado Apps", link: "/en/Download" },
+            // { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
+            // { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
+            // { text: "💾 Webdav Backup", link: "/en/WebdavBackup" },
+            // { text: "☁️ Remote Books", link: "/en/RemoteBooks" },
+            // { text: "🛠️ Trouble Shoot", link: "/en/TroubleShoot" }
         ]
     },
     {
         text: "🚧 Development",
         items: [
-            { text: "📜 Updates", link: "/en/UpdateLog" },
-            { text: "👥 Dev Team", link: "/en/Team" },
-            { text: "🤝 Friend Link", link: "/en/FriendLink" },
+            // { text: "📜 Updates", link: "/en/UpdateLog" },
+            // { text: "👥 Dev Team", link: "/en/Team" },
+            // { text: "🤝 Friend Link", link: "/en/FriendLink" },
         ]
     },
     {
