@@ -39,6 +39,10 @@ hero:
       text: ⬇️ Download Legado Sigma
       link: DownloadLegado
 
+    - theme: brand
+      text: 🚀 One-Click Import Sources
+      link: Import
+      
 #    - theme: alt
 #      text: ✨ Premium Experience
 #      link: BetterExperience
@@ -47,32 +51,25 @@ hero:
 #      text: ⚡️ Quick Start
 #      link: QuickStart
 #
-#    - theme: brand
-#      text: 🚀 One-Click Import
-#      link: Import
-      
+#    - theme: alt
+#      text: 📘 Pixiv Manual
+#      link: Pixiv
+
     - theme: brand
       text: 🚀 Import Pixiv BookSource
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
-      
-#    - theme: alt
-#      text: 📘 Guide
-#      link: Pixiv
       
     - theme: brand
       text: 🚀 Import Pixiv RssSource
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json" 
 
     - theme: alt
-      text: 🏠 GitHub
-      link: https://github.com/DowneyRem/PixivSource
-
-    - theme: alt
       text: ✈️ Telegram Channel
       link: https://t.me/PixivSource
 
 #    - theme: alt
-#      text: ☕ Donate
+#      text: 💖 Sponsor
+#      link: Sponsor
 #      
 #    - theme: alt
 #      text: 📜 Changelog
@@ -80,11 +77,11 @@ hero:
 features:
   - icon: 📖
     title: Full Legado Features
-    details: 🔍 Search Novels<br> ⭐️ Discover Content<br>🔗 Add Via URLs<br> 🌐 RssSource
+    details: 🔍 Search Novels<br> ⭐️ Discover Novels<br>🔗 Add Via URLs<br> 🌐 RssSource
     
   - icon: 🔍
     title: Enhanced Search
-    details: 📄 Single<br> 📚 Series<br> 👤 Author<br> 🀄️ Convert Chinese
+    details: 📄 One-Shot Name<br> 📚 Series Name<br> 👤 Author Name<br> 🀄️ Convert Chinese
     
   - icon: 📚
     title: Enhanced Reading
