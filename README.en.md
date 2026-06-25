@@ -7,79 +7,34 @@
 ### The best third-party novel reader for Pixiv
 #### Powered by [Legado](https://github.com/Luoyacheng/legado) + PixivSource
 
-🏠 [Website](https://pixivsource.pages.dev) 📖 [Setup Guide](https://pixivsource.pages.dev/BetterExperience) ✈️ [Telegram @PixivSource](https://t.me/PixivSource)
+🏠 [Website](https://pixivsource.pages.dev) ⚡️ [Quick Start](https://pixivsource.pages.dev/QuickStart) ✈️ [Telegram @PixivSource](https://t.me/PixivSource)
 </div>
 
-
 ## What is this?
-**PixivSource** is a BookSource plugin for [Legado](https://github.com/Luoyacheng/legado), an open-source novel reader app for Android.
+**PixivSource** is a BookSource plugin for [Legado](https://github.com/Luoyacheng/legado), an open-source reader app for Android. It fetches and reformats Pixiv novels, providing a premium reading experience for free.
 
-> [!NOTE]
->
-> Legado is a special browser that fetches and reformats content from websites using source rules.
->
-> PixivSource is the rule for Pixiv. It does not host any content.
+> [!IMPORTANT]
 > 
-> All novels data come directly from Pixiv.
-
+> PixivSource is a rule set for Legado. It does not host any content. All data comes directly from Pixiv.
 
 ## Pixiv App 🆚 Pixiv Source
-| | Pixiv App | Pixiv Source |
-| :--- | :--- | :--- |
-| Novel bookshelf | ❌ | ✅ |
-| Reading progress | ❌ | ✅ |
-| Offline reading | ❌ | ✅ |
-| Search by author name | ❌ | ✅ |
-| Reading history | 💰 Premium | 🆓 Free |
-| Block authors | 💰 Premium | 🆓 Free |
-| Block tags | 💰 Premium | 🆓 Free |
+| Feature | Pixiv App | Pixiv Source |
+| :--- | :---: | :---: |
+| Bookshelf | ❌ | ✅ |
+| Reading Progress | ❌ | ✅ |
+| Offline Reading | ❌ | ✅ |
+| Advanced Search | ❌ | ✅ |
 | Ad-free | 💰 Premium | 🆓 Free |
 
 
-## 📖 Features
-| Source | Status | Pixiv features | Legado features |
-| ------ | ------ | ----------------- | -------------- | 
-| Pixiv  | ✅ | ✅ Single ✅ Series ✅ Illustrations | ✅ Search ✅ Discover ✅ Add by URL |
+## ⚡️ [Quick Start](https://pixivsource.pages.dev/en/QuickStart) => [Download App](https://pixivsource.pages.dev/en/QuickStart#DownloadLegado) => [Import Sources](https://pixivsource.pages.dev/en/QuickStart#ImportSources) => [Source Setup](https://pixivsource.pages.dev/en/QuickStart#BookSourceSet) => [App Settings](https://pixivsource.pages.dev/en/QuickStart#LegadoSettings) => [Add Novels](https://pixivsource.pages.dev/QuickStart#AddNovels)
 
 
-## ▶️ Get started
-1️⃣ **Install a reader app**
-- Android: [Legado Sigma](https://gitee.com/lyc486/legado)
-- iOS / multi-platform: [QYSG](https://github.com/autobcb/qysg)
-
-2️⃣ **Import PixivSource**
-- [One-click import](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json)
-
-Or follow the [full setup guide](https://pixivsource.pages.dev/BetterExperience) for detailed instructions with screenshots.
-
-3️⃣ **Log in your Pixiv account**
-
-Inside the app: 
-My → Source Manager → Pixiv Novel → Login
-
-
-## 📄 Notes
-- **Auto-refresh**: Turn off auto-refresh in settings to avoid hitting Pixiv's rate limits.
-
-
-## ✈️ Community
-| Channel | Notes |
-| ------- | ----- |
-| ✈️ [Telegram @PixivSource](https://t.me/PixivSource) | PixivSource channel |
-
-
-## ©️ Copyright
-1. Legado is an open-source browser with advanced reading features.
-2. PixivSource ( BookSource ) are rule sets that tell Legado how to fetch and display content from websites.
-3. Reading novels via Legado + PixivSource is equivalent to reading those novels in a web browser.
-4. All novel content is served directly from Pixiv. Copyright belongs to the original authors.
-5. For copyright concerns, please contact Pixiv directly.
-
-
-## 📌 Disclaimer
-1. PixivSource is intended for learning and sharing of source rule techniques.
-2. Any consequences arising from use of this source are the sole responsibility of the user.
-
+## ⚖️ Legal & Disclaimer
+1. PixivSource is for learning and bookSource rule sharing purposes only.
+2. All novel content is served directly from Pixiv; copyright belongs to the original authors.
+3. Reading via Legado is equivalent to using a web browser.
+4. Users are responsible for their own use of this tool.
 
 ## 📢 Acknowledgements
 - [Legado 3.0](https://github.com/gedoor/legado) for providing the software platform
