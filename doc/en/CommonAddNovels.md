@@ -6,7 +6,7 @@
 ### 🔍 [Search Novels](Pixiv.md#SearchNovel) {#SearchNovel}
 > [!NOTE]
 >
-> **Bookshelf Page -> Search (Magnifier Icon) -> Type Keywords -> Search -> Add to Bookshelf**
+> **Bookshelf -> Search (Magnifier Icon) -> Type Keywords -> Search -> Add to Bookshelf**
 > 
 > This will search **both the Pixiv website and your local Bookshelf** at the same time.
 
@@ -20,7 +20,7 @@ Open the Bookshelf page and tap the search button 🔍
 
 ![img](./pic/LegadoBookShelf.png)
 
-Type your keywords (like `测试页面`) and press Enter to search.
+Type your keywords `测试页面` and press Enter to search.
 
 ```
 测试页面
@@ -38,21 +38,21 @@ Tap **[Add to Bookshelf]** to add the novel to bookshelf.
 ### ⭐️ [Discover Novels](Pixiv.md#DiscoverNovel) {#DiscoverNovel}
 > [!NOTE]
 >
-> **Discovery Page -> Tap "Pixiv Novels" -> Pick what you want -> Add to Bookshelf**
+> **Discovery -> Tap "Pixiv Novels" -> Pick what you want -> Add to Bookshelf**
 
 > [!TIP]
 >
-> Pixiv has many novel recommendation lists. You can find them all on the **Discovery Page**.
+> Pixiv has many novel recommendation lists. You can find them all on the **Discovery**.
 
 [//]: # (> ▶️ For details, see [Discover Novels]&#40;Pixiv.md#DiscoverNovel&#41;.)
 
 ![img](./pic/DiscoverPixiv.png)
 
-Open the Discovery Page and tap the button to browse.
+Open the Discovery and tap the button to browse.
 
 ![img](./pic/DiscoverViaLegado.png)
 
-Tap on any button to open the novel info page.
+Tap on any button to open the novel information.
 
 ![img](./pic/BookInformation.png)
 
@@ -71,7 +71,7 @@ Tap **[Add to Bookshelf]** to add the novel to bookshelf.
 > **You can paste multiple links at once. Supported links:**
 > - **Pixiv Single Novel Links**
 > - **Pixiv Novel Series Links**
-> - **Pixiv Author Profiles (adds their latest novel)**
+> - **Pixiv Author Profiles Links (adds their latest novel)**
 
 [//]: # (> ▶️ For details, see [Add via URL]&#40;Pixiv.md#AddUrl&#41;.)
 
@@ -79,7 +79,7 @@ Tap **[Add to Bookshelf]** to add the novel to bookshelf.
 https://www.pixiv.net/novel/show.php?id=26200191
 ```
 
-Copy the Pixiv link above, then open the menu in the top-right corner of the Bookshelf page.
+Copy the Pixiv link above, then open the menu in the top-right corner of the Bookshelf.
 ![img](./pic/AddBookViaUrl1.png)
 
 Paste the link and tap OK to add the novel to bookshelf.
@@ -104,21 +104,21 @@ Paste the link and tap OK to add the novel to bookshelf.
 ### 🌐 [RSS Feed](Pixiv.md#RssSource) {#RssSource}
 > [!NOTE]
 >
-> **RSS Feed -> Pixiv -> Open Novel Content Page / Series Catalog Page-> Add to Bookshelf**
+> **RSS Feed -> Pixiv -> Open Novel Content Webpage / Series Catalog Webpage -> Add to Bookshelf**
 
 > [!TIP]
 >
 > If you like browsing the web, you can **open the Pixiv website right here**
 >
-> **and use the [Add to Bookshelf] button to add novel to bookshelf directly.**
+> **and use the [加入书架] button to add novel to bookshelf directly.**
 
 ![img](./pic/SubscribeMainPage.png)
 
-Open the RSS Feed page and tap Pixiv to open the built-in Browser to visit Pixiv.
+Open the RSS Feed and tap Pixiv to open the built-in Browser to visit Pixiv.
 
 ![img.png](./pic/PixivWebPage.png)
 
-1️⃣ Go to any **Novel Content Page** or **Series Catalog Page**.
+1️⃣ Go to any **Novel Content Webpage** or **Series Catalog Webpage**.
 
 ![img.png](./pic/PixivWebSingle.png)
 

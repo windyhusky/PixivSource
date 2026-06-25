@@ -50,10 +50,13 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## ⤴️ Share {#Share}
 > [!TIP]
-> **The Easiest Way to Support:**
+> **The Easiest Way to Support**
 > **—— Share PixivSource with your friends!**
 >
-> Sending them our [✨ Premium Guide](BetterExperience.md) or [⚡️ Quick Start](QuickStart.md) is a great way to start.
+> Sending them our Guide,
+> [⚡️ Quick Start](QuickStart.md) is a great way to start.
+
+[//]: # (> Sending them our [✨ Premium Guide]&#40;BetterExperience.md&#41; or [⚡️ Quick Start]&#40;QuickStart.md&#41; is a great way to start.)
 
 
 <!--@include: CommonSponsor.md-->

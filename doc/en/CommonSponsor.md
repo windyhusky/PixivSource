@@ -25,5 +25,5 @@ What you'll get:<br>
 
 > [!IMPORTANT]
 >
-> **Feel free to leave your nickname/ID and mention "PixivSource" in the message so I can add you to the thanks list!
-> For details, see: [Sponsor Details](https://downeyrem.github.io/Sponsor)**
+> **Feel free to leave your nickname and mention "PixivSource" in the message, so I can add you to the thanks list!
+> For details, see [Sponsor Details](https://downeyrem.github.io/Sponsor)**

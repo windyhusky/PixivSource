@@ -1,11 +1,11 @@
 ### 🅿️ Account Login {#LoginAccount}
 > [!NOTE]
 >
-> **For websites requiring accounts, you must log in within the source settings to read the corresponding novels.**
+> **For websites requiring accounts, you must log in within the source settings to read novels.**
 >
-> **🅿️ Path => Me -> Sources Management -> Pixiv -> Login**
+> **🅿️ Account Login => Me -> Sources Management -> Pixiv -> Login**
 
-Once the sources are successfully imported, tap its option menu, and you should see the following interface:
+Once the sources are successfully imported, tap its option menu, and you should see the following interface
 
 ![img](./pic/PixivLogin1.png)
 

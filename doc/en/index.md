@@ -28,8 +28,8 @@ head:
 
 hero:
   name: Pixiv Source + Legado
-  text: The Pixiv Novel App You Always Wanted
-  tagline: <br>Say goodbye to clunky web views. It's time for a ultimate, clean reading experience.
+  text: The Pixiv Novel App
+  tagline: <br>Say goodbye to clunky pixiv app. <br>It's time for a ultimate reading experience.
 
   image:
     src: "/PixivSource.png"
@@ -44,25 +44,29 @@ hero:
       link: /en/Import
       
 #    - theme: alt
-#      text: ✨ Premium Experience
+#      text: ✨ Ultimate Experience
 #      link: BetterExperience
-      
-    - theme: alt
-      text: ⚡️ Quick Start
-      link: /en/QuickStart
+#      
+#    - theme: alt
+#      text: ⚡️ Quick Start
+#      link: /en/QuickStart
 
 #    - theme: alt
 #      text: 📘 Pixiv Manual
 #      link: Pixiv
 
     - theme: brand
-      text: 🚀 Import BookSource
+      text: 🚀 Import Pixiv BookSource
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json"
       
     - theme: brand
-      text: 🚀 Import RssSource
-      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json" 
+      text: 🚀 Import Pixiv RssSource
+      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
 
+    - theme: alt
+      text: ⚡️ Quick Start
+      link: /en/QuickStart
+      
     - theme: alt
       text: ✈️ Join Telegram
       link: https://t.me/PixivSource
@@ -81,7 +85,7 @@ features:
     
   - icon: 🔍
     title: Smart Search
-    details: 📄 One-shot Title<br> 📚 Series Title<br> 👤 Author Name<br> 📌 Hashtag Name
+    details: 📄 Single Title<br> 📚 Series Title<br> 👤 Author Name<br> 📌 Hashtag Name
     
   - icon: 📚
     title: Premium Layout
