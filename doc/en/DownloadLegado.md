@@ -15,7 +15,7 @@ comment: false
 legadoRepos:
   - name: Legado Sigma
     icon: /img/LegadoSigma.png
-    desc: 极致阅读体验 免费开源电子书阅读器
+    desc: Ultimate reading experience, free and open-source e-book reader.
     link: https://gitee.com/lyc486/legado
     prerelease: false
     recommend: releaseS.apk
@@ -24,7 +24,7 @@ legadoRepos:
     
 #  - name: Legado Sigma
 #    icon: /img/LegadoSigma.png
-#    desc: 极致阅读体验 免费开源电子书阅读器
+#    desc: Ultimate reading experience, free and open-source e-book reader.
 #    link: https://github.com/Luoyacheng/legado
 #    prerelease: false
 #    recommend: releaseS.apk
@@ -33,7 +33,7 @@ legadoRepos:
     
   - name: Legado MD3
     icon: /img/LegadoMD3.png
-    desc: 开源Legado Material Design 3 风格重构
+    desc: Open-source Legado refactored with Material Design 3 style.
     link: https://github.com/HapeLee/legado-with-MD3
     prerelease: false
     recommend: arm64-v8a
@@ -42,7 +42,7 @@ legadoRepos:
     
   - name: Legado Beta
     icon: /img/Legado.png
-    desc: 开源Legado Beta 版
+    desc: Open-source Legado Beta version.
     link: https://github.com/legadoteam/legado
     prerelease: true
     recommend: releaseA.apk
@@ -51,7 +51,7 @@ legadoRepos:
     
   - name: Legado Archive
     icon: /img/LegadoArchive.svg
-    desc: 继承 Sigma 版，增强界面、AI、EPUB、漫画、视频和主题能力
+    desc: Inherited from Sigma, with enhanced UI, AI, EPUB, manga, video, and theme capabilities.
     link: https://github.com/Rimchars/legado
     prerelease: false
     recommend: arm64-v8a
@@ -60,7 +60,7 @@ legadoRepos:
     
   - name: Legado T
     icon: /img/Legado.png
-    desc: 带定时任务的阅读
+    desc: Legado reader with scheduled/timed tasks.
     link: https://github.com/skybbk1001/legadoT
     prerelease: true
     recommend: legado
@@ -69,7 +69,7 @@ legadoRepos:
     
   - name: Legado R
     icon: /img/LegadoR.png
-    desc: 继承 Archive 版，增强界面、AI、EPUB、漫画、视频和主题能力
+    desc: Inherited from Archive, further enhancing UI, AI, EPUB, manga, video, and theme capabilities.
     link: https://github.com/refgd/legado
     prerelease: false
     recommend: legado
@@ -78,25 +78,25 @@ legadoRepos:
 
   - name: Legado Max
     icon: /img/LegadoMax.png
-    desc: 继承 Sigma 版，专为墨水屏阅读器优化
+    desc: Inherited from Sigma, specifically optimized for E-ink e-readers.
     link: https://github.com/youfengknight/Legado_Max
     prerelease: false
     recommend: beta
     show_assets: 1
     hide: true
     
-  - name: Legado 薯条版
+  - name: Legado (Shutiao Edition)
     icon: /img/LegadoShutiao.png
-    desc: 继承 官方版 的修改版
+    desc: A modified fork inherited from the official version.
     link: https://github.com/huajideshutiao/Legado
     prerelease: false
     recommend: arm64
     show_assets: 1
     hide: true
 
-  - name: Legado 自用增强分支
+  - name: Legado (Jingshiro Fork)
     icon: /img/LegadoJingshiro.png
-    desc: 继承 Sigma 版，新增了更多特性
+    desc: Inherited from Sigma, introducing additional custom features.
     link: https://github.com/Jingshiro/legado
     prerelease: false
     recommend: releaseS
@@ -104,9 +104,9 @@ legadoRepos:
     hide: true
     
 thirdPartyRepos:
-  - name: 轻悦时光
+  - name: QYSG (Qingyue Shiguang)
     icon: /img/QYSG.png
-    desc: 纯本地的多端兼容阅读器
+    desc: A purely local, cross-platform compatible reader.
     link: https://github.com/autobcb/qysg
     prerelease: false
     recommend: 64 ios win mac

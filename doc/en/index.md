@@ -37,7 +37,7 @@ hero:
   actions:
     - theme: brand
       text: ⬇️ Download Legado Sigma
-      link: DownloadLegado
+      link: en/DownloadLegado
 
     - theme: brand
       text: 🚀 One-Click Import Sources
