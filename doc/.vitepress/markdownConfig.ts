@@ -13,9 +13,9 @@ export const markdownConfig: MarkdownOption = {
         // 网页端自动滤除 GitHub 特属警告横幅
         const originalParse = md.parse
         md.parse = (src, env) => {
-            const targetRegex1 = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上浏览此文档[\s\S]*?排版更精美\*\*/g
-            const targetRegex2 = />\s*\[!WARNING\][\s\S]*?你正在\s*GitHub\s*上瀏覽此文件[\s\S]*?排版更精美\*\*/g
-            return originalParse.call(md, src.replace(targetRegex1, '').replace(targetRegex2, ''), env)
+            // 🔍 核心逻辑：匹配以 > [!WARNING] 开头的引用块，只要里面包含你的独家域名，就一路切到最后的 **
+            const universalBannerRegex = />\s*\[!WARNING\][\s\S]*?pixivsource\.pages\.dev[\s\S]*?\*\*/g
+            return originalParse.call(md, src.replace(universalBannerRegex, ''), env)
         }
 
         // 安全替换文本中的 Emoji：仅拦截 text token，绝不污染属性和标签
