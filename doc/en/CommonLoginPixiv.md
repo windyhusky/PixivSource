@@ -13,8 +13,8 @@ Once the sources are successfully imported, tap its option menu, and you should 
 
 ![img](./pic/PixivLoginUIBase.png)
 
-**Click [🅿️ Login], which will redirect you to the official Pixiv login page.**
+**Click [🅿️ 登录账号], which will redirect you to the official Pixiv login page.**
 
 **Enter your username and password here and login.**
 
-![img](./pic/PixivLogin2.jpg)
+![img](./pic/PixivLogin2.png)
