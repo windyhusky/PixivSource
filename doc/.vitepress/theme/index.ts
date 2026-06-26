@@ -17,7 +17,7 @@ import FriendLinkFooter from './components/FriendLinkFooter.vue'
 import FriendLinkFooterHome from './components/FriendLinkFooterHome.vue'
 import HomeUnderline from "./components/HomeUnderline.vue"
 import ImportRedirect from "./components/ImportRedirect.vue"
-import NotFound from "./components/404.vue"
+import NotFound from "./components/NotFound.vue"
 import Sponsor from "./components/Sponsor.vue"
 import TeamGroups from "./components/TeamGroups.vue"
 import UpdateTime from "./components/UpdateTime.vue"
@@ -29,23 +29,26 @@ let homePageStyle: HTMLStyleElement | undefined
 
 export default {
     extends: DefaultTheme,
-    Layout: () =>
-        h(DefaultTheme.Layout, null, {
+    Layout: () => {
+        const route = useRoute()
+        const isNotFound = route.component === null
+
+        return h(DefaultTheme.Layout, null, {
             "not-found": () => h(NotFound),
             "doc-before": () => h(UpdateTime),
-            "layout-bottom": () => h('div', null, [
+
+            // 只有当不是 404 页面时，才渲染底部内容
+            "layout-bottom": !isNotFound ? () => h('div', null, [
                 h(FriendLinkFooter),
                 h(CustomFooter),
-            ]),
+            ]) : undefined,
 
-            // 将“回到顶部”和“直达评论”都挂载在文档页面的合适位置
-            "doc-footer-before": () => h(
-                h('div', null, [
-                    h(BackToTop),
-                    h(DownToDiscuss)
-                ]
-            )),
-        }),
+            "doc-footer-before": () => h('div', null, [
+                h(BackToTop),
+                h(DownToDiscuss)
+            ]),
+        })
+    },
 
     setup() {
         // Get frontmatter and route
