@@ -71,9 +71,11 @@ Mine - Source Management - Edit Source - Debug - Enter Content
 
 ## Fix Issues {#TroubleShooting}
 ### 🖼 Images Shown as Links {#ImageShownAsLink}
-1. **Turn off "Replace & Clean" (替换净化)**
-   ![img](./pic/ReplaceTurnOff.png)
-2. Refresh the text content.
+1. **Disable Replacement**
+
+![img](./pic/DisableReplacement.png)
+
+2. Refresh the content.
 
 
 ## Find Issues {#FaultDiagnosis}

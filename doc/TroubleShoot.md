@@ -72,7 +72,7 @@ description: 故障排查与处理
 ## 故障处理 {#TroubleShooting}
 ### 🖼 图片显示为链接 {#ImageShownAsLink}
 1. **关闭替换净化**
-   ![img](./pic/ReplaceTurnOff.png)
+   ![img](./pic/DisableReplacement.png)
 2. 刷新正文
 
 
