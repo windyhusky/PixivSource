@@ -82,18 +82,22 @@ features:
   - icon: 📖
     title: Full Legado Features
     details: 🔍 Search Novels<br> ⭐️ Discover Novels<br>🔗 Add Via URLs<br> 🌐 RssSource
+    link: /en/AddNovels
     
   - icon: 🔍
     title: Smart Search
     details: 📄 Single Title<br> 📚 Series Title<br> 👤 Author Name<br> 📌 Hashtag Name
+    link: Pixiv#QuickJump
     
   - icon: 📚
     title: Premium Layout
     details: 🖼 Inline illustrations<br> ✅ Live story polls<br> 💬 Read user comments
+#    link: Pixiv#InteractiveFunction
     
   - icon: ⭐️
     title: Full Control Toolkit
-    details: ❤️ Save bookmarks<br> 📃 Track new chapters<br> ⭐️ Follow top creators<br>✅ Vote on polls<br> 💬 Reply to comments<br> 🚫 Mute tags & authors
+    details: ❤️ Add bookmarks<br> 📃 Track new chapters<br>⭐️ Follow authors<br>🚫 Mute tags & authors
+#    link: BetterExperience#IPDirect
 ---
 <HomeUnderline />
 <FriendLinkFooterHome />
