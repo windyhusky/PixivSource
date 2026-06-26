@@ -63,7 +63,7 @@ head:
 ## Set Up Backup Info {#SetBackupInfomation}
 ### ⚙️ Set Up Backup Info {#SetBackup}
 #### 1. Go to Backup & Restore
-**Home Screen - Mine (我的) - Settings (设置) - Backup & Restore (备份与恢复)**
+**Home Screen - Me - Settings - Backup & Restore**
 
 ![img](./pic/WebdavBackup0.png)
 
@@ -71,13 +71,7 @@ head:
 #### 2. Enter WebDAV Backup Info
 ![img](./pic/WebdavBackup1.png)
 
-**In the WebDAV settings, fill in the server address, account, and app password, then save.**
-
-
-#### 3. WebDAV Account Info Reminder
-- WebDAV Server Address: Webdav 服务器地址 
-- WebDAV Account: (Your registered email) Webdav 账号
-- WebDAV Password: (The app password you just generated) Webdav 密码
+**In the WebDAV settings, fill in the server address, account, and password, then save.**
 
 > [!CAUTION]
 >
@@ -87,19 +81,19 @@ head:
 
 
 ### 📂 Set Up Backup Folder {#SetBackupPath}
-**Click Backup Path (备份路径) to set your backup folder**
+**Click [Backup To] to set your backup folder**
 
 ![img.png](./pic/WebdavBackup2.png)
 
-**Click Backup (备份), and the following pop-up will appear**
+**Click [Backup], and the following pop-up will appear**
 
 ![img](./pic/SaveFileSettings0.png)
 
-**Click OK (确定). You can choose either option here**
+**Click [OK] (确定). You can choose either option here**
 
 ![img](./pic/SaveFileSettings1.png)
 
-**Navigate to the folder where you want to save your books, then click Confirm (确认)**
+**Navigate to the folder where you want to save your backup files, then click [OK]**
 
 ![img](./pic/SaveFileSettings2.png)
 
@@ -123,13 +117,13 @@ head:
 
 
 ### ⬆️ BackUp Data {#Backup}
-**Go to Backup & Restore, and click [Backup] (备份) to back up your data.**
+**Go to Backup & Restore, and click [Backup] to back up your data.**
 > [!TIP]
 >
 > **If the backup fails, please manually create a folder named "legado" in the root directory of your cloud drive, and then try backing up again.**
 
 
 ### ⬇️ Restore Data {#Restore}
-**Go to Backup & Restore, click [Restore] (恢复), select the backup file you want, and your data will be restored.**
+**Go to Backup & Restore, click [Restore] select the backup file you want, and your data will be restored.**
 
 ![img](./pic/WebdavBackup3.png)
