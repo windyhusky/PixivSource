@@ -8,7 +8,7 @@
           <span class="title-text">{{ t.title }}</span>
         </a>
       </div>
-      <div class="grid" :style="{ '--min-width': gridMinWidth }">
+      <div class="grid" :class="localeIndex">
         <a v-for="f in friendGroups" :key="f.link" :href="f.link" target="_blank" rel="noopener" class="card">
           <img :src="resolveIcon(f.icon)" class="icon" v-if="f.icon" loading="lazy" />
           <span class="name">{{ f.name }}</span>
@@ -27,9 +27,6 @@ import { friendLinkI18n as translations} from './FriendLinkLocales.ts'
 const { localeIndex } = useData()
 const containerRef = ref(null)
 const t = computed(() => translations[localeIndex.value] || translations['root'])
-
-// 根据语言动态计算首页卡片宽度
-const gridMinWidth = computed(() => localeIndex.value === 'en' ? '180px' : '160px')
 
 const friendGroups = computed(() => {
   const lang = localeIndex.value || 'root'
@@ -65,6 +62,7 @@ onUnmounted(() => ro?.disconnect())
 </script>
 
 <style scoped>
+/* 1. 布局容器与间距 */
 .home-friends {
   width: 100%;
   padding-top: 64px;
@@ -88,6 +86,7 @@ onUnmounted(() => ro?.disconnect())
   opacity: 0.5;
 }
 
+/* 2. 标题与装饰 */
 .header {
   margin-bottom: 20px;
   display: flex;
@@ -117,22 +116,38 @@ onUnmounted(() => ro?.disconnect())
   font-size: 18px;
 }
 
+/* 3. 网格系统 (核心响应式逻辑) */
 .grid {
   display: grid;
-  /* 使用 CSS 变量控制最小宽度 */
-  grid-template-columns: repeat(auto-fill, minmax(var(--min-width, 160px), 1fr));
-  gap: 16px;
+  /* 移动端/大屏手机：基础宽度 140px，自动分列 */
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
 }
 
+.grid.en {
+  /* 英文：基础宽度 200px */
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+}
+
+@media (min-width: 770px) {
+  /* 桌面端：增加间距 */
+  .grid {
+    gap: 16px;
+  }
+}
+
+/* 4. 卡片组件样式 */
 .card {
   display: flex;
   align-items: center;
-  padding: 10px 14px;
+  padding: 10px 18px;
   border-radius: 8px;
   background-color: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-bg-soft);
   text-decoration: none;
   transition: all 0.25s cubic-bezier(0.25, 0.1, 0.25, 1);
+  min-width: 0;
+  white-space: nowrap;
 }
 
 .card:hover {
@@ -155,27 +170,10 @@ onUnmounted(() => ro?.disconnect())
   font-weight: 500;
   color: var(--vp-c-text-2);
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex: 1;
 }
 
 .card:hover .name {
   color: var(--vp-c-brand-1);
-}
-
-@media (max-width: 768px) {
-  .home-friends {
-    padding-top: 40px;
-  }
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
-}
-
-@media (max-width: 480px) {
-  .grid {
-    grid-template-columns: 1fr;
-  }
 }
 </style>
