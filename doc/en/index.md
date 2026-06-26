@@ -27,7 +27,7 @@ head:
       content: Bring Pixiv novels to your favorite open-source readers. Enjoy clean layouts, instant updates, offline reading, smart filters, and zero clutter.
 
 hero:
-  name: Pixiv Source + Legado
+  name: Legado + Pixiv Source
   text: The Pixiv Novel App
   tagline: <br>Say goodbye to clunky pixiv app. <br>It's time for a ultimate reading experience.
 

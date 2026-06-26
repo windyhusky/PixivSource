@@ -61,7 +61,7 @@ hero:
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
       
     - theme: alt
-      text: 📘 Pixiv 書源 功能手冊
+      text: 📘 書源 功能手冊
       link: /zh-TW/Pixiv
       
 #    - theme: brand
