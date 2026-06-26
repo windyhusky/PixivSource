@@ -31,7 +31,7 @@ friendGroups:
       - name: Legado Sigma
         link: https://github.com/Luoyacheng/legado
         icon: /img/LegadoSigma.png
-        desc: An open-source, free e-book reader for the ultimate reading experience.
+        desc: An open-source, free reader for the ultimate reading experience
 
       - name: Legado MD3
         link: https://github.com/HapeLee/legado-with-MD3
@@ -51,7 +51,7 @@ friendGroups:
       - name: SkyBook (明月书阁)
         link: https://skybook.pages.dev
         icon: https://skybook.qzz.io/img/favicon.ico
-        desc: A sharing platform for Legado-related resources.
+        desc: A sharing platform for Legado resources
 
 
   - title: 🌏 Translation Tools
@@ -60,7 +60,7 @@ friendGroups:
       - name: RawMage (生肉狮)
         link: https://my-lion-bot.online
         icon: /img/RawMage.jpg
-        desc: Created to overcome language barriers in reading and to preserve content.
+        desc: Your Personal Translation Team
 
 
   - title: 🖥 Developer Blogs
@@ -69,13 +69,27 @@ friendGroups:
       - name: DowneyRem's Blog
         link: https://downeyrem.pages.dev
         icon: https://www.github.com/DowneyRem.png
-        desc: This dragon is lazy and hasn't written anything yet.
+        desc: This dragon is lazy and hasn't written anything yet
         
       - name: Melaton's Blog
         link: https://www.melaton.dev
         icon: https://github.com/HundSimon.png
-        desc: Melaton's personal blog.
+        desc: Melaton's personal blog
 
+
+  - title: ✈️ Telegram
+    anchor: Telegram
+    items:
+      - name: Pixiv Source
+        link: https://t.me/PixivSource
+        icon: /favicon-512x512.png
+        desc: The best reader for Pixiv Novels
+
+      - name: Furry Reading
+        link: https://t.me/FurryReading
+        icon: /img/FurryReading.png
+        desc: Furry Fiction, Select Reads (Chinese Content)
+        
 
   - title: ⚡️ VitePress
     anchor: VitePress

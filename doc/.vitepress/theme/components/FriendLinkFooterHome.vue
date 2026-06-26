@@ -62,7 +62,6 @@ onUnmounted(() => ro?.disconnect())
 </script>
 
 <style scoped>
-/* 1. 布局容器与间距 */
 .home-friends {
   width: 100%;
   padding-top: 64px;
@@ -86,7 +85,6 @@ onUnmounted(() => ro?.disconnect())
   opacity: 0.5;
 }
 
-/* 2. 标题与装饰 */
 .header {
   margin-bottom: 20px;
   display: flex;
@@ -116,27 +114,22 @@ onUnmounted(() => ro?.disconnect())
   font-size: 18px;
 }
 
-/* 3. 网格系统 (核心响应式逻辑) */
 .grid {
   display: grid;
-  /* 移动端/大屏手机：基础宽度 140px，自动分列 */
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 12px;
 }
 
 .grid.en {
-  /* 英文：基础宽度 200px */
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 @media (min-width: 770px) {
-  /* 桌面端：增加间距 */
   .grid {
     gap: 16px;
   }
 }
 
-/* 4. 卡片组件样式 */
 .card {
   display: flex;
   align-items: center;

@@ -37,8 +37,8 @@ friendGroups:
         link: https://github.com/HapeLee/legado-with-MD3
         icon: /img/LegadoMD3.png
         desc: 开源阅读 Material Design 3 风格重构版
-        
 
+ 
   - title: 📚 阅读资源
     anchor: Resources
     items: 
@@ -75,6 +75,20 @@ friendGroups:
         link: https://www.melaton.dev
         icon: https://github.com/HundSimon.png
         desc: Melaton 的博客
+
+
+  - title: ✈️ Telegram
+    anchor: Telegram
+    items:
+      - name: Pixiv 书源频道
+        link: https://t.me/PixivSource
+        icon: /favicon-512x512.png
+        desc: 最好的 Pixiv 小说阅读器
+
+      - name: 兽人阅读频道
+        link: https://t.me/FurryReading
+        icon: /img/FurryReading.png
+        desc: 兽人小说，精品阅读
 
 
   - title: ⚡️ VitePress
