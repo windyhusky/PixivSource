@@ -19,7 +19,7 @@
                     />
                     <div class="info">
                         <span class="name">{{ friend.name }}</span>
-                        <p class="desc">{{ friend.desc || '这个伙伴很神秘，什么都没写' }}</p>
+                        <p class="desc">{{ friend.desc || '' }}</p>
                     </div>
                 </a>
             </div>
