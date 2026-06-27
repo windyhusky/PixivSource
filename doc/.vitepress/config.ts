@@ -81,7 +81,7 @@ export default withPwa(defineConfig({
     sitemap: {
         hostname: CANONICAL_BASE,
         lastmodDateOnly: true,
-        xmlns: { news: false, xhtml: false, image: false }
+        xmlns: { news: false, xhtml: true, image: false }
     },
 
     pwa: getPwaConfig(BASE)
