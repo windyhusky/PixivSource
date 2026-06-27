@@ -93,6 +93,15 @@ legadoRepos:
     recommend: arm64
     show_assets: 1
     hide: true
+            
+  - name: 阅读 NG
+    icon: /img/LegadoNG.png
+    desc: 基于阅读 Sigma 继续演进的独立阅读器分支
+    link: https://github.com/joestar817/legado_NG
+    prerelease: true
+    recommend: beta
+    show_assets: 1
+    hide: true
 
   - name: 阅读 自用增强分支
     icon: /img/LegadoJingshiro.png
