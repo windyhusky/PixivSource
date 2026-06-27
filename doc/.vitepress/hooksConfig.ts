@@ -38,8 +38,12 @@ export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
 
         if (!isCF) return
 
-        // 2. 仅在 CF 环境下处理大小写重定向
-        const rules = ['/ReadMe  /  301', '/readme  /  301']
+        // CF 环境下处理大小写重定向
+        const rules = [
+            '/sitemap.xml  /sitemap.xml  200',
+            '/ReadMe  /  301',
+            '/readme  /  301'
+        ]
 
         const scan = (dir: string) => {
             for (const file of fs.readdirSync(dir)) {
@@ -60,6 +64,6 @@ export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
 
         scan(outDir)
         fs.writeFileSync(join(outDir, '_redirects'), rules.join('\n'))
-        console.log(`\n\x1b[32m✓\x1b[0m 已成功生成 _redirects 文件，包含 ${rules.length} 条大小写重定向规则。`)
+        console.log(`✅ 已成功生成 _redirects 文件，包含 ${rules.length} 条大小写重定向规则。`)
     }
 }
