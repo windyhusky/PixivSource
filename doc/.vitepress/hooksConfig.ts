@@ -28,7 +28,6 @@ export async function transformPageData(pageData: any) {
 const _headers  = `
 /sitemap.xml
 Content-Type: application/xml; charset=utf-8
-X-Robots-Tag: noindex
 `.trim()
 
 // 构建结束自动化生成 (Robots & 重定向)
