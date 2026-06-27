@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: ⚡️ Quick Start:5-Minute Setup for Open-Source Legado Pixiv Source
+title: ⚡️ Quick Start:5-Minute Setup for Legado PixivSource
 description: Setup in 5 minutes:Download Legado, one-click import Pixiv/Linpx/BTSRK book and subscription sources, log in, and start reading Pixiv novels immediately.
 
 #sidebar: false
