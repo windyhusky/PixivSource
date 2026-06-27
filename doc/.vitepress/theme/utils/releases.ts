@@ -199,10 +199,15 @@ export const transformReleases = (rawData: any, platform: 'gitee' | 'github', re
             ? item.name.replace(/^legado_app_/, '')
             : item.tag_name
 
+        const latestAssetDate = rawAssets.length > 0
+            ? rawAssets.reduce((latest, a) =>
+                a.updated_at > latest ? a.updated_at : latest, rawAssets[0].updated_at)
+            : null
+
         return {
             tag_name: tagName,
             prerelease: isPrerelease,
-            published_at: platform === 'gitee' ? item.created_at : item.published_at,
+            published_at: latestAssetDate || (platform === 'gitee' ? item.created_at : item.published_at),
             body: renderMarkdown(item.body || ''),
             html_url: platform === 'gitee'
                 ? getGiteeReleaseUrl(repoWebUrl, tagName, item)
