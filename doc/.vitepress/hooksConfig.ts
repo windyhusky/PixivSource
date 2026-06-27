@@ -25,22 +25,28 @@ export async function transformPageData(pageData: any) {
     }
 }
 
+const _headers  = `
+/sitemap.xml
+Content-Type: application/xml; charset=utf-8
+X-Robots-Tag: noindex
+`.trim()
+
 // 构建结束自动化生成 (Robots & 重定向)
 export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
     return (siteConfig: SiteConfig) => {
         const outDir = siteConfig.outDir
+        fs.writeFileSync(join(outDir, '_headers'), _headers, 'utf8')
 
         // 1. 生成 robots.txt
         const robots = isCF
             ? 'User-agent: *\nAllow: /\n\nSitemap: https://pixivsource.pages.dev/sitemap.xml\n'
             : 'User-agent: *\nDisallow: /\n'
         fs.writeFileSync(join(outDir, 'robots.txt'), robots)
-
         if (!isCF) return
 
         // CF 环境下处理大小写重定向
         const rules = [
-            '/sitemap.xml  /sitemap.xml  200',
+            // '/sitemap.xml  /sitemap.xml  200',
             '/ReadMe  /  301',
             '/readme  /  301'
         ]
