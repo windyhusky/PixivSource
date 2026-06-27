@@ -46,7 +46,8 @@ export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
 
         // CF 环境下处理大小写重定向
         const rules = [
-            // '/sitemap.xml  /sitemap.xml  200',
+            '/sitemap.xml  /sitemap.xml  200',
+            '/robots.txt  /robots.txt  200',  // 顺手也加上
             '/ReadMe  /  301',
             '/readme  /  301'
         ]
