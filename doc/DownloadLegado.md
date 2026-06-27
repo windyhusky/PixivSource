@@ -40,15 +40,6 @@ legadoRepos:
     show_assets: 1
 #    hide: true
     
-  - name: 阅读 Beta
-    icon: /img/Legado.png
-    desc: 开源阅读 Beta 版
-    link: https://github.com/legadoteam/legado
-    prerelease: true
-    recommend: releaseA.apk
-    show_assets: 1
-    hide: true
-    
   - name: 阅读 Archive
     icon: /img/LegadoArchive.svg
     desc: 继承 Sigma 版，增强界面、AI、EPUB、漫画、视频和主题能力
@@ -58,12 +49,12 @@ legadoRepos:
     show_assets: 1
     hide: true
     
-  - name: 阅读 T
-    icon: /img/Legado.png
-    desc: 带定时任务的阅读
-    link: https://github.com/skybbk1001/legadoT
-    prerelease: true
-    recommend: legado
+  - name: 阅读 Max
+    icon: /img/LegadoMax.png
+    desc: 继承 Sigma 版，专为墨水屏阅读器优化
+    link: https://github.com/youfengknight/Legado_Max
+    prerelease: false
+    recommend: beta
     show_assets: 1
     hide: true
     
@@ -76,11 +67,11 @@ legadoRepos:
     show_assets: 1
     hide: true
 
-  - name: 阅读 Max
-    icon: /img/LegadoMax.png
-    desc: 继承 Sigma 版，专为墨水屏阅读器优化
-    link: https://github.com/youfengknight/Legado_Max
-    prerelease: false
+  - name: 阅读 NG
+    icon: /img/LegadoNG.png
+    desc: 基于阅读 Sigma 继续演进的独立阅读器分支
+    link: https://github.com/joestar817/legado_NG
+    prerelease: true
     recommend: beta
     show_assets: 1
     hide: true
@@ -94,12 +85,12 @@ legadoRepos:
     show_assets: 1
     hide: true
             
-  - name: 阅读 NG
-    icon: /img/LegadoNG.png
-    desc: 基于阅读 Sigma 继续演进的独立阅读器分支
-    link: https://github.com/joestar817/legado_NG
+  - name: 阅读 T
+    icon: /img/Legado.png
+    desc: 带定时任务的阅读
+    link: https://github.com/skybbk1001/legadoT
     prerelease: true
-    recommend: beta
+    recommend: legado
     show_assets: 1
     hide: true
 
@@ -109,6 +100,15 @@ legadoRepos:
     link: https://github.com/Jingshiro/legado
     prerelease: false
     recommend: releaseS
+    show_assets: 1
+    hide: true
+
+  - name: 阅读 Beta
+    icon: /img/Legado.png
+    desc: 开源阅读 官方 Beta 版
+    link: https://github.com/legadoteam/legado
+    prerelease: true
+    recommend: releaseA.apk
     show_assets: 1
     hide: true
     

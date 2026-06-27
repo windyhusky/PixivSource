@@ -40,15 +40,6 @@ legadoRepos:
     show_assets: 1
 #    hide: true
     
-  - name: Legado Beta
-    icon: /img/Legado.png
-    desc: Open-source Legado Beta version.
-    link: https://github.com/legadoteam/legado
-    prerelease: true
-    recommend: releaseA.apk
-    show_assets: 1
-    hide: true
-    
   - name: Legado Archive
     icon: /img/LegadoArchive.svg
     desc: Inherited from Sigma, with enhanced UI, AI, EPUB, manga, video, and theme capabilities.
@@ -58,12 +49,12 @@ legadoRepos:
     show_assets: 1
     hide: true
     
-  - name: Legado T
-    icon: /img/Legado.png
-    desc: Legado reader with scheduled/timed tasks.
-    link: https://github.com/skybbk1001/legadoT
-    prerelease: true
-    recommend: legado
+  - name: Legado Max
+    icon: /img/LegadoMax.png
+    desc: Inherited from Sigma, specifically optimized for E-ink e-readers.
+    link: https://github.com/youfengknight/Legado_Max
+    prerelease: false
+    recommend: beta
     show_assets: 1
     hide: true
     
@@ -75,12 +66,12 @@ legadoRepos:
     recommend: legado
     show_assets: 1
     hide: true
-
-  - name: Legado Max
-    icon: /img/LegadoMax.png
-    desc: Inherited from Sigma, specifically optimized for E-ink e-readers.
-    link: https://github.com/youfengknight/Legado_Max
-    prerelease: false
+    
+  - name: Legado NG
+    icon: /img/LegadoNG.png
+    desc: An independent reader fork evolved from Reading Sigma.
+    link: https://github.com/joestar817/legado_NG
+    prerelease: true
     recommend: beta
     show_assets: 1
     hide: true
@@ -93,6 +84,15 @@ legadoRepos:
     recommend: arm64
     show_assets: 1
     hide: true
+    
+  - name: Legado T
+    icon: /img/Legado.png
+    desc: Legado reader with scheduled/timed tasks.
+    link: https://github.com/skybbk1001/legadoT
+    prerelease: true
+    recommend: legado
+    show_assets: 1
+    hide: true
 
   - name: Legado (Jingshiro Fork)
     icon: /img/LegadoJingshiro.png
@@ -103,6 +103,15 @@ legadoRepos:
     show_assets: 1
     hide: true
     
+  - name: Legado Beta
+    icon: /img/Legado.png
+    desc: Open-source Legado Beta version.
+    link: https://github.com/legadoteam/legado
+    prerelease: true
+    recommend: releaseA.apk
+    show_assets: 1
+    hide: true
+
 thirdPartyRepos:
   - name: QYSG (Qingyue Shiguang)
     icon: /img/QYSG.png
