@@ -5,7 +5,7 @@
 >
 > **For iOS/Apple Devices: Download QYSG (Qingyue Shiguang)**
 >
-> [Click this link](DownloadLegado.md) **or use the buttons below to download and install the reading apps.**
+> [Click this link](Download.md) **or use the buttons below to download and install the reading apps.**
 
 <DownloadCard :frontmatter-index="1"/>
 

@@ -40,7 +40,7 @@ description: Troubleshooting
 >  - **Legado app version (e.g., 3.26.0101)**
 >  - **Book source version (e.g., 251)**
 >  - **Whether the app version supports the current book source**
->  - **If it is an app issue, please report it to the Legado GitHub repository. Find the link here: [Download Legado](DownloadLegado.md)**
+>  - **If it is an app issue, please report it to the Legado GitHub repository. Find the link here: [Download Legado](Download.md)**
 >  - **If it is a book source issue, please submit an issue to the [PixivSource GitHub Repository](https://github.com/DowneyRem/PixivSource/issues) and attach your debug results. See "Debug Book Source" below.**
 
 

@@ -61,7 +61,7 @@ repos:
 > [!TIP]
 >
 > **开源阅读 Legado 全平台下载指南；软件下载页面 =>
-> [⬇️ 下载阅读](DownloadLegado.md)**
+> [⬇️ 下载阅读](Download.md)**
 >
 > **另有：新手配置指南：**
 > [✨ 臻享阅读](BetterExperience.md)；
@@ -105,7 +105,7 @@ repos:
 > [!NOTE]
 >
 > 推荐使用 **阅读 Sigma**，更多版本选择详见 下方列表 或
-> **[⬇️ 下载阅读](DownloadLegado.md)**
+> **[⬇️ 下载阅读](Download.md)**
 
 <DownloadCard :frontmatter-index="0" />
 
