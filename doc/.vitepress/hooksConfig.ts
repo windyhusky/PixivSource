@@ -34,19 +34,27 @@ Content-Type: application/xml; charset=utf-8
 export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
     return (siteConfig: SiteConfig) => {
         const outDir = siteConfig.outDir
+
+        // 生成 _headers
         fs.writeFileSync(join(outDir, '_headers'), _headers, 'utf8')
 
-        // 1. 生成 robots.txt
+        // 生成 robots.txt
         const robots = isCF
             ? 'User-agent: *\nAllow: /\n\nSitemap: https://pixivsource.pages.dev/sitemap.xml\n'
             : 'User-agent: *\nDisallow: /\n'
         fs.writeFileSync(join(outDir, 'robots.txt'), robots)
         if (!isCF) return
 
-        // CF 环境下处理大小写重定向
+        // 网址重定向
         const rules = [
             '/sitemap.xml  /sitemap.xml  200',
-            '/robots.txt  /robots.txt  200',  // 顺手也加上
+            '/robots.txt  /robots.txt  200',
+            `/DownloadLegado  /Download  301`,
+            `/downloadlegado  /Download  301`,
+            `/zh-TW/DownloadLegado  /zh-TW/Download  301`,
+            `/zh-TW/downloadlegado  /zh-TW/Download  301`,
+            `/en/DownloadLegado  /en/Download  301`,
+            `/en/downloadlegado  /en/Download  301`,
             '/ReadMe  /  301',
             '/readme  /  301'
         ]
