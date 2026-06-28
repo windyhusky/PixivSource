@@ -231,8 +231,8 @@ export const enNav = [
         text: "📌 Toolkit",
         activeMatch: "/",
         items: [
-            { text: "⬇️ Download Apps", link: "/en/Download" },
-            { text: "🚀 One-Click Import", link: "/en/Import" }
+            { text: "⬇️ Download", link: "/en/Download" },
+            { text: "🚀 Import", link: "/en/Import" }
         ]
     },
     {
