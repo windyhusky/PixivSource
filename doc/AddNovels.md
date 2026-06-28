@@ -1,32 +1,40 @@
 ---
 layout: doc
-title: 添加小说到书架
-description: 深度解析 Pixiv 书源用法：高级搜索、发现设置、收藏、追更、评论、屏蔽作者、屏蔽标签、自定义发现，直连模式等。
+title: Pixiv 书源：添加小说到书架的四种方法
+description: 详细教程：教你在开源阅读 Legado 中通过搜索、发现页、添加网址以及订阅源，快速将 Pixiv 小说及系列系列添加到书架
 
-#sidebar: false
-#aside: false
-#editLink: false
-#lastUpdated: false
-#prev: false
-#next: false
-#comment: false
-#friendLink: false
+sidebar: false
+aside: false
+editLink: false
+lastUpdated: false
+prev: false
+next: false
+comment: false
+friendLink: false
 
-#head:
-#  - - meta
-#    - name: keywords
-#      content: Pixiv 高级搜索, Pixiv 书源封号预防, Pixiv 直连模式, Pixiv 屏蔽标签, Pixiv 屏蔽作者, Pixiv 书源搜索语法, Pixiv 直连模式, Pixiv 收藏追更, Pixiv 屏蔽标签, Pixiv 书源发现设置
-#  - - meta
-#    - property: og:title
-#      content: Pixiv 书源全功能使用手册
-#  - - meta
-#    - property: og:description
-#      content: 深度解析 Pixiv 书源用法：高级搜索、发现设置、收藏、追更、评论、屏蔽作者、屏蔽标签、自定义发现，直连模式等。
-#  - - meta
-#    - property: og:image
-#      content: /pic/BookSourcePixiv.png
-
+head:
+  - - meta
+    - name: keywords
+      content: Pixiv书源, 开源阅读, Legado, 添加小说, Pixiv 搜索, Pixiv 订阅, 书架导入
+  - - meta
+    - property: og:title
+      content: Pixiv 书源：开源阅读 添加小说全指南
+  - - meta
+    - property: og:description
+      content: 掌握在开源阅读中添加Pixiv小说的四种技巧：搜索、发现、添加网址及订阅源使用方法
+  - - meta
+    - property: og:image
+      content: /pic/BookSourcePixiv.png
 ---
+
+<script setup>
+import { computed } from "vue";
+import { useData } from "vitepress";
+
+const { page } = useData();
+const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
+</script>
+
 
 <div align="center">
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
