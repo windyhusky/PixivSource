@@ -9,7 +9,7 @@ export const cnNav = [
         text: "📌 常用工具",
         activeMatch: '/',
         items: [
-            { text: "⬇️ 下载阅读", link: "/DownloadLegado" },
+            { text: "⬇️ 下载阅读", link: "/Download" },
             { text: "🚀 一键导入", link: "/Import" },
         ],
     },
@@ -28,7 +28,7 @@ export const cnNav = [
     {
         text: "📖 阅读指南",
         items: [
-            { text: "📚 软件合集", link: "/Download" },
+            { text: "📚 软件合集", link: "/Legado" },
             { text: "🚀 导入书源", link: "/ImportBookSource" },
             { text: "🚀 导入订阅", link: "/ImportRssSource" },
             { text: "💾 备份恢复", link: "/WebdavBackup" , activeMatch: '/' },
@@ -53,7 +53,7 @@ export const cnSidebar = [
         text: "常用工具",
         collapsed: false,
         items: [
-            { text: "⬇️ 下载阅读", link: "/DownloadLegado" },
+            { text: "⬇️ 下载阅读", link: "/Download" },
             { text: "🚀 一键导入", link: "/Import" },
         ]
     },
@@ -87,7 +87,7 @@ export const cnSidebar = [
         text: "通用教程",
         collapsed: true,
         items: [
-            { text: "📚 软件合集", link: "/Download" },
+            { text: "📚 软件合集", link: "/Legado" },
             { text: "🚀 导入书源", link: "/ImportBookSource" },
             { text: "🚀 导入订阅", link: "/ImportRssSource" },
             { text: "💾 备份恢复", link: "/WebdavBackup" },
@@ -124,7 +124,7 @@ export const twNav = [
         text: "📌 站方功能",
         activeMatch: "/",
         items: [
-            { text: "⬇️ 下載閱讀", link: "/zh-TW/DownloadLegado" },
+            { text: "⬇️ 下載閱讀", link: "/zh-TW/Download" },
             { text: "🚀 一鍵匯入", link: "/zh-TW/Import" }
         ]
     },
@@ -141,7 +141,7 @@ export const twNav = [
     {
         text: "📖 閱讀指南",
         items: [
-            { text: "📚 軟體合集", link: "/zh-TW/Download" },
+            { text: "📚 軟體合集", link: "/zh-TW/Legado" },
             { text: "🚀 匯入書源", link: "/zh-TW/ImportBookSource" },
             { text: "🚀 匯入訂閱", link: "/zh-TW/ImportRssSource" },
             { text: "💾 備份恢復", link: "/zh-TW/WebdavBackup", activeMatch: "/" },
@@ -167,7 +167,7 @@ export const twSidebar = [
         text: "站方功能",
         collapsed: false,
         items: [
-            { text: "⬇️ 下載閱讀", link: "/zh-TW/DownloadLegado" },
+            { text: "⬇️ 下載閱讀", link: "/zh-TW/Download" },
             { text: "🚀 一鍵匯入", link: "/zh-TW/Import" }
         ]
     },
@@ -193,7 +193,7 @@ export const twSidebar = [
         text: "通用教程",
         collapsed: true,
         items: [
-            { text: "📚 軟體合集", link: "/zh-TW/Download" },
+            { text: "📚 軟體合集", link: "/zh-TW/Legado" },
             { text: "🚀 匯入書源", link: "/zh-TW/ImportBookSource" },
             { text: "🚀 匯入訂閱", link: "/zh-TW/ImportRssSource" },
             { text: "💾 備份恢復", link: "/zh-TW/WebdavBackup" },
@@ -231,7 +231,7 @@ export const enNav = [
         text: "📌 Toolkit",
         activeMatch: "/",
         items: [
-            { text: "⬇️ Download Apps", link: "/en/DownloadLegado" },
+            { text: "⬇️ Download Apps", link: "/en/Download" },
             { text: "🚀 One-Click Import", link: "/en/Import" }
         ]
     },
@@ -248,7 +248,7 @@ export const enNav = [
     {
         text: "📖 Legado Guide",
         items: [
-            // { text: "📚 Legado Apps", link: "/en/Download" },
+            // { text: "📚 Legado Apps", link: "/en/Legado" },
             // { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
             // { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
             { text: "💾 Webdav Backup", link: "/en/WebdavBackup", activeMatch: "/" },
@@ -272,7 +272,7 @@ export const enSidebar = [
         text: "📌 Toolkit",
         activeMatch: "/",
         items: [
-            { text: "⬇️ Download Apps", link: "/en/DownloadLegado" },
+            { text: "⬇️ Download Apps", link: "/en/Download" },
             { text: "🚀 One-Click Import", link: "/en/Import" }
         ]
     },
@@ -297,7 +297,7 @@ export const enSidebar = [
     {
         text: "📖 Legado Guide",
         items: [
-            // { text: "📚 Legado Apps", link: "/en/Download" },
+            // { text: "📚 Legado Apps", link: "/en/Legado" },
             // { text: "🚀 Import BookSource", link: "/en/ImportBookSource" },
             // { text: "🚀 Import RssSource", link: "/en/ImportRssSource" },
             { text: "💾 Webdav Backup", link: "/en/WebdavBackup" },

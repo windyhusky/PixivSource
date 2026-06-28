@@ -38,7 +38,7 @@ hero:
   actions:
     - theme: brand
       text: ⬇️ 下载 阅读 Sigma
-      link: DownloadLegado
+      link: Download
 
     - theme: brand
       text: 🚀 一键导入
