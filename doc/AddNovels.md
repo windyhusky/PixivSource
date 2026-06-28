@@ -3,14 +3,14 @@ layout: doc
 title: Pixiv 书源：添加小说到书架的四种方法
 description: 详细教程：教你在开源阅读 Legado 中通过搜索、发现页、添加网址以及订阅源，快速将 Pixiv 小说及系列系列添加到书架
 
-sidebar: false
-aside: false
-editLink: false
-lastUpdated: false
-prev: false
-next: false
-comment: false
-friendLink: false
+#sidebar: false
+#aside: false
+#editLink: false
+#lastUpdated: false
+#prev: false
+#next: false
+#comment: false
+#friendLink: false
 
 head:
   - - meta

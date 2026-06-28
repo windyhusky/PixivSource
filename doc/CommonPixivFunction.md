@@ -119,7 +119,7 @@
 - **🐞 调试模式：开启调试模式**
 
 
-### ⏺ 互动功能 {#InteractiveFunction}
+### ⏺️ 互动功能 {#InteractiveFunction}
 > [!NOTE]
 >
 > **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
