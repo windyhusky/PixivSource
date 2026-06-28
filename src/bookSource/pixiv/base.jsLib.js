@@ -446,8 +446,8 @@ function setDefaultSettings() {
     settings.SHOW_GENRE_GENERAL = false // 发现：显示 原创热门 常规
     settings.SHOW_FURRY = false         // 发现：显示 兽人小说推荐作者
 
-    settings.SHOW_SETTINGS = true       // 设置：显示 书源设置
-    settings.SHOW_DISCOVER = true       // 设置：显示 发现设置
+    settings.SHOW_SETTINGS = false      // 设置：显示 书源设置
+    settings.SHOW_DISCOVER = false      // 设置：显示 发现设置
     settings.SHOW_SETTINGS2 = false     // 设置：显示 书源设置
     settings.SHOW_DISCOVER2 = false     // 设置：显示 发现设置
     this.putInCacheObject("pixivSettings", settings)
