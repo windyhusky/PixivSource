@@ -42,16 +42,15 @@ friendGroups:
   - title: 📚 阅读资源
     anchor: Resources
     items: 
-      - name: Pixiv 书源
-        link: /
-        icon: /favicon-512x512.png
-        desc: 最好的 Pixiv 小说阅读器
-        hide: true
-
       - name: 明月书阁
         link: https://skybook.pages.dev
         icon: https://skybook.qzz.io/img/favicon.ico
         desc: 开源阅读相关资源分享站
+
+      - name: 墨殇
+        link: https://momoboke.cc.cd
+        icon: https://www.github.com/2478800972.png
+        desc: 青衫烟雨客，似是故人归
 
 
   - title: 🌏 翻译工具
@@ -68,7 +67,7 @@ friendGroups:
     items:
       - name: 唐尼瑞姆的博客
         link: https://downeyrem.pages.dev
-        icon: https://www.github.com/DowneyRem.png
+        icon: /DowneyRem1.png
         desc: 这头龙很懒，什么都没写
         
       - name: Melaton's Blog

@@ -42,17 +42,15 @@ friendGroups:
   - title: 📚 Reading Resources
     anchor: Resources
     items: 
-      - name: Pixiv Source
-        link: /en/
-        icon: /favicon-512x512.png
-        desc: The best reader for Pixiv Novels
-        hide: true
-
       - name: SkyBook (明月书阁)
         link: https://skybook.pages.dev
         icon: https://skybook.qzz.io/img/favicon.ico
         desc: A sharing platform for Legado resources
-
+        
+      - name: MoShang (墨殇)
+        link: https://momoboke.cc.cd
+        icon: https://www.github.com/2478800972.png
+        desc: 青衫烟雨客，似是故人归
 
   - title: 🌏 Translation Tools
     anchor: Translator
