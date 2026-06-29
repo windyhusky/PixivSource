@@ -12,6 +12,17 @@ next: false
 comment: false
 #friendLink: false
 
+head:
+  - - meta
+    - name: keywords
+      content: legado app, 开源阅读, 轻悦时光, 开源阅读 Github, Legado 下载, legado Sigma, legado Plus, legado Beta, legado MD3, legado Max, legado Archive, 开源阅读 iOS, 源阅, 源阅 iOS, 开源阅读 鸿蒙
+  - - meta
+    - property: og:title
+      content: legado download center - Android, iOS
+  - - meta
+    - property: og:description
+      content: legado download center for Android, iOS
+      
 legadoRepos:
   - name: Legado Sigma
     icon: /img/LegadoSigma.png

@@ -12,6 +12,17 @@ next: false
 comment: false
 #friendLink: false
 
+head:
+  - - meta
+    - name: keywords
+      content: 阅读 app, 开源阅读, 轻悦时光, 开源阅读 Github, Legado 下载, 阅读 Sigma, 阅读 Plus, 阅读 Beta, 阅读 MD3, 阅读 Max, 阅读 Archive, 开源阅读 iOS, 源阅, 源阅 iOS, 开源阅读 鸿蒙
+  - - meta
+    - property: og:title
+      content: 阅读软件合集 - Android、iOS、鸿蒙 全平台版本
+  - - meta
+    - property: og:description
+      content: 开源阅读 Legado 全平台下载中心：Android 推荐阅读 Sigma/Plus，iOS 可用源阅或轻悦时光。
+
 legadoRepos:
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
