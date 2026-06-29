@@ -3,7 +3,7 @@
     <div class="container" ref="containerRef">
       <hr class="divider" />
       <div class="header">
-        <a href="/FriendLink" class="footer-title">
+        <a :href="withBase(t.url)" class="footer-title">
           <span class="title-emoji">🤝</span>
           <span class="title-text">{{ t.title }}</span>
         </a>
