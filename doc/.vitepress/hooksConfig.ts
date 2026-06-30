@@ -49,12 +49,15 @@ export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
         const rules = [
             '/sitemap.xml  /sitemap.xml  200',
             '/robots.txt  /robots.txt  200',
+
+            // 旧路径迁移
             `/DownloadLegado  /Download  301`,
             `/downloadlegado  /Download  301`,
             `/zh-TW/DownloadLegado  /zh-TW/Download  301`,
             `/zh-TW/downloadlegado  /zh-TW/Download  301`,
             `/en/DownloadLegado  /en/Download  301`,
             `/en/downloadlegado  /en/Download  301`,
+
             '/ReadMe  /  301',
             '/readme  /  301'
         ]
@@ -71,7 +74,13 @@ export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
                     if (url.length > 1 && url.endsWith('/')) url = url.slice(0, -1)
 
                     const lower = url.toLowerCase()
-                    if (url !== lower) rules.push(`${lower}  ${url}  301`)
+                    if (url !== lower) {
+                        // 检查是否已有手动规则覆盖这个小写路径，避免冲突
+                        const alreadyHandled = rules.some(r => r.startsWith(`${lower}  `))
+                        if (!alreadyHandled) {
+                            rules.push(`${lower}  ${url}  301`)
+                        }
+                    }
                 }
             }
         }
