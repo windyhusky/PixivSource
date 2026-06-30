@@ -3,7 +3,7 @@ import { withPwa } from '@vite-pwa/vitepress'
 
 // 导入拆分出的各个子配置文件
 import { getPwaConfig } from './pwaConfig'
-import { getHeadConfig } from './headConfig'
+import { getHeadConfig, getTransformHead } from './headConfig'
 import { localesConfig } from './localesConfig'
 import { enThemeConfig } from "./themeConfig.js"
 import { markdownConfig } from './markdownConfig'
@@ -32,30 +32,7 @@ export default withPwa(defineConfig({
     markdown: markdownConfig,
     transformPageData,
     buildEnd: getBuildEndHook(isCF, isGitHub),
-
-    // 独立控制动态 Head 元数据注入
-    transformHead({ pageData }) {
-        const path = pageData.relativePath
-            .replace(/index\.md$/, '')
-            .replace(/\.md$/, '')
-
-        const canonicalUrl = `${CANONICAL_BASE}${path}`
-        const ogTitle = pageData.frontmatter.title ?? 'Pixiv 书源 - PixivSource'
-        const ogDesc  = pageData.frontmatter.description ?? '用 Legado 开源阅读 App，像看网文一样阅读 Pixiv 上的小说'
-        const heads: HeadConfig[] = [
-            ['link', { rel: 'canonical', href: canonicalUrl }],
-            ['meta', { property: 'og:title', content: ogTitle  }],
-            ['meta', { property: 'og:description', content: ogDesc }],
-        ]
-
-        if (isGitHub && !isCF) {
-            heads.push(
-                ['meta', { 'http-equiv': 'refresh', content: `0; url=${canonicalUrl}` }],
-                ['script', {}, `window.location.replace("${canonicalUrl}")`]
-            )
-        }
-        return heads
-    },
+    transformHead: getTransformHead(isCF, isGitHub, CANONICAL_BASE),
 
     // 顶层全局通用主题配置
     themeConfig: {
