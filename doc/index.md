@@ -72,10 +72,6 @@ hero:
       text: 📙 Linpx 书源手册
       link: Linpx    
 
-#    - theme: alt
-#      text: 🏠 项目
-#      link: https://github.com/DowneyRem/PixivSource
-    
     - theme: alt
       text: ✈️ 频道 
       link: https://t.me/PixivSource
@@ -84,10 +80,6 @@ hero:
       text: 💖 打赏
       link: Sponsor
       
-#    - theme: alt
-#      text: 📜 更新日志
-#      link: UpdateLog
-
 
 features:
   - icon: 📖

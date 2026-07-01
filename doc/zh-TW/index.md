@@ -64,18 +64,6 @@ hero:
       text: 📘 書源 功能手冊
       link: /zh-TW/Pixiv
       
-#    - theme: brand
-#      text: 🚀 匯入 Linpx 書源
-#      link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"
-      
-#    - theme: alt
-#      text: 📙 指南
-#      link: /zh-TW/Linpx
-      
-#    - theme: alt
-#      text: 🏠 專案
-#      link: https://github.com/DowneyRem/PixivSource
-#
     - theme: alt
       text: ✈️ 頻道 
       link: https://t.me/PixivSource
@@ -83,11 +71,7 @@ hero:
     - theme: alt
       text: 💖 打賞
       link: /zh-TW/Sponsor
-#      
-#    - theme: alt
-#      text: 📜 更新日誌
-#      link: /zh-TW/UpdateLog
-
+      
 
 features:
   - icon: 📖
