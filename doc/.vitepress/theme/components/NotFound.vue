@@ -80,22 +80,44 @@ const LANG_PREFIXES = Object.keys(i18n)
     .filter(key => key !== 'zh-CN')
     .map(key => key === 'en-US' ? 'en' : key);
 
-// --- 逻辑处理 ---
 const router = useRouter();
 const route = useRoute();
 const { lang } = useData();
 
 const isMultiLangPath = computed(() =>
-    LANG_PREFIXES.some(prefix => route.path.startsWith(`/${prefix}/`))
+    LANG_PREFIXES.some(prefix => route.path.startsWith(`/${prefix}`))
 );
 
 const simplifiedPath = computed(() => {
-  const prefixRegex = new RegExp(`^\\/(${LANG_PREFIXES.join('|')})(/|$)`);
-  return route.path.replace(prefixRegex, '');
+  const prefixRegex = new RegExp(`^\\/(${LANG_PREFIXES.join('|')})`);
+  let path = route.path.replace(prefixRegex, '');
+  if (!path || path === '/') return '/';
+  if (!path.startsWith('/')) path = '/' + path;
+  return path;
 });
 
 const currentLang = computed(() => (i18n[lang.value as keyof typeof i18n] ? lang.value : 'zh-CN'));
 const t = computed(() => i18n[currentLang.value as keyof typeof i18n]);
+
+// 关键：使用 import.meta.glob 获取所有页面（构建时静态分析，最可靠）
+const pages = import.meta.glob('/**/*.md', { eager: true });
+const pageKeys = Object.keys(pages).map(key => key.replace(/^\//, '').replace(/\.md$/, ''));
+
+const shouldShowWip = computed(() => {
+  if (!isMultiLangPath.value) return false;
+
+  let base = simplifiedPath.value;
+  if (base.endsWith('/')) base = base.slice(0, -1);
+  if (!base) base = '/';
+
+  const target = base === '/' ? 'index' : base.replace(/^\//, '');
+
+  return pageKeys.some(key => {
+    const cleanKey = key.replace(/\/index$/, '');
+    return cleanKey === target || cleanKey.endsWith(target) || target.endsWith(cleanKey);
+  });
+});
+
 const wip = computed(() => t.value.wip);
 </script>
 
@@ -104,33 +126,47 @@ const wip = computed(() => t.value.wip);
     <div style="text-align: center; padding: 40px 20px; font-family: sans-serif;">
 
       <div style="position: relative; display: inline-block; margin-bottom: 20px;">
-        <h1 style="font-size: 120px; margin: 0; color: #5d9b9d; opacity: 0.2; line-height: 1;">
-          {{ isMultiLangPath ? 'WIP' : t.title }}
+        <h1
+            :style="{
+            fontSize: '120px',
+            margin: '0',
+            color: shouldShowWip ? '#4a9a6e' : '#5d9b9d',
+            opacity: 0.25,
+            lineHeight: 1
+          }"
+        >
+          {{ shouldShowWip ? 'WIP' : t.title }}
         </h1>
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 60px;">
-          {{ isMultiLangPath ? wip.emoji : t.emoji }}
+          {{ shouldShowWip ? wip.emoji : t.emoji }}
         </div>
       </div>
 
-      <h2 style="color: #5d9b9d; margin-top: 0;">{{ isMultiLangPath ? wip.heading : t.heading }}</h2>
+      <h2 :style="{ color: shouldShowWip ? '#4a9a6e' : '#5d9b9d', marginTop: '0' }">
+        {{ shouldShowWip ? wip.heading : t.heading }}
+      </h2>
       <br><br>
 
       <p style="font-size: 1.1em; line-height: 1.8; max-width: 500px; margin: 0 auto 30px; opacity: 0.8; color: var(--vp-c-text-1);">
-        {{ isMultiLangPath ? wip.desc.line1 : t.desc.line1 }}<br>
-        <span v-html="isMultiLangPath ? wip.desc.line2 : t.desc.line2"></span><br>
-        {{ isMultiLangPath ? wip.desc.line3 : t.desc.line3 }}
+        {{ shouldShowWip ? wip.desc.line1 : t.desc.line1 }}<br>
+        <span v-html="shouldShowWip ? wip.desc.line2 : t.desc.line2"></span><br>
+        {{ shouldShowWip ? wip.desc.line3 : t.desc.line3 }}
       </p>
 
       <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-        <button @click="isMultiLangPath ? router.go(withBase(simplifiedPath || '/')) : router.go(withBase('/'))" class="btn-primary">
-          {{ isMultiLangPath ? wip.btnHome : t.btnHome }}
+        <button
+            @click="shouldShowWip ? router.go(withBase(simplifiedPath || '/')) : router.go(withBase('/'))"
+            class="btn-primary"
+            :style="{ background: shouldShowWip ? '#4a9a6e' : '#5d9b9d' }"
+        >
+          {{ shouldShowWip ? wip.btnHome : t.btnHome }}
         </button>
         <button @click="window.history.back()" class="btn-secondary">
           {{ t.btnBack }}
         </button>
       </div>
 
-      <p v-if="!isMultiLangPath" style="margin-top: 50px; font-size: 0.9em; opacity: 0.5; font-style: italic; color: var(--vp-c-text-2);">
+      <p v-if="!shouldShowWip" style="margin-top: 50px; font-size: 0.9em; opacity: 0.5; font-style: italic; color: var(--vp-c-text-2);">
         {{ t.tip }}
       </p>
     </div>

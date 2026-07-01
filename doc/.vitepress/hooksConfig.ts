@@ -23,6 +23,10 @@ export async function transformPageData(pageData: any) {
             pageData.frontmatter = {...pageData.frontmatter, lastUpdated: time}
         }
     }
+
+    // 暴露所有页面路径
+    if (!pageData.frontmatter) pageData.frontmatter = {}
+    pageData.frontmatter.allPages = true
 }
 
 const _headers = `
