@@ -83,3 +83,8 @@
     vertical-align: middle; /* 修正由于 display 改变导致的行高垂直错位 */
     line-height: 1;
 }
+
+/* 只要警告块内包含该特定域名的链接，就直接隐藏整个警告块 */
+.custom-block.warning:has(a[href*="pixivsource.pages.dev"]) {
+    display: none !important;
+}
