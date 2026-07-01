@@ -10,7 +10,7 @@ lastUpdated: false
 prev: false
 next: false
 #comment: false
-#friendLink: false
+friendLink: false
 
 head:
   - - meta
@@ -46,17 +46,19 @@ friendGroups:
         link: https://skybook.pages.dev
         icon: https://skybook.qzz.io/img/favicon.ico
         desc: A sharing platform for Legado resources
+        lang: zh
         
       - name: MoShang (墨殇)
         link: https://momoboke.cc.cd
         icon: https://www.github.com/2478800972.png
         desc: 青衫烟雨客，似是故人归
+        lang: zh
 
   - title: 🌏 Translation Tools
     anchor: Translator
     items:
-      - name: RawMage (生肉狮)
-        link: https://my-lion-bot.online
+      - name: RawMage
+        link: https://my-lion-bot.online?lang=en
         icon: /img/RawMage.jpg
         desc: Your Personal Translation Team
 
@@ -68,11 +70,13 @@ friendGroups:
         link: https://downeyrem.pages.dev
         icon: https://www.github.com/DowneyRem.png
         desc: This dragon is lazy and hasn't written anything yet
+        lang: zh
         
       - name: Melaton's Blog
         link: https://www.melaton.dev
         icon: https://github.com/HundSimon.png
         desc: Melaton's personal blog
+        lang: zh
 
 
   - title: ✈️ Telegram
@@ -82,11 +86,13 @@ friendGroups:
         link: https://t.me/PixivSource
         icon: /favicon-512x512.png
         desc: The best reader for Pixiv Novels
+        lang: zh
 
       - name: Furry Reading
         link: https://t.me/FurryReading
         icon: /img/FurryReading.png
-        desc: Furry Fiction, Select Reads (Chinese Content)
+        desc: Furry Fiction, Select Reads
+        lang: zh
         
 
   - title: ⚡️ VitePress
@@ -102,6 +108,7 @@ friendGroups:
         desc: Quick start Chinese guide and tutorials.
         link: https://vitepress.yiov.top
         icon: https://vitepress.yiov.top/logo.png
+        lang: zh
         hide: true
 ---
 
