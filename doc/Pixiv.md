@@ -119,23 +119,18 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 >    - https://github.com/windyhusky
 >    - https://github.com/eigeen
 > </details>
-> 
-> #### 可能会触发 shadow ban 限制（大）部分功能，严重的甚至会封号
+
+
+> [!IMPORTANT]
+> ##### ⚠️ 使用本书源时，请务必在阅读设置里 [关闭【自动刷新】](BetterExperience.md#TurnOffAutoRefresh)
 
 
 > [!WARNING]
-> #### ⚠️ 不建议在书架上添加过多小说（超过100篇）
-> #### 否则刷新书架时，可能会触发请求限制，严重的会封号
-
-
-> [!IMPORTANT]  
-> #### ⚠️ 使用本书源时，请务必在阅读设置里 [关闭【自动刷新】](#TurnOffAutoRefresh)
-> #### 否则自动刷新时，可能会触发请求限制，严重的会封号
+> ##### ⚠️ 不建议在书架上添加过多小说（超过100篇）
 
 
 > [!NOTE]
-> #### 最新版【阅读 Sigma + 书源】已支持降低刷新书架时的并发率
-> #### 但依然不建议在书架上添加过多小说
+> ##### 📌 最新版【阅读 Sigma + 书源】已支持降低刷新书架时的并发率，但依然不建议在书架上添加过多小说
 
 
 <!--@include: CommonDownload.md-->
