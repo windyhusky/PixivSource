@@ -25,7 +25,33 @@ export const getPwaConfig = (base: string) => ({
         ],
     },
     workbox: {
-        globPatterns: ['**/*.{css,js,html,svg,png,ico,txt,woff2}'],
-        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
+        globPatterns: ['**/*.{css,js,svg,png,ico,txt,woff2}'], // 【修改】移除 html，不预缓存 HTML
+        navigateFallback: '/index.html', // 确保 SPA 路由跳转正常
+        runtimeCaching: [
+            {
+                // 【新增】针对 HTML 页面使用 NetworkFirst 策略
+                urlPattern: ({ request }) => request.destination === 'document',
+                handler: 'NetworkFirst',
+                options: {
+                    cacheName: 'html-cache',
+                    expiration: {
+                        maxEntries: 10,
+                        maxAgeSeconds: 60 * 60 * 24 // 24小时后过期
+                    },
+                    networkTimeoutSeconds: 5, // 5秒内没网才用缓存
+                }
+            },
+            {
+                // 静态资源保持缓存优先
+                urlPattern: ({ request }) =>
+                    request.destination === 'style' ||
+                    request.destination === 'script' ||
+                    request.destination === 'image',
+                handler: 'StaleWhileRevalidate',
+                options: {
+                    cacheName: 'static-resources',
+                }
+            }
+        ],
     },
 })
