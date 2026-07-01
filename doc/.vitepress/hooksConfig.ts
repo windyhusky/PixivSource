@@ -25,9 +25,28 @@ export async function transformPageData(pageData: any) {
     }
 }
 
-const _headers  = `
+const _headers = `
+# 1. 网页 HTML 文件：禁止缓存，确保每次访问都是最新版本
+/*.html
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+# 2. 静态资源（哈希后的文件）：允许长期缓存
+# VitePress 默认会给 CSS/JS 加上哈希值，更新内容即更新文件名
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+/*.png
+/*.jpg
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# 3. 特殊资源（如 sitemap）
 /sitemap.xml
-Content-Type: application/xml; charset=utf-8
+  Content-Type: application/xml; charset=utf-8
+  Cache-Control: no-cache
 `.trim()
 
 // 构建结束自动化生成 (Robots & 重定向)
