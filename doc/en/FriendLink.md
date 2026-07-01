@@ -42,13 +42,13 @@ friendGroups:
   - title: 📚 Reading Resources
     anchor: Resources
     items: 
-      - name: SkyBook (明月书阁)
+      - name: 明月书阁
         link: https://skybook.pages.dev
         icon: https://skybook.qzz.io/img/favicon.ico
         desc: A sharing platform for Legado resources
         lang: zh
         
-      - name: MoShang (墨殇)
+      - name: 墨殇
         link: https://momoboke.cc.cd
         icon: https://www.github.com/2478800972.png
         desc: 青衫烟雨客，似是故人归
@@ -66,10 +66,16 @@ friendGroups:
   - title: 🖥 Developer Blogs
     anchor: ShareBlog
     items:
-      - name: DowneyRem's Blog
+      - name: Downey's Blog
         link: https://downeyrem.pages.dev
-        icon: https://www.github.com/DowneyRem.png
-        desc: This dragon is lazy and hasn't written anything yet
+        icon: /DowneyRem1.png
+        desc: This dragon is lazy enough and hasn't written anything
+        lang: zh
+        
+      - name: ZiLie's Blog
+        link: https://furry.pub
+        icon: https://furry.pub/images/favicon.ico.png
+        desc: ZiLie's personal blog
         lang: zh
         
       - name: Melaton's Blog

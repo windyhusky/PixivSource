@@ -10,7 +10,7 @@ lastUpdated: false
 prev: false
 next: false
 #comment: false
-#friendLink: false
+friendLink: false
 
 head:
   - - meta
@@ -56,7 +56,7 @@ friendGroups:
   - title: 🌏 翻译工具
     anchor: Translator
     items:
-      - name: 生肉狮 RawMage
+      - name: 生肉狮
         link: https://my-lion-bot.online/
         icon: /img/RawMage.jpg
         desc: 为解决阅读语言障碍与内容保存而生
@@ -69,11 +69,16 @@ friendGroups:
         link: https://downeyrem.pages.dev
         icon: /DowneyRem1.png
         desc: 这头龙很懒，什么都没写
-        
-      - name: Melaton's Blog
+
+      - name: 夙岚子烈的博客
+        link: https://furry.pub
+        icon: https://furry.pub/images/favicon.ico.png
+        desc: 子烈的个人博客
+          
+      - name: 梅拉顿的博客
         link: https://www.melaton.dev
         icon: https://github.com/HundSimon.png
-        desc: Melaton 的博客
+        desc: Melaton's Blog
 
 
   - title: ✈️ Telegram
