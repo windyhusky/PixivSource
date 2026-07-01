@@ -11,7 +11,10 @@
       <div class="grid" :class="localeIndex">
         <a v-for="f in friendGroups" :key="f.link" :href="f.link" target="_blank" rel="noopener" class="card">
           <img :src="resolveIcon(f.icon)" class="icon" v-if="f.icon" loading="lazy" />
-          <span class="name" :title="f.name + (f.lang === 'zh' ? ' [ZH]' : '')">{{ f.name }}</span>
+          <span class="name">
+            {{ f.name }}
+            <span v-if="f.lang === 'zh'" class="lang-tag">ZH</span>
+          </span>
         </a>
       </div>
     </div>
@@ -116,12 +119,8 @@ onUnmounted(() => ro?.disconnect())
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 12px;
-}
-
-.grid.en {
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 @media (min-width: 770px) {
@@ -164,6 +163,22 @@ onUnmounted(() => ro?.disconnect())
   color: var(--vp-c-text-2);
   white-space: nowrap;
   flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: flex;
+  align-items: center;
+}
+
+.lang-tag {
+  font-size: 0.7em;
+  font-weight: bold;
+  color: var(--vp-c-brand-1);
+  margin-left: 6px;
+  /*background: var(--vp-c-brand-soft);*/
+  padding: 1px 4px;
+  border-radius: 4px;
+  vertical-align: middle;
+  flex-shrink: 0;
 }
 
 .card:hover .name {
