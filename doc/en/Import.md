@@ -59,5 +59,5 @@ hero:
 > [!WARNING]
 >
 > ⚠️ **You are viewing this documentation on GitHub, which may be incomplete.
-> The [Web Version](https://pixivsource.pages.dev/Import)
+> The [Web Version](https://pixivsource.pages.dev/en/Import)
 > offers more comprehensive content and better formatting.**

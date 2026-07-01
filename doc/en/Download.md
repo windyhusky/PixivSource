@@ -140,5 +140,5 @@ thirdPartyRepos:
 > [!WARNING]
 >
 > ⚠️ **You are viewing this documentation on GitHub, which may be incomplete.
-> The [Web Version](https://pixivsource.pages.dev/en/DownloadLegado)
+> The [Web Version](https://pixivsource.pages.dev/en/Download)
 > offers more comprehensive content and better formatting.**

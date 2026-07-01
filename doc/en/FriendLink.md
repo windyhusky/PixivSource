@@ -129,7 +129,7 @@ friendGroups:
 > [!WARNING]
 >
 > ⚠️ **You are viewing this document on GitHub. The GitHub version might be incomplete.
-> The [Web Version](https://pixivsource.pages.dev/FriendLink) 
+> The [Web Version](https://pixivsource.pages.dev/en/FriendLink) 
 > has more details and better formatting.**
 
 

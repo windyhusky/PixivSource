@@ -45,7 +45,7 @@ repos:
 > [!WARNING]
 >
 > ⚠️ **You are viewing this document on GitHub. The GitHub version might be incomplete.
-> The [Web Version](https://pixivsource.pages.dev/UpdateLog)
+> The [Web Version](https://pixivsource.pages.dev/en/UpdateLog)
 > has more details and better formatting.**
 
 

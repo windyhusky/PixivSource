@@ -36,7 +36,7 @@ head:
 > [!WARNING]
 >
 > ⚠️ **You are viewing this document on GitHub. The GitHub version might be incomplete.
-> The [Web Version](https://pixivsource.pages.dev/WebdavBackup)
+> The [Web Version](https://pixivsource.pages.dev/en/WebdavBackup)
 > has more details and better formatting.**
 
 

@@ -44,7 +44,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [!WARNING]
 >
 > ⚠️ **You are viewing this documentation on GitHub, which may be incomplete.
-> The [Web Version](https://pixivsource.pages.dev/Sponsor)
+> The [Web Version](https://pixivsource.pages.dev/en/Sponsor)
 > offers more comprehensive content and better formatting.**
 
 

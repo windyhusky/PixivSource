@@ -75,8 +75,6 @@ hero:
       text: 💖 Sponsor
       link: /en/Sponsor
       
-#    - theme: alt
-#      text: 📜 Changelog
 
 features:
   - icon: 📖

@@ -25,7 +25,7 @@ description: Troubleshooting
 > [!WARNING]
 >
 > ⚠️ **You are viewing this document on GitHub. The GitHub version might be incomplete.
-> The [Web Version](https://pixivsource.pages.dev/TroubleShoot)
+> The [Web Version](https://pixivsource.pages.dev/en/TroubleShoot)
 > has more details and better formatting.**
 
 

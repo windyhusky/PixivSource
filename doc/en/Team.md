@@ -123,7 +123,7 @@ teamGroups:
 > [!WARNING]
 >
 > ⚠️ **You are viewing this document on GitHub. The GitHub version might be incomplete.
-> The [Web Version](https://pixivsource.pages.dev/Team)
+> The [Web Version](https://pixivsource.pages.dev/en/Team)
 > has more details and better formatting.**
 
 
