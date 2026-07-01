@@ -107,6 +107,10 @@ head:
 
 <details><summary><strong> 🐺 兽人小说分享 </strong></summary>
 
+> [!WARNING]
+>
+> **因 Yandex Disk 已将 Webdav 功能变更为会员服务，分享配置已失效**
+
 | 配置 | 内容                                   |
 | --- | -------------------------------------- | 
 | 地址 | https://webdav.yandex.ru/兽人小说/小说/ |
