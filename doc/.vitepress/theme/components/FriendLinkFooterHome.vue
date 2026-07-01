@@ -11,7 +11,7 @@
       <div class="grid" :class="localeIndex">
         <a v-for="f in friendGroups" :key="f.link" :href="f.link" target="_blank" rel="noopener" class="card">
           <img :src="resolveIcon(f.icon)" class="icon" v-if="f.icon" loading="lazy" />
-          <span class="name">{{ f.name }}</span>
+          <span class="name" :title="f.name + (f.lang === 'zh' ? ' [ZH]' : '')">{{ f.name }}</span>
         </a>
       </div>
     </div>

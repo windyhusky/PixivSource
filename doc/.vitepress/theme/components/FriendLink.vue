@@ -18,8 +18,11 @@
                         class="icon"
                     />
                     <div class="info">
+                      <div class="name-wrapper">
                         <span class="name">{{ friend.name }}</span>
-                        <p class="desc">{{ friend.desc || '' }}</p>
+                        <span v-if="friend.lang === 'zh'" class="lang-tag">ZH</span>
+                      </div>
+                      <p class="desc">{{ friend.desc || '' }}</p>
                     </div>
                 </a>
             </div>
@@ -109,6 +112,22 @@ const resolveIcon = (icon) => {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.name-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lang-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  /*background-color: var(--vp-c-brand-soft);*/
+  color: var(--vp-c-brand-1);
+  white-space: nowrap;
+  text-transform: uppercase;
 }
 
 .desc {

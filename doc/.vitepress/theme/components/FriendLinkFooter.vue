@@ -20,13 +20,12 @@
               class="friend-item"
           >
             <template v-if="friend.icon">
-              <img
-                  :src="resolveIcon(friend.icon)"
-                  class="friend-icon"
-                  loading="lazy"
-              />
+              <img :src="resolveIcon(friend.icon)" class="friend-icon" loading="lazy" />
             </template>
-            <span class="friend-name">{{ friend.name }}</span>
+
+            <span class="friend-name"> {{ friend.name }}
+               <span v-if="friend.lang === 'zh'" class="lang-tag">ZH</span>
+            </span>
           </a>
         </template>
       </div>
@@ -58,8 +57,7 @@ const resolveIcon = (icon) => icon?.startsWith('http') ? icon : withBase(icon ||
 
 const showFooter = computed(() => {
   return frontmatter.value.layout !== 'home' &&
-      frontmatter.value.friendLink !== false &&
-      !route.path.replace(/\.html$/, '').endsWith('FriendLink')
+      frontmatter.value.friendLink !== false
 })
 
 function alignToContent() {
@@ -162,9 +160,26 @@ watch(() => route.path, () => nextTick(alignToContent))
   font-size: 15px;
   font-weight: 500;
   color: var(--vp-c-text-2);
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.friend-name span:first-child {
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+/* 针对所有页面的 FriendLink 组件中的名称后的标签 */
+.friend-name .lang-tag {
+  font-size: 0.7em;
+  font-weight: bold;
+  color: var(--vp-c-brand-1);
+  margin-left: 6px;
+  /*background: var(--vp-c-brand-soft);*/
+  padding: 1px 4px;
+  border-radius: 4px;
+  vertical-align: middle;
 }
 
 .friend-item:hover .friend-name {
