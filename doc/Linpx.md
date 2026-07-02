@@ -101,6 +101,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 <!--@include: CommonImport.md-->
 
+
 <div v-if="false">
 
 ## 书源配置 {#BookSourceSet}
@@ -108,10 +109,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 <!--@include: CommonLegado.md-->
 </div>
-
-
-### ⏱️ 近期更新 {#Latest}
-<DownloadCard/>
 
 
 ## 搜索小说 {#SearchNovel}
