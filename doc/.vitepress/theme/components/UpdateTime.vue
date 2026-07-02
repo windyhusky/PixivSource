@@ -24,8 +24,11 @@ const showLastUpdated = computed(() => {
   return !!(frontmatter.value.lastUpdated || page.value.lastUpdated)
 })
 
-// 4. 精准查表获取标签，若找不到（比如未来的新语言还没配）则回退到简体中文
-const label = computed(() => i18nLabels[lang.value] || i18nLabels['zh-CN'])
+// 4. 精准查表获取标签，使用语言代码前缀进行匹配
+const label = computed(() => {
+  const shortLang = lang.value.split('-')[0] // 将 'en-US' 变为 'en'
+  return i18nLabels[shortLang] || i18nLabels[lang.value] || i18nLabels['zh-CN']
+})
 
 // 5. 格式化日期：toLocaleDateString 会自动根据当前 lang 渲染对应国家的日期格式（如美式/日式/中式）
 const dateStr = computed(() => {
