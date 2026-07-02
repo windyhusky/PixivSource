@@ -12,6 +12,15 @@ next: false
 comment: false
 #friendLink: false
 
+repos:
+  - name: FurryNovel BookSource
+    icon: /img/BookSourceFurryNovel.png
+    desc: The ultimate reading experience for FurryNovel.
+    link: https://github.com/DowneyRem/PixivSource
+    prerelease: false
+    recommend: linpx
+    show_assets: 1
+
 ---
 
 <script setup>
@@ -47,5 +56,4 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [FurryNovel BookSource Guide](https://pixivsource.pages.dev/FurryNovel).
 
 
-### ⏱️ Latest Releases {#Latest}
-<DownloadCard/>
+<!--@include: CommonImport.md-->

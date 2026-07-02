@@ -12,11 +12,10 @@ next: false
 comment: false
 #friendLink: false
 
-
 repos:
-  - name: Pixiv 书源 / PixivSource
-    icon: /img/BookSourcePixiv.png
-    desc: 最好的 Pixiv 小说阅读器
+  - name: Linpx BookSource
+    icon: /img/BookSourceLinpx.png
+    desc: The ultimate reading experience for Linpx.
     link: https://github.com/DowneyRem/PixivSource
     prerelease: false
     recommend: linpx
@@ -50,12 +49,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > offers more comprehensive content and better formatting.**
 
 
-> [!IMPORTANT]
+> [!NOTE]
 > Linpx as an independent mirror site for novels hosted on Pixiv, specifically catering to the Chinese furry community. 
 > 
 > For users proficient in Chinese, please refer to the detailed configuration and usage instructions here:
 > [Linpx BookSource Guide](https://pixivsource.pages.dev/Linpx).
 
 
-### ⏱️ Latest Releases {#Latest}
-<DownloadCard/>
+<!--@include: CommonImport.md-->

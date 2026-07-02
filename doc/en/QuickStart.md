@@ -27,7 +27,7 @@ head:
       content: /pic/BookSourcePixiv.png
 
 repos:
-  - name: Pixiv Book Source / PixivSource
+  - name: Pixiv BookSource
     icon: /img/BookSourcePixiv.png
     desc: The ultimate reading experience for Pixiv novels.
     link: https://github.com/DowneyRem/PixivSource
