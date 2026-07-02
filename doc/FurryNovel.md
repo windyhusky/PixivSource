@@ -146,7 +146,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 
 > 受站方搜索功能限制，当前仅兼容 @作者 / #标签 输入格式，不支持实际作者专搜/标签专搜
 
-# ![img](./pic/SearchViaLegadoAuthor.jpg)
+![img](./pic/SearchViaLegadoAuthor.jpg)
 
 
 ### #️⃣ 标签专搜 {#SearchTag}
@@ -155,7 +155,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 >
 > 受站方搜索功能限制，当前仅兼容 @作者 / #标签 输入格式，不支持实际作者专搜/标签专搜
 
-# ![img](./pic/SearchViaLegadoHashtag.jpg)
+![img](./pic/SearchViaLegadoHashtag.jpg)
 
 
 ## 发现小说 {#DiscoverNovel}
