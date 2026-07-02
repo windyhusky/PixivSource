@@ -29,7 +29,7 @@ repos:
     desc: 最好的 Pixiv 小说阅读器
     link: https://github.com/DowneyRem/PixivSource
     prerelease: false
-    recommend: pixiv
+    recommend: linpx
     show_assets: 1
 
   - name: 阅读 Sigma

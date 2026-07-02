@@ -57,6 +57,6 @@ repos:
 > However, all the booksources are universally compatible and fully functional for everyone.
 
 
-## ⏱️ Recent Releases {#Latest}
+## ⏱️ Latest Releases {#Latest}
 <DownloadCard/>
 
