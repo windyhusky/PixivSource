@@ -11,6 +11,18 @@ description: 故障排查与处理
 #next: false
 #comment: false
 #friendLink: false
+
+head:
+   - - meta
+     - name: keywords
+       content: 开源阅读 故障排查, 开源阅读 故障处理, 开源阅读 调试书源, 开源阅读 图片显示为链接, legado 故障排查, legado 故障处理, legado 调试书源, legado 图片显示为链接,
+   - - meta
+     - property: og:title
+       content: 开源阅读 Legado 故障排查与处理
+   - - meta
+     - property: og:description
+       content: 开源阅读 Legado 故障排查与处理：调试书源、图片显示为链接、故障排查、反馈开发
+
 ---
 
 <div align="center">

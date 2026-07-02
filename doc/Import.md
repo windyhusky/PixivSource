@@ -15,13 +15,13 @@ comment: false
 head:
   - - meta
     - name: keywords
-      content: 一键导入, 书源, 订阅源, 导入 书源, 导入 订阅源, 开源阅读, Legado 导入书源, 开源阅读 导入书源
+      content: 一键导入, 书源, 订阅源, 替换规则, 目录规则, TTS 配置, 主题配置, 排版配置, 导入 书源, 导入 订阅源, 导入 替换规则, 导入 目录规则, 导入 TTS, 导入 TTS 配置, 导入 主题, 导入 排版
   - - meta
     - property: og:title
       content: 一键导入 - 开源阅读资源一键导入 
   - - meta
     - property: og:description
-      content: 一键导入 阅读资源 到开源阅读 App
+      content: 一键导入 阅读资源 到开源阅读 App：书源, 订阅源, 替换规则, 目录规则, TTS 配置, 主题配置, 排版配置。
       
 
 hero:
