@@ -15,13 +15,13 @@ comment: false
 head:
   - - meta
     - name: keywords
-      content: One-Click Import, Book Source, Subscription Source, Import Book Source, Import Subscription Source, Legado, Legado Import, Legado Book Source
+      content: One-Click Import, BookSource, RssSource, Replace Rule, TOC Rule, TTS Rule, Theme Rule, Layout Rule, Import BookSource, Import RssSource, Import Replace Rule, Import TOC Rule, Import TTS Rule, Import Theme Rule, Import Layout Rule
   - - meta
     - property: og:title
       content: One-Click Import - Legado Resources One-Click Import
   - - meta
     - property: og:description
-      content: One-Click Import Reading Resources into Legado App
+      content: One-Click Import Reading Resources into Legado App. BookSource, RssSource, Replace Rule, TOC Rule, TTS Rule, Theme Rule, Layout Rule.
       
 
 hero:

@@ -15,32 +15,23 @@ comment: false
 head:
   - - meta
     - name: keywords
-      content: legado app, 开源阅读, 轻悦时光, 开源阅读 Github, Legado 下载, legado Sigma, legado Plus, legado Beta, legado MD3, legado Max, legado Archive, 开源阅读 iOS, 源阅, 源阅 iOS, 开源阅读 鸿蒙
+      content: legado app, 开源阅读, 轻悦时光, 开源阅读 Github, Legado 下载, legado Sigma, legado Plus, legado Beta, legado MD3, legado Max, legado Archive, legado R, legado NG, legado iOS
   - - meta
     - property: og:title
       content: legado download center - Android, iOS
   - - meta
     - property: og:description
-      content: legado download center for Android, iOS
+      content: legado download center for Android, iOS：开源阅读, 轻悦时光, 开源阅读 Github, Legado 下载, legado Sigma, legado Plus, legado Beta, legado MD3, legado Max, legado Archive, legado R, legado NG, legado iOS
       
-legadoRepos:
+legadoRepos:    
   - name: Legado Sigma
     icon: /img/LegadoSigma.png
     desc: Ultimate reading experience, free and open-source e-book reader.
-    link: https://gitee.com/lyc486/legado
+    link: https://github.com/Luoyacheng/legado
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1
     hide: false
-    
-#  - name: Legado Sigma
-#    icon: /img/LegadoSigma.png
-#    desc: Ultimate reading experience, free and open-source e-book reader.
-#    link: https://github.com/Luoyacheng/legado
-#    prerelease: false
-#    recommend: releaseS.apk
-#    show_assets: 1
-#    hide: false
     
   - name: Legado MD3
     icon: /img/LegadoMD3.png
