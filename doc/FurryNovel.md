@@ -24,9 +24,9 @@ head:
       content: 用开源阅读 + FurryNovel 书源，无需登录即可搜索、发现、阅读兽人控小说站收录的 Pixiv、Bilibili 兽人小说，支持按标签筛选发现。
 
 repos:
-  - name: Pixiv 书源 / PixivSource
-    icon: /img/BookSourcePixiv.png
-    desc: 最好的 Pixiv 小说阅读器
+  - name: FurryNovel 书源
+    icon: /img/BookSourceFurryNovel.png
+    desc: 最好的 兽人小说 小说阅读器
     link: https://github.com/DowneyRem/PixivSource
     prerelease: false
     recommend: linpx
@@ -103,8 +103,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 <div v-if="false">
-
-## 书源配置 {#BookSourceSet}
 <!--@include: CommonLoginLinpx.md-->
 
 <!--@include: CommonLegado.md-->

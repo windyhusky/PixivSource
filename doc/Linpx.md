@@ -24,9 +24,9 @@ head:
       content: 用开源阅读 Legado + Linpx 书源，无需登录即可搜索、发现、阅读 Linpx 的兽人小说，支持搜索小说名称、作者、标签以及导入链接。
 
 repos:
-  - name: Pixiv 书源 / PixivSource
-    icon: /img/BookSourcePixiv.png
-    desc: 最好的 Pixiv 小说阅读器
+  - name: Linpx 书源
+    icon: /img/BookSourceLinpx.png
+    desc: 最好的 兽人小说 小说阅读器
     link: https://github.com/DowneyRem/PixivSource
     prerelease: false
     recommend: linpx
@@ -103,8 +103,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 <div v-if="false">
-
-## 书源配置 {#BookSourceSet}
 <!--@include: CommonLoginLinpx.md-->
 
 <!--@include: CommonLegado.md-->

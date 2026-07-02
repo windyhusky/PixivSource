@@ -27,7 +27,7 @@ head:
       content: /pic/BookSourcePixiv.png
 
 repos:
-  - name: Pixiv 书源 / PixivSource
+  - name: Pixiv 书源
     icon: /img/BookSourcePixiv.png
     desc: 最好的 Pixiv 小说阅读器
     link: https://github.com/DowneyRem/PixivSource
