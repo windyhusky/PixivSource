@@ -47,6 +47,7 @@ import {
 } from '../utils/releases'
 
 const { frontmatter, lang } = useData()
+
 // ---------- 多语言本地词典 ----------
 const i18n = {
   'zh': {
@@ -81,11 +82,7 @@ const i18n = {
 const t = computed(() => {
   const currentLang = (lang.value || '')
   const shortLang = currentLang.slice(0, 2)
-
-  if (i18n[currentLang]) return i18n[currentLang]
-  if (i18n[shortLang]) return i18n[shortLang]
-  if (i18n['en']) return i18n['en']
-  return i18n['zh']
+  return i18n[currentLang] || i18n[shortLang] || i18n['en'] || i18n['zh']
 })
 
 // ---------- 配置读取 ----------
@@ -95,13 +92,19 @@ const repoList = computed(() => [...legadoList.value, ...thirdPartyList.value])
 
 // ---------- 全局开关 ----------
 const showAllRepos = ref(false)
+const useGithubProxy = ref(false)
+const isZhCN = computed(() => lang.value === 'zh-CN')
 
-// GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先保留代码便于后续恢复。
-// const useGithubProxy = ref(true)
-// const CF_PROXY_DOMAIN = computed(() => {
-//   const raw = import.meta.env.VITE_CF_WORKER_URL || ''
-//   return raw.endsWith('/') ? raw.slice(0, -1) : raw
-// })
+// ---------- 下载加速配置 ----------
+const GITHUB_PROXY = 'https://githubdl.furry.pub/'
+const getDownloadUrl = (assetUrl) => {
+  if (!assetUrl) return ''
+  // 仅在开启加速且为 GitHub 资源时添加代理前缀
+  if (useGithubProxy.value && assetUrl.includes('github.com')) {
+    return `${GITHUB_PROXY}${assetUrl}`
+  }
+  return assetUrl
+}
 
 // ---------- 按需过滤卡片列表 ----------
 const visibleLegadoList = computed(() =>
@@ -112,20 +115,10 @@ const visibleThirdPartyList = computed(() =>
 )
 
 // ---------- API 数据存储 ----------
-const releaseMap = ref({}) // { repoKey: Release[] }
-const loadingMap = ref({}) // { repoKey: boolean }
+const releaseMap = ref({})
+const loadingMap = ref({})
 
 const getRepoKey = (item) => item?.link || item?.github || ''
-
-// ---------- 下载链接转换（传递给 DownloadCard）----------
-const getDownloadUrl = (assetUrl) => {
-  if (!assetUrl) return ''
-  // GitHub / CF 下载加速暂时关闭：CF dev 域名无法稳定加速，先直接返回原始下载链接。
-  // if (useGithubProxy.value && CF_PROXY_DOMAIN.value && assetUrl.includes('github.com')) {
-  //   return `${CF_PROXY_DOMAIN.value}/${assetUrl}`
-  // }
-  return assetUrl
-}
 
 // ---------- 取目标 Release ----------
 const getTargetReleaseForItem = (repoItem) => {
@@ -150,7 +143,6 @@ const fetchRepoRelease = async (repoItem) => {
     releaseMap.value[repoKey] = releases
   } catch (error) {
     console.error(`[DownloadList] 拉取失败: ${repoKey}`, error)
-    // 降级到过期缓存，保证页面有内容可显示
     const stale = readStaleCache(cacheKey)
     if (stale) releaseMap.value[repoKey] = stale
   } finally {
@@ -158,7 +150,6 @@ const fetchRepoRelease = async (repoItem) => {
   }
 }
 
-// ---------- 挂载时并发拉取所有仓库数据 ----------
 onMounted(() => {
   Promise.all(repoList.value.map(fetchRepoRelease))
 })
@@ -174,6 +165,10 @@ onMounted(() => {
         <label class="filter-checkbox-label">
           <input v-model="showAllRepos" type="checkbox" class="filter-checkbox" />
           <span class="checkbox-custom-text">{{ t.showAll }}</span>
+        </label>
+        <label class="filter-checkbox-label" v-if="isZhCN">
+          <input v-model="useGithubProxy" type="checkbox" class="filter-checkbox proxy-checkbox" />
+          <span class="checkbox-custom-text">启用 GitHub 加速</span>
         </label>
       </div>
 
@@ -225,7 +220,6 @@ onMounted(() => {
   padding-top: 40px;
 }
 
-/* ===== 全局控制条 ===== */
 .global-filter-bar {
   display: flex;
   flex-wrap: wrap;
@@ -237,6 +231,7 @@ onMounted(() => {
   border: 1px solid var(--vp-c-divider);
   border-radius: 8px;
 }
+
 .filter-checkbox-label {
   display: flex;
   align-items: center;
@@ -244,10 +239,17 @@ onMounted(() => {
   cursor: pointer;
   user-select: none;
 }
-.filter-checkbox { width: 16px; height: 16px; accent-color: var(--vp-c-brand-1); cursor: pointer; }
 
-/* GitHub / CF 下载加速暂时关闭，先保留样式便于后续恢复。 */
-/* .proxy-checkbox { accent-color: #f38020; } */
+.filter-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--vp-c-brand-1);
+  cursor: pointer;
+}
+
+.proxy-checkbox {
+  accent-color: #f38020;
+}
 
 .checkbox-custom-text {
   font-size: 14px;
@@ -258,20 +260,17 @@ onMounted(() => {
   gap: 6px;
 }
 
-/* ===== 卡片网格 ===== */
 .download-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
   gap: 1.5rem;
 }
 
-/* 修正行间距冲突 */
 .download-grid :deep(.download-card) {
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
-/* ===== 底部引导 ===== */
 .bottom-info-banner {
   margin-top: 1rem;
   margin-bottom: 1rem;
@@ -280,12 +279,14 @@ onMounted(() => {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
 }
+
 .more-link-text {
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--vp-c-text-1);
   margin: 0 0 12px 0 !important;
 }
+
 .banner-link {
   color: var(--vp-c-brand-1) !important;
   text-decoration: none !important;
@@ -295,11 +296,13 @@ onMounted(() => {
   transition: all 0.2s ease;
   display: inline-block;
 }
+
 .banner-link:hover {
   color: var(--vp-c-brand-2) !important;
   background-color: var(--vp-c-brand-dimm);
   transform: translateY(-1px);
 }
+
 .copyright-text {
   font-size: 0.85rem;
   color: var(--vp-c-text-3);
@@ -307,7 +310,6 @@ onMounted(() => {
   letter-spacing: 0.5px;
 }
 
-/* ===== 响应式 ===== */
 @media (max-width: 580px) {
   .global-filter-bar { flex-direction: column; align-items: flex-start; gap: 0.8rem; }
 }
