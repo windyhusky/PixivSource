@@ -977,7 +977,7 @@ const contentSettingsName = {
 }
 const otherSettingsName = {
     "AUTO_LIKE_NOVELS": "❤️ 自动收藏",
-    "AUTO_DISLIKE_NOVELS": "📃 取消收藏",
+    "AUTO_DISLIKE_NOVELS": "🖤 自动取消",
     "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
     "HIDE_WATCHED_SERIES": "📃 隐藏追更",
 
