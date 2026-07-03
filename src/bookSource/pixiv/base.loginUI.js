@@ -10,14 +10,14 @@ let source = [
     {"🔙 退出账号": "logout()" },
 
     {"🆙 更新书源": "updateSource()" },
-    {"🔰 使用指南": "startGithubReadme()" },
+    {"🔰 功能手册": "startGithubReadme()" },
     {"🐞 反馈问题": "startGithubIssue()" },
 ]
 let settingsBase = []
 if (BOOK) {
     settingsBase = [
         {"👀 书源设置": `editSettings('SHOW_SETTINGS2')` },
-        {"🔰 使用指南": "startGithubReadme()" },
+        {"🔰 功能手册": "startGithubReadme()" },
         {"✈️ 直连模式": "editSettings('IPDirect')" },
         {"🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
         {"❤️ 自动收藏": "editSettings('AUTO_LIKE_NOVELS')" },

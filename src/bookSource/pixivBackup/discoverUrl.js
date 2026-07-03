@@ -103,7 +103,7 @@ let generalGenre = [
 let source = [
     {"📘 书源相关 📘": ""},
     {"🏠 主页": "https://pixivsource.pages.dev"},
-    {"🔰 指南": "https://pixivsource.pages.dev/Pixiv"},
+    {"🔰 功能": "https://pixivsource.pages.dev/Pixiv"},
     {"🐞 反馈": "https://github.com/DowneyRem/PixivSource/issues"},
     {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
 ]
@@ -118,7 +118,7 @@ if (settings.SHOW_RANK_ADULT)li = li.concat(r18Rank)
 if (settings.SHOW_RANK_GENERAL) li = li.concat(generalRank)
 if (settings.SHOW_GENRE_ADULT) li = li.concat(r18Genre)
 if (settings.SHOW_GENRE_GENERAL) li = li.concat(generalGenre)
-sleepToast('使用指南🔖\n\n发现 - 更新 - 点击"🔰 使用指南" - 查看')
+sleepToast('功能手册🔖\n\n发现 - 书源相关 - "🔰 功能" - 查看')
 
 // 收藏标签
 let likeTags = getFromCacheObject("likeTags")
