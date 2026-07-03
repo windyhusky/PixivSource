@@ -224,9 +224,27 @@ function main(test:boolean|number =undefined) {
 }
 
 let delayTime = 2 * 24 * 60 * 60 * 1000
-// 获取当前 Git 分支名称
-const currentBranch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
-if (os.platform() === "win32" && currentBranch === 'main') {
+// 获取当前分支
+const currentBranch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim()
+
+// 从命令行参数判断模式
+const args = process.argv.slice(2)
+const isDevMode = args.includes('--dev')
+const isReleaseMode = args.includes('--release')
+
+let isRelease = false
+if (isDevMode) {
+    isRelease = false
+} else if (isReleaseMode) {
+    isRelease = true
+} else if (currentBranch === "main") {
+    isRelease = true
+}
+
+console.log(`📍 当前分支: ${currentBranch}`)
+console.log(`🔧 构建模式: ${isRelease ? '正式发布 (Release)' : '开发测试 (Dev)'}`)
+
+if (isRelease) {
     main(0)
 } else {
     main(1)
