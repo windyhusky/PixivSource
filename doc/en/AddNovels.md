@@ -74,7 +74,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 🌐 [RSS Feed](#RssSource)
 
 [//]: # (> ⚙️ [Settings Features]&#40;#Settings&#41;;)
-[//]: # (> ⏺ [Interactive Features]&#40;#Interact&#41;**)
+[//]: # (> ⏺️ [Interactive Features]&#40;#Interact&#41;**)
 
 
 <!--@include: CommonAddNovels.md-->

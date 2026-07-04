@@ -90,7 +90,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 🔗 [添加网址](#AddUrl)；
 > 🌐 [订阅源](#RssSource)；
 > ⚙️ [️设置功能](#Settings)；
-> ⏺ [互动功能](#Interact)**
+> ⏺️ [互动功能](#Interact)**
 > 
 > **另有：**
 > 🅿️ [Pixiv 书源 功能手册](Pixiv.md)；
@@ -273,10 +273,10 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 互动功能 {#Interact}
-### ⏺ 互动功能 {#InteractFunction}
+### ⏺️ 互动功能 {#InteractFunction}
 > [!NOTE]
 >
-> **⏺ 互动功能 => 书架 - 小说阅读界面 - 兽人控小说站 - 登录**
+> **⏺️ 互动功能 => 书架 - 小说阅读界面 - 兽人控小说站 - 登录**
 
 ![img](./pic/FurryNovelLoginUINovels.png)
 

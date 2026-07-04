@@ -93,7 +93,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 🔗 [添加网址](#AddUrl)；
 > 🌐 [订阅源](#RssSource)；
 > ⚙️ [️设置功能](#Settings)；
-> ⏺ [互动功能](#Interact)**
+> ⏺️ [互动功能](#Interact)**
 
 
 ### ⚠️ 使用须知 {#Notice}
@@ -380,7 +380,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 
 > **可在登录界面中，通过【📌 喜欢标签】添加**
 > 
-> **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+> **⏺️ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 
 
 ### ❤️ [他人收藏](#LikeAuthors) {#LikeAuthorsDiscover}
@@ -389,7 +389,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 >
 > **可在登录界面中，通过【❤️ 他人收藏】添加，详见：**
 >
-> **⏺ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+> **⏺️ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
 
 
 <!--@include: CommonAddViaLink.md-->

@@ -69,7 +69,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 🌐 [订阅源](#RssSource)；**
 
 [//]: # (> ⚙️ [️设置功能]&#40;#Settings&#41;；)
-[//]: # (> ⏺ [互动功能]&#40;#Interact&#41;**)
+[//]: # (> ⏺️ [互动功能]&#40;#Interact&#41;**)
 
 
 <!--@include: CommonAddNovels.md-->

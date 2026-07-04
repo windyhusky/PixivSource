@@ -48,7 +48,7 @@ description: Troubleshooting
 ### 🐞 Debug Mode (Optional) {#DebugMode}
 > [!IMPORTANT]
 >
-> **⏺ Interactive Menu => Bookshelf - Reading Screen - Pixiv Novel - Login => Debug Mode**
+> **⏺️ Interactive Menu => Bookshelf - Reading Screen - Pixiv Novel - Login => Debug Mode**
 >
 > **⚙️ BookSource Settings => Mine - Source Management - Pixiv Novel - Login => Debug Mode**
 
