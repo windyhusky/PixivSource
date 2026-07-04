@@ -56,6 +56,41 @@ head:
 >  - **如果是书源问题，请去 [书源 GitHub 仓库](https://github.com/DowneyRem/PixivSource/issues) 提交问题，并附加调试结果，调试方法见下方 调试书源**
 
 
+## 故障处理 {#TroubleShooting}
+### 🖼 图片显示为链接 {#ImageShownAsLink}
+> [!TIP]
+>
+> **关闭替换净化；关闭替换净化中，有关网址的净化规则**
+
+<details><summary><strong> 🖼 图片显示为链接 </strong></summary>
+
+1️⃣ **关闭替换净化**
+![img](./pic/DisableReplacement.png)
+2️⃣ 刷新正文
+</details>
+
+
+### 🗑️ 清除 WebView 数据 {#ClearWebViewData}
+> [!WARNING]
+>
+> **清除 WebView 数据，会重置当前登录状态，但是能解决大部分由于缓存数据错误导致的问题**
+>
+
+> [!IMPORTANT]
+>
+> **🗑️ 清除 WebView 数据 => 我的 - 其他设置 - 清除 WebView 数据**
+
+
+<details><summary><strong> 🗑️ 清除 WebView 数据 </strong></summary>
+
+1️⃣ **打开其他设置，滑动到最后：**
+
+![img](./pic/LegadoSettingsClearWebViewData.png)
+
+2️⃣ **点击【清理 WebView 数据】，进行清理数据：**
+</details>
+
+
 ## 调试书源 {#SourceDebug}
 ### 🐞 调试模式 {#DebugMode}
 > [!NOTE]
@@ -131,58 +166,25 @@ head:
 - 提交错误时，最好附加其调试信息
 
 
-## 故障处理 {#TroubleShooting}
-### 🖼 图片显示为链接 {#ImageShownAsLink}
-> [!TIP]
->
-> **关闭替换净化；关闭替换净化中，有关网址的净化规则**
-
-<details><summary><strong> 🖼 图片显示为链接 </strong></summary>
-
-1️⃣ **关闭替换净化**
-![img](./pic/DisableReplacement.png)
-2️⃣ 刷新正文
-</details>
-
-
-### 🗑️ 清除 WebView 数据 {#ClearWebViewData}
-> [!WARNING]
-> 
-> **清除 WebView 数据，会重置当前登录状态，但是能解决大部分由于数据残留导致的问题**
-> 
-
-> [!IMPORTANT]
-> 
-> **🗑️ 清除 WebView 数据 => 我的 - 其他设置 - 清除 WebView 数据**
-
-
-<details><summary><strong> 🗑️ 清除 WebView 数据 </strong></summary>
-
-1️⃣ **打开其他设置，滑动到最后：**
-
-![img](./pic/LegadoSettingsClearWebViewData.png)
-
-2️⃣ **点击【清理 WebView 数据】，进行清理数据：**
-</details>
 
 
 ## 故障排查 {#FaultDiagnosis}
 ### 🈚️ 搜索、发现没有结果 {#NoResult}
-0. [调试书源](#Debug) 
-1. 检查网络是否可用 
+0. [清除 WebView 数据](#ClearWebViewData)，重试
+1. [调试书源](#SourceDebug)
+   - 打开书源 [调试模式](#DebugMode)（可以跳过强制登录）
+   - [调试书源](#DebugSource)
+2. 检查网络是否可用 
    - 检查**网络**是否可用？更换其他网络重试
    - 检查**代理**是否可用？更换其他代理重试
-   - **检查阅读软件是否走了代理？**
-2. 检查并更新阅读软件
-   - **更新阅读软件**
-   - 尝试使用阅读的不同版本重试
-3. 检查并更新相关书源
-   - 检查书源**是否导入？**
+   - **检查阅读软件是否走了代理？** 打开 Pixiv 订阅源，看能否打开网站
+2. 检查并更新书源
    - 检查书源**是否启用？**
-   - **更新书源**
-4. 检查书源网站能否访问，相关功能是否正常
-   - 检查书源所用网站能否访问？
-   - 检查书源所用网站功能能否正常？
-   - **阅读内部登陆该网站**，重试
-5. [向书源开发者反馈](https://github.com/DowneyRem/PixivSource/issues) 
+   - 检查书源**版本是否为最新版？更新书源**
+3. 检查并更新软件
+   - 检查软件**是否过旧？更新阅读软件至最新的稳定版**
+   - 使用**其他阅读的分支版本**测试
+4. [向书源开发者反馈](https://github.com/DowneyRem/PixivSource/issues) 
 
+
+## 评论区域 {#Discuss}
