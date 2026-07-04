@@ -48,23 +48,53 @@ head:
 > [!NOTE]
 >
 > **反馈前请确认以下事项：**
->  - **阅读分支版本（如：Sigma、Beta、MD3 等）**
+>  - **阅读分支版本（如：Sigma、MD3 等）**
 >  - **阅读软件版本（如：3.26.0101）**
 >  - **使用书源版本（如：251）**
->  - **阅读是否兼容当前书源版本（软件不支持）**
->  - **如果是软件问题，请去 阅读对应 GitHub 仓库 反馈，仓库链接详见：[下载阅读](Download.md)**
+>  - **阅读是否兼容当前书源版本，详见 [书源兼容性](UpdateLog.md#Pixiv)**
+>  - **如果是软件问题，请去 阅读对应 GitHub 仓库 反馈，详见：[下载阅读](Download.md)**
 >  - **如果是书源问题，请去 [书源 GitHub 仓库](https://github.com/DowneyRem/PixivSource/issues) 提交问题，并附加调试结果，调试方法见下方 调试书源**
 
 
 ## 调试书源 {#SourceDebug}
-### 🐞 调试模式（可选） {#DebugMode}
-> [!IMPORTANT]
+### 🐞 调试模式 {#DebugMode}
+> [!NOTE]
 > 
-> **⏺ 互动功能 => 书架 - 阅读界面 - Pixiv 小说 - 登录 => 调试模式**
+> **⏺️ 互动功能 => 书架 - 阅读界面 - Pixiv 小说 - 登录 => 调试模式**
 >
 > **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录 => 调试模式**
 
-开启调试模式（可选），有助于分析当前问题
+**开启书源的调试模式（可选），有助于分析当前问题，打开方式如下：**
+
+
+<details><summary><strong> 从 ⏺️ 互动功能 打开</strong></summary>
+
+**⏺️ 互动功能 => 书架 - 小说阅读界面 - Pixiv 小说 - 登录**
+
+![img](./pic/PixivLogin0.png)
+
+点击【🐞 调试模式】，打开调试模式
+
+![img](./pic/PixivLoginUIHotKey.png)
+</details>
+
+
+<details><summary><strong> 从 ⚙️ 书源设置 打开</strong></summary>
+
+**⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录 => 调试模式**
+
+![img](./pic/PixivLogin1.png)
+
+1️⃣ 点击【登录】，打开书源设置（简）
+
+![img](./pic/PixivLoginUIBase.png)
+
+2️⃣ 点击【⚙️ 书源设置】，打开详细书源设置
+
+![img](./pic/PixivLoginUISettings.png)
+
+3️⃣ 点击【🐞 调试模式】，打开调试模式
+</details>
 
 
 ### 🐞 调试书源 {#DebugSource}
