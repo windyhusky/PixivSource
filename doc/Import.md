@@ -28,7 +28,7 @@ hero:
   actions:
     - theme: alt
       text: ⬇️ 下载阅读
-      link: DownLoad
+      link: Download
       
     - theme: alt
       text: 🚀 一键导入 订阅源

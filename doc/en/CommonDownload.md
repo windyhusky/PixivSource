@@ -1,4 +1,4 @@
-### ⬇️ Download App {#DownLoad}
+### ⬇️ Download App {#Download}
 > [!IMPORTANT]
 >
 > **For Android Devices: Download Legado**

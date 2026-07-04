@@ -10,7 +10,7 @@
 
 
 ## ✨ [臻享閱讀：最好的 Pixiv 第三方小說閱讀器——開源閱讀 + Pixiv 書源](https://pixivsource.pages.dev/zh-TW/BetterExperience)
-## ⚡️ [快速開始](https://pixivsource.pages.dev/zh-TW/QuickStart)：[下載閱讀](https://pixivsource.pages.dev/zh-TW/QuickStart#DownLoad)➡️[匯入書源](https://pixivsource.pages.dev/zh-TW/QuickStart#ImportSources)➡️[登入賬號](https://pixivsource.pages.dev/zh-TW/QuickStart#LoginAccount)➡️[閱讀設定](https://pixivsource.pages.dev/zh-TW/QuickStart#LegadoSettings)➡️[開始使用](https://pixivsource.pages.dev/zh-TW/Pixiv#All)
+## ⚡️ [快速開始](https://pixivsource.pages.dev/zh-TW/QuickStart)：[下載閱讀](https://pixivsource.pages.dev/zh-TW/QuickStart#Download)➡️[匯入書源](https://pixivsource.pages.dev/zh-TW/QuickStart#ImportSources)➡️[登入賬號](https://pixivsource.pages.dev/zh-TW/QuickStart#LoginAccount)➡️[閱讀設定](https://pixivsource.pages.dev/zh-TW/QuickStart#LegadoSettings)➡️[開始使用](https://pixivsource.pages.dev/zh-TW/Pixiv#All)
 
 
 ## 📖 書源功能 

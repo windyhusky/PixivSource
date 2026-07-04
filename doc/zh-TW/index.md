@@ -38,7 +38,7 @@ hero:
   actions:
     - theme: brand
       text: ⬇️ 下載 閱讀 Sigma
-      link: /zh-TW/DownLoad
+      link: /zh-TW/Download
 
     - theme: brand
       text: 🚀 一鍵匯入

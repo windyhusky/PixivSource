@@ -28,7 +28,7 @@ hero:
   actions:
     - theme: alt
       text: ⬇️ Download Legado
-      link: DownLoad
+      link: Download
       
     - theme: alt
       text: 🚀 Import "One-click Import" RssSource

@@ -27,7 +27,7 @@
 | Ad-free | 💰 Premium | 🆓 Free |
 
 
-## ⚡️ [Quick Start](https://pixivsource.pages.dev/en/QuickStart)➡️[Download App](https://pixivsource.pages.dev/en/QuickStart#DownLoad)➡️[Import Sources](https://pixivsource.pages.dev/en/QuickStart#ImportSources)➡️[Source Setup](https://pixivsource.pages.dev/en/QuickStart#BookSourceSet)➡️[App Settings](https://pixivsource.pages.dev/en/QuickStart#LegadoSettings)➡️[Add Novels](https://pixivsource.pages.dev/QuickStart#AddNovels)
+## ⚡️ [Quick Start](https://pixivsource.pages.dev/en/QuickStart)➡️[Download App](https://pixivsource.pages.dev/en/QuickStart#Download)➡️[Import Sources](https://pixivsource.pages.dev/en/QuickStart#ImportSources)➡️[Source Setup](https://pixivsource.pages.dev/en/QuickStart#BookSourceSet)➡️[App Settings](https://pixivsource.pages.dev/en/QuickStart#LegadoSettings)➡️[Add Novels](https://pixivsource.pages.dev/QuickStart#AddNovels)
 
 
 ## ⚖️ Legal & Disclaimer
