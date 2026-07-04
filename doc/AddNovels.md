@@ -66,12 +66,17 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 🔍 [搜索小说](#SearchNovel)；
 > ⭐️ [发现小说](#DiscoverNovel)；
 > 🔗 [添加网址](#AddUrl)；
-> 🌐 [订阅源](#RssSource)；**
-
-[//]: # (> ⚙️ [️设置功能]&#40;#Settings&#41;；)
-[//]: # (> ⏺️ [互动功能]&#40;#Interact&#41;**)
+> 🌐 [订阅源](#RssSource)**
 
 
-<!--@include: CommonAddNovels.md-->
+## 📖 添加小说 {#AddNovels}
+<!--@include: CommonAddNovelsSearch.md-->
+
+<!--@include: CommonAddNovelsDiscover.md-->
+
+<!--@include: CommonAddNovelsAddURL.md-->
+
+<!--@include: CommonAddNovelsRssSource.md-->
+
 
 ## 💬 评论区域 {#Discuss}
