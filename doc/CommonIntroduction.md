@@ -74,3 +74,10 @@
 **书源管理：（导入）添加、修改、删除书源**
 ![img.png](./pic/LegadoBookSourceManage.png)
 
+
+> [!TIP]
+> 
+> 我们刚刚使用的是 **一键导入** 添加的书源 
+> 
+> 这里的 **【本地导入】【网络导入】同样可以添加书源**，详见：
+> [导入书源](ImportBookSource.md)
