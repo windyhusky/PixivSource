@@ -83,7 +83,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 
 > **Get started now to enjoy the ultimate reading experience!**
 >
-> ▶️ **[Download App](#DownloadLegado) =>**
+> ▶️ **[Download App](#DownLoad) =>**
 > ➕ **[Import Sources](#ImportSources) =>**
 > 🅿️ **[Source Setup](#BookSourceSet) =>**
 > ⚙️ **[App Settings](#LegadoSettings) =>**

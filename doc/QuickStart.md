@@ -81,7 +81,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [!TIP]
 > **只需4个步骤，5分钟完成配置。即刻开始，享受极致阅读体验**
 > 
-> ▶️ **[下载阅读](#DownloadLegado) =>**
+> ▶️ **[下载阅读](#DownLoad) =>**
 > ➕ **[导入书源](#ImportSources) =>**
 > 🅿️ **[书源配置](#BookSourceSet) =>**
 > ⚙️ **[阅读设置](#LegadoSettings) =>**

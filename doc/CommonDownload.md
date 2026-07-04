@@ -1,5 +1,5 @@
 
-### ⬇️ 下载阅读 {#DownloadLegado}
+### ⬇️ 下载阅读 {#DownLoad}
 > [!IMPORTANT]
 >
 > **安卓设备下载：开源阅读**

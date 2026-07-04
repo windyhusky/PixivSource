@@ -151,7 +151,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ## 立即开始 {#StartNow}
 > [!TIP]
 > **只需4个步骤，即可拥有上述功能：**
-> 1. ▶️ **[安装阅读软件](#DownloadLegado)** 
+> 1. ▶️ **[安装阅读软件](#DownLoad)** 
 > 2. ➕ **[导入 Pixiv 书源](#ImportSources)** 
 > 3. 🅿️ **[登录 Pixiv 账号](#BookSourceSet)** 
 > 4. ⚙️ **[阅读软件设置](#LegadoSettings)**
