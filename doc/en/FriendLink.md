@@ -29,7 +29,7 @@ friendGroups:
     anchor: Application
     items:
       - name: Legado Sigma
-        link: https://github.com/Luoyacheng/legado
+        link: https://github.com/Luoyacheng/legado-E
         icon: /img/LegadoSigma.png
         desc: An open-source, free reader for the ultimate reading experience
 

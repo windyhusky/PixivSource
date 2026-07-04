@@ -97,7 +97,7 @@ teamGroups:
         desc: Developer of Legado Sigma
         sites:
           - name: Legado Sigma
-            link: https://github.com/Luoyacheng/legado
+            link: https://github.com/Luoyacheng/legado-E
             icon: /img/LegadoSigma.png
             desc: An open-source, free e-book reader for the ultimate reading experience.
         

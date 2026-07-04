@@ -36,7 +36,7 @@ legadoRepos:
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
-    link: https://github.com/Luoyacheng/legado
+    link: https://github.com/Luoyacheng/legado-E
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1
@@ -44,7 +44,7 @@ legadoRepos:
     
   - name: 阅读 MD3
     icon: /img/LegadoMD3.png
-    desc: 开源阅读 Material Design 3 风格重构
+    desc: 开源阅读 Material Design 3 重构版
     link: https://github.com/HapeLee/legado-with-MD3
     prerelease: false
     recommend: arm64-v8a

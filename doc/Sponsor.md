@@ -69,7 +69,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ### 📅 定期赞助 {#Regularly}
 - [Linpx](https://www.furrynovel.ink) （2023年起，每年 ￥100）
 ### 🔀 不定期赞助 {#Irregularly}
-- [阅读 Sigma](https://github.com/Luoyacheng/legado) （洛娅橙）
+- [阅读 Sigma](https://github.com/Luoyacheng/legado-E) （洛娅橙）
 - [阅读 Beta](https://beta.miaogongzi.cc) （喵公子）
 
 

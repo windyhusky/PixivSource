@@ -1,6 +1,6 @@
 ## 软件介绍 {#LegadoIntroduction}
 ### 📖 开源阅读 {#Legado}
-阅读指 [**Legado / 开源阅读**](https://github.com/Luoyacheng/legado) 这一开源阅读软件
+阅读指 [**Legado / 开源阅读**](https://github.com/Luoyacheng/legado-E) 这一开源阅读软件
 
 > [!IMPORTANT]
 >

@@ -14,7 +14,7 @@
  *   - name: 阅读 Sigma
  *     desc: 极致阅读体验
  *     icon: /img/LegadoSigma.png
- *     link: https://github.com/Luoyacheng/legado
+ *     link: https://github.com/Luoyacheng/legado-E
  *     recommend: plus_releaseS    # 推荐关键词（匹配 asset 文件名）
  *     show_assets: 2              # 默认折叠后显示几个
  *     prerelease: false           # 取最新正式版还是最新预发布版

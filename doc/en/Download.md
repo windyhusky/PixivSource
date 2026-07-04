@@ -27,7 +27,7 @@ legadoRepos:
   - name: Legado Sigma
     icon: /img/LegadoSigma.png
     desc: Ultimate reading experience, free and open-source e-book reader.
-    link: https://github.com/Luoyacheng/legado
+    link: https://github.com/Luoyacheng/legado-E
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1

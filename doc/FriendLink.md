@@ -29,7 +29,7 @@ friendGroups:
     anchor: Application
     items:
       - name: 阅读 Sigma
-        link: https://github.com/Luoyacheng/legado
+        link: https://github.com/Luoyacheng/legado-E
         icon: /img/LegadoSigma.png
         desc: 极致阅读体验 免费开源电子书阅读器
 

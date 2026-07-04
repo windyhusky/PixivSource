@@ -5,13 +5,13 @@
 
 ## 🅿️ PixivSource — Read Pixiv Novels Properly
 ### The best third-party novel reader for Pixiv
-#### Powered by [Legado](https://github.com/Luoyacheng/legado) + PixivSource
+#### Powered by [Legado](https://github.com/Luoyacheng/legado-E) + PixivSource
 
 🏠 [Website](https://pixivsource.pages.dev) ⚡️ [Quick Start](https://pixivsource.pages.dev/QuickStart) ✈️ [Telegram @PixivSource](https://t.me/PixivSource)
 </div>
 
 ## What is this?
-**PixivSource** is a BookSource plugin for [Legado](https://github.com/Luoyacheng/legado), an open-source reader app for Android. It fetches and reformats Pixiv novels, providing a premium reading experience for free.
+**PixivSource** is a BookSource plugin for [Legado](https://github.com/Luoyacheng/legado-E), an open-source reader app for Android. It fetches and reformats Pixiv novels, providing a premium reading experience for free.
 
 > [!IMPORTANT]
 > 
@@ -38,7 +38,7 @@
 
 ## 📢 Acknowledgements
 - [Legado 3.0](https://github.com/gedoor/legado) for providing the software platform
-- [Legado Sigma](https://github.com/Luoyacheng/legado) for providing the software platform
+- [Legado Sigma](https://github.com/Luoyacheng/legado-E) for providing the software platform
 - [General Book Source](https://github.com/bushixuanqi/book-source) and [Aggregate Search](https://legado.cn/thread-3723-1-1.html) for providing the method to add a bookshelf
 - [Book Source Subscription (Unofficial Repository)](https://gitee.com/feiniao6/yd) for providing the method to import book sources and subscribe to sources
 - [Pixiv-utils](https://github.com/AgMonk/pixiv-utils), [Pixiv Go Client](https://github.com/NateScarlet/pixiv), and [Pixiv-web-api](https://github.com/YieldRay/pixiv-web-api) for compiling the Pixiv Web API

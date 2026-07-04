@@ -3,7 +3,7 @@
 <div align="center">
 <img width="256" src="doc/zh-TW/pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
-## 🅿️ [開源閱讀](https://github.com/Luoyacheng/legado) Pixiv 書源
+## 🅿️ [開源閱讀](https://github.com/Luoyacheng/legado-E) Pixiv 書源
 ### 🏠 [書源官網](https://pixivsource.pages.dev) 📖 [使用指南](https://pixivsource.pages.dev/zh-TW/BetterExperience) ✈️ 頻道 [@PixivSource](https://t.me/PixivSource)
 ### ☕️ [Pixiv 書源專案 打賞名單](https://pixivsource.pages.dev/zh-TW/Sponsor)
 </div>
@@ -182,7 +182,7 @@
 ### 鳴謝
 - ☕️ [Pixiv 書源專案 打賞名單](https://pixivsource.pages.dev/zh-TW/Sponsor)
 - 感謝 [閱讀 3.0](https://github.com/gedoor/legado) 提供的軟體平臺
-- 感謝 [閱讀 Sigma](https://github.com/Luoyacheng/legado) 提供的軟體平臺
+- 感謝 [閱讀 Sigma](https://github.com/Luoyacheng/legado-E) 提供的軟體平臺
 - 感謝 [Linpx](https://github.com/libudu/linpx-web) 提供的 [網站服務](https://www.furrynovel.ink)
 - 感謝 [獸人小說站](https://github.com/FurryNovel/Reader) 提供的 [網站服務](https://www.furrynovel.com)
 - 感謝 [pixiv.shojo.cn](https://github.com/lrhtony/pixiv) 提供的 [Pixiv 圖片代理功能](https://pixiv.cat)

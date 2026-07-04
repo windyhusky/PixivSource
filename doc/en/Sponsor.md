@@ -73,7 +73,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ### 🔀 One-time Sponsorship {#Irregularly}
-- [Legado Sigma](https://github.com/Luoyacheng/legado) (Luoyacheng)
+- [Legado Sigma](https://github.com/Luoyacheng/legado-E) (Luoyacheng)
 - [Legado Beta](https://beta.miaogongzi.cc) (MiaoGongZi)
 
 
