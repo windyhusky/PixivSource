@@ -98,7 +98,26 @@ head:
 
 
 ### 🐞 调试书源 {#DebugSource}
-我的 - 书源管理 - 编辑书源 - 调试 - 输入内容
+> [!IMPORTANT]
+> 
+> **我的 - 书源管理 - 调试 - 输入内容**
+
+<details><summary><strong> 打开 🐞 书源调试 </strong></summary>
+
+**🐞 书源调试 => 我的 - 书源管理 - Pixiv 小说 => 调试**
+
+![img](./pic/PixivLogin1.png)
+
+点击三点菜单，点击【调试】，进入书源调试界面
+
+![img](./pic/PixivDebug1.png)
+
+输入内容 `#测试页面`，即可开始调试
+
+![img](./pic/PixivDebug2.png)
+
+</details>
+
 
 | 调试区域 | 输入内容 |
 |--------|---------|
@@ -108,6 +127,7 @@ head:
 | 目录 | `++https://www.pixiv.net/novel/show.php?id=123` |
 | 正文 | `--https://www.pixiv.net/novel/show.php?id=123` |
 
+- `https://www.pixiv.net/novel/show.php?id=123` 为 Pixiv 小说链接
 - 提交错误时，最好附加其调试信息
 
 
