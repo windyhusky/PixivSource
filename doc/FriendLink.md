@@ -115,7 +115,7 @@ friendGroups:
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # 🤝 友情链接 🤝
-#### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
+#### 🅿️ 开源阅读 Pixiv 书源
 </div>
 
 

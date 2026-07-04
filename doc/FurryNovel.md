@@ -64,7 +64,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <br>
 
 # [兽人控小说站](https://www.furrynovel.com) 书源 功能手册
-#### 🐯 [开源阅读](https://github.com/Luoyacheng/legado) 兽人控小说站 书源
+#### 🐯 开源阅读 兽人控小说站 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 </div>
 

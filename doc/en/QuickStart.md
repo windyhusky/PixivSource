@@ -65,7 +65,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # ⚡️ Quick Start ⚡️
-#### 🅿️ [Legado](https://github.com/Luoyacheng/legado) Pixiv BookSource
+#### 🅿️ Legado Pixiv BookSource
 #### ✈️ Telegram Channel [@PixivSource](https://t.me/PixivSource)
 </div>
 

@@ -116,7 +116,7 @@ teamGroups:
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # 🛠️ Development Team 🛠️
-#### 🅿️ [Legado](https://github.com/Luoyacheng/legado) Pixiv Book Source
+#### 🅿️ Legado Pixiv BookSource
 </div>
 
 

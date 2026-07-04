@@ -41,7 +41,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # 功能对比
-#### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
+#### 🅿️ 开源阅读 Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 </div>
 

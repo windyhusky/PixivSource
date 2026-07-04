@@ -122,7 +122,7 @@ friendGroups:
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # 🤝 Friend Links 🤝
-#### 🅿️ [Legado](https://github.com/Luoyacheng/legado) Pixiv Book Source
+#### 🅿️ Legado Pixiv BookSource
 </div>
 
 

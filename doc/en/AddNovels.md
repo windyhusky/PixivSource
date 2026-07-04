@@ -41,7 +41,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 # Add Novels
-#### 🅿️ [Legado](https://github.com/Luoyacheng/legado) Pixiv Book Source
+#### 🅿️ Legado Pixiv BookSource
 #### ✈️ Telegram Channel [@PixivSource](https://t.me/PixivSource)
 </div>
 

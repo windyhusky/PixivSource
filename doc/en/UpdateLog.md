@@ -38,7 +38,7 @@ repos:
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # 📜 Update Logs 📜
-#### 🅿️ [Legado](https://github.com/Luoyacheng/legado) Pixiv Book Source
+#### 🅿️ Legado Pixiv Book Source
 </div>
 
 

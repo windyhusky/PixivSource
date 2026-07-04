@@ -67,7 +67,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 # [Pixiv](https://www.pixiv.net) 书源 功能手册
-#### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
+#### 🅿️ 开源阅读 Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 </div>
 

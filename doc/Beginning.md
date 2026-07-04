@@ -18,7 +18,7 @@ description: Pixiv 书源项目起源
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # 🌱 项目起源 🌱
-#### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
+#### 🅿️ 开源阅读 Pixiv 书源
 </div>
 
 

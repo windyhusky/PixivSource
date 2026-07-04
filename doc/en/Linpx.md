@@ -37,7 +37,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 # Linpx BookSource
-#### 🅿️ [Legado](https://github.com/Luoyacheng/legado) Linpx BookSource
+#### 🦊 Legado Linpx BookSource
 #### ✈️ Telegram Channel [@PixivSource](https://t.me/PixivSource)
 </div>
 

@@ -64,7 +64,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <br>
 
 # [Linpx](http://www.furrynovel.ink) 书源 功能手册
-#### 🦊 [开源阅读](https://github.com/Luoyacheng/legado) Linpx 书源
+#### 🦊 开源阅读 Linpx 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 </div>
 

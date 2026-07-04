@@ -27,7 +27,7 @@ repos:
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
-    link: https://github.com/Luoyacheng/legado
+    link: https://github.com/Luoyacheng/legado-E
     prerelease: false
     recommend: plus
     show_assets: 1
@@ -46,7 +46,7 @@ repos:
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # 阅读软件合集
-#### 🅿️ [开源阅读](https://github.com/Luoyacheng/legado) Pixiv 书源
+#### 🅿️ 开源阅读 Pixiv 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 </div>
 
@@ -253,18 +253,18 @@ repos:
 
 <details><summary> 👍 阅读 Sigma （已停更）</summary>
 
-#### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado) {#LegadoSigma}
+#### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado-E) {#LegadoSigma}
 > [!TIP]
 >
 > **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
 >
-> 项目地址：https://github.com/Luoyacheng/legado
+> 项目地址：https://github.com/Luoyacheng/legado-E
 
 | 下载站点 | 推荐版本 | 备注 |
 | ------- | ------ | --- |
 | [Gitee Release](https://gitee.com/lyc486/legado/releases) | Plus | 无需代理，无需登录 |
-| [Github Release](https://github.com/Luoyacheng/legado/releases) | legado_plus_releaseS.apk | 需要代理，无需登录 |
-| [Github Action](https://github.com/Luoyacheng/legado/actions) | | 需要代理，需要登录 |
+| [Github Release](https://github.com/Luoyacheng/legado-E/releases) | legado_plus_releaseS.apk | 需要代理，无需登录 |
+| [Github Action](https://github.com/Luoyacheng/legado-E/actions) | | 需要代理，需要登录 |
 | [Telegram 频道](https://t.me/readsigma) | 正式版 | 需要代理，需要登录 |
 </details>
 

@@ -17,7 +17,7 @@ description: Troubleshooting
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
 # Troubleshooting
-#### 🅿️ [Legado](https://github.com/Luoyacheng/legado) Pixiv BookSource
+#### 🅿️ Legado Pixiv BookSource
 #### ✈️ Channel [@PixivSource](https://t.me/PixivSource)
 </div>
 
