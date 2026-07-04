@@ -7,8 +7,8 @@ description: Pixiv 书源项目起源
 #aside: false
 #editLink: false
 #lastUpdated: false
-prev: false
-next: false
+#prev: false
+#next: false
 #comment: false
 #friendLink: false
 

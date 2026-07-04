@@ -7,8 +7,8 @@ description: PixivSource 友情链接：开源阅读相关软件、书源资源�
 #aside: false
 editLink: false
 lastUpdated: false
-prev: false
-next: false
+#prev: false
+#next: false
 #comment: false
 friendLink: false
 

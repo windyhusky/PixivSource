@@ -7,7 +7,7 @@ description: 喜欢 PixivSource 书源？欢迎打赏支持开发者，赞助者
 #aside: false
 editLink: false
 lastUpdated: false
-prev: false
+#prev: false
 next: false
 #comment: false
 #friendLink: false
