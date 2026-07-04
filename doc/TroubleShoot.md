@@ -64,7 +64,7 @@ head:
 >
 > **⚙️ 书源设置 => 我的 - 书源管理 - Pixiv 小说 - 登录 => 调试模式**
 
-**开启书源的调试模式（可选），有助于分析当前问题，打开方式如下：**
+**开启书源的调试模式，有助于分析当前问题，打开方式如下：**
 
 
 <details><summary><strong> 从 ⏺️ 互动功能 打开</strong></summary>
@@ -100,11 +100,11 @@ head:
 ### 🐞 调试书源 {#DebugSource}
 > [!IMPORTANT]
 > 
-> **我的 - 书源管理 - 调试 - 输入内容**
+> **🐞 调试书源 => 我的 - 书源管理 - 调试 - 输入内容**
 
-<details><summary><strong> 打开 🐞 书源调试 </strong></summary>
+<details><summary><strong> 打开 🐞 调试书源 </strong></summary>
 
-**🐞 书源调试 => 我的 - 书源管理 - Pixiv 小说 => 调试**
+**🐞 调试书源 => 我的 - 书源管理 - Pixiv 小说 => 调试**
 
 ![img](./pic/PixivLogin1.png)
 
@@ -133,9 +133,37 @@ head:
 
 ## 故障处理 {#TroubleShooting}
 ### 🖼 图片显示为链接 {#ImageShownAsLink}
-1. **关闭替换净化**
-   ![img](./pic/DisableReplacement.png)
-2. 刷新正文
+> [!TIP]
+>
+> **关闭替换净化；关闭替换净化中，有关网址的净化规则**
+
+<details><summary><strong> 🖼 图片显示为链接 </strong></summary>
+
+1️⃣ **关闭替换净化**
+![img](./pic/DisableReplacement.png)
+2️⃣ 刷新正文
+</details>
+
+
+### 🗑️ 清除 WebView 数据 {#ClearWebViewData}
+> [!WARNING]
+> 
+> **清除 WebView 数据，会重置当前登录状态，但是能解决大部分由于数据残留导致的问题**
+> 
+
+> [!IMPORTANT]
+> 
+> **🗑️ 清除 WebView 数据 => 我的 - 其他设置 - 清除 WebView 数据**
+
+
+<details><summary><strong> 🗑️ 清除 WebView 数据 </strong></summary>
+
+1️⃣ **打开其他设置，滑动到最后：**
+
+![img](./pic/LegadoSettingsClearWebViewData.png)
+
+2️⃣ **点击【清理 WebView 数据】，进行清理数据：**
+</details>
 
 
 ## 故障排查 {#FaultDiagnosis}
