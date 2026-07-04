@@ -72,3 +72,4 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 <!--@include: CommonImportMethod.md-->
 
+<!--@include: CommonDiscuss.md-->

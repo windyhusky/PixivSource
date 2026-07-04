@@ -472,3 +472,5 @@ repos:
 | ------- | --- |
 | [Github Release](https://github.com/LegadoTeam/Legado-Tauri-Release/releases) | 需要代理，无需登录 |
 </details>
+
+<!--@include: CommonDiscuss.md-->

@@ -134,3 +134,5 @@ head:
 选择书籍，放入书架
 
 ![img](./pic/RemoteBooksSettings7.png)
+
+<!--@include: CommonDiscuss.md-->

@@ -187,4 +187,4 @@ head:
 4. [向书源开发者反馈](https://github.com/DowneyRem/PixivSource/issues) 
 
 
-## 评论区域 {#Discuss}
+<!--@include: CommonDiscuss.md-->
