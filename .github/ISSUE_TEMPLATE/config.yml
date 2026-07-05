@@ -1,10 +1,12 @@
 blank_issues_enabled: false
 contact_links:
   - name: 阅读软件问题 / legado bug & feature 
-    url: https://github.com/gedoor/legado/issues
+    url: https://github.com/Luoyacheng/legado-E/issues
     about: | 
       阅读软件问题请优先到 开源阅读 legado 反馈 / Go to Legado to Report bugs or Request features
+      
   - name: Linpx 网站问题 / Linpx website bug
     url: https://furrynovel.ink/about
     about: | 
       网站问题请优先到站方反馈 / Go to the Website to Report bugs
+      

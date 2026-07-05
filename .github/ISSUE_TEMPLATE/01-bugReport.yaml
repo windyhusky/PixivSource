@@ -1,6 +1,6 @@
 name: BUG 提交 / BUG Report
 description: 反馈 bug / Report bugs to developers
-title: "[BUG]"
+title: "[BUG] "
 labels: ["BUG"]
 body:
   - type: checkboxes
@@ -8,7 +8,7 @@ body:
       label: 确认 / Assignments
       description: 提交issue请确保完成以下前提，否则该issue可能被忽略 / Make sure you read checkboxs below
       options:
-        - label: 阅读[Beta版本 新共存 最新版](https://miaogongzi.lanzout.com/b01rgkhhe)依然存在此问题 / Latest beta app does not work
+        - label: 阅读[Sigma 版本 最新稳定版](https://github.com/Luoyacheng/legado-E/releases/latest)依然存在此问题 / Latest beta app does not work
           required: true
         - label: 书源[最新版本](https://github.com/DowneyRem/PixivSource/releases/latest)依然存在此问题 / Latest source does not work
           required: true
@@ -45,7 +45,16 @@ body:
       options:
         - label: 已经提交复现所需要的附加资料 / Submit additions related with bugs
           required: true
-          
+
+  - type: input
+    attributes:
+      label: 软件分支 / Legado Fork version
+      description: |
+        不同的阅读分支：Sigma, MD3 等分支版本或仓库链接
+      placeholder: "Sigma"
+    validations:
+      required: true
+      
   - type: input
     attributes:
       label: 阅读版本 / Legado version
@@ -54,13 +63,14 @@ body:
       placeholder: "3.22.110823"
     validations:
       required: true
-      
+        
   - type: input
     attributes:
       label: 书源版本 / Source Version
       description: |
         书源版本1：发现 - 更新 - 阅读本地版本
-        书源版本2：我的 - 书源管理 - Pixiv书源 - 调试 - 测试页面
+        书源版本2：我的 - 编辑 - 源注释
+        书源版本3：我的 - 书源管理 - Pixiv书源 - 调试 - 测试页面
       placeholder: "200 或 2025/06/01"
     validations:
       required: true

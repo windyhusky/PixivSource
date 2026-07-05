@@ -1,6 +1,6 @@
 name: 提出问题 / Question
 description: 提出问题 / Ask a Question
-title: "[Question]"
+title: "[Question] "
 labels: ["问题"]
 body:
   - type: checkboxes
