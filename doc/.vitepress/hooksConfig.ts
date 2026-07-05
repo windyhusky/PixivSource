@@ -50,23 +50,46 @@ const _headers = `
 # 3. 特殊资源（如 sitemap）
 /sitemap.xml
   Content-Type: application/xml; charset=utf-8
-  Cache-Control: no-cache
+  Cache-Control: no-cache, no-store, must-revalidate
 `.trim()
 
-// 构建结束自动化生成 (Robots & 重定向)
+
+const githubRobots = `
+User-agent: *
+Disallow: /
+`.trim()
+
+const cfRobots = `
+User-agent: *
+Allow: /
+
+# 禁止爬虫访问以 Common 开头的页面（包括各语言版本）
+Disallow: /Common
+Disallow: /en/Common
+Disallow: /zh-TW/Common
+
+# Sitemap
+Sitemap: https://pixivsource.pages.dev/sitemap.xml
+`.trim()
+
+const getRobotsTxt = (isCF: boolean) => {
+    if (isCF) return cfRobots
+    else return githubRobots
+}
+
+
 export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
     return (siteConfig: SiteConfig) => {
         const outDir = siteConfig.outDir
 
         // 生成 _headers
         fs.writeFileSync(join(outDir, '_headers'), _headers, 'utf8')
+        console.log('✅  已生成 headers.txt ')
 
         // 生成 robots.txt
-        const robots = isCF
-            ? 'User-agent: *\nAllow: /\n\nSitemap: https://pixivsource.pages.dev/sitemap.xml\n'
-            : 'User-agent: *\nDisallow: /\n'
-        fs.writeFileSync(join(outDir, 'robots.txt'), robots)
-        if (!isCF) return
+        const robotsContent = getRobotsTxt(isCF)
+        fs.writeFileSync(join(outDir, 'robots.txt'), robotsContent, 'utf8')
+        console.log('✅  已生成 robots.txt ')
 
         // 网址重定向
         const rules = [
@@ -110,6 +133,6 @@ export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
 
         scan(outDir)
         fs.writeFileSync(join(outDir, '_redirects'), rules.join('\n'))
-        console.log(`✅ 已成功生成 _redirects 文件，包含 ${rules.length} 条大小写重定向规则。`)
+        console.log(`✅  已生成 redirects 文件，包含 ${rules.length} 条大小写重定向规则。`)
     }
 }
