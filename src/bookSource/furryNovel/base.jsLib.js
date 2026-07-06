@@ -395,6 +395,27 @@ function setDefaultSettings() {
 }
 
 function updateSource() {
+    try {
+        this.updateSourceHtml()
+    } catch(e) {
+        this.updateSourceLink()
+    }
+}
+
+function updateSourceLink(){
+    const {java, source} = this
+    let sourceName
+    if (source.bookSourceUrl.includes("pixiv")) sourceName = "pixiv"
+    else if (source.bookSourceUrl.includes("furrynovel")) sourceName = "linpx"
+
+    try {
+        java.openUrl(`legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/${sourceName}.json`)
+    } catch (e) {
+        java.openUrl(`legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/${sourceName}.json`)
+    }
+}
+
+function updateSourceHtml() {
     const {java, source} = this
     java.longToast("🆙 更新书源\n\nJsdelivr CDN 更新有延迟\nGithub 更新需代理")
     let onlineSource, comment, sourceName, sourceNameCapitalize, index = 0
