@@ -134,5 +134,40 @@ export function getBuildEndHook(isCF: boolean, isGitHub: boolean) {
         scan(outDir)
         fs.writeFileSync(join(outDir, '_redirects'), rules.join('\n'))
         console.log(`✅  已生成 redirects 文件，包含 ${rules.length} 条大小写重定向规则。`)
+
+        // ==================== 优化 sitemap.xml ====================
+        // ==================== 优化 sitemap.xml ====================
+        const formatSitemap = () => {
+            const sitemapPath = join(outDir, 'sitemap.xml')
+
+            if (!fs.existsSync(sitemapPath)) {
+                console.log('⏳ 等待 sitemap.xml 生成...')
+                setTimeout(formatSitemap, 500)
+                return
+            }
+
+            try {
+                let xml = fs.readFileSync(sitemapPath, 'utf8')
+
+                xml = xml
+                    .replace(/></g, '>\n<')
+                    .replace(/(<url>)/g, '\n  $1')
+                    .replace(/(<\/url>)/g, '\n  $1')
+                    .replace(/(<xhtml:link)/g, '    $1')
+                    .replace(/<loc>/g, '\n    <loc>')
+                    .replace(/<lastmod>/g, '\n    <lastmod>')
+                    .replace(/\n+/g, '\n')
+                    .trim()
+
+                xml = '<?xml version="1.0" encoding="UTF-8"?>\n' +
+                    xml.substring(xml.indexOf('<urlset'))
+
+                fs.writeFileSync(sitemapPath, xml, 'utf8')
+                console.log('✅  已优化 sitemap.xml')
+            } catch (e) {
+                console.error('❌ 格式化失败:', e)
+            }
+        }
+        setTimeout(formatSitemap, 800)
     }
 }
