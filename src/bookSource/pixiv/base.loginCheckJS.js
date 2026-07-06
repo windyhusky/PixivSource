@@ -221,14 +221,14 @@ function publicFunc() {
             sleepToast(msg, 1)
         }
 
-        util.debugFunc(() => {
-            // java.log(JSON.stringify(novels0))
-            java.log(JSON.stringify(novels0.length))
-            // java.log(JSON.stringify(novels1))
-            java.log(JSON.stringify(novels1.length))
-            // java.log(JSON.stringify(novels2))
-            java.log(JSON.stringify(novels2.length))
-        })
+        // util.debugFunc(() => {
+        //     // java.log(JSON.stringify(novels0))
+        //     java.log(JSON.stringify(novels0.length))
+        //     // java.log(JSON.stringify(novels1))
+        //     java.log(JSON.stringify(novels1.length))
+        //     // java.log(JSON.stringify(novels2))
+        //     java.log(JSON.stringify(novels2.length))
+        // })
         return novels
     }
 
