@@ -296,6 +296,9 @@ function urlUserBookmarks(userId) {
 function urlSearchNovel(novelName, page) {
     return `https://www.pixiv.net/ajax/search/novels/${encodeURI(novelName)}?word=${encodeURI(novelName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&lang=zh`
 }
+function urlSearchNovelWeb(novelName, page) {
+    return `https://www.pixiv.net/search?q=${encodeURI(novelName)}&s_mode=tag_tc&type=novel&p=${page}`
+}
 function urlSearchSeries(seriesName, page) {
     return`https://www.pixiv.net/ajax/search/novels/${encodeURI(seriesName)}?word=${encodeURI(seriesName)}&order=date_d&mode=all&p=${page}&s_mode=s_tag&gs=1&lang=zh`
 }

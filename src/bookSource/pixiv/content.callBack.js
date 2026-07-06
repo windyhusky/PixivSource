@@ -294,16 +294,32 @@ function longClickAuthor() {
     return true
 }
 
+// function clickBookLabel() {
+//     java.open("search", null, book.tags)
+//     return true
+// }
+// function longClickBookLabel() {
+//     startBrowser(urlSearchNovelWeb(book.tags,1), book.tag)
+//     return true
+// }
+
 function callBackFactory(event) {
     switch (event) {
         case "clickBookName":
             return clickBookName()
         case "longClickBookName":
             return longClickBookName()
+
         case "clickAuthor":
             return clickAuthor()
         case "longClickAuthor":
             return longClickAuthor()
+
+        // case "clickBookLabel":
+        //     return clickBookLabel()
+        // case "longClickBookLabel":
+        //     return longClickBookLabel()
+
         case "clickCustomButton":
             return customButton()
         case "longClickCustomButton":
@@ -313,6 +329,7 @@ function callBackFactory(event) {
             return shareBook()
         case "clickClearCache":
             return clearCache()
+
         case "clickCopyBookUrl":
             return copyBookUrl()
         case "clickCopyTocUrl":
