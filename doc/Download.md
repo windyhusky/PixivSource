@@ -24,23 +24,23 @@ head:
       content: 开源阅读 Legado 全平台下载中心：Android 推荐阅读 Sigma，iOS 可用轻悦时光。开源阅读, 轻悦时光, 开源阅读 Github, Legado 下载, 阅读 Sigma, 阅读 Plus, 阅读 Beta, 阅读 MD3, 阅读 Max, 阅读 R, 阅读 NG, 开源阅读 iOS, 轻悦时光 iOS, 开源阅读 鸿蒙
 
 legadoRepos:
-#  - name: 阅读 Sigma
-#    icon: /img/LegadoSigma.png
-#    desc: 极致阅读体验 免费开源电子书阅读器
-#    link: https://gitee.com/lyc486/legado
-#    prerelease: false
-#    recommend: releaseS.apk
-#    show_assets: 1
-#    hide: false
-  
   - name: 阅读 Sigma
     icon: /img/LegadoSigma.png
     desc: 极致阅读体验 免费开源电子书阅读器
-    link: https://github.com/Luoyacheng/legado-E
+    link: https://gitee.com/lyc486/legado
     prerelease: false
     recommend: releaseS.apk
     show_assets: 1
     hide: false
+  
+#  - name: 阅读 Sigma
+#    icon: /img/LegadoSigma.png
+#    desc: 极致阅读体验 免费开源电子书阅读器
+#    link: https://github.com/Luoyacheng/legado-E
+#    prerelease: false
+#    recommend: releaseS.apk
+#    show_assets: 1
+#    hide: false
     
   - name: 阅读 MD3
     icon: /img/LegadoMD3.png

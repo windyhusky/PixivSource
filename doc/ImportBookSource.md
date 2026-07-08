@@ -73,7 +73,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <!--@include: CommonImportMethod.md-->
 
 
-## 轻悦时光 {#QTSG}
+## 轻悦时光 {#QYSG}
 <!--@include: CommonImportQYSG.md-->
 
 <!--@include: CommonDiscuss.md-->
