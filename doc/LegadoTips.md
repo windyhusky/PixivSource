@@ -61,15 +61,20 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 
 > **🀄️ 繁简转换 => 小说阅读界面 - 界面 - 简/繁 - 繁简转换**
 
-<details><summary><strong> 🀄️ 繁简转换 详细操作 </strong></summary>
 
 ![img](./pic/LegadoConvertChinese1.png)
 
 ![img](./pic/LegadoConvertChinese2.png)
 
 ![img](./pic/LegadoConvertChinese3.png)
-</details>
 
+
+## 添加小说 {#AddNovels}
+> [!TIP]
+>
+> ▶️ 添加小说共有4种方法，详见 📖 [添加小说](AddNovels.md)
+
+<!--@include: CommonAddNovelsAddURL.md-->
 
 <!--@include: CommonLegado.md-->
 
