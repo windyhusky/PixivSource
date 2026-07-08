@@ -103,6 +103,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 <div v-if="false">
+
+## 书源配置 {#BookSourceSet}
 <!--@include: CommonLoginLinpx.md-->
 
 <!--@include: CommonLegado.md-->
