@@ -63,7 +63,7 @@
 </div>
 
 
-### 🔗 B.规则订阅【易更新】 {#Subscription}
+### 📃 B.规则订阅【易更新】 {#Subscription}
 > [!NOTE]
 > **规则订阅【更新方便】，后续可以【自动更新】书源**
 > 
@@ -112,12 +112,18 @@
 </details>
 
 
+### 🔗 C.网络导入 {#Internet}
 <div v-if="pagePath.includes('ImportBookSource')">
+<details><summary><strong> 🔗 网络导入　详细操作</strong></summary>
 
-### 🌐 C.网络导入 {#InternetBookSource}
-<details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
+> [!IMPORTANT]
+>
+> **我的 - 书源管理 - 菜单 - 网络导入 - 复制链接、粘贴 - 添加书源**
 
-**我的 - 书源管理 - 菜单 - 网络导入 - 复制链接、粘贴 - 添加书源**
+#### 0.先复制下面的网址
+```
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json
+```
 
 #### 1. 打开【我的】页面，点击【书源管理】
 ![img](./pic/ImportOnlineBookSource1.jpg)
@@ -137,11 +143,16 @@
 
 
 <div v-if="pagePath.includes('ImportRssSource')">
+<details><summary><strong> 🔗 网络导入　详细操作</strong></summary>
 
-### 🌐 C.网络导入 {#InternetRssSource}
-<details><summary><strong> 🌐 网络导入　详细操作</strong></summary>
+> [!IMPORTANT]
+> 
+> **订阅 - 设置 - 网络导入 - 复制链接，粘贴 - 添加订阅**
 
-订阅 - 设置 - 网络导入 - 复制链接，粘贴 - 添加订阅
+#### 0.先复制下面的网址
+```
+https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json
+```
 
 #### 1.打开【订阅】页面，点击右上角【设置】
 ![img](./pic/ImportOnlineRssSource1.png)

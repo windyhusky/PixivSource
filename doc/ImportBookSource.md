@@ -49,9 +49,10 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
+### ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
 >
-> **开源阅读 Legado 书源导入 指南**
+> **书源导入指南：[开源阅读](#Legado)、[轻悦时光](#QYSG)**
 >
 > **另有：新手配置指南：**
 > [✨臻享阅读](BetterExperience.md)；
@@ -68,8 +69,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 - [阅读 APP 源](https://legado.aoaostar.com)
 
 
-## 导入书源 {#ImportBookSource}
-
+## 开源阅读 {#Legado}
 <!--@include: CommonImportMethod.md-->
+
+
+## 轻悦时光 {#QTSG}
+<!--@include: CommonQYSGImport.md-->
 
 <!--@include: CommonDiscuss.md-->
