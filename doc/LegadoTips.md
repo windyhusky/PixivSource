@@ -7,8 +7,8 @@ description:
 #aside: false
 #editLink: false
 #lastUpdated: false
-prev: false
-next: false
+#prev: false
+#next: false
 #comment: false
 #friendLink: false
 
@@ -49,5 +49,28 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [!WARNING]
 >
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
-> [网页版](https://pixivsource.pages.dev/Legado)
+> [网页版](https://pixivsource.pages.dev/LegadoTips)
 > 内容更全面，排版更精美**
+
+
+## 阅读功能
+### 🀄️ 繁简转换
+> [!TIP]
+> 
+> ✅ 开源阅读软件自带 **繁简转换** 功能
+> 
+> **🀄️ 繁简转换 => 小说阅读界面 - 界面 - 简/繁 - 繁简转换**
+
+<details><summary><strong> 🀄️ 繁简转换 详细操作 </strong></summary>
+
+![img](./pic/LegadoConvertChinese1.png)
+
+![img](./pic/LegadoConvertChinese2.png)
+
+![img](./pic/LegadoConvertChinese3.png)
+</details>
+
+
+<!--@include: CommonLegado.md-->
+
+<!--@include: CommonDiscuss.md-->
