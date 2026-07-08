@@ -1,6 +1,6 @@
 ---
 layout: doc
-title: 开源阅读 使用技巧
+title: 轻悦时光 导入书源
 description: 
 
 #sidebar: false
@@ -15,13 +15,13 @@ description:
 head:
   - - meta
     - name: keywords
-      content: 开源阅读 使用技巧
+      content: 轻悦时光 导入书源
   - - meta
     - property: og:title
-      content: 开源阅读 使用技巧
+      content: 轻悦时光 导入书源
   - - meta
     - property: og:description
-      content: 开源阅读 使用技巧
+      content: 轻悦时光 导入书源
   - - meta
     - property: og:image
       content: /pic/BookSourcePixiv.png
@@ -49,7 +49,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [!WARNING]
 >
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
-> [网页版](https://pixivsource.pages.dev/ImportQYSG)
+> [网页版](https://pixivsource.pages.dev/QYSGImport)
 > 内容更全面，排版更精美**
 
 
@@ -74,6 +74,31 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [!IMPORTANT]
 >
 > **我的 - 书源管理 - 菜单 - 网络导入**
+
+先复制下面的网址
+```
+https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json
+```
+
+打开轻悦时光，点击【我的】页面，点击【书源管理】
+
+![img](./pic/QYSGBWebImport0.png)
+
+点击右上角菜单
+
+![img](./pic/QYSGBWebImport1.png)
+
+点击【网络导入】
+
+![img](./pic/QYSGBWebImport2.png)
+
+粘贴书源链接，点击【确定】
+
+![img](./pic/QYSGBWebImport3.png)
+
+点击【导入】，即可导入 Pixiv 书源
+
+![img](./pic/QYSGImportBookSource.png)
 
 
 ### 🌐 B.浏览器导入
