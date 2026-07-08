@@ -31,6 +31,7 @@ export const cnNav = [
             { text: "📚 软件合集", link: "/Legado" },
             { text: "🚀 导入书源", link: "/ImportBookSource" },
             { text: "🚀 导入订阅", link: "/ImportRssSource" },
+            { text: "📌 使用技巧", link: "/LegadoTips" },
             { text: "💾 备份恢复", link: "/WebdavBackup" , activeMatch: '/' },
             { text: "☁️ 远程书籍", link: "/RemoteBooks" },
             { text: "🛠️ 故障排查", link: "/TroubleShoot" }
@@ -90,6 +91,7 @@ export const cnSidebar = [
             { text: "📚 软件合集", link: "/Legado" },
             { text: "🚀 导入书源", link: "/ImportBookSource" },
             { text: "🚀 导入订阅", link: "/ImportRssSource" },
+            { text: "📌 使用技巧", link: "/LegadoTips" },
             { text: "💾 备份恢复", link: "/WebdavBackup" },
             { text: "☁️ 远程书籍", link: "/RemoteBooks" },
             { text: "🛠️ 故障排查", link: "/TroubleShoot" }
@@ -144,6 +146,7 @@ export const twNav = [
             { text: "📚 軟體合集", link: "/zh-TW/Legado" },
             { text: "🚀 匯入書源", link: "/zh-TW/ImportBookSource" },
             { text: "🚀 匯入訂閱", link: "/zh-TW/ImportRssSource" },
+            { text: "📌 使用技巧", link: "/LegadoTips" },
             { text: "💾 備份恢復", link: "/zh-TW/WebdavBackup", activeMatch: "/" },
             { text: "☁️ 遠端書籍", link: "/zh-TW/RemoteBooks" },
             { text: "🛠️ 故障排查", link: "/zh-TW/TroubleShoot" }
@@ -196,6 +199,7 @@ export const twSidebar = [
             { text: "📚 軟體合集", link: "/zh-TW/Legado" },
             { text: "🚀 匯入書源", link: "/zh-TW/ImportBookSource" },
             { text: "🚀 匯入訂閱", link: "/zh-TW/ImportRssSource" },
+            { text: "📌 使用技巧", link: "/LegadoTips" },
             { text: "💾 備份恢復", link: "/zh-TW/WebdavBackup" },
             { text: "☁️ 遠端書籍", link: "/zh-TW/RemoteBooks" },
             { text: "🛠️ 故障排查", link: "/zh-TW/TroubleShoot" }
