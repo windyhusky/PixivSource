@@ -207,7 +207,9 @@ function publicFunc() {
             illust.title = illust.title.trim()
             if (!illust.userName.startsWith("@")) illust.userName = `@${illust.userName}`
             illust.tags = Array.from(new Set(illust.tags))
+            illust.tags = illust.tags.map(item => `#${item}`)
             illust.tags = illust.tags.join(",")
+
             illust.coverUrl = urlCoverUrl(illust.coverUrl)
             illust.createDate = dateFormat(illust.createDate)
             illust.updateDate = dateFormat(illust.updateDate)
