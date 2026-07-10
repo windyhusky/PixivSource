@@ -76,7 +76,7 @@
   <td><a href="https://www.pixiv.net/novel"> 1️⃣ Pixiv 小说</a></td>
   <td rowspan="3"> ✅ 添加小说<br>✅ 导入书源<br>✅ 登录界面 <br></td>
 </tr>
-<tr><td><a href="https://www.furrynovel.ink"> 2️⃣ Linpx 林匹克斯</a></td></tr>
+<tr><td><a href="https://www.linpx.ink"> 2️⃣ Linpx 林匹克斯</a></td></tr>
 <tr><td><a href="https://www.furrynovel.com"> 3️⃣ 兽人控小说站</a></td></tr>
 
 <tr>
@@ -183,7 +183,7 @@
 - ☕️ [Pixiv 书源项目 打赏名单](https://pixivsource.pages.dev/Sponsor)
 - 感谢 [阅读 3.0](https://github.com/gedoor/legado) 提供的软件平台
 - 感谢 [阅读 Sigma](https://github.com/Luoyacheng/legado-E) 提供的软件平台
-- 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.furrynovel.ink)
+- 感谢 [Linpx](https://github.com/libudu/linpx-web) 提供的 [网站服务](https://www.linpx.ink)
 - 感谢 [兽人小说站](https://github.com/FurryNovel/Reader) 提供的 [网站服务](https://www.furrynovel.com)
 - 感谢 [pixiv.shojo.cn](https://github.com/lrhtony/pixiv) 提供的 [Pixiv 图片代理功能](https://pixiv.cat)
 - 感谢 [Pixiv.cat](https://github.com/pixiv-cat/pixivcat-backend) 提供的 [Pixiv 图片代理功能](https://pixiv.cat)

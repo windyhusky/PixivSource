@@ -26,11 +26,11 @@
 > [!TIP]
 > **可以同时添加多个小说的链接，支持：**
 > - ✅ **Linpx 小说链接**
->   - `https://furrynovel.ink/pixiv/novel/26200191`
+>   - `https://linpx.ink/pixiv/novel/26200191`
 > - ✅ **Linpx 分享链接**
->   - `我正在看唐尼瑞姆创作的《测试页面》一起来看吧！https://furrynovel.ink/pn/26200191`
+>   - `我正在看唐尼瑞姆创作的《测试页面》一起来看吧！https://linpx.ink/pn/26200191`
 > - ✅ **Linpx 作者链接**
->   - `https://furrynovel.ink/pixiv/user/119908520`
+>   - `https://linpx.ink/pixiv/user/119908520`
 </div>
 
 

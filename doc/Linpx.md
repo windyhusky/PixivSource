@@ -63,7 +63,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <img width="150" height="150" src="./pic/BookSourceLinpx.png" alt="Linpx BookSource"/>
 <br>
 
-# [Linpx](http://www.furrynovel.ink) 书源 功能手册
+# [Linpx](http://www.linpx.ink) 书源 功能手册
 #### 🦊 开源阅读 Linpx 书源
 #### ✈️ 频道 [@PixivSource](https://t.me/PixivSource)
 </div>

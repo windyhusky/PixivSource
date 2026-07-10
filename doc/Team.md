@@ -70,8 +70,8 @@ teamGroups:
         desc: Linpx 前站长
         sites:
           - name: Linpx 林匹克斯
-            link: https://furrynovel.ink
-            icon: https://furrynovel.ink/apple-touch-icon.png
+            link: https://linpx.ink
+            icon: https://linpx.ink/apple-touch-icon.png
         
       - name: Tiger KK
         title: KK

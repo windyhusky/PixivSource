@@ -69,7 +69,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ### 📅 Recurring Sponsorship {#Regularly}
-- [Linpx](https://www.furrynovel.ink) (Since 2023, ¥100 / Year)
+- [Linpx](https://www.linpx.ink) (Since 2023, ¥100 / Year)
 
 
 ### 🔀 One-time Sponsorship {#Irregularly}
