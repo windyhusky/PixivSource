@@ -217,7 +217,7 @@ function publicFunc() {
         let isHtml = isHtmlString(result)
         if (!isJson && isHtml) {
             let id = baseUrl.match(new RegExp("\\d+"))[0]
-            let pattern = "(https?://)?(api\\.|www\\.)?(furrynovel\\.(ink|xyz))/pixiv/user/\\d+(/cache)?"
+            let pattern = "(https?://)?(api\\.|www\\.)?(linpx\\.ink)/(pu|pixiv/user)/\\d+(/cache)?"
             let isAuthor = baseUrl.match(new RegExp(pattern))
             if (isAuthor) {
                 java.log(`作者ID：${id}`)
@@ -225,7 +225,7 @@ function publicFunc() {
                 java.log(`最新一篇小说ID：${novelId}`)
             }
 
-            pattern = "(https?://)?(api\\.|www\\.)?(furrynovel\\.(ink|xyz))/(pn|pixiv/novel)/\\d+(/cache)?"
+            pattern = "(https?://)?(api\\.|www\\.)?(linpx\\.ink)/(pn|pixiv/novel)/\\d+(/cache)?"
             let isNovel = baseUrl.match(new RegExp(pattern))
             if (isNovel) {
                 novelId = id
