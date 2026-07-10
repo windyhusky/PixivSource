@@ -1,6 +1,6 @@
 [
     {
-        "name": "\uD83C\uDD7F️ 登录账号",
+        "name": "🅿️️ 登录账号",
         "type": "button",
         "action": "login()",
         "style": {
@@ -18,7 +18,7 @@
         }
     },
     {
-        "name": "\uD83D\uDD19 退出账号",
+        "name": "🔙 退出账号",
         "type": "button",
         "action": "logout()",
         "style": {
@@ -40,7 +40,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCD8 书源指南",
+        "name": "📘 书源指南",
         "type": "button",
         "action": "startGithubReadme()",
         "style": {
@@ -49,7 +49,7 @@
         }
     },
     {
-        "name": "\uD83D\uDC1E 反馈问题",
+        "name": "🐞 反馈问题",
         "type": "button",
         "action": "startGithubIssue()",
         "style": {
@@ -67,7 +67,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCBE 备份恢复",
+        "name": "💾 备份恢复",
         "type": "button",
         "action": "startGithubWebdavBackup()",
         "style": {
@@ -85,7 +85,7 @@
         }
     },
     {
-        "name": "\uD83D\uDCD6 阅读频道",
+        "name": "📖 阅读频道",
         "type": "button",
         "action": "startTelegramLegado()",
         "style": {
