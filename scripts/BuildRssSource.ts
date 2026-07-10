@@ -93,6 +93,7 @@ function buildRssSource(sourceName:string): RssSource[] {
 
 function buildNovelSource(name:string): RssSource {
     // 需要在 项目根目录下执行
+    let rssSourceFolder = `src/rssSource`
     let sourcePath = `src/rssSource/${name}`
     let templatePath = `src/rssSource/furry.json`
     let defaultDataPath = `scripts/rssSource.json`
@@ -115,8 +116,9 @@ function buildNovelSource(name:string): RssSource {
     const loginUrl = readTextFile(path.join(sourcePath, "base.loginUrl.js")) || ""
     const loginUI = readTextFile(path.join(sourcePath, "base.loginUI.json")) || ""
 
-    const header = readTextFile(path.join("rssSource", "base.header.json")) || ""
-    const jsLib = readTextFile(path.join(sourcePath, "base.jsLib.js")) || ""
+    const header = readTextFile(path.join(rssSourceFolder, "base.header.json")) || ""
+    const jsLib = readTextFile(path.join(rssSourceFolder, "base.jsLib.js")) || ""
+
     const injectJs = readTextFile(path.join(sourcePath, "webview.inject.js")) || ""
 
     // 填充默认数据
@@ -131,7 +133,7 @@ function buildNovelSource(name:string): RssSource {
     RssSource.loginUrl = loginUrl
 
     RssSource.header = header
-    RssSource.jsLib = jsLib
+    if (name !== "import2") RssSource.jsLib = jsLib
     RssSource.injectJs = injectJs
 
     // 更新订阅更新时间
