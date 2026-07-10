@@ -13,5 +13,5 @@ function sleepToast(text, second) {
     java.log(text)
     java.longToast(text)
     if (second === undefined) {second = 0.01}
-    this.sleep(1000*second)
+    this.sleep(second)
 }

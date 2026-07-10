@@ -24,7 +24,7 @@ function removeCookie() {
     cookie.removeCookie('https://api.weibo.com')
     cache.delete("pixivCookie")
     cache.delete("pixivCsrfToken")  // 与登录设备有关
-    cache.delete("headers")
+    cache.delete("pixivHeaders")
 }
 
 // 获取 Csrf Token，以便进行收藏等请求
@@ -66,7 +66,7 @@ function startBrowser(url, title) {
     } else if (url.includes("https://t.me/")){
         msg += "\n\n即将打开 Telegram\n请确认已开启代理/梯子/VPN等"
     }
-    sleepToast(msg)
+    if (msg) sleepToast(msg)
     java.startBrowser(`${url}, ${headers}`, title)
 }
 
