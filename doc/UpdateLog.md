@@ -58,6 +58,10 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
+### ⚡️ 快速跳转 {#QuickJump}
+<!--@include: UpdateLog/CommonJump.md-->
+
+
 ## ⏱️ 近期更新 {#Latest}
 <DownloadCard/>
 
@@ -124,3 +128,5 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 - 🌐 Pixiv 书源 网站国际化
 
 
+## ⚡️ 快速跳转 {#QuickJump2}
+<!--@include: UpdateLog/CommonJump.md-->
