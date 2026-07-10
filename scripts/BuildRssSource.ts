@@ -118,8 +118,7 @@ function buildNovelSource(name:string): RssSource {
 
     const header = readTextFile(path.join(rssSourceFolder, "base.header.json")) || ""
     const jsLib = readTextFile(path.join(rssSourceFolder, "base.jsLib.js")) || ""
-
-    const injectJs = readTextFile(path.join(sourcePath, "webview.inject.js")) || ""
+    const injectJs = readTextFile(path.join(rssSourceFolder, "webview.inject.js")) || ""
 
     // 填充默认数据
     Object.keys(defaultData).forEach((key) => {
@@ -130,11 +129,12 @@ function buildNovelSource(name:string): RssSource {
     RssSource.sourceComment = sourceComment
     RssSource.loginUrl = loginUrl
     RssSource.loginUi = loginUI
-    RssSource.loginUrl = loginUrl
 
-    RssSource.header = header
-    if (name !== "import2") RssSource.jsLib = jsLib
-    RssSource.injectJs = injectJs
+    if (name !== "import2") {
+        RssSource.header = header
+        RssSource.jsLib = jsLib
+        RssSource.injectJs = injectJs
+    }
 
     // 更新订阅更新时间
     let options = { year: "numeric", month: "2-digit", day: "2-digit"}

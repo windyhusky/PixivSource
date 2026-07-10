@@ -42,9 +42,9 @@ if (!document.getElementById('open-yuedu-bookshelf')) {
         bookSourceUrl = 'https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json'
     }
 
-    // 按钮颜色（pixiv 用蓝色，其他用黄色）
-    const mainColor = isPixiv ? '#1da5f9' : '#ff9900';
-    const hoverColor = isPixiv ? '#40b6ff' : '#ffaa22';
+    // 按钮颜色（linpx 用黄色，其他用蓝色）
+    const mainColor = isLinpx ? '#ff9900' : '#1da5f9';
+    const hoverColor = isLinpx ? '#ffaa22' : '#40b6ff';
 
     // 「导入书源」按钮 - 左下
     const btn = document.createElement('button');
@@ -60,7 +60,7 @@ if (!document.getElementById('open-yuedu-bookshelf')) {
     };
 
     // 「加入书架」按钮 - 右下
-    if (!isFurryNovel && !isLinpx) {
+    if (!isFurryNovel) {
         const btn2 = document.createElement('button');
         btn2.id = 'open-yuedu-bookshelf';
         btn2.className = 'yuedu-float-btn';
