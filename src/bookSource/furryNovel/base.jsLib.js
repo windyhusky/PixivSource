@@ -206,8 +206,8 @@ function urlPxImgUrl(pxImgUrl) {
 }
 function urlPxImgUrlLinpx(pxImgUrl) {
     if (!pxImgUrl.trim()) return ""
-    let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
-    let headers = {"Referer": "https://furrynovel.ink/"}
+    let url = `https://pximg.linpx.ink/?url=${pxImgUrl}&w=800`
+    let headers = {"Referer": "https://linpx.ink/"}
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlPxImgUrlPixiv(pxImgUrl) {

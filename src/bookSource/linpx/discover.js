@@ -67,7 +67,7 @@ function handlerFollowLatest() {
 
 function handlerRegexNovels() {
     return () => {
-        let result = java.webView(null, "https://furrynovel.ink", null)
+        let result = java.webView(null, "https://linpx.ink", null)
         let name = result.match(RegExp('<div class=" font-bold text-xl line-clamp-1">(.*?)</div>'))[1]
         let resp = getAjaxJson(urlSearchNovel(name))
         if (resp.total !== undefined) {
@@ -87,7 +87,7 @@ function handlerFactory() {
     if (baseUrl.includes("/pixiv/novels/recent")) {
         return handlerFollowLatest()
     }
-    if (baseUrl.includes("https://furrynovel.ink")) {
+    if (baseUrl.includes("https://linpx.ink")) {
         return handlerRegexNovels()
     }
     else {

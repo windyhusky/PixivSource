@@ -145,7 +145,7 @@ function startBrowser(url, title) {
     let msg = ""
     let headers = {}
     headers["User-Agent"] = this.getWebViewUA()
-    headers["Referer"] = "https://furrynovel.ink/"
+    headers["Referer"] = "https://linpx.ink/"
 
     if (url.includes("github.com") || url.includes("github.io")) {
         msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
@@ -155,7 +155,7 @@ function startBrowser(url, title) {
 }
 
 function urlNovelUrl(novelId) {
-    return `https://furrynovel.ink/pixiv/novel/${novelId}/cache`
+    return `https://linpx.ink/pixiv/novel/${novelId}`
 }
 function urlNovelDetailed(novelId) {
     return `https://api.linpx.ink/pixiv/novel/${novelId}/cache`
@@ -176,7 +176,7 @@ function urlSeriesDetailed(seriesId) {
 }
 
 function urlUserUrl(userId) {
-    return `https://furrynovel.ink/pixiv/user/${userId}/cache`
+    return `https://linpx.ink/pixiv/user/${userId}`
 }
 function urlUserDetailed(userId) {
     return `https://api.linpx.ink/pixiv/user/${userId}/cache`
@@ -267,8 +267,8 @@ function urlPxImgUrl(pxImgUrl) {
 }
 function urlPxImgUrlLinpx(pxImgUrl) {
     if (!pxImgUrl.trim()) return ""
-    let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
-    let headers = {"Referer": "https://furrynovel.ink/"}
+    let url = `https://pximg.linpx.ink/?url=${pxImgUrl}&w=800`
+    let headers = {"Referer": "https://linpx.ink/"}
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlPxImgUrlPixiv(pxImgUrl) {
