@@ -28,20 +28,18 @@ function oneShotHandler(resp) {
 }
 
 function seriesHandler(resp) {
-    resp.novels.forEach(novel => {
-        if (novel.title) novel.title = novel.title.trim()
-        novel.chapterUrl = urlNovel(novel.id)
-        // novel.updateDate = String(novel.coverUrl.match(RegExp("\\d{4}/\\d{2}/\\d{2}")))  //fake
+    let novelUrls = resp.novels.map(item => urlNovelDetailed(item.id))
+    let novels = getAjaxAllJson(novelUrls)
 
-        // 防止 urlSeriesDetailed 无法返回有全部数据
-        novel.detail = getAjaxJson(urlNovelDetailed(novel.id))
+    novels.forEach(novel => {
         if (!novel.title) novel.title = novel.detail.title.trim()
-        novel.textCount = novel.detail.content.length
-        novel.updateDate = timeTextFormat(novel.detail.createDate)
+        novel.chapterUrl = urlNovel(novel.id)
+        if (novel.content) novel.textCount = novel.content.length
+        novel.updateDate = timeTextFormat(novel.createDate)
         novel.chapterInfo = `${novel.updateDate}　　${novel.textCount}字`
-        delete novel.detail
+        if (novel.content) delete novel.content
     })
-    return resp.novels
+    return novels
 }
 
 // 优化 未缓存系列目录的情况：从章节数据中，获取系列目录
