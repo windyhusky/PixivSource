@@ -18,9 +18,9 @@ function isSourceRead() {
     return java.getUserAgent() === java.getWebViewUA()
 }
 
+// 检测 阅读 正式版
 // 正式版 不支持在 JSlib 的函数直接设置默认参数
 // 正式版 不支持 a?.b 的写法
-// 检测 阅读 正式版 与 Beta 版本
 function isLegadoOfficial() {
     let isLegadoOfficialStatus
     try {
@@ -32,7 +32,7 @@ function isLegadoOfficial() {
     return isLegadoOfficialStatus
 }
 
-// 检测 阅读 Beta 版本 与 Sigma 版本
+// 检测 Sigma 版本
 // Sigma 版本新增函数
 // java.ajaxTestAll()
 // java.openVideoPlayer(url: String, title: String, float: Boolean)
@@ -73,12 +73,6 @@ function publicFunc() {
         sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
         sleep(3);
         startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
-    }
-
-    if (u.settings.IPDirect) {
-        java.log("✈️ 直连模式：✅ 已开启")
-    } else {
-        java.log("✈️ 直连模式：❌ 已关闭")
     }
 
     u.debugFunc = (func) => {

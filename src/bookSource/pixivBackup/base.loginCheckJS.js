@@ -17,6 +17,7 @@ function objStringify(obj) {
 function isSourceRead() {
     return java.getUserAgent() === java.getWebViewUA()
 }
+
 // 正式版 不支持在 JSlib 的函数直接设置默认参数
 // 正式版 不支持 a?.b 的写法
 // 检测 阅读 正式版 与 Beta 版本
@@ -30,6 +31,7 @@ function isLegadoOfficial() {
     }
     return isLegadoOfficialStatus
 }
+
 // 检测 阅读 Beta 版本 与 Sigma 版本
 // Sigma 版本新增函数
 // java.ajaxTestAll()
