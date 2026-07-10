@@ -1243,9 +1243,9 @@ function cleanCache(toast) {
 }
 
 function getFurryAuthors() {
-    cache.delete("https://api.furrynovel.ink/fav/user/cache")  // 删除缓存实时请求数据
+    cache.delete(urlLinpxAuthors())  // 删除缓存实时请求数据
     let furryAuthorsMap = {}
-    let authorsListLinpx = getAjaxJson("https://api.furrynovel.ink/fav/user/cache")
+    let authorsListLinpx = getAjaxJson(urlLinpxAuthors())
     authorsListLinpx.forEach(author => {
         furryAuthorsMap[author.name] = author.id || author._id
     })

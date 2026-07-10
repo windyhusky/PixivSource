@@ -304,6 +304,10 @@ function urlSearchUser(userName, page, full) {
     return `https://www.pixiv.net/search/users?nick=${userName}&s_mode=s_usr${fullUrl}&i=1${pageUrl}`;
 }
 
+function urlLinpxAuthors() {
+    return "https://api.linpx.ink/fav/user/cache"
+}
+
 // 直连功能参考自 洛娅橙的阅读仓库
 // https://github.com/Luoyacheng/yuedu
 // 其直连功能参考自 PixEz Flutter
