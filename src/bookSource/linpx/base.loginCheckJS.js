@@ -17,6 +17,7 @@ function objStringify(obj) {
 function isSourceRead() {
     return java.getUserAgent() === java.getWebViewUA()
 }
+
 // 正式版 不支持在 JSlib 的函数直接设置默认参数
 // 正式版 不支持 a?.b 的写法
 // 检测 阅读 正式版 与 Beta 版本
@@ -30,14 +31,15 @@ function isLegadoOfficial() {
     }
     return isLegadoOfficialStatus
 }
-// 检测 阅读 Beta 版本 与 LYC 版本
-// LYC 版本新增函数
+
+// 检测 阅读 Beta 版本 与 Sigma 版本
+// Sigma 版本新增函数
 // java.ajaxTestAll()
 // java.openVideoPlayer(url: String, title: String, float: Boolean)
 // cookie.setWebCookie(url,cookie)
 // source.refreshExplore()
 // source.refreshJSLib()
-function isLegadoLYC() {
+function isLegadoSigma() {
     return typeof java.ajaxTestAll === "function"
 }
 
@@ -48,40 +50,36 @@ function publicFunc() {
     java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
     java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
-    if (isSourceRead()) {
-        java.log("📱 软件平台：🍎 源阅 SourceRead")
-    } else if (isLegadoOfficial()) {
-        java.log("📱 软件平台：🤖 阅读 正式版")
-        sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-        sleep(3); startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
+    // 设置写入缓存
+    u.settings = getFromCacheObject("linpxSettings")
+    if (!u.settings) u.settings = setDefaultSettings()
+    putInCacheObject("linpxSettings", u.settings)
 
-    } else {
-        if (isLegadoLYC()) {
-            java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
-        } else {
-            java.log("📱 软件平台：🤖 阅读 Beta【原包名】")
-            sleepToast("\n⚠️当前软件为：阅读 Beta【原包名】\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-            sleep(3); startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
-        }
-    }
-
-    // 设置初始化
-    // cache.delete("linpxSettings")
-    settings = getFromCacheObject("linpxSettings")
-    if (settings) {
-        java.log("⚙️ 使用自定义设置")
-    } else {
-        java.log("⚙️ 使用默认设置")
-        settings = setDefaultSettings()
-    }
-    u.settings = settings
-    putInCacheObject("linpxSettings", settings)  // 设置写入缓存
-
+    // 环境写入缓存
     u.environment = {}
     u.environment.IS_SOURCEREAD = isSourceRead()
-    u.environment.IS_LEGADO = !isSourceRead()
-    u.environment.IS_LYC_BRUNCH = isLegadoLYC()
-    putInCacheObject("pixivEnvironment", u.environment)  // 设置写入缓存
+    u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
+    u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
+    u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
+    putInCacheObject("pixivEnvironment", u.environment)
+
+    // 输出环境信息
+    if (u.environment.IS_SOURCEREAD) {
+        java.log("📱 软件平台：🍎 源阅 SourceRead")
+    } else if (u.environment.IS_LEGADO_SIGMA) {
+        java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
+    } else if (u.environment.IS_LEGADO_OFFICIAL) {
+        java.log("📱 软件平台：🤖 阅读 正式版")
+        sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
+        sleep(3);
+        startBrowser("https://gitee.com/lyc486/legado/releases/download/3.26.030717/legado_%E6%AD%A3%E5%BC%8F%E7%89%88_3.26.03071721_releaseS.apk", "下载阅读 Plus")
+    }
+
+    if (u.settings.IPDirect) {
+        java.log("✈️ 直连模式：✅ 已开启")
+    } else {
+        java.log("✈️ 直连模式：❌ 已关闭")
+    }
 
     u.debugFunc = (func) => {
         if (util.settings.DEBUG) {
