@@ -91,20 +91,21 @@ function buildRssSource(sourceName:string): RssSource[] {
     return RssSources
 }
 
+const sourceNames = {
+    pixiv : "Pixiv",
+    linpx : "Linpx",
+    furryNovel : "兽人小说站",
+    repo : "Pixiv 书源",
+    import2 : "一键导入",
+}
+
 function buildNovelSource(name:string): RssSource {
     // 需要在 项目根目录下执行
     let rssSourceFolder = `src/rssSource`
     let sourcePath = `src/rssSource/${name}`
     let templatePath = `src/rssSource/furry.json`
     let defaultDataPath = `scripts/rssSource.json`
-
-    let sourceName = ""
-    if (name === "pixiv") sourceName = "Pixiv"
-    else if (name === "linpx") sourceName = "Linpx"
-    else if (name === "furryNovel") sourceName = "兽人小说站"
-    else if (name === "repo") sourceName = "Pixiv 书源"
-    else if (name === "import2") sourceName = "一键导入"
-    else sourceName = ""
+    let sourceName = sourceNames[name]
 
     // 读取基础模板
     const RssSources: RssSource[] = JSON.parse(readTextFile(templatePath))
@@ -130,7 +131,7 @@ function buildNovelSource(name:string): RssSource {
     RssSource.loginUrl = loginUrl
     RssSource.loginUi = loginUI
 
-    if (name !== "import2") {
+    if (name !== "repo" && name !== "import2" ) {
         RssSource.header = header
         RssSource.jsLib = jsLib
         RssSource.injectJs = injectJs
