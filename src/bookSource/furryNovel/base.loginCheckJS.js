@@ -162,7 +162,8 @@ function publicFunc() {
 
     u.getNovelRes = function (result, type) {
         let res = {data: []}, chapterId = 0
-        let isHtml = result.startsWith("<!DOCTYPE html>")
+        let isJson = isJsonString(result)
+        let isHtml = isHtmlString(result)
         let pattern = "(https?://)?(www\\.)?furrynovel\\.com/(zh|en|ja)/novel/\\d+(/chapter/d+)?"
         let fnWebpage = baseUrl.match(new RegExp(pattern))
 
@@ -181,7 +182,9 @@ function publicFunc() {
                     res = getAjaxJson(urlNovelChapterDetail(novelId, chapterId))
                 }
             }
-        } else {
+        }
+
+        if (isJson) {
             res = JSON.parse(result)
         }
         if (res.data.length === 0) {

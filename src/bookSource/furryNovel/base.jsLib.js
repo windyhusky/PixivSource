@@ -62,6 +62,17 @@ function getFromCacheObject(objectName) {
     return JSON.parse(object)
 }
 
+function isHtmlString(str) {
+    return str.startsWith("<!DOCTYPE html>") || str.startsWith("<!doctype html>")
+}
+function isJsonString(str) {
+    try {
+        let result = JSON.parse(str)
+        return typeof result === "object" && result !== null
+    } catch(e) {
+        return false
+    }
+}
 function isFunctionString(str) {
     return typeof str == "string" && (
         str.trim().startsWith("function") ||
