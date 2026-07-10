@@ -139,7 +139,9 @@ function publicFunc() {
                 }
             }
             novel.tags = Array.from(new Set(novel.tags2))
+            novel.tags = novel.tags.map(item => `#${item}`)
             novel.tags = novel.tags.join(",")
+
             novel.createDate = dateFormat(novel.createDate)
             novel.updateDate = dateFormat(novel.updateDate)
             novel.syncDate = dateFormat(novel.syncDate)

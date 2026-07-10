@@ -191,6 +191,7 @@ function publicFunc() {
                 }
             }
             novel.tags = Array.from(new Set(novel.tags2))
+            novel.tags = novel.tags.map(item => `#${item}`)
             novel.tags = novel.tags.join(",")
 
             if (util.settings.MORE_INFORMATION) {
