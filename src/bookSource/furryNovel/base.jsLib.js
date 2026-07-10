@@ -127,7 +127,7 @@ function urlNovelDetail(novelId) {
     return `https://api.furrynovel.com/api/zh/novel/${novelId}`
 }
 function urlNovelDetailLinpx(sourceId) {
-    return `https://api.furrynovel.ink/pixiv/novel/${sourceId}/cache`
+    return `https://api.linpx.ink/pixiv/novel/${sourceId}/cache`
 }
 function urlNovelsDetail(novelIds) {
     return `https://api.furrynovel.com/api/zh/novel?${novelIds.map(v => "ids[]=" + v).join("&")}`

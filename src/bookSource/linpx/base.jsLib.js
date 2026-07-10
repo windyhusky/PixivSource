@@ -158,10 +158,10 @@ function urlNovelUrl(novelId) {
     return `https://furrynovel.ink/pixiv/novel/${novelId}/cache`
 }
 function urlNovelDetailed(novelId) {
-    return `https://api.furrynovel.ink/pixiv/novel/${novelId}/cache`
+    return `https://api.linpx.ink/pixiv/novel/${novelId}/cache`
 }
 function urlNovelsDetailed(nidList) {
-    return `https://api.furrynovel.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
+    return `https://api.linpx.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
 }
 
 function urlSourceUrl(novelId) {
@@ -172,27 +172,27 @@ function urlSeriesUrl(seriesId) {
     return `https://www.pixiv.net/novel/series/${seriesId}`
 }
 function urlSeriesDetailed(seriesId) {
-    return `https://api.furrynovel.ink/pixiv/series/${seriesId}/cache`
+    return `https://api.linpx.ink/pixiv/series/${seriesId}/cache`
 }
 
 function urlUserUrl(userId) {
     return `https://furrynovel.ink/pixiv/user/${userId}/cache`
 }
 function urlUserDetailed(userId) {
-    return `https://api.furrynovel.ink/pixiv/user/${userId}/cache`
+    return `https://api.linpx.ink/pixiv/user/${userId}/cache`
 }
 function urlUsersDetailed(uidList) {
-    return `https://api.furrynovel.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
+    return `https://api.linpx.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
 }
 function urlUserFavorite() {
-    return "https://api.furrynovel.ink/fav/user/cache"
+    return "https://api.linpx.ink/fav/user/cache"
 }
 
 function urlSearchNovel(novelName, page) {
-    return `https://api.furrynovel.ink/pixiv/search/novel/${novelName}/cache?page=${page}`
+    return `https://api.linpx.ink/pixiv/search/novel/${novelName}/cache?page=${page}`
 }
 function urlSearchUsers(userName) {
-    return `https://api.furrynovel.ink/pixiv/search/user/${userName}/cache`
+    return `https://api.linpx.ink/pixiv/search/user/${userName}/cache`
 }
 
 function urlCoverUrl(pxImgUrl) {

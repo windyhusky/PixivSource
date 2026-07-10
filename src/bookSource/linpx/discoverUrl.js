@@ -1,6 +1,6 @@
 li = [
-    {"💯 推荐": "https://api.furrynovel.ink/fav/user/cache"},
-    {"🆕 最新": "https://api.furrynovel.ink/pixiv/novels/recent/cache?page={{page}}"},
+    {"💯 推荐": "https://api.linpx.ink/fav/user/cache"},
+    {"🆕 最新": "https://api.linpx.ink/pixiv/novels/recent/cache?page={{page}}"},
     {"🔄 随便": "https://furrynovel.ink"},
     {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"},
     {"📙 书源相关 📙": ""},
