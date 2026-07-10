@@ -63,7 +63,7 @@ function getFromCacheObject(objectName) {
 }
 
 function isHtmlString(str) {
-    return str.startsWith("<!DOCTYPE html>")
+    return str.startsWith("<!DOCTYPE html>") || str.startsWith("<!doctype html>")
 }
 function isJsonString(str) {
     try {
