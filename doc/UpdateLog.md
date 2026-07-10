@@ -90,6 +90,21 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 📆 2026下半年 {#2026H2}
+### 📚 更新 277 {#277}
+- 🦊 **Linpx 书源：**
+  - **更新至新域名：linpx.ink** 
+    - **更新 API 链接**
+    - **更新正则规则**
+- 🦊 Linpx & FN 书源：
+  - 优化代码：
+    - 登录检测：输出环境信息
+- 🅿️ Pixiv、🦊 Linpx & FN 书源：
+  - 详情页标签添加 `#` 号
+  - 优化代码：
+    - isHtmlString
+    - 更新软件下载链接
+
+
 ### 📚 更新 276 {#276}
 - 🅿️ Pixiv 小说：
   - ⚙️ 设置
