@@ -111,6 +111,21 @@ repos:
 
 
 ### ➕ 更多软件 {#AndroidMore}
+#### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado-E) {#LegadoSigma}
+> [!TIP]
+>
+> **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
+>
+> 项目地址：https://github.com/Luoyacheng/legado-E
+
+| 下载站点 | 推荐版本 | 备注 |
+| ------- | ------ | --- |
+| [Gitee Release](https://gitee.com/lyc486/legado/releases) | Plus | 无需代理，无需登录 |
+| [Github Release](https://github.com/Luoyacheng/legado-E/releases) | legado_plus_releaseS.apk | 需要代理，无需登录 |
+| [Github Action](https://github.com/Luoyacheng/legado-E/actions) | | 需要代理，需要登录 |
+| [Telegram 频道](https://t.me/readsigma) | 正式版 | 需要代理，需要登录 |
+
+
 #### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
 
 > [!TIP]
@@ -248,24 +263,6 @@ repos:
 | [Github Action](https://github.com/legadoteam/legado/actions) | legado.app.releaseA | 需要代理，需要登录 |
 | [Legado 频道](https://t.me/Legado_Channels) | 新共存版 | 需要代理，需要登录 |
 | [Legado Beta 频道](https://t.me/Legado_Beta) | 新共存版 | 需要代理，需要登录 |
-</details>
-
-
-<details><summary> 👍 阅读 Sigma （已停更）</summary>
-
-#### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado-E) {#LegadoSigma}
-> [!TIP]
->
-> **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
->
-> 项目地址：https://github.com/Luoyacheng/legado-E
-
-| 下载站点 | 推荐版本 | 备注 |
-| ------- | ------ | --- |
-| [Gitee Release](https://gitee.com/lyc486/legado/releases) | Plus | 无需代理，无需登录 |
-| [Github Release](https://github.com/Luoyacheng/legado-E/releases) | legado_plus_releaseS.apk | 需要代理，无需登录 |
-| [Github Action](https://github.com/Luoyacheng/legado-E/actions) | | 需要代理，需要登录 |
-| [Telegram 频道](https://t.me/readsigma) | 正式版 | 需要代理，需要登录 |
 </details>
 
 
