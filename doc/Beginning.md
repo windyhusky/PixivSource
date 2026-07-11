@@ -6,7 +6,7 @@ description: Pixiv 书源项目起源
 #sidebar: false
 #aside: false
 #editLink: false
-#lastUpdated: false
+lastUpdated: false
 #prev: false
 #next: false
 #comment: false
