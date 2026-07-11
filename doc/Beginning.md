@@ -14,6 +14,15 @@ lastUpdated: false
 
 ---
 
+<script setup>
+import { computed } from "vue";
+import { useData } from "vitepress";
+
+const { page } = useData();
+const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
+</script>
+
+
 <div align="center">
 <img width="256" src="./pic/BookSourcePixiv.png" alt="Pixiv BookSource"/>
 
@@ -215,18 +224,11 @@ A1：时至今日，这个问题的答案也变动了不止一次了。
 
 
 ### 📌 2025 总结 {#2025Summary}
-&emsp;&emsp;**整个2025年，书源一共发布了85个版本。其中上半年发布了53个版本（167-218），下半年（7-11月）发布了32个版本（219-250）。**
+&emsp;&emsp;**整个2025年，书源一共发布了90个版本。其中上半年发布了53个版本（166-218），下半年（7-11月）发布了38个版本（219-256）。**
 
 &emsp;&emsp;**A1 in 2025：截止到现在，写书源已经不仅仅是满足自我的使用需求了。**
 
 &emsp;&emsp;**除了自给自足满足个人所需以外、还有编写代码解决问题的乐趣、还有书源完成后的渴望：渴望被肯定、渴望被认可、渴望被关注。**
 
-&emsp;&emsp;**可能是我想要的是太多了吧……**
 
 
-## ☕️ [支持开发](./Sponsor.md)
-> [!NOTE]
->
-> **如果书源帮到了你，欢迎请开发者喝杯咖啡**
->
-> **你的鼓励是持续更新的动力～**
