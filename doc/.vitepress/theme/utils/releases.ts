@@ -106,78 +106,53 @@ export const readCache = (key: string) => { /* ... 保持不变 */ };
 export const readStaleCache = (key: string) => { /* ... 保持不变 */ };
 export const writeCache = (key: string, data: any, ttl: number) => { /* ... 保持不变 */ };
 
-// ── 翻页请求（多通道智能降级） ──
 export const fetchAllReleases = async (
     platformOrUrl: Platform | string,
     repoPathInput?: string
 ): Promise<any[]> => {
 
-    let platform: Platform;
-    let repoPath = repoPathInput;
+    let platform: Platform = 'github';
+    let repoPath = repoPathInput || '';
 
-    // 兼容旧调用（传入完整 API URL）
-    if (typeof platformOrUrl === 'string' &&
-        (platformOrUrl.includes('api.github.com') || platformOrUrl.includes('gitee.com/api'))) {
-
-        platform = platformOrUrl.includes('gitee.com') ? 'gitee' : 'github';
-
+    if (typeof platformOrUrl === 'string') {
+        if (platformOrUrl.includes('gitee')) platform = 'gitee';
         const match = platformOrUrl.match(/repos\/([^/]+\/[^/]+)/i);
         if (match) repoPath = match[1];
     } else {
         platform = platformOrUrl as Platform;
     }
 
+    if (!repoPath) throw new Error('仓库路径解析失败');
     const config = PLATFORM_CONFIGS[platform];
-    if (!config) throw new Error(`Unsupported platform: ${platform}`);
+    if (!config) throw new Error(`Unsupported platform`);
+    let url: string;
 
-    if (!repoPath) throw new Error(`Cannot resolve repo path`);
-
-    // 多通道尝试列表（优先级从高到低）
-    const baseAttempts = [
-        // 你的 Worker（推荐使用自定义域名后这里会更稳）
-        `https://legado-repo.tnt-wwxs-tz.workers.dev/?platform=${platform}&repo=${encodeURIComponent(repoPath)}&per_page=100&page=1`,
-
-        // 公共中转代理
-        `https://ghproxy.cc/${encodeURIComponent(`https://api.${platform === 'github' ? 'github.com' : 'gitee.com'}/repos/${repoPath}/releases?per_page=100`)}`,
-        `https://cors.bridged.cc/${encodeURIComponent(`https://api.${platform === 'github' ? 'github.com' : 'gitee.com'}/repos/${repoPath}/releases?per_page=100`)}`,
-        `https://github.sukiyaki.top/${encodeURIComponent(`https://api.${platform === 'github' ? 'github.com' : 'gitee.com'}/repos/${repoPath}/releases?per_page=100`)}`,
-
-        // 直连官方 API（最后兜底）
-        platform === 'github'
-            ? `https://api.github.com/repos/${repoPath}/releases?per_page=100`
-            : `https://gitee.com/api/v5/repos/${repoPath}/releases?per_page=100`
-    ];
-
-    for (const url of baseAttempts) {
-        try {
-            console.log(`[fetchAllReleases] 尝试通道: ${url.substring(0, 70)}...`);
-
-            const controller = new AbortController();
-            const timer = setTimeout(() => controller.abort(), 12000);
-
-            const res = await fetch(url, {
-                signal: controller.signal,
-                headers: {
-                    'User-Agent': 'Legado-Download-Page',
-                    'Accept': 'application/json'
-                }
-            });
-
-            clearTimeout(timer);
-
-            if (res.ok) {
-                const data = await res.json();
-                if (Array.isArray(data)) {
-                    console.log(`[fetchAllReleases] 成功使用: ${url.substring(0, 50)}...`);
-                    return config.shouldReverse ? data.reverse() : data;
-                }
-            }
-        } catch (e) {
-            console.warn(`[fetchAllReleases] 通道失败: ${url.substring(0, 50)}...`, e.message);
-        }
+    if (platform === 'gitee') {
+        url = `https://gitee.com/api/v5/repos/${repoPath}/releases?per_page=100`;
+    } else {
+        url = `https://githubdl.furry.pub/https://api.github.com/repos/${repoPath}/releases?per_page=100`;
     }
 
-    throw new Error(`所有通道均失败: ${platform}/${repoPath}`);
+    try {
+        const res = await fetch(url, {
+            headers: {
+                'User-Agent': 'Legado-Download-Page',
+                'Accept': 'application/json'
+            },
+            signal: AbortSignal.timeout(12000)
+        });
+
+        if (res.ok) {
+            const data = await res.json();
+            if (Array.isArray(data)) {
+                // console.log(`[成功 ${platform}] ${url.substring(0, 70)}...`);
+                return config.shouldReverse ? data.reverse() : data;
+            }
+        }
+    } catch (e) {
+        console.warn(`[失败 ${platform}]`, e?.message);
+    }
+    throw new Error(`请求失败: ${platform}/${repoPath}`);
 };
 
 // ── 带缓存的请求 ──
