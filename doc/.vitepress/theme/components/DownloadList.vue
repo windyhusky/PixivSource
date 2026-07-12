@@ -97,13 +97,22 @@ const isZhCN = computed(() => lang.value === 'zh-CN')
 
 // ---------- 下载加速配置 ----------
 const GITHUB_PROXY = 'https://githubdl.furry.pub/'
-const getDownloadUrl = (assetUrl) => {
-  if (!assetUrl) return ''
-  // 仅在开启加速且为 GitHub 资源时添加代理前缀
-  if (useGithubProxy.value && assetUrl.includes('github.com')) {
-    return `${GITHUB_PROXY}${assetUrl}`
+
+const getDownloadUrl = (originalUrl) => {
+  if (!originalUrl || typeof originalUrl !== 'string') return originalUrl
+
+  if (!useGithubProxy.value) return originalUrl
+
+  // 匹配所有 GitHub 相关链接
+  if (originalUrl.includes('github.com') || originalUrl.includes('api.github.com')) {
+    let cleanUrl = originalUrl
+    if (cleanUrl.startsWith('https://')) {
+      cleanUrl = cleanUrl.slice(8)
+    }
+    return GITHUB_PROXY + cleanUrl
   }
-  return assetUrl
+
+  return originalUrl
 }
 
 // ---------- 按需过滤卡片列表 ----------
@@ -126,7 +135,7 @@ const getTargetReleaseForItem = (repoItem) => {
   return getTargetRelease(releases, repoItem)
 }
 
-// ---------- 拉取单个仓库的 Release 数据 ----------
+// ---------- 拉取 Release ----------
 const fetchRepoRelease = async (repoItem) => {
   const repoKey = getRepoKey(repoItem)
   const meta = resolveRepoMeta(repoKey)
@@ -134,12 +143,12 @@ const fetchRepoRelease = async (repoItem) => {
 
   loadingMap.value[repoKey] = true
   const cacheKey = meta.apiUrl
-  const ttl = CACHE_TTL[meta.platform] || CACHE_TTL.github
 
   try {
-    const rawData = await fetchAllReleases(meta.apiUrl)
+    const rawData = await fetchAllReleases(meta.apiUrl)   // 走你的 CF Worker
     const releases = transformReleases(rawData, meta.platform, meta.webUrl)
-    writeCache(cacheKey, releases, ttl)
+
+    writeCache(cacheKey, releases, CACHE_TTL[meta.platform] || CACHE_TTL.github)
     releaseMap.value[repoKey] = releases
   } catch (error) {
     console.error(`[DownloadList] 拉取失败: ${repoKey}`, error)
