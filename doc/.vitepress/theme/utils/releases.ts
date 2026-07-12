@@ -26,7 +26,7 @@ const PLATFORM_CONFIGS: Record<Platform, PlatformConfig> = {
     github: {
         apiBase: 'https://api.github.com/repos/',
         webBase: 'https://github.com/',
-        cacheTTL: 15 * 60 * 1000,
+        cacheTTL: 60 * 60 * 1000,
 
         normalizeRepoPath: (url) => url.match(/github\.com\/([^/]+\/[^/]+)/)?.[1] || null,
 
