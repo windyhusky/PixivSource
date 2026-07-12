@@ -202,7 +202,7 @@ onMounted(() => {
   <div class="bottom-info-banner">
     <p class="more-link-text">
       {{ t.moreLink }}
-      <a href="Download" class="banner-link"><span>{{ t.moreBtn }}</span></a>
+      <a href="Legado" class="banner-link"><span>{{ t.moreBtn }}</span></a>
     </p>
     <p class="copyright-text">{{ t.copyright }}</p>
   </div>
