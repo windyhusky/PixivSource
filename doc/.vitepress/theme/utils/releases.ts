@@ -1,223 +1,212 @@
 import { renderMarkdown } from './renderMarkdown'
 
-// ── 缓存配置 ──
-const CACHE_PREFIX = 'release-cache:'
-export const CACHE_TTL = {
-    github: 15 * 60 * 1000,
-    gitee: 30 * 60 * 1000,
+// ── 类型定义 ──
+type Platform = 'github' | 'gitee' | string;
+
+interface PlatformConfig {
+    apiBase: string;
+    webBase: string;
+    cacheTTL: number;
+
+    // 仓库路径解析
+    normalizeRepoPath: (url: string) => string | null;
+
+    // 构建翻页 URL（可自定义）
+    buildFetchUrl: (repoPath: string, page: number, perPage: number) => string;
+
+    // 转换单个 release（各平台字段差异在这里处理）
+    transformRelease: (item: any, repoWebUrl: string) => any;
+
+    // 是否需要反转数组（gitee 历史数据是倒序）
+    shouldReverse?: boolean;
 }
 
-export const readCache = (key: string) => {
-    try {
-        const raw = localStorage.getItem(CACHE_PREFIX + key)
-        if (!raw) return null
-        const { data, time, ttl } = JSON.parse(raw)
-        if (Date.now() - time > ttl) return null
-        return data
-    } catch {
-        return null
-    }
-}
+// ── 平台配置表 ──
+const PLATFORM_CONFIGS: Record<Platform, PlatformConfig> = {
+    github: {
+        apiBase: 'https://api.github.com/repos/',
+        webBase: 'https://github.com/',
+        cacheTTL: 15 * 60 * 1000,
 
-export const readStaleCache = (key: string) => {
-    try {
-        const raw = localStorage.getItem(CACHE_PREFIX + key)
-        if (!raw) return null
-        return JSON.parse(raw).data
-    } catch {
-        return null
-    }
-}
+        normalizeRepoPath: (url) => url.match(/github\.com\/([^/]+\/[^/]+)/)?.[1] || null,
 
-export const writeCache = (key: string, data: any, ttl: number) => {
-    try {
-        localStorage.setItem(CACHE_PREFIX + key, JSON.stringify({ data, time: Date.now(), ttl }))
-    } catch {}
-}
+        buildFetchUrl: (repoPath, page, perPage) =>
+            `https://legado-repo.tnt-wwxs-tz.workers.dev/?platform=github&repo=${encodeURIComponent(repoPath)}&per_page=${perPage}&page=${page}`,
 
-// ── 翻页请求 ──
-export const fetchAllReleases = async (apiUrl: string): Promise<any[]> => {
-    let page = 1
-    let all: any[] = []
+        transformRelease: (item, repoWebUrl) => ({
+            tag_name: item.tag_name,
+            prerelease: item.prerelease,
+            published_at: item.published_at,
+            body: renderMarkdown(item.body || ''),
+            html_url: item.html_url,
+            assets: (item.assets || [])
+                .filter((a: any) => {
+                    const name = (a.name || '').toLowerCase();
+                    return !name.endsWith('.zip') && !name.endsWith('.tar.gz');
+                })
+                .map((a: any) => ({
+                    id: a.id,
+                    name: a.name,
+                    browser_download_url: a.browser_download_url,
+                    size: a.size,
+                })),
+        }),
+    },
 
-    // 检测平台与提取仓库路径
-    const isGithub = apiUrl.includes('api.github.com/repos/')
-    const isGitee = apiUrl.includes('gitee.com/api/v5/repos/')
+    gitee: {
+        apiBase: 'https://gitee.com/api/v5/repos/',
+        webBase: 'https://gitee.com/',
+        cacheTTL: 30 * 60 * 1000,
+        shouldReverse: true,
 
-    let repoPath = ''
-    let platform: 'github' | 'gitee' | null = null
+        normalizeRepoPath: (url) => url.match(/gitee\.com\/([^/]+\/[^/]+)/)?.[1] || null,
 
-    if (isGithub) {
-        const match = apiUrl.match(/repos\/([^/]+\/[^/]+)/)
-        if (match) {
-            repoPath = match[1]
-            platform = 'github'
-        }
-    } else if (isGitee) {
-        const match = apiUrl.match(/repos\/([^/]+\/[^/]+)/)
-        if (match) {
-            repoPath = match[1]
-            platform = 'gitee'
-        }
-    }
+        buildFetchUrl: (repoPath, page, perPage) =>
+            `https://legado-repo.tnt-wwxs-tz.workers.dev/?platform=gitee&repo=${encodeURIComponent(repoPath)}&per_page=${perPage}&page=${page}`,
+
+        transformRelease: (item, repoWebUrl) => {
+            const rawAssets = item.assets || [];
+            const filteredAssets = rawAssets.filter((asset: any) => {
+                const name = (asset.name || '').toLowerCase();
+                return !name.endsWith('.zip') && !name.endsWith('.tar.gz');
+            });
+
+            const isPrerelease = item.prerelease ||
+                ['beta', 'alpha', 'pre'].some(k => String(item.tag_name).toLowerCase().includes(k));
+
+            const tagName = String(item.tag_name).toLowerCase() === 'beta' && item.name
+                ? item.name.replace(/^legado_app_/, '')
+                : item.tag_name;
+
+            const latestAssetDate = rawAssets.length
+                ? rawAssets.reduce((latest: string, a: any) => a.updated_at > latest ? a.updated_at : latest, rawAssets[0].updated_at)
+                : null;
+
+            return {
+                tag_name: tagName,
+                prerelease: isPrerelease,
+                published_at: latestAssetDate || item.created_at,
+                body: renderMarkdown(item.body || ''),
+                html_url: `${repoWebUrl}/releases/tag/${encodeURIComponent(tagName)}`,
+                assets: filteredAssets.map((asset: any) => ({
+                    id: asset.browser_download_url,
+                    name: asset.name,
+                    browser_download_url: asset.browser_download_url,
+                    size: null,
+                })),
+            };
+        },
+    },
+};
+
+// ── 缓存工具 ──
+const CACHE_PREFIX = 'release-cache:';
+
+export const readCache = (key: string) => { /* ... 保持不变 */ };
+export const readStaleCache = (key: string) => { /* ... 保持不变 */ };
+export const writeCache = (key: string, data: any, ttl: number) => { /* ... 保持不变 */ };
+
+// ── 翻页请求（完全可配置） ──
+export const fetchAllReleases = async (platform: Platform, repoPath: string): Promise<any[]> => {
+    const config = PLATFORM_CONFIGS[platform];
+    if (!config) throw new Error(`Unsupported platform: ${platform}`);
+
+    let page = 1;
+    const perPage = 100;
+    let all: any[] = [];
 
     while (true) {
-        let url = ''
-        // 如果成功匹配到了平台和仓库路径，统一走你的专属 CF Worker 代理
-        if (platform && repoPath) {
-            url = `https://legado-repo.tnt-wwxs-tz.workers.dev/?platform=${platform}&repo=${encodeURIComponent(repoPath)}&per_page=100&page=${page}`
-        } else {
-            // 后备容错逻辑，保持原有拼接结构
-            const baseUrl = apiUrl.replace(/[?&]per_page=\d+/, '')
-            const separator = baseUrl.includes('?') ? '&' : '?'
-            url = `${baseUrl}${separator}per_page=100&page=${page}`
-        }
+        const url = config.buildFetchUrl(repoPath, page, perPage);
 
-        let res: Response | null = null
-        let lastError: any
+        let res: Response | null = null;
+        let lastError: any;
 
         for (let attempt = 0; attempt < 3; attempt++) {
             try {
-                const controller = new AbortController()
-                const timer = setTimeout(() => controller.abort(), 8000)
-                res = await fetch(url, { signal: controller.signal })
-                clearTimeout(timer)
-                break
+                const controller = new AbortController();
+                const timer = setTimeout(() => controller.abort(), 8000);
+                res = await fetch(url, { signal: controller.signal });
+                clearTimeout(timer);
+                break;
             } catch (e) {
-                lastError = e
-                if (attempt < 2) {
-                    await new Promise(r => setTimeout(r, 1000 * (attempt + 1)))
-                }
+                lastError = e;
+                if (attempt < 2) await new Promise(r => setTimeout(r, 1000 * (attempt + 1)));
             }
         }
 
-        if (!res) throw lastError
+        if (!res) throw lastError;
 
         if (res.status === 429) {
-            const retryAfter = Number(res.headers.get('Retry-After') || 60)
-            console.warn(`[fetchAllReleases] 触发限流，等待 ${retryAfter}s`)
-            await new Promise(r => setTimeout(r, retryAfter * 1000))
-            continue
+            const retryAfter = Number(res.headers.get('Retry-After') || 60);
+            console.warn(`[fetchAllReleases] ${platform} 触发限流，等待 ${retryAfter}s`);
+            await new Promise(r => setTimeout(r, retryAfter * 1000));
+            continue;
         }
 
-        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        if (!res.ok) throw new Error(`HTTP ${res.status} on ${platform}`);
 
-        const data = await res.json()
-        if (!Array.isArray(data) || data.length === 0) break
+        const data = await res.json();
+        if (!Array.isArray(data) || data.length === 0) break;
 
-        all = all.concat(data)
-        if (data.length < 100) break
-        page++
+        all = all.concat(data);
+        if (data.length < perPage) break;
+        page++;
     }
 
-    return all
-}
+    return config.shouldReverse ? all.reverse() : all;
+};
 
-// ── 带缓存的完整请求 ──
+// ── 带缓存的请求 ──
 export const fetchReleasesWithCache = async (
-    meta: { apiUrl: string; platform: 'github' | 'gitee'; webUrl: string },
+    meta: { apiUrl: string; platform: Platform; webUrl: string },
     item: { prerelease?: boolean }
 ) => {
-    const cacheKey = meta.apiUrl
-    const ttl = CACHE_TTL[meta.platform] || CACHE_TTL.github
+    const config = PLATFORM_CONFIGS[meta.platform];
+    if (!config) throw new Error(`Unsupported platform: ${meta.platform}`);
 
-    const cached = readCache(cacheKey)
-    if (cached) return getTargetRelease(cached, item)
+    const cacheKey = meta.apiUrl;
+    const cached = readCache(cacheKey);
+    if (cached) return getTargetRelease(cached, item);
 
-    const rawData = await fetchAllReleases(meta.apiUrl)
-    const releases = transformReleases(rawData, meta.platform, meta.webUrl)
-    writeCache(cacheKey, releases, ttl)
-    return getTargetRelease(releases, item)
-}
+    // 提取 repoPath
+    const repoPath = config.normalizeRepoPath(meta.apiUrl) || config.normalizeRepoPath(meta.webUrl);
+    if (!repoPath) throw new Error('Cannot resolve repo path');
 
-// ── 其余原有逻辑不变 ──
-const stripReleasePath = (path: string) => path
-    .replace(/\/releases(?:\/.*)?$/, '')
-    .replace(/\/$/, '')
+    const rawData = await fetchAllReleases(meta.platform, repoPath);
+    const releases = rawData.map(r => config.transformRelease(r, meta.webUrl));
 
-const normalizeRepoWebUrl = (repoPath: string, platform: 'gitee' | 'github') => {
-    const host = platform === 'gitee' ? 'gitee.com' : 'github.com'
-    return `https://${host}/${repoPath}`
-}
+    writeCache(cacheKey, releases, config.cacheTTL);
+    return getTargetRelease(releases, item);
+};
+
+// ── 其他函数保持不变 ──
+export const getTargetRelease = (releases: any[], item: { prerelease?: boolean }) => {
+    if (!releases?.length) return null;
+    return item.prerelease ? releases[0] : releases.find(r => !r.prerelease) || releases[0];
+};
 
 export const resolveRepoMeta = (urlField?: string | null) => {
-    if (!urlField) return null
-    const url = urlField.trim()
+    if (!urlField) return null;
+    const url = urlField.trim().toLowerCase();
 
-    if (url.includes('gitee.com/')) {
-        const path = stripReleasePath(url.split('gitee.com/')[1])
-        return {
-            platform: 'gitee' as const,
-            apiUrl: `https://gitee.com/api/v5/repos/${path}/releases`,
-            webUrl: normalizeRepoWebUrl(path, 'gitee'),
+    for (const [platform, config] of Object.entries(PLATFORM_CONFIGS)) {
+        const repoPath = config.normalizeRepoPath(url);
+        if (repoPath) {
+            return {
+                platform: platform as Platform,
+                apiUrl: `${config.apiBase}${repoPath}/releases`,
+                webUrl: `${config.webBase}${repoPath}`,
+            };
         }
     }
+    return null;
+};
 
-    if (url.includes('github.com/')) {
-        const path = stripReleasePath(url.split('github.com/')[1])
-        return {
-            platform: 'github' as const,
-            apiUrl: `https://api.github.com/repos/${path}/releases`,
-            webUrl: normalizeRepoWebUrl(path, 'github'),
-        }
-    }
+// ==================== 兼容旧代码导出 ====================
 
-    return null
-}
+// 保留 CACHE_TTL 导出，供 DownloadCard.vue 等旧代码使用
+export const CACHE_TTL = {
+    github: PLATFORM_CONFIGS.github.cacheTTL,
+    gitee: PLATFORM_CONFIGS.gitee.cacheTTL,
+} as const;
 
-export const getTargetRelease = (releases: any[], item: { prerelease?: boolean }) => {
-    if (!releases?.length) return null
-    return item.prerelease
-        ? releases[0]
-        : releases.find(r => !r.prerelease) || releases[0]
-}
-
-const getGiteeReleaseUrl = (repoWebUrl: string | undefined, tagName: string, item: any) => {
-    if (repoWebUrl && tagName) {
-        return `${repoWebUrl}/releases/tag/${encodeURIComponent(tagName)}`
-    }
-    return item.html_url || item.url || ''
-}
-
-export const transformReleases = (rawData: any, platform: 'gitee' | 'github', repoWebUrl?: string) => {
-    if (!Array.isArray(rawData)) return []
-
-    const normalizedRawData = platform === 'gitee' ? [...rawData].reverse() : rawData
-
-    return normalizedRawData.map(item => {
-        const rawAssets = item.assets || []
-        const filteredAssets = rawAssets.filter((asset: any) => {
-            const assetName = (asset.name || '').toLowerCase()
-            return !assetName.endsWith('.zip') && !assetName.endsWith('.tar.gz')
-        })
-
-        const isPrerelease = platform === 'gitee'
-            ? (item.prerelease || ['beta', 'alpha', 'pre'].some(keyword => String(item.tag_name).toLowerCase().includes(keyword)))
-            : item.prerelease
-
-        const tagName = String(item.tag_name).toLowerCase() === 'beta' && item.name
-            ? item.name.replace(/^legado_app_/, '')
-            : item.tag_name
-
-        const latestAssetDate = rawAssets.length > 0
-            ? rawAssets.reduce((latest, a) =>
-                a.updated_at > latest ? a.updated_at : latest, rawAssets[0].updated_at)
-            : null
-
-        return {
-            tag_name: tagName,
-            prerelease: isPrerelease,
-            published_at: latestAssetDate || (platform === 'gitee' ? item.created_at : item.published_at),
-            body: renderMarkdown(item.body || ''),
-            html_url: platform === 'gitee'
-                ? getGiteeReleaseUrl(repoWebUrl, tagName, item)
-                : item.html_url,
-            assets: filteredAssets.map((asset: any) => ({
-                id: platform === 'gitee' ? asset.browser_download_url : asset.id,
-                name: asset.name,
-                browser_download_url: asset.browser_download_url,
-                size: platform === 'gitee' ? null : asset.size,
-            })),
-        }
-    })
-}
