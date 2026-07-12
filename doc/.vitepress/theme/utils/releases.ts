@@ -210,3 +210,12 @@ export const CACHE_TTL = {
     gitee: PLATFORM_CONFIGS.gitee.cacheTTL,
 } as const;
 
+// 兼容 transformReleases（很多地方可能还在使用）
+export const transformReleases = (rawData: any, platform: Platform, repoWebUrl?: string) => {
+    const config = PLATFORM_CONFIGS[platform];
+    if (!config) {
+        console.warn(`[transformReleases] Unsupported platform: ${platform}`);
+        return [];
+    }
+    return rawData.map((item: any) => config.transformRelease(item, repoWebUrl || ''));
+};
