@@ -106,6 +106,7 @@ export const readCache = (key: string) => { /* ... 保持不变 */ };
 export const readStaleCache = (key: string) => { /* ... 保持不变 */ };
 export const writeCache = (key: string, data: any, ttl: number) => { /* ... 保持不变 */ };
 
+// ── 翻页请求 ──
 export const fetchAllReleases = async (
     platformOrUrl: Platform | string,
     repoPathInput?: string
@@ -123,36 +124,49 @@ export const fetchAllReleases = async (
     }
 
     if (!repoPath) throw new Error('仓库路径解析失败');
+
     const config = PLATFORM_CONFIGS[platform];
     if (!config) throw new Error(`Unsupported platform`);
-    let url: string;
+
+    let attempts: string[] = [];
 
     if (platform === 'gitee') {
-        url = `https://gitee.com/api/v5/repos/${repoPath}/releases?per_page=100`;
+        attempts = [`https://gitee.com/api/v5/repos/${repoPath}/releases?per_page=100`];
     } else {
-        url = `https://githubdl.furry.pub/https://api.github.com/repos/${repoPath}/releases?per_page=100`;
+        attempts = [
+            `https://githubdl.furry.pub/https://api.github.com/repos/${repoPath}/releases?per_page=100`,
+
+            `https://legado-repo.tnt-wwxs-tz.workers.dev/?platform=github&repo=${encodeURIComponent(repoPath)}&per_page=100`,
+
+            `https://api.github.com/repos/${repoPath}/releases?per_page=100`
+        ];
     }
 
-    try {
-        const res = await fetch(url, {
-            headers: {
-                'User-Agent': 'Legado-Download-Page',
-                'Accept': 'application/json'
-            },
-            signal: AbortSignal.timeout(12000)
-        });
+    for (const url of attempts) {
+        try {
+            console.log(`[尝试 ${platform}] ${url.substring(0, 75)}...`);
 
-        if (res.ok) {
-            const data = await res.json();
-            if (Array.isArray(data)) {
-                // console.log(`[成功 ${platform}] ${url.substring(0, 70)}...`);
-                return config.shouldReverse ? data.reverse() : data;
+            const res = await fetch(url, {
+                headers: {
+                    'User-Agent': 'Legado-Download-Page',
+                    'Accept': 'application/json'
+                },
+                signal: AbortSignal.timeout(12000)
+            });
+
+            if (res.ok) {
+                const data = await res.json();
+                if (Array.isArray(data)) {
+                    console.log(`[成功 ${platform}] 使用: ${url.substring(0, 60)}...`);
+                    return config.shouldReverse ? data.reverse() : data;
+                }
             }
+        } catch (e) {
+            console.warn(`[失败 ${platform}]`, url.substring(0, 60), e?.message);
         }
-    } catch (e) {
-        console.warn(`[失败 ${platform}]`, e?.message);
     }
-    throw new Error(`请求失败: ${platform}/${repoPath}`);
+
+    throw new Error(`所有通道均失败: ${platform}/${repoPath}`);
 };
 
 // ── 带缓存的请求 ──
