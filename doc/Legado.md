@@ -303,23 +303,36 @@ repos:
 > [!IMPORTANT]
 > 📚 **测试书源（以阅读3 的 JSON 书源为准）**
 >
-> **书源，指 阅读3 的常规书源**，测试书源：[领域书库](https://www.yckceo.com/yuedu/shuyuan/content/id/7560.html)、[无极书院](https://www.yckceo.com/yuedu/shuyuan/content/id/7573.html)
+> **书源，指 开源阅读3.0 的常规书源**，测试书源：[领域书库](https://www.yckceo.com/yuedu/shuyuan/content/id/7560.html)、[无极书院](https://www.yckceo.com/yuedu/shuyuan/content/id/7573.html)
 >
-> **JS 源，指 阅读3 的 JS 书源**，测试书源：[兽人控小说站](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)
+> **JS源，指 开源阅读3.0 的 JS 书源**，测试书源：[兽人控小说站](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)
 
-| 软件 | 试用 | 商店 | TF | 书源 | JS 源 | 收费方式 |
+| 软件 | 试用 | 商店 | TF | 书源 | JS源 | 收费方式 |
 | :------ | :---: | :---: | :---: | :---: | :---: | :----- |
 | [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ❌ | ✅ | ✅ | ✅ | 订阅制 & 永久 ￥60；TF ￥8 |
 | [源阅](https://github.com/kaich/SourceReadSite) | ❌ | ❌ | ✅ | ✅ | ✅ | TF ￥128 |
 | | | | | | | |
 | [阅读阅多](https://apps.apple.com/app/id6747099551) | ✅ | ✅ | ❌ | ☑️ | ☑️ | 订阅制 & 永久 ￥399 ~ ￥798 ~ ￥1497 |
 | [千阅](https://apps.apple.com/app/id1665963317) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ~~￥98~~ ￥199 |
-| [读不舍手](https://apps.apple.com/app/id1662413517) | ✅ | ✅ | ✅ | ☑️ | ❌ | 订阅制 & 永久 ￥128 ~ ￥368 |
+| [读不舍手](https://apps.apple.com/app/id1662413517) | ✅ | ✅ | ✅ | ☑️ | ❌ | 订阅制 & 永久 ￥128 ~ ￥368；TF 免费 |
+| [阅读](https://apps.apple.com/app/id6772972358) | ✅ | ✅ | ✅ | ☑️ | ❌ | 目前免费 |
 | | | | | | | |
-| [栖阅](https://apps.apple.com/app/id6759361885) | ❌ | ✅ | ❌ | ❓ | ❓ | 永久 ￥58 |
-| [Readori](https://apps.apple.com/app/id6761731508) | ✅ | ✅ | ❌ | ❌ | ❌ | 永久 HKD $8 |
+| [Readori](https://apps.apple.com/app/id6761731508) | ✅ | ✅ | ✅ | ❌ | ❌ | 永久 HKD $8 |
 | [畅享阅读](https://apps.apple.com/app/id6768605516) | ✅ | ✅ | ❌ | ❌ | ❌ | 无账号体系，无需注册登录 |
-- ✅ 支持；☑️ 部分支持；❌ 不支持；❓未知（未测试）
+| [书享阅读](https://www.sxyd.lltask.top) | ✅ | ❌ | ✅ | ❌ | ❌ | 订阅制 |
+| [栖阅](https://apps.apple.com/app/id6759361885) | ❌ | ❌ | ❌ | ❓ | ❓ | 永久 ￥58 |
+- ✅ 支持；☑️ 部分支持；❌ 不支持；❓未知/未测试
+
+
+<details><summary> 🔗 Test Flight 链接 & 其他信息 </summary>
+
+- 轻悦时光 [TestFlight](https://api.qread.xyz/tf) ，[永久会员](https://api.qread.xyz/vip) 赠送 TestFlight
+- 源阅 Test Flight，QQ 查找群：`909487476`、`728349235`、`137723922`、`103120951`
+- 读不舍手 [官网](https://www.jinlintech.com.cn/product/guide/question.html) [TestFlight](https://testflight.apple.com/join/5wFCDpYF)
+- Readori [官网](https://readori.com) [TestFlight](https://testflight.apple.com/join/gDmHhDV2) 已满
+- 阅读 [Github](https://github.com/CHANG-JUI-LIN/Yuedu-reader) [TestFlight](https://testflight.apple.com/join/7hvbzYC1)
+- 书享阅读 [Github](https://github.com/zyl140640/readbook-releases) [TestFlight](https://testflight.apple.com/join/zPB1Gn9p)
+</details>
 
 
 ### ⬇️ 下载软件 {#IOSDownload}
@@ -349,7 +362,6 @@ repos:
 | :--- | :---: | :---: | :---: | :---- |
 | [益达](https://github.com/xiaohucode/yidaRule/releases) | ✅ | ❌ | ❌ | 免费 |
 | [用心读书](https://apps.apple.com/app/id1569793141) | ✅ | ✅ | ✅ | 订阅制 & 永久 ￥98 |
-| [书享阅读](https://www.sxyd.lltask.top) | ✅ | ❌ | ❌ | 订阅制：年费 ￥38 |
 | 香色闺阁 | ❓ | ❌ | ❌ | 已下架 |
 | 爱阅书香 | ❓ | ❌ | ❌ | 已下架 |
 
