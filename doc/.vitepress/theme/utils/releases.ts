@@ -109,34 +109,46 @@ export const writeCache = (key: string, data: any, ttl: number) => { /* ... 保�
 // ── 翻页请求（支持新旧调用方式） ──
 export const fetchAllReleases = async (
     platformOrUrl: Platform | string,
-    repoPath?: string
+    repoPathInput?: string
 ): Promise<any[]> => {
 
     let platform: Platform;
-    let finalRepoPath = repoPath;
+    let repoPath = repoPathInput;
 
-    // 兼容旧代码：如果第一个参数是 URL，则从中解析 platform 和 repoPath
-    if (typeof platformOrUrl === 'string' && platformOrUrl.includes('api.')) {
+    // 兼容旧代码：传入的是完整 API URL
+    if (typeof platformOrUrl === 'string' &&
+        (platformOrUrl.includes('api.github.com') || platformOrUrl.includes('gitee.com/api'))) {
+
         if (platformOrUrl.includes('gitee.com')) {
             platform = 'gitee';
-        } else if (platformOrUrl.includes('github.com') || platformOrUrl.includes('api.github.com')) {
-            platform = 'github';
         } else {
-            throw new Error(`Unsupported platform URL: ${platformOrUrl}`);
+            platform = 'github';
         }
 
-        // 从 URL 中提取 repoPath
-        const match = platformOrUrl.match(/repos\/([^/]+\/[^/]+)/);
-        finalRepoPath = match ? match[1] : '';
-    } else {
+        // 提取 repoPath（支持 gitee 和 github）
+        const match = platformOrUrl.match(/repos\/([^/]+\/[^/]+)/i);
+        if (match) {
+            repoPath = match[1];
+        } else {
+            // 备用方案：直接从 URL 提取
+            const urlParts = platformOrUrl.split('/repos/');
+            if (urlParts[1]) {
+                repoPath = urlParts[1].split('/releases')[0];
+            }
+        }
+    }
+    // 新调用方式：直接传 platform
+    else {
         platform = platformOrUrl as Platform;
     }
 
     const config = PLATFORM_CONFIGS[platform];
-    if (!config) throw new Error(`Unsupported platform: ${platform}`);
+    if (!config) {
+        throw new Error(`Unsupported platform: ${platformOrUrl}`);
+    }
 
-    if (!finalRepoPath) {
-        throw new Error('Cannot resolve repo path');
+    if (!repoPath) {
+        throw new Error(`Cannot resolve repo path from: ${platformOrUrl}`);
     }
 
     let page = 1;
@@ -144,7 +156,7 @@ export const fetchAllReleases = async (
     let all: any[] = [];
 
     while (true) {
-        const url = config.buildFetchUrl(finalRepoPath, page, perPage);
+        const url = config.buildFetchUrl(repoPath, page, perPage);
 
         let res: Response | null = null;
         let lastError: any;
@@ -217,11 +229,11 @@ export const resolveRepoMeta = (urlField?: string | null) => {
     if (!urlField) return null;
     const url = urlField.trim().toLowerCase();
 
-    for (const [platform, config] of Object.entries(PLATFORM_CONFIGS)) {
+    for (const [plat, config] of Object.entries(PLATFORM_CONFIGS)) {
         const repoPath = config.normalizeRepoPath(url);
         if (repoPath) {
             return {
-                platform: platform as Platform,
+                platform: plat as Platform,
                 apiUrl: `${config.apiBase}${repoPath}/releases`,
                 webUrl: `${config.webBase}${repoPath}`,
             };
