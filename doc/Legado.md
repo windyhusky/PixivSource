@@ -303,7 +303,7 @@ repos:
 > [!IMPORTANT]
 > 📚 **测试书源（以阅读3 的 JSON 书源为准）**
 >
-> **书源，指 阅读3 的常规书源**，测试书源：[天命皆烬小说](https://www.yckceo.com/yuedu/shuyuan/content/id/7259.html)
+> **书源，指 阅读3 的常规书源**，测试书源：[领域书库](https://www.yckceo.com/yuedu/shuyuan/content/id/7560.html)、[无极书院](https://www.yckceo.com/yuedu/shuyuan/content/id/7573.html)
 >
 > **JS 源，指 阅读3 的 JS 书源**，测试书源：[兽人控小说站](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)
 
@@ -312,10 +312,13 @@ repos:
 | [轻悦时光](https://github.com/autobcb/qysg) | ✅ | ❌ | ✅ | ✅ | ✅ | 订阅制 & 永久 ￥60；TF ￥8 |
 | [源阅](https://github.com/kaich/SourceReadSite) | ❌ | ❌ | ✅ | ✅ | ✅ | TF ￥128 |
 | | | | | | | |
+| [阅读阅多](https://apps.apple.com/app/id6747099551) | ✅ | ✅ | ❌ | ☑️ | ☑️ | 订阅制 & 永久 ￥399 ~ ￥798 ~ ￥1497 |
 | [千阅](https://apps.apple.com/app/id1665963317) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ~~￥98~~ ￥199 |
-| [阅读阅多](https://apps.apple.com/app/id6747099551) | ✅ | ✅ | ❌ | ✅ | ❌ | 订阅制 & 永久 ￥399 ~ ￥798 ~ ￥1497 |
+| [读不舍手](https://apps.apple.com/app/id1662413517) | ✅ | ✅ | ✅ | ☑️ | ❌ | 订阅制 & 永久 ￥128 ~ ￥368 |
+| | | | | | | |
 | [栖阅](https://apps.apple.com/app/id6759361885) | ❌ | ✅ | ❌ | ❓ | ❓ | 永久 ￥58 |
-| [读不舍手](https://apps.apple.com/app/id1662413517) | ✅ | ✅ | ❌ | ❌ | ❌ | 订阅制 & 永久 ￥128 ~ ￥368 |
+| [Readori](https://apps.apple.com/app/id6761731508) | ✅ | ✅ | ❌ | ❌ | ❌ | 永久 HKD $8 |
+| [畅享阅读](https://apps.apple.com/app/id6768605516) | ✅ | ✅ | ❌ | ❌ | ❌ | 无账号体系，无需注册登录 |
 - ✅ 支持；☑️ 部分支持；❌ 不支持；❓未知（未测试）
 
 
