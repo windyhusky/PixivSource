@@ -1,7 +1,7 @@
 ---
 layout: doc
-title: 项目起源 - Pixiv 书源项目起源
-description: Pixiv 书源项目起源
+title: 项目进展 - Pixiv 书源项目 & 开源阅读时间线
+description: Pixiv 书源项目进展 & 开源阅读时间线
 
 #sidebar: false
 #aside: false
@@ -38,22 +38,34 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## ⚡️ 快速跳转 {#QuickJump}
 > [!TIP]
-> [ 项目进展 2026](#2026)；
-> [ 项目进展 2025](#2025)；
-> [ 项目进展 2024](#2024)；
-> [ 项目进展 2023](#2023)；
-> [ 项目进展 2021](#2021)；
+> 项目进展：
+> [2026](#2026)；
+> [2025](#2025)；
+> [2024](#2024)；
+> [2023](#2023)；
+> [2021](#2021)；
+> [起源](#Beginning)
 
 
 ## 🚀 项目进展
 ### 📆 2026 {#2026}
 <br>
 
+::: timeline 2026-07-03
+> [!INFO]
+> **喵公子 阅读 Beta 恢复更新**
+:::
+
 ::: timeline 2026-07-10 
 > [!IMPORTANT]
 > **Linpx 网站更新，书源、订阅源同步更新**
 >
 > 优化订阅源JS注入代码
+:::
+
+::: timeline 2026-07-03
+> [!INFO]
+> **洛娅橙 阅读 Sigma 恢复更新**
 :::
 
 ::: timeline 2026-06-15
@@ -66,8 +78,16 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2026-05-28
-> [!NOTE]
-> **喵公子删库跑路**，删除了 Beta 版本旧包名的仓库 `mgz0227/legado`、 Tauri 的仓库 `LegadoTeam/Legado-Tauri`， `LegadoTeam/Legado-Tauri-Release`
+> [!WARNING]
+> **喵公子删库跑路**，删除了 Beta 版本旧包名的仓库 `mgz0227/legado`、 移除了 Tauri 的仓库 `LegadoTeam/Legado-Tauri`， `LegadoTeam/Legado-Tauri-Release` 的所有代码
+:::
+
+::: timeline 2026-05-27
+> [!WARNING]
+>  **坤飞删库跑路**，移除了 `gedoor/legado` 的所有代码
+
+> [!INFO]
+> **坤飞 微信公众号【开源阅读】照常更新吃瓜新闻**
 :::
 
 ::: timeline 2026-05-14
@@ -82,8 +102,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [!CAUTION]
 > **阅文知识产权保护** 发布了 [维权行动｜近4000部网络小说遭侵权！检察机关亮剑“深度链接”侵权陷阱](https://telegra.ph/%E7%BB%B4%E6%9D%83%E8%A1%8C%E5%8A%A8%E8%BF%914000%E9%83%A8%E7%BD%91%E7%BB%9C%E5%B0%8F%E8%AF%B4%E9%81%AD%E4%BE%B5%E6%9D%83%E6%A3%80%E5%AF%9F%E6%9C%BA%E5%85%B3%E4%BA%AE%E5%89%91%E6%B7%B1%E5%BA%A6%E9%93%BE%E6%8E%A5%E4%BE%B5%E6%9D%83%E9%99%B7%E9%98%B1-03-25)
 
-> [!IMPORTANT]
+> [!WARNING]
 > **受上述文章的影响，多个源作者群已解散**
+
+> [!INFO]
+> **坤飞 微信公众号【开源阅读】照常更新新闻（张雪峰逝世）**
 :::
 
 ::: timeline 2026-03-10
@@ -93,6 +116,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ::: timeline 2026-02-23
 模糊搜索作者
+:::
+
+::: timeline 2026-02-16
+> [!INFO]
+> **坤飞 微信公众号【开源阅读】恢复更新（拜年）**
 :::
 
 ::: timeline 2026-02-01
@@ -115,13 +143,26 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2025-11-24
-> [!IMPORTANT]
+> [!NOTE]
 > **书源网站创立，** 就是你目前看到的这个。
+> 
+> 前期域名：https://downeyrem.github.io/PixivSource
 :::
+
 
 ::: timeline 2025-11-11
 > [!IMPORTANT]
-> **仓库移交。从事实上的 maintainer 变成了实际的 maintainer**
+> **书源仓库移交。从事实上的 maintainer 变成了实际的 maintainer**
+:::
+
+::: timeline 2025-11-01
+> [!IMPORTANT]
+> **喵公子的 Beta 版本合并了 阅读 Sigma 的代码，阅读 Sigma 正式成为主流**
+:::
+
+::: timeline 2025-09-07
+> [!INFO]
+> **洛娅橙开始开发 阅读 Sigma，后续成为了诸多书源的首选版**
 :::
 
 ::: timeline 2025-06-04
@@ -222,17 +263,22 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ::: timeline 2023-11-01
 > [!IMPORTANT]
-> **阅读正式版发布最后一个有实质更新的apk（正式版3.25没有实质更新）。**
+> **阅读正式版 发布最后一个有实质更新的apk（正式版3.25没有实质更新）。**
 :::
 
 ::: timeline 2023-10-04
 > [!WARNING]
-> **阅读正式版预告停更，坤飞疑似跑路**，撤销原来的蓝奏云链接。
+> **阅读正式版 预告停更，坤飞疑似跑路**，撤销原来的蓝奏云链接。
 
 > [!NOTE]
-> **喵公子发布了新的蓝奏云链接，开始发布 Beta 版本**。
+> **喵公子发布了 [新的蓝奏云链接](https://miaogongzi.lanzout.com/b01rgkhhe)，开始发布 Beta 版本**。
 >
 > 谷歌 Play 上的 Pro 版功能已合入 Beta 版本。
+:::
+
+::: timeline 2023-08-02
+> [!INFO]
+> **坤飞 微信公众号【开源阅读】发布了在23年最后一份吃瓜新闻**
 :::
 
 ::: timeline 2023-04-03
@@ -249,7 +295,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2023-02-16
-发布了 [第3个版本](UpdateLog/2024.md#11) 。同时发布了：P站、Linpx 书源、以及两站的订阅源。
+狗子发布了 [第3个版本](UpdateLog/2024.md#11) 。同时发布了：P站、Linpx 书源、以及两站的订阅源。
 :::
 
 ::: timeline 2023-02-14
@@ -271,17 +317,18 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <br>
 
 ::: timeline 2021-08-01
-发布了 [第2个版本](UpdateLog/2024.md#2) 。搜索时合并同一系列的小说、支持单篇小说、目录处翻页。此时的书源，有关看小说的部分，已经可以正常使用了。
+狗子发布了 [第2个版本](UpdateLog/2024.md#2) 。搜索时合并同一系列的小说、支持单篇小说、目录处翻页。
+此时的书源，有关看小说的部分，已经可以正常使用了。
 :::
 
 ::: timeline 2021-04-10
 > [!IMPORTANT]
-> 发布了 [第1个版本](UpdateLog/2024.md#1) 。只支持系列小说。
+> 狗子发布了 [第1个版本](UpdateLog/2024.md#1) 。只支持系列小说。
 :::
 
 ::: timeline 2021-03-28
 > [!NOTE]
-> 创建仓库，上传代码 https://github.com/windyhusky/PixivSource
+> 狗子在 Github 上 [创建仓库](https://github.com/windyhusky/PixivSource)，上传代码 
 :::
 
 ::: timeline 2021-03-02
@@ -290,3 +337,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 
+### 🌱 起源 {#Beginning}
+> [!TIP]
+> **一个想法：如果能在【开源阅读】里，直接看到P站作品的话，那阅读体验岂不是要暴增？**
