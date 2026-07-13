@@ -82,8 +82,8 @@ legadoRepos:
     icon: /img/LegadoNG.png
     desc: 基于阅读 Sigma 继续演进的独立阅读器分支
     link: https://github.com/joestar817/legado_NG
-    prerelease: true
-    recommend: beta
+    prerelease: false
+    recommend: release
     show_assets: 1
     hide: true
     

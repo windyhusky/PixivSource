@@ -126,6 +126,25 @@ repos:
 | [Telegram 频道](https://t.me/readsigma) | 正式版 | 需要代理，需要登录 |
 
 
+#### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
+> [!TIP]
+>
+> **这是 喵公子 用于同步上游代码的仓库，是【阅读 Beta】的仓库**
+>
+> **阅读 Beta 【新包名】是当前主流版本**
+>
+> 【新包名】项目地址：https://github.com/LegadoTeam/legado
+
+| 下载站点 | 推荐版本 | 备注 |
+| ------- | ------- | --- |
+| [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) | 新共存版 | 无需代理，无需登录 |
+| [喵公子阅读资源](https://yd.mgz6.com) | (新包名) | 无需代理，无需登录 |
+| [Github Release](https://github.com/legadoteam/legado/releases) | legado.app.releaseA | 需要代理，无需登录 |
+| [Github Action](https://github.com/legadoteam/legado/actions) | legado.app.releaseA | 需要代理，需要登录 |
+| [Legado 频道](https://t.me/Legado_Channels) | 新共存版 | 需要代理，需要登录 |
+| [Legado Beta 频道](https://t.me/Legado_Beta) | 新共存版 | 需要代理，需要登录 |
+
+
 #### 🎀 【兼容】[阅读 MD3](https://github.com/HapeLee/legado-with-MD3) {#LegadoMD3}
 
 > [!TIP]
@@ -241,31 +260,6 @@ repos:
 
 
 ### 🚮 停更软件 {#AndroidOthers}
-
-<details><summary> 🏛️ 阅读 Beta （已停更）</summary>
-
-#### 🏛️ 【官方】[阅读 Beta](https://beta.miaogongzi.cc) {#LegadoBeta}
-> [!NOTE]
->
-> **这是 喵公子 用于同步上游代码的仓库，是【阅读 Beta】的仓库**
->
-> **阅读 Beta 【新包名】是当前主流版本**
->
-> 【新包名】项目地址：https://github.com/LegadoTeam/legado
->
-> 【原包名】项目地址：https://github.com/mgz0227/legado
-
-| 下载站点 | 推荐版本 | 备注 |
-| ------- | ------- | --- |
-| [蓝奏云](https://miaogongzi.lanzout.com/b01rgkhhe) | 新共存版 | 无需代理，无需登录 |
-| [喵公子阅读资源](https://yd.mgz6.com) | (新包名) | 无需代理，无需登录 |
-| [Github Release](https://github.com/legadoteam/legado/releases) | legado.app.releaseA | 需要代理，无需登录 |
-| [Github Action](https://github.com/legadoteam/legado/actions) | legado.app.releaseA | 需要代理，需要登录 |
-| [Legado 频道](https://t.me/Legado_Channels) | 新共存版 | 需要代理，需要登录 |
-| [Legado Beta 频道](https://t.me/Legado_Beta) | 新共存版 | 需要代理，需要登录 |
-</details>
-
-
 <details><summary> 👎 阅读 正式版（已停更）</summary>
 
 #### 👎 【官方】[阅读 正式版](https://github.com/gedoor/legado) {#Legado}
