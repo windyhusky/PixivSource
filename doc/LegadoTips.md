@@ -54,7 +54,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 阅读功能
-### 🀄️ 繁简转换
+### 🀄️ 繁简转换 {#ConvertChinese}
 > [!TIP]
 > 
 > ✅ 开源阅读软件自带 **繁简转换** 功能
