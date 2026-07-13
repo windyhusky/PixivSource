@@ -53,7 +53,24 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 内容更全面，排版更精美**
 
 
-## 搜索小说
+## 搜索
+### 🔎 搜索
+- **URL**：`https://www.pixiv.net/ajax/search/{type}/{name}`
+- **请求方法**: `GET`
+- **传参方式**: `PATH` & `QUERY`
+#### 参数说明
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `type` | Path | String | 作品类型：`artwork` 插画漫画动图、`illust_ugoira` 插画动图、`illust` 插画、`ugoira` 动图、`manga` 漫画、`novel` 小说 |
+| `name` | Path | String | 关键词 |
+| `word` | Query | String | 关键词 (同 name) |
+| `order` | Query | String | 排序方式：`date_d` 最新、`date` 最旧 |
+| `mode` | Query | String | 年龄限制：`all`、`safe`、 `r18`|
+| `p` | Query | Integer | 页码 |
+| `ai_type` | Query | Integer | [可选]AI作品：`0`非AI、`1`AI |
+| `s_mode` | Query | String | 检索范围：`s_tag` 标签部分一致、`s_tag_full` 标签完全一致、`tag_tc` 标签标题说明文字、`tc` 标签说明文字 |
+
+
 ### 🔎 搜索小说
 - **URL**：`https://www.pixiv.net/ajax/search/{type}/{name}`
 - **请求方法**: `GET`
@@ -149,7 +166,8 @@ https://www.pixiv.net/ajax/novel/${novelId}
 - 传参方式：`PATH`
 - 参数：
   - novelId：小说作品 ID
-- 示例：`https://www.pixiv.net/ajax/novel/12345`
+- 示例：`https://www.pixiv.net/ajax/novel/123455`
+- 网页：`https://www.pixiv.net/novel/show.php?id=123455`
 
 
 ## 小说互动
