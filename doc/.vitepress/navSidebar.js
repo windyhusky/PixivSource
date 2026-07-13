@@ -41,6 +41,8 @@ export const cnNav = [
         text: "🚧 开发动态",
         items: [
             { text: "📜 更新日志", link: "/UpdateLog" },
+            { text: "🚀 项目进展", link: "/TimeLine" },
+            { text: "🔌 Pixiv Api", link: "/PixivWebApi" },
             { text: "👥 开发团队", link: "/Team" },
             { text: "🤝 友情链接", link: "/FriendLink" },
             { text: "☕ 支持开发", link: "/Sponsor" , activeMatch: '/' },
@@ -102,7 +104,9 @@ export const cnSidebar = [
         collapsed: false,
         items: [
             { text: "📜 更新日志", link: "/UpdateLog" },
+            { text: "🚀 项目进展", link: "/TimeLine" },
             { text: "🌱 项目起源", link: "/Beginning" },
+            { text: "🔌 Pixiv Api", link: "/PixivWebApi" },
             { text: "👥 开发团队", link: "/Team" },
             { text: "🤝 友情链接", link: "/FriendLink" },
         ]

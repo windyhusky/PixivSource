@@ -44,7 +44,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [2024](#2024)；
 > [2023](#2023)；
 > [2021](#2021)；
-> [起源](#Beginning)
+> [起源](#Beginning)；
+> [更新日志](UpdateLog.md)
 
 
 ## 🚀 项目进展
@@ -337,6 +338,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 
-### 🌱 起源 {#Beginning}
+### 🌱 [起源](Beginning.md) {#Beginning}
 > [!TIP]
 > **一个想法：如果能在【开源阅读】里，直接看到P站作品的话，那阅读体验岂不是要暴增？**
