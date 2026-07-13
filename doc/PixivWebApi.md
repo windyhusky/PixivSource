@@ -57,9 +57,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ### 🔎 搜索小说
 - **URL**：`https://www.pixiv.net/ajax/search/{type}/{name}`
 - **请求方法**: `GET`
-- **传参方式**: `PATH` & `QUERY` 
-- **参数说明**
-
+- **传参方式**: `PATH` & `QUERY`
+#### 参数说明
 | 参数名 | 位置 | 类型 | 说明 |
 | :--- | :--- | :--- | :--- |
 | `type` | Path | String | 作品类型：`novel` 小说 |
@@ -67,26 +66,26 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | `word` | Query | String | 关键词 (同 name) |
 | `order` | Query | String | 排序方式：`date_d` 最新、`date` 最旧 |
 | `mode` | Query | String | 年龄限制：`all`、`safe`、 `r18`|
-| `scd` | Query | String | 开始时间：`0` 否、`2026-01-01`|
-| `ecd` | Query | String | 结束时间：`0` 否、`2026-07-01`|
+| `scd` | Query | String | [可选]开始时间：`0` 否、`2026-01-01`|
+| `ecd` | Query | String | [可选]结束时间：`0` 否、`2026-07-01`|
 | `p` | Query | Integer | 页码 |
-| `ai_type` | Query | Integer | AI作品：`0` 否、`1` 是 |
-| `csw` | Query | Integer | 整合作者：`0` 否、`1` 是 |
+| `ai_type` | Query | Integer | [可选]AI作品：`0` 否、`1` 是 |
+| `csw` | Query | Integer | [可选]整合作者：`0` 否、`1` 是 |
 | `s_mode` | Query | String | 检索范围：`s_tag` 标签部分一致、`s_tag_full` 标签完全一致、`tag_tc` 标签标题说明文字、`tc` 标签说明文字 |
-| `tlt` | Query | Integer | 正文字数下限：`0` 否、`5000` |
-| `tgt` | Query | Integer | 正文字数上限：`0` 否、`5000` |
-| `wlt` | Query | Integer | 正文单词下限：`0` 否、`5000` |
-| `wgt` | Query | Integer | 正文单词上限：`0` 否、`5000` |
-| `original_only` | Query | Integer | 仅限原创：`0` 否、`1` 是 |
-| `genre` | Query | Integer | 分类：详见 `https://www.pixiv.net/genre/novel` |
-| `gs` | Query | Integer | 整合系列：`0` 否、`1` 是 |
+| `tlt` | Query | Integer | [可选]正文字数下限：`0` 否、`5000` |
+| `tgt` | Query | Integer | [可选]正文字数上限：`0` 否、`5000` |
+| `wlt` | Query | Integer | [可选]正文单词下限：`0` 否、`5000` |
+| `wgt` | Query | Integer | [可选]正文单词上限：`0` 否、`5000` |
+| `original_only` | Query | Integer | [可选]仅限原创：`0` 否、`1` 是 |
+| `genre` | Query | Integer | [可选]分类：详见 `https://www.pixiv.net/genre/novel` |
+| `gs` | Query | Integer | [可选]整合系列：`0` 否、`1` 是 |
 | `lang` | Query | String | 语言：`zh` 中文 |
 
 #### 调用示例
 ```
 https://www.pixiv.net/ajax/search/novels/中文?word=中文&order=date_d&mode=all&p=1&s_mode=tag_tc&lang=zh
 ```
-对应网页
+#### 对应网页
 ```
 https://www.pixiv.net/search?q=%E4%B8%AD%E6%96%87&s_mode=tag_tc&type=novel&work_lang=zh-cn
 ```
