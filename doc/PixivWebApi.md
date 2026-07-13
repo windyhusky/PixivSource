@@ -96,6 +96,31 @@ https://www.pixiv.net/search?q=%E4%B8%AD%E6%96%87&s_mode=tag_tc&type=novel&work_
 ### ⭐️ 推荐
 
 
+### 👑 小说排行榜
+- **URL**: `https://www.pixiv.net/ajax/ranking/novel`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+- 推出时间：2026-07
+
+#### 参数说明
+
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `mode` | Query | String | 模式：<br/>`daily` 今日、`weekly` 本周、`monthly` 本月、`rookie` 新人 、`weekly_original` 原创、`weekly_ai` AI生成、`male` 受男性欢迎、`female` 受女性欢迎<br/>`daily_r18` 今日、`weekly_r18` 本周、`weekly_r18_ai` AI生成、 `male_r18` 受男性欢迎、`female_r18` 受女性欢迎、`r18g` R18G |
+| `content` | Query | String | 内容：`novel` 小说 |
+| `p` | Query | Integer | 页码：`1` 或 `2` |
+| `lang` | Query | String | 语言：`zh` 中文、`ja` 日语 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ajax/ranking/novel?mode=daily_r18&content=novel&p=1
+```
+#### 对应网页
+```
+https://www.pixiv.net/novel/ranking.php?mode=daily_r18
+```
+
+
 ## 小说信息
 #### 小说详情
 ```
