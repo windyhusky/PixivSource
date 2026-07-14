@@ -70,9 +70,9 @@ function handlerFactory() {
 // 推荐小说
 function handlerRecommend() {
     return () => {
-        let res = JSON.parse(result)
-        const recommend = res.body.page.recommend
-        const novels = res.body.thumbnails.novel
+        let resp = JSON.parse(result)
+        const recommend = resp.body.page.recommend
+        const novels = resp.body.thumbnails.novel
         let nidSet = new Set(recommend.ids)
         // java.log(nidSet.size)
         let list = novels.filter(novel => nidSet.has(String(novel.id)))
@@ -84,44 +84,44 @@ function handlerRecommend() {
 // 收藏小说，他人收藏
 function handlerBookMarks() {
     return () => {
-        let res = JSON.parse(result).body.works
-        if (res === undefined || res.length === 0) {
+        let resp = JSON.parse(result).body.works
+        if (resp === undefined || resp.length === 0) {
             //流程无法本环节中止 只能交给下一流程处理
             return []
         }
-        return util.formatNovels(util.handNovels(res))
+        return util.formatNovels(util.handNovels(resp))
     }
 }
 
 //关注作者，小说委托，小说企划
 function handlerFollowLatest() {
     return () => {
-        let res = JSON.parse(result)
-        return util.formatNovels(util.handNovels(util.combineNovels(res.body.thumbnails.novel)))
+        let resp = JSON.parse(result)
+        return util.formatNovels(util.handNovels(util.combineNovels(resp.body.thumbnails.novel)))
     }
 }
 
 //推荐小说，最近小说
 function handlerDiscovery() {
     return () => {
-        let res = JSON.parse(result)
-        return util.formatNovels(util.handNovels(util.combineNovels(res.body.novels)))
+        let resp = JSON.parse(result)
+        return util.formatNovels(util.handNovels(util.combineNovels(resp.body.novels)))
     }
 }
 
 // 搜索标签
 function handlerSearch() {
     return () => {
-        let res = JSON.parse(result)
-        return util.formatNovels(util.handNovels(util.combineNovels(res.body.novel.data)))
+        let resp = JSON.parse(result)
+        return util.formatNovels(util.handNovels(util.combineNovels(resp.body.novel.data)))
     }
 }
 
 // 追更列表，热门分类
 function handlerWatchList() {
     return () => {
-        let res = JSON.parse(result)
-        return util.formatNovels(util.handNovels(res.body.thumbnails.novelSeries))
+        let resp = JSON.parse(result)
+        return util.formatNovels(util.handNovels(resp.body.thumbnails.novelSeries))
     }
 }
 
@@ -196,11 +196,11 @@ function handlerRankingAjax() {
             if (novelIds.indexOf(novelId) === -1) {
                 novelIds.push(novelId)
                 // java.log(urlNovelDetailed(novelId))
-                let res = getAjaxJson(urlNovelDetailed(novelId))
-                if (res.error !== true) {
-                    novels.push(res.body)
+                let resp = getAjaxJson(urlNovelDetailed(novelId))
+                if (resp.error !== true) {
+                    novels.push(resp.body)
                 } else {
-                    java.log(JSON.stringify(res))
+                    java.log(JSON.stringify(resp))
                 }
             }
         }

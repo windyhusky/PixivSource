@@ -110,6 +110,21 @@ https://www.pixiv.net/search?q=%E4%B8%AD%E6%96%87&s_mode=tag_tc&type=novel&work_
 
 ## 推荐   
 ### ⭐️ 推荐
+### 精选新作/关注用户的作品,插画
+`https://www.pixiv.net/ajax/street/latest?lang=zh`
+
+
+### 推荐作品,插画
+`https://www.pixiv.net/ajax/street/sub?lang=zh`
+
+
+### 首页推荐,插画,小说
+`https://www.pixiv.net/ajax/street/for_you?lang=zh`
+
+
+### 首页推荐等
+`https://www.pixiv.net/ajax/street/v2/main`
+
 
 ### 👑 插画排行榜
 - **URL**: `https://www.pixiv.net/ranking.php`
