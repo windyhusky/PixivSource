@@ -142,8 +142,13 @@ function handlerHome() {
         let resp = JSON.parse(result)
         let novels = resp.body.contents
             .filter(item => item.kind === "novel")
-            .flatMap(item => item.thumbnails)
-        novels.forEach(novel => novel.tags = novel.tags.map(tag => tag.name))
+            .flatMap(item => {
+                return item.thumbnails.map(novel => {
+                    novel.tags = novel.tags.map(tag => tag.name)
+                    return novel
+                })
+            })
+        // novels.forEach(novel => novel.tags = novel.tags.map(tag => tag.name))
         // java.log(JSON.stringify(novels))
         return util.formatNovels(util.handNovels(util.combineNovels(novels)))
     }
