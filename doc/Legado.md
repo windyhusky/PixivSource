@@ -40,6 +40,20 @@ repos:
     recommend: 64.apk ios win mac
     show_assets: 2
 
+  - name: 轻悦时光
+    icon: /img/QYSG.png
+    desc: 纯本地的多端兼容阅读器
+    version: 鸿蒙最新版
+    downloads:
+      - label: 鸿蒙商店
+        url: https://appgallery.huawei.com/app/detail?id=com.q9uo11.nread
+        recommend: true
+      - label: 鸿蒙测试
+        url: https://appgallery.huawei.com/apptest/4D2LMwvyQgH
+        recommend: true
+      - label: 官方网站
+        url: https://www.qread.xyz
+        recommend: false
 ---
 
 <div align="center">
@@ -385,11 +399,17 @@ repos:
 
 ## 鸿蒙版 {#Harmony}
 ### ⬇️ 下载软件 {#HarmonyDownload}
+> [!NOTE]
+>
+> **轻悦时光现已兼容大部分 阅读3 的书源，全平台可用**
+
+<DownloadCard :frontmatter-index="2" />
+
+
 > [!IMPORTANT]
 >
-> **原生鸿蒙版已停更；卓易通详见：
-> 安卓版 => [下载阅读](#AndroidDownload)；**
-> **跨平台方案，见下方**
+> **阅读原生鸿蒙版已停更；卓易通详见：
+> 安卓版 => [下载阅读](#AndroidDownload)**
 
 
 ### 🚮 停更软件 {#HarmonyOthers}

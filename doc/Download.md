@@ -132,6 +132,23 @@ thirdPartyRepos:
     recommend: 64 ios win mac
     show_assets: 2
     hide: false
+
+  - name: 轻悦时光（鸿蒙版）
+    icon: /img/QYSG.png
+    desc: 纯本地的多端兼容阅读器
+    version: 鸿蒙最新版
+#    date: 2026/07/14
+#    changelog: "<ul><li>修复已知问题</li><li>性能优化</li><li>新增鸿蒙原生支持</li></ul>"
+    downloads:
+      - label: 鸿蒙商店
+        url: https://appgallery.huawei.com/app/detail?id=com.q9uo11.nread
+        recommend: true
+      - label: 鸿蒙测试
+        url: https://appgallery.huawei.com/apptest/4D2LMwvyQgH
+        recommend: true
+      - label: 官方网站
+        url: https://www.qread.xyz
+        recommend: false
 ---
 
 <DownloadList />

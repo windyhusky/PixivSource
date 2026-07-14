@@ -6,6 +6,39 @@
  * 既支持父组件通过 props 注入 item/release/loading/getDownloadUrl，也支持直接通过
  * frontmatterSource + frontmatterIndex 从当前 VitePress 页面的 frontmatter 中读取数据。
  *
+ * repos:
+ *   - name: 阅读 Sigma
+ *     desc: 极致阅读体验，免费开源电子书阅读器
+ *     icon: /img/LegadoSigma.png
+ *     link: https://gitee.com/lyc486/legado
+ *     recommend: releaseS.apk
+ *     show_assets: 1
+ *     prerelease: false
+ *     hide: false
+ *
+ * manual:
+ *   - name: 轻悦时光
+ *     icon: /img/QYSG.png
+ *     desc: 纯本地的多端兼容阅读器
+ *     version: v2.5.0
+ *     date: 2026/07/14
+ *     changelog: "<ul><li>修复已知问题</li><li>性能优化</li><li>新增鸿蒙原生支持</li></ul>"
+ *     downloads:
+ *       - label: 鸿蒙版下载
+ *         url: https://appgallery.huawei.com/app/detail?id=com.q9uo11.nread
+ *         size: 25.5 MB
+ *         recommend: true
+ *       - label: Android (APK)
+ *         url: https://example.com/qysg-android.apk
+ *         size: 18.2 MB
+ *       - label: 网页版/iOS
+ *         url: https://qysg.example.com
+ *         size: -
+ * ---
+ * <DownloadCard frontmatterSource="repos" :frontmatterIndex="0" />
+ * <DownloadCard frontmatterSource="manual" :frontmatterIndex="0" />
+ *
+ *
  * 缓存说明：
  * - 缓存逻辑统一由 releases.ts 管理（readCache / readStaleCache / writeCache / CACHE_TTL）
  * - 请求失败时降级到过期缓存，保证页面有内容可显示
@@ -83,11 +116,9 @@ const i18n = {
   }
 }
 
-// 智能渐进式多语言匹配
 const t = computed(() => {
   const currentLang = (lang.value || '')
   const shortLang = currentLang.slice(0, 2)
-
   if (i18n[currentLang]) return i18n[currentLang]
   if (i18n[shortLang]) return i18n[shortLang]
   if (i18n['en']) return i18n['en']
@@ -96,6 +127,7 @@ const t = computed(() => {
 
 const logExpanded = ref(false)
 const assetsExpanded = ref(false)
+const manualExpanded = ref(false)
 const platformIconEl = ref(null)
 const localRelease = ref(null)
 const localLoading = ref(false)
@@ -166,7 +198,6 @@ watch(cardItem, () => {
 
 onMounted(async () => {
   fetchFrontmatterRelease()
-
   await nextTick()
   if (
       platformIconEl.value instanceof HTMLElement &&
@@ -186,15 +217,11 @@ const sortedAssets = computed(() => {
   const keyword = cardItem.value.recommend
   return [...displayRelease.value.assets].sort((a, b) => {
     if (!keyword) return 0
-
     const kw = keyword.split(" ")
-
     const aIndex = kw.findIndex(k => a.name.toLowerCase().includes(k.toLowerCase()))
     const bIndex = kw.findIndex(k => b.name.toLowerCase().includes(k.toLowerCase()))
-
     const aMatch = aIndex !== -1
     const bMatch = bIndex !== -1
-
     if (aMatch && bMatch) return aIndex - bIndex
     if (aMatch) return -1
     if (bMatch) return 1
@@ -231,10 +258,9 @@ const isRecommend = (assetName) => {
 const defaultDownloadUrl = (assetUrl, item) => assetUrl || item.url || ''
 
 const resolveDownloadUrl = (assetUrl, item) => {
-  const resolver = props.getDownloadUrl || defaultDownloadUrl
+  const resolver = props.getDownloadUrl || ((u) => u || '')
   let finalUrl = resolver(assetUrl, item)
-
-  if (finalUrl.endsWith('.json')) {
+  if (finalUrl?.endsWith('.json')) {
     const regex = /github\.com\/([^/]+)\/([^/]+)\/releases\/download\/([^/]+)\/(.+)$/
     const match = finalUrl.match(regex)
     if (match) {
@@ -322,31 +348,18 @@ const navToRepo = () => {
             <span v-if="asset.size" class="size-text">{{ formatSize(asset.size) }}</span>
           </a>
 
-          <a
-              v-if="visibleAssets.length === 0"
-              :href="displayRelease.html_url"
-              target="_blank"
-              class="btn primary"
-              @click.stop
-          >
-            <div class="btn-left-content">
-              <div class="star-icon-slot"></div>
-              <span class="file-name">{{ t.goWeb }}</span>
-            </div>
+          <a v-if="visibleAssets.length === 0" :href="displayRelease.html_url" target="_blank" class="btn primary" @click.stop>
+            <div class="btn-left-content"><span class="file-name">{{ t.goWeb }}</span></div>
           </a>
 
-          <div
-              v-if="hiddenCount >= 0 || assetsExpanded"
-              class="toggle-more-assets-btn"
-              @click="toggleAssets"
-          >
+          <div v-if="hiddenCount >= 0 || assetsExpanded" class="toggle-more-assets-btn" @click="toggleAssets">
             {{ assetsExpanded ? t.collapse : t.expand.replace('{count}', hiddenCount) }}
           </div>
         </div>
       </div>
     </div>
 
-    <div class="card-footer-flow" v-else-if="cardItem.url || cardItem.label">
+    <div class="card-footer-flow" v-else-if="cardItem.downloads || cardItem.url || cardItem.label">
       <div class="card-content">
         <div class="release-info">
           <div class="meta">
@@ -368,18 +381,31 @@ const navToRepo = () => {
         </div>
 
         <div class="card-actions">
-          <a
-              :href="resolveDownloadUrl(cardItem.url, cardItem)"
-              target="_blank"
-              :class="['btn', cardItem.recommend ? 'is-recommend' : 'primary']"
-              @click.stop
+          <template v-for="(dl, index) in (cardItem.downloads || [{label: cardItem.label || t.downloadNow, url: cardItem.url, size: cardItem.size, recommend: cardItem.recommend}])" :key="index">
+            <a
+                v-if="dl.recommend || manualExpanded || !cardItem.downloads?.some(d => d.recommend)"
+                :href="resolveDownloadUrl(dl.url, cardItem)"
+                target="_blank"
+                :class="['btn', (cardItem.recommend || dl.recommend) ? 'is-recommend' : 'primary']"
+                @click.stop
+            >
+              <div class="btn-left-content">
+                <div class="star-icon-slot">
+                  <span v-if="cardItem.recommend || dl.recommend">🌟</span>
+                </div>
+                <span class="file-name">{{ dl.label }}</span>
+              </div>
+              <span v-if="dl.size" class="size-text">{{ dl.size }}</span>
+            </a>
+          </template>
+
+          <div
+              v-if="cardItem.downloads?.some(d => d.recommend) && cardItem.downloads?.some(d => !d.recommend)"
+              class="toggle-more-assets-btn"
+              @click="manualExpanded = !manualExpanded"
           >
-            <div class="btn-left-content">
-              <div class="star-icon-slot"><span v-if="cardItem.recommend">🌟</span></div>
-              <span class="file-name">{{ cardItem.label || t.downloadNow }}</span>
-            </div>
-            <span v-if="cardItem.size" class="size-text">{{ cardItem.size }}</span>
-          </a>
+            {{ manualExpanded ? t.collapse : `展开其他版本 (${cardItem.downloads.filter(d => !d.recommend).length}) 🔽` }}
+          </div>
         </div>
       </div>
     </div>
