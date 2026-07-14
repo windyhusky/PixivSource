@@ -32,7 +32,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [!WARNING]
 >
 > ⚠️ **你正在 GitHub 上浏览此文档， Github 文档可能不完整
-> [网页版](https://pixivsource.pages.dev/Beginning)
+> [网页版](https://pixivsource.pages.dev/TimeLine)
 > 内容更全面，排版更精美**
 
 
@@ -45,7 +45,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > [2023](#2023)；
 > [2021](#2021)；
 > [起源](#Beginning)；
-> [更新日志](UpdateLog.md)
+> 📜 [更新日志](UpdateLog.md)；
+> 🌱 [项目起源](Beginning.md)
 
 
 ## 🚀 项目进展
@@ -145,7 +146,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ::: timeline 2025-11-24
 > [!NOTE]
-> **书源网站创立，** 就是你目前看到的这个。
+> **书源网站创立，** 就是你目前看到的这个
 > 
 > 前期域名：https://downeyrem.github.io/PixivSource
 :::
@@ -171,15 +172,15 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2025-02-24
-内置更新功能。
+内置更新功能
 :::
 
 ::: timeline 2025-01-30
-制作FN的书源。
+制作FN的书源
 :::
 
 ::: timeline 2025-01-27
-查看他人收藏。
+查看他人收藏
 :::
 
 
@@ -188,20 +189,20 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <br>
 
 ::: timeline 2024-11-18
-目录处显示小说原文链接/非API链接；尝试提供一站式导入书源、尝试直接提供自带书源（实际上是自带订阅）的阅读。
+目录处显示小说原文链接/非API链接；尝试提供一站式导入书源、尝试直接提供自带书源（实际上是自带订阅）的阅读
 :::
 
 ::: timeline 2024-09-10
-恢复更新，基本上每月2个版本，在此期间有问题还会请教狗子。
+恢复更新，基本上每月2个版本，在此期间有问题还会请教狗子
 :::
 
 ::: timeline 2024-08-16
 > [!NOTE]
-> **坤飞发布了 3.25 正式版**，仅更新了版本号。这个版本后续成为了书源社群一大困扰。
+> **坤飞发布了 3.25 正式版**，仅更新了版本号。这个版本后续成为了书源社群一大困扰
 :::
 
 ::: timeline 2024-07-07
-书源项目的收藏超过了 [FurryGamesIndex](https://github.com/FurryGamesIndex/games)，我首次参与的开源项目。
+书源项目的收藏超过了 [FurryGamesIndex](https://github.com/FurryGamesIndex/games)，我首次参与的开源项目
 :::
 
 ::: timeline 2024-06-18
@@ -210,20 +211,20 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2024-06-17
-发布了第5个版本。支持：添加网址、订阅源。
+发布了第5个版本。支持：添加网址、订阅源
 :::
 
 ::: timeline 2024-06-04
 > [!NOTE]
-> 简单粗暴P了个项目Logo，引发了一个很不愉快的事情。很多人说这 Logo 不好看，我承认的确如此。
+> 简单粗暴P了个项目Logo，引发了一个很不愉快的事情。很多人说这 Logo 不好看，我承认的确如此
 :::
 
 ::: timeline 2024-06-02
-发布了 [第5个版本](UpdateLog/2024.md#13)。
+发布了 [第5个版本](UpdateLog/2024.md#13)
 :::
 
 ::: timeline 2024-05-31
-使用正则替换正文标记符号，可以算是首次原创代码。
+使用正则替换正文标记符号，可以算是首次原创代码
 :::
 
 ::: timeline 2024-04-03
@@ -236,7 +237,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2024-03-28
-关注作者：第一次抄了书源的代码，并且成功运行了。
+关注作者：第一次抄了书源的代码，并且成功运行了
 :::
 
 ::: timeline 2024-03-25
@@ -245,7 +246,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2024-03-24
-添加书架：抄了第一段订阅源的代码，使用JS注入，通过添加网址添加到书架。
+添加书架：抄了第一段订阅源的代码，使用JS注入，通过添加网址添加到书架
 :::
 
 ::: timeline 2024-03-24
@@ -254,7 +255,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ::: timeline 2024-02-21
 > [!NOTE]
-> **喵公子正式发布 Beta 版本，并创建了 [Beta 版频道](https://t.me/Legado_Beta)**。
+> **喵公子正式发布 Beta 版本，并创建了 [Beta 版频道](https://t.me/Legado_Beta)**
 :::
 
 
@@ -269,12 +270,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ::: timeline 2023-10-04
 > [!WARNING]
-> **阅读正式版 预告停更，坤飞疑似跑路**，撤销原来的蓝奏云链接。
-
+> **阅读正式版 预告停更，坤飞疑似跑路**，撤销原来的蓝奏云链接
 > [!NOTE]
-> **喵公子发布了 [新的蓝奏云链接](https://miaogongzi.lanzout.com/b01rgkhhe)，开始发布 Beta 版本**。
->
-> 谷歌 Play 上的 Pro 版功能已合入 Beta 版本。
+> **喵公子发布了 [新的蓝奏云链接](https://miaogongzi.lanzout.com/b01rgkhhe)，开始发布 Beta 版本**
+> 
+> 谷歌 Play 上的 Pro 版功能已合入 Beta 版本
 :::
 
 ::: timeline 2023-08-02
@@ -284,19 +284,19 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ::: timeline 2023-04-03
 > [!IMPORTANT]
-> **因前期多次写文档多此合并PR比较麻烦，成了 collaborator 。**
+> **因前期多次写文档多此合并PR比较麻烦，成了 collaborator**
 :::
 
 ::: timeline 2023-03-20
-阅读恢复 Rhino 引擎，书源再次可用。
+阅读恢复 Rhino 引擎，书源再次可用
 :::
 
 ::: timeline 2023-03-09
-阅读回退 Rhino 引擎，短期内不支持ES6，故书源无法使用。
+阅读回退 Rhino 引擎，短期内不支持ES6，故书源无法使用
 :::
 
 ::: timeline 2023-02-16
-狗子发布了 [第3个版本](UpdateLog/2024.md#11) 。同时发布了：P站、Linpx 书源、以及两站的订阅源。
+狗子发布了 [第3个版本](UpdateLog/2024.md#11) 。同时发布了：P站、Linpx 书源、以及两站的订阅源
 :::
 
 ::: timeline 2023-02-14
@@ -318,13 +318,15 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <br>
 
 ::: timeline 2021-08-01
-狗子发布了 [第2个版本](UpdateLog/2024.md#2) 。搜索时合并同一系列的小说、支持单篇小说、目录处翻页。
-此时的书源，有关看小说的部分，已经可以正常使用了。
+> [!NOTE]
+> 狗子发布了 [第2个版本](UpdateLog/2024.md#2)。搜索时合并同一系列的小说、支持单篇小说、目录处翻页
+> 
+> 此时的书源，有关看小说的部分，已经可以正常使用了
 :::
 
 ::: timeline 2021-04-10
 > [!IMPORTANT]
-> 狗子发布了 [第1个版本](UpdateLog/2024.md#1) 。只支持系列小说。
+> 狗子发布了 [第1个版本](UpdateLog/2024.md#1) 。只支持系列小说
 :::
 
 ::: timeline 2021-03-28
@@ -333,7 +335,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2021-03-02
-> [!NOTE]
+> [!INFO]
 > **与狗子协商，狗子同意开发 Pixiv 书源**
 :::
 
