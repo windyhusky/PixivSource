@@ -58,7 +58,7 @@ function handlerFactory() {
         return handlerSearch()
     }
     if (baseUrl.startsWith("https://www.pixiv.net")) {
-        return handlerRankingOld()
+        return handlerHome()
     }
     else {
         return () => {startBrowser(baseUrl, ""); return []}
@@ -136,7 +136,20 @@ function handlerRanking() {
     }
 }
 
-// 书签，首页，顺序相同
+// 首页
+function handlerHome() {
+    return () => {
+        let resp = JSON.parse(result)
+        let novels = resp.body.contents
+            .filter(item => item.kind === "novel")
+            .flatMap(item => item.thumbnails)
+        novels.forEach(novel => novel.tags = novel.tags.map(tag => tag.name))
+        // java.log(JSON.stringify(novels))
+        return util.formatNovels(util.handNovels(util.combineNovels(novels)))
+    }
+}
+
+// 书签，顺序相同
 function handlerRankingOld() {
     if (globalThis.environment.IS_LEGADO) return handlerRankingAjaxAll()
     // else if (globalThis.environment.IS_SOURCE_READ) return handlerRankingWebview()
@@ -144,7 +157,7 @@ function handlerRankingOld() {
     else return []
 }
 
-// 书签，首页，顺序相同
+// 书签，顺序相同
 function handlerRankingAjaxAll() {
     return () => {
         let  novelIds = [], novelUrls = []
@@ -163,7 +176,7 @@ function handlerRankingAjaxAll() {
     }
 }
 
-// 书签，首页
+// 书签
 function handlerRankingWebview() {
     return () => {
         let novelIds = []  // 正则获取网址中的 novelId
@@ -184,7 +197,7 @@ function handlerRankingWebview() {
     }
 }
 
-// 排行榜，书签，顺序相同
+// 书签，顺序相同
 function handlerRankingAjax() {
     return () => {
         let novels = [], novelIds = []
