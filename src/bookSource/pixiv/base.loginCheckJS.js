@@ -467,7 +467,7 @@ function publicFunc() {
                     novel.tagsList.push(tag)
                 }
             }
-            novel.tags = Array.from(new Set(novel.tags2))
+            novel.tags = Array.from(new Set(novel.tagsList))
             novel.tags = novel.tags.map(item => `#${item}`)
             novel.tags = novel.tags.join(",")
 

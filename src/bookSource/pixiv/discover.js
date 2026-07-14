@@ -125,14 +125,12 @@ function handlerWatchList() {
     }
 }
 
-// 排行榜，顺序相同
+// 排行榜
 function handlerRanking() {
     return () => {
         try {
-            let resp = JSON.parse(result.match(/<script id="__NEXT_DATA__"[^>]*>([\s\S]*?)<\/script>/)[1])
-            let novels = resp.props.pageProps.assign.display_a.rank_a
-            // java.log(JSON.stringify(novels))
-            return util.formatNovels(util.handNovels(util.combineNovels(novels)))
+            let resp = JSON.parse(result)
+            return util.formatNovels(util.handNovels(resp.body.display_a.rank_a))
         } catch (e) {
             return []
         }
