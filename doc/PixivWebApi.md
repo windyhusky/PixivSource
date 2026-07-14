@@ -100,16 +100,15 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 #### 调用示例
 ```
-https://www.pixiv.net/ajax/search/novels/中文?word=中文&order=date_d&mode=all&p=1&s_mode=tag_tc&lang=zh
+https://www.pixiv.net/ajax/search/novels/中文?word=中文&order=date_d&mode=all&p=1&s_mode=s_tag&lang=zh
 ```
 #### 对应网页
 ```
-https://www.pixiv.net/search?q=%E4%B8%AD%E6%96%87&s_mode=tag_tc&type=novel&work_lang=zh-cn
+https://www.pixiv.net/search?q=中文&s_mode=s_tag&type=novel&work_lang=zh-cn
 ```
 
 
-## 推荐   
-### ⭐️ 推荐
+## 首页推荐
 ### 精选新作/关注用户的作品,插画
 `https://www.pixiv.net/ajax/street/latest?lang=zh`
 
@@ -126,27 +125,30 @@ https://www.pixiv.net/search?q=%E4%B8%AD%E6%96%87&s_mode=tag_tc&type=novel&work_
 `https://www.pixiv.net/ajax/street/v2/main`
 
 
-### 👑 插画排行榜
-- **URL**: `https://www.pixiv.net/ranking.php`
-- **请求方法**: `GET`
-- **传参方式**: `QUERY`
 
-#### 参数说明
-| 参数名 | 位置 | 类型 | 说明 |
-| :--- | :--- | :--- | :--- |
-| `mode` | Query | String | 模式：<br/>`daily` 今日、`weekly` 本周、`monthly` 本月、`rookie` 新人 、`original` 原创、`daily_ai` AI生成、`male` 受男性欢迎、`female` 受女性欢迎<br/>`daily_r18` 今日、`weekly_r18` 本周、`daily_r18_ai` AI生成、 `male_r18` 受男性欢迎、`female_r18` 受女性欢迎、`r18g` R18G |
-| `content` | Query | String | 内容：`all` 综合、`illust` 插画、`manga` 漫画、`ugoira` 动图 |
-| `format` | Query | String | 数据格式：固定为 `json` |
-| `p` | Query | Integer | 页码 |
+## 小说推荐
+### ⭐️ 关注用户
+> [!TIP]
+> 关注作者，最新小说
 
-#### 调用示例
-```
-https://www.pixiv.net/ranking.php?mode=daily&content=all
-```
-#### 对应网页
-```
-https://www.pixiv.net/ranking.php?mode=daily&content=all&format=json&p=1
-```
+`https://www.pixiv.net/ajax/follow_latest/novel?p={page}&mode=r18&lang=zh`
+
+
+### 📃 追更列表
+`https://www.pixiv.net/ajax/watch_list/novel?p={page}&new=1&lang=zh`
+
+
+### 编辑部推荐
+`https://www.pixiv.net/ajax/novel/editors_picks?limit=30&lang=zh`
+
+
+### 🔥 原创热门
+`https://www.pixiv.net/ajax/genre/novel/male?mode=r18&lang=zh`
+
+
+### 💯 推荐作品
+`https://www.pixiv.net/ajax/top/novel?mode=r18&lang=zh`
+
 
 ### 👑 小说排行榜
 - **URL**: `https://www.pixiv.net/ajax/ranking/novel`
@@ -188,4 +190,27 @@ https://www.pixiv.net/ajax/novel/${novelId}
 ## 小说互动
 ### ▶️ 互动
 
+---
+## 插画
+### 👑 插画排行榜
+- **URL**: `https://www.pixiv.net/ranking.php`
+- **请求方法**: `GET`
+- **传参方式**: `QUERY`
+
+#### 参数说明
+| 参数名 | 位置 | 类型 | 说明 |
+| :--- | :--- | :--- | :--- |
+| `mode` | Query | String | 模式：<br/>`daily` 今日、`weekly` 本周、`monthly` 本月、`rookie` 新人 、`original` 原创、`daily_ai` AI生成、`male` 受男性欢迎、`female` 受女性欢迎<br/>`daily_r18` 今日、`weekly_r18` 本周、`daily_r18_ai` AI生成、 `male_r18` 受男性欢迎、`female_r18` 受女性欢迎、`r18g` R18G |
+| `content` | Query | String | 内容：`all` 综合、`illust` 插画、`manga` 漫画、`ugoira` 动图 |
+| `format` | Query | String | 数据格式：固定为 `json` |
+| `p` | Query | Integer | 页码 |
+
+#### 调用示例
+```
+https://www.pixiv.net/ranking.php?mode=daily&content=all
+```
+#### 对应网页
+```
+https://www.pixiv.net/ranking.php?mode=daily&content=all&format=json&p=1
+```
 
