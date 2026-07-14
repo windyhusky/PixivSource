@@ -33,7 +33,7 @@ let generalNew = [
     {"最新": "https://www.pixiv.net/ajax/novel/new?lastId=0&limit=20&r18=false&lang=zh"},
     {"企划": "https://www.pixiv.net/ajax/user_event/portal/novels?mode=all&p={{page}}&lang=zh"},
     {"约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=all&p={{page}}&lang=zh"},
-    {"编辑": "https://www.pixiv.net/novel/editors_picks"},
+    {"编辑": "https://www.pixiv.net/ajax/novel/editors_picks?limit=30&lang=zh"},
 ]
 
 let r18Rank = [

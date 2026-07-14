@@ -29,6 +29,9 @@ function handlerFactory() {
     if (baseUrl.includes("/watch_list")) {
         return handlerWatchList()
     }
+    if (baseUrl.includes("/genre")) {
+        return handlerWatchList()
+    }
     if (baseUrl.includes("/discovery")) {
         return handlerDiscovery()
     }
@@ -41,18 +44,14 @@ function handlerFactory() {
     if (baseUrl.includes("/user_event/portal")) {
         return handlerFollowLatest()
     }
-    if (baseUrl.includes("/genre")) {
-        return handlerWatchList()
+    if (baseUrl.includes("/editors_picks")) {
+        return handlerFollowLatest()
     }
-    // 匹配 html 中的 json
     if (baseUrl.includes("/ranking")) {
         return handlerRanking()
     }
     // 正则匹配网址内容
     if (baseUrl.includes("/marker_all")) {
-        return handlerRankingOld()
-    }
-    if (baseUrl.includes("/editors_picks")) {
         return handlerRankingOld()
     }
     if (baseUrl.includes("/ajax/search/novels")) {
@@ -93,7 +92,7 @@ function handlerBookMarks() {
     }
 }
 
-//关注作者，小说委托，小说企划
+//关注作者，小说委托，小说企划，编辑部推荐
 function handlerFollowLatest() {
     return () => {
         let resp = JSON.parse(result)
@@ -137,7 +136,7 @@ function handlerRanking() {
     }
 }
 
-// 书签，首页，编辑部推荐，顺序相同
+// 书签，首页，顺序相同
 function handlerRankingOld() {
     if (globalThis.environment.IS_LEGADO) return handlerRankingAjaxAll()
     // else if (globalThis.environment.IS_SOURCE_READ) return handlerRankingWebview()
@@ -145,7 +144,7 @@ function handlerRankingOld() {
     else return []
 }
 
-// 书签，首页，编辑部推荐，顺序相同
+// 书签，首页，顺序相同
 function handlerRankingAjaxAll() {
     return () => {
         let  novelIds = [], novelUrls = []
