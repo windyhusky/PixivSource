@@ -9,7 +9,7 @@ let li = [
     {"❤️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixivUid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=show&lang=zh"},
     {"㊙️ 收藏": "https://www.pixiv.net/ajax/user/{{cache.get(\"pixivUid\")}}/novels/bookmarks?tag=&offset={{(page-1)*24}}&limit=24&rest=hide&lang=zh"},
     {"🏷️ 书签": "https://www.pixiv.net/novel/marker_all.php"},
-    {"🏠 首页": "https://www.pixiv.net"},
+    {"🏠 首页": "https://www.pixiv.net/ajax/street/for_you?lang=zh"},
 ]
 
 let normal = [
@@ -33,28 +33,28 @@ let generalNew = [
     {"最新": "https://www.pixiv.net/ajax/novel/new?lastId=0&limit=20&r18=false&lang=zh"},
     {"企划": "https://www.pixiv.net/ajax/user_event/portal/novels?mode=all&p={{page}}&lang=zh"},
     {"约稿": "https://www.pixiv.net/ajax/commission/page/request/complete/novels?mode=all&p={{page}}&lang=zh"},
-    {"编辑": "https://www.pixiv.net/novel/editors_picks"},
+    {"编辑": "https://www.pixiv.net/ajax/novel/editors_picks?limit=30&lang=zh"},
 ]
 
 let r18Rank = [
     {"👑 排行榜单 👑": ""},
-    {"今日": "https://www.pixiv.net/novel/ranking.php?mode=daily_r18&p={{page}}"},
-    {"本周": "https://www.pixiv.net/novel/ranking.php?mode=weekly_r18&p={{page}}"},
-    {"R18G": "https://www.pixiv.net/novel/ranking.php?mode=r18g&p={{page}}"},
-    {"男性": "https://www.pixiv.net/novel/ranking.php?mode=male_r18&p={{page}}"},
-    {"女性": "https://www.pixiv.net/novel/ranking.php?mode=female_r18&p={{page}}"}
+    {"今日": "https://www.pixiv.net/ajax/ranking/novel?mode=daily_r18&content=novel&p={{page}}"},
+    {"本周": "https://www.pixiv.net/ajax/ranking/novel?mode=weekly_r18&content=novel&p={{page}}"},
+    {"R18G": "https://www.pixiv.net/ajax/ranking/novel?mode=r18g&content=novel&p={{page}}"},
+    {"男性": "https://www.pixiv.net/ajax/ranking/novel?mode=male_r18&content=novel&p={{page}}"},
+    {"女性": "https://www.pixiv.net/ajax/ranking/novel?mode=female_r18&content=novel&p={{page}}"}
 ]
 
 let generalRank = [
     {"🏆 排行榜单 🏆": ""},
-    {"今日": "https://www.pixiv.net/novel/ranking.php?mode=daily&p={{page}}"},
-    {"本周": "https://www.pixiv.net/novel/ranking.php?mode=weekly&p={{page}}"},
-    {"本月": "https://www.pixiv.net/novel/ranking.php?mode=monthly&p={{page}}"},
-    {"男性": "https://www.pixiv.net/novel/ranking.php?mode=male&p={{page}}"},
-    {"女性": "https://www.pixiv.net/novel/ranking.php?mode=female&p={{page}}"},
-    {"新人": "https://www.pixiv.net/novel/ranking.php?mode=rookie&p={{page}}"},
-    {"原创": "https://www.pixiv.net/novel/ranking.php?mode=weekly_original&p={{page}}"},
-    {"AI生成": "https://www.pixiv.net/novel/ranking.php?mode=weekly_ai&p={{page}}"}
+    {"今日": "https://www.pixiv.net/ajax/ranking/novel?mode=daily&content=novel&p={{page}}"},
+    {"本周": "https://www.pixiv.net/ajax/ranking/novel?mode=weekly&content=novel&p={{page}}"},
+    {"本月": "https://www.pixiv.net/ajax/ranking/novel?mode=monthly&content=novel&p={{page}}"},
+    {"男性": "https://www.pixiv.net/ajax/ranking/novel?mode=male&content=novel&p={{page}}"},
+    {"女性": "https://www.pixiv.net/ajax/ranking/novel?mode=female&content=novel&p={{page}}"},
+    {"新人": "https://www.pixiv.net/ajax/ranking/novel?mode=rookie&content=novel&p={{page}}"},
+    {"原创": "https://www.pixiv.net/ajax/ranking/novel?mode=weekly_original&content=novel&p={{page}}"},
+    {"AI生成": "https://www.pixiv.net/ajax/ranking/novel?mode=weekly_ai&content=novel&p={{page}}"}
 ]
 
 let r18Genre = [
