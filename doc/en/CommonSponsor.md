@@ -14,12 +14,14 @@ What you'll get:<br>
 </DragonChat>
 
 
-<div v-if="pagePath === 'Sponsor'">
-  <Sponsor/>
-</div>
-
-<div v-else>
-  <Sponsor :qrs="[]"/>
+<div v-if="pagePath === 'en/Sponsor'">
+<Sponsor 
+:links="[
+{ text: 'GitHub Sponsors', icon: '🐙', url: 'https://github.com/sponsors/DowneyRem', color: '#000000' },
+{ text: 'Buy me a Coffee', icon: '☕️', url: 'https://ko-fi.com/downeyrem', color: '#ff5f5f' },
+]"
+:qrs="[]"
+/>
 </div>
 
 

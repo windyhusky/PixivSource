@@ -61,13 +61,10 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 💶 项目赞助 {#SupportedProjects}
-> [!TIP]
-> 
-> **本项目的赞助项目，赞助记录详见：[打赏详情](https://downeyrem.github.io/Sponsor/Source)**
-
-
 ### 📅 定期赞助 {#Regularly}
 - [Linpx](https://www.linpx.ink) （2023年起，每年 ￥100）
+
+
 ### 🔀 不定期赞助 {#Irregularly}
 - [阅读 Sigma](https://github.com/Luoyacheng/legado-E) （洛娅橙）
 - [阅读 Beta](https://beta.miaogongzi.cc) （喵公子）

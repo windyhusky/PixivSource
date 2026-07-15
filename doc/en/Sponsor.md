@@ -63,11 +63,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 💶 We Support {#SupportedProjects}
-> [!TIP]
->
-> **A portion of your support goes toward fueling upstream open-source projects. Full records: [Sponsor Details](https://downeyrem.github.io/Sponsor/Source)**
-
-
 ### 📅 Recurring Sponsorship {#Regularly}
 - [Linpx](https://www.linpx.ink) (Since 2023, ¥100 / Year)
 
