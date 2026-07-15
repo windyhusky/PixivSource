@@ -38,7 +38,7 @@ hero:
   actions:
     - theme: brand
       text: ⬇️ 下载 阅读 Sigma
-      link: Download
+      link: https://github.com/Luoyacheng/legado-E/releases
 
     - theme: brand
       text: 🚀 一键导入

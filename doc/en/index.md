@@ -37,7 +37,7 @@ hero:
   actions:
     - theme: brand
       text: ⬇️ Download Legado Sigma
-      link: /en/Download
+      link: https://github.com/Luoyacheng/legado-E/releases
 
     - theme: brand
       text: 🚀 One-Click Import Sources
