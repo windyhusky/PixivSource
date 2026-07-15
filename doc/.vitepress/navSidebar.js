@@ -28,7 +28,7 @@ export const cnNav = [
     {
         text: "📖 阅读指南",
         items: [
-            { text: "📚 软件合集", link: "/Legado" },
+            // { text: "📚 软件合集", link: "/Legado" },
             { text: "🚀 导入书源", link: "/ImportBookSource" },
             { text: "🚀 导入订阅", link: "/ImportRssSource" },
             { text: "📌 使用技巧", link: "/LegadoTips" },
@@ -90,7 +90,7 @@ export const cnSidebar = [
         text: "通用教程",
         collapsed: true,
         items: [
-            { text: "📚 软件合集", link: "/Legado" },
+            // { text: "📚 软件合集", link: "/Legado" },
             { text: "🚀 导入书源", link: "/ImportBookSource" },
             { text: "🚀 导入订阅", link: "/ImportRssSource" },
             { text: "📌 使用技巧", link: "/LegadoTips" },
@@ -147,7 +147,7 @@ export const twNav = [
     {
         text: "📖 閱讀指南",
         items: [
-            { text: "📚 軟體合集", link: "/zh-TW/Legado" },
+            // { text: "📚 軟體合集", link: "/zh-TW/Legado" },
             { text: "🚀 匯入書源", link: "/zh-TW/ImportBookSource" },
             { text: "🚀 匯入訂閱", link: "/zh-TW/ImportRssSource" },
             { text: "📌 使用技巧", link: "/LegadoTips" },
@@ -200,7 +200,7 @@ export const twSidebar = [
         text: "通用教程",
         collapsed: true,
         items: [
-            { text: "📚 軟體合集", link: "/zh-TW/Legado" },
+            // { text: "📚 軟體合集", link: "/zh-TW/Legado" },
             { text: "🚀 匯入書源", link: "/zh-TW/ImportBookSource" },
             { text: "🚀 匯入訂閱", link: "/zh-TW/ImportRssSource" },
             { text: "📌 使用技巧", link: "/LegadoTips" },
