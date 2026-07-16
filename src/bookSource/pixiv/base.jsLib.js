@@ -479,6 +479,12 @@ function checkSettings(settings) {
         settings.SHOW_COMMENTS = false        // 正文：显示评论
         settings.SHOW_PICTURES = false        // 正文：显示图片
     }
+
+    // 新设置初始化
+    if (settings.SHOW_PICTURES === undefined) settings.SHOW_PICTURES = true
+    if (settings.SHOW_QUESTION === undefined) settings.SHOW_QUESTION = true
+    if (settings.COMBINE_NOVELS === undefined) settings.COMBINE_NOVELS = true
+
     this.putInCacheObject("pixivSettings", settings)
     return settings
 }
