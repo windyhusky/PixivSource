@@ -165,6 +165,7 @@ function publicFunc() {
 
     // 将多个长篇小说解析为一本书
     u.combineNovels = function(novels) {
+        if (!util.settings.COMBINE_NOVELS) return novels
         return novels.filter(novel => {
             // 单本直接解析为一本书
             if (!novel.seriesId) {
