@@ -124,6 +124,10 @@ function getUserNovels() {
         // 获取单篇小说
         let novelIds = Object.keys(resp.body.novels)
         novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
+        // 默认过滤系列小说的 novelId，否则请求过多
+        // if (util.settings.COMBINE_NOVELS) {
+        //     novelIds = novelIds.filter(novelId => (!seriesNovelIds.includes(novelId)))
+        // }
         novelIds = novelIds.reverse().slice((page - 1) * 20, page * 20)
         // java.log(`真单篇的小说ID：${JSON.stringify(novelIds)}`)
         // java.log(JSON.stringify(novelIds.length))
