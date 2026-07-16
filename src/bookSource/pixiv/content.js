@@ -99,8 +99,6 @@ function replaceUploadedImage(resp, content) {
 
 // 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
 function replacePixivImage(content) {
-    if (!globalThis.settings.SHOW_PICTURES) return content
-
     let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
     if (matched) {
         matched.forEach(pixivimage => {
@@ -112,7 +110,7 @@ function replacePixivImage(content) {
                 matched2 = pixivimage.match(RegExp("\\d+"))
                 illustId = matched2[0];
             }
-            if (urlIllustOriginal(illustId, order)) {
+            if (urlIllustOriginal(illustId, order) && util.settings.SHOW_PICTURES) {
                 content = content.replace(`${pixivimage}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
             } else {
                 content = content.replace(`${pixivimage}`, ``)
