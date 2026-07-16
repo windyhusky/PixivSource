@@ -381,8 +381,8 @@ function publicFunc() {
                 novel.isBookmark = novel.is_bookmarked
             }
 
-            // 单篇加更多信息
-            if (!novel.seriesId) {
+            // 单篇加更多信息，搜索、详情
+            if (!novel.seriesId || !util.settings.COMBINE_NOVELS) {
                 novel.tags.unshift("单本")
                 novel.latestChapter = novel.title
                 novel.detailedUrl = urlIP(urlNovelDetailed(novel.id))
@@ -396,13 +396,15 @@ function publicFunc() {
                 }
             }
 
-            if (novel.seriesId && !isDetail) {
+            // 系列添加更多信息，搜索
+            if (novel.seriesId && !isDetail && util.settings.COMBINE_NOVELS) {
                 novel.title = novel.seriesTitle
                 novel.tags.unshift("长篇")
                 novel.detailedUrl = urlIP(urlSeriesDetailed(novel.seriesId))
             }
-            // 系列添加更多信息
-            if (novel.seriesId && isDetail) {
+
+            // 系列添加更多信息，详情
+            if (novel.seriesId && isDetail && util.settings.COMBINE_NOVELS) {
                 let series = getAjaxJson(urlIP(urlSeriesDetailed(novel.seriesId))).body
                 novel.id = series.firstNovelId
                 novel.title = series.title
