@@ -439,6 +439,7 @@ function setDefaultSettings() {
     settings.HIDE_LIKE_NOVELS = false   // 全局：搜索/发现：隐藏已收藏小说
     settings.HIDE_WATCHED_SERIES = false// 全局：搜索/发现：隐藏已追更系列
 
+    settings.COMBINE_NOVELS = true      // 全局：整合系列
     settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
@@ -447,6 +448,7 @@ function setDefaultSettings() {
     settings.SHOW_GENERAL = true        // 发现：显示 常规小说
     settings.SHOW_NEW_ADULT = true      // 发现：显示 最新企划约稿 R18
     settings.SHOW_NEW_GENERAL = false   // 发现：显示 最新企划约稿 常规
+
     settings.SHOW_RANK_ADULT = true     // 发现：显示 排行榜单 R18
     settings.SHOW_RANK_GENERAL = false  // 发现：显示 排行榜单 常规
     settings.SHOW_GENRE_ADULT = false   // 发现：显示 原创热门 R18
