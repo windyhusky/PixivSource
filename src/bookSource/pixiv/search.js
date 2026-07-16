@@ -198,7 +198,9 @@ function getConvertNovels() {
     if (name1 !== name) novels = novels.concat(search(name1, "novel", page).data)
     if (name2 !== name) novels = novels.concat(search(name2, "novel", page).data)
     novels = util.combineNovels(novels)
-    if (name1 !== name) novels = novels.concat(search(name1, "series", page).data)
+    if (util.settings.COMBINE_NOVELS) return novels
+
+    if (name1 !== name ) novels = novels.concat(search(name1, "series", page).data)
     if (name2 !== name) novels = novels.concat(search(name2, "series", page).data)
     return novels
 }
@@ -263,8 +265,8 @@ function novelFilter(novels) {
         novels = novels.concat(getUserNovels())
     } else if (keyword.startsWith("#")) {
         java.put("keyword", keyword.slice(1))
-        novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
+        if (util.settings.COMBINE_NOVELS) novels = novels.concat(getSeries())
     } else if (keyword.startsWith("$") || util.settings.SEARCH_AUTHOR) {
         if (keyword.startsWith("$")) {
             keyword = keyword.slice(1)
@@ -273,8 +275,8 @@ function novelFilter(novels) {
         java.log(`👤 粗略搜索作者：${keyword}`)
         novels = novels.concat(getUserIdOnline()[1])
     } else {
-        novels = novels.concat(getSeries())
         novels = novels.concat(getNovels())
+        if (util.settings.COMBINE_NOVELS) novels = novels.concat(getSeries())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
     }
     // java.log(JSON.stringify(novels))
