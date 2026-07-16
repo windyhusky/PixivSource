@@ -22,12 +22,7 @@ export default withPwa(defineConfig({
     lang: "zh-CN",
     base: BASE,
     cleanUrls: true,
-    srcExclude: [
-        '**/*Common*.md',
-        'Download.md',
-        'en/Download.md',
-        'zh-TW/Download.md'
-    ],
+    srcExclude: ['**/*Common*.md'],
     ignoreDeadLinks: true,
     appearance: true,
     lastUpdated: true,
