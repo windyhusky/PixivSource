@@ -85,9 +85,15 @@ function getCaptions(resp, content)　{
 
 // 获取 [uploadedimage:] 的图片链接
 function replaceUploadedImage(resp, content) {
-    if (util.settings.SHOW_PICTURES && resp.textEmbeddedImages) {
-        Object.keys(resp.textEmbeddedImages).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(resp.textEmbeddedImages[key].urls.original)}">`)
+    if (resp.textEmbeddedImages) {
+        let images = resp.textEmbeddedImages
+        Object.keys(images).forEach((key) => {
+            if (util.settings.SHOW_PICTURES) {
+                let url = urlCoverUrl(images[key].urls.original)
+                content = content.replace(`[uploadedimage:${key}]`, `<img src="${url}">`)
+            } else {
+                content = content.replace(`[uploadedimage:${key}]`, '')
+            }
         })
     }
     return content
