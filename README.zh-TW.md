@@ -200,13 +200,3 @@
 - 感謝 [@DowneyRem](https://github.com/DowneyRem) 提供的教程，這是他的獸人小說分享頻道 [@FurryReading](https://t.me/FurryReading)
 </details>
 
-
-<details><summary> ⭐️ Star History </summary>
-
-<picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=DowneyRem/PixivSource&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=DowneyRem/PixivSource&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=DowneyRem/PixivSource&type=Date" />
-</picture>
-</details>
-
