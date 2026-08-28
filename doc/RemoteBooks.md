@@ -98,26 +98,23 @@ head:
 ### 🐺 兽人小说分享 {#FurryNovels}
 
 > [!TIP]
-> **如果你喜欢兽人小说，可以填入以下内容**
+> **如果你喜欢兽人小说，可以在远程书籍的配置中，填入以下内容**
 >
 > 分享信息来自：[@FurryNovels](https://t.me/FurryReading/2145)
 
-<details><summary><strong> 🐺 兽人小说分享 </strong></summary>
-
-> [!WARNING]
-> **因 Yandex Disk 已将 Webdav 功能变更为会员服务，分享配置已失效**
 
 | 配置 | 内容                                   |
 | --- | -------------------------------------- | 
-| 地址 | https://webdav.yandex.ru/兽人小说/小说/ |
+| 地址 | https://app.koofr.net/dav/Koofr/兽人小说/小说/ |
 | 账户 | danielsmith12138@yandex.com           |
-| 密码 | mbatorsztocorhay                     |
+| 密码 | 5ajni7x74xa2gmcw                     |
 
 **填入 Webdav 服务器配置信息，保存**
 
 > [!CAUTION]
-> **请不要将此配置，填入【备份与恢复】！不然会导致数据泄露（并且还是你亲手造成的）**
-</details>
+> **请不要将此配置，填入【备份与恢复】的 Webdav 配置！**
+> 
+> **否则你会亲手公开你自己的阅读数据**
 
 
 ### 👀 查看远程书籍 {#ReadRemoteBooks}
