@@ -2,13 +2,17 @@
 li = [
     {"墨辰整合系列:禁止倒卖倒卖": ""},
     { "𓆩书源整理:星之墨辰𓆪": ""},
-    {"◎聊天交流:粉丝Q群◎": "https://qm.qq.com/cgi-bin/qm/qr?k=rUUJKC7XHbI1fikv-ZkOdLNDbvcjwjTN&jump_from=webapi&authKey=WbUzWBYiuP9tgqOe8tQ0SB/03XvkOHeXp5m0qDXGMOmG7c0eVNP0PujgHPXuD7lF" },
-    {"✯更新发布:哔哩哔哩✯": "https://space.bilibili.com/501149848" },
-    {"»`ʚ新书源渠道:微信公众号ɞ´«": "https://mp.weixin.qq.com/s/s5KDR59Vlc1bckp-I-Ph0w" },
-    {"🔸导入书源🔸": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json" },
-    {"🔹导入订阅🔹": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json" },
+    {"粉丝交流-企鹅群聊": "https://qm.qq.com/cgi-bin/qm/qr?k=M8ogRciE3lxKu-x8HOvt0fD5uGBsaF2F&jump_from=webapi&authKey=68Tr+kChZDAh90aSPPl83RRRUM7CNok4cTjbJ3qifO8RmbKf5AIMBJ8P3EzaOCQL" },
+    {"◾️哔哩哔哩◾️": "https://space.bilibili.com/501149848" },
+    {"◽️新公众号◽️": "https://mp.weixin.qq.com/s/P59hLgSVWso0Sxwuyj7tSg" },
+    {"🔸夸克网盘-更新合集🔸": "https://pan.quark.cn/s/b0e1c6e0252c" },
+    {"🔹百度网盘-更新合集🔹": "https://pan.baidu.com/s/1j-UGCyyihVRR2_JHf3jClg?pwd=1234" },
 ]
 
+buHuanHang = [
+    "◾️哔哩哔哩◾️",
+    "◽️新公众号◽️",
+]
 // 处理按钮
 li.forEach(item => {
     item.title = Object.keys(item)[0]
@@ -21,7 +25,7 @@ li.forEach(item => {
     item.style.layout_flexShrink = 1
     item.style.layout_alignSelf = "auto"
     item.style.layout_wrapBefore = "false"
-    if (item.title.includes("导入")) {
+    if (buHuanHang.includes(item.title)) {
         item.style.layout_flexBasisPercent = -1
     } else {
         item.style.layout_flexBasisPercent = 1
