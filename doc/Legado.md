@@ -48,6 +48,14 @@ repos:
     recommend: arm64.apk x64.msi
     show_assets: 2
     
+  - name: 阅读 鸿蒙版
+    icon: /img/Legado.png
+    desc: 开源阅读鸿蒙版
+    link: https://github.com/mgz0227/legado-Harmony
+    prerelease: false
+    recommend: .hap
+    show_assets: 2
+
   - name: 轻悦时光
     icon: /img/QYSG.png
     desc: 纯本地的多端兼容阅读器
@@ -414,30 +422,17 @@ repos:
 
 
 ## 鸿蒙版 {#Harmony}
-### ⬇️ 下载软件 {#HarmonyDownload}
-> [!NOTE]
-> **轻悦时光现已兼容大部分 阅读3 的书源，全平台可用**
-
-<DownloadCard :frontmatter-index="2" />
-
-
-> [!IMPORTANT]
-> **阅读原生鸿蒙版已停更；卓易通详见：
-> 安卓版 => [下载阅读](#AndroidDownload)**
-
-
-### 🚮 停更软件 {#HarmonyOthers}
-<details><summary> 🌸 阅读 鸿蒙版（已停更）</summary>
-
-#### 🌸 [阅读 鸿蒙版](https://github.com/mgz0227/legado-Harmony)
-> [!NOTE]
-> **这是 阅读官方 的阅读鸿蒙版，目前可以本地阅读**
+### 🌸 [阅读 鸿蒙版](https://github.com/mgz0227/legado-Harmony)
+<DownloadCard :frontmatter-index="3" />
 
 | 下载站点 | 备注 |
 | ------- | ---- |
-| [Github Release](https://github.com/mgz0227/legado-Harmony/releases) | 停止更新 |
-| [Gitee Release](https://gitee.com/mgz0227/legado-Harmony/releases) | 停止更新 |
-</details>
+| [Github Release](https://github.com/mgz0227/legado-Harmony/releases) | 需要代理，无需登录 |
+| [Gitee Release](https://gitee.com/mgz0227/legado-Harmony/releases) | 无需代理，无需登录 |
+
+
+### 📚 [轻悦时光](https://www.qread.xyz/) {#qysgHarmony}
+<DownloadCard :frontmatter-index="4" />
 
 
 ## 跨平台 {#MultiPlatform}
