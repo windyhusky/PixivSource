@@ -40,6 +40,14 @@ repos:
     recommend: 64.apk ios win mac
     show_assets: 2
 
+  - name: 阅读 薯条版
+    icon: /img/LegadoShutiao.png
+    desc: 继承 官方版 的跨平台修改版
+    link: https://github.com/huajideshutiao/legado
+    prerelease: false
+    recommend: arm64.apk x64.msi
+    show_assets: 2
+    
   - name: 轻悦时光
     icon: /img/QYSG.png
     desc: 纯本地的多端兼容阅读器
@@ -448,9 +456,6 @@ repos:
 - ✅ 支持；☑️ 部分支持；❌ 不支持；❓未知（未测试）
 
 
-### ⬇️ 下载软件 {#MultiPlatformDownload}
-<DownloadCard :frontmatter-index="1" />
-
 ### 📚 [轻悦时光](https://www.qread.xyz/) {#qysg}
 > [!TIP]
 >
@@ -458,7 +463,10 @@ repos:
 
 > [!NOTE]
 >
-> **轻悦时光现已兼容大部分 阅读3 的书源，全平台可用** 
+> **轻悦时光现已兼容大部分 阅读3 的书源，全平台可用**
+
+<DownloadCard :frontmatter-index="1" />
+
 
 | 下载站点 | 备注 |
 | ------- | --- |
@@ -467,6 +475,28 @@ repos:
 | [华为应用市场](https://appgallery.huawei.com/app/detail?id=com.q9uo11.nread) | 无需代理，无需登录 |
 | [百度网盘](https://pan.baidu.com/s/1qEarjwyfQcF0r8mao2JdnA?pwd=dkbd#list/path=%2F%E8%BD%BB%E6%82%A6%E6%97%B6%E5%85%89) | 无需代理，需要登录 |
 | [iOS TestFlight](https://api.qread.xyz/tf) | 需要代理，无需登录 |
+
+
+### 🍟 [阅读 薯条版](https://github.com/huajideshutiao/legado) {#LegadoShutiao}
+> [!TIP]
+> **这是 huajideshutiao 基于 阅读 阅读官方版，专为墨水屏阅读器优化的改版阅读仓库**
+
+<DownloadCard :frontmatter-index="2" />
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/huajideshutiao/Legado/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/huajideshutiao/Legado/actions) | 需要代理，需要登录 |
+
+
+### 🥚 [阅读 MR](https://github.com/DandanLLab/mr) {#LegadoDandan}
+> [!TIP]
+> **这是 蛋蛋(DandanLLab) 开发的跨平台多媒体阅读器，兼容阅读书源规则**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/DandanLLab/mr/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/DandanLLab/mr/actions) | 需要代理，需要登录 |
 
 
 ### 🚮 停更软件 {#MultiPlatformOthers}
