@@ -136,7 +136,7 @@ repos:
 <DownloadCard :frontmatter-index="0" />
 
 
-### 🔀 原版分支
+### 🔀 原版分支 {#BrunchLegado}
 #### 👍 【推荐】[阅读 Sigma](https://github.com/Luoyacheng/legado-E) {#LegadoSigma}
 > [!TIP]
 > **这是 洛娅橙 的阅读改版仓库，也是【阅读 Beta】新功能的上游仓库**
@@ -173,6 +173,16 @@ repos:
 | [Github Action](https://github.com/HapeLee/legado-with-MD3/actions) | 需要代理，需要登录 |
 
 
+#### 🎀 【兼容】[墨本阅读](https://github.com/Mupceet/EssentialReader) {#EssentialReader}
+> [!TIP]
+> **「墨本阅读」专为墨水屏而来。这是 Mupceet 基于 MD3 的阅读改版仓库。**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/Mupceet/EssentialReader/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/Mupceet/EssentialReader/actions) | 需要代理，需要登录 |
+
+
 #### ⏺️ 【兼容】[阅读 T](https://github.com/skybbk1001/legadoT) {#LegadoT}
 > [!TIP]
 > **带有定时任务的阅读，这是 明月照大江 基于 阅读官方版 的改版阅读仓库**
@@ -183,17 +193,7 @@ repos:
 | [Github Action](https://github.com/skybbk1001/legadoT/actions) | 需要代理，需要登录 |
 
 
-#### ⏺️ 【兼容】[阅读 薯条版](https://github.com/huajideshutiao/legado) {#LegadoShutiao}
-> [!TIP]
-> **这是 huajideshutiao 基于 阅读 阅读官方版，专为墨水屏阅读器优化的改版阅读仓库**
-
-| 下载站点 | 备注 |
-| ------- | --- |
-| [Github Release](https://github.com/huajideshutiao/Legado/releases) | 需要代理，无需登录 |
-| [Github Action](https://github.com/huajideshutiao/Legado/actions) | 需要代理，需要登录 |
-
-
-### 🔀 Sigma 分支
+### 🔀 Sigma 分支 {#BrunchSigma}
 #### ⏺️ 【兼容】[阅读 Archive](https://github.com/Rimchars/legado) {#LegadoArchive}
 
 > [!TIP]
@@ -257,6 +257,25 @@ repos:
 | [Github Action](https://github.com/damifan3/legadoPP/actions) | 需要代理，需要登录 |
 
 
+#### ⏺️ 【兼容】[阅读 M](https://github.com/syq17496152/legado) {#LegadoM}
+> [!TIP]
+> **这是 syq17496152 基于 阅读 Sigma 的改版阅读仓库，UI 体系深度对齐 Archive，并在此基础上扩展更多功能**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/syq17496152/legado/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/syq17496152/legado/actions) | 需要代理，需要登录 |
+
+
+#### ⏺️ 【兼容】[阅读 E-ink](https://gitee.com/lyj09x/legado) {#LegadoE-ink}
+> [!TIP]
+> **这是 lyj09x 基于 阅读 Sigma 的改版阅读仓库，针对墨水屏（E-ink）优化**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://gitee.com/lyj09x/legado/releases) | 需要代理，无需登录 |
+
+
 #### ⏺️ 【兼容】[阅读 自用增强分支](https://github.com/Jingshiro/legado) {#LegadoJingshiro}
 > [!TIP]
 > **这是 Jingshiro 基于 阅读 Sigma 的改版阅读仓库，新增详细阅读记录、笔记想法、AI助手、主题全量导出、藏书票等功能**
@@ -267,7 +286,22 @@ repos:
 | [Github Action](https://github.com/Jingshiro/legado/actions) | 需要代理，需要登录 |
 
 
-### 🔀 Max 分支 {#LegadoMax}
+#### ⏺️ 【兼容】[阅读 X](https://github.com/XziXmn/legado-X) {#LegadoX}
+> [!TIP]
+> **这是 XziXmn 基于 阅读 Sigma 的个人修改版。**
+
+| 下载站点 | 备注 |
+| ------- | --- |
+| [Github Release](https://github.com/XziXmn/legado-X/releases) | 需要代理，无需登录 |
+| [Github Action](https://github.com/XziXmn/legado-X/actions) | 需要代理，需要登录 |
+
+
+
+### 🔀 Max 分支 {#BrunchMax}
+> [!NOTE]
+> **阅读 Max 也是 Sigma 的分支，因其版本较为复杂，故单独列出**
+
+
 #### ⏺️ 【兼容】[Suml-1 阅读 Max](https://github.com/Suml-1/Legado_Max) {#LegadoMax2}
 > [!TIP]
 > **这是 Suml-1 基于 youfengknight 的 阅读 Max 的改版仓库，在其基础上新增更多实用和强大功能**
