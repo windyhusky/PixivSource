@@ -1,4 +1,4 @@
-## 书源制作工具
+## `.JSON` 书源制作工具
 制作工具来自：https://github.com/eigeen/PixivSourceProject
 
 ### 项目链接
