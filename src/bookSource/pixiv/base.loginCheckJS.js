@@ -73,7 +73,7 @@ function publicFunc() {
         putInCacheObject("pixivEnvironment", u.environment)
     }
 
-    u.log = () => {
+    u.logSource = () => {
         java.log(`${source.bookSourceComment.split("\n")[0]}`)
         java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
         java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
@@ -97,6 +97,12 @@ function publicFunc() {
         if (u.settings.IPDirect) java.log("✈️ 直连模式：✅ 已开启")
         if (u.settings.FAST) java.log("⏩ 快速模式：✅ 已开启")
         if (u.settings.DEBUG) java.log("🐞 调试模式：✅ 已开启")
+    }
+
+    u.checkPixiv = () => {
+        ["pixivCsrfToken", "pixivCookie", "pixivUid"].forEach(item => {
+            java.log(`${getFromCache(item)? "✅" : "❌"} ${item}`)
+        })
     }
 
     u.debugFunc = (func) => {
@@ -578,7 +584,8 @@ function publicFunc() {
         return res
     }
 
-    u.init(); u.log(); u.logEnvironment(); u.logSettings()
+    u.init(); u.logSource(); u.logEnvironment(); u.logSettings()
+    if (u.settings.DEBUG) u.checkPixiv()
     util = u; java.put("util", objStringify(u))
 }
 
