@@ -615,11 +615,10 @@ function checkMessageThread(checkTimes) {
 function getPixivUid() {
     // cache.delete("pixivUid")
     let pixivUid = getFromCache("pixivUid")
-    if (!pixivUid && isLogin()) {
-        pixivUid = java.getResponse().headers().get("x-userid")
-        if (!pixivUid) pixivUid = java.getResponse().headers().get("x-user-id")
-        if (!pixivUid) pixivUid = java.ajax("https://www.pixiv.net/").match(/user_id:'(\d+)'/)[1]
-        // java.log(pixivUid)
+    let pixivCookie = getFromCache("pixivCookie")
+    if (!pixivUid && pixivCookie) {
+        pixivUid = pixivCookie.match(new RegExp("\\d+"))[0]
+        java.log(`pixivUid: ${pixivUid}`)
         putInCache("pixivUid", pixivUid)
     }
     return pixivUid
