@@ -93,6 +93,26 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 📆 2026下半年 {#2026H2}
+### ⬆️ 更新 284 {#284}
+- 🅿️ Pixiv 书源、备用：
+  - ✅ 登录检测
+    - 检测并区分【轻悦时光】与【源阅】，**可能无法准确检测【源阅】**
+    - getPixivUid 从 Cookie 获取 UID，兼容【轻悦时光】
+    - 拆分 u.log，u.environment 只检测1次当前软件（环境信息）
+    - u.checkPixiv 检测有无 Pixiv CsrfToken 与 Cookie
+  - 🔗 登录 URL
+    - 账号设置：避免打开浏览器后清除登录信息
+    - 备份恢复：精简内容
+  - ▶️ 登录页面
+    - 调整【备份恢复】按钮位置
+  - JSLib
+    - 删除硬编码的 WebView UA 
+    - checkLogin 在线检测登录状态
+  - ⚠️ **可能会引入 bug，无法准确检测【源阅】**
+
+- 🅿️ Pixiv 漫画：
+  - getPixivUid 从 Cookie 获取 UID，兼容【轻悦时光】
+
 
 ### 📚 更新 283 {#283}
 - 🅿️ Pixiv 书源：
@@ -103,9 +123,10 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
     - 🏷️ **书签：允许翻页，减少请求次数**
     - 🦊 兽人小说作者：减少请求次数
   - ✅ 登录检测
-    - 恢复 getPixivUid 旧方法
+    - **恢复 getPixivUid 旧方法，引入了【轻悦时光】不兼容的函数**
   - ⬇️ 精简代码：
     - 搜索、发现、JSLib
+  - ⚠️ **引入 bug，轻悦时光 不可用**
 
 
 ### 📚 更新 282 {#282}
