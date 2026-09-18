@@ -28,7 +28,7 @@ if (BOOK) {
         {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
         {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
         {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
-        {"💾 备份恢复": "backupRestore()" },
+        {"⚙️ 当前设置": "showSettings()" },
         {"👀 书源设置": `editSettings('SHOW_SETTINGS')` },
         {"👀 发现设置": `editSettings('SHOW_DISCOVER')` },
     ]
@@ -95,7 +95,7 @@ let comment = [
 
 let settings = [
     {"书源设置": "text" },
-    {"⚙️ 当前设置": "showSettings()" },
+    {"💾 备份恢复": "backupRestore()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
     {"📚 🚫 整合系列": "editSettings('COMBINE_NOVELS')" },
 
