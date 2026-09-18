@@ -2,7 +2,7 @@
   "name": "pixivsource",
   "version": "1.0.0",
   "packageManager": "pnpm@9.0.0",
-  "description": "<div align=\"center\">\r <img width=\"125\" height=\"125\" src=\"doc/pic/BookSourcePixiv.png\" alt=\"Pixiv BookSource\"/>",
+  "description": "开源阅读 Pixiv 书源 / Pixiv BookSource for Legado",
   "homepage": "https://github.com/DowneyRem/PixivSource#readme",
   "bugs": {
     "url": "https://github.com/DowneyRem/PixivSource/issues"
@@ -11,10 +11,8 @@
     "type": "git",
     "url": "git+https://github.com/DowneyRem/PixivSource.git"
   },
-  "license": "ISC",
   "author": "DowneyRem",
   "type": "module",
-  "main": "index.js",
   "directories": {
     "doc": "doc"
   },
