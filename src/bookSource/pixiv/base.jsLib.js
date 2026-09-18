@@ -205,7 +205,7 @@ function urlIP(url) {
     if (this._settings.IPDirect) {
         url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
         let headers = {
-            "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
+            "User-Agent": this.getFromCache("userAgent"),
             "X-Requested-With": "XMLHttpRequest",
             "Host": "www.pixiv.net",
             "Referer": "https://www.pixiv.net/",
@@ -512,13 +512,22 @@ function updateSourceHtml() {
 
     try {
         let updateUrl = `https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/${sourceName}.json`
-        onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[index]
+        onlineSource = JSON.parse(java.get(updateUrl, {
+            "User-Agent": this.getFromCache("userAgent"),
+            'X-Requested-With': 'XMLHttpRequest'
+        }).body())[index]
     } catch (e) {
         try {
             let updateUrl = `https://raw.githubusercontent.com/DowneyRem/PixivSource/main/${sourceName}.json`
-            onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[index]
+            onlineSource = JSON.parse(java.get(updateUrl,{
+                "User-Agent": this.getFromCache("userAgent"),
+                'X-Requested-With': 'XMLHttpRequest'
+            }).body())[index]
         } catch (e) {
-            onlineSource = {lastUpdateTime: new Date().getTime(), bookSourceComment: source.bookSourceComment}
+            onlineSource = {
+                lastUpdateTime: new Date().getTime(),
+                bookSourceComment: source.bookSourceComment
+            }
         }
     }
     comment = onlineSource.bookSourceComment.split("\n")
