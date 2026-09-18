@@ -119,7 +119,7 @@ function publicFunc() {
 
     u.login = function() {
         let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
-    {"headers": {"User-Agent": "${java.getWebViewUA()}"}}`, '登录账号', false)
+    {"headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
         if (resp.code() === 200) {
             this.getCsrfToken(); this.getCookie()
         } else {
