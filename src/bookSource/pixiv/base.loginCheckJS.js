@@ -82,7 +82,7 @@ function publicFunc() {
     u.logEnvironment = () => {
         if (u.environment.IS_SOURCEREAD) {
             java.log("▶️ 当前软件：🍎 源阅 SourceRead")
-        } else if (u.environment.IS_SOURCEREAD) {
+        } else if (u.environment.IS_QYSG) {
             java.log("▶️ 当前软件：🍎 轻悦时光 QYSG")
         } else if (u.environment.IS_LEGADO_SIGMA) {
             java.log("▶️ 当前软件：🤖 阅读 Sigma")
