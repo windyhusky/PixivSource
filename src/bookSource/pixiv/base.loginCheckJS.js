@@ -81,13 +81,13 @@ function publicFunc() {
 
     u.logEnvironment = () => {
         if (u.environment.IS_SOURCEREAD) {
-            java.log("📱 当前软件：🍎 源阅 SourceRead")
+            java.log("▶️ 当前软件：🍎 源阅 SourceRead")
         } else if (u.environment.IS_SOURCEREAD) {
-            java.log("📱 当前软件：🍎 轻悦时光 QYSG")
+            java.log("▶️ 当前软件：🍎 轻悦时光 QYSG")
         } else if (u.environment.IS_LEGADO_SIGMA) {
-            java.log("📱 当前软件：🤖 阅读 Sigma")
+            java.log("▶️ 当前软件：🤖 阅读 Sigma")
         } else if (u.environment.IS_LEGADO_OFFICIAL && !u.environment.IS_BACKUP) {
-            java.log("📱 当前软件：🤖 阅读 正式版")
+            java.log("▶️ 当前软件：🤖 阅读 正式版")
             sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请使用：\n阅读【Sigma】\n\n即将为您打开下载界面，请在浏览器内打开并下载")
             sleep(3); startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Sigma")
         }
@@ -100,9 +100,16 @@ function publicFunc() {
     }
 
     u.checkPixiv = () => {
-        ["pixivCsrfToken", "pixivCookie", "pixivUid"].forEach(item => {
-            java.log(`${getFromCache(item)? "✅" : "❌"} ${item}`)
+        let logs = []
+        let checkThings = ["pixivCsrfToken", "pixivCookie", "pixivUid"]
+        checkThings.forEach(item => {
+            let text = `${getFromCache(item)? "✅" : "❌"} ${item}`
+            logs.push(text)
+            java.log(text)
         })
+        if (logs.join("").split("❌").length >= 2) {
+            sleepToast("⚠️ 登录状态\n 当前登录信息不完整，请重新登录\n或使用【备份恢复】恢复登录状态")
+        }
     }
 
     u.debugFunc = (func) => {
