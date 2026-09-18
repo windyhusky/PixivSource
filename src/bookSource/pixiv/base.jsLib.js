@@ -140,6 +140,10 @@ function isLogin() {
     const {java, cache} = this
     return !!this.getFromCache("pixivCsrfToken")
 }
+function checkLogin() {
+    const {java, cache} = this
+    return !JSON.stringify(java.ajax(urlSelfInfo())).error
+}
 
 function getAjaxJson(url, requestUpdate) {
     const {java, cache} = this
@@ -215,6 +219,10 @@ function urlIP(url) {
         return `${url}, ${JSON.stringify({headers: headers})}`
     }
     return url
+}
+
+function urlSelfInfo() {
+    return `https://www.pixiv.net/ajax/settings/self`
 }
 
 function urlNovelUrl(novelId) {
