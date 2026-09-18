@@ -930,8 +930,14 @@ function shareFactory(type) {
     }
 }
 
+// 用【备份恢复】恢复登录状态后，打开浏览器不清空原有登录状态
 function startPixivSettings() {
-    startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
+    let headers = getFromCacheObject("pixivHeaders")
+    headers["user-agent"] = getFromCache("userAgent") || ""
+    headers["x-csrf-token"] = getFromCache("pixivCsrfToken") || ""
+    headers["user-agent"] = getFromCache("pixivCookie") || ""
+
+    java.startBrowser(`https://www.pixiv.net/settings/viewing, ${JSON.stringify({headers: headers})}`, "账号设置")
 }
 function startGithubReadme() {
     startBrowser("https://pixivsource.pages.dev/Pixiv", "使用指南")
