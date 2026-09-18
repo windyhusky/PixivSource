@@ -77,7 +77,9 @@ function publicFunc() {
         java.log(`${source.bookSourceComment.split("\n")[0]}`)
         java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
         java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+    }
 
+    u.logEnvironment = () => {
         if (u.environment.IS_SOURCEREAD) {
             java.log("📱 当前软件：🍎 源阅 SourceRead")
         } else if (u.environment.IS_SOURCEREAD) {
@@ -89,7 +91,9 @@ function publicFunc() {
             sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请使用：\n阅读【Sigma】\n\n即将为您打开下载界面，请在浏览器内打开并下载")
             sleep(3); startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Sigma")
         }
+    }
 
+    u.logSettings = () => {
         if (u.settings.IPDirect) java.log("✈️ 直连模式：✅ 已开启")
         if (u.settings.FAST) java.log("⏩ 快速模式：✅ 已开启")
         if (u.settings.DEBUG) java.log("🐞 调试模式：✅ 已开启")
@@ -574,7 +578,7 @@ function publicFunc() {
         return res
     }
 
-    u.init(); u.log();
+    u.init(); u.log(); u.logEnvironment(); u.logSettings()
     util = u; java.put("util", objStringify(u))
 }
 
