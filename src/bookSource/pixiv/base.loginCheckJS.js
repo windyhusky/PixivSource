@@ -69,7 +69,6 @@ function publicFunc() {
         u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
         u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
         u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
-        u.environment.IS_BACKUP = source.bookSourceComment.includes("备用")
         putInCacheObject("pixivEnvironment", u.environment)
     }
 
@@ -86,7 +85,7 @@ function publicFunc() {
             java.log("▶️ 当前软件：🍎 轻悦时光 QYSG")
         } else if (u.environment.IS_LEGADO_SIGMA) {
             java.log("▶️ 当前软件：🤖 阅读 Sigma")
-        } else if (u.environment.IS_LEGADO_OFFICIAL && !u.environment.IS_BACKUP) {
+        } else if (u.environment.IS_LEGADO_OFFICIAL && !source.bookSourceComment.includes("备用")) {
             java.log("▶️ 当前软件：🤖 阅读 正式版")
             sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请使用：\n阅读【Sigma】\n\n即将为您打开下载界面，请在浏览器内打开并下载")
             sleep(3); startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Sigma")
