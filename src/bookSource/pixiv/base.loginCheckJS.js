@@ -658,14 +658,4 @@ if (result.code() === 200) {
     getPixivUid(); getWebViewUA(); util.getCookie(); util.getCsrfToken(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
-
-// util.debugFunc(() => {
-//     java.log(`DEBUG = ${util.settings.DEBUG}\n`)
-//     java.log(JSON.stringify(util.settings, null, 4))
-//     java.log(`${getWebViewUA()}\n`)
-//     java.log(`${getFromCache("pixivCsrfToken")}\n`)
-//     java.log(`${getFromCache("pixivCookie")}\n`)
-//     java.log(`${getFromCache("pixivHeaders")}\n`)
-// })
-
 java.getStrResponse(null, null)

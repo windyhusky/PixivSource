@@ -13,7 +13,7 @@ function login() {
 function logout() {
     removeCookie()
     java.startBrowser("https://www.pixiv.net/logout.php", "退出账号")
-    removeCookie(); removeLikeDataCache(); removeSettingsCache()
+    removeCookie(); removeLikeDataCache()
     sleepToast(`✅ 已退出当前账号\n\n退出后请点击右上角的 ✔️ 退出\n\n登录请点击【登录账号】进行登录`)
 }
 
@@ -38,14 +38,6 @@ function removeLikeDataCache() {
     // 删除 likeNovels 与 watchedSeries
     removeCacheList("likeNovels")
     removeCacheList("watchedSeries")
-}
-
-function removeSettingsCache() {
-    // 删除 屏蔽作者名单
-    // removeCacheList("blockAuthorList")
-    // 删除  屏蔽关键词
-    // cache.delete("tagsBlockWords")
-    // cache.delete("captionBlockWords")
 }
 
 function getCookie() {
@@ -403,7 +395,7 @@ function userFollow(restrict) {
     if (resp.error) {
         sleepToast(`⭐️ 关注作者\n\n⚠️ 关注【${novel.userName}】失败\n已打开浏览器，请(上滑)手动关注`, 1)
         java.startBrowserAwait(`${urlUserUrl(novel.userId)},
-    {"headers": {"User-Agent": "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36" }}`, `关注${novel.userName}`, false)
+        {"User-Agent": ${getWebViewUA()}}}`, `关注${novel.userName}`, false)
     }
     sleepToast(`⭐️ 关注作者\n\n✅ 已关注【${novel.userName}】`)
 }
@@ -932,8 +924,14 @@ function shareFactory(type) {
     }
 }
 
+// 用【备份恢复】恢复登录状态后，打开浏览器不清空原有登录状态
 function startPixivSettings() {
-    startBrowser("https://www.pixiv.net/settings/viewing", "账号设置")
+    let headers = getFromCacheObject("pixivHeaders")
+    headers["user-agent"] = getFromCache("userAgent") || ""
+    headers["x-csrf-token"] = getFromCache("pixivCsrfToken") || ""
+    headers["user-agent"] = getFromCache("pixivCookie") || ""
+
+    java.startBrowser(`https://www.pixiv.net/settings/viewing, ${JSON.stringify({headers: headers})}`, "账号设置")
 }
 function startGithubReadme() {
     startBrowser("https://pixivsource.pages.dev/Pixiv", "使用指南")
@@ -1188,23 +1186,15 @@ function backupData() {
     data.pixivCookie = getCookie()
     data.pixivCsrfToken = getCsrfToken()
 
-    // 书源缓存
-    data.pixivAuthors = getFromCacheObject("pixivAuthors")
-    data.likeNovels = getFromCacheObject("likeNovels")
-    data.watchedSeries = getFromCacheObject("watchedSeries")
-
     // 书源设置
     data.pixivSettings = getFromCacheObject("pixivSettings")
     data.blockCaption = getFromCacheObject("blockCaption")
     data.blockTags = getFromCacheObject("blockTags")
     data.likeTags = getFromCacheObject("likeTags")
-    // if (!data.blockCaption) data.blockCaption = getFromCacheObject("captionBlockWords")
-    // if (!data.blockTags) data.blockCaption = getFromCacheObject("tagBlockWords")
 
     // 书源设置 Map
     data.blockAuthorMap = Object.fromEntries(getFromCacheMap("blockAuthorMap"))
     data.likeAuthorsMap = Object.fromEntries(getFromCacheMap("likeAuthorsMap"))
-    if (!data.likeAuthorsMap) data.likeAuthorsMap = Object.fromEntries(getFromCacheMap("likeAuthors"))
     return JSON.stringify(data, null, 4)
 }
 
@@ -1223,11 +1213,6 @@ function restoreData(data) {
             cookie.setWebCookie("https://accounts.pixiv.net", pixivCookie)
         } catch (e) {}
     }
-
-    // 书源缓存
-    putInCacheObject("pixivAuthors", data?.pixivAuthors)
-    putInCacheObject("likeNovels", data?.likeNovels)
-    putInCacheObject("watchedSeries", data?.watchedSeries)
 
     // 书源设置
     putInCacheObject("pixivSettings", data?.pixivSettings)

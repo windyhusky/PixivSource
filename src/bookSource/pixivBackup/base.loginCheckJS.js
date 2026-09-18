@@ -8,6 +8,13 @@ function objStringify(obj) {
     });
 }
 
+// 检测 轻悦时光，多平台
+// 不可用 java.getResponse()
+// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+function isQYSG() {
+    return java.getUserAgent() === java.getWebViewUA()
+}
+
 // 检测 源阅
 // 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
@@ -15,7 +22,7 @@ function objStringify(obj) {
 // 可用 source.bookSourceName source.getVariable() source.setVariable()等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 function isSourceRead() {
-    return java.getUserAgent() === java.getWebViewUA()
+    return java.getUserAgent() === java.getWebViewUA() && String(java.getWebViewUA()).includes("Win")
 }
 
 // 正式版 不支持在 JSlib 的函数直接设置默认参数
@@ -51,33 +58,57 @@ function publicFunc() {
         u.settings = checkSettings()
         putInCacheObject("pixivSettings", u.settings)
 
+        u.environment = getFromCacheObject("pixivEnvironment")
+        if (!u.environment) u.checkEnvironment()
+    }
+
+    u.checkEnvironment = () => {
         u.environment = {}
         u.environment.IS_SOURCEREAD = isSourceRead()
+        u.environment.IS_QYSG = isQYSG()
         u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
         u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
         u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
-        u.environment.IS_BACKUP = source.bookSourceComment.includes("备用")
         putInCacheObject("pixivEnvironment", u.environment)
     }
 
-    u.log = () => {
+    u.logSource = () => {
         java.log(`${source.bookSourceComment.split("\n")[0]}`)
         java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
         java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+    }
 
+    u.logEnvironment = () => {
         if (u.environment.IS_SOURCEREAD) {
-            java.log("📱 软件平台：🍎 源阅 SourceRead")
+            java.log("▶️ 当前软件：🍎 源阅 SourceRead")
+        } else if (u.environment.IS_QYSG) {
+            java.log("▶️ 当前软件：🍎 轻悦时光 QYSG")
         } else if (u.environment.IS_LEGADO_SIGMA) {
-            java.log("📱 软件平台：🤖 阅读 Sigma / 阅读 Beta【新包名】")
-        } else if (u.environment.IS_LEGADO_OFFICIAL && !u.environment.IS_BACKUP) {
-            java.log("📱 软件平台：🤖 阅读 正式版")
+            java.log("▶️ 当前软件：🤖 阅读 Sigma")
+        } else if (u.environment.IS_LEGADO_OFFICIAL && !source.bookSourceComment.includes("备用")) {
+            java.log("▶️ 当前软件：🤖 阅读 正式版")
             sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请使用：\n阅读【Sigma】\n\n即将为您打开下载界面，请在浏览器内打开并下载")
             sleep(3); startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Sigma")
         }
+    }
 
+    u.logSettings = () => {
         if (u.settings.IPDirect) java.log("✈️ 直连模式：✅ 已开启")
         if (u.settings.FAST) java.log("⏩ 快速模式：✅ 已开启")
         if (u.settings.DEBUG) java.log("🐞 调试模式：✅ 已开启")
+    }
+
+    u.checkPixiv = () => {
+        let logs = []
+        let checkThings = ["pixivCsrfToken", "pixivCookie", "pixivUid"]
+        checkThings.forEach(item => {
+            let text = `${getFromCache(item)? "✅" : "❌"} ${item}`
+            logs.push(text)
+            java.log(text)
+        })
+        if (logs.join("").split("❌").length >= 2) {
+            sleepToast("⚠️ 登录状态\n 当前登录信息不完整，请重新登录\n或使用【备份恢复】恢复登录状态")
+        }
     }
 
     u.debugFunc = (func) => {
@@ -94,7 +125,7 @@ function publicFunc() {
 
     u.login = function() {
         let resp = java.startBrowserAwait(`https://accounts.pixiv.net/login,
-    {"headers": {"User-Agent": "${java.getWebViewUA()}"}}`, '登录账号', false)
+    {"headers": {"User-Agent": ${getWebViewUA()}}}`, '登录账号', false)
         if (resp.code() === 200) {
             this.getCsrfToken(); this.getCookie()
         } else {
@@ -559,7 +590,8 @@ function publicFunc() {
         return res
     }
 
-    u.init(); u.log();
+    u.init(); u.logSource(); u.logEnvironment(); u.logSettings()
+    if (u.settings.DEBUG) u.checkPixiv()
     util = u; java.put("util", objStringify(u))
 }
 
@@ -589,11 +621,10 @@ function checkMessageThread(checkTimes) {
 function getPixivUid() {
     // cache.delete("pixivUid")
     let pixivUid = getFromCache("pixivUid")
-    if (!pixivUid && isLogin()) {
-        pixivUid = java.getResponse().headers().get("x-userid")
-        if (!pixivUid) pixivUid = java.getResponse().headers().get("x-user-id")
-        if (!pixivUid) pixivUid = java.ajax("https://www.pixiv.net/").match(/user_id:'(\d+)'/)[1]
-        // java.log(pixivUid)
+    let pixivCookie = getFromCache("pixivCookie")
+    if (!pixivUid && pixivCookie) {
+        pixivUid = pixivCookie.match(new RegExp("\\d+"))[0]
+        java.log(`pixivUid: ${pixivUid}`)
         putInCache("pixivUid", pixivUid)
     }
     return pixivUid

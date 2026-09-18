@@ -139,6 +139,10 @@ function isLogin() {
     const {java, cache} = this
     return !!this.getFromCache("pixivCsrfToken")
 }
+function checkLogin() {
+    const {java, cache} = this
+    return !JSON.stringify(java.ajax(urlSelfInfo())).error
+}
 
 function getAjaxJson(url, requestUpdate) {
     const {java, cache} = this
@@ -169,11 +173,8 @@ function getWebViewUA() {
     if (userAgent) return String(userAgent)
 
     userAgent = String(java.getWebViewUA())
-    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
-        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-    }
     // java.log(`userAgent=${userAgent}`)
-    this.putInCache("userAgent", userAgent, cacheSaveSeconds/7)
+    this.putInCache("userAgent", userAgent, cacheSaveSeconds/4)
     return String(userAgent)
 }
 function startBrowser(url, title) {
@@ -206,7 +207,7 @@ function urlIP(url) {
     if (settings.IPDirect) {
         url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
         let headers = {
-            "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
+            "User-Agent": this.getFromCache("userAgent"),
             "X-Requested-With": "XMLHttpRequest",
             "Host": "www.pixiv.net",
             "Referer": "https://www.pixiv.net/",
@@ -216,6 +217,10 @@ function urlIP(url) {
         return `${url}, ${JSON.stringify({headers: headers})}`
     }
     return url
+}
+
+function urlSelfInfo() {
+    return `https://www.pixiv.net/ajax/settings/self`
 }
 
 function urlNovelUrl(novelId) {
@@ -513,13 +518,22 @@ function updateSourceHtml() {
 
     try {
         let updateUrl = `https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/${sourceName}.json`
-        onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[index]
+        onlineSource = JSON.parse(java.get(updateUrl, {
+            "User-Agent": this.getFromCache("userAgent"),
+            'X-Requested-With': 'XMLHttpRequest'
+        }).body())[index]
     } catch (e) {
         try {
             let updateUrl = `https://raw.githubusercontent.com/DowneyRem/PixivSource/main/${sourceName}.json`
-            onlineSource = JSON.parse(java.get(updateUrl,{'User-Agent': 'Mozilla/5.0 (Linux; Android 14)','X-Requested-With': 'XMLHttpRequest'}).body())[index]
+            onlineSource = JSON.parse(java.get(updateUrl,{
+                "User-Agent": this.getFromCache("userAgent"),
+                'X-Requested-With': 'XMLHttpRequest'
+            }).body())[index]
         } catch (e) {
-            onlineSource = {lastUpdateTime: new Date().getTime(), bookSourceComment: source.bookSourceComment}
+            onlineSource = {
+                lastUpdateTime: new Date().getTime(),
+                bookSourceComment: source.bookSourceComment
+            }
         }
     }
     comment = onlineSource.bookSourceComment.split("\n")
