@@ -58,6 +58,11 @@ function publicFunc() {
         u.settings = checkSettings()
         putInCacheObject("pixivSettings", u.settings)
 
+        u.environment = getFromCacheObject("pixivEnvironment")
+        if (!u.environment) u.checkEnvironment()
+    }
+
+    u.checkEnvironment = () => {
         u.environment = {}
         u.environment.IS_SOURCEREAD = isSourceRead()
         u.environment.IS_QYSG = isQYSG()
