@@ -8,6 +8,13 @@ function objStringify(obj) {
     });
 }
 
+// 检测 轻悦时光，多平台
+// 不可用 java.getResponse()
+// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+function isQYSG() {
+    return java.getUserAgent() === java.getWebViewUA()
+}
+
 // 检测 源阅
 // 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
@@ -15,7 +22,7 @@ function objStringify(obj) {
 // 可用 source.bookSourceName source.getVariable() source.setVariable()等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 function isSourceRead() {
-    return java.getUserAgent() === java.getWebViewUA()
+    return java.getUserAgent() === java.getWebViewUA() && String(java.getWebViewUA()).includes("Win")
 }
 
 // 正式版 不支持在 JSlib 的函数直接设置默认参数
@@ -53,6 +60,7 @@ function publicFunc() {
 
         u.environment = {}
         u.environment.IS_SOURCEREAD = isSourceRead()
+        u.environment.IS_QYSG = isQYSG()
         u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
         u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
         u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
@@ -66,11 +74,13 @@ function publicFunc() {
         java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
 
         if (u.environment.IS_SOURCEREAD) {
-            java.log("📱 软件平台：🍎 源阅 SourceRead")
+            java.log("📱 当前软件：🍎 源阅 SourceRead")
+        } else if (u.environment.IS_SOURCEREAD) {
+            java.log("📱 当前软件：🍎 轻悦时光 QYSG")
         } else if (u.environment.IS_LEGADO_SIGMA) {
-            java.log("📱 软件平台：🤖 阅读 Sigma / 阅读 Beta【新包名】")
+            java.log("📱 当前软件：🤖 阅读 Sigma")
         } else if (u.environment.IS_LEGADO_OFFICIAL && !u.environment.IS_BACKUP) {
-            java.log("📱 软件平台：🤖 阅读 正式版")
+            java.log("📱 当前软件：🤖 阅读 正式版")
             sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请使用：\n阅读【Sigma】\n\n即将为您打开下载界面，请在浏览器内打开并下载")
             sleep(3); startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Sigma")
         }
