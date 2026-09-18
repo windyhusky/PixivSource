@@ -590,10 +590,7 @@ function getPixivUid() {
     // cache.delete("pixivUid")
     let pixivUid = getFromCache("pixivUid")
     if (!pixivUid && isLogin()) {
-        pixivUid = java.getResponse().headers().get("x-userid")
-        if (!pixivUid) pixivUid = java.getResponse().headers().get("x-user-id")
-        if (!pixivUid) pixivUid = java.ajax("https://www.pixiv.net/").match(/user_id:'(\d+)'/)[1]
-        // java.log(pixivUid)
+        pixivUid = java.ajax("https://www.pixiv.net/").match(/user_id:'(\d+)'/)[1]
         putInCache("pixivUid", pixivUid)
     }
     return pixivUid
