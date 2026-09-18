@@ -264,11 +264,10 @@ function publicFunc() {
 function getPixivUid() {
     // cache.delete("pixivUid")
     let pixivUid = getFromCache("pixivUid")
-    if (!pixivUid) pixivUid = getFromCache("pixivUid")
-
-    if (!pixivUid && isLogin()) {
-        let html = java.ajax("https://www.pixiv.net/")
-        pixivUid = html.match(/user_id:'(\d+)'/)[1]
+    let pixivCookie = getFromCache("pixivCookie")
+    if (!pixivUid && pixivCookie) {
+        pixivUid = pixivCookie.match(new RegExp("\\d+"))[0]
+        java.log(`pixivUid: ${pixivUid}`)
         putInCache("pixivUid", pixivUid)
     }
     return pixivUid
