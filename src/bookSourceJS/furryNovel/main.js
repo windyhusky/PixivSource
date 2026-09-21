@@ -70,13 +70,13 @@ function explore(url, page) {
  * @returns { {name, author, intro, coverUrl, kind, wordCount, latestChapterTitle, tocUrl, type, variable} } 字段补丁对象或 JSON 字符串
  */
 function getBookInfo(book) {
-    const html = java.ajax(book.bookUrl)
-    return {
-        intro: "",
-        coverUrl: "",
-        latestChapterTitle: "",
-        tocUrl: book.bookUrl,
-    }
+    // const html = java.ajax(book.bookUrl)
+    java.log(book.bookUrl)
+    // java.log(JSON.stringify(book))
+    let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
+    book.bookUrl = urlNovelUrl(novelId)
+    book.tocUrl = urlNovelChapterInfo(novelId)
+    return book
 }
 
 /**
