@@ -104,11 +104,15 @@ function getBookInfo(book) {
  * @returns { [{title, url, isVolume, isVip, isPay, wordCount, tag, resourceUrl}] } 目录数组或 JSON 字符串；title、url 必填，数组序即目录序
  */
 function getChapters(book) {
-    const html = java.ajax(book.tocUrl);
-    const chapters = [];
-    // chapters.push({ title: "第一卷", url: "第一卷", isVolume: true })
-    // chapters.push({ title: "第1章", url: "https://example.com/read/1" })
-    return chapters;
+    let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
+    let novel = getAjaxJson(urlNovelDetailed(novelId))
+    novel = formatNovels(handNovels([novel], true))[0]
+    let result = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+    if (result.novels) return seriesHandler(result)
+    // else if (result.series) return seriesContentHandler(novel)
+    else return oneShotHandler(novel)
+}
+
 function urlNovel(novelId) {
     return urlNovelDetailed(novelId)
     // if (util.settings.SHOW_ORIGINAL_LINK) {
