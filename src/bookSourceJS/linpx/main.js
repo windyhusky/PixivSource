@@ -84,13 +84,18 @@ function explore(url, page) {
  * @returns { {name, author, intro, coverUrl, kind, wordCount, latestChapterTitle, tocUrl, type, variable} } 字段补丁对象或 JSON 字符串
  */
 function getBookInfo(book) {
-    const html = java.ajax(book.bookUrl);
-    return {
-        intro: "",
-        coverUrl: "",
-        latestChapterTitle: "",
-        tocUrl: book.bookUrl,
-    };
+    let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
+    let novel = getAjaxJson(urlNovelDetailed(novelId))
+    novel = formatNovels(handNovels([novel], true))[0]
+    let result = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+    if (!novel.seriesId || novel.seriesId && result.error) {
+        book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
+        book.tocUrl = novel.catalogUrl = urlNovelDetailed(novel.id)
+    } else {
+        book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
+        book.tocUrl = novel.catalogUrl = urlSeriesDetailed(novel.seriesId)
+    }
+    return book
 }
 
 /**
