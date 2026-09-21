@@ -193,13 +193,23 @@ function getContent(chapter, book) {
     // }
 
     // 替换 Pixiv 标记符
-    // content = replaceUploadedImage(resp, content)
+    content = replaceUploadedImage(resp, content)
     // content = replacePixivImage(content)
     content = replaceNewPage(content)
     content = replaceChapter(content)
     content = replaceJumpPage(content)
     content = replaceJumpUrl(content)
     content = replaceRb(content)
+    return content
+}
+
+// 获取 [uploadedimage:] 的图片链接
+function replaceUploadedImage(res, content) {
+    if (res.images !== undefined && res.images !== null) {
+        Object.keys(res.images).forEach((key) => {
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(res.images[key].origin)}">`)
+        })
+    }
     return content
 }
 
