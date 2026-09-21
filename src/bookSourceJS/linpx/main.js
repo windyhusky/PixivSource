@@ -174,3 +174,55 @@ function getAjaxAllJson(urls, requestUpdate) {
         return results
     }, requestUpdate)
 }
+
+// JSLib url
+function urlNovelUrl(novelId) {
+    return `https://linpx.ink/pixiv/novel/${novelId}`
+}
+function urlNovelDetailed(novelId) {
+    return `https://api.linpx.ink/pixiv/novel/${novelId}/cache`
+}
+function urlNovelsDetailed(nidList) {
+    return `https://api.linpx.ink/pixiv/novels/cache?${nidList.map(v => "ids[]=" + v).join("&")}`
+}
+
+function urlSourceUrl(novelId) {
+    return `https://www.pixiv.net/novel/show.php?id=${novelId}`
+}
+
+function urlSeriesUrl(seriesId) {
+    return `https://www.pixiv.net/novel/series/${seriesId}`
+}
+function urlSeriesDetailed(seriesId) {
+    return `https://api.linpx.ink/pixiv/series/${seriesId}/cache`
+}
+
+function urlUserUrl(userId) {
+    return `https://linpx.ink/pixiv/user/${userId}`
+}
+function urlUserDetailed(userId) {
+    return `https://api.linpx.ink/pixiv/user/${userId}/cache`
+}
+function urlUsersDetailed(uidList) {
+    return `https://api.linpx.ink/pixiv/users/cache?${uidList.map(v => "ids[]=" + v).join("&")}`
+}
+function urlUserFavorite() {
+    return "https://api.linpx.ink/fav/user/cache"
+}
+
+function urlSearchNovel(novelName, page) {
+    return `https://api.linpx.ink/pixiv/search/novel/${novelName}/cache?page=${page}`
+}
+function urlSearchUsers(userName) {
+    return `https://api.linpx.ink/pixiv/search/user/${userName}/cache`
+}
+
+function urlCoverUrl(pxImgUrl) {
+    return urlPxImgUrlLinpx(pxImgUrl)
+}
+function urlPxImgUrlLinpx(pxImgUrl) {
+    if (!pxImgUrl.trim()) return ""
+    let url = `https://pximg.furrynovel.ink/?url=${pxImgUrl}&w=800`
+    let headers = {"Referer": "https://linpx.ink/"}
+    return `${url}, ${JSON.stringify({headers: headers})}`
+}
