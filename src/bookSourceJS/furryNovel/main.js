@@ -26,10 +26,15 @@ const config = {
     bookSourceComment: "",
     // 发现分类，由 explore 抓取。数组每项 {title, url}，url 原样传入 explore；
     // 省略 url 的项渲染为分区标题。也接受“名称::url”每行一个的字符串形态。
+    header: {"Referer":"https://furrynovel.com/"},
+    // loginUrl
+    loginUi: [],
     exploreUrl: [
         // { title: "玄幻", url: "https://example.com/sort/1.html" },
         // { title: "都市", url: "https://example.com/sort/2.html" },
     ],
+    concurrentRate: "30/5000",
+    enabledCookieJar: true,
     lastUpdateTime: 1788019258510, // 版本时间戳（毫秒）；导入值较新时提示更新
 }
 
