@@ -222,6 +222,45 @@ function handNovels(novels, isDetail) {
     return novels
 }
 
+function formatNovels(novels) {
+    novels.forEach(novel => {
+        novel.title = novel.title.trim()
+        if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
+        novel.coverUrl = urlCoverUrl(novel.coverUrl)
+        novel.createDate = dateFormat(novel.createDate)
+
+        novel.tags2 = []
+        for (let i in novel.tags) {
+            let tag = novel.tags[i]
+            if (tag.includes("/")) {
+                let tags = tag.split("/")
+                novel.tags2 = novel.tags2.concat(tags)
+            } else {
+                novel.tags2.push(tag)
+            }
+        }
+        novel.tags = Array.from(new Set(novel.tags2))
+        novel.tags = novel.tags.map(item => `#${item}`)
+        novel.tags = novel.tags.join(",")
+
+        // if (util.settings.MORE_INFORMATION) {
+        //     novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
+        // } else {
+        //     novel.description = `\n${novel.description}\n上传时间：${novel.createDate}`
+        // }
+
+        novel.name = novel.title
+        novel.bookUrl = novel.detailedUrl
+        novel.author = novel.userName
+        novel.kind = novel.tags
+        // novel.coverUrl = novel.coverUrl
+        novel.intro = novel.description
+        novel.wordCount = novel.textCount
+        novel.latestChapterTitle = novel.latestChapter
+        novel.tocUrl = novel.catalogUrl
+    })
+    return novels
+}
 
 // JSLib
 function getAjaxJson(url, requestUpdate) {
