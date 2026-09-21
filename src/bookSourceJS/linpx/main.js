@@ -54,12 +54,16 @@ const Jsoup = org.jsoup.Jsoup;
  * @returns { [{name, bookUrl, author, kind, coverUrl, intro, wordCount, latestChapterTitle, tocUrl, type}] } 书籍数组或 JSON 字符串；name、bookUrl 必填，地址用绝对 URL
  */
 function search(key, page) {
-    const html = java.ajax(
-        `${config.bookSourceUrl}/search?q=${encodeURI(key)}&p=${page}`,
-    );
-    const list = [];
-    // list.push({ name: "书名", bookUrl: "https://example.com/book/1", author: "作者" })
-    return list;
+    let novels = []
+    let resp = getAjaxJson(urlSearchNovel(key, page))
+    java.log(urlSearchNovel(key, page))
+
+    if (resp.error || resp.total === 0) return []
+    novels = novels.concat(resp.novels)
+    // java.log(JSON.stringify(novels))
+    if (novels.length === 0) return []
+    return formatNovels(handNovels(novels))
+    // return formatNovels(handNovels(combineNovels(novels)))
 }
 
 /**
