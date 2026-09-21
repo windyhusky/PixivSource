@@ -148,6 +148,80 @@ function getReviewDetail(chapter, book, paraIndex, paraData, page) {
     return { items, nextPageUrl: null };
 }
 
+function handNovels(novels, isDetail) {
+    novels.forEach(novel => {
+        if (!novel.id) novel.id = novel._id
+        // novel.title = novel.title
+        // novel.userName = novel.userName
+        // novel.userId = novel.userId
+        // novel.tags = novel.tags
+        if (novel.tags === undefined) {
+            novel.tags = []
+        }
+        // novel.textCount = novel.length
+        novel.description = novel.desc
+        // novel.coverUrl = novel.coverUrl
+        // novel.createDate = novel.createDate
+        // novel.seriesId = novel.seriesId
+        // novel.seriesTitle = novel.seriesTitle
+
+        // 兼容详情页
+        if (novel.content) {
+            if (novel.series) {
+                novel.seriesId = novel.series.id
+                novel.seriesTitle = novel.series.title
+            }
+            novel.textCount = novel.length = novel.content.length
+        }
+
+        // 单篇添加更多信息
+        if (!novel.seriesId) {
+            novel.tags.unshift("单本")
+            novel.textCount = novel.length
+            novel.latestChapter = novel.title
+            novel.detailedUrl = urlNovelDetailed(novel.id)
+        }
+
+        // 搜索、详情：系列添加更多信息
+        if (novel.seriesId) {
+            novel.title = novel.seriesTitle
+            novel.tags.unshift("系列")
+            novel.detailedUrl = urlNovelDetailed(novel.id)
+        }
+
+        // 详情：兼容无法从 Pixiv 获取系列详情的系列小说
+        let series
+        if (novel.seriesId && isDetail) {
+            series = getAjaxJson(urlSeriesDetailed(novel.seriesId))
+            // novel.detailedUrl = urlNovelDetailed(novel.id)
+        }
+
+        // 详情：系列添加更多信息
+        if (novel.seriesId && isDetail && !series.error) {
+            java.log(`正在获取系列小说：${novel.seriesId}`)
+            novel.id = series.novels[0].id
+            // novel.title = novel.seriesTitle
+            if (series.tags) novel.tags = novel.tags.concat(series.tags)
+            novel.latestChapter = series.novels.reverse()[0].title
+            novel.description = series.caption
+            // 后端目前没有系列的 coverUrl 字段
+            // novel.coverUrl = series.coverUrl
+            // novel.coverUrl = series.novels[0].coverUrl
+            novel.detailedUrl = urlSeriesDetailed(novel.seriesId)
+
+            let firstNovel = getAjaxJson(urlNovelDetailed(novel.id))
+            if (firstNovel.error !== true) {
+                novel.tags = novel.tags.concat(firstNovel.tags)
+                novel.createDate = firstNovel.createDate
+                if (novel.description === "") {
+                    novel.description = firstNovel.desc
+                }
+            }
+        }
+    })
+    return novels
+}
+
 
 // JSLib
 function getAjaxJson(url, requestUpdate) {
