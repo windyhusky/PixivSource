@@ -195,13 +195,106 @@ function getContent(chapter, book) {
     // 替换 Pixiv 标记符
     // content = replaceUploadedImage(resp, content)
     // content = replacePixivImage(content)
-    // content = replaceNewPage(content)
-    // content = replaceChapter(content)
-    // content = replaceJumpPage(content)
-    // content = replaceJumpUrl(content)
-    // content = replaceRb(content)
+    content = replaceNewPage(content)
+    content = replaceChapter(content)
+    content = replaceJumpPage(content)
+    content = replaceJumpUrl(content)
+    content = replaceRb(content)
     return content
 }
+
+// 替换 Pixiv 分页标记符号 [newpage]
+function replaceNewPage(content) {
+    // if (!util.environment.IS_LYC_BRUNCH) {
+        let matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
+        if (matched) {
+            for (let i in matched) {
+                content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}`)
+            }
+        }
+    // }
+    return content
+}
+// 替换 Pixiv 章节标记符号 [chapter:]
+function replaceChapter(content) {
+    let matched = content.match(RegExp(/\[chapter:(.*?)]/gm))
+    if (matched) {
+        for (let i in matched) {
+            let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
+            let chapter = matched2[1].trim()
+            // 替换 Pixiv 分页标记符号 [newpage]
+            // if (util.environment.IS_LYC_BRUNCH) {
+            //     content = content.replace(`${matched[i]}`, `<usehtml><h3>${chapter}</h3></usehtml>`)
+            // } else {
+                content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
+            // }
+        }
+    }
+    return content
+}
+// 替换 Pixiv 跳转页面标记符号 [[jump:]]
+function replaceJumpPage(content) {
+    let matched = content.match(RegExp(/\[jump:(\d+)]/gm))
+    if (matched) {
+        for (let i in matched) {
+            let page = matched[i].match(/\d+/)
+            content = content.replace(`${matched[i]}`, `\n\n跳转至第${page}节`)
+        }
+    }
+    return content
+}
+// 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
+function replaceJumpUrl(content) {
+    let matched = content.match(RegExp(/\[\[jumpuri:(.*?)>(.*?)]]/gm))
+    if (matched) {
+        for (let i in matched) {
+            let matched2 = matched[i].match(/\[\[jumpuri:(.*?)>(.*?)]]/m)
+            let matchedText = matched2[0]
+            let urlName = matched2[1].trim()
+            let urlLink = matched2[2].trim()
+
+            // if (util.environment.IS_LYC_BRUNCH) {
+            //     content = content.replace(`${matchedText}`, `<usehtml><p>　　<a href=${urlLink}>${urlName}</a></p></usehtml>`)
+            // } else {
+                if (urlLink === urlName) {
+                    content = content.replace(`${matchedText}`, `${urlName}`)
+                } else {
+                    content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
+                }
+            // }
+        }
+    }
+    return content
+}
+// 替换 Pixiv 注音标记符号 [[rb: > ]]
+function replaceRb(content) {
+    let matched = content.match(RegExp(/\[\[rb:(.*?)>(.*?)]]/gm))
+    if (matched) {
+        for (let i in matched) {
+            let matched2 = matched[i].match(/\[\[rb:(.*?)>(.*?)]]/m)
+            let matchedText = matched2[0]
+            let kanji = matched2[1].trim()
+            let kana = matched2[2].trim()
+
+            // if (!util.settings.REPLACE_TITLE_MARKS) {
+            //     默认替换成（括号）
+                // content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
+            // } else {
+                let reg = RegExp("[\\u4E00-\\u9FFF]+", "g");
+                if (reg.test(kana)) {
+                    // kana为中文，则替换回《书名号》
+                    content = content.replace(`${matchedText}`, `${kanji}《${kana}》`)
+                } else {
+                    // 阅读不支持 <ruby> <rt> 注音
+                    // content = content.replace(`${matchedText}`, `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+                    content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
+                }
+            // }
+        }
+    }
+    return content
+}
+
 
 /**
  * 段评统计，与 getReviewDetail 成对使用。章节加载后调用，返回各段落的评论数。
