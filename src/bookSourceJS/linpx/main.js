@@ -226,3 +226,39 @@ function urlPxImgUrlLinpx(pxImgUrl) {
     let headers = {"Referer": "https://linpx.ink/"}
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
+
+// JSLib date
+function addZero(num) {
+    return String(num).padStart(2, '0')
+}
+function dateFormat(str) {
+    let time = new Date(str);
+    let Y = time.getFullYear() + "年";
+    let M = this.addZero(time.getMonth() + 1) + "月";
+    let D = this.addZero(time.getDate()) + "日";
+    return Y + M + D;
+}
+function timeFormat(str) {
+    let time = new Date(str);
+    let YY = time.getFullYear()
+    let MM = this.addZero(time.getMonth() + 1)
+    let DD = this.addZero(time.getDate())
+    let hh = this.addZero(time.getHours())
+    let mm = this.addZero(time.getMinutes())
+    let ss = this.addZero(time.getSeconds())
+    return `${YY}-${MM}-${DD} ${hh}:${mm}:${ss}`
+}
+function timeTextFormat(text) {
+    return `${text.slice(0, 10)} ${text.slice(11, 19)}`
+}
+
+function sleep(seconds) {
+    return Packages.java.lang.Thread.sleep(1000*seconds)
+}
+function sleepToast(text, seconds) {
+    let {java} = this
+    java.log(text)
+    java.longToast(text)
+    if (seconds === undefined) {seconds = 0.01}
+    this.sleep(seconds)
+}
