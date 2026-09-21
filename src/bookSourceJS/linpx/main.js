@@ -109,6 +109,68 @@ function getChapters(book) {
     // chapters.push({ title: "第一卷", url: "第一卷", isVolume: true })
     // chapters.push({ title: "第1章", url: "https://example.com/read/1" })
     return chapters;
+function urlNovel(novelId) {
+    return urlNovelDetailed(novelId)
+    // if (util.settings.SHOW_ORIGINAL_LINK) {
+    //     return urlNovelUrl(novelId)
+    // } else {
+    //     return urlNovelDetailed(novelId)
+    // }
+}
+
+function oneShotHandler(resp) {
+    resp.textCount = resp.content.length
+    resp.updateDate = timeTextFormat(resp.createDate)
+    return [{
+        title: resp.title.trim(),
+        url: urlNovel(resp.id),
+        tag: resp.tag,
+        wordCount: resp.content.length,
+        chapterInfo:`${resp.updateDate}　　${resp.textCount}字`
+    }]
+}
+
+function seriesHandler(resp) {
+    let novelUrls = resp.novels.map(item => urlNovelDetailed(item.id))
+    let novels = getAjaxAllJson(novelUrls)
+
+    novels.forEach(novel => {
+        if (!novel.title) novel.title = novel.detail.title
+        novel.title = novel.title.trim()
+        novel.url = urlNovel(novel.id)
+        if (novel.content) novel.wordCount = novel.content.length
+        novel.updateDate = timeTextFormat(novel.createDate)
+        novel.chapterInfo = `${novel.updateDate}　　${novel.wordCount}字`
+        if (novel.content) delete novel.content
+    })
+    return novels
+}
+
+// 优化 未缓存系列目录的情况：从章节数据中，获取系列目录
+function seriesContentHandler(resp) {
+    let novels = [], prevNovels = [], nextNovels = []
+    while (resp.series.prev !== null && resp.series.prev !== undefined) {
+        prevNovels.push(resp.series.prev)
+        resp = getAjaxJson(urlNovelDetailed(resp.series.prev.id))
+    }
+    nextNovels.push({id: resp.id, order: resp.series.order, title: resp.title})
+    while (resp.series.next !== null && resp.series.prev !== undefined) {
+        nextNovels.push(resp.series.next)
+        resp = getAjaxJson(urlNovelDetailed(resp.series.next.id))
+    }
+    novels = novels.concat(prevNovels.reverse())
+    novels = novels.concat(nextNovels)
+    novels.forEach(novel => {
+        novel.title = novel.title.trim()
+        novel.chapterUrl = urlNovel(novel.id)
+        novel.detail = getAjaxJson(urlNovelDetailed(novel.id))
+        novel.textCount = novel.detail.content.length
+        novel.updateDate = timeTextFormat(novel.detail.createDate)
+        novel.chapterInfo = `${novel.updateDate}　　${novel.textCount}字`
+        delete novel.detail
+    })
+    // java.log(JSON.stringify(novels))
+    return novels
 }
 
 /**
@@ -118,7 +180,9 @@ function getChapters(book) {
  * @returns {string} 正文文本；返回空字符串视为失败。纯文本段落用 \n 分隔；
  *   也可将正文 HTML 传入 java.htmlFormat(html, chapter.url) 转换为文本并保留插图
  */
-function getContent(chapter, book) {
+function getContent(chapter, book)
+
+
     const html = java.ajax(chapter.url);
     // return java.htmlFormat(Jsoup.parse(html).select("div.content").html(), chapter.url)
     return html;
