@@ -266,19 +266,72 @@ function formatNovels(novels) {
     return novels
 }
 
-// JSLib
-function getAjaxJson(url, requestUpdate) {
-    return JSON.parse(java.ajax(url))
+// JSLib cache
+var cacheSaveSeconds = 30*24*60*60  // 长期缓存 30 天
+var cacheTempSeconds = 10*60*1000   // 冷却时间 10 分钟
+function cacheGetAndSet(key, supplyFunc, requestUpdate) {
+    const {java, cache} = this
+    let timestamp = 0
+    let v = getFromCacheObject(key)
+    if (Array.isArray(v)) {
+        try {
+            timestamp = v[0].timestamp
+        } catch (e) {
+            timestamp = 0
+        }
+    } else if (v) {
+        timestamp = v.timestamp
+    }
+
+    const isExpired = v && (new Date().getTime() >= timestamp + cacheTempSeconds)
+    const isError = v && (v.error === true) && isExpired
+    requestUpdate = requestUpdate && isExpired
+
+    if (!v || requestUpdate || isError) {
+        v = supplyFunc()
+        let now = new Date().getTime()
+        // getAjaxJson getWebviewJson 时间戳写入对象本身
+        if (!Array.isArray(v)) {
+            v = Object.assign({timestamp: now}, v)
+        }
+        // else {
+        //     // getAjaxAllJson 时间戳写入第一个元素（读取时 v[0].timestamp）// 不重复写入
+        //     if (v.length > 0) v[0] = Object.assign({timestamp: now}, v[0])
+        // }
+        putInCacheObject(key, v, cacheSaveSeconds)
+    }
+    return v
 }
-// function getAjaxJson(url, requestUpdate) {
-//     const {java, cache} = this
-//     return this.cacheGetAndSet(url, () => {
-//         return JSON.parse(java.ajax(url))
-//     }, requestUpdate)
-// }
+
+function putInCache(name, object, saveSeconds) {
+    if (saveSeconds === undefined) saveSeconds = 0
+    if (object) cache.put(name, object, saveSeconds)
+}
+function getFromCache(name) {
+    let object = cache.get(name)
+    if (object === undefined) return null  // 兼容源阅
+    return object
+}
+
+function putInCacheObject(objectName, object, saveSeconds) {
+    if (object === undefined) object = null
+    if (saveSeconds === undefined) saveSeconds = 0
+    cache.put(objectName, JSON.stringify(object), saveSeconds)
+}
+function getFromCacheObject(objectName) {
+    let object = cache.get(objectName)
+    if (object === undefined) return null  // 兼容源阅
+    return JSON.parse(object)
+}
+
+function getAjaxJson(url, requestUpdate) {
+    return cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    }, requestUpdate)
+}
 function getAjaxAllJson(urls, requestUpdate) {
     let batchKey = JSON.stringify(urls)
-    return this.cacheGetAndSet(batchKey, () => {
+    return cacheGetAndSet(batchKey, () => {
         let results = []
         let now = new Date().getTime()
         let responses = java.ajaxAll(urls)
@@ -286,7 +339,7 @@ function getAjaxAllJson(urls, requestUpdate) {
             let data = JSON.parse(responses[i].body())
             data = Object.assign({timestamp: now}, data)
             results.push(data)
-            this.putInCacheObject(urls[i], data, cacheSaveSeconds)
+            putInCacheObject(urls[i], data, cacheSaveSeconds)
         }
         return results
     }, requestUpdate)
