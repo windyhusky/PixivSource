@@ -184,12 +184,23 @@ function seriesContentHandler(resp) {
  * @returns {string} 正文文本；返回空字符串视为失败。纯文本段落用 \n 分隔；
  *   也可将正文 HTML 传入 java.htmlFormat(html, chapter.url) 转换为文本并保留插图
  */
-function getContent(chapter, book)
+function getContent(chapter, book) {
+    let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
+    let resp = getAjaxJson(urlNovelDetailed(novelId))
+    let content = resp.content
+    // if (util.settings.SHOW_CAPTIONS === true && resp.desc !== "") {
+    //     content = resp.desc + "\n" + "——————————\n".repeat(2) + content
+    // }
 
-
-    const html = java.ajax(chapter.url);
-    // return java.htmlFormat(Jsoup.parse(html).select("div.content").html(), chapter.url)
-    return html;
+    // 替换 Pixiv 标记符
+    // content = replaceUploadedImage(resp, content)
+    // content = replacePixivImage(content)
+    // content = replaceNewPage(content)
+    // content = replaceChapter(content)
+    // content = replaceJumpPage(content)
+    // content = replaceJumpUrl(content)
+    // content = replaceRb(content)
+    return content
 }
 
 /**
