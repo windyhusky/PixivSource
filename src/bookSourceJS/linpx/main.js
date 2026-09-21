@@ -166,11 +166,11 @@ function seriesContentHandler(resp) {
     novels = novels.concat(nextNovels)
     novels.forEach(novel => {
         novel.title = novel.title.trim()
-        novel.chapterUrl = urlNovel(novel.id)
+        novel.url = urlNovel(novel.id)
         novel.detail = getAjaxJson(urlNovelDetailed(novel.id))
-        novel.textCount = novel.detail.content.length
+        novel.wordCount = novel.detail.content.length
         novel.updateDate = timeTextFormat(novel.detail.createDate)
-        novel.chapterInfo = `${novel.updateDate}　　${novel.textCount}字`
+        novel.chapterInfo = `${novel.updateDate}　　${novel.wordCount}字`
         delete novel.detail
     })
     // java.log(JSON.stringify(novels))
