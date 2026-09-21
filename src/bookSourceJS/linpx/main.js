@@ -147,3 +147,30 @@ function getReviewDetail(chapter, book, paraIndex, paraData, page) {
     // items.push({ content: "评论内容", name: "用户名", replies: [{ content: "回复内容" }] })
     return { items, nextPageUrl: null };
 }
+
+
+// JSLib
+function getAjaxJson(url, requestUpdate) {
+    return JSON.parse(java.ajax(url))
+}
+// function getAjaxJson(url, requestUpdate) {
+//     const {java, cache} = this
+//     return this.cacheGetAndSet(url, () => {
+//         return JSON.parse(java.ajax(url))
+//     }, requestUpdate)
+// }
+function getAjaxAllJson(urls, requestUpdate) {
+    let batchKey = JSON.stringify(urls)
+    return this.cacheGetAndSet(batchKey, () => {
+        let results = []
+        let now = new Date().getTime()
+        let responses = java.ajaxAll(urls)
+        for (let i in urls) {
+            let data = JSON.parse(responses[i].body())
+            data = Object.assign({timestamp: now}, data)
+            results.push(data)
+            this.putInCacheObject(urls[i], data, cacheSaveSeconds)
+        }
+        return results
+    }, requestUpdate)
+}
