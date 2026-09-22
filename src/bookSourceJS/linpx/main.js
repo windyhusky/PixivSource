@@ -98,6 +98,7 @@ function getBookInfo(book) {
     return book
 }
 
+
 /**
  * 获取目录。
  * @param {Object} book 书籍对象
@@ -176,6 +177,7 @@ function seriesContentHandler(resp) {
     // java.log(JSON.stringify(novels))
     return novels
 }
+
 
 /**
  * 获取正文。运行时额外提供 nextChapterUrl，表示下一章地址，可能为 null。
@@ -647,18 +649,18 @@ function addZero(num) {
 function dateFormat(str) {
     let time = new Date(str);
     let Y = time.getFullYear() + "年";
-    let M = this.addZero(time.getMonth() + 1) + "月";
-    let D = this.addZero(time.getDate()) + "日";
+    let M = addZero(time.getMonth() + 1) + "月";
+    let D = addZero(time.getDate()) + "日";
     return Y + M + D;
 }
 function timeFormat(str) {
     let time = new Date(str);
     let YY = time.getFullYear()
-    let MM = this.addZero(time.getMonth() + 1)
-    let DD = this.addZero(time.getDate())
-    let hh = this.addZero(time.getHours())
-    let mm = this.addZero(time.getMinutes())
-    let ss = this.addZero(time.getSeconds())
+    let MM = addZero(time.getMonth() + 1)
+    let DD = addZero(time.getDate())
+    let hh = addZero(time.getHours())
+    let mm = addZero(time.getMinutes())
+    let ss = addZero(time.getSeconds())
     return `${YY}-${MM}-${DD} ${hh}:${mm}:${ss}`
 }
 function timeTextFormat(text) {
@@ -673,5 +675,5 @@ function sleepToast(text, seconds) {
     java.log(text)
     java.longToast(text)
     if (seconds === undefined) {seconds = 0.01}
-    this.sleep(seconds)
+    sleep(seconds)
 }
