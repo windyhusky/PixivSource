@@ -194,7 +194,7 @@ function getContent(chapter, book) {
 
     // 替换 Pixiv 标记符
     content = replaceUploadedImage(resp, content)
-    // content = replacePixivImage(content)
+    content = replacePixivImage(content)
     content = replaceNewPage(content)
     content = replaceChapter(content)
     content = replaceJumpPage(content)
@@ -212,7 +212,29 @@ function replaceUploadedImage(res, content) {
     }
     return content
 }
-
+// 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
+function replacePixivImage(content) {
+    let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
+    if (matched) {
+        matched.forEach(pixivimage => {
+            let matched2, illustId, order = 0
+            if (pixivimage.includes("-")) {
+                matched2 = pixivimage.match(RegExp("(\\d+)-(\\d+)"))
+                illustId = matched2[1]; order = matched2[2]
+            } else {
+                matched2 = pixivimage.match(RegExp("\\d+"))
+                illustId = matched2[0];
+            }
+            let link = urlIllustOriginal(illustId, order)
+            if (link) {
+                content = content.replace(`${pixivimage}`, `<img src="${link}">`)
+            } else {
+                content = content.replace(`${pixivimage}`, ``)
+            }
+        })
+    }
+    return content
+}
 // 替换 Pixiv 分页标记符号 [newpage]
 function replaceNewPage(content) {
     // if (!util.environment.IS_LYC_BRUNCH) {
@@ -531,6 +553,15 @@ function getAjaxAllJson(urls, requestUpdate) {
         return results
     }, requestUpdate)
 }
+function getWebViewUA() {
+    let userAgent = this.getFromCache("userAgent")
+    if (userAgent) return String(userAgent)
+
+    userAgent = String(java.getWebViewUA())
+    // java.log(`userAgent=${userAgent}`)
+    this.putInCache("userAgent", userAgent, cacheSaveSeconds/4)
+    return String(userAgent)
+}
 
 // JSLib url
 function urlNovelUrl(novelId) {
@@ -583,6 +614,31 @@ function urlPxImgUrlLinpx(pxImgUrl) {
     let headers = {"Referer": "https://linpx.ink/"}
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
+
+function urlIllustUrl(illustId) {
+    return `https://www.pixiv.net/artworks/${illustId}`
+}
+function urlIllustDetailed(illustId) {
+    return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
+}
+
+function urlIllustOriginal(illustId) {
+    let targetUrl = `https://pixiv.shojo.cn/${illustId}`
+    let headers = {
+        "User-Agent": getWebViewUA(),
+        "Referer": "https://pixiv.shojo.cn/",
+    }
+    try {
+        let resHeaders = java.head(targetUrl, headers).headers()
+        let originalUrl = resHeaders["Location"] || resHeaders["location"]
+        // originalUrl = originalUrl.replace("proxy.pixiv.shojo.cn", "i.pximg.net")
+        return originalUrl ? originalUrl : ""
+    } catch (e) {
+        // java.log("请求失败: " + e)
+        return ""
+    }
+}
+
 
 // JSLib date
 function addZero(num) {
