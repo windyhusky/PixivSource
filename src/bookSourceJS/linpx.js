@@ -86,7 +86,7 @@ function explore(url, page) {
 function getBookInfo(book) {
     let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
     let novel = getAjaxJson(urlNovelDetailed(novelId))
-    novel = formatNovels(handNovels([novel], true))[0]
+    book = novel = formatNovels(handNovels([novel], true))[0]
     let result = getAjaxJson(urlSeriesDetailed(novel.seriesId))
     if (!novel.seriesId || novel.seriesId && result.error) {
         book.bookUrl = novel.detailedUrl = urlNovelUrl(novel.id)
@@ -363,6 +363,7 @@ function getReviewDetail(chapter, book, paraIndex, paraData, page) {
     return { items, nextPageUrl: null };
 }
 
+// util 工具
 function handNovels(novels, isDetail) {
     novels.forEach(novel => {
         if (!novel.id) novel.id = novel._id
