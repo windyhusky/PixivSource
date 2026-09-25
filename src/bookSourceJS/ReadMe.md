@@ -1,12 +1,17 @@
-## 🆕 开源阅读 `.JS` 书源
+## 🆕 开源阅读 `.JS` 书源（预览）
 ### 🔄 制作中 `.JS` 书源
-- 兽人控小说站
+- ⚠️️ **目前 `.JS` 书源，仍然属于**
+- 🔄 兽人控小说站
+- ✅ Linpx，仅基本功能，
+- ❌ Pixiv 小说
+- ❌ Pixiv 漫画 
+
 
 
 ### ✅ 已支持 `.JS` 书源
-- [阅读 T](https://github.com/skybbk1001/legadoT)
-- [阅读 Beta](https://github.com/legadoteam/legado)
-- [阅读 NG](https://github.com/joestar817/legado_NG)
+- [阅读 T](https://github.com/skybbk1001/legadoT/releases)
+- [阅读 Beta](https://github.com/legadoteam/legado/releases)
+- [阅读 NG](https://github.com/joestar817/legado_NG/releases)
 
 
 ## 🚀 导入书源 `.JSON`
