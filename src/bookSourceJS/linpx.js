@@ -102,6 +102,9 @@ function explore(url, page) {
     if (url.includes("/fav/user")) {
         return handlerRecommendUsers()
     }
+    if (url.includes("/pixiv/novels/recent")) {
+        return handlerFollowLatest(url, page)
+    }
 }
 
 /**
@@ -142,6 +145,11 @@ function handlerRecommendUsers() {
 
     let novelList = getAjaxJson(urlNovelsDetailed(queryNovelIds))
     return formatNovels(handNovels(combineNovels(novelList)))
+}
+
+function handlerFollowLatest(url, page) {
+    let resp = getAjaxJson(url.replace("{{page}}", page))
+    return formatNovels(handNovels(combineNovels(resp)))
 }
 
 /**
