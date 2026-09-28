@@ -56,6 +56,7 @@ const config = {
         })
         return li
     })(),
+    bookUrlPattern: "(https?://)?(api\\.|www\\.)?(linpx\\.ink)/(pn|pu|pixiv/(novel|user))/\\d+(/cache)?",
     concurrentRate: "30/5000",
     enabledCookieJar: true,
     lastUpdateTime: 0, // 版本时间戳（毫秒）；导入值较新时提示更新
