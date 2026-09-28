@@ -115,8 +115,7 @@ function search(key, page) {
     novels = novels.concat(resp.novels)
     // java.log(JSON.stringify(novels))
     if (novels.length === 0) return []
-    return formatNovels(handNovels(novels))
-    // return formatNovels(handNovels(combineNovels(novels)))
+    return formatNovels(handNovels(combineNovels(novels)))
 }
 
 /**
@@ -488,6 +487,21 @@ function getReviewDetail(chapter, book, paraIndex, paraData, page) {
 }
 
 // util 工具
+function combineNovels(novels) {
+    return novels.filter(novel => {
+        // 单本直接保留
+        if (novel.seriesId === undefined || novel.seriesId === null) {
+            return true
+        }
+        // 该系列还没出现过 → 保留，并记录
+        if (!seriesSet.has(novel.seriesId)) {
+            seriesSet.add(novel.seriesId)
+            return true
+        }
+        return false
+    })
+}
+
 function handNovels(novels, isDetail) {
     novels.forEach(novel => {
         if (!novel.id) novel.id = novel._id
