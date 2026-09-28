@@ -105,6 +105,9 @@ function explore(url, page) {
     if (url.includes("/pixiv/novels/recent")) {
         return handlerFollowLatest(url, page)
     }
+    if (url === "https://linpx.ink") {
+        return handlerRegexNovels()
+    }
 }
 
 /**
@@ -150,6 +153,19 @@ function handlerRecommendUsers() {
 function handlerFollowLatest(url, page) {
     let resp = getAjaxJson(url.replace("{{page}}", page))
     return formatNovels(handNovels(combineNovels(resp)))
+}
+// todo: 更新正则
+function handlerRegexNovels() {
+    let result = java.webView(null, "https://linpx.ink", null)
+    let match = String(result).match(/<div class=" font-bold text-xl line-clamp-1">(.*?)<\/div>/)
+    if (!match) return []
+
+    let name = match[1]
+    let resp = getAjaxJson(urlSearchNovel(name, 1))
+    if (resp.total !== undefined) {
+        return formatNovels(handNovels(combineNovels(resp.novels)))
+    }
+    return []
 }
 
 /**
