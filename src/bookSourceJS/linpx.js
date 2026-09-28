@@ -29,10 +29,33 @@ const config = {
     header: {"Referer":"https://linpx.ink/"},
     // loginUrl
     loginUi: [],
-    exploreUrl: [
-        // { title: "玄幻", url: "https://example.com/sort/1.html" },
-        // { title: "都市", url: "https://example.com/sort/2.html" },
-    ],
+    exploreUrl: (() => {
+        const li = [
+            {"💯 推荐": "https://api.linpx.ink/fav/user/cache"},
+            {"🆕 最新": "https://api.linpx.ink/pixiv/novels/recent/cache?page={{page}}"},
+            {"🔄 随便": "https://linpx.ink"},
+            {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"},
+            {"📙 书源相关 📙": ""},
+            {"🏠 主页": "https://pixivsource.pages.dev"},
+            {"🔰 指南": "https://pixivsource.pages.dev/Linpx"},
+            {"🐞 反馈": "https://github.com/DowneyRem/PixivSource/issues"},
+            {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
+        ]
+
+        li.forEach(item => {
+            item.title = Object.keys(item)[0]
+            item.url = Object.values(item)[0]
+            delete item[Object.keys(item)[0]]
+            item.style = {
+                layout_flexGrow: 1,
+                layout_flexShrink: 1,
+                layout_alignSelf: "auto",
+                layout_wrapBefore: "false",
+                layout_flexBasisPercent: item.url === "" ? 1 : -1,
+            }
+        })
+        return li
+    })(),
     concurrentRate: "30/5000",
     enabledCookieJar: true,
     lastUpdateTime: 0, // 版本时间戳（毫秒）；导入值较新时提示更新
