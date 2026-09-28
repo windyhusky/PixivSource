@@ -96,9 +96,9 @@ function search(key, page) {
  * @returns 同 search
  */
 function explore(url, page) {
-    const html = java.ajax(url);
-    const list = [];
-    return list;
+    if (url.includes("cdn.jsdelivr.net")) {
+        updateSourceLink(); return []
+    }
     if (url.includes("/fav/user")) {
         return handlerRecommendUsers()
     }
@@ -107,6 +107,9 @@ function explore(url, page) {
     }
     if (url === "https://linpx.ink") {
         return handlerRegexNovels()
+    }
+    else {
+        startBrowser(url, ""); return []
     }
 }
 
@@ -767,4 +770,24 @@ function sleepToast(text, seconds) {
     java.longToast(text)
     if (seconds === undefined) {seconds = 0.01}
     sleep(seconds)
+}
+
+function updateSource() {
+    try {
+        updateSourceHtml()
+    } catch(e) {
+        updateSourceHtml()
+    }
+}
+
+function updateSourceLink(){
+    let sourceName
+    if (source.bookSourceUrl.includes("pixiv")) sourceName = "pixiv"
+    else if (source.bookSourceUrl.includes("furrynovel")) sourceName = "linpx"
+
+    try {
+        java.openUrl(`legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/${sourceName}.json`)
+    } catch (e) {
+        java.openUrl(`legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/${sourceName}.json`)
+    }
 }
