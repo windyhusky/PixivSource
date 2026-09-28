@@ -99,6 +99,49 @@ function explore(url, page) {
     const html = java.ajax(url);
     const list = [];
     return list;
+    if (url.includes("/fav/user")) {
+        return handlerRecommendUsers()
+    }
+}
+
+/**
+ * @params arr 传入的源数组
+ * @params length 需要获取的元素的个数
+ */
+function randomChoseArrayItem(arr, length) {
+    let copyArr = JSON.parse(JSON.stringify(arr))
+    let newArr = [];
+    for (let i = 0; i < length; i++) {
+        let index = Math.floor(Math.random() * copyArr.length);
+        let item = copyArr[index];
+        newArr.push(item)
+        copyArr.splice(index, 1)
+    }
+    return newArr.reverse()
+}
+
+function handlerRecommendUsers() {
+    const MAX_FETCH_USER_NUMBER = 2
+    let userIds = getAjaxJson(urlUserFavorite()).map(i => i.id)
+
+    if (userIds.length > MAX_FETCH_USER_NUMBER) {
+        userIds = randomChoseArrayItem(userIds, MAX_FETCH_USER_NUMBER)
+    }
+
+    let usersInfo = getAjaxJson(urlUsersDetailed(userIds))
+    let queryNovelIds = []
+
+    usersInfo.filter(user => user.novels && user.novels.length > 0)
+        .forEach(user => {
+            user.novels.forEach(novel => queryNovelIds.push(novel))
+        })
+
+    if (queryNovelIds.length > 10) {
+        queryNovelIds = randomChoseArrayItem(queryNovelIds, 10)
+    }
+
+    let novelList = getAjaxJson(urlNovelsDetailed(queryNovelIds))
+    return formatNovels(handNovels(combineNovels(novelList)))
 }
 
 /**
