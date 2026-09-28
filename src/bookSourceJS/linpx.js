@@ -70,6 +70,35 @@ const config = {
 
 const Jsoup = org.jsoup.Jsoup;
 
+// 存储已出现的 seriesId（跨页去重）
+const seriesSet = {
+    key: "Linpx:Search",
+    // page === 1 时清空
+    resetIfNeeded(page) {
+        if (Number(page) === 1) {
+            cache.deleteMemory(this.key)
+        }
+    },
+
+    has(value) {
+        let v = cache.getFromMemory(this.key)
+        if (v === undefined || v === null) return false
+        let set = new Set(JSON.parse(String(v)))
+        return set.has(value)
+    },
+
+    add(value) {
+        let v = cache.getFromMemory(this.key)
+        let arr = []
+        if (v !== undefined && v !== null) {
+            arr = JSON.parse(String(v))
+            if (!Array.isArray(arr)) arr = [arr]
+        }
+        arr.push(value)
+        cache.putMemory(this.key, JSON.stringify(arr))
+    },
+}
+
 /**
  * 搜索书籍。
  * @param {string} key 搜索关键词
@@ -78,6 +107,7 @@ const Jsoup = org.jsoup.Jsoup;
  */
 function search(key, page) {
     let novels = []
+    seriesSet.resetIfNeeded(page)   // 第 1 页清空旧记录
     let resp = getAjaxJson(urlSearchNovel(key, page))
     java.log(urlSearchNovel(key, page))
 
@@ -96,6 +126,7 @@ function search(key, page) {
  * @returns 同 search
  */
 function explore(url, page) {
+    seriesSet.resetIfNeeded(page)   // 第 1 页清空旧记录
     if (url.includes("cdn.jsdelivr.net")) {
         updateSourceLink(); return []
     }
