@@ -650,12 +650,12 @@ function getAjaxAllJson(urls, requestUpdate) {
     }, requestUpdate)
 }
 function getWebViewUA() {
-    let userAgent = this.getFromCache("userAgent")
+    let userAgent = getFromCache("userAgent")
     if (userAgent) return String(userAgent)
 
     userAgent = String(java.getWebViewUA())
     // java.log(`userAgent=${userAgent}`)
-    this.putInCache("userAgent", userAgent, cacheSaveSeconds/4)
+    putInCache("userAgent", userAgent, cacheSaveSeconds/4)
     return String(userAgent)
 }
 
