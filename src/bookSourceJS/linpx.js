@@ -659,6 +659,19 @@ function getWebViewUA() {
     return String(userAgent)
 }
 
+function startBrowser(url, title) {
+    if (!title) title = url
+    let msg = "", headers = {}
+    headers["User-Agent"] = getWebViewUA()
+    headers["Referer"] = "https://linpx.ink/"
+
+    if (url.includes("github.com") || url.includes("github.io")) {
+        msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
+    }
+    sleepToast(msg, 0.01)
+    java.startBrowser(`${url}, ${JSON.stringify({headers: headers})}`, title)
+}
+
 // JSLib url
 function urlNovelUrl(novelId) {
     return `https://linpx.ink/pixiv/novel/${novelId}`
