@@ -165,6 +165,7 @@ const seriesSet = {
     },
 }
 
+
 /**
  * 搜索书籍。
  * @param {string} key 搜索关键词
@@ -185,17 +186,10 @@ function search(key, page) {
         novels = novels.concat(getNovels(key, page))
         // if (util.settings.SEARCH_AUTHOR) novels = novels.concat(findUserNovels())
         // if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
-        novels = novels.concat(getConvertNovels(key))
+        novels = novels.concat(findUserNovels(key, page))
+        novels = novels.concat(getConvertNovels(key, page))
     }
-
-    
-    // let resp = getAjaxJson(urlSearchNovel(key, page))
-    // java.log(urlSearchNovel(key, page))
-    //
-    // if (resp.error || resp.total === 0) return []
-    // novels = novels.concat(resp.novels)
-    // // java.log(JSON.stringify(novels))
-    // if (novels.length === 0) return []
+    if (novels.length === 0) return []
     return formatNovels(handNovels(combineNovels(novels)))
 }
 
@@ -213,6 +207,82 @@ function getConvertNovels(name, key=1) {
     if (name1 !== name) novels = novels.concat(getNovels(name1, key))
     if (name2 !== name) novels = novels.concat(getNovels(name2, key))
     return novels
+}
+
+function getUser(username, exactMatch) {
+    let resp = getAjaxJson(urlSearchUsers(String(username)))
+    java.log(urlSearchUsers(String(username)))
+    // java.log(JSON.stringify(resp))
+    if (resp.error || resp.total === 0) {
+        return []
+    }
+
+    // 去除无小说作者
+    resp.users = resp.users.filter(user => user.novels.length >= 1)
+    // java.log(JSON.stringify(resp))
+    if (resp.total > resp.users.length) {
+        java.log(`已经去除 ${resp.total - resp.users.length} 位无小说的作者`)
+    }
+    if (resp.users.length === 0) {
+        return []
+    }
+
+    if (!exactMatch) {
+        return resp.users
+    }
+    // 只返回用户名完全一样的用户
+    return resp.users.filter(user => {
+        return user.name === username
+    })
+}
+
+function getUserNovels(nidList, page) {
+    let list = nidList.slice((page - 1) * 20, page * 20)  // 分页
+    if (list.length === 0) {
+        return []
+    }
+    // java.log(`NIDURL:${urlNovelsDetailed(list)}`)
+    return getWebviewJson(urlNovelsDetailed(list))
+}
+
+function findUserNovels(username, page) {
+    let novelList = []
+    let userArr = getUser(username, false)
+    // 获取用户所有小说
+    let uidList = userArr.filter(user => {
+        return user.novels.length > 0
+    }).map(user => user.id)
+    // java.log(JSON.stringify(uidList))
+
+    if (uidList.length > 0) {
+        let list = getWebviewJson(urlUsersDetailed(uidList))  // 包含所有小说数据
+        // java.log(JSON.stringify(list))
+        let nidList = []
+        // 从两层数组中提取novelsId
+        list.forEach(user => {
+            // 按id降序排序-相当于按时间降序排序
+            user.novels.reverse().forEach(nid => nidList.push(nid))
+            // 优化 未缓存系列目录的情况：series 数据写入缓存
+            user.series.forEach(series => {
+                series.novels = []
+                putInCacheObject(`LSeries${series.id}`, series)
+            })
+        })
+        // java.log(JSON.stringify(nidList))
+        getUserNovels(nidList, page).forEach(novel => {
+            novelList.push(novel)
+        })
+    }
+
+    // 优化 未缓存系列目录的情况：series 数据写入缓存
+    novelList.forEach(novel =>{
+        if (novel.seriesId) {
+            let series = getFromCacheObject(`LSeries${novel.seriesId}`)
+            series.novels.push(novel)
+            putInCacheObject(`LSeries${novel.seriesId}`, series)
+        }
+    })
+    return novelList.reverse()  // 新小说前置
 }
 
 
@@ -298,6 +368,7 @@ function handlerRegexNovels() {
     }
     return []
 }
+
 
 /**
  * 获取书籍详情。可选；仅写出的字段覆盖原值。
@@ -971,6 +1042,12 @@ function getAjaxAllJson(urls, requestUpdate) {
         }
         return results
     }, requestUpdate)
+}
+function getWebviewJson(url) {
+    return cacheGetAndSet(url, () => {
+        let html = java.webView(null, url, null)
+        return JSON.parse((html.match(new RegExp(">\\[{.*?}]<"))[0].replace(">", "").replace("<", "")))
+    })
 }
 function getWebViewUA() {
     let userAgent = getFromCache("userAgent")
