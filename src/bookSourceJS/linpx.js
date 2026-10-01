@@ -1,18 +1,4 @@
 /**
- * JS 源模板。
- * config 配置对象加若干函数声明即完整书源：search、getChapters、getContent 必须实现，
- * getBookInfo 可选，config.exploreUrl 与 explore 成对使用。
- * getReviewSummary 与 getReviewDetail 成对声明即启用段评。
- *
- * - 可直接使用 java、source、cookie、cache、baseUrl 等绑定。网络请求为同步 API，
- *   如 java.ajax(url)；调试输出用 java.log(msg)；完整 API 参阅应用内帮助。
- * - 每次函数调用在新作用域执行；跨请求状态用 cache.put/get 或 source.setVariable/getVariable。
- * - 支持常用 ES6 语法；不支持 class、async/await、Promise 回调和函数展开调用。
- * - book/chapter 属性、java.ajax 和 Jsoup 的返回值可能是 Java 字符串对象，使用字符串方法
- *   或进行判空前，先用 String(value) 转换。
- */
-
-/**
  * 书源配置。字段名与 BookSource 实体一致。
  * 常用可选字段包括 header（JSON 格式请求头）、loginUrl（登录页地址，WebView 登录）、
  * loginUi（表单登录，RowUi 数组，与顶层 login 函数成对）、concurrentRate、
