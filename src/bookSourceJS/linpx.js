@@ -174,15 +174,38 @@ const seriesSet = {
 function search(key, page) {
     let novels = []
     seriesSet.resetIfNeeded(page)   // 第 1 页清空旧记录
-    let resp = getAjaxJson(urlSearchNovel(key, page))
-    java.log(urlSearchNovel(key, page))
+    if (key.startsWith("@")) {
+        key = key.slice(1)
+        novels = novels.concat(findUserNovels(key, page))
+    } else if (key.startsWith("#")) {
+        key = key.slice(1)
+        novels = novels.concat(getNovels(key, page))
+        // if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
+    } else {
+        novels = novels.concat(getNovels(key, page))
+        // if (util.settings.SEARCH_AUTHOR) novels = novels.concat(findUserNovels())
+        // if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
+        // novels = novels.concat(getConvertNovels(key))
+    }
 
-    if (resp.error || resp.total === 0) return []
-    novels = novels.concat(resp.novels)
-    // java.log(JSON.stringify(novels))
-    if (novels.length === 0) return []
+    
+    // let resp = getAjaxJson(urlSearchNovel(key, page))
+    // java.log(urlSearchNovel(key, page))
+    //
+    // if (resp.error || resp.total === 0) return []
+    // novels = novels.concat(resp.novels)
+    // // java.log(JSON.stringify(novels))
+    // if (novels.length === 0) return []
     return formatNovels(handNovels(combineNovels(novels)))
 }
+
+function getNovels(name, page) {
+    let resp = getAjaxJson(urlSearchNovel(name, page))
+    java.log(urlSearchNovel(name, page))
+    if (resp.error || resp.total === 0) return []
+    return resp.novels
+}
+
 
 /**
  * 获取发现页书籍，与 config.exploreUrl 成对使用。
