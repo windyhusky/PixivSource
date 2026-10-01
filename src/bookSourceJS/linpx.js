@@ -485,10 +485,10 @@ function getContent(chapter, book) {
 }
 
 // 获取 [uploadedimage:] 的图片链接
-function replaceUploadedImage(res, content) {
-    if (res.images !== undefined && res.images !== null) {
-        Object.keys(res.images).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(res.images[key].origin)}">`)
+function replaceUploadedImage(resp, content) {
+    if (resp.images !== undefined && resp.images !== null) {
+        Object.keys(resp.images).forEach((key) => {
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlCoverUrl(resp.images[key].origin)}">`)
         })
     }
     return content
