@@ -185,7 +185,7 @@ function search(key, page) {
         novels = novels.concat(getNovels(key, page))
         // if (util.settings.SEARCH_AUTHOR) novels = novels.concat(findUserNovels())
         // if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
-        // novels = novels.concat(getConvertNovels(key))
+        novels = novels.concat(getConvertNovels(key))
     }
 
     
@@ -204,6 +204,15 @@ function getNovels(name, page) {
     java.log(urlSearchNovel(name, page))
     if (resp.error || resp.total === 0) return []
     return resp.novels
+}
+
+function getConvertNovels(name, key=1) {
+    let novels = []
+    let name1 = String(java.s2t(name))
+    let name2 = String(java.t2s(name))
+    if (name1 !== name) novels = novels.concat(getNovels(name1, key))
+    if (name2 !== name) novels = novels.concat(getNovels(name2, key))
+    return novels
 }
 
 
