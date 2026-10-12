@@ -13,10 +13,10 @@
 ## ⚡️ [快速开始](https://pixivsource.pages.dev/QuickStart)：[下载阅读](https://pixivsource.pages.dev/QuickStart#Download)➡️[导入书源](https://pixivsource.pages.dev/QuickStart#ImportSources)➡️[登录账号](https://pixivsource.pages.dev/QuickStart#LoginAccount)➡️[阅读设置](https://pixivsource.pages.dev/QuickStart#LegadoSettings)➡️[开始使用](https://pixivsource.pages.dev/Pixiv#All)
 
 
-## 📖 书源功能 
+## 📖 书源功能（`.JSON`）；`.JS` 书源详见 [bookSourceJS](src/bookSourceJS)
 | 书源    | 状态 | 直连 | 支持 Ｐ站 特性 | 实现 阅读 功能 |
 | ------ | --- | --- |------------ | ----------- |
-| Pixiv  | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 |
+| Pixiv  | ✅ | ❌ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 |
 | Linpx  | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 |
 | 兽人小说 | ✅ | ✅ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 |
 
@@ -27,7 +27,7 @@
 ### 📖 阅读体验
 | 功能 | Pixiv App | Pixiv 书源 |
 | :--- | :--- | :--- |
-`| 📚 **小说书架** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/BetterExperience#ShelfPage) |
+| 📚 **小说书架** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/BetterExperience#ShelfPage) |
 | 💾 **离线阅读** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/LegadoTips#OfflineCache) |
 | 🀄️ **繁简通搜** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/Pixiv#ConvertChinese) |
 | 🔀 **繁简转换** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/LegadoTips#ConvertChinese) |
@@ -36,14 +36,14 @@
 | 🍃 **纯净无广** | 💰 会员功能 | ✅ 纯净无广 |
 
 
-### 🚫 小说过滤 {#NovelFilter}
+### 🚫 小说过滤
 | 功能 | Pixiv App | Pixiv 书源 |
 | :--- | :--- | :--- |
 | 👤️ **屏蔽作者** | 💰 会员功能 | 🆓 [免费支持](https://pixivsource.pages.dev/Pixiv#BlockAuthor) |
 | 🏷️ **屏蔽标签** | 💰 会员功能 | 🆓 [免费支持](https://pixivsource.pages.dev/Pixiv#BlockWords) |
-| 📝 **屏蔽描述** | ❌ 无 | ✅ [免费支持](https://pixivsource.pages.dev/Pixiv#BlockWords) |
-| ❤️ **隐藏喜欢** | ❌ 无 | ✅ [免费支持](https://pixivsource.pages.dev/Pixiv#HideNovels) |
-| 📜 **隐藏追更** | ❌ 无 | ✅ [免费支持](https://pixivsource.pages.dev/Pixiv#HideNovels) |
+| 📝 **屏蔽描述** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/Pixiv#BlockWords) |
+| ❤️ **隐藏喜欢** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/Pixiv#HideNovels) |
+| 📜 **隐藏追更** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/Pixiv#HideNovels) |
 </details>
 
 
