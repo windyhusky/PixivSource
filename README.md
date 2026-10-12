@@ -13,7 +13,7 @@
 ## ⚡️ [快速开始](https://pixivsource.pages.dev/QuickStart)：[下载阅读](https://pixivsource.pages.dev/QuickStart#Download)➡️[导入书源](https://pixivsource.pages.dev/QuickStart#ImportSources)➡️[登录账号](https://pixivsource.pages.dev/QuickStart#LoginAccount)➡️[阅读设置](https://pixivsource.pages.dev/QuickStart#LegadoSettings)➡️[开始使用](https://pixivsource.pages.dev/Pixiv#All)
 
 
-## 📖 书源功能（`.JSON`）；`.JS` 书源详见 [bookSourceJS](src/bookSourceJS)
+## 📖 书源功能`.JSON` || `.JS` 书源详见 [bookSourceJS](src/bookSourceJS)
 | 书源    | 状态 | 直连 | 支持 Ｐ站 特性 | 实现 阅读 功能 |
 | ------ | --- | --- |------------ | ----------- |
 | Pixiv  | ✅ | ❌ | ✅ 单篇 ✅ 系列 ✅ 插图 | ✅ 搜索 ✅ 发现 ✅ 添加网址 |
@@ -44,6 +44,23 @@
 | 📝 **屏蔽描述** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/Pixiv#BlockWords) |
 | ❤️ **隐藏喜欢** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/Pixiv#HideNovels) |
 | 📜 **隐藏追更** | ❌ 无 | ✅ [支持](https://pixivsource.pages.dev/Pixiv#HideNovels) |
+</details>
+
+
+<details><summary> 🚀 导入书源 </summary>
+
+## 🚀 导入书源（`.JSON`）
+| 源名称 | jsDelivr | Github |
+| ----- | -------- | ------ |
+| Pixiv 书源   | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/pixiv.json) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |
+| Linpx 书源   | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json) |
+| BTSRK 订阅源 | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/btsrk.json) |
+
+
+## 🚀 导入书源（`.JS`）
+| 书源名称 | jsDelivr | Github |
+| ----- | -------- | ------ |
+| 🦊 Linpx | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/src/bookSourceJS/linpx.js) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/src/bookSourceJS/linpx.js) |
 </details>
 
 
