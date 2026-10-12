@@ -9,4 +9,5 @@
 | TS重构版 | https://github.com/eigeen/PixivSourceProject |
 
 
+## `.JS` 书源详见 [ReadMe](../src/bookSourceJS/ReadMe.md)
 ### 其他详见首页 [README](../README.md)
