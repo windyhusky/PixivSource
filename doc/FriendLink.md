@@ -57,7 +57,7 @@ friendGroups:
     anchor: Translator
     items:
       - name: 生肉狮
-        link: https://my-lion-bot.online/
+        link: https://rawmage.online
         icon: /img/RawMage.jpg
         desc: 为解决阅读语言障碍与内容保存而生
 

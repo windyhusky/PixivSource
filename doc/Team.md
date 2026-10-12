@@ -76,7 +76,7 @@ teamGroups:
       - name: Tiger KK
         title: KK
         link: https://github.com/k99k5
-        icon: https://cravatar.com/avatar/1f950bb98467b977c546a3acd0f4b6df?size=256
+        icon: https://github.com/k99k5.png
         desc: 兽人控小说站 前站长
         sites:
           - name: 兽人控小说站
