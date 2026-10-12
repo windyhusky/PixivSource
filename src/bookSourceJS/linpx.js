@@ -188,10 +188,10 @@ function handlerFollowLatest(url, page) {
     let resp = getAjaxJson(url.replace("{{page}}", page))
     return formatNovels(handNovels(combineNovels(resp)))
 }
-// todo: 更新正则
+
 function handlerRegexNovels() {
     let result = java.webView(null, "https://linpx.ink", null)
-    let match = String(result).match(/<div class=" font-bold text-xl line-clamp-1">(.*?)<\/div>/)
+    let match = result.match(RegExp('<div class="font-serif text-lg font-bold">(.*?)</div>'))
     if (!match) return []
 
     let name = match[1]

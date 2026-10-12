@@ -68,8 +68,11 @@ function handlerFollowLatest() {
 function handlerRegexNovels() {
     return () => {
         let result = java.webView(null, "https://linpx.ink", null)
-        let name = result.match(RegExp('<div class=" font-bold text-xl line-clamp-1">(.*?)</div>'))[1]
-        let resp = getAjaxJson(urlSearchNovel(name))
+        let match = result.match(RegExp('<div class="font-serif text-lg font-bold">(.*?)</div>'))
+        if (!match) return []
+
+        let name = match[1]
+        let resp = getAjaxJson(urlSearchNovel(name, 1))
         if (resp.total !== undefined) {
             return util.formatNovels(util.handNovels(util.combineNovels(resp.novels)))
         }
@@ -87,7 +90,7 @@ function handlerFactory() {
     if (baseUrl.includes("/pixiv/novels/recent")) {
         return handlerFollowLatest()
     }
-    if (baseUrl.includes("https://linpx.ink")) {
+    if (baseUrl === "https://linpx.ink/") {
         return handlerRegexNovels()
     }
     else {
