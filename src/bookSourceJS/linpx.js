@@ -132,7 +132,9 @@ const config = {
  * 行类型 text/password/label/select（options 单选）/button（countdown 秒）。
  */
 
-const Jsoup = org.jsoup.Jsoup;
+
+const Jsoup = org.jsoup.Jsoup
+const isJSBookSource = true
 
 // 存储已出现的 seriesId（跨页去重）
 const seriesSet = {
@@ -190,8 +192,8 @@ function search(key, page) {
  */
 function explore(url, page) {
     seriesSet.resetIfNeeded(page)   // 第 1 页清空旧记录
-    if (url.includes("cdn.jsdelivr.net")) {
-        updateSourceLink(); return []
+    if (url.includes("cdn.jsdelivr.net" || "raw.githubusercontent.com")) {
+        updateSource(); return []
     }
     if (url.includes("/fav/user")) {
         return handlerRecommendUsers()
@@ -1073,21 +1075,21 @@ function sleepToast(text, seconds) {
 }
 
 function updateSource() {
-    try {
-        updateSourceHtml()
-    } catch(e) {
-        updateSourceHtml()
-    }
+    return updateSourceLink()
 }
 
 function updateSourceLink(){
-    let sourceName
-    if (source.bookSourceUrl.includes("pixiv")) sourceName = "pixiv"
-    else if (source.bookSourceUrl.includes("furrynovel")) sourceName = "linpx"
-
-    try {
-        java.openUrl(`legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/${sourceName}.json`)
-    } catch (e) {
-        java.openUrl(`legado://import/importonline?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/${sourceName}.json`)
+    if (isJSBookSource) {
+        try {
+            java.openUrl(`legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/src/bookSourceJS/linpx.js`)
+        } catch (e) {
+            java.openUrl(`legado://import/bookSource?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/src/bookSourceJS/linpx.js`)
+        }
+    } else {
+        try {
+            java.openUrl(`legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json`)
+        } catch (e) {
+            java.openUrl(`legado://import/bookSource?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json`)
+        }
     }
 }
