@@ -24,11 +24,7 @@ const config = {
     bookSourceType: 0,
     bookSourceGroup: "🔞 Pixiv,🐲 Furry",
     bookSourceComment: "",
-    // 发现分类，由 explore 抓取。数组每项 {title, url}，url 原样传入 explore；
-    // 省略 url 的项渲染为分区标题。也接受“名称::url”每行一个的字符串形态。
     header: {"Referer":"https://linpx.ink/"},
-    // loginUrl
-    loginUi: [],
     exploreUrl: (() => {
         const li = [
             {"💯 推荐": "https://api.linpx.ink/fav/user/cache"},
@@ -58,6 +54,73 @@ const config = {
     })(),
     bookUrlPattern: "(https?://)?(api\\.|www\\.)?(linpx\\.ink)/(pn|pu|pixiv/(novel|user))/\\d+(/cache)?",
     concurrentRate: "30/5000",
+    loginUi: (() => {
+        let source = [
+            {"🆙 更新书源": "updateSource()" },
+            {"🔰 使用指南": "startGithubReadme()" },
+            {"🐞 反馈问题": "startGithubIssue()" },
+        ]
+
+        let novel = [
+            {"章节名称": "text" },
+            {"⤴️ 分享章节": "shareFactory('novel')" },
+            {"⤴️ 分享作者": "shareFactory('author')" },
+            {"🅿️ 分享小说": "shareFactory('pixiv')" },
+        ]
+
+        let settings = [
+            {"书源设置": "text" },
+            {"⚙️ 当前设置": "showSettings()" },
+            {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
+            {"👤 🚫 搜索作者": "editSettings('SEARCH_AUTHOR')" },
+
+            {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
+            {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
+            {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
+
+            {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
+            {"🖼️ 🚫 显示描述": "editSettings('SHOW_CAPTIONS')" },
+            {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
+
+            {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
+            {"🔗 图片链接": "editSettings('PIC_LINK')" },
+            {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
+        ]
+
+        // 添加按钮
+        let li = source
+        try {
+            if (book) li = li.concat(novel)
+        } catch (e) {}
+        li = li.concat(settings)
+
+        // 处理按钮
+        li.forEach(item => {
+            item.name = Object.keys(item)[0]
+            let list = item.name.split(" ")
+            if (list.length === 1 ) {
+                item.type = "text"
+            } else if (list.length === 2) {
+                item.type = "button"
+                item.action = Object.values(item)[0]
+            } else {
+                item.name = list[list.length - 1]
+                item.type = "toggle"
+                item.default = `${list[0]} `
+                list.length = list.length - 1
+                item.chars = list.map(char => `${char} `)
+                item.action = Object.values(item)[0]
+            }
+            delete item[Object.keys(item)[0]]
+            // 添加格式
+            if (item.type === "button" || item.type === "toggle") {
+                item.style = {}
+                item.style.layout_flexGrow = 1
+                item.style.layout_flexBasisPercent = -1
+            }
+        })
+        return li
+    })(),
     enabledCookieJar: true,
     lastUpdateTime: 0, // 版本时间戳（毫秒）；导入值较新时提示更新
 };
