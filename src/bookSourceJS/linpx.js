@@ -807,6 +807,25 @@ function setDefaultSettingsLoginUrl() {
     sleepToast(`\n🔧 默认设置　✅ 已恢复\n\n${getSettingStatus()}`)
 }
 
+function setDefaultSettings() {
+    let settings = {}
+    settings.SEARCH_AUTHOR = false      // 搜索：默认搜索作者名称
+    settings.CONVERT_CHINESE = true     // 搜索：搜索时进行繁简转换
+
+    settings.MORE_INFORMATION = false   // 详情：书籍简介显示更多信息
+    settings.SHOW_ORIGINAL_LINK = true  // 目录：显示原始链接，但会增加大量请求
+
+    settings.REPLACE_TITLE_MARKS = true // 正文：注音内容为汉字时，替换为书名号
+    settings.SHOW_CAPTIONS = true       // 正文：章首显示描述
+    settings.DEBUG = false              // 全局：调试模式
+
+    settings.PIC_SOURCE = "PixivShojo"  // 正文：图片解析
+    settings.PIC_LINK = "PixivShojo"    // 正文：图片链接
+    settings.PIC_SIZE = "original"      // 正文：图片大小
+
+    putInCacheObject("linpxSettings", settings)
+    return settings
+}
 
 function editSettings(settingKey) {
     let msg, status
