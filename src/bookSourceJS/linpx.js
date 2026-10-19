@@ -82,9 +82,9 @@ const config = {
             {"🖼️ 🚫 显示描述": "editSettings('SHOW_CAPTIONS')" },
             {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
 
-            {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
-            {"🔗 图片链接": "editSettings('PIC_LINK')" },
-            {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
+            // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
+            // {"🔗 图片链接": "editSettings('PIC_LINK')" },
+            // {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
         ]
 
         // 添加按钮
