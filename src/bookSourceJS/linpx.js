@@ -304,12 +304,12 @@ function getChapters(book) {
 }
 
 function urlNovel(novelId) {
-    return urlNovelDetailed(novelId)
-    // if (util.settings.SHOW_ORIGINAL_LINK) {
-    //     return urlNovelUrl(novelId)
-    // } else {
-    //     return urlNovelDetailed(novelId)
-    // }
+    let settings = getFromCacheObject("linpxSettings")
+    if (settings.SHOW_ORIGINAL_LINK) {
+        return urlNovelUrl(novelId)
+    } else {
+        return urlNovelDetailed(novelId)
+    }
 }
 
 function oneShotHandler(resp) {
@@ -379,9 +379,10 @@ function getContent(chapter, book) {
     let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
     let resp = getAjaxJson(urlNovelDetailed(novelId))
     let content = resp.content
-    // if (util.settings.SHOW_CAPTIONS === true && resp.desc !== "") {
-    //     content = resp.desc + "\n" + "——————————\n".repeat(2) + content
-    // }
+    let settings = getFromCacheObject("linpxSettings")
+    if (settings.SHOW_CAPTIONS === true && resp.desc !== "") {
+        content = resp.desc + "\n" + "——————————\n".repeat(2) + content
+    }
 
     // 替换 Pixiv 标记符
     content = replaceUploadedImage(resp, content)
@@ -491,6 +492,7 @@ function replaceJumpUrl(content) {
 }
 // 替换 Pixiv 注音标记符号 [[rb: > ]]
 function replaceRb(content) {
+    let settings = getFromCacheObject("linpxSettings")
     let matched = content.match(RegExp(/\[\[rb:(.*?)>(.*?)]]/gm))
     if (matched) {
         for (let i in matched) {
@@ -499,10 +501,10 @@ function replaceRb(content) {
             let kanji = matched2[1].trim()
             let kana = matched2[2].trim()
 
-            // if (!util.settings.REPLACE_TITLE_MARKS) {
-            //     默认替换成（括号）
-                // content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
-            // } else {
+            // 默认替换成（括号）
+            if (!settings.REPLACE_TITLE_MARKS) {
+                content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
+            } else {
                 let reg = RegExp("[\\u4E00-\\u9FFF]+", "g");
                 if (reg.test(kana)) {
                     // kana为中文，则替换回《书名号》
@@ -512,7 +514,7 @@ function replaceRb(content) {
                     // content = content.replace(`${matchedText}`, `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
                     content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
                 }
-            // }
+            }
         }
     }
     return content
@@ -643,6 +645,7 @@ function handNovels(novels, isDetail) {
 }
 
 function formatNovels(novels) {
+    let settings = getFromCacheObject("linpxSettings")
     novels.forEach(novel => {
         novel.title = novel.title.trim()
         if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
@@ -663,11 +666,11 @@ function formatNovels(novels) {
         novel.tags = novel.tags.map(item => `#${item}`)
         novel.tags = novel.tags.join(",")
 
-        // if (util.settings.MORE_INFORMATION) {
-        //     novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
-        // } else {
-        //     novel.description = `\n${novel.description}\n上传时间：${novel.createDate}`
-        // }
+        if (settings.MORE_INFORMATION) {
+            novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n简介：${novel.description}`
+        } else {
+            novel.description = `\n${novel.description}\n上传时间：${novel.createDate}`
+        }
 
         novel.name = novel.title
         novel.bookUrl = novel.detailedUrl
@@ -767,7 +770,6 @@ let settingsOptionsNames = {
         "Pixiv": "🅿️ Pixiv 直连",
         "Linpx": "🦊 Linpx 网站",
         "PixivCat": "🐱 PixivCat",
-        "CloudFlare": "☁️ CloudFlare",
     },
     "PIC_SIZE": {
         "original": "🔶 大 Original",
