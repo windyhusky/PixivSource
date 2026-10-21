@@ -160,20 +160,20 @@ const seriesSet = {
  */
 function search(key, page) {
     let novels = []
+    let settings = getFromCacheObject("linpxSettings")
     seriesSet.resetIfNeeded(page)   // 第 1 页清空旧记录
+
     if (key.startsWith("@")) {
         key = key.slice(1)
         novels = novels.concat(findUserNovels(key, page))
     } else if (key.startsWith("#")) {
         key = key.slice(1)
         novels = novels.concat(getNovels(key, page))
-        // if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
+        if (settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels(key, page))
     } else {
         novels = novels.concat(getNovels(key, page))
-        // if (util.settings.SEARCH_AUTHOR) novels = novels.concat(findUserNovels())
-        // if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
-        novels = novels.concat(findUserNovels(key, page))
-        novels = novels.concat(getConvertNovels(key, page))
+        if (settings.SEARCH_AUTHOR) novels = novels.concat(findUserNovels(key, page))
+        if (settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels(key, page))
     }
     if (novels.length === 0) return []
     return formatNovels(handNovels(combineNovels(novels)))
