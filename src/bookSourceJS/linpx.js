@@ -167,12 +167,15 @@ function search(key, page) {
 
     if (key.startsWith("@")) {
         key = key.slice(1)
+        java.log(`👤 搜索作者：${key}`)
         novels = novels.concat(findUserNovels(key, page))
     } else if (key.startsWith("#")) {
         key = key.slice(1)
+        java.log(`#️⃣ 搜索标签：${key}`)
         novels = novels.concat(getNovels(key, page))
-        if (settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels(key, page))
+        // if (settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels(key, page))
     } else {
+        java.log(`🔍 搜索内容：${key}`)
         novels = novels.concat(getNovels(key, page))
         if (settings.SEARCH_AUTHOR) novels = novels.concat(findUserNovels(key, page))
         if (settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels(key, page))
