@@ -53,7 +53,7 @@ function handlerRecommendUsers() {
         if (queryNovelIds.length > 10) {
             queryNovelIds = randomChoseArrayItem(queryNovelIds, 10)
         }
-        novelList = getWebviewJson(urlNovelsDetailed(queryNovelIds))
+        let novelList = getWebviewJson(urlNovelsDetailed(queryNovelIds))
         return util.formatNovels(util.handNovels(util.combineNovels(novelList)))
     }
 }

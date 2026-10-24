@@ -32,7 +32,8 @@ function seriesHandler(resp) {
     let novels = getAjaxAllJson(novelUrls)
 
     novels.forEach(novel => {
-        if (!novel.title) novel.title = novel.detail.title.trim()
+        if (!novel.title) novel.title = novel.detail.title
+        novel.title = novel.title.trim()
         novel.chapterUrl = urlNovel(novel.id)
         if (novel.content) novel.textCount = novel.content.length
         novel.updateDate = timeTextFormat(novel.createDate)

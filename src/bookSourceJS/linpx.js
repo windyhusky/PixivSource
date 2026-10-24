@@ -184,19 +184,19 @@ function search(key, page) {
     return formatNovels(handNovels(combineNovels(novels)))
 }
 
-function getNovels(name, page) {
-    let resp = getAjaxJson(urlSearchNovel(name, page))
-    java.log(urlSearchNovel(name, page))
+function getNovels(key, page) {
+    let resp = getAjaxJson(urlSearchNovel(key, page))
+    java.log(urlSearchNovel(key, page))
     if (resp.error || resp.total === 0) return []
     return resp.novels
 }
 
-function getConvertNovels(name, key=1) {
+function getConvertNovels(key, page=1) {
     let novels = []
-    let name1 = String(java.s2t(name))
-    let name2 = String(java.t2s(name))
-    if (name1 !== name) novels = novels.concat(getNovels(name1, key))
-    if (name2 !== name) novels = novels.concat(getNovels(name2, key))
+    let key1 = String(java.s2t(key))
+    let key2 = String(java.t2s(key))
+    if (key1 !== key) novels = novels.concat(getNovels(key1, page))
+    if (key2 !== key) novels = novels.concat(getNovels(key2, page))
     return novels
 }
 
@@ -321,19 +321,22 @@ function randomChoseArrayItem(arr, length) {
 function handlerRecommendUsers() {
     const MAX_FETCH_USER_NUMBER = 2
     let userIds = getAjaxJson(urlUserFavorite()).map(i => i.id)
-
+    // java.log(`用户id个数:${userIds.length}`)
     if (userIds.length > MAX_FETCH_USER_NUMBER) {
         userIds = randomChoseArrayItem(userIds, MAX_FETCH_USER_NUMBER)
     }
-
+    // java.log(`查询的用户Ids:${userIds}`)
     let usersInfo = getAjaxJson(urlUsersDetailed(userIds))
+    // java.log(`返回的${JSON.stringify(usersInfo)}`)
     let queryNovelIds = []
+    // java.log(`${JSON.stringify(usersInfo)}`)
 
     usersInfo.filter(user => user.novels && user.novels.length > 0)
         .forEach(user => {
             user.novels.forEach(novel => queryNovelIds.push(novel))
         })
 
+    // 暂时限制最大获取数量
     if (queryNovelIds.length > 10) {
         queryNovelIds = randomChoseArrayItem(queryNovelIds, 10)
     }
@@ -390,7 +393,7 @@ function getBookInfo(book) {
 function getChapters(book) {
     let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
     let novel = getAjaxJson(urlNovelDetailed(novelId))
-    novel = formatNovels(handNovels([novel], true))[0]
+    novel = handNovels([novel], true)[0]
     let result = getAjaxJson(urlSeriesDetailed(novel.seriesId))
     if (result.novels) return seriesHandler(result)
     // else if (result.series) return seriesContentHandler(novel)

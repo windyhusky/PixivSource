@@ -18,7 +18,6 @@ function getCaptions(resp, content) {
     }
     return content
 }
-
 // 获取 [uploadedimage:] 的图片链接
 function replaceUploadedImage(resp, content) {
     if (resp.images !== undefined && resp.images !== null) {
