@@ -19,18 +19,20 @@ if (BOOK) {
         {"👀 书源设置": `editSettings('SHOW_SETTINGS2')` },
         {"👀 发现设置": `editSettings('SHOW_DISCOVER2')` },
         {"🔰 功能手册": "startGithubReadme()" },
-        {"🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
-        {"❤️ 自动收藏": "editSettings('AUTO_LIKE_NOVELS')" },
-        {"🐞 调试模式": "editSettings('DEBUG')" },
+
+        {"🔢 🚫 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
+        {"❤️ 🚫 自动收藏": "editSettings('AUTO_LIKE_NOVELS')" },
+        {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
     ]
 } else {
     settingsBase = [
-        {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
-        {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
-        {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
         {"⚙️ 当前设置": "showSettings()" },
         {"👀 书源设置": `editSettings('SHOW_SETTINGS')` },
         {"👀 发现设置": `editSettings('SHOW_DISCOVER')` },
+        {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
+        {"⏩ 🚫 快速模式": "editSettings('FAST')" },
+        {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
+
     ]
 }
 
@@ -99,11 +101,11 @@ let settings = [
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
     {"📚 🚫 整合系列": "editSettings('COMBINE_NOVELS')" },
 
-    {"🚫 👤 搜索作者": "editSettings('SEARCH_AUTHOR')" },
+    {"👤 🚫 搜索作者": "editSettings('SEARCH_AUTHOR')" },
     {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
-    {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
+    {"📖 🚫 更多简介": "editSettings('MORE_INFORMATION')" },
 
-    {"🚫 🔢 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
+    {"🔢 🚫 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
     {"📅 🚫 更新时间": "editSettings('SHOW_UPDATE_TIME')" },
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
 
@@ -115,9 +117,9 @@ let settings = [
     {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
     {"❤️ 🚫 自动收藏": "editSettings('AUTO_LIKE_NOVELS')" },
 
-    {"🚫 🖤 自动取消": "editSettings('AUTO_DISLIKE_NOVELS')" },
-    {"🚫 ❤️ 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
-    {"🚫 📃 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
+    {"🖤 🚫 自动取消": "editSettings('AUTO_DISLIKE_NOVELS')" },
+    {"❤️ 🚫 隐藏收藏": "editSettings('HIDE_LIKE_NOVELS')" },
+    {"📃 🚫 隐藏追更": "editSettings('HIDE_WATCHED_SERIES')" },
 
     // {"📚 🚫 整合系列": "editSettings('COMBINE_NOVELS')" },
     // {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
@@ -132,19 +134,19 @@ let settings = [
 let discoverSettings = [
     {"发现设置": "text" },
     {"🔍 当前发现": "showSettingsDiscover()" },
-    {"🔞 默认发现": "editSettings('SHOW_ADULT')" },
-    {"🆗 常规小说": "editSettings('SHOW_GENERAL')" },
+    {"🔞 🚫 默认发现": "editSettings('SHOW_ADULT')" },
+    {"🆗 🚫 常规小说": "editSettings('SHOW_GENERAL')" },
 
-    {"🔞 最新企划": "editSettings('SHOW_NEW_ADULT')" },
-    {"🆗 最新企划": "editSettings('SHOW_NEW_GENERAL')" },
-    {"🔞 排行榜单": "editSettings('SHOW_RANK_ADULT')" },
+    {"🔞 🚫 最新企划": "editSettings('SHOW_NEW_ADULT')" },
+    {"🆗 🚫 最新企划": "editSettings('SHOW_NEW_GENERAL')" },
+    {"🔞 🚫 排行榜单": "editSettings('SHOW_RANK_ADULT')" },
 
-    {"🆗 排行榜单": "editSettings('SHOW_RANK_GENERAL')" },
-    {"🔞 原创热门": "editSettings('SHOW_GENRE_ADULT')" },
-    {"🆗 原创热门": "editSettings('SHOW_GENRE_GENERAL')" },
+    {"🆗 🚫 排行榜单": "editSettings('SHOW_RANK_GENERAL')" },
+    {"🔞 🚫 原创热门": "editSettings('SHOW_GENRE_ADULT')" },
+    {"🆗 🚫 原创热门": "editSettings('SHOW_GENRE_GENERAL')" },
 
-    {"📚 书源相关": "editSettings('SHOW_ABOUT')" },
-    {"🦊 兽人小说": "editSettings('SHOW_FURRY')" },
+    {"📚 🚫 书源相关": "editSettings('SHOW_ABOUT')" },
+    {"🦊 🚫 兽人小说": "editSettings('SHOW_FURRY')" },
     {"🐺 兽人作者": "updatePixivAuthors()" },
 ]
 
@@ -174,10 +176,12 @@ li.forEach(item => {
     } else {
         item.name = list[list.length - 1]
         item.type = "toggle"
-        item.default = `${list[0]} `
+        item.action = Object.values(item)[0]
+        let settingName = item.action.split("'")[1]
+        if (pixivSettings[settingName]) item.default = `${list[0]} `
+        else item.default = `${list[1]} `
         list.length = list.length - 1
         item.chars = list.map(char => `${char} `)
-        item.action = Object.values(item)[0]
     }
     delete item[Object.keys(item)[0]]
     // 添加格式
