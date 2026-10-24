@@ -9,17 +9,27 @@ function objParse(obj) {
     })
 }
 
-function replaceUploadedImage(res, content) {
-    // 获取 [uploadedimage:] 的图片链接
-    if (res.images !== undefined && res.images !== null) {
-        Object.keys(res.images).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlPxImgUrl(res.images[key].origin)}">`)
+// 获取并处理 Captions
+function getCaptions(resp, content) {
+    let settings = getFromCacheObject("linpxSettings")
+    if (settings.SHOW_CAPTIONS === true && resp.desc !== "") {
+        resp.desc = resp.desc.replace(/<br\s*\/?>/gi, "\n")
+        content = resp.desc + "\n" + "——————————\n".repeat(2) + content
+    }
+    return content
+}
+
+// 获取 [uploadedimage:] 的图片链接
+function replaceUploadedImage(resp, content) {
+    if (resp.images !== undefined && resp.images !== null) {
+        Object.keys(resp.images).forEach((key) => {
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlPxImgUrl(resp.images[key].origin)}">`)
         })
     }
     return content
 }
+// 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
 function replacePixivImage(content) {
-    // 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
     let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
     if (matched) {
         matched.forEach(pixivimage => {
@@ -41,8 +51,8 @@ function replacePixivImage(content) {
     }
     return content
 }
+// 替换 Pixiv 分页标记符号 [newpage]
 function replaceNewPage(content) {
-    // 替换 Pixiv 分页标记符号 [newpage]
     if (!util.environment.IS_LYC_BRUNCH) {
         let matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
         if (matched) {
@@ -53,8 +63,8 @@ function replaceNewPage(content) {
     }
     return content
 }
+// 替换 Pixiv 章节标记符号 [chapter:]
 function replaceChapter(content) {
-    // 替换 Pixiv 章节标记符号 [chapter:]
     let matched = content.match(RegExp(/\[chapter:(.*?)]/gm))
     if (matched) {
         for (let i in matched) {
@@ -70,8 +80,8 @@ function replaceChapter(content) {
     }
     return content
 }
+// 替换 Pixiv 跳转页面标记符号 [[jump:]]
 function replaceJumpPage(content) {
-    // 替换 Pixiv 跳转页面标记符号 [[jump:]]
     let matched = content.match(RegExp(/\[jump:(\d+)]/gm))
     if (matched) {
         for (let i in matched) {
@@ -81,8 +91,8 @@ function replaceJumpPage(content) {
     }
     return content
 }
+// 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
 function replaceJumpUrl(content) {
-    // 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
     let matched = content.match(RegExp(/\[\[jumpuri:(.*?)>(.*?)]]/gm))
     if (matched) {
         for (let i in matched) {
@@ -104,8 +114,8 @@ function replaceJumpUrl(content) {
     }
     return content
 }
+// 替换 Pixiv 注音标记符号 [[rb: > ]]
 function replaceRb(content) {
-    // 替换 Pixiv 注音标记符号 [[rb: > ]]
     let matched = content.match(RegExp(/\[\[rb:(.*?)>(.*?)]]/gm))
     if (matched) {
         for (let i in matched) {
@@ -133,14 +143,11 @@ function replaceRb(content) {
     return content
 }
 
-function getContent(res) {
-    let content = res.content
-    if (util.settings.SHOW_CAPTIONS === true && res.desc !== "") {
-        content = res.desc + "\n" + "——————————\n".repeat(2) + content
-    }
-
+function getContent(resp) {
+    let content = resp.content
     // 替换 Pixiv 标记符
-    content = replaceUploadedImage(res, content)
+    content = getCaptions(resp, content)
+    content = replaceUploadedImage(resp, content)
     content = replacePixivImage(content)
     content = replaceNewPage(content)
     content = replaceChapter(content)

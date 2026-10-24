@@ -473,12 +473,9 @@ function getContent(chapter, book) {
 
     // java.upLoginData({"章节名称": resp.title})
     // source.putLoginInfo(JSON.stringify({"章节名称": resp.title}))
-    let settings = getFromCacheObject("linpxSettings")
-    if (settings.SHOW_CAPTIONS === true && resp.desc !== "") {
-        content = resp.desc + "\n" + "——————————\n".repeat(2) + content
-    }
 
     // 替换 Pixiv 标记符
+    content = getCaptions(resp, content)
     content = replaceUploadedImage(resp, content)
     content = replacePixivImage(content)
     content = replaceNewPage(content)
@@ -488,7 +485,15 @@ function getContent(chapter, book) {
     content = replaceRb(content)
     return content
 }
-
+// 获取并处理 Captions
+function getCaptions(resp, content) {
+    let settings = getFromCacheObject("linpxSettings")
+    if (settings.SHOW_CAPTIONS === true && resp.desc !== "") {
+        resp.desc = resp.desc.replace(/<br\s*\/?>/gi, "\n")
+        content = resp.desc + "\n" + "——————————\n".repeat(2) + content
+    }
+    return content
+}
 // 获取 [uploadedimage:] 的图片链接
 function replaceUploadedImage(resp, content) {
     if (resp.images !== undefined && resp.images !== null) {
