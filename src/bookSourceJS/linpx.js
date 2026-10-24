@@ -173,7 +173,7 @@ function search(key, page) {
         key = key.slice(1)
         java.log(`#️⃣ 搜索标签：${key}`)
         novels = novels.concat(getNovels(key, page))
-        // if (settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels(key, page))
+        if (settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels(key, page))
     } else {
         java.log(`🔍 搜索内容：${key}`)
         novels = novels.concat(getNovels(key, page))
