@@ -5,8 +5,8 @@
  * enabledCookieJar 和 jsLib。enabled、customOrder 等用户态字段由应用维护。
  */
 const config = {
-    bookSourceUrl: "https://furrynovel.ink",
-    bookSourceName: "🦊 Linpx",
+    bookSourceUrl: "https://linpx.ink",
+    bookSourceName: "🦊 Linpx JS",
     bookSourceType: 0,
     bookSourceGroup: "🔞 Pixiv,🐲 Furry",
     bookSourceComment: "",
@@ -48,14 +48,14 @@ const config = {
         ]
 
         let novel = [
-            {"章节名称": "text" },
+            {"章节名称": "" },
             {"⤴️ 分享章节": "shareFactory('novel')" },
             {"⤴️ 分享作者": "shareFactory('author')" },
             {"🅿️ 分享小说": "shareFactory('pixiv')" },
         ]
 
         let settings = [
-            {"书源设置": "text" },
+            {"书源设置": "" },
             {"⚙️ 当前设置": "showSettings()" },
             {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
             {"👤 🚫 搜索作者": "editSettings('SEARCH_AUTHOR')" },
@@ -75,9 +75,11 @@ const config = {
 
         // 添加按钮
         let li = source
-        try {
-            if (book) li = li.concat(novel)
-        } catch (e) {}
+        // //  暂不支持或获取 book
+        // try {
+        //     if (book) li = li.concat(novel)
+        // } catch (e) {}
+        li = li.concat(novel)
         li = li.concat(settings)
 
         // 处理按钮
@@ -468,6 +470,9 @@ function getContent(chapter, book) {
     let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
     let resp = getAjaxJson(urlNovelDetailed(novelId))
     let content = resp.content
+
+    // java.upLoginData({"章节名称": resp.title})
+    // source.putLoginInfo(JSON.stringify({"章节名称": resp.title}))
     let settings = getFromCacheObject("linpxSettings")
     if (settings.SHOW_CAPTIONS === true && resp.desc !== "") {
         content = resp.desc + "\n" + "——————————\n".repeat(2) + content
