@@ -467,7 +467,7 @@ function seriesContentHandler(resp) {
  *   也可将正文 HTML 传入 java.htmlFormat(html, chapter.url) 转换为文本并保留插图
  */
 function getContent(chapter, book) {
-    let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
+    let novelId = chapter.url.match(new RegExp("\\d+"))[0]
     let resp = getAjaxJson(urlNovelDetailed(novelId))
     let content = resp.content
 
