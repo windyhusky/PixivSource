@@ -16,8 +16,8 @@ let source = [
 let settingsBase = []
 if (BOOK) {
     settingsBase = [
-        {"👀 书源设置": `editSettings('SHOW_SETTINGS2')` },
-        {"👀 发现设置": `editSettings('SHOW_DISCOVER2')` },
+        {"👀 🚫 书源菜单": `editSettings('SHOW_SETTINGS2')` },
+        {"👀 🚫 发现菜单": `editSettings('SHOW_DISCOVER2')` },
         {"🔰 功能手册": "startGithubReadme()" },
 
         {"🔢 🚫 章节编号": "editSettings('ADD_CHAPTER_INDEX')" },
@@ -26,13 +26,13 @@ if (BOOK) {
     ]
 } else {
     settingsBase = [
-        {"⚙️ 当前设置": "showSettings()" },
-        {"👀 书源设置": `editSettings('SHOW_SETTINGS')` },
-        {"👀 发现设置": `editSettings('SHOW_DISCOVER')` },
         {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
         {"⏩ 🚫 快速模式": "editSettings('FAST')" },
         {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
 
+        {"💾 备份恢复": "backupRestore()" },
+        {"👀 🚫 书源菜单": `editSettings('SHOW_SETTINGS')` },
+        {"👀 🚫 发现菜单": `editSettings('SHOW_DISCOVER')` },
     ]
 }
 
@@ -97,7 +97,7 @@ let comment = [
 
 let settings = [
     {"书源设置": "text" },
-    {"💾 备份恢复": "backupRestore()" },
+    {"⚙️ 当前设置": "showSettings()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
     {"📚 🚫 整合系列": "editSettings('COMBINE_NOVELS')" },
 

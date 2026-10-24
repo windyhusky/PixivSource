@@ -1123,6 +1123,7 @@ function editSettings(settingName) {
 
 function refreshSettings(settingName) {
     if (settingName === "DEFAULT") {
+        try { java.reLoginView() } catch (e) {}
         try { source.refreshExplore() } catch (e) {}
         try { java.refreshBookInfo() } catch(e) {}
         try { java.refreshBookToc() } catch(e) {}
