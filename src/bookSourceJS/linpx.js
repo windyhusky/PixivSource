@@ -427,6 +427,9 @@ function seriesHandler(resp) {
         novel.updateDate = timeTextFormat(novel.createDate)
         novel.chapterInfo = `${novel.updateDate}　　${novel.wordCount}字`
         if (novel.content) delete novel.content
+        debugFunc(() => {
+            java.log(`${novel.title}`)
+        })
     })
     return novels
 }
@@ -654,6 +657,13 @@ function getReviewDetail(chapter, book, paraIndex, paraData, page) {
 }
 
 // util 工具
+function debugFunc(func) {
+    let settings = getFromCacheObject("linpxSettings")
+    if (settings.DEBUG) {
+        func()
+    }
+}
+
 function combineNovels(novels) {
     return novels.filter(novel => {
         // 单本直接保留
