@@ -65,43 +65,35 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <DownloadCard/>
 
 
-<div v-if="!pagePath.includes('zh-TW')">
-
 ## 📚 书源兼容性 {#Compatibility}
-### 🅿️ Pixiv 书源 {#Pixiv}
-| 导入链接 | 更新时间 | 阅读 Beta | 
-| ------ | ------- | -------- | 
-| [最新版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/pixiv.json) |            | 新包名 3.26.0216 |
-| [272 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/260/pixiv.json) | 2026.02.08 | 3.26.0129 - 3.26.0216 |
-| [260 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/260/pixiv.json) | 2026.02.08 | 3.25.1107 - 3.26.0129 |
-| [254 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/254/pixiv.json) | 2025.12.16 | 3.23.0503 - 3.25.1107 |
-| [194 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/194/pixiv.json) | 2025.05.28 | 3.23.0503 - 3.25.1107 |
-| [174 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/pixiv.json) | 2025.02.20 | 3.22.0103 - 3.23.0404 |
+`.JSON` / `.JS` 书源同步更新，**请优先使用最新版软件**
 
-
-<details><summary><strong> 🦊 Linpx 书源 </strong></summary>
-
-### 🦊 Linpx 书源 {#Linpx}
-| 导入链接 |更新时间 | 阅读 Beta | 
-| ------ | ------ | --------- |
-| [最新版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json)|           | 新包名 3.25.1224 |
-| [254 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/254/linpx.json) | 2025.12.16 | 3.25.1107 - 3.25.1224 |
-| [253 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/253/linpx.json) | 2025.12.16 | 3.23.0503 - 3.25.1107 |
-| [174 版本](https://raw.githubusercontent.com/DowneyRem/PixivSource/174/linpx.json) | 2025.02.20 | 3.22.0103 - 3.23.0404 |
-</details>
-</div>
+- **JSON 书源**：阅读及其分支、[轻悦时光](https://www.qread.xyz)
+- **JS 书源**：[阅读 T](https://github.com/skybbk1001/legadoT/releases)、[阅读 Beta](https://github.com/legadoteam/legado/releases)、[阅读 NG](https://github.com/joestar817/legado_NG/releases)
 
 
 ## 📆 2026下半年 {#2026H2}
+### 📚 更新 286 {#286}
+- 🦊 **Linpx 书源：**
+  - 🔀 新版 `.JS` 书源
+    - ✅ 搜索：搜索标签、搜索作者、繁简通搜
+    - ✅ 登录界面、✅ 书源设置、✅ 更新书源
+    - 🐞 修复正文章节内容为首章的 Bug
+    - 🔍 搜索标签时，允许繁简转换
+  - ⌛️ 旧版 `.JSON` 书源
+    - 🔍 搜索标签时，允许繁简转换
+    - 同步优化代码
+
+
 ### 📚 更新 285 {#285}
 - 🦊 **Linpx 书源：**
   - 🔀 移植为新版 `.JS` 书源
     - ✅ 搜索、✅ 发现、✅ 添加网址
     - 🐞 修复封面、正文插图无法显示
     - ❌ 登录界面、设置（暂未移植）
-  - 旧版 `.JSON` 书源
+    - ⚠️ **存在正文章节内容为首章的 Bug**
+  - ⌛️ 旧版 `.JSON` 书源
     - 🐞 修复封面、正文插图无法显示
-- 📌 `.JS` 书源、`.JSON` 书源将同步更新
 
 
 ### ⬆️ 更新 284 {#284}

@@ -52,6 +52,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 ### 📆 2026 {#2026}
 <br>
 
+::: timeline 2026-10-24
+> [!IMPORTANT]
+> **Linpx `.JS` 书源，主要功能完成移植**
+:::
+
 ::: timeline 2026-10-10
 > [!NOTE]
 > **Linpx `.JS` 书源，基础功能完成移植**
