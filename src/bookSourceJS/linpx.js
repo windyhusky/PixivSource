@@ -153,6 +153,11 @@ const seriesSet = {
     },
 }
 
+function logSourceInformation() {
+    java.log(`${source.bookSourceComment.split("\n")[0]}`)
+    java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
+    java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+}
 
 /**
  * 搜索书籍。
@@ -161,6 +166,7 @@ const seriesSet = {
  * @returns { [{name, bookUrl, author, kind, coverUrl, intro, wordCount, latestChapterTitle, tocUrl, type}] } 书籍数组或 JSON 字符串；name、bookUrl 必填，地址用绝对 URL
  */
 function search(key, page) {
+    logSourceInformation()
     let novels = []
     let settings = getFromCacheObject("linpxSettings")
     seriesSet.resetIfNeeded(page)   // 第 1 页清空旧记录
@@ -370,6 +376,7 @@ function handlerRegexNovels() {
  * @returns { {name, author, intro, coverUrl, kind, wordCount, latestChapterTitle, tocUrl, type, variable} } 字段补丁对象或 JSON 字符串
  */
 function getBookInfo(book) {
+    logSourceInformation()
     let novelId = book.bookUrl.match(new RegExp("\\d+"))[0]
     let novel = getAjaxJson(urlNovelDetailed(novelId))
     book = novel = formatNovels(handNovels([novel], true))[0]
