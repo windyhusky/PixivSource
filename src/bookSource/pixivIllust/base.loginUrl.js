@@ -183,7 +183,6 @@ const settingsName = Object.assign({},
     menuSettingsName
 )
 
-
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
     else if (status === false) return "🚫 已关闭"
@@ -196,15 +195,18 @@ function getSettingStatus(mode) {
     let keys = [], msgList = []
     let settings = getFromCacheObject("pixivIllustSettings")
     // if (mode === "FAST") {
-    //     keys = Object.keys(settingsName).slice(0, 5)
-    // }
-    if (mode === "IPDirect") {
-        keys = Object.keys(settingsName).slice(0, 1)
+    //     keys = Object.keys(fastSettingsName)
+    // } else if (mode === "IPDirect") {
+    //     keys = Object.keys(IPDirectSettingsName)
+    // } else
+    if (mode.includes("DISCOVER")) {
+        keys = Object.keys(discoverSettingsName)
     } else {
-        keys = Object.keys(settingsName)
+        keys = Object.keys(illustSettingsName)
     }
-    for (let i in keys) {
+    for (let i = 0; i < keys.length; i++) {
         msgList.push(`${statusMsg(settings[keys[i]])}　${settingsName[keys[i]]}`)
+        if ((i+1) % 6 === 0) msgList.push("\n")
     }
     return msgList.join("\n").trim()
 }
@@ -237,7 +239,6 @@ function editSettings(settingName) {
             msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
             settings.IPDirect = false
             checkSettings()
-            putInCacheObject("pixivIllustSettings", settings)
         } else {
             checkSettings()
             msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
@@ -245,8 +246,7 @@ function editSettings(settingName) {
 
     } else if (settingName === "QUALITY_REGULAR") {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n`
-        if (settings.QUALITY_REGULAR)
-             msg += "图片质量设置为 regular "
+        if (settings.QUALITY_REGULAR) msg += "图片质量设置为 regular "
         else msg += "图片质量设置为 original"
 
     } else {
