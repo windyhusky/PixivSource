@@ -623,7 +623,7 @@ function getPixivUid() {
     let pixivUid = getFromCache("pixivUid")
     let pixivCookie = getFromCache("pixivCookie")
     if (!pixivUid && pixivCookie) {
-        pixivUid = pixivCookie.match(new RegExp("\\d+"))[0]
+        pixivUid = pixivCookie.match(new RegExp(/PHPSESSID=(\d+)/))[1]
         java.log(`pixivUid: ${pixivUid}`)
         putInCache("pixivUid", pixivUid)
     }
@@ -655,7 +655,7 @@ function getHeaders() {
 
 publicFunc()
 if (result.code() === 200) {
-    getPixivUid(); getWebViewUA(); util.getCookie(); util.getCsrfToken(); getHeaders()
+    getWebViewUA(); util.getCsrfToken(); util.getCookie(); getPixivUid(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 java.getStrResponse(null, null)
