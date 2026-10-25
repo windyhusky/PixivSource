@@ -84,10 +84,7 @@ function novelBookmarkAdd() {
         "https://www.pixiv.net/ajax/novels/bookmarks/add",
         JSON.stringify({"novel_id": novel.id, "restrict": restrict, "comment":"", "tags":[]})
     )
-    if (resp.error === true) {
-        sleepToast(`❤️ 收藏小说\n\n⚠️ 收藏【${novel.title}】失败`)
-        // shareFactory("novel")
-    } else {
+    if (!resp.error) {
         putInCacheObject(`collect${novel.id}`, resp.body)
         let likeNovels = getFromCacheObject("likeNovels")
         likeNovels.push(Number(novel.id))
@@ -126,10 +123,7 @@ function novelBookmarkDelete() {
         "https://www.pixiv.net/ajax/novels/bookmarks/delete",
         `del=1&book_id=${bookmarkId}`
     )
-    if (resp.error === true) {
-        sleepToast(`🖤 取消收藏\n\n⚠️ 取消收藏失败\n${novel.title}`)
-        // shareFactory("novel")
-    } else {
+    if (!resp.error) {
         cache.delete(`collect${novel.id}`)
         sleepToast(`🖤 取消收藏\n\n✅ 已经取消收藏\n${novel.title}`)
 
@@ -149,10 +143,7 @@ function seriesWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/watch`,
         "{}"
     )
-    if (resp.error === true) {
-        sleepToast(`📃 追更系列\n\n⚠️ 追更【${novel.seriesTitle}】失败`, 1)
-        // shareFactory("series")
-    } else {
+    if (!resp.error) {
         putInCache(`watch${novel.seriesId}`, true)
         sleepToast(`📃 追更系列\n\n✅ 已追更【${novel.seriesTitle}】`)
 
@@ -172,10 +163,7 @@ function seriesUnWatch() {
         `https://www.pixiv.net/ajax/novel/series/${novel.seriesId}/unwatch`,
         "{}"
     )
-    if (resp.error === true) {
-        sleepToast(`📃 追更系列\n\n⚠️ 取消追更【${novel.seriesTitle}】失败`, 1)
-        // shareFactory("series")
-    } else {
+    if (!resp.error) {
         cache.delete(`watch${novel.seriesId}`)
         sleepToast(`📃 追更系列\n\n✅ 已取消追更【${novel.seriesTitle}】`)
 
