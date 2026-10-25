@@ -12,10 +12,6 @@ let source = [
 ]
 
 let settingsBase = [
-    // {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
-    // {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
-    // {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
-
     {"💾 备份恢复": "backupRestore()" },
     {"👀 🚫 书源菜单": `editSettings('SHOW_SETTINGS')` },
     {"👀 🚫 发现菜单": `editSettings('SHOW_DISCOVER')` },
@@ -30,6 +26,10 @@ let settings = [
     {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
     {"🖼️ 🚫 常规质量": "editSettings('QUALITY_REGULAR')" },
+
+    {"⏩ 🚫 快速模式": "editSettings('FAST')" },
+    {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
+    {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
 
     // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
     // {"🔗 图片链接": "editSettings('PIC_LINK')" },
@@ -48,6 +48,7 @@ let discoverSettings = [
 
     {"🆗 🚫 排行榜单": "editSettings('SHOW_RANK_GENERAL')" },
     {"📚 🚫 书源相关": "editSettings('SHOW_ABOUT')" },
+    {"⏺️ 占位按钮": "" },
 ]
 
 let li = []
