@@ -205,9 +205,7 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 > 
 > **仅搜索作者；不进行繁简转换**，使用方法：
 > 
-> **1️⃣ 使用 `$` 标记符，例如：`$pixiv事務局`**
-> 
-> 2️⃣ 设置中，开启【👤 搜索作者】时，无需添加标记符，例如：`pixiv事務局`
+> **使用 `$` 标记符，例如：`$pixiv事務局`**
 
 ![img](./pic/SearchViaLegadoAuthor.png)
 
