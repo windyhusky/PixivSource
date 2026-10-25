@@ -73,6 +73,27 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 
 ## 📆 2026下半年 {#2026H2}
+
+
+### 📚 更新 287 {#287}
+- 🅿️ Pixiv 书源、备用：
+  - 🐞 修复下述 Bug
+    - ⚙️ 设置：对齐 emoji 与对应设置当前状态
+    - ⚙️ 设置：切换表情（emoji 显示为设置当前状态、切换后状态）
+    - 🔍 搜索：修复模糊搜索作者
+    - ✅ 登录检测：优化 getPixivUid，从 Cookie 获取 Pixiv Uid
+    - ✅ 登录检测：优化 checkPixiv，检测登录信息是否齐全
+    - ⤴️ 回调：无网络时、报错时，不再弹窗提示
+
+- 🅿️ Pixiv 漫画：
+  - ⭐️ 发现：添加发现地址
+  - ⚙️ 发现设置：控制发现地址显示与否
+  - ⚙️ 设置：对齐 emoji 与对应设置当前状态
+  - ✅ 登录检测：优化 getPixivUid，从 Cookie 获取 Pixiv Uid
+  - ✅ 登录检测：优化 checkPixiv，检测登录信息是否齐全
+  - 💾 备份恢复：登录信息、书源设置
+
+
 ### 📚 更新 286 {#286}
 - 🦊 **Linpx 书源：**
   - 🔀 新版 `.JS` 书源
