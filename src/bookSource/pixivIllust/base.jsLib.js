@@ -295,9 +295,21 @@ function setDefaultSettings() {
     settings.SHOW_ORIGINAL_LINK = true  // 目录：显示源链接
     settings.QUALITY_REGULAR = true     // 正文：图片质量，regular 或 original
 
+    settings.FAST = false               // 全局：快速模式
     settings.IPDirect = false           // 全局：直连模式
     settings.DEBUG = false              // 全局：调试模式
 
+    settings.SHOW_ADULT = true          // 发现：显示 默认发现
+    settings.SHOW_GENERAL = false        // 发现：显示 常规小说
+    settings.SHOW_NEW_ADULT = true      // 发现：显示 最新企划约稿 R18
+    settings.SHOW_NEW_GENERAL = false   // 发现：显示 最新企划约稿 常规
+
+    settings.SHOW_RANK_ADULT = true     // 发现：显示 排行榜单 R18
+    settings.SHOW_RANK_GENERAL = false  // 发现：显示 排行榜单 常规
+    settings.SHOW_ABOUT = true          // 发现：显示 书源相关
+
+    settings.SHOW_SETTINGS = false      // 设置：显示 书源设置
+    settings.SHOW_DISCOVER = false      // 设置：显示 发现设置
     this.putInCacheObject("pixivIllustSettings", settings)
     return settings
 }
