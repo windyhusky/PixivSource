@@ -26,8 +26,8 @@ if (BOOK) {
     ]
 } else {
     settingsBase = [
-        {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
         {"🔀 切换表情": "editSettings('SWITCH_EMOJI')" },
+        // {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
         {"⏩ 🚫 快速模式": "editSettings('FAST')" },
         {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
 

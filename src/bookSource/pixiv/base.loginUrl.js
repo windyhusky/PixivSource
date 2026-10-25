@@ -987,14 +987,13 @@ const otherSettingsName = {
 
     "HIDE_LIKE_NOVELS": "❤️ 隐藏收藏",
     "HIDE_WATCHED_SERIES": "📃 隐藏追更",
-
-    "COMBINE_NOVELS": "📚 整合系列",
 }
 const modeSettingsName = {
     "SWITCH_EMOJI": "🔀 切换表情",
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
-    "IPDirect": "✈️ 直连模式",
+    // "IPDirect": "✈️ 直连模式",
+    "COMBINE_NOVELS": "📚 整合系列",
 }
 const pictureSettingsName = {
     "PIC_SOURCE": "⏳ 图片解析",
