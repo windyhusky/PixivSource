@@ -220,7 +220,7 @@ function handlerFactory() {
             java.put("keyword", keyword)
         }
         sleepToast(`\n\n👤 模糊搜索作者：${keyword}`)
-        novels = novels.concat(getUserIdOnline()[1])
+        novels = novels.concat(getUserNovelsByName()[1])
 
     } else {
         novels = novels.concat(getNovels())
