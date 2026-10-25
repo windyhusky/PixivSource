@@ -1,10 +1,13 @@
+let pixivSettings = getFromCacheObject("pixivIllustSettings")
+if (!pixivSettings) pixivSettings = setDefaultSettings()
+
 let source = [
     {"🅿️ 登录账号": "login()" },
     {"⚙️ 账号设置": "startPixivSettings()" },
     {"🔙 退出账号": "logout()" },
     {"🆙 更新书源": "updateSource()" },
     {"🔰 使用指南": "startGithubReadme()" },
-    {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
+    {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
 ]
 
 let settings = [
@@ -15,11 +18,11 @@ let settings = [
 
     {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
-    {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
+    {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
 
-    {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
-    {"🔗 图片链接": "editSettings('PIC_LINK')" },
-    {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
+    // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
+    // {"🔗 图片链接": "editSettings('PIC_LINK')" },
+    // {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
 ]
 
 let li = []
@@ -37,10 +40,13 @@ li.forEach(item => {
     } else {
         item.name = list[list.length - 1]
         item.type = "toggle"
-        item.default = `${list[0]} `
+        item.action = Object.values(item)[0]
+
+        let settingName = item.action.split("'")[1]
+        item.default = pixivSettings[settingName] ? list[0] : list[1]
+
         list.length = list.length - 1
         item.chars = list.map(char => `${char} `)
-        item.action = Object.values(item)[0]
     }
     delete item[Object.keys(item)[0]]
     // 添加格式
