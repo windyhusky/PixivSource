@@ -36,7 +36,9 @@ function removeCookie() {
 
 function getCookie() {
     let pixivCookie = String(java.getCookie("https://www.pixiv.net/", null))
-    if (isLogin()) putInCache("pixivCookie", pixivCookie, 60*60)
+    if (!isLogin()) return ""
+    putInCache("pixivCookie", pixivCookie, 60*60)
+    return pixivCookie
 }
 
 // 获取 Csrf Token，以便进行收藏等请求
@@ -206,4 +208,76 @@ function editSettings(settingName) {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     }
     sleepToast(msg)
+}
+
+
+function backupRestore() {
+    let variable = String(result.get("书源设置") || "").trim()
+    if (!variable) variable = String(source.getVariable() || "").trim()
+
+    if (variable === "") {
+        let data = backupData()
+        try {
+            java.copyText(data)
+            java.upLoginData({"书源设置": data})
+            sleepToast("\n💾 备份数据\n\n✅ 已导出书源数据 到剪贴板")
+        } catch(e) {
+            try {
+                source.putVariable(data)
+                sleepToast("\n💾 备份恢复\n\n✅ 已导出书源数据至 源变量")
+            } catch(e) {
+                sleepToast("\n💾 备份恢复\n\n⚠️ 书源导出数据失败")
+            }
+        }
+    }
+
+    else if (isJsonString(variable)) {
+        restoreData(JSON.parse(variable))
+        sleepToast("\n💾 恢复数据\n\n✅ 已导入书源数据")
+        try { java.upLoginData({"书源设置": ""})} catch(e) {}
+        try { source.putVariable("") } catch(e) {}
+    } else {
+        sleepToast("\n💾 备份恢复\n\n⚠️ 输入数据出错，请检查数据格式（JSON）")
+    }
+}
+
+function backupData() {
+    let data = {}
+    // 账号相关
+    data.pixivUid = getFromCache("pixivUid")
+    data.pixivCookie = getCookie()
+    data.pixivCsrfToken = getCsrfToken()
+
+    // 书源设置
+    data.pixivSettings = getFromCacheObject("pixivIllustSettings")
+    return JSON.stringify(data, null, 4)
+}
+
+function restoreData(data) {
+    // 账号相关
+    let pixivCookie = stripCfCookies(data?.pixivCookie)
+    if (pixivCookie) {
+        removeCookie()
+        putInCache("pixivUid", data?.pixivUid)
+        putInCache("pixivCookie", pixivCookie, 60*60)
+        putInCache("pixivCsrfToken", data?.pixivCsrfToken)
+        cookie.setCookie("https://www.pixiv.net", pixivCookie)
+        cookie.setCookie("https://accounts.pixiv.net", pixivCookie)
+        try {
+            cookie.setWebCookie("https://www.pixiv.net", pixivCookie)
+            cookie.setWebCookie("https://accounts.pixiv.net", pixivCookie)
+        } catch (e) {}
+    }
+
+    // 书源设置
+    putInCacheObject("pixivIllustSettings", data?.pixivSettings)
+    try {source.refreshExplore()} catch (e) {}
+}
+
+function stripCfCookies(cookieStr) {
+    return cookieStr
+        .replace(/;?\s*cf_clearance=[^;]*/g, '')
+        .replace(/;?\s*__cf_bm=[^;]*/g, '')
+        .replace(/^;\s*/, '')   // 防止开头多余的分号
+        .trim()
 }
