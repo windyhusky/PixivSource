@@ -103,11 +103,14 @@ function publicFunc() {
         let checkThings = ["pixivCsrfToken", "pixivCookie", "pixivUid"]
         checkThings.forEach(item => {
             let text = `${getFromCache(item)? "✅" : "❌"} ${item}`
+            // let text = `${getFromCache(item)? "✅" : "❌"} ${item}\n${getFromCache(item)}`
             logs.push(text)
-            java.log(text)
+            if (u.settings.DEBUG) java.log(text)
         })
-        if (logs.join("").split("❌").length >= 2) {
+        if (logs.join("").split("❌").length > 1) {
             sleepToast("⚠️ 登录状态\n 当前登录信息不完整，请重新登录\n或使用【备份恢复】恢复登录状态")
+        } else {
+            java.log("✅ 登录信息完整")
         }
     }
 
@@ -590,8 +593,7 @@ function publicFunc() {
         return res
     }
 
-    u.init(); u.logSource(); u.logEnvironment(); u.logSettings()
-    if (u.settings.DEBUG) u.checkPixiv()
+    u.init(); u.logSource(); u.logEnvironment(); u.logSettings(); u.checkPixiv()
     util = u; java.put("util", objStringify(u))
 }
 
@@ -623,7 +625,7 @@ function getPixivUid() {
     let pixivUid = getFromCache("pixivUid")
     let pixivCookie = getFromCache("pixivCookie")
     if (!pixivUid && pixivCookie) {
-        pixivUid = pixivCookie.match(new RegExp("\\d+"))[0]
+        pixivUid = pixivCookie.match(new RegExp(/PHPSESSID=(\d+)/))[1]
         java.log(`pixivUid: ${pixivUid}`)
         putInCache("pixivUid", pixivUid)
     }
@@ -655,7 +657,7 @@ function getHeaders() {
 
 publicFunc()
 if (result.code() === 200) {
-    getPixivUid(); getWebViewUA(); util.getCookie(); util.getCsrfToken(); getHeaders()
+    getWebViewUA(); util.getCsrfToken(); util.getCookie(); getPixivUid(); getHeaders()
     if (!util.settings.FAST) checkMessageThread()   // 检测过度访问
 }
 java.getStrResponse(null, null)

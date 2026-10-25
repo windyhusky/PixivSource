@@ -210,22 +210,20 @@ function handlerFactory() {
         return novels
     }
 
-    else if (keyword.startsWith("@") ) {
+    else if (keyword.startsWith("@")) {
         java.put("keyword", keyword.slice(1))
         novels = novels.concat(getUserNovels())
 
-    } else if (keyword.startsWith("$") || util.settings.SEARCH_AUTHOR) {
-        if (keyword.startsWith("$")) {
-            keyword = keyword.slice(1)
-            java.put("keyword", keyword)
-        }
-        sleepToast(`\n\n👤 模糊搜索作者：${keyword}`)
-        novels = novels.concat(getUserIdOnline()[1])
+    } else if (keyword.startsWith("$")) {
+        keyword = keyword.slice(1)
+        java.put("keyword", keyword)
+        novels = novels.concat(getUserNovelsByName()[1])
 
     } else {
         novels = novels.concat(getNovels())
         if (util.settings.COMBINE_NOVELS) novels = novels.concat(getSeries())
         if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
+        if (util.settings.SEARCH_AUTHOR) novels = novels.concat(getUserNovels())
     }
     // java.log(JSON.stringify(novels))
     return novelFilter(util.formatNovels(util.handNovels(novels)))
