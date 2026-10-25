@@ -1,10 +1,6 @@
-let SHOW_GENERAL_NEW, SHOW_GENERAL_RANK
-try {
-    settings = JSON.parse(String(source.variableComment).match(RegExp(/{([\s\S]*?)}/gm)))
-    SHOW_GENERAL_NEW = settings.SHOW_GENERAL_NEW     // 发现：最新、企划、约稿显示一般小说
-} catch (e) {
-    SHOW_GENERAL_NEW = false
-}
+let settings = getFromCacheObject("pixivIllustSettings")
+if (!settings) settings = setDefaultSettings()
+let li =[]
 
 let adultDefault = [
     {"⭐️ 关注": "https://www.pixiv.net/ajax/follow_latest/illust?p={{page}}&mode=all&lang=zh"},
@@ -70,11 +66,16 @@ let about = [
     {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
 ]
 
-li = li.concat(r18New)
-if (SHOW_GENERAL_NEW) li = li.concat(generalNew)
-li = li.concat(r18Rank)
-if (SHOW_GENERAL_RANK) li = li.concat(generalRank)
-li = li.concat(source)
+
+// 添加发现
+if (settings.SHOW_ADULT) li = li.concat(adultDefault)
+if (settings.SHOW_GENERAL) li = li.concat(generalDefault)
+if (settings.SHOW_NEW_ADULT) li = li.concat(adultNew)
+if (settings.SHOW_NEW_GENERAL) li = li.concat(generalNew)
+if (settings.SHOW_RANK_ADULT) li = li.concat(adultRank)
+if (settings.SHOW_RANK_GENERAL) li = li.concat(generalRank)
+if (settings.SHOW_ABOUT) li = li.concat(about)
+
 
 // 添加格式
 li.forEach(item => {

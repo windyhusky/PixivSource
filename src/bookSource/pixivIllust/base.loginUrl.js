@@ -134,13 +134,47 @@ function startGithubReadme() {
     startBrowser("https://pixivsource.pages.dev/Pixiv", "使用指南")
 }
 
-let settingsName = {
-    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+const searchSettingsName = {
+    // "SEARCH_AUTHOR": "🔍 搜索作者",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
-    "QUALITY_REGULAR": "🖼️ 常规质量",
-    "IPDirect": "✈️ 直连模式",
-    "DEBUG": "🐞 调试模式"
 }
+const catalogSettingsName = {
+    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+}
+const contentSettingsName = {
+    "QUALITY_REGULAR": "🖼️ 常规质量",
+}
+const modeSettingsName = {
+    "FAST": "⏩ 快速模式",
+    "DEBUG": "🐞 调试模式",
+    "IPDirect": "✈️ 直连模式",
+}
+const illustSettingsName = Object.assign({},
+    searchSettingsName,
+    catalogSettingsName,
+    contentSettingsName,
+    modeSettingsName,
+)
+const discoverSettingsName = {
+    "SHOW_ADULT": "🔞 默认发现",
+    "SHOW_GENERAL": "🆗 常规插画",
+    "SHOW_NEW_ADULT": "🔞 最新企划",
+    "SHOW_NEW_GENERAL": "🆗 最新企划",
+
+    "SHOW_RANK_ADULT": "🔞 排行榜单",
+    "SHOW_RANK_GENERAL": "🆗 排行榜单",
+    "SHOW_ABOUT": "📚 书源相关",
+}
+const menuSettingsName = {
+    "SHOW_DISCOVER": "⚙️ 发现设置\n（书源编辑界面）",
+    "SHOW_SETTINGS": "⚙️ 书源设置\n（书源编辑界面）",
+}
+const settingsName = Object.assign({},
+    illustSettingsName,
+    discoverSettingsName,
+    menuSettingsName
+)
+
 
 function statusMsg(status) {
     if (status === true) return "✅ 已开启"
