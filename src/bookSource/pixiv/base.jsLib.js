@@ -432,6 +432,7 @@ function setDefaultSettings() {
     settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
+    settings.SWITCH_EMOJI = false       // 设置：切换 emoji
 
     settings.SHOW_ADULT = true          // 发现：显示 默认发现
     settings.SHOW_GENERAL = true        // 发现：显示 常规小说

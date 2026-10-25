@@ -991,6 +991,7 @@ const otherSettingsName = {
     "COMBINE_NOVELS": "📚 整合系列",
 }
 const modeSettingsName = {
+    "SWITCH_EMOJI": "🔀 切换表情",
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
     "IPDirect": "✈️ 直连模式",
@@ -1100,7 +1101,11 @@ function editSettings(settingName) {
     }
     putInCacheObject("pixivSettings", settings)
 
-    if (settingName === "FAST") {
+    if (settingName === "SWITCH_EMOJI") {
+        msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n`
+        msg += status? "设置表情对应点击设置后状态" : "设置表情对应当前设置状态"
+
+    } else if (settingName === "FAST") {
         checkSettings(settings)
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
 

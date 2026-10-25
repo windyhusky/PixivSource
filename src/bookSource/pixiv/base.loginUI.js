@@ -27,6 +27,7 @@ if (BOOK) {
 } else {
     settingsBase = [
         {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
+        {"🔀 切换表情": "editSettings('SWITCH_EMOJI')" },
         {"⏩ 🚫 快速模式": "editSettings('FAST')" },
         {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
 
@@ -177,9 +178,11 @@ li.forEach(item => {
         item.name = list[list.length - 1]
         item.type = "toggle"
         item.action = Object.values(item)[0]
+
         let settingName = item.action.split("'")[1]
-        if (pixivSettings[settingName]) item.default = `${list[0]} `
-        else item.default = `${list[1]} `
+        const status = pixivSettings.SWITCH_EMOJI ? !pixivSettings[settingName] : pixivSettings[settingName]
+        item.default = `${status ? list[0] : list[1]} `
+
         list.length = list.length - 1
         item.chars = list.map(char => `${char} `)
     }
