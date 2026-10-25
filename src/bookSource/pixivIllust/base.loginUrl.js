@@ -133,6 +133,14 @@ function startPixivSettings() {
 function startGithubReadme() {
     startBrowser("https://pixivsource.pages.dev/Pixiv", "使用指南")
 }
+function startGithubIssue() {
+    startBrowser("https://github.com/DowneyRem/PixivSource/issues", "反馈问题")
+}
+
+function checkStatus(status) {
+    if (eval(String(status)) === true) return "❤️"
+    else return "🖤"
+}
 
 const searchSettingsName = {
     // "SEARCH_AUTHOR": "🔍 搜索作者",
@@ -203,6 +211,9 @@ function getSettingStatus(mode) {
 
 function showSettings() {
     sleepToast(`\n⚙️ 当前设置\n\n${getSettingStatus()}`)
+}
+function showSettingsDiscover() {
+    sleepToast(`\n⚙️ 当前发现设置\n\n${getSettingStatus("DISCOVER")}`)
 }
 
 function setDefaultSettingsLoginUrl() {
