@@ -1,8 +1,8 @@
 let settings = getFromCacheObject("pixivSettings")
 if (!settings) settings = setDefaultSettings()
 let environment = getFromCacheObject("pixivEnvironment")
-let number = { 1:"1️⃣", 2:"2️⃣", 3:"3️⃣", 4:"4️⃣", 5:"5️⃣" }
 const BOOK = typeof book !== 'undefined' && !!book
+let number = { 1:"1️⃣", 2:"2️⃣", 3:"3️⃣", 4:"4️⃣", 5:"5️⃣" }
 
 let source = [
     {"🅿️ 登录账号": "login()" },
