@@ -137,25 +137,34 @@ function statusMsg(status) {
     else return status
 }
 
-// 检测快速模式修改的4个设置
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
-    let msgList = []
+    let keys = [], msgList = []
     let settings = getFromCacheObject("linpxSettings")
-    Object.keys(settingsNames).forEach(key => {
+    if (mode.includes("DISCOVER")) {
+        keys = Object.keys(discoverSettingsName)
+    } else {
+        keys = Object.keys(novelSettingsName)
+    }
+    for (let i = 0; i < keys.length; i++) {
+        let key = keys[i]
         if (key.startsWith("PIC")) {
             let settingsValue = settings[key]
             let settingsValueName = settingsOptionsNames[key][settingsValue]
-            msgList.push(`${settingsNames[key]}　${statusMsg(settingsValueName)}`)
+            msgList.push(`${settingsName[key]}　${statusMsg(settingsValueName)}`)
         } else {
-            msgList.push(`${settingsNames[key]}　${statusMsg(settings[key])}`)
+            msgList.push(`${settingsName[key]}　${statusMsg(settings[key])}`)
         }
-    })
+        if ((i+1) % 6 === 0) msgList.push("\n")
+    }
     return msgList.join("\n").trim()
 }
 
 function showSettings() {
     sleepToast(`\n⚙️ 当前设置\n\n${getSettingStatus()}`)
+}
+function showSettingsDiscover() {
+    sleepToast(`\n⚙️ 当前发现设置\n\n${getSettingStatus("DISCOVER")}`)
 }
 
 function setDefaultSettingsLoginUrl() {
