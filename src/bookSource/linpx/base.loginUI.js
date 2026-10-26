@@ -58,11 +58,15 @@ let discoverSetting = [
 ]
 
 // 添加按钮
-let li = source
-try {
-    if (book) li = li.concat(novel)
-} catch (e) {}
-li = li.concat(setting)
+if (BOOK) {
+    li = source.concat(settingBase).concat(novel)
+    if (settings.SHOW_SETTINGS2) li = li.concat(setting)
+    if (settings.SHOW_DISCOVER2) li = li.concat(discoverSetting)
+} else {
+    li = source.concat(settingBase)
+    if (settings.SHOW_SETTINGS) li = li.concat(setting)
+    if (settings.SHOW_DISCOVER) li = li.concat(discoverSetting)
+}
 
 // 处理按钮
 li.forEach(item => {
