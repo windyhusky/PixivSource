@@ -1,5 +1,6 @@
 let settings = getFromCacheObject("pixivIllustSettings")
 if (!settings) settings = setDefaultSettings()
+let environment = getFromCacheObject("environment")
 
 let source = [
     {"🅿️ 登录账号": "login()" },
@@ -60,6 +61,10 @@ if (settings.SHOW_DISCOVER) li = li.concat(discoverSettings)
 // 处理按钮
 li.forEach(item => {
     item.name = Object.keys(item)[0]
+    if (!environment?.IS_LEGADO_SIGMA) {
+        item.name = item.name.replace(/🚫 |⚫️ |㊙️ /g, "")
+    }
+
     let list = item.name.split(" ")
     if (list.length === 1 ) {
         item.type = "text"
