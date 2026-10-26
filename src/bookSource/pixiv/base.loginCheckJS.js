@@ -25,9 +25,14 @@ function isSourceRead() {
     return java.getUserAgent() === java.getWebViewUA() && String(java.getWebViewUA()).includes("Win")
 }
 
+// 检测阅读
+function isLegado() {
+    return typeof java.ajaxAll === "function"
+}
+
+// 检测 阅读 正式版
 // 正式版 不支持在 JSlib 的函数直接设置默认参数
 // 正式版 不支持 a?.b 的写法
-// 检测 阅读 正式版 与 Beta 版本
 function isLegadoOfficial() {
     let isLegadoOfficialStatus
     try {
@@ -39,7 +44,7 @@ function isLegadoOfficial() {
     return isLegadoOfficialStatus
 }
 
-// 检测 阅读 Beta 版本 与 Sigma 版本
+// 检测 阅读 Sigma
 // Sigma 版本新增函数
 // java.ajaxTestAll()
 // java.openVideoPlayer(url: String, title: String, float: Boolean)
@@ -58,6 +63,7 @@ function publicFunc() {
         u.settings = checkSettings()
         putInCacheObject("pixivSettings", u.settings)
 
+        // cache.delete("pixivEnvironment")
         u.environment = getFromCacheObject("pixivEnvironment")
         if (!u.environment) u.checkEnvironment()
     }
@@ -66,9 +72,9 @@ function publicFunc() {
         u.environment = {}
         u.environment.IS_SOURCEREAD = isSourceRead()
         u.environment.IS_QYSG = isQYSG()
+        u.environment.IS_LEGADO = isLegado()
         u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
         u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
-        u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
         putInCacheObject("pixivEnvironment", u.environment)
     }
 
@@ -79,10 +85,13 @@ function publicFunc() {
     }
 
     u.logEnvironment = () => {
+        java.log(JSON.stringify(u.environment))
         if (u.environment.IS_SOURCEREAD) {
             java.log("▶️ 当前软件：🍎 源阅 SourceRead")
         } else if (u.environment.IS_QYSG) {
             java.log("▶️ 当前软件：🍎 轻悦时光 QYSG")
+        } else if (u.environment.IS_LEGADO) {
+            java.log("▶️ 当前软件：🤖 阅读 ")
         } else if (u.environment.IS_LEGADO_SIGMA) {
             java.log("▶️ 当前软件：🤖 阅读 Sigma")
         } else if (u.environment.IS_LEGADO_OFFICIAL && !source.bookSourceComment.includes("备用")) {
