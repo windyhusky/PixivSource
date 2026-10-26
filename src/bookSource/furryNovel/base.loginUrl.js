@@ -83,10 +83,16 @@ const discoverSettingsName = {
     "SHOW_ADULT": "🔞 默认发现",
     "SHOW_ABOUT": "📚 书源相关",
 }
+const menuSettingsName = {
+    "SHOW_DISCOVER": "⚙️ 发现设置",
+    "SHOW_SETTINGS": "⚙️ 书源设置",
+    "SHOW_DISCOVER2": "⚙️ 发现设置",
+    "SHOW_SETTINGS2": "⚙️ 书源设置",
+}
 const settingsName = Object.assign({},
     novelSettingsName,
     discoverSettingsName,
-    // menuSettingsName
+    menuSettingsName
 )
 const settingsOptionsNames = {
     "PIC_SOURCE": {
