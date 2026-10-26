@@ -95,13 +95,20 @@ const novelSettingsName = Object.assign({},
     modeSettingsName,
     pictureSettingsName
 )
-const discoverSettingsName ={
+const discoverSettingsName = {
+    "SHOW_ADULT": "🔞 默认发现",
     "SHOW_ABOUT": "📚 书源相关",
+}
+const menuSettingsName = {
+    "SHOW_DISCOVER": "⚙️ 发现设置",
+    "SHOW_SETTINGS": "⚙️ 书源设置",
+    "SHOW_DISCOVER2": "⚙️ 发现设置",
+    "SHOW_SETTINGS2": "⚙️ 书源设置",
 }
 const settingsName = Object.assign({},
     novelSettingsName,
     discoverSettingsName,
-    // menuSettingsName
+    menuSettingsName
 )
 const settingsOptionsNames = {
     "PIC_SOURCE": {
@@ -163,7 +170,7 @@ function editSettings(settingKey) {
     if (!settings) settings = setDefaultSettings()
 
     if (settingKey.startsWith("PIC")) {
-        let settingName = settingsNames[settingKey]
+        let settingName = settingsName[settingKey]
         let optionsKeys = Object.keys(settingsOptionsNames[settingKey])
 
         let current = settings[settingKey]
@@ -173,14 +180,14 @@ function editSettings(settingKey) {
         let nextKey = settings[settingKey] = optionsKeys[nextIndex]
         let nextValue = settingsOptionsNames[settingKey][nextKey]
         msg = `\n${settingName}\n\n${nextValue}`
-        
+
     } else {
         if (!!settings[settingKey]) {
             status = settings[settingKey] = !settings[settingKey]
         } else {
             status = settings[settingKey] = true
         }
-        msg = `\n\n${settingsNames[settingKey]}　${statusMsg(status)}`
+        msg = `\n\n${settingsName[settingKey]}　${statusMsg(status)}`
     }
 
     putInCacheObject("linpxSettings", settings)
@@ -202,8 +209,8 @@ function refreshSettings(settingName) {
         try { java.refreshBookToc() } catch(e) {}
         try { java.refreshContent() } catch(e) {}
 
-    // } else if (settingName in menuSettingsName) {
-    //     try { java.reLoginView() } catch (e) {}
+    } else if (settingName in menuSettingsName) {
+        try { java.reLoginView() } catch (e) {}
 
     } else if (settingName in discoverSettingsName) {
         try { source.refreshExplore() } catch (e) {}
