@@ -44,17 +44,50 @@ function checkStatus(status) {
     else return "🖤"
 }
 
-let settingsNames = {
+const serachSettingsName = {
+    // "SEARCH_AUTHOR": "🔍 搜索作者",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
+}
+const detailSettingsName = {
     "MORE_INFORMATION": "📖 更多简介",
+}
+const catalogSettingsName = {
+    // "ADD_CHAPTER_INDEX": "🔢 章节编号",
+    // "SHOW_UPDATE_TIME": "📅 更新时间",
     "SHOW_ORIGINAL_LINK": "🔗 原始链接",
+}
+const contentSettingsName = {
+    // "SHOW_CAPTIONS": "📄 显示描述",
+    // "SHOW_PICTURES": "🖼️ 显示图片",
+    // "SHOW_COMMENTS": "💬 显示评论",
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
+}
+const modeSettingsName = {
+    // "SWITCH_EMOJI": "🔀 切换表情",
     "DEBUG": "🐞 调试模式",
+}
+const pictureSettingsName = {
     "PIC_SOURCE": "⏳ 图片解析",
     "PIC_LINK": "🔗 图片链接",
     "PIC_SIZE": "↔️ 图片大小",
 }
-let settingsOptionsNames = {
+const novelSettingsName = Object.assign({},
+    serachSettingsName,
+    detailSettingsName,
+    catalogSettingsName,
+    contentSettingsName,
+    modeSettingsName,
+    pictureSettingsName
+)
+const discoverSettingsName ={
+    "SHOW_ABOUT": "📚 书源相关",
+}
+const settingsName = Object.assign({},
+    novelSettingsName,
+    discoverSettingsName,
+    // menuSettingsName
+)
+const settingsOptionsNames = {
     "PIC_SOURCE": {
         "PixivShojo": "📄 PixivShojo",
         "Pixiv": "🅿️ Pixiv 直连",
