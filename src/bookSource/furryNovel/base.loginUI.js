@@ -1,6 +1,7 @@
 let settings = getFromCacheObject("FNSettings")
 if (!settings) settings = setDefaultSettings()
-let environment = getFromCacheObject("environment")
+let environment = getFromCacheObject("pixivEnvironment")
+const BOOK = typeof book !== 'undefined' && !!book
 
 let source = [
     {"🆙 更新书源": "updateSource()" },
@@ -15,16 +16,30 @@ let novel = [
     {"🅿️ 分享小说": "shareFactory('pixiv')" },
 ]
 
+let settingBase = []
+if (BOOK) {
+    settingBase = [
+        {"👀 🚫 书源菜单": `editSettings('SHOW_SETTINGS2')` },
+        {"👀 🚫 发现菜单": `editSettings('SHOW_DISCOVER2')` },
+        {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
+    ]
+} else {
+    settingBase = [
+        {"💾 备份恢复": "backupRestore()" },
+        {"👀 🚫 书源菜单": `editSettings('SHOW_SETTINGS')` },
+        {"👀 🚫 发现菜单": `editSettings('SHOW_DISCOVER')` },
+    ]
+}
+
 let setting = [
     {"书源设置": "text" },
     {"⚙️ 当前设置": "showSettings()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
-    {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
+    {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
 
-    // {"🚫 📖 更多简介": "editSettings('MORE_INFORMATION')" },
+    {"🀄 🚫 繁简通搜": "editSettings('CONVERT_CHINESE')" },
     {"🔗 🚫 原始链接": "editSettings('SHOW_ORIGINAL_LINK')" },
     {"📚 🚫 恢复《》": "editSettings('REPLACE_TITLE_MARKS')" },
-    {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
 
     {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
     {"🔗 图片链接": "editSettings('PIC_LINK')" },
@@ -39,11 +54,15 @@ let discoverSetting = [
 ]
 
 // 添加按钮
-let li = source
-try {
-    if (book) li = li.concat(novel)
-} catch (e) {}
-li = li.concat(setting)
+if (BOOK) {
+    li = source.concat(settingBase).concat(novel)
+    if (settings.SHOW_SETTINGS2) li = li.concat(setting)
+    if (settings.SHOW_DISCOVER2) li = li.concat(discoverSetting)
+} else {
+    li = source.concat(settingBase)
+    if (settings.SHOW_SETTINGS) li = li.concat(setting)
+    if (settings.SHOW_DISCOVER) li = li.concat(discoverSetting)
+}
 
 // 处理按钮
 li.forEach(item => {
