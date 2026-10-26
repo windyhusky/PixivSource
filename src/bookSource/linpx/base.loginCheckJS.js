@@ -8,6 +8,13 @@ function objStringify(obj) {
     });
 }
 
+// 检测 轻悦时光，多平台
+// 不可用 java.getResponse()
+// java.getUserAgent() java.getWebViewUA() 目前返回内容相同
+function isQYSG() {
+    return java.getUserAgent() === java.getWebViewUA()
+}
+
 // 检测 源阅
 // 可用 java.ajax() 不可用 java.webview() java.ajaxAll()
 // 可用 java.getCookie() cache.put() cache.get() 默认值为 undefined
@@ -15,7 +22,12 @@ function objStringify(obj) {
 // 可用 source.bookSourceName source.getVariable() source.setVariable()等
 // java.getUserAgent() java.getWebViewUA() 目前返回内容相同
 function isSourceRead() {
-    return java.getUserAgent() === java.getWebViewUA()
+    return java.getUserAgent() === java.getWebViewUA() && String(java.getWebViewUA()).includes("Win")
+}
+
+// 检测阅读
+function isLegado() {
+    return typeof java.ajaxAll === "function"
 }
 
 // 检测 阅读 正式版
@@ -32,7 +44,7 @@ function isLegadoOfficial() {
     return isLegadoOfficialStatus
 }
 
-// 检测 Sigma 版本
+// 检测 阅读 Sigma
 // Sigma 版本新增函数
 // java.ajaxTestAll()
 // java.openVideoPlayer(url: String, title: String, float: Boolean)
@@ -44,35 +56,55 @@ function isLegadoSigma() {
 }
 
 function publicFunc() {
-    let u = {}, settings 
-    // 输出书源信息
-    java.log(`${source.bookSourceComment.split("\n")[0]}`)
-    java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
-    java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+    let u = {}
+    u.init = () => {
+        u.settings = getFromCacheObject("LinpxSettings")
+        if (!u.settings) u.settings = setDefaultSettings()
+        // u.settings = checkSettings()
+        putInCacheObject("LinpxSettings", u.settings)
 
-    // 设置写入缓存
-    u.settings = getFromCacheObject("linpxSettings")
-    if (!u.settings) u.settings = setDefaultSettings()
-    putInCacheObject("linpxSettings", u.settings)
+        // cache.delete("pixivEnvironment")
+        u.environment = getFromCacheObject("pixivEnvironment")
+        if (!u.environment) u.checkEnvironment()
+    }
 
-    // 环境写入缓存
-    u.environment = {}
-    u.environment.IS_SOURCEREAD = isSourceRead()
-    u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
-    u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
-    u.environment.IS_LEGADO = u.environment.IS_LEGADO_SIGMA || u.environment.IS_LEGADO_OFFICIAL
-    putInCacheObject("pixivEnvironment", u.environment)
+    u.checkEnvironment = () => {
+        u.environment = {}
+        u.environment.IS_SOURCEREAD = isSourceRead()
+        u.environment.IS_QYSG = isQYSG()
+        u.environment.IS_LEGADO = isLegado()
+        u.environment.IS_LEGADO_SIGMA = isLegadoSigma()
+        u.environment.IS_LEGADO_OFFICIAL = isLegadoOfficial()
+        putInCacheObject("pixivEnvironment", u.environment)
+    }
 
-    // 输出环境信息
-    if (u.environment.IS_SOURCEREAD) {
-        java.log("📱 软件平台：🍎 源阅 SourceRead")
-    } else if (u.environment.IS_LEGADO_SIGMA) {
-        java.log("📱 软件平台：🤖 阅读 Beta【新包名】/ 阅读 Plus")
-    } else if (u.environment.IS_LEGADO_OFFICIAL) {
-        java.log("📱 软件平台：🤖 阅读 正式版")
-        sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请用：\n【阅读 Plus】或【阅读 Beta 新包名】\n\n即将为您打开【阅读 Plus】下载界面")
-        sleep(3);
-        startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Plus")
+    u.logSource = () => {
+        java.log(`${source.bookSourceComment.split("\n")[0]}`)
+        java.log(`📌 ${source.bookSourceComment.split("\n")[2]}`)
+        java.log(`📆 更新时间：${java.timeFormat(source.lastUpdateTime)}`)
+    }
+
+    u.logEnvironment = () => {
+        java.log(JSON.stringify(u.environment))
+        if (u.environment.IS_SOURCEREAD) {
+            java.log("▶️ 当前软件：🍎 源阅 SourceRead")
+        } else if (u.environment.IS_QYSG) {
+            java.log("▶️ 当前软件：🍎 轻悦时光 QYSG")
+        } else if (u.environment.IS_LEGADO) {
+            java.log("▶️ 当前软件：🤖 阅读 ")
+        } else if (u.environment.IS_LEGADO_SIGMA) {
+            java.log("▶️ 当前软件：🤖 阅读 Sigma")
+        } else if (u.environment.IS_LEGADO_OFFICIAL && !source.bookSourceComment.includes("备用")) {
+            java.log("▶️ 当前软件：🤖 阅读 正式版")
+            sleepToast("\n⚠️当前软件为：阅读【正式版】\n【正式版】已年久失修，不推荐继续使用\n\n为了更好的使用体验，请使用：\n阅读【Sigma】\n\n即将为您打开下载界面，请在浏览器内打开并下载")
+            sleep(3); startBrowser("https://pixivsource.pages.dev/Download", "下载阅读 Sigma")
+        }
+    }
+
+    u.logSettings = () => {
+        // if (u.settings.IPDirect) java.log("✈️ 直连模式：✅ 已开启")
+        // if (u.settings.FAST) java.log("⏩ 快速模式：✅ 已开启")
+        if (u.settings.DEBUG) java.log("🐞 调试模式：✅ 已开启")
     }
 
     u.debugFunc = (func) => {
@@ -237,8 +269,8 @@ function publicFunc() {
         return res
     }
 
-    util = u
-    java.put("util", objStringify(u))
+    u.init(); u.logSource(); u.logEnvironment(); u.logSettings()
+    util = u; java.put("util", objStringify(u))
 }
 
 publicFunc()
