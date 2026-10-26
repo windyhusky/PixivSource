@@ -1,8 +1,11 @@
-li = [
+let li = []
+let novel = [
     {"💯 推荐": "https://api.linpx.ink/fav/user/cache"},
     {"🆕 最新": "https://api.linpx.ink/pixiv/novels/recent/cache?page={{page}}"},
     {"🔄 随便": "https://linpx.ink"},
     {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"},
+]
+let about = [
     {"📙 书源相关 📙": ""},
     {"🏠 主页": "https://pixivsource.pages.dev"},
     {"🔰 指南": "https://pixivsource.pages.dev/Linpx"},
@@ -10,6 +13,7 @@ li = [
     {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
 ]
 
+li = li.concat(novel).concat(about);
 // 格式化发现地址
 li.forEach(item => {
     item.title = Object.keys(item)[0]
