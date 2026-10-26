@@ -138,6 +138,7 @@ function showSettings() {
 function setDefaultSettingsLoginUrl() {
     setDefaultSettings()
     sleepToast(`\n🔧 默认设置　✅ 已恢复\n\n${getSettingStatus()}`)
+    refreshSettings("DEFAULT")
 }
 
 function editSettings(settingKey) {
@@ -168,4 +169,39 @@ function editSettings(settingKey) {
 
     putInCacheObject("FNSettings", settings)
     sleepToast(msg)
+    refreshSettings(settingKey)
+}
+
+function refreshSettings(settingName) {
+    if (settingName === "DEFAULT") {
+        try { java.reLoginView() } catch (e) {}
+        try { source.refreshExplore() } catch (e) {}
+        try { java.refreshBookInfo() } catch(e) {}
+        try { java.refreshBookToc() } catch(e) {}
+        try { java.refreshContent() } catch(e) {}
+
+    } else if (settingName in modeSettingsName) {
+        try { java.reLoginView() } catch (e) {}
+        try { source.refreshExplore() } catch (e) {}
+        try { java.refreshBookToc() } catch(e) {}
+        try { java.refreshContent() } catch(e) {}
+
+    } else if (settingName in menuSettingsName) {
+        try { java.reLoginView() } catch (e) {}
+
+    } else if (settingName in discoverSettingsName) {
+        try { source.refreshExplore() } catch (e) {}
+
+    } else if (settingName in detailSettingsName) {
+        try { java.refreshBookInfo() } catch(e) {}
+
+    } else if (settingName in catalogSettingsName) {
+        try { java.refreshBookToc() } catch(e) {}
+
+    } else if (settingName in contentSettingsName) {
+        try { java.refreshContent() } catch(e) {}
+
+    } else if (settingName in pictureSettingsName) {
+        try { java.refreshContent() } catch(e) {}
+    }
 }
