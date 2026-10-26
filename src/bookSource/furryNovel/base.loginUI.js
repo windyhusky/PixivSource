@@ -1,4 +1,6 @@
-let pixivEnvironment = getFromCacheObject("pixivEnvironment")
+let settings = getFromCacheObject("FNSettings")
+if (!settings) settings = setDefaultSettings()
+let environment = getFromCacheObject("environment")
 
 let source = [
     {"🆙 更新书源": "updateSource()" },
@@ -13,7 +15,7 @@ let novel = [
     {"🅿️ 分享小说": "shareFactory('pixiv')" },
 ]
 
-let settings = [
+let setting = [
     {"书源设置": "text" },
     {"⚙️ 当前设置": "showSettings()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
@@ -34,14 +36,15 @@ let li = source
 try {
     if (book) li = li.concat(novel)
 } catch (e) {}
-li = li.concat(settings)
+li = li.concat(setting)
 
 // 处理按钮
 li.forEach(item => {
     item.name = Object.keys(item)[0]
-    if (!pixivEnvironment?.IS_LEGADO_SIGMA) {
+    if (!environment?.IS_LEGADO_SIGMA) {
         item.name = item.name.replace(/🚫 |⚫️ |㊙️ /g, "")
     }
+
     let list = item.name.split(" ")
     if (list.length === 1 ) {
         item.type = "text"
@@ -51,10 +54,13 @@ li.forEach(item => {
     } else {
         item.name = list[list.length - 1]
         item.type = "toggle"
-        item.default = `${list[0]} `
+        item.action = Object.values(item)[0]
+
+        let settingName = item.action.split("'")[1]
+        item.default = settings[settingName] ? list[0] : list[1]
+
         list.length = list.length - 1
         item.chars = list.map(char => `${char} `)
-        item.action = Object.values(item)[0]
     }
     delete item[Object.keys(item)[0]]
     // 添加格式
