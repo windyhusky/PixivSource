@@ -184,6 +184,7 @@ function startBrowser(url, title) {
     let msg = ""
     let headers = {}
     headers["User-Agent"] = this.getWebViewUA()
+    headers["Referer"] = "https://www.pixiv.net/"
 
     if (url.includes("https://www.pixiv.net")) {
         if (url.includes("settings")) msg += "⚙️ 账号设置"

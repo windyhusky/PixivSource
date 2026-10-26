@@ -102,14 +102,6 @@ function getAjaxAllJson(urls, requestUpdate) {
         return results
     }, requestUpdate)
 }
-function getAjaxParseJson(url, parseFunc, requestUpdate) {
-    const {java, cache} = this
-    return this.cacheGetAndSet(url, () => {
-        let resp = parseFunc(java.ajax(url))
-        if (resp instanceof Object) return resp
-        else return JSON.parse(resp)
-    }, requestUpdate)
-}
 // function getWebviewJson(url, parseFunc, requestUpdate) {
 //     const {java, cache} = this
 //     return this.cacheGetAndSet(url, () => {
@@ -131,12 +123,8 @@ function getWebViewUA() {
     if (userAgent) return String(userAgent)
 
     userAgent = String(java.getWebViewUA())
-    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
-        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-    }
-    userAgent += " Reader"
     // java.log(`userAgent=${userAgent}`)
-    this.putInCache("userAgent", userAgent, cacheSaveSeconds/7)
+    this.putInCache("userAgent", userAgent, cacheSaveSeconds/4)
     return String(userAgent)
 }
 function startBrowser(url, title) {
