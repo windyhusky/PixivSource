@@ -221,3 +221,45 @@ function refreshSettings(settingName) {
         try { java.refreshContent() } catch(e) {}
     }
 }
+
+
+function backupRestore() {
+    let variable = String(result.get("书源设置") || "").trim()
+    if (!variable) variable = String(source.getVariable() || "").trim()
+
+    if (variable === "") {
+        let data = backupData()
+        try {
+            java.copyText(data)
+            java.upLoginData({"书源设置": data})
+            sleepToast("\n💾 备份数据\n\n✅ 已导出书源数据 到剪贴板")
+        } catch(e) {
+            try {
+                source.putVariable(data)
+                sleepToast("\n💾 备份恢复\n\n✅ 已导出书源数据至 源变量")
+            } catch(e) {
+                sleepToast("\n💾 备份恢复\n\n⚠️ 书源导出数据失败")
+            }
+        }
+    }
+
+    else if (isJsonString(variable)) {
+        restoreData(JSON.parse(variable))
+        sleepToast("\n💾 恢复数据\n\n✅ 已导入书源数据")
+        try { java.upLoginData({"书源设置": ""})} catch(e) {}
+        try { source.putVariable("") } catch(e) {}
+    } else {
+        sleepToast("\n💾 备份恢复\n\n⚠️ 输入数据出错，请检查数据格式（JSON）")
+    }
+}
+
+function backupData() {
+    let data = {}
+    data.settings = getFromCacheObject("linpxSettings")
+    return JSON.stringify(data, null, 4)
+}
+
+function restoreData(data) {
+    putInCacheObject("linpxSettings", data?.settings)
+    try {source.refreshExplore()} catch (e) {}
+}
