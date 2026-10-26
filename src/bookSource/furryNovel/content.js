@@ -9,11 +9,11 @@ function objParse(obj) {
     })
 }
 
-function replaceUploadedImage(res, content) {
+function replaceUploadedImage(resp, content) {
     // 获取 [uploadedimage:] 的图片链接
     let hasEmbeddedImages = content.match(RegExp(/\[uploadedimage:(\d+)-?(\d+)]/gm))
     if (hasEmbeddedImages) {
-        let resp = getAjaxJson(urlNovelDetailLinpx(res.source_id))
+        let resp = getAjaxJson(urlNovelDetailLinpx(resp.source_id))
         Object.keys(resp.images).forEach((key) => {
             content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlPxImgUrl(resp.images[key].origin)}">`)
         })
@@ -134,10 +134,10 @@ function replaceRb(content) {
     return content
 }
 
-function getContent(res) {
-    let content = res.content
+function getContent(resp) {
+    let content = resp.content
     // 替换 Pixiv 标记符
-    content = replaceUploadedImage(res, content)
+    content = replaceUploadedImage(resp, content)
     content = replacePixivImage(content)
     content = replaceNewPage(content)
     content = replaceChapter(content)
