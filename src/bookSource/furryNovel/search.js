@@ -29,7 +29,7 @@ function getConvertNovels() {
     return novels
 }
 
-(() => {
+function handlerFactory() {
     let novels = []
     novels = novels.concat(util.getNovels())
     if (util.settings.CONVERT_CHINESE) novels = novels.concat(getConvertNovels())
@@ -40,4 +40,7 @@ function getConvertNovels() {
         return []
     }
     return util.formatNovels(util.handNovels(novels))
-})();
+}
+(() => {
+    return handlerFactory()
+})()

@@ -147,7 +147,7 @@ function getConvertNovels() {
     return novels
 }
 
-(() => {
+function handlerFactory() {
     let novels = []
     let key = String(java.get("key"))
     if (key.startsWith("@")) {
@@ -168,4 +168,8 @@ function getConvertNovels() {
         return []
     }
     return util.formatNovels(util.handNovels(util.combineNovels(novels)))
+}
+
+(() => {
+    return handlerFactory()
 })()
