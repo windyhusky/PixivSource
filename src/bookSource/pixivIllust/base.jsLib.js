@@ -141,11 +141,8 @@ function getWebViewUA() {
     if (userAgent) return String(userAgent)
 
     userAgent = String(java.getWebViewUA())
-    if (userAgent.includes("Windows NT 10.0; Win64; x64")) {
-        userAgent = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36"
-    }
     // java.log(`userAgent=${userAgent}`)
-    this.putInCache("userAgent", userAgent, cacheSaveSeconds/7)
+    this.putInCache("userAgent", userAgent, cacheSaveSeconds/4)
     return String(userAgent)
 }
 function startBrowser(url, title) {
@@ -154,6 +151,7 @@ function startBrowser(url, title) {
     let msg = ""
     let headers = {}
     headers["User-Agent"] = this.getWebViewUA()
+    headers["Referer"] = "https://www.pixiv.net/"
 
     if (url.includes("https://www.pixiv.net")) {
         if (url.includes("settings")) msg += "⚙️ 账号设置"
