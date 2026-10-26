@@ -58,10 +58,10 @@ function isLegadoSigma() {
 function publicFunc() {
     let u = {}
     u.init = () => {
-        u.settings = getFromCacheObject("LinpxSettings")
+        u.settings = getFromCacheObject("linpxSettings")
         if (!u.settings) u.settings = setDefaultSettings()
         // u.settings = checkSettings()
-        putInCacheObject("LinpxSettings", u.settings)
+        putInCacheObject("linpxSettings", u.settings)
 
         // cache.delete("pixivEnvironment")
         u.environment = getFromCacheObject("pixivEnvironment")
