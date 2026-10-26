@@ -45,11 +45,11 @@ function checkStatus(status) {
 }
 
 const serachSettingsName = {
-    // "SEARCH_AUTHOR": "🔍 搜索作者",
+    "SEARCH_AUTHOR": "🔍 搜索作者",
     "CONVERT_CHINESE": "🀄️ 繁简通搜",
 }
 const detailSettingsName = {
-    "MORE_INFORMATION": "📖 更多简介",
+    // "MORE_INFORMATION": "📖 更多简介",
 }
 const catalogSettingsName = {
     // "ADD_CHAPTER_INDEX": "🔢 章节编号",
@@ -63,7 +63,7 @@ const contentSettingsName = {
     "REPLACE_TITLE_MARKS": "📚 恢复《》",
 }
 const modeSettingsName = {
-    // "SWITCH_EMOJI": "🔀 切换表情",
+    "SWITCH_EMOJI": "🔀 切换表情",
     "DEBUG": "🐞 调试模式",
 }
 const pictureSettingsName = {
@@ -121,25 +121,34 @@ function statusMsg(status) {
     else return status
 }
 
-// 检测快速模式修改的4个设置
 function getSettingStatus(mode) {
     if (mode === undefined) mode = ""
-    let msgList = []
+    let keys = [], msgList = []
     let settings = getFromCacheObject("FNSettings")
-    Object.keys(settingsName).forEach(key => {
+    if (mode.includes("DISCOVER")) {
+        keys = Object.keys(discoverSettingsName)
+    } else {
+        keys = Object.keys(novelSettingsName)
+    }
+    for (let i = 0; i < keys.length; i++) {
+        let key = keys[i]
         if (key.startsWith("PIC")) {
             let settingsValue = settings[key]
             let settingsValueName = settingsOptionsNames[key][settingsValue]
             msgList.push(`${settingsName[key]}　${statusMsg(settingsValueName)}`)
         } else {
-            msgList.push(`${novelSettingsName[key]}　${statusMsg(settings[key])}`)
+            msgList.push(`${settingsName[key]}　${statusMsg(settings[key])}`)
         }
-    })
+        if ((i+1) % 6 === 0) msgList.push("\n")
+    }
     return msgList.join("\n").trim()
 }
 
 function showSettings() {
     sleepToast(`\n⚙️ 当前设置\n\n${getSettingStatus()}`)
+}
+function showSettingsDiscover() {
+    sleepToast(`\n⚙️ 当前发现设置\n\n${getSettingStatus("DISCOVER")}`)
 }
 
 function setDefaultSettingsLoginUrl() {
