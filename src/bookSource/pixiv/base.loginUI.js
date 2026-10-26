@@ -1,6 +1,6 @@
-let pixivSettings = getFromCacheObject("pixivSettings")
-if (!pixivSettings) pixivSettings = setDefaultSettings()
-let pixivEnvironment = getFromCacheObject("pixivEnvironment")
+let settings = getFromCacheObject("pixivSettings")
+if (!settings) settings = setDefaultSettings()
+let environment = getFromCacheObject("pixivEnvironment")
 let number = { 1:"1️⃣", 2:"2️⃣", 3:"3️⃣", 4:"4️⃣", 5:"5️⃣" }
 const BOOK = typeof book !== 'undefined' && !!book
 
@@ -13,9 +13,9 @@ let source = [
     {"🔰 功能手册": "startGithubReadme()" },
     {"🐞 反馈问题": "startGithubIssue()" },
 ]
-let settingsBase = []
+let settingBase = []
 if (BOOK) {
-    settingsBase = [
+    settingBase = [
         {"👀 🚫 书源菜单": `editSettings('SHOW_SETTINGS2')` },
         {"👀 🚫 发现菜单": `editSettings('SHOW_DISCOVER2')` },
         {"🔰 功能手册": "startGithubReadme()" },
@@ -25,7 +25,7 @@ if (BOOK) {
         {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
     ]
 } else {
-    settingsBase = [
+    settingBase = [
         {"🔀 切换表情": "editSettings('SWITCH_EMOJI')" },
         // {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
         {"⏩ 🚫 快速模式": "editSettings('FAST')" },
@@ -48,7 +48,7 @@ let novel = [
     {"🚫 ⭕️ 屏蔽作者": "userBlock()"},
 ]
 
-if (pixivSettings.SHOW_QUESTION && BOOK) {
+if (settings.SHOW_QUESTION && BOOK) {
     let getNovelId = () => {
         try { return chapter.url.match(/novel\/(\d+)/)[1] } catch(e) {}
         try { return chapter.url.match(/\d+/)[0] } catch(e) {}
@@ -63,7 +63,7 @@ if (pixivSettings.SHOW_QUESTION && BOOK) {
     let pixivUid = String(getFromCache("pixivUid"))
     let novelData = getNovelData(getNovelId())
     let showChoices = novelData.pollData && pixivUid !== novelData.userId && !novelData.pollData.selectedValue
-    if (pixivSettings.DEBUG) showChoices = !!novelData.pollData
+    if (settings.DEBUG) showChoices = !!novelData.pollData
     if (showChoices) {
         let choices = [{"问卷调查": "text"}]
 
@@ -96,7 +96,7 @@ let comment = [
     {"👀 查看收藏": "likeAuthorsShow()" },
 ]
 
-let settings = [
+let setting = [
     {"书源设置": "text" },
     {"⚙️ 当前设置": "showSettings()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
@@ -132,7 +132,7 @@ let settings = [
     // {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
 ]
 
-let discoverSettings = [
+let discoverSetting = [
     {"发现设置": "text" },
     {"🔍 当前发现": "showSettingsDiscover()" },
     {"🔞 🚫 默认发现": "editSettings('SHOW_ADULT')" },
@@ -153,19 +153,19 @@ let discoverSettings = [
 
 let li = []
 if (BOOK) {
-    li = settingsBase.concat(novel).concat(comment)
-    if (pixivSettings.SHOW_SETTINGS2) li = li.concat(settings)
-    if (pixivSettings.SHOW_DISCOVER2) li = li.concat(discoverSettings)
+    li = settingBase.concat(novel).concat(comment)
+    if (settings.SHOW_SETTINGS2) li = li.concat(setting)
+    if (settings.SHOW_DISCOVER2) li = li.concat(discoverSetting)
 } else {
-    li = source.concat(settingsBase)
-    if (pixivSettings.SHOW_SETTINGS) li = li.concat(settings)
-    if (pixivSettings.SHOW_DISCOVER) li = li.concat(discoverSettings)
+    li = source.concat(settingBase)
+    if (settings.SHOW_SETTINGS) li = li.concat(setting)
+    if (settings.SHOW_DISCOVER) li = li.concat(discoverSetting)
 }
 
 // 处理按钮
 li.forEach(item => {
     item.name = Object.keys(item)[0]
-    if (!pixivEnvironment?.IS_LEGADO_SIGMA) {
+    if (!environment?.IS_LEGADO_SIGMA) {
         item.name = item.name.replace(/🚫 |⚫️ |㊙️ /g, "")
     }
     let list = item.name.split(" ")
@@ -180,7 +180,7 @@ li.forEach(item => {
         item.action = Object.values(item)[0]
 
         let settingName = item.action.split("'")[1]
-        const status = pixivSettings.SWITCH_EMOJI ? !pixivSettings[settingName] : pixivSettings[settingName]
+        const status = settings.SWITCH_EMOJI ? !settings[settingName] : settings[settingName]
         item.default = `${status ? list[0] : list[1]} `
 
         list.length = list.length - 1
