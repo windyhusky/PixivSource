@@ -1,3 +1,5 @@
+let pixivEnvironment = getFromCacheObject("pixivEnvironment")
+
 let source = [
     {"🆙 更新书源": "updateSource()" },
     {"🔰 使用指南": "startGithubReadme()" },
@@ -40,6 +42,9 @@ li = li.concat(settings)
 // 处理按钮
 li.forEach(item => {
     item.name = Object.keys(item)[0]
+    if (!pixivEnvironment?.IS_LEGADO_SIGMA) {
+        item.name = item.name.replace(/🚫 |⚫️ |㊙️ /g, "")
+    }
     let list = item.name.split(" ")
     if (list.length === 1 ) {
         item.type = "text"
