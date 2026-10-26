@@ -10,6 +10,9 @@ if (key.length === 0) {
     sleepToast(`正在搜索：${key.join("、")}`)
 }
 
+let settings = getFromCacheObject("FNSettings")
+if (!settings) settings = setDefaultSettings()
+
 let li = []
 let novel = [
     {"🔥 热门": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=popular&${key.map(v => "tags[]=" + v).join("&")}`},
@@ -17,7 +20,7 @@ let novel = [
     {"🔄 随便": `https://api.furrynovel.com/api/novel?page={{page}}&order_by=random&${key.map(v => "tags[]=" + v).join("&")}`},
     {"🆙 更新": "https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json"},
 ]
-let aoout = [
+let about = [
     {"📙 书源相关 📙": ""},
     {"🏠 主页": "https://pixivsource.pages.dev"},
     {"🔰 指南": "https://pixivsource.pages.dev/FurryNovel"},
@@ -25,7 +28,10 @@ let aoout = [
     {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
 ]
 
-li = li.concat(novel).concat(about)
+// 添加发现
+if (settings.SHOW_ADULT) li = li.concat(novel)
+if (settings.SHOW_ABOUT) li = li.concat(about)
+
 // 格式化发现地址
 li.forEach(item => {
     item.title = Object.keys(item)[0]

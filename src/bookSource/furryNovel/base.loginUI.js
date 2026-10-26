@@ -31,6 +31,13 @@ let setting = [
     {"↔️ 图片大小": "editSettings('PIC_SIZE')" },
 ]
 
+let discoverSetting = [
+    {"发现设置": "text" },
+    {"🔍 当前发现": "showSettingsDiscover()" },
+    {"🔞 🚫 默认发现": "editSettings('SHOW_ADULT')" },
+    {"📚 🚫 书源相关": "editSettings('SHOW_ABOUT')" },
+]
+
 // 添加按钮
 let li = source
 try {

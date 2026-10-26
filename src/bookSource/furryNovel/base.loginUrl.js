@@ -79,7 +79,8 @@ const novelSettingsName = Object.assign({},
     modeSettingsName,
     pictureSettingsName
 )
-const discoverSettingsName ={
+const discoverSettingsName = {
+    "SHOW_ADULT": "🔞 默认发现",
     "SHOW_ABOUT": "📚 书源相关",
 }
 const settingsName = Object.assign({},
