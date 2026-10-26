@@ -1,5 +1,5 @@
-let pixivSettings = getFromCacheObject("pixivIllustSettings")
-if (!pixivSettings) pixivSettings = setDefaultSettings()
+let settings = getFromCacheObject("pixivIllustSettings")
+if (!settings) settings = setDefaultSettings()
 
 let source = [
     {"🅿️ 登录账号": "login()" },
@@ -11,13 +11,13 @@ let source = [
     {"🐞 反馈问题": "startGithubIssue()" },
 ]
 
-let settingsBase = [
+let settingBase = [
     {"💾 备份恢复": "backupRestore()" },
     {"👀 🚫 书源菜单": `editSettings('SHOW_SETTINGS')` },
     {"👀 🚫 发现菜单": `editSettings('SHOW_DISCOVER')` },
 ]
 
-let settings = [
+let setting = [
     {"书源设置": "text" },
     {"⚙️ 当前设置": "showSettings()" },
     {"🔧 默认设置": "setDefaultSettingsLoginUrl()" },
@@ -52,9 +52,9 @@ let discoverSettings = [
 ]
 
 let li = []
-li = source.concat(settingsBase)
-if (pixivSettings.SHOW_SETTINGS) li = li.concat(settings)
-if (pixivSettings.SHOW_DISCOVER) li = li.concat(discoverSettings)
+li = source.concat(settingBase)
+if (settings.SHOW_SETTINGS) li = li.concat(setting)
+if (settings.SHOW_DISCOVER) li = li.concat(discoverSettings)
 
 
 // 处理按钮
@@ -72,7 +72,7 @@ li.forEach(item => {
         item.action = Object.values(item)[0]
 
         let settingName = item.action.split("'")[1]
-        item.default = pixivSettings[settingName] ? list[0] : list[1]
+        item.default = settings[settingName] ? list[0] : list[1]
 
         list.length = list.length - 1
         item.chars = list.map(char => `${char} `)
