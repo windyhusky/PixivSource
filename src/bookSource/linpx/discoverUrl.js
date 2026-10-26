@@ -1,3 +1,6 @@
+let settings = getFromCacheObject("linpxSettings")
+if (!settings) settings = setDefaultSettings()
+
 let li = []
 let novel = [
     {"💯 推荐": "https://api.linpx.ink/fav/user/cache"},
@@ -13,7 +16,10 @@ let about = [
     {"💰 打赏": "https://pixivsource.pages.dev/Sponsor"},
 ]
 
-li = li.concat(novel).concat(about);
+// 添加发现
+if (settings.SHOW_ADULT) li = li.concat(novel)
+if (settings.SHOW_ABOUT) li = li.concat(about)
+
 // 格式化发现地址
 li.forEach(item => {
     item.title = Object.keys(item)[0]
