@@ -198,30 +198,6 @@ function startBrowser(url, title) {
     java.startBrowser(`${url}, ${JSON.stringify({headers: headers})}`, title)
 }
 
-// 直连功能参考自 洛娅橙的阅读仓库
-// https://github.com/Luoyacheng/yuedu
-// 其直连功能参考自 PixEz Flutter
-// https://github.com/Notsfsssf/pixez-flutter
-function urlIP(url) {
-    const {java, cache} = this
-    if (!this._settings) {
-        this._settings = this.getFromCacheObject("pixivSettings") || this.setDefaultSettings()
-    }
-    if (this._settings.IPDirect) {
-        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
-        let headers = {
-            "User-Agent": this.getFromCache("userAgent"),
-            "X-Requested-With": "XMLHttpRequest",
-            "Host": "www.pixiv.net",
-            "Referer": "https://www.pixiv.net/",
-            "X-csrf-token": this.getFromCache("pixivCsrfToken") || "",
-            "Cookie": this.getFromCache("pixivCookie") || ""
-        }
-        return `${url}, ${JSON.stringify({headers: headers})}`
-    }
-    return url
-}
-
 function urlSelfInfo() {
     return `https://www.pixiv.net/ajax/settings/self`
 }
@@ -303,27 +279,10 @@ function urlLinpxAuthors() {
     return "https://api.linpx.ink/fav/user/cache"
 }
 
-// 直连功能参考自 洛娅橙的阅读仓库
-// https://github.com/Luoyacheng/yuedu
-// 其直连功能参考自 PixEz Flutter
-// https://github.com/Notsfsssf/pixez-flutter
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (url && !url.trim()) return ""
-
     let headers = {"Referer": "https://www.pixiv.net/"}
-    if (!this._settings) {
-        this._settings = this.getFromCacheObject("pixivSettings") || this.setDefaultSettings()
-    }
-    if (this._settings.IPDirect && url.trim()) {
-        if (url.includes("i.pximg.net")) {
-            url = url.replace("https://i.pximg.net", "https://210.140.139.133")
-            headers.host = "i.pximg.net"
-        } else {
-            url = url.replace("https://s.pximg.net", "https://210.140.139.133")
-            headers.host = "s.pximg.net"
-        }
-    }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlIllustUrl(illustId) {
