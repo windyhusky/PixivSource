@@ -155,7 +155,6 @@ const contentSettingsName = {
 const modeSettingsName = {
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
-    "IPDirect": "✈️ 直连模式",
 }
 const illustSettingsName = Object.assign({},
     searchSettingsName,
@@ -196,9 +195,6 @@ function getSettingStatus(mode) {
     let settings = getFromCacheObject("pixivIllustSettings")
     // if (mode === "FAST") {
     //     keys = Object.keys(fastSettingsName)
-    // } else if (mode === "IPDirect") {
-    //     keys = Object.keys(IPDirectSettingsName)
-    // } else
     if (mode.includes("DISCOVER")) {
         keys = Object.keys(discoverSettingsName)
     } else {
@@ -234,17 +230,7 @@ function editSettings(settingName) {
     }
     putInCacheObject("pixivIllustSettings", settings)
 
-    if (settingName === "IPDirect") {
-        if (settings.IPDirect && !isLogin()) {
-            msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
-            settings.IPDirect = false
-            checkSettings()
-        } else {
-            checkSettings()
-            msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
-        }
-
-    } else if (settingName === "QUALITY_REGULAR") {
+    if (settingName === "QUALITY_REGULAR") {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n`
         if (settings.QUALITY_REGULAR) msg += "图片质量设置为 regular "
         else msg += "图片质量设置为 original"

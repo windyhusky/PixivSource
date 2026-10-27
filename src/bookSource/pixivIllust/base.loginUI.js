@@ -30,7 +30,7 @@ let setting = [
 
     {"⏩ 🚫 快速模式": "editSettings('FAST')" },
     {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
-    {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
+    {"⏺️ 占位按钮": "" },
 
     // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
     // {"🔗 图片链接": "editSettings('PIC_LINK')" },

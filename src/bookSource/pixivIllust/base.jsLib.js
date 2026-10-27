@@ -203,10 +203,6 @@ function urlSearchUser(name) {
     return `https://www.pixiv.net/search/users?nick=${encodeURI(name)}&s_mode=s_usr&nick_mf=1`
 }
 
-// 直连功能参考自 洛娅橙的阅读仓库
-// https://github.com/Luoyacheng/yuedu
-// 其直连功能参考自 PixEz Flutter
-// https://github.com/Notsfsssf/pixez-flutter
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (url && !url.trim()) return ""
@@ -256,7 +252,6 @@ function setDefaultSettings() {
     settings.QUALITY_REGULAR = true     // 正文：图片质量，regular 或 original
 
     settings.FAST = false               // 全局：快速模式
-    settings.IPDirect = false           // 全局：直连模式
     settings.DEBUG = false              // 全局：调试模式
 
     settings.SHOW_ADULT = true          // 发现：显示 默认发现
@@ -277,10 +272,7 @@ function checkSettings() {
     const {java, cache} = this
     let settings = this.getFromCacheObject("pixivIllustSettings")
     if (!settings) settings = this.setDefaultSettings()
-    if (settings.IPDirect) {
-        settings.SEARCH_AUTHOR = false       // 搜索：默认关闭搜索作者名称
-        settings.SHOW_ORIGINAL_LINK = false  // 目录：不显示章节源链接
-    }
+
     this.putInCacheObject("pixivIllustSettings", settings)
     return settings
 }

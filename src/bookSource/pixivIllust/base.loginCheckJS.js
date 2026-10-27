@@ -101,7 +101,6 @@ function publicFunc() {
     }
 
     u.logSettings = () => {
-        if (u.settings.IPDirect) java.log("✈️ 直连模式：✅ 已开启")
         // if (u.settings.FAST) java.log("⏩ 快速模式：✅ 已开启")
         if (u.settings.DEBUG) java.log("🐞 调试模式：✅ 已开启")
     }
