@@ -88,7 +88,7 @@ function getNovelId(seriesId) {
         if (novelIds) {
             return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
         } else {
-            return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+            return getAjaxJson(urlSeriesNovelsTitles(seriesId), true).body[book.durChapterIndex].id
         }
     }
 }
@@ -110,7 +110,7 @@ function getNovel() {
                 novel.title = book.name
             }
             novel.author = novel.userName = book.author.replace("@", "")
-            let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
+            let resp = getAjaxJson(urlNovelDetailed(novel.id)).body
             novel.userId = resp.userId
             novel.question = resp?.pollData?.question || ""
             // java.log(JSON.stringify(novel))
@@ -133,11 +133,6 @@ function getPostBody(url, body, headers) {
         headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
     }
 
-    let settings = getFromCacheObject("pixivSettings")
-    if (settings.IPDirect) {
-        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
-        headers["Host"] = "www.pixiv.net"
-    }
     try {
         java.log(`getPostBody(${url}, ${body}, ${headers})`)
         // java.log(`getPostBody(${url}, ${body}, ${JSON.stringify(headers)})`)
@@ -151,7 +146,7 @@ function getPostBody(url, body, headers) {
         // else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
         else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 pixivCsrfToken `, 1)
         else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
-        return {error: true, errMsg:e}
+        return {error: true, errMsg: e}
     }
 }
 
@@ -986,7 +981,6 @@ const modeSettingsName = {
     "SWITCH_EMOJI": "🔀 切换表情",
     "FAST": "⏩ 快速模式",
     "DEBUG": "🐞 调试模式",
-    // "IPDirect": "✈️ 直连模式",
     "COMBINE_NOVELS": "📚 整合系列",
 }
 const pictureSettingsName = {
@@ -1012,9 +1006,6 @@ const fastSettingsName = {
     "SHOW_QUESTION": "✅ 显示投票",
     "SHOW_COMMENTS": "💬 显示评论",
 }
-const IPDirectSettingsName = {
-    "SHOW_ORIGINAL_LINK": "🔗 原始链接",
-}
 const discoverSettingsName ={
     "SHOW_ADULT": "🔞 默认发现",
     "SHOW_GENERAL": "🆗 常规小说",
@@ -1038,7 +1029,6 @@ const menuSettingsName = {
 const settingsName = Object.assign({},
     novelSettingsName,
     fastSettingsName,
-    IPDirectSettingsName,
     discoverSettingsName,
     menuSettingsName
 )
@@ -1056,8 +1046,6 @@ function getSettingStatus(mode) {
     let settings = getFromCacheObject("pixivSettings")
     if (mode === "FAST") {
         keys = Object.keys(fastSettingsName)
-    } else if (mode === "IPDirect") {
-        keys = Object.keys(IPDirectSettingsName)
     } else if (mode.includes("DISCOVER")) {
         keys = Object.keys(discoverSettingsName)
     } else {
@@ -1102,15 +1090,6 @@ function editSettings(settingName) {
         checkSettings(settings)
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
 
-    } else if (settingName === "IPDirect") {
-        if (settings.IPDirect && !isLogin()) {
-            settings.IPDirect = false
-            checkSettings(settings)
-            msg = "✈️ 直连模式\n\n✈️ 直连模式 需登录账号\n当前未登录账号，现已关闭直连模式"
-        } else {
-            checkSettings(settings)
-            msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}\n\n${getSettingStatus(settingName)}`
-        }
     } else {
         msg = `\n\n${statusMsg(status)}　${settingsName[settingName]}`
     }

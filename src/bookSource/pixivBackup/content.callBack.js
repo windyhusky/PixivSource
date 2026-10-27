@@ -18,7 +18,7 @@ function getNovelId(seriesId) {
         if (novelIds) {
             return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
         } else {
-            return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+            return getAjaxJson(urlSeriesNovelsTitles(seriesId), true).body[book.durChapterIndex].id
         }
     }
 }
@@ -37,7 +37,7 @@ function getNovel() {
         novel.title = book.name
     }
     novel.author = novel.userName = book.author.replace("@", "")
-    let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
+    let resp = getAjaxJson(urlNovelDetailed(novel.id)).body
     novel.userId = resp.userId
     novel.question = resp?.pollData?.question || ""
     // java.log(JSON.stringify(novel))
@@ -53,11 +53,6 @@ function getPostBody(url, body, headers) {
         headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
     }
 
-    let settings = getFromCacheObject("pixivSettings")
-    if (settings.IPDirect) {
-        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
-        headers["Host"] = "www.pixiv.net"
-    }
     try {
         java.log(`getPostBody(${url}, ${body}, ${headers})`)
         // java.log(`getPostBody(${url}, ${body}, ${JSON.stringify(headers)})`)
@@ -71,7 +66,7 @@ function getPostBody(url, body, headers) {
         // else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
         else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 pixivCsrfToken `, 1)
         else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
-        return {error: true, errMsg:e}
+        return {error: true, errMsg: e}
     }
 }
 
@@ -200,7 +195,7 @@ function clearCache() {
         cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
 
         let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
-        if (!novelIds) novelIds = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body.map(item => item.id)
+        if (!novelIds) novelIds = getAjaxJson(urlSeriesNovelsTitles(seriesId), true).body.map(item => item.id)
         if (novelIds && novelIds.length > 0) {
             novelIds.forEach(novelId => {
                 cache.delete(`${urlNovelUrl(novelId)}`)

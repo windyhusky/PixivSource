@@ -22,7 +22,7 @@ function oneShotHandler(res) {
     res.createDate = timeTextFormat(res.createDate)
     return [{
         title: res.title.trim(),
-        chapterUrl: urlIP(urlNovel(res.id)),
+        chapterUrl: urlNovel(res.id),
         chapterInfo: `${res.createDate}　　${res.textCount}字`
     }]
 }
@@ -37,13 +37,13 @@ function seriesHandler(res) {
 
     //发送请求获得相应数量的目录列表
     function sendAjaxForGetChapters(lastIndex) {
-        let resp = getAjaxJson(urlIP(urlSeriesNovels(seriesID, limit, lastIndex)), true)
+        let resp = getAjaxJson(urlSeriesNovels(seriesID, limit, lastIndex), true)
         let novels = resp.body.thumbnails.novel
         // let novels = resp.body.page.seriesContents
 
         novels.forEach((v, i) => {
             novelIds.push(v.id)
-            v.chapterUrl = urlIP(urlNovel(v.id))
+            v.chapterUrl = urlNovel(v.id)
             v.title = v.title.trim()
             if (util.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
             if (v.updateDate && v.textCount) {
@@ -59,10 +59,10 @@ function seriesHandler(res) {
     }
 
     if (!util.settings.SHOW_UPDATE_TIME) {
-        returnList = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesID)), true).body
+        returnList = getAjaxJson(urlSeriesNovelsTitles(seriesID), true).body
         returnList.forEach((v, i) => {
             novelIds.push(v.id)
-            v.chapterUrl = urlIP(urlNovel(v.id))
+            v.chapterUrl = urlNovel(v.id)
             v.title = v.title.trim()
             if (util.settings.ADD_CHAPTER_INDEX) v.title = "第"+ (i+1) +"章 " + v.title
 

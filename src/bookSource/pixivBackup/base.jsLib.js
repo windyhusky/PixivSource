@@ -197,29 +197,6 @@ function startBrowser(url, title) {
     java.startBrowser(`${url}, ${JSON.stringify({headers: headers})}`, title)
 }
 
-// 直连功能参考自 洛娅橙的阅读仓库
-// https://github.com/Luoyacheng/yuedu
-// 其直连功能参考自 PixEz Flutter
-// https://github.com/Notsfsssf/pixez-flutter
-function urlIP(url) {
-    const {java, cache} = this
-    let settings = this.getFromCacheObject("pixivSettings")
-    if (!settings) settings = this.setDefaultSettings()
-    if (settings.IPDirect) {
-        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
-        let headers = {
-            "User-Agent": this.getFromCache("userAgent"),
-            "X-Requested-With": "XMLHttpRequest",
-            "Host": "www.pixiv.net",
-            "Referer": "https://www.pixiv.net/",
-            "X-csrf-token": this.getFromCache("pixivCsrfToken") || "",
-            "Cookie": this.getFromCache("pixivCookie") || ""
-        }
-        return `${url}, ${JSON.stringify({headers: headers})}`
-    }
-    return url
-}
-
 function urlSelfInfo() {
     return `https://www.pixiv.net/ajax/settings/self`
 }
@@ -301,27 +278,10 @@ function urlLinpxAuthors() {
     return "https://api.linpx.ink/fav/user/cache"
 }
 
-// 直连功能参考自 洛娅橙的阅读仓库
-// https://github.com/Luoyacheng/yuedu
-// 其直连功能参考自 PixEz Flutter
-// https://github.com/Notsfsssf/pixez-flutter
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (url && !url.trim()) return ""
-
     let headers = {"Referer": "https://www.pixiv.net/"}
-    if (!this._settings) {
-        this._settings = this.getFromCacheObject("pixivSettings") || this.setDefaultSettings()
-    }
-    if (this._settings.IPDirect && url.trim()) {
-        if (url.includes("i.pximg.net")) {
-            url = url.replace("https://i.pximg.net", "https://210.140.139.133")
-            headers.host = "i.pximg.net"
-        } else {
-            url = url.replace("https://s.pximg.net", "https://210.140.139.133")
-            headers.host = "s.pximg.net"
-        }
-    }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 function urlIllustUrl(illustId) {
@@ -335,7 +295,7 @@ function urlIllustOriginal(illustId, order) {
     if (!order || order <= 1) order = 1
     let illustOriginal = ""
 
-    let resp = this.getAjaxJson(this.urlIP(urlIllustDetailed(illustId)))
+    let resp = this.getAjaxJson(urlIllustDetailed(illustId))
     try {
         illustOriginal = resp.body.urls.original
     } catch (e) {
@@ -428,7 +388,6 @@ function setDefaultSettings() {
     settings.HIDE_WATCHED_SERIES = false// 全局：搜索/发现：隐藏已追更系列
 
     settings.COMBINE_NOVELS = true      // 全局：整合系列
-    settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
     settings.SWITCH_EMOJI = false       // 设置：切换 emoji
@@ -457,9 +416,6 @@ function checkSettings(settings) {
     const {java, cache} = this
     if (!settings) settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
-    if (settings.IPDirect) {
-        settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
-    }
 
     if (settings.FAST) {
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜

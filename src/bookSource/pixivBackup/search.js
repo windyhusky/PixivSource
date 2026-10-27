@@ -63,8 +63,8 @@ function getUserNovelsByName() {
     let userName = String(java.get("keyword"))
     let page = Number(java.get("page"))
 
-    // cache.delete(urlIP(urlSearchUser(userName, page, full)))
-    let resp = getAjaxJson(urlIP(urlSearchUser(userName, page))).body
+    // cache.delete(urlSearchUser(userName, page, full))
+    let resp = getAjaxJson(urlSearchUser(userName, page)).body
     let novels = resp.thumbnails.novel
     let userIds = resp.page.userIds
 
@@ -79,7 +79,7 @@ function getUserNovelsByName() {
 }
 
 function getUserNovelsById(uid) {
-    return util.getUserNovelsById(getAjaxJson(urlIP(urlUserAllWorks(uid)), true))
+    return util.getUserNovelsById(getAjaxJson(urlUserAllWorks(uid)), true)
 }
 
 function getUserNovels() {
@@ -93,12 +93,12 @@ function getUserNovels() {
 function search(name, type, page) {
     let resp = {}
     if (type.includes("novel")) {
-        resp = getAjaxJson(urlIP(urlSearchNovel(name, page)))
-        java.log(urlIP(urlSearchNovel(name, page)))
+        resp = getAjaxJson(urlSearchNovel(name, page))
+        java.log(urlSearchNovel(name, page))
     }
     if (type.includes("series")) {
-        resp = getAjaxJson(urlIP(urlSearchSeries(name, page)))
-        java.log(urlIP(urlSearchSeries(name, page)))
+        resp = getAjaxJson(urlSearchSeries(name, page))
+        java.log(urlSearchSeries(name, page))
     }
     if (resp.error === true || resp.total === 0) {
         return {"data": [], "total":0, "lastPage": 0}
@@ -113,8 +113,8 @@ function getSeries() {
     }
     let name = String(java.get("keyword"))
     let page = Number(java.get("page"))
-    java.log(urlIP(urlSearchSeries(name, page)))
-    putInCacheObject(urlIP(urlSearchSeries(name, page)), resp, cacheSaveSeconds)  // 加入缓存
+    java.log(urlSearchSeries(name, page))
+    putInCacheObject(urlSearchSeries(name, page), resp, cacheSaveSeconds)  // 加入缓存
     return resp.body.novel.data
 }
 

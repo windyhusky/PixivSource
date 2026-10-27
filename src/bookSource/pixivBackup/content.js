@@ -50,7 +50,7 @@ function getNovelInfo(resp) {
             let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
             novel.id = novelIds[book.durChapterIndex]
         } catch(e) {
-            let novelIds = getAjaxJson(urlIP(urlSeriesNovelsTitles(novel.seriesId)), true).body
+            let novelIds = getAjaxJson(urlSeriesNovelsTitles(novel.seriesId), true).body
             novel.id = novelIds[book.durChapterIndex].id
         }
     }
@@ -271,12 +271,12 @@ function getComment(resp, content) {
     let maxPage = Math.ceil(resp.commentCount / limit)
     if (maxPage >= 2 && util.environment.IS_LEGADO) {
         for (let i = 0; i < maxPage; i++) {
-            commentUrls.push(urlIP(urlNovelComments(resp.id, i * limit, limit)))
+            commentUrls.push(urlNovelComments(resp.id, i * limit, limit))
         }
         comments = getAjaxAllJson(commentUrls).map(resp => resp.body.comments).flat()
     } else {
         for (let i = 0; i < maxPage; i++) {
-            let result = getAjaxJson(urlIP(urlNovelComments(resp.id, i * limit, limit)), true)
+            let result = getAjaxJson(urlNovelComments(resp.id, i * limit, limit), true)
             if (result && !result.error && result.body && result.body.comments) {
                 comments = comments.concat(result.body.comments)
             }
@@ -287,7 +287,7 @@ function getComment(resp, content) {
     comments.forEach(comment => {
         commentText += formatComment(comment)
         if (comment.hasReplies) {
-            let resp = getAjaxJson(urlIP(urlNovelCommentsReply(comment.id, 1)), true)
+            let resp = getAjaxJson(urlNovelCommentsReply(comment.id, 1), true)
             if (resp && !resp.error && resp.body && resp.body.comments) {
                 resp.body.comments.reverse().forEach(reply => {
                     commentText += formatComment(reply, reply.replyToUserName)

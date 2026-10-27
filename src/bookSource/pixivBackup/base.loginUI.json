@@ -45,9 +45,9 @@
         }
     },
     {
-        "name": "✈️ 直连模式",
+        "name": "🐞 反馈问题",
         "type": "button",
-        "action": "editSettings('IPDirect')",
+        "action": "startGithubIssue()",
         "style": {
             "layout_flexGrow": 1,
             "layout_flexBasisPercent": -1
@@ -421,43 +421,6 @@
             "layout_flexBasisPercent": -1
         }
     },
-//    {
-//        "name": "✈️ 直连模式",
-//        "type": "button",
-//        "action": "editSettings('IPDirect')",
-//        "style": {
-//            "layout_flexGrow": 1,
-//            "layout_flexBasisPercent": -1
-//        }
-//    },
-//
-//    {
-//        "name": "⏳ 图片解析",
-//        "type": "button",
-//        "action": "editSettings('PIC_SOURCE')",
-//        "style": {
-//            "layout_flexGrow": 1,
-//            "layout_flexBasisPercent": -1
-//        }
-//    },
-//    {
-//        "name": "🔗 图片链接",
-//        "type": "button",
-//        "action": "editSettings('PIC_LINK')",
-//        "style": {
-//            "layout_flexGrow": 1,
-//            "layout_flexBasisPercent": -1
-//        }
-//    },
-//    {
-//        "name": "↔️ 图片大小",
-//        "type": "button",
-//        "action": "editSettings('PIC_SIZE')",
-//        "style": {
-//            "layout_flexGrow": 1,
-//            "layout_flexBasisPercent": -1
-//        }
-//    },
 
     {
         "name": "发现设置",
