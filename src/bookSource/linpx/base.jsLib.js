@@ -239,16 +239,13 @@ function urlPxImgQuality(pxImgUrl) {
     return String(pxImgUrl)
 }
 
-// 获取直连链接
 function urlPxImgUrl(pxImgUrl) {
     const {java, cache} = this
     let settings = this.getFromCacheObject("linpxSettings") || this.setDefaultSettings()
     let urlMap = {
         "Linpx": (url) => this.urlPxImgUrlLinpx(url),
-        "Pixiv": (url) => this.urlPxImgUrlPixiv(url),
         "PixivCat": (url) => this.urlPxImgUrlPixivCat(url),
         "PixivShojo": (url) => this.urlPxImgUrlPixivShojo(url),
-        "CloudFlare": (url) => this.urlPxImgUrlCloudFlare(url),
     }
     let targetFunc = urlMap[settings.PIC_LINK]
     return targetFunc(this.urlPxImgQuality(pxImgUrl))
@@ -259,22 +256,6 @@ function urlPxImgUrlLinpx(pxImgUrl) {
     let headers = {"Referer": "https://linpx.ink/"}
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
-function urlPxImgUrlPixiv(pxImgUrl) {
-    const {java, cache} = this
-    if (pxImgUrl && !pxImgUrl.trim()) return ""
-    let headers = {"Referer": "https://www.pixiv.net/"}
-
-    if (pxImgUrl.trim()) {
-        if (pxImgUrl.includes("i.pximg.net")) {
-            pxImgUrl = pxImgUrl.replace("https://i.pximg.net", "https://210.140.139.133")
-            headers.Host = "i.pximg.net"
-        } else {
-            pxImgUrl = pxImgUrl.replace("https://s.pximg.net", "https://210.140.139.133")
-            headers.Host = "s.pximg.net"
-        }
-    }
-    return `${pxImgUrl}, ${JSON.stringify({headers: headers})}`
-}
 function urlPxImgUrlPixivCat(pxImgUrl) {
     return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.re`)}`
     // return `${pxImgUrl.replace(`i.pximg.net`, `i.pximg.nl`)}`
@@ -282,31 +263,12 @@ function urlPxImgUrlPixivCat(pxImgUrl) {
 function urlPxImgUrlPixivShojo(pxImgUrl) {
     return `${pxImgUrl.replace(`i.pximg.net`, `proxy.pixiv.shojo.cn`)}`
 }
-function urlPxImgUrlCloudFlare(pxImgUrl) {
-    return `${pxImgUrl.replace(`i.pximg.net`, `pixiv.tnt-wwxs-tz.workers.dev`)}`
-}
 
 function urlIllustUrl(illustId) {
     return `https://www.pixiv.net/artworks/${illustId}`
 }
 function urlIllustDetailed(illustId) {
     return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
-}
-
-// 直连功能参考自 洛娅橙的阅读仓库
-// https://github.com/Luoyacheng/yuedu
-// 其直连功能参考自 PixEz Flutter
-// https://github.com/Notsfsssf/pixez-flutter
-function urlIP(url) {
-    const {java, cache} = this
-    url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
-    let headers = {
-        "User-Agent": this.getWebViewUA(),
-        "X-Requested-With": "XMLHttpRequest",
-        "Host": "www.pixiv.net",
-        "Referer": "https://www.pixiv.net/"
-    }
-    return `${url}, ${JSON.stringify({headers: headers})}`
 }
 
 // 获取 Pixiv 插画直链链接
@@ -319,7 +281,6 @@ function urlIllustOriginal(illustId, order) {
 
     if (!link) {
         let urlMap = {
-            "Pixiv": (illustId) => this.urlIllustOriginalPixiv(illustId),
             "PixivCat": (illustId) => this.urlIllustOriginalPixivCat(illustId),
             "PixivShojo": (illustId) => this.urlIllustOriginalPixivShojo(illustId),
         }
@@ -331,25 +292,7 @@ function urlIllustOriginal(illustId, order) {
     }
     return this.urlPxImgUrl(link.replace(`_p0`, `_p${order - 1}`))
 }
-function urlIllustOriginalPixiv(illustId) {
-    const {java, cache} = this
-    let illustOriginal
 
-    let resp = this.getAjaxJson(this.urlIP(urlIllustDetailed(illustId)))
-    try {
-        illustOriginal = resp.body.urls.original
-    } catch (e) {
-        try {
-            let illustThumb = resp.body.userIllusts[illustId].url
-            let date = illustThumb.match("\\d{4}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}\\/\\d{2}")[0]
-            illustOriginal = `https://i.pximg.net/img-master/img/${date}/${illustId}_p0_master1200.jpg`
-            illustOriginal = this.testPxImgUrl(illustOriginal)
-        } catch (e) {}
-    }
-
-    if (illustOriginal.split(",")[0] === "") return ""
-    return illustOriginal
-}
 function urlIllustOriginalPixivCat(illustId){
     const {java, cache} = this
     let targetUrl = `https://pixiv.re/${illustId}.jpg`
