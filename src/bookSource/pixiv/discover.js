@@ -189,7 +189,7 @@ function handlerRegex() {
             }
         }
 
-        let novels = getAjaxJson(urlIP(urlNovelsDetailed(getFromCache("pixivUid"), novelIds))).body
+        let novels = getAjaxJson(urlNovelsDetailed(getFromCache("pixivUid", novelIds))).body
         return util.formatNovels(util.handNovels(util.combineNovels(Object.values(novels).reverse())))
     }
 }

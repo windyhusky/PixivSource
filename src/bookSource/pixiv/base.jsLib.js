@@ -337,7 +337,7 @@ function urlIllustOriginal(illustId, order) {
     if (!order || order <= 1) order = 1
     let illustOriginal = ""
 
-    let resp = this.getAjaxJson(this.urlIP(urlIllustDetailed(illustId)))
+    let resp = this.getAjaxJson(urlIllustDetailed(illustId))
     try {
         illustOriginal = resp.body.urls.original
     } catch (e) {

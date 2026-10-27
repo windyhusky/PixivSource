@@ -18,7 +18,7 @@ function getNovelId(seriesId) {
         if (novelIds) {
             return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
         } else {
-            return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+            return getAjaxJson(urlSeriesNovelsTitles(seriesId), true).body[book.durChapterIndex].id
         }
     }
 }
@@ -37,7 +37,7 @@ function getNovel() {
         novel.title = book.name
     }
     novel.author = novel.userName = book.author.replace("@", "")
-    let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
+    let resp = getAjaxJson(urlNovelDetailed(novel.id)).body
     novel.userId = resp.userId
     novel.question = resp?.pollData?.question || ""
     // java.log(JSON.stringify(novel))
@@ -200,7 +200,7 @@ function clearCache() {
         cache.delete(`${urlSearchSeries(novel.seriesTitle, 1)}`)
 
         let novelIds = getFromCacheObject(`novelIds${novel.seriesId}`)
-        if (!novelIds) novelIds = getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body.map(item => item.id)
+        if (!novelIds) novelIds = getAjaxJson(urlSeriesNovelsTitles(seriesId), true).body.map(item => item.id)
         if (novelIds && novelIds.length > 0) {
             novelIds.forEach(novelId => {
                 cache.delete(`${urlNovelUrl(novelId)}`)

@@ -38,4 +38,4 @@ if (keyword.startsWith("@") || keyword.startsWith("＠")) {
 } else {
     java.log(`🔍 搜索内容：${keyword}`)
 }
-urlIP(urlSearchSeries(keyword, page))
+urlSearchSeries(keyword, page)

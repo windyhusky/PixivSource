@@ -94,7 +94,7 @@ function getNovelId(seriesId) {
         if (novelIds) {
             return getFromCacheObject(`novelIds${seriesId}`)[book.durChapterIndex]
         } else {
-            return getAjaxJson(urlIP(urlSeriesNovelsTitles(seriesId)), true).body[book.durChapterIndex].id
+            return getAjaxJson(urlSeriesNovelsTitles(seriesId), true).body[book.durChapterIndex].id
         }
     }
 }
@@ -116,7 +116,7 @@ function getNovel() {
                 novel.title = book.name
             }
             novel.author = novel.userName = book.author.replace("@", "")
-            let resp = getAjaxJson(urlIP(urlNovelDetailed(novel.id))).body
+            let resp = getAjaxJson(urlNovelDetailed(novel.id)).body
             novel.userId = resp.userId
             novel.question = resp?.pollData?.question || ""
             // java.log(JSON.stringify(novel))
