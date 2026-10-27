@@ -903,12 +903,10 @@ let settingsNames = {
 let settingsOptionsNames = {
     "PIC_SOURCE": {
         "PixivShojo": "📄 PixivShojo",
-        "Pixiv": "🅿️ Pixiv 直连",
         "PixivCat": "🐱 PixivCat",
     },
     "PIC_LINK": {
         "PixivShojo": "📄 PixivShojo",
-        "Pixiv": "🅿️ Pixiv 直连",
         "Linpx": "🦊 Linpx 网站",
         "PixivCat": "🐱 PixivCat",
     },
