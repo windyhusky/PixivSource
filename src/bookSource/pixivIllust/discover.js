@@ -128,7 +128,7 @@ function handlerRanking() {
             item.latestChapter = item.title
             item.description = null
             item.coverUrl = item.url
-            item.detailedUrl = urlIP(urlIllustDetailed(item.id))
+            item.detailedUrl = urlIllustDetailed(item.id)
             item.createDate = item.updateDate = item.illust_upload_timestamp * 1000
 
             if (item.illust_series !== false) {
@@ -159,7 +159,7 @@ function handlerRegexIllusts() {
             }
         }
         let userIllusts = getWebviewJson(
-            urlIP(urlIllustsDetailed(getFromCache("pixivUid"), illustIds)), html => {
+            urlIllustsDetailed(getFromCache("pixivUid", illustIds)), html => {
                 return (html.match(new RegExp(">\\{.*?}<"))[0].replace(">", "").replace("<", ""))
             }).body
         return util.formatIllusts(util.handIllusts(Object.values(userIllusts)))

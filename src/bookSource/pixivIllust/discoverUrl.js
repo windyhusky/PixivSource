@@ -81,7 +81,6 @@ if (settings.SHOW_ABOUT) li = li.concat(about)
 li.forEach(item => {
     item.title = Object.keys(item)[0]
     item.url = Object.values(item)[0]
-    if (item.url.includes("https://www.pixiv.net")) item.url = urlIP(item.url)
     delete item[Object.keys(item)[0]]
     item.style = {}
     item.style.layout_flexGrow = 1

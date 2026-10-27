@@ -11,4 +11,4 @@ if (key.startsWith("@") || key.startsWith("＠")) {
 }
 
 java.put("key", key)
-urlIP(urlSearchArtwork(key, page))
+urlSearchArtwork(key, page)

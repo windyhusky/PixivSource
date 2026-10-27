@@ -233,21 +233,6 @@ function urlSearchUser(name) {
 function urlCoverUrl(url) {
     const {java, cache} = this
     if (url && !url.trim()) return ""
-
-    let settings = this.getFromCacheObject("pixivIllustSettings")
-    if (!settings) settings = this.setDefaultSettings()
-    if (!settings.IPDirect) return url
-
-    let headers = {"Referer": "https://www.pixiv.net/"}
-    if (settings.IPDirect && url.trim()) {
-        if (url.includes("i.pximg.net")) {
-            url = url.replace("https://i.pximg.net", "https://210.140.139.133")
-            headers.host = "i.pximg.net"
-        } else {
-            url = url.replace("https://s.pximg.net", "https://210.140.139.133")
-            headers.host = "s.pximg.net"
-        }
-    }
     return `${url}, ${JSON.stringify({headers: headers})}`
 }
 

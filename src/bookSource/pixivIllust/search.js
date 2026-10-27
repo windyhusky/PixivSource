@@ -16,14 +16,14 @@ function getArtwork() {
     }
     let name = String(java.get("key"))
     let page = Number(java.get("page"))
-    java.log(urlIP(urlSearchArtwork(name, page)))
-    putInCacheObject(urlIP(urlSearchArtwork(name, page)), resp, cacheSaveSeconds)  // 加入缓存
+    java.log(urlSearchArtwork(name, page))
+    putInCacheObject(urlSearchArtwork(name, page), resp, cacheSaveSeconds)  // 加入缓存
     return resp.body.illustManga.data
 }
 
 function search(name, page) {
-    let resp = getAjaxJson(urlIP(urlSearchArtwork(name, page)))
-    java.log(urlIP(urlSearchArtwork(name, page)))
+    let resp = getAjaxJson(urlSearchArtwork(name, page))
+    java.log(urlSearchArtwork(name, page))
     if (resp.error === true || resp.total === 0) {
         return {"data": [], "total":0, "lastPage": 0}
     }
