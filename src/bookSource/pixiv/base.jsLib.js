@@ -389,7 +389,6 @@ function setDefaultSettings() {
     settings.HIDE_WATCHED_SERIES = false// 全局：搜索/发现：隐藏已追更系列
 
     settings.COMBINE_NOVELS = true      // 全局：整合系列
-    settings.IPDirect = false           // 全局：直连模式
     settings.FAST  = false              // 全局：快速模式
     settings.DEBUG = false              // 全局：调试模式
     settings.SWITCH_EMOJI = false       // 设置：切换 emoji
@@ -418,9 +417,6 @@ function checkSettings(settings) {
     const {java, cache} = this
     if (!settings) settings = this.getFromCacheObject("pixivSettings")
     if (!settings) settings = this.setDefaultSettings()
-    if (settings.IPDirect) {
-        settings.SHOW_ORIGINAL_LINK = false   // 目录：显示章节源链接
-    }
 
     if (settings.FAST) {
         settings.CONVERT_CHINESE = false      // 搜索：繁简通搜

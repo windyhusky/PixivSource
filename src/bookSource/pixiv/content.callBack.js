@@ -53,11 +53,6 @@ function getPostBody(url, body, headers) {
         headers["content-type"] = "application/x-www-form-urlencoded; charset=utf-8"
     }
 
-    let settings = getFromCacheObject("pixivSettings")
-    if (settings.IPDirect) {
-        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
-        headers["Host"] = "www.pixiv.net"
-    }
     try {
         java.log(`getPostBody(${url}, ${body}, ${headers})`)
         // java.log(`getPostBody(${url}, ${body}, ${JSON.stringify(headers)})`)
@@ -71,7 +66,7 @@ function getPostBody(url, body, headers) {
         // else if (e.includes("403")) sleepToast(`📤 getPostBody\n\n⚠️ 缺少 cookie 或 cookie 过期`, 1)
         else if (e.includes("404")) sleepToast(`📤 getPostBody\n\n⚠️ 404 缺少 pixivCsrfToken `, 1)
         else if (e.includes("422")) sleepToast(`📤 getPostBody\n\n⚠️ 请求信息有误`, 1)
-        return {error: true, errMsg:e}
+        return {error: true, errMsg: e}
     }
 }
 

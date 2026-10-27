@@ -27,7 +27,6 @@ if (BOOK) {
 } else {
     settingBase = [
         {"🔀 切换表情": "editSettings('SWITCH_EMOJI')" },
-        // {"✈️ 🚫 直连模式": "editSettings('IPDirect')" },
         {"⏩ 🚫 快速模式": "editSettings('FAST')" },
         {"🐞 🚫 调试模式": "editSettings('DEBUG')" },
 
@@ -125,7 +124,6 @@ let setting = [
     // {"📚 🚫 整合系列": "editSettings('COMBINE_NOVELS')" },
     // {"🚫 ⏩ 快速模式": "editSettings('FAST')" },
     // {"🚫 🐞 调试模式": "editSettings('DEBUG')" },
-    // {"🚫 ✈️ 直连模式": "editSettings('IPDirect')" },
 
     // {"⏳ 图片解析": "editSettings('PIC_SOURCE')" },
     // {"🔗 图片链接": "editSettings('PIC_LINK')" },
