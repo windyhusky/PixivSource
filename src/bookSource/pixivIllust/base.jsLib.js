@@ -165,29 +165,6 @@ function startBrowser(url, title) {
     java.startBrowser(`${url}, ${JSON.stringify({headers: headers})}`, title)
 }
 
-// 直连功能参考自 洛娅橙的阅读仓库
-// https://github.com/Luoyacheng/yuedu
-// 其直连功能参考自 PixEz Flutter
-// https://github.com/Notsfsssf/pixez-flutter
-function urlIP(url) {
-    const {java, cache} = this
-    let settings = this.getFromCacheObject("pixivIllustSettings")
-    if (!settings) settings = this.setDefaultSettings()
-    if (settings.IPDirect) {
-        url = url.replace("http://", "https://").replace("www.pixiv.net", "210.140.139.155")
-        let headers = {
-            "User-Agent": "Mozilla/5.0 (Linux; Android 14)",
-            "X-Requested-With": "XMLHttpRequest",
-            "Host": "www.pixiv.net",
-            "Referer": "https://www.pixiv.net/",
-            "X-csrf-token": this.getFromCache("pixivCsrfToken") || "",
-            "Cookie": this.getFromCache("pixivCookie") || ""
-        }
-        return `${url}, ${JSON.stringify({headers: headers})}`
-    }
-    return url
-}
-
 function urlIllustUrl(illustId) {
     return `https://www.pixiv.net/artworks/${illustId}`
 }
