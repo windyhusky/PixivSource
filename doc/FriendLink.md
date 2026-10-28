@@ -43,8 +43,8 @@ friendGroups:
     anchor: Resources
     items: 
       - name: 明月书阁
-        link: https://skybook.pages.dev
-        icon: https://skybook.qzz.io/img/favicon.ico
+        link: https://skybook1.top
+        icon: https://skybook1.top/favicon-192x192.png
         desc: 开源阅读相关资源分享站
 
       - name: 墨殇
