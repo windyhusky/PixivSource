@@ -53,6 +53,11 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 <br>
 
 ::: timeline 2026-10-24
+> [!TIP]
+> **Pixiv 书源 移除直连功能**
+:::
+
+::: timeline 2026-10-24
 > [!IMPORTANT]
 > **Linpx `.JS` 书源，主要功能完成移植**
 :::
@@ -63,7 +68,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2026-09-22
-**开始移植 Linpx `.JS` 书源**
+> [!INFO]
+> **开始移植 Linpx `.JS` 书源**
 :::
 
 ::: timeline 2026-07-03
@@ -84,7 +90,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2026-06-15
-添加书架自动收藏小说、追更系列小说
+> [!TIP]
+> 添加书架自动收藏小说、追更系列小说
 :::
 
 ::: timeline 2026-06-04
@@ -106,11 +113,13 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2026-05-14
-备份数据、恢复数据
+> [!TIP]
+> 备份数据、恢复数据
 :::
 
 ::: timeline 2026-04-02
-互动模式，支持直连
+> [!TIP]
+> 互动模式，支持直连
 :::
 
 ::: timeline 2026-03-25
@@ -130,7 +139,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2026-02-23
-模糊搜索作者
+> [!TIP]
+> 模糊搜索作者
 :::
 
 ::: timeline 2026-02-16
@@ -139,7 +149,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2026-02-01
-自动拆分超长评论
+> [!TIP]
+> 自动拆分超长评论
 :::
 
 
@@ -185,7 +196,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2025-02-24
-内置更新功能
+> [!TIP]
+> 内置更新功能
 :::
 
 ::: timeline 2025-01-30
@@ -193,7 +205,8 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 :::
 
 ::: timeline 2025-01-27
-查看他人收藏
+> [!TIP]
+> 查看他人收藏
 :::
 
 

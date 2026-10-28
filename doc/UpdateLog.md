@@ -67,12 +67,20 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 
 ## 📚 书源兼容性 {#Compatibility}
 `.JSON` / `.JS` 书源同步更新，**请优先使用最新版软件**
-
 - **JSON 书源**：阅读及其分支、[轻悦时光](https://www.qread.xyz)
 - **JS 书源**：[阅读 T](https://github.com/skybbk1001/legadoT/releases)、[阅读 Beta](https://github.com/legadoteam/legado/releases)、[阅读 NG](https://github.com/joestar817/legado_NG/releases)
 
 
 ## 📆 2026下半年 {#2026H2}
+
+
+### 📚 更新 289 {#289}
+- 🅿️ Pixiv 书源、备用、漫画：
+  - ✈️ 移除直连模式
+- 🦊 Linpx & FN 书源：
+  - ⏳ 图片解析：移除 Pixiv 直连
+- 🌐 Pixiv 书源网站：
+  - ✈️ 移除直连模式介绍
 
 
 ### 📚 更新 288 {#288}
