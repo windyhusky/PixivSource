@@ -34,7 +34,7 @@ hero:
 
   image:
     src: "/PixivSource.png"
-    alt: Pixiv Source Logo
+    alt: PixivSource Logo
   actions:
     - theme: brand
       text: ⬇️ 下载 阅读 Sigma
@@ -82,19 +82,29 @@ hero:
       
 
 features:
-  - icon: 📖
-    title: 全面支持阅读功能
-    details: 🔍搜索小说 ⭐️发现小说<br>🔗添加网址 🌐订阅源
-    link: AddNovels
+#  - icon: 📖
+#    title: 添加小说
+#    details: 🔍搜索小说 ⭐️发现小说<br>🔗添加网址 🌐订阅源
+#    link: AddNovels
+    
+  - icon: 🔍
+    title: 搜索小说
+    details: 📄 单篇标题 📚 系列标题<br>👤 作者名称 📌 标签名称
+    link: Pixiv#SearchNovel
+    
+  - icon: 📡
+    title: 发现小说
+    details: ⭐️ 关注作者 📃 追更列表<br>💯 推荐作品 ❤️ 收藏作品
+    link: Pixiv#DiscoverNovel
     
   - icon: 📚
-    title: 阅读体验全面升级
-    details: 搜索：📄单篇📚系列👤作者<br>查看：🖼插图✅投票💬评论
-    link: Pixiv#QuickJump
+    title: 小说内容
+    details: 📖 小说简介 🖼 小说插图<br>✅ 问卷调查 💬 小说评论
+    link: Pixiv#BookSourceSettings
     
-  - icon: ⭐️
-    title: 互动功能一应俱全
-    details: ❤️收藏📃追更⭐️关注<br>✅投票💬评论🚫屏蔽
+  - icon: 🗣️
+    title: 互动功能
+    details: ❤️ 收藏小说 📃 追更系列<br>⭐️ 关注作者 💬 发送评论
     link: Pixiv#InteractiveFunction
 
 ---

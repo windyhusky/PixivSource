@@ -33,7 +33,7 @@ hero:
 
   image:
     src: "/PixivSource.png"
-    alt: Pixiv Source Logo
+    alt: PixivSource Logo
   actions:
     - theme: brand
       text: ⬇️ Download Legado Sigma
@@ -77,25 +77,30 @@ hero:
       
 
 features:
-  - icon: 📖
-    title: Full Legado Features
-    details: 🔍 Search Novels<br> ⭐️ Discover Novels<br>🔗 Add Via URLs<br> 🌐 RssSource
-    link: /en/AddNovels
+#  - icon: 📖
+#    title: Full Legado Features
+#    details: 🔍 Search Novels<br> ⭐️ Discover Novels<br>🔗 Add Via URLs<br> 🌐 RssSource
+#    link: /en/AddNovels
     
   - icon: 🔍
     title: Smart Search
-    details: 📄 Single Title<br> 📚 Series Title<br> 👤 Author Name<br> 📌 Hashtag Name
-    link: Pixiv#QuickJump
+    details: 📄 Single title<br> 📚 Series title<br> 👤 Author name<br> 📌 Hashtag name
+    link: /en/Pixiv#QuickJump
     
+  - icon: 📡
+    title: Discover Novels
+    details: ⭐️ Following author<br> 📃 Watchlist<br>💯 Recommendation<br> ❤️ Bookmarks
+    link: /en/Pixiv#DiscoverNovel
+
   - icon: 📚
     title: Premium Layout
-    details: 🖼 Inline illustrations<br> ✅ Live story polls<br> 💬 Read user comments
-#    link: Pixiv#InteractiveFunction
+    details: 📖 Novel caption<br> 🖼 Inline illustrations<br> ✅ Poll information<br> 💬 User comments
+#    link: 
     
-  - icon: ⭐️
+  - icon: 🗣️
     title: Full Control Toolkit
-    details: ❤️ Add bookmarks<br> 📃 Track new chapters<br>⭐️ Follow authors<br>🚫 Mute tags & authors
-#    link: BetterExperience#IPDirect
+    details: ❤️ Add bookmarks<br> 📃 Add to Watchlist<br>⭐️ Follow authors<br> 💬 Send comments
+#    link: 
 ---
 <HomeUnderline />
 <FriendLinkFooterHome />

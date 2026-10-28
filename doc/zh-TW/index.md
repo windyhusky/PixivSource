@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Pixiv 書源 - 最好的 Pixiv 第三方小說閱讀器
-description: 用開源閱讀 + Pixiv 書源，像看網文一樣閱讀 Pixiv 小說。支援搜尋、收藏、追更、評論、直連評論等功能。
+description: 用開源閱讀 + Pixiv 書源，像看網文一樣閱讀 Pixiv 小說。支援搜尋、收藏、追更、評論等功能。
 
 head:
   - - meta
@@ -12,7 +12,7 @@ head:
       content: Pixiv 書源 - 最好的 Pixiv 第三方小說閱讀器
   - - meta
     - property: og:description
-      content: 用開源閱讀 + Pixiv 書源，像看網文一樣閱讀 Pixiv 小說。支援搜尋、收藏、追更、評論、直連、評論等功能。
+      content: 用開源閱讀 + Pixiv 書源，像看網文一樣閱讀 Pixiv 小說。支援搜尋、收藏、追更、評論等功能。
   - - meta
     - property: og:image
       content: https://pixivsource.pages.dev/favicon-180x180.png
@@ -34,7 +34,7 @@ hero:
 
   image:
     src: "/zh-TW/PixivSource.png"
-    alt: Pixiv Source Logo
+    alt: PixivSource Logo
   actions:
     - theme: brand
       text: ⬇️ 下載 閱讀 Sigma
@@ -61,7 +61,7 @@ hero:
       link: "legado://import/importonline?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/btsrk.json"
       
     - theme: alt
-      text: 📘 書源 功能手冊
+      text: 📘 Pixiv 書源 功能手冊
       link: /zh-TW/Pixiv
       
     - theme: alt
@@ -74,24 +74,31 @@ hero:
       
 
 features:
-  - icon: 📖
-    title: 全面支援閱讀功能
-    details: 🔍搜尋小說 ⭐️發現小說<br>🔗新增網址 🌐訂閱源
-    link: AddNovels
+#  - icon: 📖
+#    title: 新增小說
+#    details: 🔍搜尋小說 ⭐️發現小說<br>🔗新增網址 🌐訂閱源
+#    link: AddNovels
+    
+  - icon: 🔍
+    title: 搜尋小說
+    details: 📄 單篇標題 📚 系列標題<br>👤 作者名稱 📌 標籤名稱
+    link: /zh-TW/Pixiv#SearchNovel
+    
+  - icon: 📡
+    title: 發現小說
+    details: ⭐️ 關注作者 📃 追更列表<br>💯 推薦作品 ❤️ 收藏作品
+    link: /zh-TW/Pixiv#DiscoverNovel
     
   - icon: 📚
-    title: 閱讀體驗全面升級
-    details: 搜尋：📄單篇📚系列👤作者<br>檢視：🖼插圖✅投票💬評論
-    link: /zh-TW/Pixiv#QuickJump
+    title: 小說內容
+    details: 📖 小說簡介 🖼 小說插圖<br>✅ 問卷調查 💬 小說評論
+    link: /zh-TW/Pixiv#BookSourceSettings
     
-  - icon: ⭐️
-    title: 互動功能一應俱全
-    details: ❤️收藏📃追更⭐️關注<br>✅投票💬評論🚫遮蔽
+  - icon: 🗣️
+    title: 互動功能
+    details: ❤️ 收藏小說 📃 追更系列<br>⭐️ 關注作者 💬 傳送評論
     link: /zh-TW/Pixiv#InteractiveFunction
 
-  - icon: 🆓
-    title: 完全免費全無廣告
-    details: 🆓 免費使用<br>🈚️ 全無廣告
 ---
 <HomeUnderline />
 <FriendLinkFooterHome />
