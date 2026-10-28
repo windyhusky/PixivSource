@@ -68,7 +68,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 | 显示描述　　 | ✅ 开启 | `SHOW_CAPTIONS`       | 正文 |
 | 显示评论　　 | ✅ 开启 | `SHOW_COMMENTS`       | 正文 | 
 | 　　　　　　 |  |  |   |
-| 直连模式　　 | ⭕ 关闭 | `IPDirect`            | 全局 |
 | 快速模式　　 | ⭕ 关闭 | `FAST`                | 全局 |
 | 调试模式　　 | ⭕ 关闭 | `DEBUG`               | 全局 |
 
@@ -78,10 +77,6 @@ const pagePath = computed(() => page.value.relativePath.replace(/\.md$/, ""));
 - 隐藏收藏、隐藏追更：
 	- 显示/隐藏 收藏小说：搜索、发现 中 显示/隐藏 已收藏单篇小说
 	- 显示/隐藏 追更小说：搜索、发现 中 显示/隐藏 已追更系列小说
-
-- 直连模式：
-	- 原始链接 开启之后，无法直连
-	- 开启直连模式时，默认关闭上述功能
 
 - 快速模式：
 	- 繁简通搜、更新时间、原始链接、显示评论，对搜索速度稍有影响

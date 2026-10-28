@@ -35,38 +35,3 @@
 ![img](./pic/PixivSettingsView.png)
 </details>
 </div>
-
-
-<div v-if="!pagePath.includes('zh-TW')">
-
-### ✈️ 直连模式（可选） {#IPDirect}
-> [!TIP]
-> **如果你可以访问 Pixiv，或者你使用的是【轻悦时光】，都可以略过这一步**
-
-<details><summary><strong> ✈️ 直连模式（✅ 仅限 开源阅读） </strong></summary>
-
-> [!NOTE]
-> **成功【登录账号】后，可在登录界面开启【直连模式】。开启后，无需代理即可阅读小说**
->
-> **✈️ 直连模式 => 我的 - 书源管理 - Pixiv 小说 - 登录**
-
-![img](./pic/PixivLoginUIBase.png)
-
-> [!TIP]
-> 
-> **切换直连模式后，搜索、发现会自动启用直连链接**
-
-![img](./pic/PixivIPDirect.png)
-
-> [!IMPORTANT]
-> **🚫 直连模式下，以下功能不可用：**
->  - **发现：查看书签**
->  - **目录：显示原始链接**
-
-> [!NOTE]
->
-> **直连功能参考自 [洛娅橙的阅读仓库](https://github.com/Luoyacheng/yuedu)，**
-> **其直连功能参考自 [PixEz Flutter](https://github.com/Notsfsssf/pixez-flutter)**
-
-</details>
-</div>

@@ -1,7 +1,7 @@
 ---
 layout: home
 title: Pixiv 书源 - 最好的 Pixiv 第三方小说阅读器
-description: 用开源阅读 + Pixiv 书源，像看网文一样阅读 Pixiv 小说。支持搜索、收藏、追更、评论、直连评论等功能。
+description: 用开源阅读 + Pixiv 书源，像看网文一样阅读 Pixiv 小说。支持搜索、收藏、追更、评论等功能。
 
 head:
   - - meta
@@ -12,7 +12,7 @@ head:
       content: Pixiv 书源 - 最好的 Pixiv 第三方小说阅读器
   - - meta
     - property: og:description
-      content: 用开源阅读 + Pixiv 书源，像看网文一样阅读 Pixiv 小说。支持搜索、收藏、追更、评论、直连、评论等功能。
+      content: 用开源阅读 + Pixiv 书源，像看网文一样阅读 Pixiv 小说。支持搜索、收藏、追更、评论等功能。
   - - meta
     - property: og:image
       content: https://pixivsource.pages.dev/favicon-180x180.png
@@ -96,11 +96,7 @@ features:
     title: 互动功能一应俱全
     details: ❤️收藏📃追更⭐️关注<br>✅投票💬评论🚫屏蔽
     link: Pixiv#InteractiveFunction
-    
-  - icon: ✈️
-    title: 直连功能无需代理
-    details: 🅿️ 登录账号，开启直连<br>✈️ 无需代理，直接访问
-    link: BetterExperience#IPDirect
+
 ---
 <HomeUnderline />
 <FriendLinkFooterHome />

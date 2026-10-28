@@ -1,7 +1,7 @@
 ---
 layout: doc
 title: Pixiv 书源全功能使用手册
-description: 深度解析 Pixiv 书源用法：高级搜索、发现设置、收藏、追更、评论、屏蔽作者、屏蔽标签、自定义发现，直连模式等。
+description: 深度解析 Pixiv 书源用法：高级搜索、发现设置、收藏、追更、评论、屏蔽作者、屏蔽标签、自定义发现等。
 
 #sidebar: false
 #aside: false
@@ -15,13 +15,13 @@ description: 深度解析 Pixiv 书源用法：高级搜索、发现设置、收
 head:
   - - meta
     - name: keywords
-      content: Pixiv 高级搜索, Pixiv 书源封号预防, Pixiv 直连模式, Pixiv 屏蔽标签, Pixiv 屏蔽作者, Pixiv 书源搜索语法, Pixiv 直连模式, Pixiv 收藏追更, Pixiv 屏蔽标签, Pixiv 书源发现设置
+      content: Pixiv 高级搜索, Pixiv 书源封号预防, Pixiv 屏蔽标签, Pixiv 屏蔽作者, Pixiv 书源搜索语法, Pixiv 收藏追更, Pixiv 屏蔽标签, Pixiv 书源发现设置
   - - meta
     - property: og:title
       content: Pixiv 书源全功能使用手册
   - - meta
     - property: og:description
-      content: 深度解析 Pixiv 书源用法：高级搜索、发现设置、收藏、追更、评论、屏蔽作者、屏蔽标签、自定义发现，直连模式等。
+      content: 深度解析 Pixiv 书源用法：高级搜索、发现设置、收藏、追更、评论、屏蔽作者、屏蔽标签、自定义发现等。
   - - meta
     - property: og:image
       content: /pic/BookSourcePixiv.png
