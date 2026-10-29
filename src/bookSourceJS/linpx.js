@@ -9,7 +9,7 @@ const config = {
     bookSourceName: "🦊 Linpx JS",
     bookSourceType: 0,
     bookSourceGroup: "🔞 Pixiv,🐲 Furry",
-    bookSourceComment: `
+    bookSourceComment: (() => { return `
 🦊 Linpx JS 书源（单篇）（更新📆：2026/10/29）
 
 书源版本：288
@@ -28,7 +28,8 @@ const config = {
 
 ⚙️ 书源设置：
 设置：打开小说 - 菜单 - 登录 - 点击下方按钮
-```.trim(),
+`.trim()
+    })(),
     header: {"Referer":"https://linpx.ink/"},
     exploreUrl: (() => {
         const li = [
