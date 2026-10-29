@@ -10,10 +10,10 @@ const config = {
     bookSourceType: 0,
     bookSourceGroup: "🔞 Pixiv,🐲 Furry",
     bookSourceComment: (() => { return `
-🦊 Linpx JS 书源（单篇）（更新📆：2026/10/29）
+🦊 Linpx JS 书源（单篇）（更新📆：2026/11/01）
 
-书源版本：288
-使用说明：📌阅读 Sigma 3.26.0129 版本可用
+书源版本：290
+使用说明：📌阅读 T 3.26.0818 版本可用
 可用功能：✅搜索✅发现✅添加网址✅订阅源
 搜索小说：✅单篇❌系列✅作者✅标签
 发现小说：✅推荐✅最新✅更新书源

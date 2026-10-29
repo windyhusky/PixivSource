@@ -23,7 +23,26 @@ const config = {
     bookSourceName: "🐯 兽人小说 JS",
     bookSourceType: 0, // 0 文本，1 音频，2 图片，3 下载
     bookSourceGroup: "🔞 Pixiv,🐲 Furry",
-    bookSourceComment: "",
+    bookSourceComment: (() => { return `
+🐯 兽人控小说站 JS书源（更新📆：2026/11/01）
+
+书源版本：290
+使用说明：📌阅读 T 3.26.0818 版本可用
+可用功能：✅搜索✅发现✅添加网址✅订阅源
+搜索小说：✅单篇✅系列✅作者✅标签
+发现小说：✅热门小说✅最新小说✅随便来点
+添加网址：✅兽人控小说站链接
+订阅用法：点击订阅源打开小说/系列小说，点击【加入书架】按钮，添加小说到书架
+
+书源发布：Pixiv 书源频道 https://t.me/PixivSource
+兽人阅读频道 https://t.me/FurryReading
+项目地址：https://github.com/DowneyRem/PixivSource
+使用教程：https://pixivsource.pages.dev/FurryNovel
+
+⚙️ 书源设置：
+书源管理 - 编辑书源 - 基本 - 变量说明 - 修改并保存
+`.trim()
+    })(),
     // 发现分类，由 explore 抓取。数组每项 {title, url}，url 原样传入 explore；
     // 省略 url 的项渲染为分区标题。也接受“名称::url”每行一个的字符串形态。
     header: {"Referer":"https://furrynovel.com/"},
