@@ -49,10 +49,9 @@ repos:
 > has more details and better formatting.**
 
 
-> [!NOTE]
-> Language Notice
+> [!NOTE] Language Notice
 > 
-> Detailed changelogs are available in Chinese only. 
+> **Detailed changelogs are available in Chinese only.** 
 > 
 > However, all the booksources are universally compatible and fully functional for everyone.
 

@@ -29,7 +29,7 @@ head:
 hero:
   name: Legado + Pixiv Source
   text: Best Pixiv Novel App
-  tagline: <br>Say goodbye to clunky pixiv app. <br>It's time for a ultimate reading experience.
+  tagline: <br>Say goodbye to clunky Pixiv app. <br>It's time for the ultimate reading experience.
 
   image:
     src: "/PixivSource.png"
@@ -84,22 +84,22 @@ features:
     
   - icon: 🔍
     title: Smart Search
-    details: 📄 Single title<br> 📚 Series title<br> 👤 Author name<br> 📌 Hashtag name
+    details: 📄 Single Title<br> 📚 Series Title<br> 👤 Author Name<br> 📌 Hashtag Name
 #    link: /en/Pixiv#QuickJump
     
   - icon: 📡
-    title: Discover Novels
-    details: ⭐️ Following author<br> 📃 Watchlist<br>💯 Recommendation<br> ❤️ Bookmarks
+    title: Discover More
+    details: ⭐️ Following Author<br> 📃 Series Watchlist<br>💯 Recommendation<br> ❤️ Bookmarks
 #    link: /en/Pixiv#DiscoverNovel
 
   - icon: 📚
     title: Premium Layout
-    details: 📖 Novel caption<br> 🖼 Inline illustrations<br> ✅ Poll information<br> 💬 User comments
+    details: 📖 Novel Caption<br> 🖼 In-text Illustrations<br> ✅ Poll Information<br> 💬 User Comments
 #    link: 
     
   - icon: 🗣️
     title: Full Control Toolkit
-    details: ❤️ Add bookmarks<br> 📃 Add to Watchlist<br>⭐️ Follow authors<br> 💬 Send comments
+    details: ❤️ Add Bookmarks<br> 📃 Add to Watchlist<br>⭐️ Follow Authors<br> 💬 Send Comments
 #    link: 
 ---
 <HomeUnderline />
