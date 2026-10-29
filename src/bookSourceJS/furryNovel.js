@@ -281,11 +281,56 @@ function getFromCacheObject(objectName) {
     return JSON.parse(object)
 }
 
-function getAjaxJson(url) {
-    return JSON.parse(java.ajax(url))
+function getAjaxJson(url, requestUpdate) {
+    return cacheGetAndSet(url, () => {
+        return JSON.parse(java.ajax(url))
+    }, requestUpdate)
+}
+function getAjaxAllJson(urls, requestUpdate) {
+    let batchKey = JSON.stringify(urls)
+    return cacheGetAndSet(batchKey, () => {
+        let results = []
+        let now = new Date().getTime()
+        let responses = java.ajaxAll(urls)
+        for (let i in urls) {
+            let data = JSON.parse(responses[i].body())
+            data = Object.assign({timestamp: now}, data)
+            results.push(data)
+            putInCacheObject(urls[i], data, cacheSaveSeconds)
+        }
+        return results
+    }, requestUpdate)
+}
+function getWebviewJson(url) {
+    return cacheGetAndSet(url, () => {
+        let html = java.webView(null, url, null)
+        return JSON.parse((html.match(new RegExp(">\\[{.*?}]<"))[0].replace(">", "").replace("<", "")))
+    })
+}
+function getWebViewUA() {
+    let userAgent = getFromCache("userAgent")
+    if (userAgent) return String(userAgent)
+
+    userAgent = String(java.getWebViewUA())
+    // java.log(`userAgent=${userAgent}`)
+    putInCache("userAgent", userAgent, cacheSaveSeconds/4)
+    return String(userAgent)
 }
 
-// URL
+function startBrowser(url, title) {
+    if (!title) title = url
+    let msg = "", headers = {}
+    headers["User-Agent"] = getWebViewUA()
+    headers["Referer"] = "https://furrynovel.com/zh/"
+
+    if (url.includes("github.com") || url.includes("github.io")) {
+        msg += "\n\n即将打开 Github\n请确认已开启代理/梯子/VPN等"
+    }
+    sleepToast(msg, 0.01)
+    java.startBrowser(`${url}, ${JSON.stringify({headers: headers})}`, title)
+}
+
+// JSLib url
 function urlNovelUrl(novelId) {
     return `https://furrynovel.com/zh/novel/${novelId}`
 }
