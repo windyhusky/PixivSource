@@ -19,8 +19,8 @@
  * enabledCookieJar 和 jsLib。enabled、customOrder 等用户态字段由应用维护。
  */
 const config = {
-    bookSourceUrl: "https://furrynovel.com",
-    bookSourceName: "🐯 兽人小说站",
+    bookSourceUrl: "https://furrynovel.com/zh",
+    bookSourceName: "🐯 兽人小说 JS",
     bookSourceType: 0, // 0 文本，1 音频，2 图片，3 下载
     bookSourceGroup: "🔞 Pixiv,🐲 Furry",
     bookSourceComment: "",
