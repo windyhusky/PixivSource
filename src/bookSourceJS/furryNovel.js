@@ -525,6 +525,38 @@ function urlUserUrl(name) {
     return `https://furrynovel.com/zh/search?keyword=${name}`
 }
 
+function urlPxImgUrlLinpx(pxImgUrl) {
+    if (!pxImgUrl.trim()) return ""
+    let url = `https://pximg.linpx.ink/?url=${pxImgUrl}&w=800`
+    let headers = {"Referer": "https://linpx.ink/"}
+    return `${url}, ${JSON.stringify({headers: headers})}`
+}
+
+function urlIllustUrl(illustId) {
+    return `https://www.pixiv.net/artworks/${illustId}`
+}
+function urlIllustDetailed(illustId) {
+    return `https://www.pixiv.net/ajax/illust/${illustId}?lang=zh`
+}
+
+function urlIllustOriginal(illustId) {
+    let targetUrl = `https://pixiv.shojo.cn/${illustId}`
+    let headers = {
+        "User-Agent": getWebViewUA(),
+        "Referer": "https://pixiv.shojo.cn/",
+    }
+    try {
+        let resHeaders = java.head(targetUrl, headers).headers()
+        let originalUrl = resHeaders["Location"] || resHeaders["location"]
+        // originalUrl = originalUrl.replace("proxy.pixiv.shojo.cn", "i.pximg.net")
+        return originalUrl ? originalUrl : ""
+    } catch (e) {
+        // java.log("请求失败: " + e)
+        return ""
+    }
+}
+
+
 
 // JSLib date
 function addZero(num) {
