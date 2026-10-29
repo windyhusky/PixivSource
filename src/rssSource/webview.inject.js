@@ -60,18 +60,16 @@ if (!document.getElementById('open-yuedu-bookshelf')) {
     };
 
     // 「加入书架」按钮 - 右下
-    if (!isFurryNovel) {
-        const btn2 = document.createElement('button');
-        btn2.id = 'open-yuedu-bookshelf';
-        btn2.className = 'yuedu-float-btn';
-        btn2.style.backgroundColor = mainColor;
-        btn2.style.right = '10%';
-        btn2.textContent = '加入书架';
-        document.body.appendChild(btn2);
+    const btn2 = document.createElement('button');
+    btn2.id = 'open-yuedu-bookshelf';
+    btn2.className = 'yuedu-float-btn';
+    btn2.style.backgroundColor = mainColor;
+    btn2.style.right = '10%';
+    btn2.textContent = '加入书架';
+    document.body.appendChild(btn2);
 
-        btn2.onclick = () => {
-            window.open(`legado://import/addToBookshelf?src=${encodeURIComponent(window.location.href)}`, '_blank');
-        };
+    btn2.onclick = () => {
+        window.open(`legado://import/addToBookshelf?src=${encodeURIComponent(window.location.href)}`, '_blank');
     }
 
     // Hover 颜色
