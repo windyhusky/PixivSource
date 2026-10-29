@@ -120,12 +120,20 @@ function urlNovelChapter(novelId, chapterId) {
  *   也可将正文 HTML 传入 java.htmlFormat(html, chapter.url) 转换为文本并保留插图
  */
 function getContent(chapter, book) {
-    let novelId = chapter.url.match(new RegExp("\\d+"))[0]
-    let resp = getAjaxJson(urlNovelDetailed(novelId))
+    let bookId = book.bookUrl.match(new RegExp("\\d+"))[0]
+    let chapterId = chapter.url.match(RegExp(/\/(\d+)\/chapter\/(\d+)/))[2]
+    let resp = getAjaxJson(urlNovelChapterDetail(bookId, chapterId)).data
+    let content = resp.content
 
-    const html = java.ajax(chapter.url)
-    // return java.htmlFormat(Jsoup.parse(html).select("div.content").html(), chapter.url)
-    return html
+    // 替换 Pixiv 标记符
+    // content = replaceUploadedImage(resp, content)
+    // content = replacePixivImage(content)
+    content = replaceNewPage(content)
+    content = replaceChapter(content)
+    content = replaceJumpPage(content)
+    content = replaceJumpUrl(content)
+    content = replaceRb(content)
+    return content
 }
 
 // 获取 [uploadedimage:] 的图片链接
