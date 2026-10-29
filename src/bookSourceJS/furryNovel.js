@@ -141,6 +141,79 @@ function getReviewDetail(chapter, book, paraIndex, paraData, page) {
     return { items, nextPageUrl: null }
 }
 
+
+// Handler
+function handNovels(novels) {
+    novels.forEach((novel) => {
+        // novel.id = novel.id
+        novel.title = novel.name
+        // novel.tags = novel.tags
+        novel.userName = novel.author.name
+        // novel.userId = novel.author.id
+        novel.textCount = null
+        if (novel.latest_chapters === undefined) {
+            novel.latestChapter = null
+            novel.detailedUrl = urlNovelDetail(novel.id)
+        } else {
+            novel.latestChapter = novel.latest_chapters[0].name
+            novel.detailedUrl = urlNovelUrl(novel.id)
+        }
+        novel.description = novel.desc
+        novel.coverUrl = novel.cover
+        novel.sourceUrl = urlSourceUrl(novel.source, novel.ext_data.oneshot, novel.source_id)
+
+        novel.createDate = novel.created_at
+        novel.updateDate = novel.updated_at
+        novel.syncDate = novel.fetched_at
+        // novel.status = novel.status
+        // if (novel.status !== "publish") {  // suspend
+        //     java.log(urlNovelUrl(novel.id))
+        //     java.log(novel.sourceUrl)
+        // }
+    })
+    return novels
+}
+
+function formatNovels(novels) {
+    novels.forEach((novel) => {
+        novel.title = novel.title.trim()
+        if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
+        novel.tags2 = []
+        for (let i in novel.tags) {
+            let tag = novel.tags[i]
+            if (tag.includes("/")) {
+                let tags = tag.split("/")
+                novel.tags2 = novel.tags2.concat(tags)
+            } else {
+                novel.tags2.push(tag)
+            }
+        }
+        novel.tags = Array.from(new Set(novel.tags2))
+        novel.tags = novel.tags.map((item) => `#${item}`)
+        novel.tags = novel.tags.join(",")
+
+        novel.createDate = dateFormat(novel.createDate)
+        novel.updateDate = dateFormat(novel.updateDate)
+        novel.syncDate = dateFormat(novel.syncDate)
+        // if (util.settings.MORE_INFORMATION) {
+        novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n同步：${novel.syncDate}\n简介：${novel.description}`
+        // } else {
+        //     novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}\n同步时间：${novel.syncDate}`
+        // }
+
+        novel.name = novel.title
+        novel.bookUrl = novel.detailedUrl
+        novel.author = novel.userName
+        novel.kind = novel.tags
+        // novel.coverUrl = novel.coverUrl
+        novel.intro = novel.description
+        novel.wordCount = novel.textCount
+        novel.latestChapterTitle = novel.latestChapter
+        novel.tocUrl = novel.catalogUrl
+    })
+    return novels
+}
+
 function getAjaxJson(url) {
     return JSON.parse(java.ajax(url))
 }
@@ -245,76 +318,4 @@ function updateSourceLink(){
             java.openUrl(`legado://import/bookSource?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json`)
         }
     }
-}
-
-// Handler
-function handNovels(novels) {
-    novels.forEach((novel) => {
-        // novel.id = novel.id
-        novel.title = novel.name
-        // novel.tags = novel.tags
-        novel.userName = novel.author.name
-        // novel.userId = novel.author.id
-        novel.textCount = null
-        if (novel.latest_chapters === undefined) {
-            novel.latestChapter = null
-            novel.detailedUrl = urlNovelDetail(novel.id)
-        } else {
-            novel.latestChapter = novel.latest_chapters[0].name
-            novel.detailedUrl = urlNovelUrl(novel.id)
-        }
-        novel.description = novel.desc
-        novel.coverUrl = novel.cover
-        novel.sourceUrl = urlSourceUrl(novel.source, novel.ext_data.oneshot, novel.source_id)
-
-        novel.createDate = novel.created_at
-        novel.updateDate = novel.updated_at
-        novel.syncDate = novel.fetched_at
-        // novel.status = novel.status
-        // if (novel.status !== "publish") {  // suspend
-        //     java.log(urlNovelUrl(novel.id))
-        //     java.log(novel.sourceUrl)
-        // }
-    })
-    return novels
-}
-
-function formatNovels(novels) {
-    novels.forEach((novel) => {
-        novel.title = novel.title.trim()
-        if (!novel.userName.startsWith("@")) novel.userName = `@${novel.userName}`
-        novel.tags2 = []
-        for (let i in novel.tags) {
-            let tag = novel.tags[i]
-            if (tag.includes("/")) {
-                let tags = tag.split("/")
-                novel.tags2 = novel.tags2.concat(tags)
-            } else {
-                novel.tags2.push(tag)
-            }
-        }
-        novel.tags = Array.from(new Set(novel.tags2))
-        novel.tags = novel.tags.map((item) => `#${item}`)
-        novel.tags = novel.tags.join(",")
-
-        novel.createDate = dateFormat(novel.createDate)
-        novel.updateDate = dateFormat(novel.updateDate)
-        novel.syncDate = dateFormat(novel.syncDate)
-        // if (util.settings.MORE_INFORMATION) {
-            novel.description = `\n书名：${novel.title}\n作者：${novel.userName}\n标签：${novel.tags}\n上传：${novel.createDate}\n更新：${novel.updateDate}\n同步：${novel.syncDate}\n简介：${novel.description}`
-        // } else {
-        //     novel.description = `\n${novel.description}\n上传时间：${novel.createDate}\n更新时间：${novel.updateDate}\n同步时间：${novel.syncDate}`
-        // }
-
-        novel.name = novel.title
-        novel.bookUrl = novel.detailedUrl
-        novel.author = novel.userName
-        novel.kind = novel.tags
-        // novel.coverUrl = novel.coverUrl
-        novel.intro = novel.description
-        novel.wordCount = novel.textCount
-        novel.latestChapterTitle = novel.latestChapter
-        novel.tocUrl = novel.catalogUrl
-    })
-    return novels
 }
