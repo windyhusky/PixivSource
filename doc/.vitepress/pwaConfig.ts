@@ -7,7 +7,7 @@ export const getPwaConfig = (base: string) => ({
     manifest: {
         name: 'Pixiv 书源',
         short_name: 'PixivSource',
-        description: '适配 开源阅读 Legado 3.0 的 Pixiv 书源',
+        description: '开源阅读3.0 的 Pixiv 书源 教程网站',
         theme_color: '#009ff7',
         background_color: '#ffffff',
         display: 'standalone' as const,
