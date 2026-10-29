@@ -143,6 +143,7 @@ const config = {
 
 const Jsoup = org.jsoup.Jsoup
 const isJSBookSource = true
+const bookSourceName = "linpx"
 
 // 存储已出现的 seriesId（跨页去重）
 const seriesSet = {
@@ -1229,9 +1230,9 @@ function updateSource() {
 function updateSourceLink(){
     if (isJSBookSource) {
         try {
-            java.openUrl(`legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/src/bookSourceJS/linpx.js`)
+            java.openUrl(`legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/src/bookSourceJS/${bookSourceName}.js`)
         } catch (e) {
-            java.openUrl(`legado://import/bookSource?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/src/bookSourceJS/linpx.js`)
+            java.openUrl(`legado://import/bookSource?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/src/bookSourceJS/${bookSourceName}.js`)
         }
     } else {
         try {

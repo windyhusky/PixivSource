@@ -39,6 +39,8 @@ const config = {
 }
 
 const Jsoup = org.jsoup.Jsoup
+const isJSBookSource = true
+const bookSourceName = "furryNovel"
 
 /**
  * 搜索书籍。
@@ -223,6 +225,26 @@ function sleepToast(text, seconds) {
     java.longToast(text)
     if (seconds === undefined) {seconds = 0.01}
     sleep(seconds)
+}
+
+function updateSource() {
+    return updateSourceLink()
+}
+
+function updateSourceLink(){
+    if (isJSBookSource) {
+        try {
+            java.openUrl(`legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/src/bookSourceJS/${bookSourceName}.js`)
+        } catch (e) {
+            java.openUrl(`legado://import/bookSource?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/src/bookSourceJS/${bookSourceName}.js`)
+        }
+    } else {
+        try {
+            java.openUrl(`legado://import/bookSource?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/linpx.json`)
+        } catch (e) {
+            java.openUrl(`legado://import/bookSource?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/linpx.json`)
+        }
+    }
 }
 
 // Handler
