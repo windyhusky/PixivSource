@@ -28,7 +28,7 @@ head:
 
 hero:
   name: Legado + Pixiv Source
-  text: The Pixiv Novel App
+  text: Best Pixiv Novel App
   tagline: <br>Say goodbye to clunky pixiv app. <br>It's time for a ultimate reading experience.
 
   image:
@@ -85,12 +85,12 @@ features:
   - icon: 🔍
     title: Smart Search
     details: 📄 Single title<br> 📚 Series title<br> 👤 Author name<br> 📌 Hashtag name
-    link: /en/Pixiv#QuickJump
+#    link: /en/Pixiv#QuickJump
     
   - icon: 📡
     title: Discover Novels
     details: ⭐️ Following author<br> 📃 Watchlist<br>💯 Recommendation<br> ❤️ Bookmarks
-    link: /en/Pixiv#DiscoverNovel
+#    link: /en/Pixiv#DiscoverNovel
 
   - icon: 📚
     title: Premium Layout
