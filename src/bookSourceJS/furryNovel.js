@@ -189,6 +189,7 @@ function urlUserUrl(name) {
 }
 
 
+// JSLib date
 function addZero(num) {
     return String(num).padStart(2, '0')
 }
@@ -199,7 +200,30 @@ function dateFormat(str) {
     let D = this.addZero(time.getDate()) + "日";
     return Y + M + D;
 }
+function timeFormat(str) {
+    let time = new Date(str);
+    let YY = time.getFullYear()
+    let MM = addZero(time.getMonth() + 1)
+    let DD = addZero(time.getDate())
+    let hh = addZero(time.getHours())
+    let mm = addZero(time.getMinutes())
+    let ss = addZero(time.getSeconds())
+    return `${YY}-${MM}-${DD} ${hh}:${mm}:${ss}`
+}
+function timeTextFormat(text) {
+    return `${text.slice(0, 10)} ${text.slice(11, 19)}`
+}
 
+function sleep(seconds) {
+    return Packages.java.lang.Thread.sleep(1000*seconds)
+}
+function sleepToast(text, seconds) {
+    let {java} = this
+    java.log(text)
+    java.longToast(text)
+    if (seconds === undefined) {seconds = 0.01}
+    sleep(seconds)
+}
 
 // Handler
 function handNovels(novels) {
