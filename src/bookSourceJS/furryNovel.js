@@ -117,10 +117,18 @@ function search(key, page) {
  * @returns 同 search
  */
 function explore(url, page) {
-    const html = java.ajax(url)
-    const list = []
-    return list
+    if (url.includes("cdn.jsdelivr.net" || "raw.githubusercontent.com")) {
+        updateSource(); return []
+    }
+    if(url.includes("furrynovel.com")) {
+        let resp = getAjaxJson(url.replace("{{page}}", page))
+        return formatNovels(handNovels(resp))
+    }
+    else {
+        startBrowser(url, ""); return []
+    }
 }
+
 
 /**
  * 获取书籍详情。可选；仅写出的字段覆盖原值。
