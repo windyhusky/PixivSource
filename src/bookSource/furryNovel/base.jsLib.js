@@ -314,7 +314,7 @@ function timeFormat(str) {
     return `${YY}-${MM}-${DD} ${hh}:${mm}:${ss}`
 }
 function timeTextFormat(text) {
-    return `${text.slice(0, 10)} ${text.slice(11, 19)}`
+    return `${text.slice(0, 10)}`
 }
 
 function sleep(seconds) {
