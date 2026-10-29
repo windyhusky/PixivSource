@@ -61,6 +61,7 @@
 | 书源名称 | jsDelivr | Github |
 | ----- | -------- | ------ |
 | 🦊 Linpx | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/src/bookSourceJS/linpx.js) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/src/bookSourceJS/linpx.js) |
+| 🐯 兽人小说 | [一键导入](https://pixivsource.pages.dev/Import?src=https://cdn.jsdelivr.net/gh/DowneyRem/PixivSource@main/src/bookSourceJS/furryNovel.js) | [一键导入](https://pixivsource.pages.dev/Import?src=https://raw.githubusercontent.com/DowneyRem/PixivSource/main/src/bookSourceJS/furryNovel.js) |
 </details>
 
 
