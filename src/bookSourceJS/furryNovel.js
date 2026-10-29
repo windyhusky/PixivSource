@@ -120,9 +120,138 @@ function urlNovelChapter(novelId, chapterId) {
  *   也可将正文 HTML 传入 java.htmlFormat(html, chapter.url) 转换为文本并保留插图
  */
 function getContent(chapter, book) {
+    let novelId = chapter.url.match(new RegExp("\\d+"))[0]
+    let resp = getAjaxJson(urlNovelDetailed(novelId))
+
     const html = java.ajax(chapter.url)
     // return java.htmlFormat(Jsoup.parse(html).select("div.content").html(), chapter.url)
     return html
+}
+
+// 获取 [uploadedimage:] 的图片链接
+function replaceUploadedImage(resp, content) {
+    let hasEmbeddedImages = content.match(RegExp(/\[uploadedimage:(\d+)-?(\d+)]/gm))
+    if (hasEmbeddedImages) {
+        let resp = getAjaxJson(urlNovelDetailLinpx(resp.source_id))
+        Object.keys(resp.images).forEach((key) => {
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlPxImgUrl(resp.images[key].origin)}">`)
+        })
+    }
+    return content
+}
+// 获取 [pixivimage:] 的图片链接 [pixivimage:1234] [pixivimage:1234-1]
+function replacePixivImage(content) {
+    let matched = content.match(RegExp(/\[pixivimage:(\d+)-?(\d+)]/gm))
+    if (matched) {
+        matched.forEach(pixivimage => {
+            let matched2, illustId, order = 0
+            if (pixivimage.includes("-")) {
+                matched2 = pixivimage.match(RegExp("(\\d+)-(\\d+)"))
+                illustId = matched2[1]; order = matched2[2]
+            } else {
+                matched2 = pixivimage.match(RegExp("\\d+"))
+                illustId = matched2[0];
+            }
+            if (urlIllustOriginal(illustId, order)) {
+                content = content.replace(`${pixivimage}`, `<img src="${urlIllustOriginal(illustId, order)}">`)
+            } else {
+                content = content.replace(`${pixivimage}`, ``)
+            }
+        })
+    }
+    return content
+}
+// 替换 Pixiv 分页标记符号 [newpage]
+function replaceNewPage(content) {
+    // if (!util.environment.IS_LYC_BRUNCH) {
+    let matched = content.match(RegExp(/[ 　]*\[newpage][ 　]*/gm))
+    if (matched) {
+        for (let i in matched) {
+            content = content.replace(`${matched[i]}`, `${"<p>​<p/>".repeat(3)}`)
+        }
+    }
+    // }
+    return content
+}
+// 替换 Pixiv 章节标记符号 [chapter:]
+function replaceChapter(content) {
+    let matched = content.match(RegExp(/\[chapter:(.*?)]/gm))
+    if (matched) {
+        for (let i in matched) {
+            let matched2 = matched[i].match(/\[chapter:(.*?)]/m)
+            let chapter = matched2[1].trim()
+            // 替换 Pixiv 分页标记符号 [newpage]
+            // if (util.environment.IS_LYC_BRUNCH) {
+            //     content = content.replace(`${matched[i]}`, `<usehtml><h3>${chapter}</h3></usehtml>`)
+            // } else {
+            content = content.replace(`${matched[i]}`, `${chapter}<p>​<p/>`)
+            // }
+        }
+    }
+    return content
+}
+// 替换 Pixiv 跳转页面标记符号 [[jump:]]
+function replaceJumpPage(content) {
+    let matched = content.match(RegExp(/\[jump:(\d+)]/gm))
+    if (matched) {
+        for (let i in matched) {
+            let page = matched[i].match(/\d+/)
+            content = content.replace(`${matched[i]}`, `\n\n跳转至第${page}节`)
+        }
+    }
+    return content
+}
+// 替换 Pixiv 链接标记符号 [[jumpuri: > ]]
+function replaceJumpUrl(content) {
+    let matched = content.match(RegExp(/\[\[jumpuri:(.*?)>(.*?)]]/gm))
+    if (matched) {
+        for (let i in matched) {
+            let matched2 = matched[i].match(/\[\[jumpuri:(.*?)>(.*?)]]/m)
+            let matchedText = matched2[0]
+            let urlName = matched2[1].trim()
+            let urlLink = matched2[2].trim()
+
+            // if (util.environment.IS_LYC_BRUNCH) {
+            //     content = content.replace(`${matchedText}`, `<usehtml><p>　　<a href=${urlLink}>${urlName}</a></p></usehtml>`)
+            // } else {
+            if (urlLink === urlName) {
+                content = content.replace(`${matchedText}`, `${urlName}`)
+            } else {
+                content = content.replace(`${matchedText}`, `${urlName}: ${urlLink}`)
+            }
+            // }
+        }
+    }
+    return content
+}
+// 替换 Pixiv 注音标记符号 [[rb: > ]]
+function replaceRb(content) {
+    let settings = getFromCacheObject("FNSettings")
+    let matched = content.match(RegExp(/\[\[rb:(.*?)>(.*?)]]/gm))
+    if (matched) {
+        for (let i in matched) {
+            let matched2 = matched[i].match(/\[\[rb:(.*?)>(.*?)]]/m)
+            let matchedText = matched2[0]
+            let kanji = matched2[1].trim()
+            let kana = matched2[2].trim()
+
+            // 默认替换成（括号）
+            if (!settings.REPLACE_TITLE_MARKS) {
+                content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
+            } else {
+                let reg = RegExp("[\\u4E00-\\u9FFF]+", "g");
+                if (reg.test(kana)) {
+                    // kana为中文，则替换回《书名号》
+                    content = content.replace(`${matchedText}`, `${kanji}《${kana}》`)
+                } else {
+                    // 阅读不支持 <ruby> <rt> 注音
+                    // content = content.replace(`${matchedText}`, `<ruby>${kanji}<rt>${kana}</rt></ruby>`)
+                    content = content.replace(`${matchedText}`, `${kanji}（${kana}）`)
+                }
+            }
+        }
+    }
+    return content
 }
 
 /**
