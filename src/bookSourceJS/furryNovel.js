@@ -126,8 +126,8 @@ function getContent(chapter, book) {
     let content = resp.content
 
     // 替换 Pixiv 标记符
-    // content = replaceUploadedImage(resp, content)
-    // content = replacePixivImage(content)
+    content = replaceUploadedImage(resp, content)
+    content = replacePixivImage(content)
     content = replaceNewPage(content)
     content = replaceChapter(content)
     content = replaceJumpPage(content)
@@ -140,9 +140,9 @@ function getContent(chapter, book) {
 function replaceUploadedImage(resp, content) {
     let hasEmbeddedImages = content.match(RegExp(/\[uploadedimage:(\d+)-?(\d+)]/gm))
     if (hasEmbeddedImages) {
-        let resp = getAjaxJson(urlNovelDetailLinpx(resp.source_id))
-        Object.keys(resp.images).forEach((key) => {
-            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlPxImgUrl(resp.images[key].origin)}">`)
+        let novel = getAjaxJson(urlNovelDetailLinpx(resp.source_id))
+        Object.keys(novel.images).forEach((key) => {
+            content = content.replace(`[uploadedimage:${key}]`, `<img src="${urlPxImgUrlLinpx(novel.images[key].origin)}">`)
         })
     }
     return content
